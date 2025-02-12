@@ -5082,7 +5082,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.26, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5098,14 +5098,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55ab9bb6a6975f43ae2b21c4c3af914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 250
+  jumpForce: 300
   inHeadbuttRange: 0
-  headbuttRange: 0.4
-  headbuttPower: 400
+  headbuttRange: 1
+  headbuttPower: 500
   timeSinceLastHeadbutt: 0
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
+  blockLockdownRange: 0.4
+  bounceDirection: 
+  timedHeadbutt: 0
   playerStates: {fileID: 0}
+  blockBelow: {fileID: 0}
 --- !u!114 &1217362974
 MonoBehaviour:
   m_ObjectHideFlags: 0
