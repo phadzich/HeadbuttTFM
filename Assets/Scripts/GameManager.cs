@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void AddBlockToHitBlocks(BlockData _newBlock)
     {
-        if(!hitBlocks.Contains(_newBlock))
+        if (!hitBlocks.Contains(_newBlock))
         {
             hitBlocks.Add(_newBlock);
             currentComboCount++;
@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour
         }
         hitBlocks.Clear();
         currentComboBlock = null;
-        currentComboCount=0;
+        currentComboCount = 0;
 
 
     }
 
-    public void BreakAllHitBlocks() {
-    foreach(BlockData _block in  hitBlocks)
+    public void BreakAllHitBlocks()
+    {
+        foreach (BlockData _block in hitBlocks)
         {
             _block.jumpCount = 0;
             _block.gameObject.SetActive(false);
