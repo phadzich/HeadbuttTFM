@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 public class LevelMovement : MonoBehaviour
 {
     [SerializeField]
-    float MoveStepDistance = 1f;
     private Vector2 moveInput;
     private Vector3 positionTarget;
     public float speed = 10f;
     private bool isMoving;
+    public bool movementLocked;
 
 
     private void Start()
@@ -49,7 +49,7 @@ public class LevelMovement : MonoBehaviour
             //Debug.Log("Move input: " + moveInput);
 
 
-            if (!isMoving)
+            if (!isMoving && !movementLocked)
             {
 
                 var nextPos = positionTarget + new Vector3(moveInput.x * -1, 0, moveInput.y * -1);

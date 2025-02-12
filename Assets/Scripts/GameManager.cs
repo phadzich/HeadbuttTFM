@@ -8,6 +8,7 @@ using static Unity.Collections.AllocatorManager;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public LevelMovement levelMovement;
 
     [SerializeField]
     private List<BlockData> hitBlocks;
