@@ -34,19 +34,11 @@ public class GameManager : MonoBehaviour
 
     public void AddBlockToHitBlocks(BlockData _newBlock)
     {
-<<<<<<< Updated upstream
-        if (!hitBlocks.Contains(_newBlock))
-=======
         if(!hitBlocks.Contains(_newBlock))
->>>>>>> Stashed changes
         {
             hitBlocks.Add(_newBlock);
             currentComboCount++;
         }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         IncreaseLevelJumpCount(1);
     }
 

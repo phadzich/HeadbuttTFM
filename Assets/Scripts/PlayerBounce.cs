@@ -54,7 +54,7 @@ public class PlayerBounce : MonoBehaviour
             ToggleHeadbuttIndicator(false);
             playerStates.EnterIdleState();
         }
-
+         
         UpdateHeadbuttCooldown();
     }
 

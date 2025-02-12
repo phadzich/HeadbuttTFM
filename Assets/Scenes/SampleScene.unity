@@ -5100,7 +5100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 300
   inHeadbuttRange: 0
-  headbuttRange: 1
+  headbuttRange: 1.5
   headbuttPower: 500
   timeSinceLastHeadbutt: 0
   headbuttCooldown: 0.5

@@ -33,7 +33,7 @@ public class LevelMovement : MonoBehaviour
     {
         positionTarget = new Vector3(newPos.x,0,newPos.z);
         //Debug.Log("NewTarget: " + positionTarget);
-
+         
     }
 
     public void MoveAllBlocks(InputAction.CallbackContext context)
