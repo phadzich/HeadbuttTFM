@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Unity.Collections.AllocatorManager;
 
 public class GameManager : MonoBehaviour
@@ -9,20 +11,31 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private List<BlockData> hitBlocks;
-    [SerializeField]
+
     public string currentComboBlock;
     public int currentComboCount;
+    public int levelJumpCount;
+    public int maxJumps;
 
+
+    public TextMeshProUGUI txtJumpCounts;
+    public TextMeshProUGUI txtMaxJumps;
+    public TextMeshProUGUI txtRemainingJumps;
 
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        txtMaxJumps.text = "MAX: " + maxJumps.ToString();
     }
 
     public void AddBlockToHitBlocks(BlockData _newBlock)
     {
         hitBlocks.Add(_newBlock);
         currentComboCount++;
+        IncreaseLevelJumpCount(1);
     }
 
     public void ClearAllHitBlocks()
@@ -47,5 +60,22 @@ public class GameManager : MonoBehaviour
         }
         ClearAllHitBlocks();
     }
+
+    public void IncreaseLevelJumpCount(int _jumps)
+    {
+        levelJumpCount += _jumps;
+        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
+
+        var _remaining = maxJumps - levelJumpCount;
+
+        txtRemainingJumps.text = "QUEDAN: " + _remaining.ToString();
+
+        if (levelJumpCount == maxJumps)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
+    }
+
 
 }
