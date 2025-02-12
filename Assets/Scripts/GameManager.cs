@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void AddBlockToHitBlocks(BlockData _newBlock)
     {
-        if (!hitBlocks.Contains(_newBlock))
+        if(!hitBlocks.Contains(_newBlock))
         {
             hitBlocks.Add(_newBlock);
             currentComboCount++;
