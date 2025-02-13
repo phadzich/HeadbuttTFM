@@ -8538,7 +8538,7 @@ GameObject:
   - component: {fileID: 1112208448}
   - component: {fileID: 1112208447}
   m_Layer: 0
-  m_Name: Level
+  m_Name: Piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9445,13 +9445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55ab9bb6a6975f43ae2b21c4c3af914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 300
-  inHeadbuttRange: 0
-  headbuttRange: 1.5
-  headbuttPower: 500
-  timeSinceLastHeadbutt: 0
-  headbuttCooldown: 0.5
-  headbuttOnCooldown: 0
   blockLockdownRange: 0.4
   blockBelow: {fileID: 0}
   jumpForce: 300
