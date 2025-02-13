@@ -3,34 +3,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerBounce : MonoBehaviour
 {
-    [SerializeField]
-    float jumpForce;
     Rigidbody rb;
-    [SerializeField]
-    bool inHeadbuttRange;
-    [SerializeField]
-    float headbuttRange;
-    [SerializeField]
-    float headbuttPower;
-    [SerializeField]
-    float timeSinceLastHeadbutt;
-    [SerializeField]
-    float headbuttCooldown;
-    [SerializeField]
-    bool headbuttOnCooldown;
+    PlayerStates playerStates;
+
+    [Header("MOVEMENT")]
     [SerializeField]
     float blockLockdownRange;
+    [SerializeField]
+    BlockData blockBelow;
 
+    [Header ("BOUNCE")]
+    [SerializeField]
+    float jumpForce;
     [SerializeField]
     string bounceDirection;
 
+    [Header("HEADBUTT CONFIG")]
+    [SerializeField]
+    float headbuttRange;
+    [SerializeField]
+    bool headbuttOnCooldown;
+    [SerializeField]
+    float headbuttPower;
+    [Header("HEADBUTT CHECKS")]
+    [SerializeField]
+    bool inHeadbuttRange;
+    [SerializeField]
+    float headbuttCooldown;
     [SerializeField]
     bool timedHeadbutt;
-
-    public PlayerStates playerStates;
-
     [SerializeField]
-    BlockData blockBelow;
+    float timeSinceLastHeadbutt;
+
 
     private void Start()
     {
