@@ -9445,7 +9445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55ab9bb6a6975f43ae2b21c4c3af914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
   jumpForce: 300
   inHeadbuttRange: 0
   headbuttRange: 1.5
@@ -9453,8 +9452,6 @@ MonoBehaviour:
   timeSinceLastHeadbutt: 0
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
-=======
->>>>>>> Stashed changes
   blockLockdownRange: 0.4
   blockBelow: {fileID: 0}
   jumpForce: 300
