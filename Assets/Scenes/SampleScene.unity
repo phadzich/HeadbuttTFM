@@ -9587,15 +9587,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockLockdownRange: 0.4
   blockBelow: {fileID: 0}
-  jumpForce: 300
+  jumpForce: 5
   bounceDirection: 
   headbuttRange: 1
   headbuttOnCooldown: 0
-  headbuttPower: 500
+  headbuttPower: 10
   inHeadbuttRange: 0
   headbuttCooldown: 0.5
   timedHeadbutt: 0
   timeSinceLastHeadbutt: 0
+  maxHeight: 5
 --- !u!114 &1217362974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13880,7 +13881,7 @@ MonoBehaviour:
   txtMaxJumps: {fileID: 2130303286}
   txtRemainingJumps: {fileID: 202078896}
   levelHBCount: 0
-  maxHB: 10
+  maxHB: 30
   hasHeadbutts: 1
   txtHBCounts: {fileID: 1896813982}
   txtMaxHB: {fileID: 2028651027}

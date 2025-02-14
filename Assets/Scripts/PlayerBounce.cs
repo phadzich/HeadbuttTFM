@@ -36,6 +36,8 @@ public class PlayerBounce : MonoBehaviour
     [SerializeField]
     float timeSinceLastHeadbutt;
     CinemachineImpulseSource impulseSource;
+    [SerializeField]
+    float maxHeight;
 
     private void Start()
     {
@@ -66,6 +68,7 @@ public class PlayerBounce : MonoBehaviour
 
     private void CheckBounceDirection()
     {
+        Debug.Log(rb.linearVelocity.y);
         if(rb.linearVelocity.y >= 0)
         {
             bounceDirection = "UP";
@@ -112,7 +115,7 @@ public class PlayerBounce : MonoBehaviour
     {
         Vector3 origin = transform.position;
         Vector3 direction = Vector3.down;
-        float _groundDistance = .1f;
+        float _groundDistance = .05f;
         Debug.DrawRay(origin, direction * _groundDistance, Color.red);
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
@@ -150,7 +153,7 @@ public class PlayerBounce : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         if (!timedHeadbutt)
         {
-            rb.AddForce(Vector3.up * jumpForce);
+            rb.linearVelocity = new Vector3(0, jumpForce, 0);
         }
         blockBelow.GetHit();
         timedHeadbutt = false;
@@ -159,13 +162,12 @@ public class PlayerBounce : MonoBehaviour
     private void HeadbuttUp()
     {
         Debug.Log("HEADBUTT!");
-        rb.linearVelocity = Vector3.zero;
-        rb.AddForce(Vector3.up * headbuttPower);
+        rb.linearVelocity = new Vector3(0, headbuttPower, 0);
+
         blockBelow.GetHit();
         ScreenShake();
         RestartHeadbuttCooldown();
         GameManager.instance.IncreaseLevelHBCount(1);
-
     }
 
     private void ScreenShake()

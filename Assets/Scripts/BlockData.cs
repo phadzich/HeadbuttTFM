@@ -62,8 +62,8 @@ public class BlockData : MonoBehaviour
         }
         else
         {
-            this.transform.localScale = new Vector3(blockGeo.transform.localScale.x, .2f, blockGeo.transform.localScale.z);
-            this.transform.position = new Vector3(blockGeo.transform.position.x, blockGeo.transform.position.y -.5f, blockGeo.transform.position.z);
+            blockGeo.transform.localScale = new Vector3(blockGeo.transform.localScale.x, .2f, blockGeo.transform.localScale.z);
+            blockGeo.transform.position = new Vector3(blockGeo.transform.position.x, blockGeo.transform.position.y -.5f, blockGeo.transform.position.z);
         }
         ScreenShake();
         minedParticles.Play();
