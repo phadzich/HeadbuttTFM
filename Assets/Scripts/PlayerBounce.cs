@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,12 +35,13 @@ public class PlayerBounce : MonoBehaviour
     bool timedHeadbutt;
     [SerializeField]
     float timeSinceLastHeadbutt;
-
+    CinemachineImpulseSource impulseSource;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerStates = GetComponent<PlayerStates>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
 
@@ -160,14 +162,22 @@ public class PlayerBounce : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(Vector3.up * headbuttPower);
         blockBelow.GetHit();
+        ScreenShake();
         RestartHeadbuttCooldown();
+        GameManager.instance.IncreaseLevelHBCount(1);
+
+    }
+
+    private void ScreenShake()
+    {
+        impulseSource.GenerateImpulse();
     }
 
     public void Headbutt(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Performed)
         {
-            if (inHeadbuttRange && !headbuttOnCooldown)
+            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.instance.hasHeadbutts)
             {
                 timedHeadbutt = true;
                 Debug.Log("CORRECT!");

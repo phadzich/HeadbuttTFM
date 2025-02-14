@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI txtMaxJumps;
     public TextMeshProUGUI txtRemainingJumps;
 
+    public int levelHBCount;
+    public int maxHB;
+    public bool hasHeadbutts;
+
+    public TextMeshProUGUI txtHBCounts;
+    public TextMeshProUGUI txtMaxHB;
+    public TextMeshProUGUI txtRemainingHB;
+
     private void Awake()
     {
         instance = this;
@@ -30,6 +38,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         txtMaxJumps.text = "MAX: " + maxJumps.ToString();
+        txtMaxHB.text = "MAX: " + maxHB.ToString();
     }
 
     public void AddBlockToHitBlocks(BlockData _newBlock)
@@ -55,13 +64,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void BreakAllHitBlocks()
+    public void MineAllHitBlocks()
     {
         foreach (BlockData _block in hitBlocks)
         {
             _block.jumpCount = 0;
-            _block.gameObject.SetActive(false);
-            _block.ShowHitIndicator(false);
+            _block.GetMined();
+            
         }
         ClearAllHitBlocks();
     }
@@ -81,6 +90,29 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void IncreaseLevelHBCount(int _jumps)
+    {
+        levelHBCount += _jumps;
+        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
+
+        var _remaining = maxHB - levelHBCount;
+
+        txtRemainingHB.text = "QUEDAN: " + _remaining.ToString();
+
+        if (levelHBCount >= maxHB)
+        {
+            levelHBCount = maxHB;
+            hasHeadbutts = false;
+        }
+        else
+        {
+            hasHeadbutts = true;
+        }
+
+    }
+
+
 
 
 }
