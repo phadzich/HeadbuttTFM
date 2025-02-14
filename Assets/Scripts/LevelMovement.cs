@@ -54,8 +54,15 @@ public class LevelMovement : MonoBehaviour
 
                 var nextPos = positionTarget + new Vector3(moveInput.x * -1, 0, moveInput.y * -1);
                 //Debug.Log("NextPos: " + nextPos);
-                ChangePositionTarget(nextPos);
-                isMoving = true;
+                if(nextPos.x == -7 || nextPos.x == 7 || nextPos.z == -7 || nextPos.z == 7) {
+                    Debug.Log("EDGE");
+                }
+                else
+                {
+                    ChangePositionTarget(nextPos);
+                    isMoving = true;
+                }
+
 
             }
 

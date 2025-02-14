@@ -15,6 +15,8 @@ public class BlockData : MonoBehaviour
     public GameObject blockGeo;
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
+    public Material groundMaterial;
+
     private void Start()
     {
         ShowHitIndicator(false);
@@ -67,8 +69,11 @@ public class BlockData : MonoBehaviour
         }
         ScreenShake();
         minedParticles.Play();
+        blockResource = "Rock";
+        comboToBreak = 50;
         isMined = true;
         ShowHitIndicator(false);
+        blockGeo.GetComponent<MeshRenderer>().material = groundMaterial;
     }
 
 
