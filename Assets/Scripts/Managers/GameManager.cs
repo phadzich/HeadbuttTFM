@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<BlockData> hitBlocks;
 
-    public string currentComboBlock;
+    public ResourceData currentComboBlock;
     public int currentComboCount;
     public int levelJumpCount;
     public int maxJumps;
+
 
 
     public TextMeshProUGUI txtJumpCounts;
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
         hitBlocks.Clear();
         currentComboBlock = null;
         currentComboCount = 0;
-
 
     }
 
