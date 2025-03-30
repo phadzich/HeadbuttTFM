@@ -68,7 +68,6 @@ public class PlayerBounce : MonoBehaviour
 
     private void CheckBounceDirection()
     {
-        Debug.Log(rb.linearVelocity.y);
         if(rb.linearVelocity.y >= 0)
         {
             bounceDirection = "UP";
@@ -149,7 +148,7 @@ public class PlayerBounce : MonoBehaviour
 
     private void BounceUp()
     {
-        Debug.Log("BOUNCE!");
+        //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
         if (!timedHeadbutt)
         {
