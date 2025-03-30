@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -7,39 +8,32 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance;
 
     [SerializeField]
-    private Dictionary<ResourceData, int> ownedResources = new();
+    public Dictionary<ResourceData, int> ownedResources = new();
     [SerializeField]
-    private Dictionary<ResourceData, int> storedResources = new();
+    public Dictionary<ResourceData, int> storedResources = new();
     [SerializeField]
     private List<ResourceData> allAvailableResources;
+
+    public Action onOwnedResourcesChanged;
 
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            Debug.Log("ResourceManager Awake");
+        }
+
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     private void Start()
     {
-        //DE PRUEBA, AGREGAMOS RECURSOS Y DEPOSITAMOS UN POCO
-        AddResource(allAvailableResources[0], 20);
-        AddResource(allAvailableResources[1], 30);
-        AddResource(allAvailableResources[2], 40);
 
-        DepositResource(allAvailableResources[0], 10);
-        DepositResource(allAvailableResources[1], 35);
-        DepositResource(allAvailableResources[2], 40);
-
-        Debug.Log(GetOwnedResourceAmount(allAvailableResources[0]));
-        Debug.Log(GetOwnedResourceAmount(allAvailableResources[1]));
-        Debug.Log(GetOwnedResourceAmount(allAvailableResources[2]));
-
-        Debug.Log(GetStoredResourceAmount(allAvailableResources[0]));
-        Debug.Log(GetStoredResourceAmount(allAvailableResources[1]));
-        Debug.Log(GetStoredResourceAmount(allAvailableResources[2]));
-
+        onOwnedResourcesChanged?.Invoke();
     }
 
     public void AddResource(ResourceData _resource, int _amount)
@@ -54,6 +48,7 @@ public class ResourceManager : MonoBehaviour
         {
             ownedResources[_resource] = _amount;
         }
+        onOwnedResourcesChanged?.Invoke();
         Debug.Log($"Added {_amount} {_resource.shortName} to inventory");
     }
 
@@ -68,6 +63,7 @@ public class ResourceManager : MonoBehaviour
             return true;
         }
         //Si no hay recurso o no hay la cantidad necesaria, regresamos FALSE
+        onOwnedResourcesChanged?.Invoke();
         Debug.Log($"NOT ENOUGH RESOURCES!");
         return false;
     }
@@ -87,6 +83,7 @@ public class ResourceManager : MonoBehaviour
             }
             //Quitamos lo depositado del owned
             ownedResources[_resource] -= _amount;
+            onOwnedResourcesChanged?.Invoke();
             Debug.Log($"Added {_amount} {_resource.shortName} to Storage");
             return true;
         }
@@ -104,6 +101,7 @@ public class ResourceManager : MonoBehaviour
             //Quitamos esa cantidad, la agregamos al owned y regresamos TRUE
             storedResources[_resource] -= _amount;
             ownedResources[_resource] += _amount;
+            onOwnedResourcesChanged?.Invoke();
             Debug.Log($"Withdrew {_amount} of {_resource.shortName} from Storage");
             return true;
         }
