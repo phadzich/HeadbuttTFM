@@ -11,7 +11,7 @@ public class PlayerBounce : MonoBehaviour
     [SerializeField]
     float blockLockdownRange;
     [SerializeField]
-    BlockData blockBelow;
+    Block blockBelow;
 
     [Header ("BOUNCE")]
     [SerializeField]
@@ -68,7 +68,6 @@ public class PlayerBounce : MonoBehaviour
 
     private void CheckBounceDirection()
     {
-        Debug.Log(rb.linearVelocity.y);
         if(rb.linearVelocity.y >= 0)
         {
             bounceDirection = "UP";
@@ -88,7 +87,7 @@ public class PlayerBounce : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 5f))
         {
 
-            blockBelow = hit.collider.GetComponent<BlockData>();
+            blockBelow = hit.collider.GetComponent<ResourceBlock>();
         }
     }
 
@@ -101,11 +100,11 @@ public class PlayerBounce : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN")
         {
 
-            GameManager.instance.levelMovement.movementLocked = true;
+            GameManager.Instance.levelMovement.movementLocked = true;
         }
         else
         {
-            GameManager.instance.levelMovement.movementLocked = false;
+            GameManager.Instance.levelMovement.movementLocked = false;
         }
     }
 
@@ -149,13 +148,13 @@ public class PlayerBounce : MonoBehaviour
 
     private void BounceUp()
     {
-        Debug.Log("BOUNCE!");
+        //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
         if (!timedHeadbutt)
         {
             rb.linearVelocity = new Vector3(0, jumpForce, 0);
         }
-        blockBelow.GetHit();
+        blockBelow.Bounce();
         timedHeadbutt = false;
     }
 
@@ -164,10 +163,10 @@ public class PlayerBounce : MonoBehaviour
         Debug.Log("HEADBUTT!");
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
-        blockBelow.GetHit();
+        blockBelow.Headbutt();
         ScreenShake();
         RestartHeadbuttCooldown();
-        GameManager.instance.IncreaseLevelHBCount(1);
+        GameManager.Instance.IncreaseLevelHBCount(1);
     }
 
     private void ScreenShake()
@@ -179,7 +178,7 @@ public class PlayerBounce : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Performed)
         {
-            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.instance.hasHeadbutts)
+            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.Instance.hasHeadbutts)
             {
                 timedHeadbutt = true;
                 Debug.Log("CORRECT!");
