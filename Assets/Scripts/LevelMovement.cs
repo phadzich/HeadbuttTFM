@@ -54,7 +54,7 @@ public class LevelMovement : MonoBehaviour
 
                 var nextPos = positionTarget + new Vector3(moveInput.x * -1, 0, moveInput.y * -1);
                 //Debug.Log("NextPos: " + nextPos);
-                if(nextPos.x == -7 || nextPos.x == 7 || nextPos.z == -7 || nextPos.z == 7) {
+                if(nextPos.x == (-LevelManager.Instance.sublevelWidth-1)/2 || nextPos.x > (LevelManager.Instance.sublevelWidth - 1) / 2 || nextPos.z == (-LevelManager.Instance.sublevelHeight - 1) / 2 || nextPos.z > (LevelManager.Instance.sublevelHeight - 1) / 2) {
                     Debug.Log("EDGE");
                 }
                 else

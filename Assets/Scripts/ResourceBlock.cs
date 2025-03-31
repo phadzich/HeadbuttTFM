@@ -10,7 +10,7 @@ public class ResourceBlock : Block
     public bool isMined;
     public int bounceCount;
     public Transform blockMeshParent;
-    private GameObject blockMesh;
+    public GameObject blockMesh;
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
@@ -19,7 +19,6 @@ public class ResourceBlock : Block
     {
 
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        SetupBlock(1, 0, 0, resourceData);
     }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
