@@ -12,7 +12,7 @@ public class ResourceManager : MonoBehaviour
     [SerializeField]
     public Dictionary<ResourceData, int> storedResources = new();
     [SerializeField]
-    private List<ResourceData> allAvailableResources;
+    public List<ResourceData> allAvailableResources;
 
     public Action onOwnedResourcesChanged;
 

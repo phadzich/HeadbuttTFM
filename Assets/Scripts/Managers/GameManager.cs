@@ -7,13 +7,13 @@ using static Unity.Collections.AllocatorManager;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
     public LevelMovement levelMovement;
 
     [SerializeField]
-    private List<BlockData> hitBlocks;
+    private List<ResourceBlock> hitBlocks;
 
-    public ResourceData currentComboBlock;
+    public ResourceData currentComboResource;
     public int currentComboCount;
     public int levelJumpCount;
     public int maxJumps;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
     private void Start()
     {
@@ -42,7 +42,28 @@ public class GameManager : MonoBehaviour
         txtMaxHB.text = "MAX: " + maxHB.ToString();
     }
 
-    public void AddBlockToHitBlocks(BlockData _newBlock)
+    public void CheckIfNewCombo(ResourceData _resourceData, ResourceBlock _resourceBlock)
+    {
+        //Si se salta sobre un recurso diferente, rompemos el combo
+        if (currentComboResource != _resourceData)
+        {
+            ClearAllHitBlocks();
+            currentComboResource = _resourceData;
+        }
+        //Sea diferente o no, lo agregamos a la lista del combo
+        AddBlockToHitBlocks(_resourceBlock);
+    }
+
+    public void CheckIfComboCompleted()
+    {
+        if (currentComboCount == currentComboResource.hardness)
+        {
+            MineAllHitBlocks();
+        }
+
+    }
+
+    public void AddBlockToHitBlocks(ResourceBlock _newBlock)
     {
         if(!hitBlocks.Contains(_newBlock))
         {
@@ -54,22 +75,21 @@ public class GameManager : MonoBehaviour
 
     public void ClearAllHitBlocks()
     {
-        foreach (BlockData _block in hitBlocks)
+        foreach (ResourceBlock _block in hitBlocks)
         {
             _block.ShowHitIndicator(false);
         }
         hitBlocks.Clear();
-        currentComboBlock = null;
+        currentComboResource= null;
         currentComboCount = 0;
 
     }
 
     public void MineAllHitBlocks()
     {
-        foreach (BlockData _block in hitBlocks)
+        foreach (ResourceBlock _block in hitBlocks)
         {
-            _block.jumpCount = 0;
-            _block.GetMined();
+            _block.Activate();
             
         }
         ClearAllHitBlocks();

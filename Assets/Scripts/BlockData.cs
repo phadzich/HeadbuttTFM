@@ -4,9 +4,7 @@ using static Unity.Collections.AllocatorManager;
 
 public class BlockData : MonoBehaviour
 {
-    [SerializeField]
-    public int jumpCount;
-
+    /*
     public GameObject hitIndicatorPF;
     public ResourceData blockResource;
     public bool isDoor = false;
@@ -33,24 +31,24 @@ public class BlockData : MonoBehaviour
         {
             ShowHitIndicator(true);
 
-            if (GameManager.instance.currentComboBlock != blockResource)
+            if (GameManager.Instance.currentComboBlock != blockResource)
             {
-                GameManager.instance.ClearAllHitBlocks();
-                GameManager.instance.currentComboBlock = blockResource;
+                GameManager.Instance.ClearAllHitBlocks();
+                GameManager.Instance.currentComboBlock = blockResource;
             }
 
-            GameManager.instance.AddBlockToHitBlocks(this);
+            GameManager.Instance.AddBlockToHitBlocks(this);
 
 
-            if (GameManager.instance.currentComboCount == blockResource.hardness)
+            if (GameManager.Instance.currentComboCount == blockResource.hardness)
             {
-                GameManager.instance.MineAllHitBlocks();
+                GameManager.Instance.MineAllHitBlocks();
             }
 
         }
         else
         {
-            GameManager.instance.IncreaseLevelJumpCount(1);
+            GameManager.Instance.IncreaseLevelJumpCount(1);
         }
 
     }
@@ -85,4 +83,5 @@ public class BlockData : MonoBehaviour
     {
         hitIndicatorPF.SetActive(_visible);   
     }
+    */
 }
