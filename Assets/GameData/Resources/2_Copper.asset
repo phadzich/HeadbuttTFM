@@ -19,4 +19,4 @@ MonoBehaviour:
   description: 
   icon: {fileID: 0}
   color: {r: 0.72156864, g: 0.4509804, b: 0.2, a: 0}
-  mesh: {fileID: 0}
+  mesh: {fileID: 8846097338804330060, guid: e5ce7adbe131efe47ae5cbcc75cc67e1, type: 3}
