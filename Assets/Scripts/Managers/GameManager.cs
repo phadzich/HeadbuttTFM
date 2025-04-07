@@ -132,7 +132,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    public void RestartSublevelStats()
+    {
+               currentComboResource = null;
+    currentComboCount = 0;
+    levelJumpCount = 0;
+        levelHBCount = 0;
+        hasHeadbutts = true;
+}
 
 
 }

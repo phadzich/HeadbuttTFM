@@ -49,7 +49,7 @@ public class ResourceManager : MonoBehaviour
             ownedResources[_resource] = _amount;
         }
         onOwnedResourcesChanged?.Invoke();
-        Debug.Log($"Added {_amount} {_resource.shortName} to inventory");
+        //Debug.Log($"Added {_amount} {_resource.shortName} to inventory");
     }
 
     public bool SpendResource(ResourceData _resource, int _amount)
