@@ -5,10 +5,14 @@ using PrimeTween;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
+    public GameObject playerCam;
+    public float playerCamHeight = 10f;
     public GameObject resourceBlockPrefab;
     public Transform levelsContainer;
     public GameObject currentLoadedLevelContainer;
     public Level currentLevel;
+    public GameObject doorTriggerPrefab;
+
 
     public List<ResourceBlock> resourceBlocks;
 
@@ -61,10 +65,10 @@ public class LevelManager : MonoBehaviour
 
     public void GenerateSublevel(SublevelConfig _sublevelConfig, int _depth)
     {
-        Debug.Log("Generating at depth: " + _depth.ToString());
+        //Debug.Log("Generating at depth: " + _depth.ToString());
         GameObject _sublevelContainer = CreateEmptyGameobject(_sublevelConfig.name, currentLoadedLevelContainer.transform);
         _sublevelContainer.transform.localPosition = new Vector3(0, distanceBetweenSublevels* -_depth, 0);
-        Debug.Log(_sublevelContainer.transform.localPosition);
+        //Debug.Log(_sublevelContainer.transform.localPosition);
         
         Sublevel _sublevel = _sublevelContainer.AddComponent<Sublevel>();
         _sublevel.SetupSublevel(_sublevelConfig.id, _depth, true, _sublevelConfig);
@@ -72,13 +76,14 @@ public class LevelManager : MonoBehaviour
         int _rows = _sublevelConfig.height; 
         Debug.Log($"**Generating Sublevel {_sublevelConfig.name}**");
         InstanceNewBlocks(_cols, _rows, _sublevelConfig.resourcesList, _sublevelContainer.transform);
+        Instantiate(doorTriggerPrefab, _sublevelContainer.transform);
     }
 
     public void ExitSublevel()
     {
 
         currentLevelDepth++;
-        MoveLevelUp(currentLevelDepth);
+        MoveCamDown(currentLevelDepth);
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
     }
     public void EnterSublevel(SublevelConfig _sublevelConfig)
@@ -121,12 +126,13 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void MoveLevelUp(int _count)
+    private void MoveCamDown(int _count)
     {
-        Tween.PositionY(currentLoadedLevelContainer.transform,
-            startValue: currentLoadedLevelContainer.transform.position.y, 
-            endValue: _count * distanceBetweenSublevels,
-            duration:1.5f);
+        Tween.PositionY(playerCam.transform,
+            startValue: playerCam.transform.position.y, 
+            endValue: (_count * -distanceBetweenSublevels) + playerCamHeight,
+            duration:1f,
+            ease:Ease.InOutQuad);
 }
 
     /*
