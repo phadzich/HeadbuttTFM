@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         AddBlockToHitBlocks(_resourceBlock);
     }
 
+
     public void CheckIfComboCompleted()
     {
         if (currentComboCount == currentComboResource.hardness)

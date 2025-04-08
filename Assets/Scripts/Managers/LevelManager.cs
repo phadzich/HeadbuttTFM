@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
+using static UnityEngine.Rendering.DebugUI.Table;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
@@ -12,6 +13,8 @@ public class LevelManager : MonoBehaviour
     public GameObject currentLoadedLevelContainer;
     public Level currentLevel;
     public GameObject doorTriggerPrefab;
+
+    public GameObject npcBlockPrefab;
 
 
     public List<ResourceBlock> resourceBlocks;
@@ -56,6 +59,7 @@ public class LevelManager : MonoBehaviour
         //DETERMINAMOS DATA DEL DEPTH
         maxLevelDepth = _levelConfig.subLevels.Count-1;
         currentLevelDepth = 0;
+
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
         //INDICAMOS QUE HEMOS ENTRADO EN EL
@@ -67,16 +71,31 @@ public class LevelManager : MonoBehaviour
     {
         //Debug.Log("Generating at depth: " + _depth.ToString());
         GameObject _sublevelContainer = CreateEmptyGameobject(_sublevelConfig.name, currentLoadedLevelContainer.transform);
-        _sublevelContainer.transform.localPosition = new Vector3(0, distanceBetweenSublevels* -_depth, 0);
+        _sublevelContainer.transform.localPosition = new Vector3(0, distanceBetweenSublevels * -_depth, 0);
         //Debug.Log(_sublevelContainer.transform.localPosition);
-        
+
         Sublevel _sublevel = _sublevelContainer.AddComponent<Sublevel>();
         _sublevel.SetupSublevel(_sublevelConfig.id, _depth, true, _sublevelConfig);
-        int _cols = _sublevelConfig.width;
-        int _rows = _sublevelConfig.height; 
-        Debug.Log($"**Generating Sublevel {_sublevelConfig.name}**");
-        InstanceNewBlocks(_cols, _rows, _sublevelConfig.resourcesList, _sublevelContainer.transform);
-        Instantiate(doorTriggerPrefab, _sublevelContainer.transform);
+
+        if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
+        {
+
+            int _cols = _miningSublevel.width;
+            int _rows = _miningSublevel.height;
+            Debug.Log($"**Generating MINING Sublevel {_miningSublevel.name}**");
+            InstanceMiningBlocks(_cols, _rows, _miningSublevel.resourcesList, _sublevelContainer.transform);
+
+        }
+        else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
+        {
+            // GENERAR AQUI SUBLEVEL DE TIPO NPC
+            int _cols = _npcSublevel.width;
+            int _rows = _npcSublevel.height;
+            Debug.Log($"**Generating NPC Sublevel {_npcSublevel.name}**");
+            InstanceNPCBlocks(_cols, _rows, _sublevelContainer.transform);
+        }
+
+
     }
 
     public void ExitSublevel()
@@ -88,8 +107,21 @@ public class LevelManager : MonoBehaviour
     }
     public void EnterSublevel(SublevelConfig _sublevelConfig)
     {
-           sublevelWidth = _sublevelConfig.width;
-            sublevelHeight = _sublevelConfig.height;
+
+        if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
+        {
+
+            sublevelWidth = _miningSublevel.width;
+            sublevelHeight = _miningSublevel.height;
+
+        }
+        else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
+        {
+            // CONFIGURAR AQUI SUBLEVEL DE TIPO NPC
+            sublevelWidth = _npcSublevel.width;
+            sublevelHeight = _npcSublevel.height;
+        }
+
         //CARGAMOS EL SIGUIENTE
         if (currentLevelDepth < maxLevelDepth)
         {
@@ -101,7 +133,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.RestartSublevelStats();
     }
 
-    public void InstanceNewBlocks(int  _cols, int _rows, List<ResourceData> _resources, Transform _sublevelContainer)
+    public void InstanceMiningBlocks(int  _cols, int _rows, List<ResourceData> _resources, Transform _sublevelContainer)
     {
         int _spacing = 1;
 
@@ -115,13 +147,40 @@ public class LevelManager : MonoBehaviour
                 Vector3 _posicion = new Vector3(x * _spacing - offsetX, _sublevelContainer.transform.position.y, z * _spacing - offsetZ);
                 GameObject _bloque = Instantiate(resourceBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
                 ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();
-                _resourceBlock.SetupBlock(0, x, x, _resources[Random.Range(0, _resources.Count)]);
+                _resourceBlock.SetupBlock(0, x, z, _resources[Random.Range(0, _resources.Count)]);
                 _bloque.name = $"{_resourceBlock.resourceData.shortName}_c{x}r_{z}";
                 resourceBlocks.Add(_resourceBlock);
-                if (x == _cols/2 && z == _rows/2)
+                if (x == _cols/2 && z == _rows/2 && currentLevelDepth+1 < maxLevelDepth)
                 {
+                    Debug.Log("Door trigger at" + currentLevelDepth);
                     _resourceBlock.isDoor = true;
                 }
+            }
+        }
+    }
+
+    public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer)
+    {
+        int _spacing = 1;
+
+        float offsetX = (_cols - 1) * _spacing * 0.5f;
+        float offsetZ = (_cols - 1) * _spacing * 0.5f;
+
+        for (int z = 0; z < _rows; z++)
+        {
+            for (int x = 0; x < _cols; x++)
+            {
+                Vector3 _posicion = new Vector3(x * _spacing - offsetX, _sublevelContainer.transform.position.y, z * _spacing - offsetZ);
+                GameObject _bloque = Instantiate(npcBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
+                NPCBlock _npcBlock = _bloque.GetComponent<NPCBlock>();
+
+                _bloque.name = $"{_npcBlock.name}_c{x}r_{z}";
+                if (x == _cols / 2 && z == _rows / 2 && currentLevelDepth + 1 < maxLevelDepth)
+                {
+                    Debug.Log("NPC Door trigger at" + currentLevelDepth);
+                    _npcBlock.isDoor = true;
+                }
+                _npcBlock.SetupBlock(0, x, z);
             }
         }
     }

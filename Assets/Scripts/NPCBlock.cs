@@ -1,9 +1,8 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class ResourceBlock : Block
+public class NPCBlock : Block
 {
-    public ResourceData resourceData;
 
     public GameObject hitIndicatorPF;
     public bool isDoor;
@@ -11,6 +10,7 @@ public class ResourceBlock : Block
     public int bounceCount;
     public Transform blockMeshParent;
     public GameObject blockMesh;
+    public GameObject doorMesh;
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
@@ -23,59 +23,65 @@ public class ResourceBlock : Block
         doorTriggerPrefab.SetActive(false);
     }
 
-    public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
+    public void SetupBlock(int _subId, int _xPos, int _yPos)
     {
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
-        resourceData = _resource;
-        InstanceResourceBlockMesh();
-        ShowHitIndicator(false);
+        if (isDoor)
+        {
+            doorMesh.SetActive(true);
+        }
+        //InstanceResourceBlockMesh();
     }
 
+    /*
     private void InstanceResourceBlockMesh()
     {
         blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
     }
+    */
 
     public override void Bounce()
     {
         if (!isMined) //ESTA VIRGEN
         {
             //LO MARCAMOS
-            ShowHitIndicator(true);
+            //ShowHitIndicator(true);
 
             //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
-            GameManager.Instance.CheckIfNewCombo(resourceData, this);
+            //GameManager.Instance.CheckIfNewCombo(resourceData, this);
 
             //SI SE CUMPLE EL COMBO
-            GameManager.Instance.CheckIfComboCompleted();
+            //GameManager.Instance.CheckIfComboCompleted();
         }
         else //SI YA ESTABA MINADO
         {
-            GameManager.Instance.IncreaseLevelJumpCount(1);
+            //GameManager.Instance.IncreaseLevelJumpCount(1);
         }
 
     }
 
     public override void Headbutt()
     {
-        Bounce();
+        GameManager.Instance.ClearAllHitBlocks();
+        Activate();
     }
 
     public override void Activate()
     {
-        AddMinedResources();
+        //AddMinedResources();
         if (isDoor)
         {
             GetOpenedState();
+            ScreenShake();
         }
         else
         {
-            GetMinedState();
+            //GetMinedState();
         }
 
-        ScreenShake();
-        MinedAnimation();
+        
+        //MinedAnimation();
 
     }
 
@@ -92,8 +98,6 @@ public class ResourceBlock : Block
     private void GetMinedState()
     {
         isMined = true;
-        resourceData = null;
-        ShowHitIndicator(false);
         blockMesh.GetComponent<MeshRenderer>().material = groundMaterial;
 
         //TRANSFORM, LUEGO DEBE SER ANIMADO
@@ -102,24 +106,16 @@ public class ResourceBlock : Block
     }
     private void GetOpenedState()
     {
-        GetMinedState();
+        //GetMinedState();
         blockMesh.SetActive(false);
+        doorMesh.SetActive(false);
         this.GetComponent<BoxCollider>().enabled = false;
-        this.GetComponent<ResourceBlock>().enabled = false;
+        this.GetComponent<NPCBlock>().enabled = false;
         if (isDoor)
         {
             doorTriggerPrefab.SetActive(true);
         }
     }
 
-    private void AddMinedResources()
-    {
-        ResourceManager.Instance.AddResource(resourceData, 1);
-    }
-
-    public void ShowHitIndicator(bool _visible)
-    {
-        hitIndicatorPF.SetActive(_visible);
-    }
 
 }

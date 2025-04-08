@@ -87,7 +87,7 @@ public class PlayerBounce : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 5f))
         {
 
-            blockBelow = hit.collider.GetComponent<ResourceBlock>();
+            blockBelow = hit.collider.GetComponent<Block>();
         }
     }
 
@@ -119,7 +119,12 @@ public class PlayerBounce : MonoBehaviour
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
         {
-            BounceUp();
+            Debug.Log(hit.collider.gameObject.name);
+            if (hit.collider.gameObject.GetComponent<Block>())
+            {
+                BounceUp();
+            }
+
         }
     }
 
