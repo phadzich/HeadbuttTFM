@@ -7,8 +7,7 @@ using UnityEngine;
 public class NPCSublevelConfig : SublevelConfig
 {
     public NPCType NPCtype;
-    public int width;
-    public int height;
+
 
     public enum NPCType
     {

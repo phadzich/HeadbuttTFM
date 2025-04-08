@@ -119,7 +119,7 @@ public class PlayerBounce : MonoBehaviour
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
         {
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<Block>())
             {
                 BounceUp();
@@ -181,9 +181,15 @@ public class PlayerBounce : MonoBehaviour
 
     public void Headbutt(InputAction.CallbackContext context)
     {
+        
+        //SI EL PLAYER STATE ES GROUNDED
+        //EL HEADBUTT SE PUEDE ACTIVAR PARA INTERACTUAR CON EL PISO
+
+        //SI EL STATE ES MINING, ENTONCES SE APLICA LO DE ABAJO
+
         if(context.phase == InputActionPhase.Performed)
         {
-            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.Instance.hasHeadbutts)
+            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.Instance.hasHeadbutts && blockBelow!=null)
             {
                 timedHeadbutt = true;
                 Debug.Log("CORRECT!");

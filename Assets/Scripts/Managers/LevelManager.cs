@@ -3,31 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
 using static UnityEngine.Rendering.DebugUI.Table;
+using System.Drawing;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    public GameObject playerCam;
-    public float playerCamHeight = 10f;
-    public GameObject resourceBlockPrefab;
-    public Transform levelsContainer;
-    public GameObject currentLoadedLevelContainer;
-    public Level currentLevel;
-    public GameObject doorTriggerPrefab;
-
-    public GameObject npcBlockPrefab;
-
-
-    public List<ResourceBlock> resourceBlocks;
-
     public List<LevelConfig> levelsList;
+
+    [Header("CURRENT LEVEL")]
+    public Level currentLevel;
+    public List<ResourceBlock> resourceBlocks;
     [SerializeField]
     private int maxLevelDepth;
     [SerializeField]
     private int currentLevelDepth;
-    public float distanceBetweenSublevels;
-
     public int sublevelWidth;
     public int sublevelHeight;
+
+    [Header("MAIN CAMERA")]
+    public GameObject playerCam;
+    public float playerCamHeight = 10f;
+    [Header("GENERAL PREFABS")]
+    public GameObject npcBlockPrefab;
+    public GameObject resourceBlockPrefab;
+    public GameObject doorTriggerPrefab;
+    public GameObject sublevelWallPrefab;
+    [Header("LEVEL CONTAINERS")]
+    public Transform levelsContainer;
+    public GameObject currentLoadedLevelContainer;
+
+
+    [Header("GENERATOR CONFIG")]
+    public float distanceBetweenSublevels;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -84,6 +92,7 @@ public class LevelManager : MonoBehaviour
             int _rows = _miningSublevel.height;
             Debug.Log($"**Generating MINING Sublevel {_miningSublevel.name}**");
             InstanceMiningBlocks(_cols, _rows, _miningSublevel.resourcesList, _sublevelContainer.transform);
+            InstanceSublevelWalls(_sublevelContainer.transform, _miningSublevel);
 
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
@@ -93,6 +102,7 @@ public class LevelManager : MonoBehaviour
             int _rows = _npcSublevel.height;
             Debug.Log($"**Generating NPC Sublevel {_npcSublevel.name}**");
             InstanceNPCBlocks(_cols, _rows, _sublevelContainer.transform);
+            InstanceSublevelWalls(_sublevelContainer.transform, _npcSublevel);
         }
 
 
@@ -177,12 +187,30 @@ public class LevelManager : MonoBehaviour
                 _bloque.name = $"{_npcBlock.name}_c{x}r_{z}";
                 if (x == _cols / 2 && z == _rows / 2 && currentLevelDepth + 1 < maxLevelDepth)
                 {
-                    Debug.Log("NPC Door trigger at" + currentLevelDepth);
+                    //Debug.Log("NPC Door trigger at" + currentLevelDepth);
                     _npcBlock.isDoor = true;
                 }
                 _npcBlock.SetupBlock(0, x, z);
             }
         }
+    }
+
+    private void InstanceSublevelWalls(Transform _sublevelContainer, SublevelConfig _config)
+    {
+        Vector3 leftPos = _sublevelContainer.transform.position + new Vector3(-_config.width / 2f, 0, 0);
+        Vector3 rightPos = _sublevelContainer.transform.position + new Vector3(_config.width / 2f, 0, 0);
+        Vector3 topPos = _sublevelContainer.transform.position + new Vector3(0,0, -_config.height / 2f);
+        Vector3 bottomPos = _sublevelContainer.transform.position + new Vector3(0,0, _config.height / 2f);
+
+        var leftWall = Instantiate(sublevelWallPrefab, leftPos, Quaternion.Euler(0, 90, 0), _sublevelContainer);
+        var rightWall = Instantiate(sublevelWallPrefab, rightPos, Quaternion.Euler(0, -90, 0), _sublevelContainer);
+        var topWall = Instantiate(sublevelWallPrefab, topPos, Quaternion.Euler(0, 0, 0), _sublevelContainer);
+        var botWall = Instantiate(sublevelWallPrefab, bottomPos, Quaternion.Euler(0, 180, 0), _sublevelContainer);
+
+        leftWall.transform.localScale = new Vector3(_config.width, distanceBetweenSublevels, 1);
+        rightWall.transform.localScale = new Vector3(_config.width, distanceBetweenSublevels, 1);
+        topWall.transform.localScale = new Vector3(_config.height, distanceBetweenSublevels, 1);
+        botWall.transform.localScale = new Vector3(_config.height, distanceBetweenSublevels, 1);
     }
 
     private void MoveCamDown(int _count)
@@ -194,15 +222,7 @@ public class LevelManager : MonoBehaviour
             ease:Ease.InOutQuad);
 }
 
-    /*
-    private void DestroyAllBlocks()
-    {
-        foreach (Transform child in sublevelContainer)
-        {
-            Destroy(child.gameObject);
-        }
-    }
-    */
+
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)
     {
         GameObject newGameObject = new GameObject(_name);
