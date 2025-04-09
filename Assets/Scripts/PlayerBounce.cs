@@ -49,6 +49,7 @@ public class PlayerBounce : MonoBehaviour
 
     void Update()
     {
+        //SI ESTA EN ESTADO BOUNE
         CheckForBlockBelow();
         CheckBounceDirection();
         if (bounceDirection == "DOWN")
@@ -64,6 +65,8 @@ public class PlayerBounce : MonoBehaviour
         }
          
         UpdateHeadbuttCooldown();
+
+        //ESTADO XXX
     }
 
     private void CheckBounceDirection()
@@ -87,7 +90,7 @@ public class PlayerBounce : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 5f))
         {
 
-            blockBelow = hit.collider.GetComponent<ResourceBlock>();
+            blockBelow = hit.collider.GetComponent<Block>();
         }
     }
 
@@ -117,9 +120,16 @@ public class PlayerBounce : MonoBehaviour
         float _groundDistance = .05f;
         Debug.DrawRay(origin, direction * _groundDistance, Color.red);
 
+
+
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
         {
-            BounceUp();
+            //Debug.Log(hit.collider.gameObject.name);
+            if (hit.collider.gameObject.GetComponent<Block>())
+            {
+                BounceUp();
+            }
+
         }
     }
 
@@ -176,9 +186,15 @@ public class PlayerBounce : MonoBehaviour
 
     public void Headbutt(InputAction.CallbackContext context)
     {
+        
+        //SI EL PLAYER STATE ES GROUNDED
+        //EL HEADBUTT SE PUEDE ACTIVAR PARA INTERACTUAR CON EL PISO
+
+        //SI EL STATE ES MINING, ENTONCES SE APLICA LO DE ABAJO
+
         if(context.phase == InputActionPhase.Performed)
         {
-            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.Instance.hasHeadbutts)
+            if (inHeadbuttRange && !headbuttOnCooldown && GameManager.Instance.hasHeadbutts && blockBelow!=null)
             {
                 timedHeadbutt = true;
                 Debug.Log("CORRECT!");

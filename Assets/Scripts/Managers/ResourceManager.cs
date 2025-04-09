@@ -14,10 +14,13 @@ public class ResourceManager : MonoBehaviour
     [SerializeField]
     public List<ResourceData> allAvailableResources;
 
+ 
+
     public Action onOwnedResourcesChanged;
 
     private void Awake()
     {
+       
         if (Instance == null)
         {
             Instance = this;
@@ -38,6 +41,7 @@ public class ResourceManager : MonoBehaviour
 
     public void AddResource(ResourceData _resource, int _amount)
     {
+
         //Si ya contiene una entrada con el recurso, aumenta su cantidad
         if (ownedResources.ContainsKey(_resource))
         {

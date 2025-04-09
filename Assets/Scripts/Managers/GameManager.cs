@@ -8,26 +8,26 @@ using static Unity.Collections.AllocatorManager;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [Header("REFERENCIAS")]
     public LevelMovement levelMovement;
 
+    [Header("HELMET")]
+    public int maxJumps;
+    public int levelJumpCount;
+    public int maxHB;
+    public int levelHBCount;
+    public bool hasHeadbutts;
+
+    [Header("COMBO ACTUAL")]
     [SerializeField]
     private List<ResourceBlock> hitBlocks;
-
     public ResourceData currentComboResource;
     public int currentComboCount;
-    public int levelJumpCount;
-    public int maxJumps;
 
-
-
+    [Header("TEMP UI")]
     public TextMeshProUGUI txtJumpCounts;
     public TextMeshProUGUI txtMaxJumps;
     public TextMeshProUGUI txtRemainingJumps;
-
-    public int levelHBCount;
-    public int maxHB;
-    public bool hasHeadbutts;
-
     public TextMeshProUGUI txtHBCounts;
     public TextMeshProUGUI txtMaxHB;
     public TextMeshProUGUI txtRemainingHB;
