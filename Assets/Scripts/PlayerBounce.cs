@@ -49,6 +49,7 @@ public class PlayerBounce : MonoBehaviour
 
     void Update()
     {
+        //SI ESTA EN ESTADO BOUNE
         CheckForBlockBelow();
         CheckBounceDirection();
         if (bounceDirection == "DOWN")
@@ -64,6 +65,8 @@ public class PlayerBounce : MonoBehaviour
         }
          
         UpdateHeadbuttCooldown();
+
+        //ESTADO XXX
     }
 
     private void CheckBounceDirection()
@@ -116,6 +119,8 @@ public class PlayerBounce : MonoBehaviour
         Vector3 direction = Vector3.down;
         float _groundDistance = .05f;
         Debug.DrawRay(origin, direction * _groundDistance, Color.red);
+
+
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
         {

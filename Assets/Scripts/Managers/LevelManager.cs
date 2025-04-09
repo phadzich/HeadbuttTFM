@@ -110,7 +110,6 @@ public class LevelManager : MonoBehaviour
 
     public void ExitSublevel()
     {
-
         currentLevelDepth++;
         MoveCamDown(currentLevelDepth);
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
@@ -118,18 +117,22 @@ public class LevelManager : MonoBehaviour
     public void EnterSublevel(SublevelConfig _sublevelConfig)
     {
 
+
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
 
             sublevelWidth = _miningSublevel.width;
             sublevelHeight = _miningSublevel.height;
 
+            //ENTRAR A ESTADO MINING
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
             // CONFIGURAR AQUI SUBLEVEL DE TIPO NPC
             sublevelWidth = _npcSublevel.width;
             sublevelHeight = _npcSublevel.height;
+
+            //ENTRAR A ESTADO CHECKPOINT
         }
 
         //CARGAMOS EL SIGUIENTE
@@ -140,6 +143,8 @@ public class LevelManager : MonoBehaviour
 
 
 
+        // RESETEAR O LO QUE SEA LOS HELMETS
+        //HelmetManager.Instance.NewSublevel();
         GameManager.Instance.RestartSublevelStats();
     }
 
