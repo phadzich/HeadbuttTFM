@@ -112,9 +112,16 @@ public class GameManager : MonoBehaviour
 
         txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
 
-        if (!HelmetManager.Instance.currentHelmet.hasBouncesLeft())
+        if (HelmetManager.Instance.currentHelmet.isWornOut)
         {
-            SceneManager.LoadScene("SampleScene");
+            if (HelmetManager.Instance.HasHelmetsLeft)
+            {
+                HelmetManager.Instance.EquipNextAvailableHelmet();
+            } else
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+           
         }
 
     }

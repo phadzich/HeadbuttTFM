@@ -4,6 +4,7 @@ public class HelmetInstance
     public HelmetData baseHelmet;
     public int remainingBounces;
     public int remainingHeadbutts;
+    public bool isWornOut => remainingBounces <= 0;
 
     public HelmetInstance(HelmetData helmetSO)
     {

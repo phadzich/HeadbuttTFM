@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class HelmetManager : MonoBehaviour
     public List<HelmetData> helmetsOwned;
     public List<HelmetInstance> helmetsEquipped;
     public int maxEquippedHelmets = 3;
+    public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
 
     [Header("CURRENT HELMET")]
     public HelmetInstance currentHelmet;
@@ -30,7 +32,6 @@ public class HelmetManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
 
         // PRUEBA SOLO PARA TENER HELMETS
         HelmetInstance helmet1 = new HelmetInstance(helmetsOwned[0]);
@@ -54,7 +55,6 @@ public class HelmetManager : MonoBehaviour
        
     }
 
-
     public void WearHelmet(HelmetInstance helmet) {
         currentHelmet = helmet;
         currentMesh.SetHelmetMesh(helmet.baseHelmet.mesh);
@@ -73,10 +73,7 @@ public class HelmetManager : MonoBehaviour
         //Si el jugador solo cuenta con 1 casco
         if (helmetsEquipped.Count <= 1) return;
 
-        helmetIndex = (helmetIndex + 1) % helmetsEquipped.Count;
-        WearHelmet(helmetsEquipped[helmetIndex]);
-
-        //Actualizar UI
+        EquipNextAvailableHelmet();
     }
 
     public void PreviousHelmet(InputAction.CallbackContext context)
@@ -84,10 +81,52 @@ public class HelmetManager : MonoBehaviour
         //Si el jugador solo cuenta con 1 casco
         if (helmetsEquipped.Count <= 1) return;
 
-        helmetIndex = (helmetIndex - 1 + helmetsEquipped.Count) % helmetsEquipped.Count;
+        EquipPrevAvailableHelmet();
+    }
+
+    public void EquipNextAvailableHelmet()
+    {
+        int ogIndex = helmetIndex;
+
+        do
+        {
+            NextIndex();
+        } while (helmetsEquipped[helmetIndex].isWornOut & helmetIndex != ogIndex);
+
+        if (helmetIndex == ogIndex) return;
+       
+
         WearHelmet(helmetsEquipped[helmetIndex]);
 
-        //Actualizar UI
+        //Update UI
+
+    }
+
+    public void EquipPrevAvailableHelmet()
+    {
+        int ogIndex = helmetIndex;
+
+        do
+        {
+            PreviousIndex();
+        } while (helmetsEquipped[helmetIndex].isWornOut & helmetIndex != ogIndex);
+
+        if (helmetIndex == ogIndex) return;
+
+        WearHelmet(helmetsEquipped[helmetIndex]);
+
+        //Update UI
+
+    }
+
+    public void NextIndex()
+    {
+        helmetIndex = (helmetIndex + 1) % helmetsEquipped.Count;
+    }
+
+    public void PreviousIndex()
+    {
+        helmetIndex = (helmetIndex - 1 + helmetsEquipped.Count) % helmetsEquipped.Count;
     }
 
 }
