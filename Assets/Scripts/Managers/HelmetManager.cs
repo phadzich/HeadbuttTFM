@@ -45,4 +45,12 @@ public class HelmetManager : MonoBehaviour
         currentHelmet = helmet;
     }
 
+    public void ResetHelmetsStats()
+    {
+        foreach (HelmetInstance helmet in helmetsEquipped)
+        {
+            helmet.ResetStats();
+        }
+    }
+
 }

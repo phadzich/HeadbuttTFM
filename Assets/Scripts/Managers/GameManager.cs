@@ -147,8 +147,20 @@ public class GameManager : MonoBehaviour
         currentComboCount = 0;
         levelJumpCount = 0;
         levelHBCount = 0;
-        HelmetManager.Instance.currentHelmet.ResetStats();
+        HelmetManager.Instance.ResetHelmetsStats();
         hasHeadbutts = true;
+
+        // Actualizar UI TEMPORAL
+
+        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
+        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
+
+
+        txtMaxJumps.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.bounces.ToString();
+        txtMaxHB.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.headbutts.ToString();
+
+        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
+        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
     }
 
 
