@@ -1731,6 +1731,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2119067690}
   - {fileID: 1072653609}
   - {fileID: 1370466923}
   m_Father: {fileID: 0}
@@ -1975,7 +1976,19 @@ MonoBehaviour:
     m_ActionId: 2776c80d-3c14-4091-8c56-d04ced07a2b0
     m_ActionName: 'Player/Previous[/Keyboard/1]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2008389153}
+        m_TargetAssemblyTypeName: HelmetManager, Assembly-CSharp
+        m_MethodName: ChangeHelmet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
@@ -2653,14 +2666,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMovement: {fileID: 1112208447}
+  maxJumps: 40
+  levelJumpCount: 0
   maxHB: 50
   levelHBCount: 0
   hasHeadbutts: 1
   hitBlocks: []
   currentComboResource: {fileID: 0}
   currentComboCount: 0
-  levelJumpCount: 0
-  maxJumps: 40
   txtJumpCounts: {fileID: 1964737889}
   txtMaxJumps: {fileID: 2130303286}
   txtRemainingJumps: {fileID: 202078896}
@@ -2875,10 +2888,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 374ebd5ef4d904c62a2aa995a53dbe83, type: 2}
   - {fileID: 11400000, guid: 0470e8e7f21a949aab631feaa59f855f, type: 2}
   helmetsEquipped: []
+  maxEquippedHelmets: 3
   currentHelmet:
     baseHelmet: {fileID: 0}
     remainingBounces: 0
     remainingHeadbutts: 0
+  currentMesh: {fileID: 2119067691}
+  helmetIndex: 0
 --- !u!1 &2025627979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,6 +3167,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028651025}
   m_CullTransparentMesh: 1
+--- !u!1 &2119067689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2119067690}
+  - component: {fileID: 2119067691}
+  m_Layer: 0
+  m_Name: 'Helmet '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2119067690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119067689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.521, z: 0.018}
+  m_LocalScale: {x: 0.4792852, y: 0.4792852, z: 0.4792852}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1217362969}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2119067691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119067689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c12595a29b24c93acb04eb96bf4857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helmetAnchor: {fileID: 2119067690}
 --- !u!1 &2130303284
 GameObject:
   m_ObjectHideFlags: 0
