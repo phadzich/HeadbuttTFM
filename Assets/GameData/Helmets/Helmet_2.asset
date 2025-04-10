@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: 1_Iron
+  m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
+  m_Name: Helmet_2
   m_EditorClassIdentifier: 
-  id: 1
-  shortName: Iron
-  hardness: 2
-  rarity: 0
-  description: 
+  id: 2
+  helmetName: Cascote
+  description: Un casco MUUY grande
+  bounces: 20
+  headbutts: 7
+  level: 0
+  mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
   icon: {fileID: 0}
-  color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 0}
-  mesh: {fileID: 8846097338804330060, guid: 613d3788928ab2242aee940826c8bb9b, type: 3}
+  effect: 0
