@@ -68,19 +68,26 @@ public class HelmetManager : MonoBehaviour
         }
     }
 
-    public void ChangeHelmet(InputAction.CallbackContext context)
+    public void NextHelmet(InputAction.CallbackContext context)
     {
+        //Si el jugador solo cuenta con 1 casco
+        if (helmetsEquipped.Count <= 1) return;
 
-        if(helmetIndex + 1 == helmetsEquipped.Count)
-        {
-            helmetIndex = 0;
-        } else
-        {
-            helmetIndex += 1;
-        }
+        helmetIndex = (helmetIndex + 1) % helmetsEquipped.Count;
         WearHelmet(helmetsEquipped[helmetIndex]);
 
-        //Cambiar el max jumps en el UI
+        //Actualizar UI
+    }
+
+    public void PreviousHelmet(InputAction.CallbackContext context)
+    {
+        //Si el jugador solo cuenta con 1 casco
+        if (helmetsEquipped.Count <= 1) return;
+
+        helmetIndex = (helmetIndex - 1 + helmetsEquipped.Count) % helmetsEquipped.Count;
+        WearHelmet(helmetsEquipped[helmetIndex]);
+
+        //Actualizar UI
     }
 
 }
