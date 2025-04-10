@@ -29,4 +29,14 @@ public class HelmetInstance
         if (remainingHeadbutts > 0)
             remainingHeadbutts--;
     }
+
+    public bool hasBouncesLeft()
+    {
+        return remainingBounces > 0;
+    }
+
+    public bool hasHeadbutts()
+    {
+        return remainingHeadbutts > 0;
+    }
 }

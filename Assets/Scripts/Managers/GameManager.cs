@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public int levelJumpCount;
     public int maxHB;
     public int levelHBCount;
-    public bool hasHeadbutts;
 
     [Header("COMBO ACTUAL")]
     [SerializeField]
@@ -113,7 +112,7 @@ public class GameManager : MonoBehaviour
 
         txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
 
-        if (HelmetManager.Instance.currentHelmet.remainingBounces == 0)
+        if (!HelmetManager.Instance.currentHelmet.hasBouncesLeft())
         {
             SceneManager.LoadScene("SampleScene");
         }
@@ -129,16 +128,6 @@ public class GameManager : MonoBehaviour
 
         txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
 
-        if (HelmetManager.Instance.currentHelmet.remainingHeadbutts == 0)
-        {
-            //levelHBCount = HelmetManager.Instance.currentHelmet.baseHelmet.headbutts;
-            hasHeadbutts = false;
-        }
-        else
-        {
-            hasHeadbutts = true;
-        }
-
     }
 
     public void RestartSublevelStats()
@@ -148,7 +137,6 @@ public class GameManager : MonoBehaviour
         levelJumpCount = 0;
         levelHBCount = 0;
         HelmetManager.Instance.ResetHelmetsStats();
-        hasHeadbutts = true;
 
         // Actualizar UI TEMPORAL
 
