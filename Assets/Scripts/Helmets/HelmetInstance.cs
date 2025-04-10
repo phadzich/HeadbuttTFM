@@ -1,7 +1,10 @@
+using System;
+
 [System.Serializable]
 public class HelmetInstance
 {
     public HelmetData baseHelmet;
+    public string id;
     public int remainingBounces;
     public int remainingHeadbutts;
     public bool isWornOut => remainingBounces <= 0;
@@ -9,6 +12,7 @@ public class HelmetInstance
     public HelmetInstance(HelmetData helmetSO)
     {
         baseHelmet = helmetSO;
+        id = Guid.NewGuid().ToString();
         remainingBounces = helmetSO.bounces;
         remainingHeadbutts = helmetSO.headbutts;
     }

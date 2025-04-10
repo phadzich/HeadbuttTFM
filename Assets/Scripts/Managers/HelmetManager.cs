@@ -10,7 +10,7 @@ public class HelmetManager : MonoBehaviour
 
     [Header("HELMETS")]
     public List<HelmetData> allHelmets;
-    public List<HelmetData> helmetsOwned;
+    public Dictionary<string, HelmetInstance> helmetsOwned = new Dictionary<string,HelmetInstance>();
     public List<HelmetInstance> helmetsEquipped;
     public int maxEquippedHelmets = 3;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
@@ -34,13 +34,31 @@ public class HelmetManager : MonoBehaviour
         }
 
         // PRUEBA SOLO PARA TENER HELMETS
-        HelmetInstance helmet1 = new HelmetInstance(helmetsOwned[0]);
-        HelmetInstance helmet2 = new HelmetInstance(helmetsOwned[1]);
+        InitializeOwnedHelmets();
+    }
+
+    //FUNCION DE PRUEBA PARA PROTOTIPO
+    private void InitializeOwnedHelmets()
+    {
+        HelmetInstance helmet1 = new HelmetInstance(allHelmets[0]);
+        HelmetInstance helmet2 = new HelmetInstance(allHelmets[1]);
+        UnlockHelmet(helmet1);
+        UnlockHelmet(helmet2);
 
         EquipHelmet(helmet1);
         EquipHelmet(helmet2);
 
         WearHelmet(helmetsEquipped[helmetIndex]);
+    }
+
+    public void UnlockHelmet(HelmetInstance helmet)
+    {
+        helmetsOwned.Add(helmet.id, helmet);
+    }
+
+    public HelmetInstance GetHelmetByID(string id)
+    {
+        return helmetsOwned[id];
     }
 
     public void EquipHelmet(HelmetInstance helmet)
