@@ -13,7 +13,7 @@ public class HelmetData : ScriptableObject
 
     public int level;
 
-    public Mesh mesh;
+    public GameObject mesh;
     public Sprite icon;
 
     // Efecto

@@ -18,6 +18,6 @@ MonoBehaviour:
   bounces: 20
   headbutts: 7
   level: 0
-  mesh: {fileID: 0}
+  mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
   icon: {fileID: 0}
   effect: 0
