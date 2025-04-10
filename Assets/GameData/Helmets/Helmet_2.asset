@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
+  m_Name: Helmet_2
+  m_EditorClassIdentifier: 
+  id: 2
+  helmetName: Cascote
+  description: Un casco MUUY grande
+  bounces: 20
+  headbutts: 7
+  level: 0
+  mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
+  icon: {fileID: 0}
+  effect: 0
