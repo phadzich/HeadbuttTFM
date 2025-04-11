@@ -6,5 +6,5 @@ public class HelmetBlueprint : ScriptableObject
 {
     public string recipeName;
     public HelmetData resultHelmet;
-    public List<ResourceData> requiredResources;
+    [SerializeField]public List<(ResourceData,int)> requiredResources;
 }
