@@ -3,22 +3,30 @@ using UnityEngine;
 
 public class ResourceBlock : Block
 {
+    [Header("DATA")]
     public ResourceData resourceData;
 
-    public GameObject hitIndicatorPF;
+    [Header("STATS")]
     public bool isDoor;
     public bool isMined;
     public int bounceCount;
+
+    [Header("APARIENCIA")]
     public Transform blockMeshParent;
     public GameObject blockMesh;
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
 
+    [Header("PREFABS")]
+    public GameObject doorTriggerPrefab;
+    public GameObject hitIndicatorPF;
+
     private void Start()
     {
 
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        doorTriggerPrefab.SetActive(false);
     }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
@@ -101,7 +109,13 @@ public class ResourceBlock : Block
     private void GetOpenedState()
     {
         GetMinedState();
-        this.gameObject.SetActive(false);
+        blockMesh.SetActive(false);
+        this.GetComponent<BoxCollider>().enabled = false;
+        this.GetComponent<ResourceBlock>().enabled = false;
+        if (isDoor)
+        {
+            doorTriggerPrefab.SetActive(true);
+        }
     }
 
     private void AddMinedResources()
