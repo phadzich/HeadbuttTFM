@@ -35,6 +35,8 @@ public class LevelManager : MonoBehaviour
     [Header("GENERATOR CONFIG")]
     public float distanceBetweenSublevels;
 
+    public bool NPCLevel = false;
+
 
     private void Awake()
     {
@@ -103,6 +105,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log($"**Generating NPC Sublevel {_npcSublevel.name}**");
             InstanceNPCBlocks(_cols, _rows, _sublevelContainer.transform);
             InstanceSublevelWalls(_sublevelContainer.transform, _npcSublevel);
+            
         }
 
 
@@ -123,7 +126,7 @@ public class LevelManager : MonoBehaviour
 
             sublevelWidth = _miningSublevel.width;
             sublevelHeight = _miningSublevel.height;
-
+            NPCLevel = false;
             //ENTRAR A ESTADO MINING
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
@@ -131,7 +134,7 @@ public class LevelManager : MonoBehaviour
             // CONFIGURAR AQUI SUBLEVEL DE TIPO NPC
             sublevelWidth = _npcSublevel.width;
             sublevelHeight = _npcSublevel.height;
-
+            NPCLevel = true;
             //ENTRAR A ESTADO CHECKPOINT
         }
 

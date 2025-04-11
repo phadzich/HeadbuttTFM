@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public int levelJumpCount;
     public int maxHB;
     public int levelHBCount;
-    public bool hasHeadbutts;
 
     [Header("COMBO ACTUAL")]
     [SerializeField]
@@ -38,8 +37,17 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        txtMaxJumps.text = "MAX: " + maxJumps.ToString();
-        txtMaxHB.text = "MAX: " + maxHB.ToString();
+
+        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
+        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
+
+
+        txtMaxJumps.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.bounces.ToString();
+        txtMaxHB.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.headbutts.ToString();
+
+        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
+        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
+
     }
 
     public void CheckIfNewCombo(ResourceData _resourceData, ResourceBlock _resourceBlock)
@@ -100,13 +108,20 @@ public class GameManager : MonoBehaviour
         levelJumpCount += _jumps;
         txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
 
-        var _remaining = maxJumps - levelJumpCount;
+        HelmetManager.Instance.currentHelmet.UseBounce();
 
-        txtRemainingJumps.text = "QUEDAN: " + _remaining.ToString();
+        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
 
-        if (levelJumpCount == maxJumps)
+        if (HelmetManager.Instance.currentHelmet.isWornOut)
         {
-            SceneManager.LoadScene("SampleScene");
+            if (HelmetManager.Instance.HasHelmetsLeft)
+            {
+                HelmetManager.Instance.WearNextAvailableHelmet();
+            } else
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+           
         }
 
     }
@@ -116,30 +131,32 @@ public class GameManager : MonoBehaviour
         levelHBCount += _jumps;
         txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
 
-        var _remaining = maxHB - levelHBCount;
+        HelmetManager.Instance.currentHelmet.UseHeadbutt();
 
-        txtRemainingHB.text = "QUEDAN: " + _remaining.ToString();
-
-        if (levelHBCount >= maxHB)
-        {
-            levelHBCount = maxHB;
-            hasHeadbutts = false;
-        }
-        else
-        {
-            hasHeadbutts = true;
-        }
+        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
 
     }
 
     public void RestartSublevelStats()
     {
-               currentComboResource = null;
-    currentComboCount = 0;
-    levelJumpCount = 0;
+        currentComboResource = null;
+        currentComboCount = 0;
+        levelJumpCount = 0;
         levelHBCount = 0;
-        hasHeadbutts = true;
-}
+        HelmetManager.Instance.ResetHelmetsStats();
+
+        // Actualizar UI TEMPORAL
+
+        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
+        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
+
+
+        txtMaxJumps.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.bounces.ToString();
+        txtMaxHB.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.headbutts.ToString();
+
+        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
+        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
+    }
 
 
 }
