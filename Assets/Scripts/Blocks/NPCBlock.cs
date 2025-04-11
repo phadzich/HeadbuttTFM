@@ -28,7 +28,10 @@ public class NPCBlock : Block
         sublevelPosition= new Vector2(_xPos, _yPos);
         if (isDoor)
         {
-            doorMesh.SetActive(true);
+            //doorMesh.SetActive(true);
+            //this.GetComponent<BoxCollider>().enabled = false;
+            //Activate();
+            GetOpenedState();
         }
     }
 
