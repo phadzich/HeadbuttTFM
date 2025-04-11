@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         {
             if (HelmetManager.Instance.HasHelmetsLeft)
             {
-                HelmetManager.Instance.EquipNextAvailableHelmet();
+                HelmetManager.Instance.WearNextAvailableHelmet();
             } else
             {
                 SceneManager.LoadScene("SampleScene");

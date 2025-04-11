@@ -91,7 +91,7 @@ public class HelmetManager : MonoBehaviour
         //Si el jugador solo cuenta con 1 casco
         if (helmetsEquipped.Count <= 1) return;
 
-        EquipNextAvailableHelmet();
+        WearNextAvailableHelmet();
     }
 
     public void PreviousHelmet(InputAction.CallbackContext context)
@@ -99,10 +99,10 @@ public class HelmetManager : MonoBehaviour
         //Si el jugador solo cuenta con 1 casco
         if (helmetsEquipped.Count <= 1) return;
 
-        EquipPrevAvailableHelmet();
+        WearPrevAvailableHelmet();
     }
 
-    public void EquipNextAvailableHelmet()
+    public void WearNextAvailableHelmet()
     {
         int ogIndex = helmetIndex;
 
@@ -120,7 +120,7 @@ public class HelmetManager : MonoBehaviour
 
     }
 
-    public void EquipPrevAvailableHelmet()
+    public void WearPrevAvailableHelmet()
     {
         int ogIndex = helmetIndex;
 
