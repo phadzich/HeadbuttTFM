@@ -21,18 +21,21 @@ public class HelmetInstance
     {
         remainingBounces = baseHelmet.bounces;
         remainingHeadbutts = baseHelmet.headbutts;
+        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(id);
     }
 
     public void UseBounce()
     {
         if (remainingBounces > 0)
             remainingBounces--;
+        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(id);
     }
 
     public void UseHeadbutt()
     {
         if (remainingHeadbutts > 0)
             remainingHeadbutts--;
+        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(id);
     }
 
     public bool hasBouncesLeft()

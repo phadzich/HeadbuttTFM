@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,7 +20,11 @@ public class HelmetManager : MonoBehaviour
     public HelmetInstance currentHelmet;
     public HelmetMesh currentMesh;
     public int helmetIndex = 0;
-    
+
+    public Action<List<HelmetInstance>> onHelmetsEquipped;
+
+    public Action<string> onHelmetInstanceDataChanged;
+    public Action<int> onWearHelmetChanged;
 
     private void Awake()
     {
@@ -47,8 +52,10 @@ public class HelmetManager : MonoBehaviour
 
         EquipHelmet(helmet1);
         EquipHelmet(helmet2);
+        onHelmetsEquipped?.Invoke(helmetsEquipped);
 
         WearHelmet(helmetsEquipped[helmetIndex]);
+
     }
 
     public void UnlockHelmet(HelmetInstance helmet)
@@ -76,6 +83,7 @@ public class HelmetManager : MonoBehaviour
     public void WearHelmet(HelmetInstance helmet) {
         currentHelmet = helmet;
         currentMesh.SetHelmetMesh(helmet.baseHelmet.mesh);
+        onWearHelmetChanged?.Invoke(helmetIndex);
     }
 
     public void ResetHelmetsStats()
