@@ -38,16 +38,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 
-        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
-        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
-
-
-        txtMaxJumps.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.bounces.ToString();
-        txtMaxHB.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.headbutts.ToString();
-
-        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
-        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
-
     }
 
     public void CheckIfNewCombo(ResourceData _resourceData, ResourceBlock _resourceBlock)
@@ -106,11 +96,10 @@ public class GameManager : MonoBehaviour
     public void IncreaseLevelJumpCount(int _jumps)
     {
         levelJumpCount += _jumps;
-        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
+
 
         HelmetManager.Instance.currentHelmet.UseBounce();
 
-        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
 
         if (HelmetManager.Instance.currentHelmet.isWornOut)
         {
@@ -129,11 +118,8 @@ public class GameManager : MonoBehaviour
     public void IncreaseLevelHBCount(int _jumps)
     {
         levelHBCount += _jumps;
-        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
 
         HelmetManager.Instance.currentHelmet.UseHeadbutt();
-
-        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
 
     }
 
@@ -144,18 +130,6 @@ public class GameManager : MonoBehaviour
         levelJumpCount = 0;
         levelHBCount = 0;
         HelmetManager.Instance.ResetHelmetsStats();
-
-        // Actualizar UI TEMPORAL
-
-        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
-        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
-
-
-        txtMaxJumps.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.bounces.ToString();
-        txtMaxHB.text = "MAX: " + HelmetManager.Instance.currentHelmet.baseHelmet.headbutts.ToString();
-
-        txtRemainingJumps.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingBounces.ToString();
-        txtRemainingHB.text = "QUEDAN: " + HelmetManager.Instance.currentHelmet.remainingHeadbutts.ToString();
     }
 
 

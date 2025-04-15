@@ -18,11 +18,11 @@ public class EquippedHelmetsPanel : MonoBehaviour
         }
     }
 
-    public void UpdateHelmetInstanceInfo(string _instanceId)
+    public void UpdateHelmetInstanceInfo(HelmetInstance _instance)
     {
         foreach (HelmetIndicator _helmetInidcator in equippedIndicators)
         {
-            if(_helmetInidcator.helmetInstance.id == _instanceId)
+            if(_helmetInidcator.helmetInstance == _instance)
             {
                 //Debug.Log($"Udpdating Helmet Indicator{_instanceId}");
                 _helmetInidcator.UpdateIndicator();
@@ -31,13 +31,21 @@ public class EquippedHelmetsPanel : MonoBehaviour
         }
     }
 
-    public void UpdateWearingHelmet(int _index)
+    public void UpdateWearingHelmet(HelmetInstance _instance)
     {
+        Debug.Log(_instance.id);
         foreach (HelmetIndicator _helmetInidcator in equippedIndicators)
         {
-            _helmetInidcator.Unwear();
+            if(_helmetInidcator.helmetInstance!= _instance)
+            {
+                _helmetInidcator.Unwear();
+            }
+            else
+            {
+                _helmetInidcator.Wear();
+            }
+
         }
-            equippedIndicators[_index].Wear();
     }
 
 

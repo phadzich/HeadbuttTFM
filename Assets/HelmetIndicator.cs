@@ -16,6 +16,7 @@ public class HelmetIndicator : MonoBehaviour
         helmetIcon.sprite = _instance.baseHelmet.icon;
         bouncesTxt.text = _instance.remainingBounces.ToString();
         helmetInstance = _instance;
+        highlightIndicator.color = _instance.baseHelmet.color;
     }
 
     public void UpdateIndicator()

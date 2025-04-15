@@ -197,7 +197,7 @@ public class PlayerBounce : MonoBehaviour
             if (inHeadbuttRange && !headbuttOnCooldown && HelmetManager.Instance.currentHelmet.hasHeadbutts() && blockBelow!=null)
             {
                 timedHeadbutt = true;
-                Debug.Log("CORRECT!");
+                //Debug.Log("CORRECT!");
                 HeadbuttUp();
                 timedHeadbutt = false;
             }

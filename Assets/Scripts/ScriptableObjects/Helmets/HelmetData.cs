@@ -15,6 +15,7 @@ public class HelmetData : ScriptableObject
 
     public GameObject mesh;
     public Sprite icon;
+    public Color color;
 
     // Efecto
     public HelmetEffectType effect;

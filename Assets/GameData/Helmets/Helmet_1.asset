@@ -20,4 +20,5 @@ MonoBehaviour:
   level: 0
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
   icon: {fileID: 0}
+  color: {r: 0.740566, g: 0.39314234, b: 0.13972941, a: 1}
   effect: 0

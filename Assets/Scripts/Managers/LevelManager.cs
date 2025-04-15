@@ -148,6 +148,7 @@ public class LevelManager : MonoBehaviour
 
         // RESETEAR O LO QUE SEA LOS HELMETS
         //HelmetManager.Instance.NewSublevel();
+        //Debug.Log("Reseting Helmet Stats");
         GameManager.Instance.RestartSublevelStats();
     }
 
@@ -170,7 +171,7 @@ public class LevelManager : MonoBehaviour
                 resourceBlocks.Add(_resourceBlock);
                 if (x == _cols/2 && z == _rows/2 && currentLevelDepth+1 < maxLevelDepth)
                 {
-                    Debug.Log("Door trigger at" + currentLevelDepth);
+                    //Debug.Log("Door trigger at" + currentLevelDepth);
                     _resourceBlock.isDoor = true;
                 }
             }

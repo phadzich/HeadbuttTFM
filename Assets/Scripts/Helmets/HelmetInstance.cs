@@ -7,6 +7,7 @@ public class HelmetInstance
     public string id;
     public int remainingBounces;
     public int remainingHeadbutts;
+    public int maxHeadbutts;
     public bool isWornOut => remainingBounces <= 0;
 
     public HelmetInstance(HelmetData helmetSO)
@@ -15,27 +16,28 @@ public class HelmetInstance
         id = Guid.NewGuid().ToString();
         remainingBounces = helmetSO.bounces;
         remainingHeadbutts = helmetSO.headbutts;
+        maxHeadbutts = helmetSO.headbutts;
     }
 
     public void ResetStats()
     {
         remainingBounces = baseHelmet.bounces;
         remainingHeadbutts = baseHelmet.headbutts;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(id);
+        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
     }
 
     public void UseBounce()
     {
         if (remainingBounces > 0)
             remainingBounces--;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(id);
+        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
     }
 
     public void UseHeadbutt()
     {
         if (remainingHeadbutts > 0)
             remainingHeadbutts--;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(id);
+        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
     }
 
     public bool hasBouncesLeft()
