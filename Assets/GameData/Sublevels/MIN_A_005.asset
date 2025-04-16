@@ -20,3 +20,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
   - {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
   - {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
+  doorRequirements:
+  - key: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+    value: 20
+  - key: {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
+    value: 10
+  - key: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+    value: 20
