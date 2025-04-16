@@ -83,7 +83,7 @@ public class DoorBlock : Block
 
     public override void Activate()
     {
-        Debug.Log("OPEN DOOOOOOOR");
+        //Debug.Log("OPEN DOOOOOOOR");
         AnimateOpenDoor();
         this.GetComponent<BoxCollider>().enabled = false;
     }

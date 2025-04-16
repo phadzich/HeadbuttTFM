@@ -33,7 +33,7 @@ public class EquippedHelmetsPanel : MonoBehaviour
 
     public void UpdateWearingHelmet(HelmetInstance _instance)
     {
-        Debug.Log(_instance.id);
+        //Debug.Log(_instance.id);
         foreach (HelmetIndicator _helmetInidcator in equippedIndicators)
         {
             if(_helmetInidcator.helmetInstance!= _instance)

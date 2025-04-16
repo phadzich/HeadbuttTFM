@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   shortName: Amber
-  hardness: 3
+  hardness: 7
   rarity: 1
   description: 
   icon: {fileID: 0}

@@ -71,15 +71,8 @@ public class ResourceBlock : Block
     public override void Activate()
     {
         AddMinedResources();
-        if (isDoor)
-        {
-            GetOpenedState();
-        }
-        else
-        {
-            GetMinedState();
-        }
-
+        XPManager.Instance.AddXP(resourceData.hardness);
+        GetMinedState();
         ScreenShake();
         MinedAnimation();
 

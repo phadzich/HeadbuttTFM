@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   shortName: Gold
-  hardness: 3
+  hardness: 5
   rarity: 0
   description: 
   icon: {fileID: 0}

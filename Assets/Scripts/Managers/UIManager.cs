@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
+    public XPPanel experiencePanel;
+    public GameObject craftButton;
+
     private void Awake()
     {
         if (Instance == null)
@@ -35,7 +38,7 @@ public class UIManager : MonoBehaviour
         equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
         equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
 
-
+        craftButton.SetActive(false);
     }
 
     private void OnEnable()
@@ -43,13 +46,30 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onHelmetsEquipped += OnHelmetsEquipped;
         HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
+        XPManager.Instance.XPChanged += OnXPChanged;
+        XPManager.Instance.LeveledUp += OnLevelUp;
     }
     private void OnDisable()
     {
         HelmetManager.Instance.onHelmetsEquipped -= OnHelmetsEquipped;
         HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
+        XPManager.Instance.XPChanged -= OnXPChanged;
+        XPManager.Instance.LeveledUp -= OnLevelUp;
     }
+
+    private void OnXPChanged(int _current, int _max)
+    {
+        experiencePanel.UpdateXP(_current, _max);
+    }
+
+    private void OnLevelUp(int _currentLVL)
+    {
+        experiencePanel.UpdateLVL(_currentLVL);
+        craftButton.SetActive(true);
+    }
+
+
     private void OnHelmetsEquipped(List<HelmetInstance> _helmetList)
     {
         equippedHelmetsPanel.InstanceEquippedIndicators(_helmetList);

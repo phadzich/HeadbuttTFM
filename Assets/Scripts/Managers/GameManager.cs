@@ -132,5 +132,15 @@ public class GameManager : MonoBehaviour
         HelmetManager.Instance.ResetHelmetsStats();
     }
 
-
+    public void PauseGame(bool _isPaused)
+    {
+        if (_isPaused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
 }
