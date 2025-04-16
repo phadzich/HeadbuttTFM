@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     [Header("GENERAL PREFABS")]
     public GameObject npcBlockPrefab;
     public GameObject resourceBlockPrefab;
+    public GameObject doorBlockPrefab;
     public GameObject doorTriggerPrefab;
     public GameObject sublevelWallPrefab;
     [Header("LEVEL CONTAINERS")]
@@ -93,7 +94,9 @@ public class LevelManager : MonoBehaviour
             int _cols = _miningSublevel.width;
             int _rows = _miningSublevel.height;
             Debug.Log($"**Generating MINING Sublevel {_miningSublevel.name}**");
-            InstanceMiningBlocks(_cols, _rows, _miningSublevel.resourcesList, _sublevelContainer.transform);
+            _miningSublevel.Init();
+            //Debug.Log(_miningSublevel.sublevelRequirements.Count);
+            InstanceMiningBlocks(_cols, _rows, _miningSublevel.resourcesList, _sublevelContainer.transform, _miningSublevel);
             InstanceSublevelWalls(_sublevelContainer.transform, _miningSublevel);
 
         }
@@ -152,7 +155,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.RestartSublevelStats();
     }
 
-    public void InstanceMiningBlocks(int  _cols, int _rows, List<ResourceData> _resources, Transform _sublevelContainer)
+    public void InstanceMiningBlocks(int  _cols, int _rows, List<ResourceData> _resources, Transform _sublevelContainer, MiningSublevelConfig _sublevelConfig)
     {
         int _spacing = 1;
 
@@ -164,16 +167,25 @@ public class LevelManager : MonoBehaviour
             for (int x = 0; x < _cols; x++)
             {
                 Vector3 _posicion = new Vector3(x * _spacing - offsetX, _sublevelContainer.transform.position.y, z * _spacing - offsetZ);
-                GameObject _bloque = Instantiate(resourceBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
-                ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();
-                _resourceBlock.SetupBlock(0, x, z, _resources[Random.Range(0, _resources.Count)]);
-                _bloque.name = $"{_resourceBlock.resourceData.shortName}_c{x}r_{z}";
-                resourceBlocks.Add(_resourceBlock);
-                if (x == _cols/2 && z == _rows/2 && currentLevelDepth+1 < maxLevelDepth)
+                if (x == _cols / 2 && z == _rows / 2 && currentLevelDepth + 1 < maxLevelDepth)
                 {
-                    //Debug.Log("Door trigger at" + currentLevelDepth);
-                    _resourceBlock.isDoor = true;
+                    
+                    GameObject _door = Instantiate(doorBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer); 
+                    DoorBlock _doorBlock = _door.GetComponent<DoorBlock>();
+                    //Debug.Log(_sublevelConfig.sublevelRequirements);
+                    _doorBlock.SetupBlock(_sublevelConfig.sublevelRequirements);
                 }
+                else
+                {
+                    GameObject _bloque = Instantiate(resourceBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
+                    ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();
+                    _resourceBlock.SetupBlock(0, x, z, _resources[Random.Range(0, _resources.Count)]);
+                    _bloque.name = $"{_resourceBlock.resourceData.shortName}_c{x}r_{z}";
+                    resourceBlocks.Add(_resourceBlock);
+                }
+
+
+
             }
         }
     }

@@ -2535,6 +2535,7 @@ MonoBehaviour:
   playerCamHeight: 10
   npcBlockPrefab: {fileID: 8090959518607110755, guid: d298c2b52371ff54aa834c19704b1e73, type: 3}
   resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
+  doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
   doorTriggerPrefab: {fileID: 4022598762078982033, guid: ec26b8757459834449c118bc6ce8c5a5, type: 3}
   sublevelWallPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   levelsContainer: {fileID: 1112208449}
