@@ -73,15 +73,7 @@ public class ResourceBlock : Block
     public override void Activate()
     {
         AddMinedResources();
-        if (isDoor)
-        {
-            GetOpenedState();
-        }
-        else
-        {
-            GetMinedState();
-        }
-
+        GetMinedState();
         ScreenShake();
         MinedAnimation();
 

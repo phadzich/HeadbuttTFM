@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   shortName: Lapis Lazuli
-  hardness: 5
+  hardness: 6
   rarity: 1
   description: 
   icon: {fileID: 21300000, guid: a48ae575023f0734d80069151ee883aa, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   shortName: Iron
-  hardness: 2
+  hardness: 4
   rarity: 0
   description: 
   icon: {fileID: 21300000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
