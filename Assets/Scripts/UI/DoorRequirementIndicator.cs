@@ -15,7 +15,7 @@ public class DoorRequirementIndicator : MonoBehaviour
     public void SetupIndicator(ResourceData _resource, int _required, int _current)
     {
         resourceData = _resource;
-        icon.color = _resource.color;
+        icon.sprite = _resource.icon;
         requiredResources = _required;
         currentResources = _current;
         text.text = $"{_current.ToString()}/{_required.ToString()}";

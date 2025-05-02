@@ -17,6 +17,6 @@ MonoBehaviour:
   hardness: 3
   rarity: 0
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 905417b425d1f224e8ae80611fa7137d, type: 3}
   color: {r: 0.72156864, g: 0.4509804, b: 0.2, a: 1}
   mesh: {fileID: 8846097338804330060, guid: e5ce7adbe131efe47ae5cbcc75cc67e1, type: 3}
