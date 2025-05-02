@@ -22,9 +22,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
   doorRequirements:
   - key: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-    value: 20
+    value: 18
   - key: {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
-    value: 10
+    value: 7
   - key: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
     value: 20
   noiseScale: 0.2

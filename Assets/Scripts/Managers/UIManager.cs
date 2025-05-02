@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -15,6 +16,8 @@ public class UIManager : MonoBehaviour
     public ResourcesPanel resourcesPanel;
     public XPPanel experiencePanel;
     public GameObject craftButton;
+
+    public TextMeshProUGUI totalBouncesTXT;
 
     private void Awake()
     {
@@ -83,6 +86,7 @@ public class UIManager : MonoBehaviour
         {
             headbuttsPanel.UpdateUsedHeadbutts(_instance);
         }
+        totalBouncesTXT.text = CalculateTotalBounces().ToString();
 
     }
 
@@ -91,6 +95,17 @@ public class UIManager : MonoBehaviour
         equippedHelmetsPanel.UpdateWearingHelmet(_instance);
         headbuttsPanel.UpdateUsedHeadbutts(_instance);
 
+    }
+
+    int CalculateTotalBounces()
+    {
+        int addedBounces = 0;
+        foreach(HelmetInstance _helmetInstance in HelmetManager.Instance.helmetsEquipped)
+        {
+            addedBounces += _helmetInstance.remainingBounces;
+        }
+
+        return addedBounces;
     }
 
 }

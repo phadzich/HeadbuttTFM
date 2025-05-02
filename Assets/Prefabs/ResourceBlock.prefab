@@ -5228,7 +5228,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 5547208218056430551, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -5436,7 +5436,7 @@ MonoBehaviour:
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 0}
   minedParticles: {fileID: 1241805286537262801}
-  groundMaterial: {fileID: 2100000, guid: ad6beb0ff59746a4ab86eca4b7452c3e, type: 2}
+  groundMaterial: {fileID: 2100000, guid: fd7099357d25cad40bcbda1e26cdeffa, type: 2}
   doorTriggerPrefab: {fileID: 7563715249151886788}
   hitIndicatorPF: {fileID: 4961428947968815997}
   remianingBouncesText: {fileID: 3622476664411329411}

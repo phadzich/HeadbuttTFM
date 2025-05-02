@@ -36,8 +36,10 @@ public class ResourceBlock : Block
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
+
         InstanceResourceBlockMesh();
-        ShowHitIndicator(false);
+        minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
+ShowHitIndicator(false);
     }
 
     private void InstanceResourceBlockMesh()
@@ -95,7 +97,7 @@ public class ResourceBlock : Block
         isMined = true;
         resourceData = null;
         ShowHitIndicator(false);
-        blockMesh.GetComponent<MeshRenderer>().material = groundMaterial;
+        blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
 
         //TRANSFORM, LUEGO DEBE SER ANIMADO
         blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .2f, blockMeshParent.localScale.z);
