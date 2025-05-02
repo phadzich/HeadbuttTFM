@@ -4988,7 +4988,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 761d8e1f988ed2345a28312145c79c6e, type: 2}
+  - {fileID: 2100000, guid: be3073f141f3a164f8f8d20afe64ce9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5042,9 +5042,9 @@ GameObject:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
-  - component: {fileID: 6488606953969778201}
+  - component: {fileID: 6788644115671087910}
   m_Layer: 0
-  m_Name: NPCBlock
+  m_Name: ObstacleBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5141,7 +5141,7 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: 0, z: 0.3}
---- !u!114 &6488606953969778201
+--- !u!114 &6788644115671087910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5150,17 +5150,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8090959518607110755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd35cbec739f171488729c5b7ff98c09, type: 3}
+  m_Script: {fileID: 11500000, guid: bcf8f0bdcf55e3d408c1c027bac86d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  hitIndicatorPF: {fileID: 0}
-  isDoor: 0
-  isMined: 0
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 7827059375598182058}
-  doorMesh: {fileID: 0}
   minedParticles: {fileID: 1241805286537262801}
-  groundMaterial: {fileID: 2100000, guid: ad6beb0ff59746a4ab86eca4b7452c3e, type: 2}
-  doorTriggerPrefab: {fileID: 0}

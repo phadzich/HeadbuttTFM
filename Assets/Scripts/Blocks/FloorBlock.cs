@@ -1,20 +1,13 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class NPCBlock : Block
+public class FloorBlock : Block
 {
 
-   
+
     public Transform blockMeshParent;
     public GameObject blockMesh;
 
-    CinemachineImpulseSource impulseSource;
-
-    private void Start()
-    {
-
-        impulseSource = GetComponent<CinemachineImpulseSource>();
-    }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos)
     {
@@ -24,7 +17,7 @@ public class NPCBlock : Block
 
     public override void Bounce()
     {
-
+        GameManager.Instance.IncreaseLevelJumpCount(1);
 
     }
 
@@ -38,12 +31,5 @@ public class NPCBlock : Block
     {
 
     }
-
-    private void ScreenShake()
-    {
-        impulseSource.GenerateImpulse();
-    }
-
-
 
 }

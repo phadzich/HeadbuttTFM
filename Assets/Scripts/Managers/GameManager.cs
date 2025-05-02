@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [Header("REFERENCIAS")]
-    public LevelMovement levelMovement;
-
+    [SerializeField]
+    public PlayerMovement playerMovement;
     [Header("HELMET")]
     public int maxJumps;
     public int levelJumpCount;
@@ -24,21 +24,9 @@ public class GameManager : MonoBehaviour
     public int currentComboCount;
     public int currentComboRequirement;
 
-    [Header("TEMP UI")]
-    public TextMeshProUGUI txtJumpCounts;
-    public TextMeshProUGUI txtMaxJumps;
-    public TextMeshProUGUI txtRemainingJumps;
-    public TextMeshProUGUI txtHBCounts;
-    public TextMeshProUGUI txtMaxHB;
-    public TextMeshProUGUI txtRemainingHB;
-
     private void Awake()
     {
         Instance = this;
-    }
-    private void Start()
-    {
-
     }
 
     public void CheckIfNewCombo(ResourceData _resourceData, ResourceBlock _resourceBlock)

@@ -7,10 +7,14 @@ public class MiningSublevelConfig : SublevelConfig
 {
 
     public List<ResourceData> resourcesList;
-
     public List<IntResourcePair> doorRequirements = new();
-
     public Dictionary<ResourceData, int> sublevelRequirements;
+
+    [Header("RANDOMNESS")]
+    public float noiseScale = 0.2f;
+    public float noiseThreshold = 0.4f; // qué tan "lleno" estará el mapa
+    public int borderDepth;
+
     public void Init()
     {
         sublevelRequirements = new();

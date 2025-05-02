@@ -103,11 +103,11 @@ public class PlayerBounce : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN")
         {
 
-            GameManager.Instance.levelMovement.movementLocked = true;
+            GameManager.Instance.playerMovement.movementLocked = true;
         }
         else
         {
-            GameManager.Instance.levelMovement.movementLocked = false;
+            GameManager.Instance.playerMovement.movementLocked = false;
         }
     }
 

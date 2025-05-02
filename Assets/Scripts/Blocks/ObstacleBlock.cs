@@ -1,13 +1,13 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class NPCBlock : Block
+public class ObstacleBlock : Block
 {
 
-   
+
     public Transform blockMeshParent;
     public GameObject blockMesh;
-
+    public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
 
     private void Start()
@@ -25,12 +25,10 @@ public class NPCBlock : Block
     public override void Bounce()
     {
 
-
     }
 
     public override void Headbutt()
     {
-
 
     }
 
@@ -43,7 +41,6 @@ public class NPCBlock : Block
     {
         impulseSource.GenerateImpulse();
     }
-
 
 
 }

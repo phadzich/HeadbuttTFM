@@ -24,3 +24,8 @@ MonoBehaviour:
     value: 15
   - key: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
     value: 15
+  - key: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+    value: 10
+  noiseScale: 0.2
+  noiseThreshold: 0.4
+  borderDepth: 4
