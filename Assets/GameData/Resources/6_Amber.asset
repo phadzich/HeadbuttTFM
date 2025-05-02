@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: 6_Obsidian
+  m_Name: 6_Amber
   m_EditorClassIdentifier: 
   id: 6
-  shortName: Obsidian
+  shortName: Amber
   hardness: 8
   rarity: 1
   description: 
   icon: {fileID: 21300000, guid: d21e7c121be17864da483da23a70e1dd, type: 3}
-  color: {r: 0.20392157, g: 0.15686275, b: 0.17254902, a: 1}
-  mesh: {fileID: 0}
+  color: {r: 1, g: 0.3160377, b: 0.87116873, a: 1}
+  mesh: {fileID: 8846097338804330060, guid: cc13bc1724ee6a34086dac23c1389fe7, type: 3}

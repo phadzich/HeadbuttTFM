@@ -8,6 +8,9 @@ using static Unity.Collections.AllocatorManager;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public int globalSeed;
+
     [Header("REFERENCIAS")]
     [SerializeField]
     public PlayerMovement playerMovement;

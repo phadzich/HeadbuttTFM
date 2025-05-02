@@ -13,13 +13,15 @@ public class LevelManager : MonoBehaviour
 
     [Header("CURRENT LEVEL")]
     public Level currentLevel;
-    public List<ResourceBlock> resourceBlocks;
     [SerializeField]
     private int maxLevelDepth;
     [SerializeField]
     private int currentLevelDepth;
     public int sublevelWidth;
     public int sublevelHeight;
+
+    Dictionary<int, List<Block>> floorBlocksPorSubnivel = new Dictionary<int, List<Block>>();
+    Dictionary<int, List<Block>> resourceBlocksPorSubnivel = new Dictionary<int, List<Block>>();
 
     [Header("MAIN CAMERA")]
     public GameObject playerCam;
@@ -71,11 +73,12 @@ public class LevelManager : MonoBehaviour
         currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
 
         //DETERMINAMOS DATA DEL DEPTH
-        maxLevelDepth = _levelConfig.subLevels.Count-1;
+        maxLevelDepth = _levelConfig.subLevels.Count - 1;
         currentLevelDepth = 0;
 
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
+
         //INDICAMOS QUE HEMOS ENTRADO EN EL
         EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
 
@@ -93,7 +96,8 @@ public class LevelManager : MonoBehaviour
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-            GenerateMiningSublevel(_miningSublevel, _sublevelContainer);
+            GenerateMiningSublevel(_miningSublevel, _sublevelContainer, _depth);
+            CheckIfExtraResourcesNeeded(_depth, _miningSublevel.sublevelRequirements);
 
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
@@ -104,11 +108,111 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    private void GenerateMiningSublevel(MiningSublevelConfig _miningSublevel, GameObject _sublevelContainer)
+    private void GenerateMiningSublevel(MiningSublevelConfig _miningSublevel, GameObject _sublevelContainer, int _depth)
     {
         Debug.Log($"**Generating MINING Sublevel {_miningSublevel.name}**");
         _miningSublevel.Init();
-        GenerateMiningSublevelBlocks(_miningSublevel, _sublevelContainer);
+        CreateNewBlocksListForSublevel(_depth);
+        GenerateMiningSublevelBlocks(_miningSublevel, _sublevelContainer, _depth);
+
+    }
+
+    void CreateNewBlocksListForSublevel(int _depth)
+    {
+        if (!floorBlocksPorSubnivel.ContainsKey(_depth))
+        {
+            floorBlocksPorSubnivel[_depth] = new List<Block>();
+        }
+        if (!resourceBlocksPorSubnivel.ContainsKey(_depth))
+        {
+            resourceBlocksPorSubnivel[_depth] = new List<Block>();
+        }
+    }
+
+    void CheckIfExtraResourcesNeeded(int _depth, Dictionary<ResourceData, int> _sublevelRequirements)
+    {
+        //POR CADA RECURSO FALTANTE, REEMPLAZAMOS FLOORS POR RESOURCEBLOCKS
+        ReplaceFloorsByMissingResources(floorBlocksPorSubnivel[_depth], MissingResourceBlocksInLevel(_depth, RequiredResourceBlocksInLevel(_sublevelRequirements), ActualResourceBlocksInLevel(_depth)), _depth);
+    }
+
+    void ReplaceFloorsByMissingResources(List<Block> floorBlocksDisponibles, Dictionary<ResourceData, int> recursosFaltantes, int depth)
+    {
+    foreach (var kvp in recursosFaltantes){
+            ResourceData recurso = kvp.Key;
+            int cantidad = kvp.Value;
+
+            for (int i = 0; i < cantidad && floorBlocksDisponibles.Count > 0; i++)
+            {
+                Debug.Log($"AGREGANDO {recurso.name}");
+                // Elige un bloque vacío aleatorio
+                int index = Random.Range(0, floorBlocksDisponibles.Count);
+                GameObject bloqueOriginal = floorBlocksDisponibles[index].gameObject;
+                floorBlocksDisponibles.RemoveAt(index);
+
+                // Guarda la posición y rotación del bloque actual
+                Vector3 posicion = bloqueOriginal.transform.position;
+                Quaternion rotacion = bloqueOriginal.transform.rotation;
+                Vector2 coordenadas = bloqueOriginal.GetComponent<FloorBlock>().sublevelPosition;
+                Transform padre = bloqueOriginal.transform.parent;
+
+                // Elimina el bloque vacío original
+                Destroy(bloqueOriginal);
+
+                // Instancia el nuevo bloque con recurso
+                InstantiateResourceBlock(posicion, padre, recurso, (int)coordenadas.x, (int)coordenadas.y, depth);
+            }
+        }
+
+    }
+    Dictionary<ResourceData, int> ActualResourceBlocksInLevel(int _depth)
+    {
+        Dictionary<ResourceData, int> conteoActual = new Dictionary<ResourceData, int>();
+
+        foreach (Block _resourceBlock in resourceBlocksPorSubnivel[_depth])
+        {
+            ResourceData tipo = _resourceBlock.GetComponent<ResourceBlock>().resourceData; // KEY UNICO
+
+            if (tipo != null)
+            {
+                if (!conteoActual.ContainsKey(tipo))
+                    conteoActual[tipo] = 0;
+
+                conteoActual[tipo]++;
+            }
+        }
+        return conteoActual;
+    }
+
+    Dictionary<ResourceData, int> RequiredResourceBlocksInLevel(Dictionary<ResourceData, int> _sublevelRequirements)
+    {
+        Dictionary<ResourceData, int> requiredPorTipo = new Dictionary<ResourceData, int>();
+        foreach (KeyValuePair<ResourceData, int> _requirement in _sublevelRequirements)
+        {
+            requiredPorTipo.Add(_requirement.Key, _requirement.Value);
+        }
+        return requiredPorTipo;
+    }
+
+    Dictionary<ResourceData, int> MissingResourceBlocksInLevel(int _depth, Dictionary<ResourceData, int> minimosPorTipo, Dictionary<ResourceData, int> conteoActual)
+    {
+        Dictionary<ResourceData, int> faltantesPorTipo = new Dictionary<ResourceData, int>();
+        foreach (KeyValuePair<ResourceData, int> _requirement in minimosPorTipo)
+        {
+            ResourceData tipo = _requirement.Key;
+            int requerido = _requirement.Value;
+            int yaHay = conteoActual.ContainsKey(tipo) ? conteoActual[tipo] : 0;
+            int faltan = Mathf.Max(0, requerido - yaHay);
+            faltantesPorTipo[tipo] = faltan;
+        }
+        return faltantesPorTipo;
+    }
+
+    void PrintStringDictionaryContents(Dictionary<ResourceData, int> _dictionary) 
+    {
+        foreach (KeyValuePair<ResourceData, int> _kvp in _dictionary)
+        {
+            Debug.Log($"{_kvp.Key} {_kvp.Value}");
+        }
     }
 
     private void GenerateNPCSublevel(NPCSublevelConfig _npcSublevel, GameObject _sublevelContainer)
@@ -162,7 +266,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.RestartSublevelStats();
     }
 
-    public void GenerateMiningSublevelBlocks(MiningSublevelConfig _sublevelConfig, GameObject _sublevelContainer)
+    public void GenerateMiningSublevelBlocks(MiningSublevelConfig _sublevelConfig, GameObject _sublevelContainer, int _depth)
     {
         //DETERMINAMOS TODAS LAS VARIABLES
         int _width = _sublevelConfig.width;
@@ -175,7 +279,10 @@ public class LevelManager : MonoBehaviour
         int _spacing = 1;
         float offsetX = (_width - 1) * _spacing * 0.5f;
         float offsetZ = (_height - 1) * _spacing * 0.5f;
-
+        int sublevelSeed = GameManager.Instance.globalSeed + _depth;
+        System.Random rng = new System.Random(sublevelSeed);
+        float perlinOffset = (float)rng.NextDouble() * 10000f;
+        //HACEMOS UNA PRIMERA PASADA SIN CONSIDERAR LOS MINIMOS DE CADA RECURSO NECESARIO
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
@@ -193,28 +300,28 @@ public class LevelManager : MonoBehaviour
                     }
                     else
                     {
-                        InstantiateFloorBlock(_posicion, _sublevelContainer.transform, x, y);
+                        InstantiateFloorBlock(_posicion, _sublevelContainer.transform, x, y,_depth);
                     }
 
                 }
                 //COLOCAMOS LOS RECURSOS EN LOS BORDES
                 else if (IsOnBorder(x, y,_width,_height, _borderDepth))
                 {
-                    float noise = Mathf.PerlinNoise(x * _noiseScale, y * _noiseScale);
+                    float noise = Mathf.PerlinNoise((x * _noiseScale)+perlinOffset, y * _noiseScale);
                     if (noise > _noiseThreshold)
                     {
                         ResourceData _randomResource = _sublevelConfig.resourcesList[Random.Range(0, _sublevelConfig.resourcesList.Count)];
-                        InstantiateResourceBlock(_posicion, _sublevelContainer.transform, _randomResource, x,y);
+                        InstantiateResourceBlock(_posicion, _sublevelContainer.transform, _randomResource, x,y, _depth);
                     }
                     else
                     {
-                        InstantiateFloorBlock(_posicion, _sublevelContainer.transform, x, y);
+                        InstantiateFloorBlock(_posicion, _sublevelContainer.transform, x, y, _depth);
                     }
                 }
                 //RELLENAMOS CON PISO NORMAL U OTRAS COSAS
                 else
                 {
-                    InstantiateFloorBlock(_posicion, _sublevelContainer.transform, x, y);
+                    InstantiateFloorBlock(_posicion, _sublevelContainer.transform, x, y, _depth);
                 }
             }
         }
@@ -231,25 +338,24 @@ public class LevelManager : MonoBehaviour
     {
         GameObject _door = Instantiate(doorBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
         DoorBlock _doorBlock = _door.GetComponent<DoorBlock>();
-        //Debug.Log(_sublevelConfig.sublevelRequirements);
         _doorBlock.SetupBlock(_sublevelConfig.sublevelRequirements);
     }
 
-    void InstantiateFloorBlock(Vector3 _posicion, Transform _sublevelContainer, int _x, int _y)
+    void InstantiateFloorBlock(Vector3 _posicion, Transform _sublevelContainer, int _x, int _y, int _depth)
     {
         GameObject _floor = Instantiate(floorBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
         FloorBlock _floorBlock = _floor.GetComponent<FloorBlock>();
-        //Debug.Log(_sublevelConfig.sublevelRequirements);
         _floorBlock.SetupBlock(0, _x, _y);
+        floorBlocksPorSubnivel[_depth].Add(_floorBlock);
     }
 
-    void InstantiateResourceBlock(Vector3 _posicion, Transform _sublevelContainer, ResourceData _resourceData, int _x, int _y)
+    void InstantiateResourceBlock(Vector3 _posicion, Transform _sublevelContainer, ResourceData _resourceData, int _x, int _y, int _depth)
     {
         GameObject _bloque = Instantiate(resourceBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
         ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();
         _resourceBlock.SetupBlock(0, _x, _y, _resourceData);
         _bloque.name = $"{_resourceBlock.resourceData.shortName}_c{_x}r_{_y}";
-        resourceBlocks.Add(_resourceBlock);
+        resourceBlocksPorSubnivel[_depth].Add(_resourceBlock);
     }
 
     public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer)
