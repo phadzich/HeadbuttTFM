@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class ResourceBlock : Block
     [Header("PREFABS")]
     public GameObject doorTriggerPrefab;
     public GameObject hitIndicatorPF;
+    public TextMeshProUGUI remianingBouncesText;
 
     private void Start()
     {
@@ -106,17 +108,7 @@ public class ResourceBlock : Block
         blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .2f, blockMeshParent.localScale.z);
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
     }
-    private void GetOpenedState()
-    {
-        GetMinedState();
-        blockMesh.SetActive(false);
-        this.GetComponent<BoxCollider>().enabled = false;
-        this.GetComponent<ResourceBlock>().enabled = false;
-        if (isDoor)
-        {
-            doorTriggerPrefab.SetActive(true);
-        }
-    }
+
 
     private void AddMinedResources()
     {
@@ -126,6 +118,11 @@ public class ResourceBlock : Block
     public void ShowHitIndicator(bool _visible)
     {
         hitIndicatorPF.SetActive(_visible);
+    }
+
+    public void UpdateBounceIndicator(int _number)
+    {
+        remianingBouncesText.text = _number.ToString();
     }
 
 }

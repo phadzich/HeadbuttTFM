@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private List<ResourceBlock> hitBlocks;
     public ResourceData currentComboResource;
     public int currentComboCount;
+    public int currentComboRequirement;
 
     [Header("TEMP UI")]
     public TextMeshProUGUI txtJumpCounts;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         {
             ClearAllHitBlocks();
             currentComboResource = _resourceData;
+            currentComboRequirement = _resourceData.hardness;
         }
         //Sea diferente o no, lo agregamos a la lista del combo
         AddBlockToHitBlocks(_resourceBlock);
@@ -66,9 +68,20 @@ public class GameManager : MonoBehaviour
         if(!hitBlocks.Contains(_newBlock))
         {
             hitBlocks.Add(_newBlock);
+
             currentComboCount++;
+            UpdateComboBlockIndicator(currentComboRequirement - currentComboCount);
         }
         IncreaseLevelJumpCount(1);
+    }
+
+    public void UpdateComboBlockIndicator(int _comboDifference)
+    {
+        foreach (ResourceBlock _block in hitBlocks)
+        {
+            _block.UpdateBounceIndicator(_comboDifference);
+
+        }
     }
 
     public void ClearAllHitBlocks()
