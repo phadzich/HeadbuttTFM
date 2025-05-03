@@ -9,6 +9,8 @@ public class MiningSublevelConfig : SublevelConfig
     public List<ResourceData> resourcesList;
     public List<IntResourcePair> doorRequirements = new();
     public Dictionary<ResourceData, int> sublevelRequirements;
+    public List<DamageBlock> dmgBlocksList;
+    public int dmgBlocksQty;
 
     [Header("RANDOMNESS")]
     public float noiseScale = 0.2f;

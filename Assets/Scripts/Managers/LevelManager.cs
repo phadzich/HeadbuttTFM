@@ -6,6 +6,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 using System.Drawing;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
+using Unity.VisualScripting;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
@@ -97,8 +98,7 @@ public class LevelManager : MonoBehaviour
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             GenerateMiningSublevel(_miningSublevel, _sublevelContainer, _depth);
-            CheckIfExtraResourcesNeeded(_depth, _miningSublevel.sublevelRequirements);
-
+            CheckIfExtraBlocksNeeded(_depth, _miningSublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
@@ -107,7 +107,6 @@ public class LevelManager : MonoBehaviour
 
 
     }
-
     private void GenerateMiningSublevel(MiningSublevelConfig _miningSublevel, GameObject _sublevelContainer, int _depth)
     {
         Debug.Log($"**Generating MINING Sublevel {_miningSublevel.name}**");
@@ -116,7 +115,6 @@ public class LevelManager : MonoBehaviour
         GenerateMiningSublevelBlocks(_miningSublevel, _sublevelContainer, _depth);
 
     }
-
     void CreateNewBlocksListForSublevel(int _depth)
     {
         if (!floorBlocksPorSubnivel.ContainsKey(_depth))
@@ -128,11 +126,11 @@ public class LevelManager : MonoBehaviour
             resourceBlocksPorSubnivel[_depth] = new List<Block>();
         }
     }
-
-    void CheckIfExtraResourcesNeeded(int _depth, Dictionary<ResourceData, int> _sublevelRequirements)
+    void CheckIfExtraBlocksNeeded(int _depth, MiningSublevelConfig _miningSublevel)
     {
         //POR CADA RECURSO FALTANTE, REEMPLAZAMOS FLOORS POR RESOURCEBLOCKS
-        ReplaceFloorsByMissingResources(floorBlocksPorSubnivel[_depth], MissingResourceBlocksInLevel(_depth, RequiredResourceBlocksInLevel(_sublevelRequirements), ActualResourceBlocksInLevel(_depth)), _depth);
+        ReplaceFloorsByMissingResources(floorBlocksPorSubnivel[_depth], MissingResourceBlocksInLevel(_depth, RequiredResourceBlocksInLevel(_miningSublevel.sublevelRequirements), ActualResourceBlocksInLevel(_depth)), _depth);
+        ReplaceFloorsByDamageBlocks(floorBlocksPorSubnivel[_depth], _miningSublevel.dmgBlocksList, _miningSublevel.dmgBlocksQty,_depth);
     }
 
     void ReplaceFloorsByMissingResources(List<Block> floorBlocksDisponibles, Dictionary<ResourceData, int> recursosFaltantes, int depth)
@@ -164,6 +162,36 @@ public class LevelManager : MonoBehaviour
         }
 
     }
+    void ReplaceFloorsByDamageBlocks(List<Block> floorBlocksDisponibles, List<DamageBlock> _damageBlocks, int _damageBlocksQty, int depth)
+    {
+
+            for (int i = 0; i < _damageBlocksQty && floorBlocksDisponibles.Count > 0; i++)
+            {
+
+
+                // Elige un bloque vacío aleatorio
+                int index = Random.Range(0, floorBlocksDisponibles.Count);
+                GameObject bloqueOriginal = floorBlocksDisponibles[index].gameObject;
+                floorBlocksDisponibles.RemoveAt(index);
+
+                //Elige un DamageBlock aleatorio
+                int dmgIndex = Random.Range(0, _damageBlocks.Count);
+                DamageBlock dmgBlock = _damageBlocks[dmgIndex];
+            Debug.Log($"AGREGANDO {dmgBlock.name}");
+            // Guarda la posición y rotación del bloque actual
+            Vector3 posicion = bloqueOriginal.transform.position;
+                Quaternion rotacion = bloqueOriginal.transform.rotation;
+                Vector2 coordenadas = bloqueOriginal.GetComponent<FloorBlock>().sublevelPosition;
+                Transform padre = bloqueOriginal.transform.parent;
+
+                // Elimina el bloque vacío original
+                Destroy(bloqueOriginal);
+
+                // Instancia el nuevo bloque con recurso
+                InstantiateDamageBlock(dmgBlock,posicion, padre,(int)coordenadas.x, (int)coordenadas.y, depth);
+            }
+        }
+
     Dictionary<ResourceData, int> ActualResourceBlocksInLevel(int _depth)
     {
         Dictionary<ResourceData, int> conteoActual = new Dictionary<ResourceData, int>();
@@ -358,7 +386,15 @@ public class LevelManager : MonoBehaviour
         resourceBlocksPorSubnivel[_depth].Add(_resourceBlock);
     }
 
-    public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer)
+void InstantiateDamageBlock(DamageBlock _dmgBlock,Vector3 _posicion, Transform _sublevelContainer, int _x, int _y, int _depth)
+{
+    GameObject _dmgBlockGO = Instantiate(_dmgBlock.gameObject, _posicion, Quaternion.identity, _sublevelContainer);
+        _dmgBlock.SetupBlock(0, _x, _y);
+        _dmgBlockGO.name = $"{_dmgBlock.name}_c{_x}r_{_y}";
+    //resourceBlocksPorSubnivel[_depth].Add(_resourceBlock);
+}
+
+public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer)
     {
         int _spacing = 1;
 

@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: MIN_A_001
   m_EditorClassIdentifier: 
   id: A_001
-  width: 7
-  height: 7
+  width: 5
+  height: 5
   resourcesList:
   - {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
   doorRequirements:
   - key: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
     value: 5
-  noiseScale: 0.2
+  dmgBlocksList:
+  - {fileID: 6788644115671087910, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  dmgBlocksQty: 8
+  noiseScale: 1
   noiseThreshold: 0.4
-  borderDepth: 3
+  borderDepth: 2
