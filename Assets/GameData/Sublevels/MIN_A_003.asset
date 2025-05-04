@@ -28,7 +28,6 @@ MonoBehaviour:
     value: 10
   dmgBlocksList:
   - {fileID: 6788644115671087910, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
-  - {fileID: 6788644115671087910, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
   dmgBlocksQty: 10
   noiseScale: 1
   noiseThreshold: 0.4

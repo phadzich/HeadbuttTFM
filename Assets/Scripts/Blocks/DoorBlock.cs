@@ -65,7 +65,7 @@ public class DoorBlock : Block
         }
         if (_requirementsCompleted == _requirementsCount)
         {
-            Debug.Log($"Completed {_requirementsCompleted} de {_requirementsCount}");
+            //Debug.Log($"Completed {_requirementsCompleted} de {_requirementsCount}");
             return true;
         }
         return false;

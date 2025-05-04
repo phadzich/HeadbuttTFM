@@ -21,8 +21,8 @@ MonoBehaviour:
   - key: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
     value: 5
   dmgBlocksList:
-  - {fileID: 6788644115671087910, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
-  dmgBlocksQty: 8
+  - {fileID: 7176663917795707535, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
+  dmgBlocksQty: 4
   noiseScale: 1
   noiseThreshold: 0.4
   borderDepth: 2

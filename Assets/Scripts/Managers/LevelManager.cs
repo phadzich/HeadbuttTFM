@@ -177,7 +177,7 @@ public class LevelManager : MonoBehaviour
                 //Elige un DamageBlock aleatorio
                 int dmgIndex = Random.Range(0, _damageBlocks.Count);
                 DamageBlock dmgBlock = _damageBlocks[dmgIndex];
-            Debug.Log($"AGREGANDO {dmgBlock.name}");
+            //Debug.Log($"AGREGANDO {dmgBlock.name}");
             // Guarda la posición y rotación del bloque actual
             Vector3 posicion = bloqueOriginal.transform.position;
                 Quaternion rotacion = bloqueOriginal.transform.rotation;

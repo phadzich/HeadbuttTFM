@@ -11,12 +11,9 @@ public class DamageBlock : Block
     public Transform blockMeshParent;
     public GameObject blockMesh;
     public ParticleSystem damageParticles;
-    CinemachineImpulseSource impulseSource;
+    public CinemachineImpulseSource impulseSource;
 
-    private void Start()
-    {
-        impulseSource = GetComponent<CinemachineImpulseSource>();
-    }
+
 
     public void SetupBlock(int _subId, int _xPos, int _yPos)
     {
@@ -26,10 +23,6 @@ public class DamageBlock : Block
 
     public override void Bounce()
     {
-        Debug.Log("DMGBLCK BOUNCED");
-        DoDamage();
-        ScreenShake();
-        damageParticles.Play();
     }
 
     public override void Headbutt()
@@ -45,6 +38,7 @@ public class DamageBlock : Block
     public void DoDamage()
     {
         Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
+        ScreenShake();
     }
 
     private void ScreenShake()

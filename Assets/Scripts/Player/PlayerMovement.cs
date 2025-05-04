@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving;
     public bool movementLocked;
 
+    public float knockbackDistance = 1f;
 
     private void Start()
     {
@@ -31,10 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangePositionTarget(Vector3 newPos)
     {
-        positionTarget = new Vector3(newPos.x, 0, newPos.z);
+        Vector3 alignedPosition = new Vector3(
+    Mathf.Round(newPos.x),
+    Mathf.Round(newPos.y),
+    Mathf.Round(newPos.z)
+);
+        positionTarget = new Vector3(alignedPosition.x, 0, alignedPosition.z);
         //Debug.Log("NewTarget: " + positionTarget);
 
     }
+
+
 
     public void MovePlayer(InputAction.CallbackContext context)
     {
@@ -74,5 +83,21 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+    }
+
+    public void Knockback(Vector3 direction)
+    {
+        // Normaliza y convierte a pasos de bloque
+        direction = new Vector3(
+            Mathf.RoundToInt(Mathf.Sign(direction.x)),
+            0,
+            Mathf.RoundToInt(Mathf.Sign(direction.z))
+        );
+
+        Vector3 newPosition = transform.position + direction;
+
+        // Aquí usas tu sistema de movimiento actual
+        // Si tienes un método MoveToPosition(), lo llamas así:
+        ChangePositionTarget(newPosition);
     }
 }
