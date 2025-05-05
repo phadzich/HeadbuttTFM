@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: 1_Iron
+  m_Name: 5_Obsidian
   m_EditorClassIdentifier: 
-  id: 1
-  shortName: Iron
-  hardness: 2
-  rarity: 0
+  id: 5
+  shortName: Obsidian
+  hardness: 7
+  rarity: 1
   description: 
-  icon: {fileID: 0}
-  color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 0}
-  mesh: {fileID: 8846097338804330060, guid: 613d3788928ab2242aee940826c8bb9b, type: 3}
+  icon: {fileID: 21300000, guid: 0f4c3091be58eb24d9afc6cd21ac5b5a, type: 3}
+  color: {r: 0.1775543, g: 0.18660106, b: 0.3584906, a: 1}
+  mesh: {fileID: 8846097338804330060, guid: 146c6eb103a48594e8c2ca0c2637b39e, type: 3}

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LevelMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private Vector2 moveInput;
@@ -11,6 +11,7 @@ public class LevelMovement : MonoBehaviour
     private bool isMoving;
     public bool movementLocked;
 
+    public float knockbackDistance = 1f;
 
     private void Start()
     {
@@ -19,7 +20,7 @@ public class LevelMovement : MonoBehaviour
     private void Update()
     {
 
-            transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
 
 
         if (Vector3.Distance(transform.position, positionTarget) < 0.5f)
@@ -29,18 +30,27 @@ public class LevelMovement : MonoBehaviour
         }
     }
 
+
     private void ChangePositionTarget(Vector3 newPos)
     {
-        positionTarget = new Vector3(newPos.x,0,newPos.z);
+        Vector3 alignedPosition = new Vector3(
+    Mathf.Round(newPos.x),
+    Mathf.Round(newPos.y),
+    Mathf.Round(newPos.z)
+);
+        positionTarget = new Vector3(alignedPosition.x, 0, alignedPosition.z);
         //Debug.Log("NewTarget: " + positionTarget);
-         
+
     }
 
-    public void MoveAllBlocks(InputAction.CallbackContext context)
+
+
+    public void MovePlayer(InputAction.CallbackContext context)
     {
 
 
-        if (context.phase == InputActionPhase.Performed){
+        if (context.phase == InputActionPhase.Performed)
+        {
             moveInput = context.ReadValue<Vector2>();
             //Debug.Log("Move RAW input: " + moveInput);
             // Round each axis to the nearest whole number
@@ -52,9 +62,10 @@ public class LevelMovement : MonoBehaviour
             if (!isMoving && !movementLocked)
             {
 
-                var nextPos = positionTarget + new Vector3(moveInput.x * -1, 0, moveInput.y * -1);
+                var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
                 //Debug.Log("NextPos: " + nextPos);
-                if(nextPos.x == (-LevelManager.Instance.sublevelWidth-1)/2 || nextPos.x > (LevelManager.Instance.sublevelWidth - 1) / 2 || nextPos.z == (-LevelManager.Instance.sublevelHeight - 1) / 2 || nextPos.z > (LevelManager.Instance.sublevelHeight - 1) / 2) {
+                if (nextPos.x == (-LevelManager.Instance.sublevelWidth - 1) / 2 || nextPos.x > (LevelManager.Instance.sublevelWidth - 1) / 2 || nextPos.z == (-LevelManager.Instance.sublevelHeight - 1) / 2 || nextPos.z > (LevelManager.Instance.sublevelHeight - 1) / 2)
+                {
                     Debug.Log("EDGE");
                 }
                 else
@@ -74,5 +85,19 @@ public class LevelMovement : MonoBehaviour
 
     }
 
+    public void Knockback(Vector3 direction)
+    {
+        // Normaliza y convierte a pasos de bloque
+        direction = new Vector3(
+            Mathf.RoundToInt(Mathf.Sign(direction.x)),
+            0,
+            Mathf.RoundToInt(Mathf.Sign(direction.z))
+        );
 
+        Vector3 newPosition = transform.position + direction;
+
+        // Aquí usas tu sistema de movimiento actual
+        // Si tienes un método MoveToPosition(), lo llamas así:
+        ChangePositionTarget(newPosition);
+    }
 }

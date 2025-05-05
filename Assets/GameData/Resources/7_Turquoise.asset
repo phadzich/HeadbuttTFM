@@ -18,5 +18,5 @@ MonoBehaviour:
   rarity: 2
   description: 
   icon: {fileID: 0}
-  color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 0}
+  color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}
   mesh: {fileID: 0}

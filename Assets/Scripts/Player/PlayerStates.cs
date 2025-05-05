@@ -8,6 +8,7 @@ public class PlayerStates : MonoBehaviour
     public Material idleMaterial;
     public Material headbuttMaterial;
     public MeshRenderer bodyMeshRenderer;
+    public PlayerMovement playerMovement;
     public bool NPCLevel = false;
  
     private void Update()

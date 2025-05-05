@@ -1,11 +1,15 @@
+using PrimeTween;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
+using static UnityEngine.UI.Image;
 
 public class PlayerBounce : MonoBehaviour
 {
     Rigidbody rb;
     PlayerStates playerStates;
+    public GameObject bodyMesh;
 
     [Header("MOVEMENT")]
     [SerializeField]
@@ -18,6 +22,14 @@ public class PlayerBounce : MonoBehaviour
     float jumpForce;
     [SerializeField]
     string bounceDirection;
+    [SerializeField]
+    private float accumulatedRotation = 0f;  // Acumulamos la rotación
+    private float accumulatedAngle = 0f;  // Acumulamos la rotación
+
+    Tween tween;
+    private float minY;
+    private float maxY;
+    private bool isRising = true;
 
     [Header("HEADBUTT CONFIG")]
     [SerializeField]
@@ -44,6 +56,9 @@ public class PlayerBounce : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStates = GetComponent<PlayerStates>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
+
+        minY = transform.position.y;
+        maxY = minY;
     }
 
 
@@ -60,6 +75,7 @@ public class PlayerBounce : MonoBehaviour
         }
         else
         {
+
             ToggleHeadbuttIndicator(false);
             playerStates.EnterIdleState();
         }
@@ -73,19 +89,64 @@ public class PlayerBounce : MonoBehaviour
     {
         if(rb.linearVelocity.y >= 0)
         {
+            if (bounceDirection == "DOWN")
+            {
+                RotateBodyDown();
+            }
             bounceDirection = "UP";
+
         }
         else
         {
+            if (bounceDirection == "UP")
+            {
+                RotateBodyDown();
+            }
             bounceDirection = "DOWN";
         }
+    }
+
+
+    void RotateBodyDown()
+    {
+        /*
+        accumulatedRotation+= 180f; // Acumula
+        Vector3 newRotation = new Vector3(accumulatedRotation, 0, 0);
+        Tween.LocalRotation(bodyMesh.transform, endValue: newRotation, duration: .2f);
+        */
+        float from = accumulatedAngle;
+        accumulatedAngle += 180;
+        float to = accumulatedAngle;
+
+        if (tween.isAlive)
+            tween.Stop();
+
+        tween = Tween.Custom(
+            startValue: from,
+            endValue: to,
+
+            onValueChange: angle =>
+            {
+                bodyMesh.transform.localRotation = Quaternion.Euler(-angle, 0f, 0f);
+            },
+            settings: new TweenSettings(ease: Ease.InOutSine ,duration: 0.5f)
+        );
+    }
+
+    void RotateBodyUp()
+    {
+        /*
+        accumulatedRotation += 180f; // Acumula
+        Vector3 newRotation = new Vector3(accumulatedRotation, 0, 0);
+        Tween.LocalRotation(bodyMesh.transform, endValue: newRotation, duration: .2f);
+        */
     }
 
     private void CheckForBlockBelow()
     {
         Vector3 origin = transform.position;
         Vector3 direction = Vector3.down;
-        Debug.DrawRay(origin, direction * 5f, Color.yellow);
+        //Debug.DrawRay(origin, direction * 5f, Color.yellow);
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 5f))
         {
@@ -98,28 +159,25 @@ public class PlayerBounce : MonoBehaviour
     {
         Vector3 origin = transform.position;
         Vector3 direction = Vector3.down;
-        Debug.DrawRay(origin, direction * blockLockdownRange, Color.yellow);
+        //Debug.DrawRay(origin, direction * blockLockdownRange, Color.yellow);
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN")
         {
 
-            GameManager.Instance.levelMovement.movementLocked = true;
+            GameManager.Instance.playerMovement.movementLocked = true;
         }
         else
         {
-            GameManager.Instance.levelMovement.movementLocked = false;
+            GameManager.Instance.playerMovement.movementLocked = false;
         }
     }
-
-
 
     private void CheckForBounceDistance()
     {
         Vector3 origin = transform.position;
         Vector3 direction = Vector3.down;
-        float _groundDistance = .05f;
+        float _groundDistance = .5f;
         Debug.DrawRay(origin, direction * _groundDistance, Color.red);
-
 
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
@@ -127,6 +185,7 @@ public class PlayerBounce : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<Block>())
             {
+                //Debug.Log("HITBLOCK");
                 BounceUp();
             }
 
@@ -138,7 +197,7 @@ public class PlayerBounce : MonoBehaviour
 
         Vector3 origin = transform.position;
         Vector3 direction = Vector3.down;
-        Debug.DrawRay(origin, direction * headbuttRange, Color.red);
+        //Debug.DrawRay(origin, direction * headbuttRange, Color.red);
 
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, headbuttRange)&&!headbuttOnCooldown)
@@ -197,7 +256,7 @@ public class PlayerBounce : MonoBehaviour
             if (inHeadbuttRange && !headbuttOnCooldown && HelmetManager.Instance.currentHelmet.hasHeadbutts() && blockBelow!=null)
             {
                 timedHeadbutt = true;
-                Debug.Log("CORRECT!");
+                //Debug.Log("CORRECT!");
                 HeadbuttUp();
                 timedHeadbutt = false;
             }
