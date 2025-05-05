@@ -1,3 +1,4 @@
+using PrimeTween;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -49,8 +50,10 @@ ShowHitIndicator(false);
 
     public override void Bounce()
     {
+
         if (!isMined) //ESTA VIRGEN
         {
+            AnimateBounced();
             //LO MARCAMOS
             ShowHitIndicator(true);
 
@@ -118,6 +121,11 @@ ShowHitIndicator(false);
     public void UpdateBounceIndicator(int _number)
     {
         remianingBouncesText.text = _number.ToString();
+    }
+
+    void AnimateBounced()
+    {
+        Tween.Scale(blockMesh.transform, startValue: new Vector3(1.2f, .8f, 1.2f), endValue: new Vector3(1, 1, 1), duration: .5f, ease: Ease.OutBack);
     }
 
 }

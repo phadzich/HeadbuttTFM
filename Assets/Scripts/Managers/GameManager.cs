@@ -119,14 +119,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void IncreaseLevelHBCount(int _jumps)
-    {
-        levelHBCount += _jumps;
-
-        HelmetManager.Instance.currentHelmet.UseHeadbutt();
-
-    }
-
     public void RestartSublevelStats()
     {
         currentComboResource = null;

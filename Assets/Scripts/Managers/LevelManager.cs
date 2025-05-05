@@ -24,9 +24,7 @@ public class LevelManager : MonoBehaviour
     Dictionary<int, List<Block>> floorBlocksPorSubnivel = new Dictionary<int, List<Block>>();
     Dictionary<int, List<Block>> resourceBlocksPorSubnivel = new Dictionary<int, List<Block>>();
 
-    [Header("MAIN CAMERA")]
-    public GameObject playerCam;
-    public float playerCamHeight = 10f;
+
     [Header("GENERAL PREFABS")]
     public GameObject npcBlockPrefab;
     public GameObject resourceBlockPrefab;
@@ -113,7 +111,7 @@ public class LevelManager : MonoBehaviour
         _miningSublevel.Init();
         CreateNewBlocksListForSublevel(_depth);
         GenerateMiningSublevelBlocks(_miningSublevel, _sublevelContainer, _depth);
-
+        InstanceSublevelWalls(_sublevelContainer.transform, _miningSublevel);
     }
     void CreateNewBlocksListForSublevel(int _depth)
     {
@@ -141,7 +139,7 @@ public class LevelManager : MonoBehaviour
 
             for (int i = 0; i < cantidad && floorBlocksDisponibles.Count > 0; i++)
             {
-                Debug.Log($"AGREGANDO {recurso.name}");
+                //Debug.Log($"AGREGANDO {recurso.name}");
                 // Elige un bloque vacío aleatorio
                 int index = Random.Range(0, floorBlocksDisponibles.Count);
                 GameObject bloqueOriginal = floorBlocksDisponibles[index].gameObject;
@@ -256,7 +254,7 @@ public class LevelManager : MonoBehaviour
     public void ExitSublevel()
     {
         currentLevelDepth++;
-        MoveCamDown(currentLevelDepth);
+        PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
     }
     public void EnterSublevel(SublevelConfig _sublevelConfig)
@@ -265,10 +263,9 @@ public class LevelManager : MonoBehaviour
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-
             sublevelWidth = _miningSublevel.width;
             sublevelHeight = _miningSublevel.height;
-            NPCLevel = false;
+            PlayerManager.Instance.EnterMiningLevel();
             //ENTRAR A ESTADO MINING
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
@@ -276,7 +273,7 @@ public class LevelManager : MonoBehaviour
             // CONFIGURAR AQUI SUBLEVEL DE TIPO NPC
             sublevelWidth = _npcSublevel.width;
             sublevelHeight = _npcSublevel.height;
-            NPCLevel = true;
+            PlayerManager.Instance.EnterNPCLevel();
             //ENTRAR A ESTADO CHECKPOINT
         }
 
@@ -438,14 +435,7 @@ public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer
         botWall.transform.localScale = new Vector3(_config.height, distanceBetweenSublevels, 1);
     }
 
-    private void MoveCamDown(int _count)
-    {
-        Tween.PositionY(playerCam.transform,
-            startValue: playerCam.transform.position.y, 
-            endValue: (_count * -distanceBetweenSublevels) + playerCamHeight,
-            duration:1f,
-            ease:Ease.InOutQuad);
-}
+
 
 
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)
