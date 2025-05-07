@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   shortName: Gold
-  hardness: 3
+  hardness: 5
   rarity: 0
   description: 
-  icon: {fileID: 0}
-  color: {r: 1, g: 0.84313726, b: 0, a: 0}
+  icon: {fileID: 21300000, guid: 61250b903f909954ab0763275fc40994, type: 3}
+  color: {r: 1, g: 0.84313726, b: 0, a: 1}
   mesh: {fileID: 8846097338804330060, guid: c55cf6a314d83d94ca234fbf5f81ef80, type: 3}

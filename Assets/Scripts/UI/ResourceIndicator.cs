@@ -20,7 +20,7 @@ public class ResourceIndicator : MonoBehaviour
     public void UpdateUI(int _amount)
     {
         //resourceIcon.sprite = resourceData.icon;
-        resourceIcon.color = new Color(resourceData.color.r, resourceData.color.g, resourceData.color.b, 1);
+        resourceIcon.sprite = resourceData.icon;
         amountText.text = _amount.ToString();
     }
 }

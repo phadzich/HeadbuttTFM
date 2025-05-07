@@ -13,9 +13,6 @@ public class ResourceManager : MonoBehaviour
     public Dictionary<ResourceData, int> storedResources = new();
     [SerializeField]
     public List<ResourceData> allAvailableResources;
-
- 
-
     public Action onOwnedResourcesChanged;
 
     private void Awake()
