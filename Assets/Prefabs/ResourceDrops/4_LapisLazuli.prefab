@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  MinModifier: 100
-  MaxModifier: 150
+  MinModifier: 20
+  MaxModifier: 21
 --- !u!1 &5753421375088218078
 GameObject:
   m_ObjectHideFlags: 0
