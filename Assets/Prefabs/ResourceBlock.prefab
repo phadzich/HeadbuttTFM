@@ -5440,6 +5440,7 @@ MonoBehaviour:
   doorTriggerPrefab: {fileID: 7563715249151886788}
   hitIndicatorPF: {fileID: 4961428947968815997}
   remianingBouncesText: {fileID: 3622476664411329411}
+  ResourceDropPrefab: {fileID: 4047506742962519041, guid: b4a85a188f7b9d44abc0dc59d7696139, type: 3}
 --- !u!114 &1003532578358748977
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -61,10 +61,11 @@ public class ResourceManager : MonoBehaviour
             //Gastamos esa cantidad y regresamos TRUE
             ownedResources[_resource] -= _amount;
             Debug.Log($"Spent {_amount} of {_resource.shortName}");
+            onOwnedResourcesChanged?.Invoke();
             return true;
         }
         //Si no hay recurso o no hay la cantidad necesaria, regresamos FALSE
-        onOwnedResourcesChanged?.Invoke();
+
         Debug.Log($"NOT ENOUGH RESOURCES!");
         return false;
     }
