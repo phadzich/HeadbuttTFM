@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c44ca9306a2e4d67b578ec9fd9eb471, type: 3}
   m_Name: Helmet2Blueprint
   m_EditorClassIdentifier: 
-  recipeName: 
-  resultHelmet: {fileID: 0}
+  recipeName: Casquito2
+  resultHelmet: {fileID: 11400000, guid: 0470e8e7f21a949aab631feaa59f855f, type: 2}
+  requiredResources:
+  - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+    quantity: 10
