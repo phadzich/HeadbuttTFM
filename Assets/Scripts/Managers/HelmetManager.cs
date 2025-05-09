@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,7 +20,11 @@ public class HelmetManager : MonoBehaviour
     public HelmetInstance currentHelmet;
     public HelmetMesh currentMesh;
     public int helmetIndex = 0;
-    
+
+    public Action<List<HelmetInstance>> onHelmetsEquipped;
+
+    public Action<HelmetInstance> onHelmetInstanceDataChanged;
+    public Action<HelmetInstance> onWearHelmetChanged;
 
     private void Awake()
     {
@@ -42,13 +47,17 @@ public class HelmetManager : MonoBehaviour
     {
         HelmetInstance helmet1 = new HelmetInstance(allHelmets[0]);
         HelmetInstance helmet2 = new HelmetInstance(allHelmets[1]);
+        HelmetInstance helmet3 = new HelmetInstance(allHelmets[2]);
         UnlockHelmet(helmet1);
         UnlockHelmet(helmet2);
-
+        UnlockHelmet(helmet3);
         EquipHelmet(helmet1);
         EquipHelmet(helmet2);
+        EquipHelmet(helmet3);
+        onHelmetsEquipped?.Invoke(helmetsEquipped);
 
         WearHelmet(helmetsEquipped[helmetIndex]);
+
     }
 
     public void UnlockHelmet(HelmetInstance helmet)
@@ -76,6 +85,7 @@ public class HelmetManager : MonoBehaviour
     public void WearHelmet(HelmetInstance helmet) {
         currentHelmet = helmet;
         currentMesh.SetHelmetMesh(helmet.baseHelmet.mesh);
+        onWearHelmetChanged?.Invoke(helmet);
     }
 
     public void ResetHelmetsStats()
@@ -89,20 +99,30 @@ public class HelmetManager : MonoBehaviour
     public void NextHelmet(InputAction.CallbackContext context)
     {
         //Si el jugador solo cuenta con 1 casco
-        if (helmetsEquipped.Count <= 1) return;
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("+");
+            if (helmetsEquipped.Count <= 1) return;
 
-        EquipNextAvailableHelmet();
+            WearNextAvailableHelmet();
+        }
+
+
     }
 
     public void PreviousHelmet(InputAction.CallbackContext context)
     {
         //Si el jugador solo cuenta con 1 casco
-        if (helmetsEquipped.Count <= 1) return;
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("-");
+            if (helmetsEquipped.Count <= 1) return;
 
-        EquipPrevAvailableHelmet();
+            WearPrevAvailableHelmet();
+        }
     }
 
-    public void EquipNextAvailableHelmet()
+    public void WearNextAvailableHelmet()
     {
         int ogIndex = helmetIndex;
 
@@ -120,7 +140,7 @@ public class HelmetManager : MonoBehaviour
 
     }
 
-    public void EquipPrevAvailableHelmet()
+    public void WearPrevAvailableHelmet()
     {
         int ogIndex = helmetIndex;
 

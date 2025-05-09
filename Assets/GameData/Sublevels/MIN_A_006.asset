@@ -19,3 +19,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
   - {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
   - {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
+  - {fileID: 11400000, guid: 4dd1237493e88c648856e124b97c8456, type: 2}
+  doorRequirements:
+  - key: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+    value: 24
+  - key: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+    value: 30
+  - key: {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
+    value: 14
+  - key: {fileID: 11400000, guid: 4dd1237493e88c648856e124b97c8456, type: 2}
+    value: 16
+  dmgBlocksList:
+  - {fileID: 6788644115671087910, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  - {fileID: 7176663917795707535, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
+  dmgBlocksQty: 25
+  noiseScale: 0.2
+  noiseThreshold: 0.4
+  borderDepth: 3
