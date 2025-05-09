@@ -45,7 +45,7 @@ public class XPManager : MonoBehaviour
     void LevelUp()
     {
         currentLevel++;
-        Debug.Log("¡Subiste a nivel " + currentLevel + "!");
+        //Debug.Log("¡Subiste a nivel " + currentLevel + "!");
         LeveledUp?.Invoke(currentLevel);
     }
 

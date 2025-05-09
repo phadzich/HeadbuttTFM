@@ -7,6 +7,8 @@ using System.Drawing;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 using Unity.VisualScripting;
+using System;
+using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
@@ -14,12 +16,15 @@ public class LevelManager : MonoBehaviour
 
     [Header("CURRENT LEVEL")]
     public Level currentLevel;
+    public Sublevel currentSublevel;
+    public List<Sublevel> sublevelsList;
     [SerializeField]
     private int maxLevelDepth;
     [SerializeField]
-    private int currentLevelDepth;
+    public int currentLevelDepth;
     public int sublevelWidth;
     public int sublevelHeight;
+
 
     Dictionary<int, List<Block>> floorBlocksPorSubnivel = new Dictionary<int, List<Block>>();
     Dictionary<int, List<Block>> resourceBlocksPorSubnivel = new Dictionary<int, List<Block>>();
@@ -42,6 +47,9 @@ public class LevelManager : MonoBehaviour
 
     public bool NPCLevel = false;
 
+    public Action onSublevelBlocksMined;
+    public Action onSublevelEntered;
+    public int currentSublevelBlocksMined;
 
     private void Awake()
     {
@@ -91,12 +99,15 @@ public class LevelManager : MonoBehaviour
         //Debug.Log(_sublevelContainer.transform.localPosition);
 
         Sublevel _sublevel = _sublevelContainer.AddComponent<Sublevel>();
+        sublevelsList.Add(_sublevel);
         _sublevel.SetupSublevel(_sublevelConfig.id, _depth, true, _sublevelConfig);
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
+            _sublevel.SetMiningObjectives(_miningSublevel.blocksToComplete);
             GenerateMiningSublevel(_miningSublevel, _sublevelContainer, _depth);
             CheckIfExtraBlocksNeeded(_depth, _miningSublevel);
+
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
@@ -108,7 +119,6 @@ public class LevelManager : MonoBehaviour
     private void GenerateMiningSublevel(MiningSublevelConfig _miningSublevel, GameObject _sublevelContainer, int _depth)
     {
         Debug.Log($"**Generating MINING Sublevel {_miningSublevel.name}**");
-        _miningSublevel.Init();
         CreateNewBlocksListForSublevel(_depth);
         GenerateMiningSublevelBlocks(_miningSublevel, _sublevelContainer, _depth);
         InstanceSublevelWalls(_sublevelContainer.transform, _miningSublevel);
@@ -127,10 +137,10 @@ public class LevelManager : MonoBehaviour
     void CheckIfExtraBlocksNeeded(int _depth, MiningSublevelConfig _miningSublevel)
     {
         //POR CADA RECURSO FALTANTE, REEMPLAZAMOS FLOORS POR RESOURCEBLOCKS
-        ReplaceFloorsByMissingResources(floorBlocksPorSubnivel[_depth], MissingResourceBlocksInLevel(_depth, RequiredResourceBlocksInLevel(_miningSublevel.sublevelRequirements), ActualResourceBlocksInLevel(_depth)), _depth);
+        //ReplaceFloorsByMissingResources(floorBlocksPorSubnivel[_depth], MissingResourceBlocksInLevel(_depth, RequiredResourceBlocksInLevel(_miningSublevel.sublevelRequirements), ActualResourceBlocksInLevel(_depth)), _depth);
         ReplaceFloorsByDamageBlocks(floorBlocksPorSubnivel[_depth], _miningSublevel.dmgBlocksList, _miningSublevel.dmgBlocksQty,_depth);
     }
-
+    /*
     void ReplaceFloorsByMissingResources(List<Block> floorBlocksDisponibles, Dictionary<ResourceData, int> recursosFaltantes, int depth)
     {
     foreach (var kvp in recursosFaltantes){
@@ -160,6 +170,7 @@ public class LevelManager : MonoBehaviour
         }
 
     }
+    */
     void ReplaceFloorsByDamageBlocks(List<Block> floorBlocksDisponibles, List<DamageBlock> _damageBlocks, int _damageBlocksQty, int depth)
     {
 
@@ -241,6 +252,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+
     private void GenerateNPCSublevel(NPCSublevelConfig _npcSublevel, GameObject _sublevelContainer)
     {
         // GENERAR AQUI SUBLEVEL DE TIPO NPC
@@ -256,17 +268,18 @@ public class LevelManager : MonoBehaviour
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
+
     }
     public void EnterSublevel(SublevelConfig _sublevelConfig)
     {
-
-
+        currentSublevel = sublevelsList[currentLevelDepth];
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             sublevelWidth = _miningSublevel.width;
             sublevelHeight = _miningSublevel.height;
             PlayerManager.Instance.EnterMiningLevel();
-            //ENTRAR A ESTADO MINING
+            Debug.Log($"Entering {currentSublevel.id}");
+            onSublevelEntered?.Invoke();
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
@@ -321,7 +334,7 @@ public class LevelManager : MonoBehaviour
                     //SI NO ES EL ULTIMO SUBNIVEL
                     if(currentLevelDepth + 1 < maxLevelDepth)
                     {
-                        InstantiateDoorBlock(_posicion, _sublevelContainer.transform, _sublevelConfig);
+                        InstantiateDoorBlock(_posicion, _sublevelContainer.transform, _sublevelConfig, _depth);
                     }
                     else
                     {
@@ -359,11 +372,12 @@ public class LevelManager : MonoBehaviour
         );
     }
 
-    void InstantiateDoorBlock(Vector3 _posicion, Transform _sublevelContainer, MiningSublevelConfig _sublevelConfig)
+    void InstantiateDoorBlock(Vector3 _posicion, Transform _sublevelContainer, MiningSublevelConfig _sublevelConfig, int _depth)
     {
+        Sublevel _parentSublevel = sublevelsList[_depth];
         GameObject _door = Instantiate(doorBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
         DoorBlock _doorBlock = _door.GetComponent<DoorBlock>();
-        _doorBlock.SetupBlock(_sublevelConfig.sublevelRequirements);
+        _doorBlock.SetupBlock(_parentSublevel);
     }
 
     void InstantiateFloorBlock(Vector3 _posicion, Transform _sublevelContainer, int _x, int _y, int _depth)
@@ -435,7 +449,11 @@ public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer
         botWall.transform.localScale = new Vector3(_config.height, distanceBetweenSublevels, 1);
     }
 
-
+    public void IncreaseMinedBlocks(int _newMinedBlocks)
+    {
+        currentSublevel.currentBlocksMined += _newMinedBlocks;
+        onSublevelBlocksMined?.Invoke();
+    }
 
 
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)

@@ -79,6 +79,7 @@ ShowHitIndicator(false);
     public override void Activate()
     {
         AddMinedResources();
+        LevelManager.Instance.IncreaseMinedBlocks(1);
         XPManager.Instance.AddXP(resourceData.hardness);
 
         // Spawn the correct resource prefab (linked in ResourceData)
