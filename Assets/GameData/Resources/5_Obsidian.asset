@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 5_Obsidian
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 5795eb2d17c52f340b344bddf197a4a9, type: 3}
   id: 5
   shortName: Obsidian
   hardness: 7

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 3_Gold
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 1445a4e1a41e31c499b26132de288c19, type: 3}
   id: 3
   shortName: Gold
   hardness: 5
