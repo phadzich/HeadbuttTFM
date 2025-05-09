@@ -9,6 +9,7 @@ public class HelmetInstance
     public int remainingHeadbutts;
     public int maxHeadbutts;
     public bool isWornOut => remainingBounces <= 0;
+    public static event Action OnStatsChanged; // Evento que avisa que los stats fueron modificados
 
     private int level = 0;
     public int bounces;
@@ -57,14 +58,12 @@ public class HelmetInstance
     public void upgradeJump(int quantity)
     {
         bounces += quantity;
-        // Por ahora reiniciare sus stats cuando lo mejoren
-        ResetStats();
+        // reiniciar sus stats cuando lo mejoren
     }
 
     public void upgradeHeadbutt(int quantity)
     {
         maxHeadbutts += quantity;
-        // Por ahora reiniciare sus stats cuando lo mejoren 
-        ResetStats();
+        // reiniciar sus stats cuando lo mejoren
     }
 }
