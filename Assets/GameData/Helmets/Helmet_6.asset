@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: Helmet_2
+  m_Name: Helmet_6
   m_EditorClassIdentifier: 
-  id: 2
-  helmetName: Cascote
-  description: Un casco MUUY grande
-  bounces: 20
-  headbutts: 7
-  mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
-  icon: {fileID: 21300000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
-  color: {r: 0.0786757, g: 0.87451524, b: 0.9811321, a: 1}
+  id: 
+  helmetName: 
+  description: 
+  bounces: 40
+  headbutts: 18
+  mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
+  icon: {fileID: 0}
+  color: {r: 1, g: 0.32387626, b: 0.19339621, a: 0}
   effect: 0

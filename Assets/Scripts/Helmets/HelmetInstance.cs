@@ -9,6 +9,10 @@ public class HelmetInstance
     public int remainingHeadbutts;
     public int maxHeadbutts;
     public bool isWornOut => remainingBounces <= 0;
+    public static event Action OnStatsChanged; // Evento que avisa que los stats fueron modificados
+
+    private int level = 0;
+    public int bounces;
 
     public HelmetInstance(HelmetData helmetSO)
     {
@@ -17,12 +21,13 @@ public class HelmetInstance
         remainingBounces = helmetSO.bounces;
         remainingHeadbutts = helmetSO.headbutts;
         maxHeadbutts = helmetSO.headbutts;
+        bounces = helmetSO.bounces;
     }
 
     public void ResetStats()
     {
-        remainingBounces = baseHelmet.bounces;
-        remainingHeadbutts = baseHelmet.headbutts;
+        remainingBounces = bounces;
+        remainingHeadbutts = maxHeadbutts;
         HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
     }
 
@@ -48,5 +53,17 @@ public class HelmetInstance
     public bool hasHeadbutts()
     {
         return remainingHeadbutts > 0;
+    }
+
+    public void upgradeJump(int quantity)
+    {
+        bounces += quantity;
+        // reiniciar sus stats cuando lo mejoren
+    }
+
+    public void upgradeHeadbutt(int quantity)
+    {
+        maxHeadbutts += quantity;
+        // reiniciar sus stats cuando lo mejoren
     }
 }
