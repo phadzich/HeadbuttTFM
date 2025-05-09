@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 12_Sapphire
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 00a6757a47cfbd446b1f2b7b2c9480b6, type: 3}
   id: 12
   shortName: Sapphire
   hardness: 2

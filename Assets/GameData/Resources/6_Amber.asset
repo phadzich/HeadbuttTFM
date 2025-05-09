@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 6_Amber
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: a519f26b745e9c04e9fc1dde780777c5, type: 3}
   id: 6
   shortName: Amber
   hardness: 8

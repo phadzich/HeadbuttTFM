@@ -24,6 +24,7 @@ public class ResourceBlock : Block
     public GameObject doorTriggerPrefab;
     public GameObject hitIndicatorPF;
     public TextMeshProUGUI remianingBouncesText;
+    public GameObject resourceDropPrefab;
 
     private void Start()
     {
@@ -79,6 +80,13 @@ ShowHitIndicator(false);
     {
         AddMinedResources();
         XPManager.Instance.AddXP(resourceData.hardness);
+
+        // Spawn the correct resource prefab (linked in ResourceData)
+        if (resourceData != null && resourceData.resourceDropPrefab != null)
+        {
+            Instantiate(resourceData.resourceDropPrefab, transform.position, Quaternion.identity);
+        }
+
         GetMinedState();
         ScreenShake();
         MinedAnimation();
