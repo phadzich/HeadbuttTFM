@@ -9,12 +9,11 @@ public class HelmetInstance
     public int remainingHeadbutts;
     public int maxHeadbutts;
     public bool isWornOut => remainingBounces <= 0;
-    public static event Action OnStatsChanged; // Evento que avisa que los stats fueron modificados
 
     private int level = 0;
     public int bounces;
 
-    public Action<HelmetInstance> HelmetInstanceChanged;
+    public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
 
     public HelmetInstance(HelmetData helmetSO)
     {
@@ -30,7 +29,7 @@ public class HelmetInstance
     {
         remainingBounces = bounces;
         remainingHeadbutts = maxHeadbutts;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public void UseBounce()

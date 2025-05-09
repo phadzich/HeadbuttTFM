@@ -11,6 +11,7 @@ public class HeadbuttsPanel : MonoBehaviour
 
     public void UpdateUsedHeadbutts(HelmetInstance _helmetInstance)
     {
+        Debug.Log("UPDATING HEADBUTS IND" + _helmetInstance.baseHelmet.helmetName);
         ClearInstancedIndicators();
         for (int i = 0; i < _helmetInstance.maxHeadbutts; i++)
         {

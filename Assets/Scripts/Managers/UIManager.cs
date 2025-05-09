@@ -100,10 +100,15 @@ public class UIManager : MonoBehaviour
     {
         //Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
             equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
-        if (_instance.maxHeadbutts>0)
+
+        if(_instance == HelmetManager.Instance.currentHelmet)
         {
-            headbuttsPanel.UpdateUsedHeadbutts(_instance);
+            if (_instance.maxHeadbutts > 0)
+            {
+                headbuttsPanel.UpdateUsedHeadbutts(_instance);
+            }
         }
+
         totalBouncesTXT.text = CalculateTotalBounces().ToString();
 
     }
