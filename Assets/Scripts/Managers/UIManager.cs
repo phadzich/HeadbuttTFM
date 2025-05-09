@@ -47,7 +47,8 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         HelmetManager.Instance.onHelmetsEquipped += OnHelmetsEquipped;
-        HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
+        //HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
+        SuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
         XPManager.Instance.XPChanged += OnXPChanged;
         XPManager.Instance.LeveledUp += OnLevelUp;
@@ -55,10 +56,27 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         HelmetManager.Instance.onHelmetsEquipped -= OnHelmetsEquipped;
-        HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
+        //HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
+        UnsuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
+    }
+
+    private void SuscribeToHelmetInstances()
+    {
+        foreach(HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        {
+            _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
+        }
+    }
+
+    private void UnsuscribeToHelmetInstances()
+    {
+        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        {
+            _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
+        }
     }
 
     private void OnXPChanged(int _current, int _max)
