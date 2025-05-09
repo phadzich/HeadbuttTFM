@@ -6,6 +6,8 @@ public class CraftingManager : MonoBehaviour
     public static CraftingManager Instance;
 
     public List<HelmetBlueprint> blueprints;
+    public ResourceRequirement bouncePrice;
+    public ResourceRequirement headbuttPrice;
 
     private void Awake()
     {
@@ -20,8 +22,14 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    public void LevelUpHelmet() { }
+    public void LevelUpJumpHelmet(HelmetInstance helmet, int quantity) {
+        helmet.upgradeJump(quantity);
+    }
+
+    public void LevelUpHeadbuttHelmet(HelmetInstance helmet, int quantity)
+    {
+        helmet.upgradeHeadbutt(quantity);
+    }
 
     public void MergeHelmets()
     {

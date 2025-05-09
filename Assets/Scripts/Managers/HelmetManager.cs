@@ -12,7 +12,7 @@ public class HelmetManager : MonoBehaviour
     [Header("HELMETS")]
     public List<HelmetData> allHelmets;
     public Dictionary<string, HelmetInstance> helmetsOwned = new Dictionary<string,HelmetInstance>();
-    public List<HelmetInstance> helmetsEquipped;
+    public List<HelmetInstance> helmetsEquipped = new();
     public int maxEquippedHelmets = 3;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
 
