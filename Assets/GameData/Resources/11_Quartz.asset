@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 11_Quartz
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: c09bd702bacde1a4fbf62bd24ef1eaf2, type: 3}
   id: 11
   shortName: Quartz
   hardness: 7
