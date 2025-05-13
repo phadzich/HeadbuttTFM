@@ -19,7 +19,7 @@ public class XPManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("LevelManager Awake");
+            Debug.Log("XP Awake");
         }
         else
         {

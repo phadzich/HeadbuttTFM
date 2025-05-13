@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3e21af6cdf0c0b3418db20a7628fcfe8, type: 2}
+  - {fileID: 2100000, guid: ac8b73ecadee17c4da766931ffaca28f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5076,7 +5076,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3e21af6cdf0c0b3418db20a7628fcfe8, type: 2}
+  - {fileID: 2100000, guid: ac8b73ecadee17c4da766931ffaca28f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5162,7 +5162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3e21af6cdf0c0b3418db20a7628fcfe8, type: 2}
+  - {fileID: 2100000, guid: ac8b73ecadee17c4da766931ffaca28f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5313,6 +5313,7 @@ MonoBehaviour:
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 3486571716503860580}
   damageParticles: {fileID: 1241805286537262801}
+  impulseSource: {fileID: 0}
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5364,7 +5365,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: be3073f141f3a164f8f8d20afe64ce9b, type: 2}
+      objectReference: {fileID: 2100000, guid: 6df32c23571610344a9d1e9eea6fce7f, type: 2}
     - target: {fileID: 919132149155446097, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: m_Name
       value: FloorBlock (1)

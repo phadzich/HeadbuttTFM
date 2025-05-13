@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 32e58f9759ce39e44b9b463121969b4d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3e21af6cdf0c0b3418db20a7628fcfe8, type: 2}
+      objectReference: {fileID: 2100000, guid: 82cd7e38997e6804d833dce610648aba, type: 2}
     - target: {fileID: 919132149155446097, guid: 32e58f9759ce39e44b9b463121969b4d, type: 3}
       propertyPath: m_Name
       value: RBlock_02
