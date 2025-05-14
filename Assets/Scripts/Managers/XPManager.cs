@@ -19,7 +19,7 @@ public class XPManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("LevelManager Awake");
+            Debug.Log("XP Awake");
         }
         else
         {
@@ -45,7 +45,7 @@ public class XPManager : MonoBehaviour
     void LevelUp()
     {
         currentLevel++;
-        Debug.Log("¡Subiste a nivel " + currentLevel + "!");
+        //Debug.Log("¡Subiste a nivel " + currentLevel + "!");
         LeveledUp?.Invoke(currentLevel);
     }
 

@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
     public XPPanel experiencePanel;
+    public SublevelPanel sublevelPanel;
     public GameObject craftButton;
 
     public TextMeshProUGUI totalBouncesTXT;
@@ -41,7 +42,7 @@ public class UIManager : MonoBehaviour
         equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
         equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
 
-        craftButton.SetActive(false);
+        //craftButton.SetActive(false);
     }
 
     private void OnEnable()
@@ -52,6 +53,8 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
         XPManager.Instance.XPChanged += OnXPChanged;
         XPManager.Instance.LeveledUp += OnLevelUp;
+        LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
+        LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
     }
     private void OnDisable()
     {
@@ -61,6 +64,8 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
+        LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
+        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
     }
 
     private void SuscribeToHelmetInstances()
@@ -87,9 +92,19 @@ public class UIManager : MonoBehaviour
     private void OnLevelUp(int _currentLVL)
     {
         experiencePanel.UpdateLVL(_currentLVL);
-        craftButton.SetActive(true);
+        //craftButton.SetActive(true);
     }
 
+    private void OnSublevelEntered()
+    {
+        Debug.Log($"UPDATING PANL");
+        sublevelPanel.UpdateSublevel();
+    }
+
+    private void OnSublevelBlocksMined()
+    {
+        sublevelPanel.UpdateGoals();
+    }
 
     private void OnHelmetsEquipped(List<HelmetInstance> _helmetList)
     {

@@ -8,22 +8,18 @@ public class DoorRequirementIndicator : MonoBehaviour
 {
     public Image icon;
     public TextMeshProUGUI text;
-    public int requiredResources;
-    public int currentResources;
-    public ResourceData resourceData;
+    public int requiredBlocks;
+    public int currentBlocks;
 
-    public void SetupIndicator(ResourceData _resource, int _required, int _current)
+    public void SetupIndicator(int _required, int _current)
     {
-        resourceData = _resource;
-        icon.sprite = _resource.icon;
-        requiredResources = _required;
-        currentResources = _current;
+        requiredBlocks = _required;
+        currentBlocks = _current;
         text.text = $"{_current.ToString()}/{_required.ToString()}";
     }
     public void UpdateIndicator(int _current)
     {
-
-        text.text = $"{_current.ToString()}/{requiredResources.ToString()}";
+        text.text = $"{_current.ToString()}/{requiredBlocks.ToString()}";
 
     }
 }

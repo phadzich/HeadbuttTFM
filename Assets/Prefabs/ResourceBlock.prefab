@@ -387,7 +387,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2753730291402104914}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -633,8 +633,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.5
+      scalar: 0.1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -686,8 +686,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.5
+      scalar: 0.1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -739,8 +739,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.5
+      scalar: 0.1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1326,7 +1326,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 10
+        scalar: 5
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -5436,11 +5436,11 @@ MonoBehaviour:
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 0}
   minedParticles: {fileID: 1241805286537262801}
-  groundMaterial: {fileID: 2100000, guid: fd7099357d25cad40bcbda1e26cdeffa, type: 2}
+  groundMaterial: {fileID: 2100000, guid: 5bbeece0847729a468b44fb1743ac9fa, type: 2}
   doorTriggerPrefab: {fileID: 7563715249151886788}
   hitIndicatorPF: {fileID: 4961428947968815997}
   remianingBouncesText: {fileID: 3622476664411329411}
-  ResourceDropPrefab: {fileID: 4047506742962519041, guid: b4a85a188f7b9d44abc0dc59d7696139, type: 3}
+  resourceDropPrefab: {fileID: 0}
 --- !u!114 &1003532578358748977
 MonoBehaviour:
   m_ObjectHideFlags: 0

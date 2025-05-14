@@ -4,24 +4,19 @@ using UnityEngine;
 public class DoorRequirementsPanel : MonoBehaviour
 {
     public GameObject requirementIndicatorPF;
-    public List<DoorRequirementIndicator> indicators;
-    
-    public void SetupPanel(Dictionary<ResourceData, int> _requirements)
+    DoorRequirementIndicator requirementIndicator;
+
+    public void SetupPanel(int _requirements)
     {
-        foreach (var _resource in _requirements) {
             var _newIndicatorObject = Instantiate(requirementIndicatorPF, this.transform);
-            var _newIndicatorComponent = _newIndicatorObject.GetComponent<DoorRequirementIndicator>();
-            indicators.Add(_newIndicatorComponent);
-            _newIndicatorComponent.SetupIndicator(_resource.Key, _resource.Value, ResourceManager.Instance.GetOwnedResourceAmount(_resource.Key));
-        }
+        requirementIndicator = _newIndicatorObject.GetComponent<DoorRequirementIndicator>();
+        requirementIndicator.SetupIndicator(_requirements,0);
     }
 
-    public void UpdateIndicators()
+    public void UpdateIndicators(int _qty)
     {
-        foreach(DoorRequirementIndicator _indicatorComponent in  indicators)
-        {
-            _indicatorComponent.UpdateIndicator(ResourceManager.Instance.GetOwnedResourceAmount(_indicatorComponent.resourceData));
-        }
+        requirementIndicator.UpdateIndicator(_qty);
+
     }
 
 }
