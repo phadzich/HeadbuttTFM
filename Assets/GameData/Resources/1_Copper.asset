@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 1_Copper
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: b4a85a188f7b9d44abc0dc59d7696139, type: 3}
   id: 1
   shortName: Copper
   hardness: 3

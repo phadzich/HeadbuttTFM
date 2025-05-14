@@ -23,7 +23,7 @@ public class HelmetManager : MonoBehaviour
 
     public Action<List<HelmetInstance>> onHelmetsEquipped;
 
-    public Action<HelmetInstance> onHelmetInstanceDataChanged;
+    //public Action<HelmetInstance> onHelmetInstanceDataChanged;
     public Action<HelmetInstance> onWearHelmetChanged;
 
     private void Awake()
@@ -101,7 +101,7 @@ public class HelmetManager : MonoBehaviour
         //Si el jugador solo cuenta con 1 casco
         if (context.phase == InputActionPhase.Performed)
         {
-            Debug.Log("+");
+            //Debug.Log("+");
             if (helmetsEquipped.Count <= 1) return;
 
             WearNextAvailableHelmet();
@@ -115,7 +115,7 @@ public class HelmetManager : MonoBehaviour
         //Si el jugador solo cuenta con 1 casco
         if (context.phase == InputActionPhase.Performed)
         {
-            Debug.Log("-");
+            //Debug.Log("-");
             if (helmetsEquipped.Count <= 1) return;
 
             WearPrevAvailableHelmet();

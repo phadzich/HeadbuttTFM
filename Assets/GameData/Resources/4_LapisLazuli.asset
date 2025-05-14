@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 4_LapisLazuli
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 1f03ba1ee77ee9748b9a632b54e5b1e2, type: 3}
   id: 4
   shortName: Lapis Lazuli
   hardness: 6

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 10_Spinel
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: a1c983731dc4a314f821b05805619f49, type: 3}
   id: 10
   shortName: Spinel
   hardness: 8
