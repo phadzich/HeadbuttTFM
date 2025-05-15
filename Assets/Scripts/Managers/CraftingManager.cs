@@ -22,6 +22,23 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
+    public List<HelmetBlueprint> GetAvailableBlueprints()
+    {
+        Dictionary<ResourceData, int> playerResources = ResourceManager.Instance.ownedResources;
+        List<HelmetBlueprint> availableBlueprints = new();
+
+        foreach (var blueprint in blueprints)
+        {
+            if (blueprint.CanCraft(playerResources))
+            {
+                availableBlueprints.Add(blueprint);
+            }
+        }
+
+        return availableBlueprints;
+
+    }
+
     public void LevelUpJumpHelmet(HelmetInstance helmet, int quantity) {
         helmet.upgradeJump(quantity);
     }
@@ -31,7 +48,9 @@ public class CraftingManager : MonoBehaviour
         helmet.upgradeHeadbutt(quantity);
     }
 
-    public void MergeHelmets()
+
+    //Llamar cuando se quiera upgradear un casco
+    public void UpgradeHelmet(HelmetInstance helmet)
     {
     }
 }
