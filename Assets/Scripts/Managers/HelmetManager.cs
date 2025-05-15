@@ -25,6 +25,7 @@ public class HelmetManager : MonoBehaviour
 
     //public Action<HelmetInstance> onHelmetInstanceDataChanged;
     public Action<HelmetInstance> onWearHelmetChanged;
+    public Action onHelmetDamaged;
 
     private void Awake()
     {

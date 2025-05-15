@@ -39,6 +39,12 @@ public class PlayerHeadbutt : MonoBehaviour
 
         CheckBounceDirection();
         UpdateHeadbuttCooldown();
+        KeepCentered();
+    }
+
+    private void KeepCentered()
+    {
+        transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
     }
 
     private void CheckBounceDirection()
@@ -60,10 +66,10 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void Headbutt(InputAction.CallbackContext context)
     {
-
+        // por ahora quite bounceDirection == "DOWN" && 
         if (context.phase == InputActionPhase.Performed)
         {
-            if (bounceDirection == "DOWN" && !headbuttOnCooldown &&
+            if (!headbuttOnCooldown &&
                 HelmetManager.Instance.currentHelmet.hasHeadbutts() &&
                 PlayerManager.Instance.playerMovement.blockBelow != null)
             {

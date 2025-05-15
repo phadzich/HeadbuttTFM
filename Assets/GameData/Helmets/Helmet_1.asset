@@ -16,8 +16,8 @@ MonoBehaviour:
   helmetName: Moco Filoso
   description: Un cascoo chiquititito
   bounces: 2
-  headbutts: 2
+  headbutts: 4
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
   icon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
-  color: {r: 0.3863635, g: 0.7411765, b: 0.14117646, a: 1}
+  color: {r: 0.47758836, g: 0.7783019, b: 0.26800016, a: 1}
   effect: 0

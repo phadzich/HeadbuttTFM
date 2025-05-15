@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("MOVEMENT")]
     [SerializeField]
-    private Vector3 positionTarget;
+    public Vector3 positionTarget;
     public float speed = 10f;
     [SerializeField]
     private bool isMoving;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         CheckMovementLock();
 
         transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
-
+        Debug.Log(transform.position);
 
         if (Vector3.Distance(transform.position, positionTarget) < 0.5f)
         {
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ChangePositionTarget(Vector3 newPos)
+    public void ChangePositionTarget(Vector3 newPos)
     {
         Vector3 alignedPosition = new Vector3(
     Mathf.Round(newPos.x),

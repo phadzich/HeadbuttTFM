@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
     public CurrentMatchPanel currentMatchPanel;
+    public LivesPanel livesPanel;
+    public RemainingBlocksIndicator remainingBlockIndicator;
+    public DamageTakenIndicator damageTakenIndicator;
 
     public TextMeshProUGUI totalBouncesTXT;
 
@@ -125,7 +128,11 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        totalBouncesTXT.text = CalculateTotalBounces().ToString();
+        //SOLO SI CAMBIARON LOS BOUNCES, UPDATE
+        if(totalBouncesTXT.text != CalculateTotalBounces().ToString())
+        {
+            livesPanel.UpdateLivesInfo(CalculateTotalBounces());
+        };
 
     }
 

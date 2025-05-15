@@ -27,4 +27,4 @@ MonoBehaviour:
   dmgBlocksQty: 10
   noiseScale: 1
   noiseThreshold: 0.4
-  borderDepth: 2
+  borderDepth: 3

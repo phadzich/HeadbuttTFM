@@ -151,13 +151,13 @@ public class CraftingPanel : MonoBehaviour
     // Actualiza la cantidad de saltos del casco actual en el UI
     private void UpdateBouncesTxt()
     {
-        currentBounces.text = "Saltos: " + currentHelmet.bounces.ToString();
+        currentBounces.text = "VIDAS: " + currentHelmet.bounces.ToString();
     }
 
     // Actualiza la cantidad de headbutts del casco actual en el UI
     private void UpdateHbTxt()
     {
-        currentHB.text = "Headbutts: " + currentHelmet.maxHeadbutts.ToString();
+        currentHB.text = "HEADBUTTS: " + currentHelmet.maxHeadbutts.ToString();
     }
 
     private void EnableBounceButton(bool enable)
