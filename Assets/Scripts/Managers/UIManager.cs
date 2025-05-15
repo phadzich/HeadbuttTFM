@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
+    public CurrentMatchPanel currentMatchPanel;
 
     public TextMeshProUGUI totalBouncesTXT;
 

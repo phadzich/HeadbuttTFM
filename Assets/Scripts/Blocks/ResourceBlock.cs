@@ -41,7 +41,7 @@ public class ResourceBlock : Block
 
         InstanceResourceBlockMesh();
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
-ShowHitIndicator(false);
+        ShowHitIndicator(false);
     }
 
     private void InstanceResourceBlockMesh()
@@ -59,14 +59,14 @@ ShowHitIndicator(false);
             ShowHitIndicator(true);
 
             //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
-            GameManager.Instance.CheckIfNewCombo(resourceData, this);
+            MatchManager.Instance.BouncedOnResourceBlock(resourceData, this);
 
             //SI SE CUMPLE EL COMBO
-            GameManager.Instance.CheckIfComboCompleted();
+            MatchManager.Instance.CheckIfComboCompleted();
         }
         else //SI YA ESTABA MINADO
         {
-            GameManager.Instance.IncreaseLevelJumpCount(1);
+            MatchManager.Instance.BouncedOnNeutralBlock();
         }
 
     }

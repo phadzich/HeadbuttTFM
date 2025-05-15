@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 
   helmetName: 
   description: 
-  bounces: 30
+  bounces: 5
   headbutts: 12
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
   icon: {fileID: 0}

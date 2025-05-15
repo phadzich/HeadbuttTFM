@@ -17,7 +17,7 @@ MonoBehaviour:
   height: 5
   resourcesList:
   - {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-  blocksToComplete: 6
+  blocksToComplete: 9
   dmgBlocksList:
   - {fileID: 7176663917795707535, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
   dmgBlocksQty: 4

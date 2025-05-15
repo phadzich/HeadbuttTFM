@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 2
   helmetName: Ingenierum
   description: Un casco MUUY grande
-  bounces: 12
+  bounces: 2
   headbutts: 4
   mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
   icon: {fileID: 21300000, guid: 175d80ef716324e439e211d27e5609b9, type: 3}
