@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         CheckMovementLock();
 
         transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
 
         if (Vector3.Distance(transform.position, positionTarget) < 0.5f)
         {

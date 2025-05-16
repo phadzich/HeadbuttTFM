@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         HelmetManager.Instance.onHelmetsEquipped += OnHelmetsEquipped;
+        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
         //HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
         SuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
@@ -63,6 +64,7 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         HelmetManager.Instance.onHelmetsEquipped -= OnHelmetsEquipped;
+        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         //HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
         UnsuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
@@ -99,6 +101,10 @@ public class UIManager : MonoBehaviour
         //craftButton.SetActive(true);
     }
 
+    private void OnOwnedResourcesChanged()
+    {
+        equippedHelmetsPanel.CheckIfUpgradesAvailable();
+    }
     private void OnSublevelEntered()
     {
         Debug.Log($"UPDATING PANL");
@@ -112,12 +118,14 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetsEquipped(List<HelmetInstance> _helmetList)
     {
+        UnsuscribeToHelmetInstances();
+        SuscribeToHelmetInstances();
         equippedHelmetsPanel.InstanceEquippedIndicators(_helmetList);
     }
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        //Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
+        Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
             equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
 
         if(_instance == HelmetManager.Instance.currentHelmet)
@@ -128,11 +136,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        //SOLO SI CAMBIARON LOS BOUNCES, UPDATE
-        if(totalBouncesTXT.text != CalculateTotalBounces().ToString())
-        {
-            livesPanel.UpdateLivesInfo(CalculateTotalBounces());
-        };
+        livesPanel.UpdateLivesInfo(CalculateTotalBounces());
 
     }
 

@@ -29,14 +29,14 @@ public class MatchManager : MonoBehaviour
 
     public void ResetComboStats()
     {
-        currentComboResource = null;
-        currentComboCount = 0;
+        //currentComboResource = null;
+        //currentComboCount = 0;
         lastBounceNeutral = true;
     }
 
     public void BouncedOnNeutralBlock()
     {
-        Debug.Log("NEUTRAL BLOCK BOUNCE");
+        //Debug.Log("NEUTRAL BLOCK BOUNCE");
         //SI NO VIENE DE UN SALTO NEUTRAL, VIENE DE UN RESOURCE. ROMPEMOS COMBO
         if (!lastBounceNeutral)
         {

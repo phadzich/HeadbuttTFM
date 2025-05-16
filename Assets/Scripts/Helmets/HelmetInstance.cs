@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 [System.Serializable]
 public class HelmetInstance
@@ -62,13 +64,19 @@ public class HelmetInstance
 
     public void upgradeJump(int quantity)
     {
+        Debug.Log("Upgrading Bounce"+ quantity);
         bounces += quantity;
+        remainingBounces += quantity;
+        HelmetInstanceChanged?.Invoke(this);
+ 
         // reiniciar sus stats cuando lo mejoren
     }
 
     public void upgradeHeadbutt(int quantity)
     {
         maxHeadbutts += quantity;
+        remainingHeadbutts += quantity;
+        HelmetInstanceChanged?.Invoke(this);
         // reiniciar sus stats cuando lo mejoren
     }
 
