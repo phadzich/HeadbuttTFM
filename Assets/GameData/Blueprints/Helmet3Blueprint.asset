@@ -16,4 +16,4 @@ MonoBehaviour:
   resultHelmet: {fileID: 11400000, guid: 6aeefb0d0df2748898548311f201031d, type: 2}
   requiredResources:
   - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-    quantity: 15
+    quantity: 5
