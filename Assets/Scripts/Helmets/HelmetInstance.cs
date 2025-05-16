@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class HelmetInstance
@@ -8,10 +9,11 @@ public class HelmetInstance
     public int remainingBounces;
     public int remainingHeadbutts;
     public int maxHeadbutts;
-    public bool isWornOut => remainingBounces <= 0;
-
-    private int level = 0;
     public int bounces;
+    public bool isWornOut => remainingBounces <= 0;
+    public bool canBeUpgraded => level < 5;
+
+    public int level = 1;
 
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
 
@@ -68,5 +70,10 @@ public class HelmetInstance
     {
         maxHeadbutts += quantity;
         // reiniciar sus stats cuando lo mejoren
+    }
+
+    public void upgradeLevel()
+    {
+        level++;
     }
 }

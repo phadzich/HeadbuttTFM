@@ -2,171 +2,99 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
-    public TextMeshProUGUI currentHelmetTitle;
-    public Image currentHelmetImg;
-    public TextMeshProUGUI currentBounces;
-    public TextMeshProUGUI currentHB;
-    public ResourceIndicator bounceResource;
-    public ResourceIndicator HBresource;
-    public Button buyBounceBtn;
-    public Button buyHBbtn;
+    public GameObject blueprintUIPrefab;
+    public Transform blueprintListContainer;
+    public GameObject pagesButtons;
+    public GameObject EmptyListText;
+    public int itemsPerPage = 3;
+
+    private int currentPage = 0;
 
     [Header("Prices")]
     public int jumpQuantity = 3;
     public int headbuttQuantity = 2;
 
-    private int currentHelmetIndex = 0;
-    private HelmetInstance currentHelmet;
-    public int helmetCount;
-    private ResourceRequirement bounceRes;
-    private ResourceRequirement HBres;
+    private List<HelmetBlueprint> availableBlueprints => CraftingManager.Instance.GetAvailableBlueprints();
 
-    private void Awake()
+    private void OnEnable()
     {
-        Debug.Log("CRAFT");
 
-        bounceRes = CraftingManager.Instance.bouncePrice;
-        HBres = CraftingManager.Instance.headbuttPrice;
+        UpdateList();
 
-        helmetCount = HelmetManager.Instance.helmetsEquipped.Count;
-        currentHelmet = HelmetManager.Instance.helmetsEquipped[currentHelmetIndex];
-
-        updateUI();
-        HasEnoughBounceResources();
-        HasEnoughHbResources();
-        UpdateBounceResource();
-        UpdateHbResource();
+        ResourceManager.Instance.onOwnedResourcesChanged += UpdateList;
     }
 
-    public void BuyBounce()
+    private void OnDisable()
     {
-        if(ResourceManager.Instance.SpendResource(bounceRes.resource, bounceRes.quantity))
+        ResourceManager.Instance.onOwnedResourcesChanged -= UpdateList;
+    }
+
+    private void UpdateList()
+    {
+        currentPage = 0;
+
+        if (availableBlueprints.Count == 0)
         {
-            currentHelmet.upgradeJump(jumpQuantity);
-            UpdateBounceResource();
-            UpdateBouncesTxt();
-        }
-
-        HasEnoughBounceResources();
-
-    }
-
-    public void BuyHeadbutt()
-    {
-        if (ResourceManager.Instance.SpendResource(HBres.resource, HBres.quantity))
-        {
-            currentHelmet.upgradeHeadbutt(headbuttQuantity);
-            UpdateHbResource();
-            UpdateHbTxt();
-        }
-
-        HasEnoughHbResources();
-
-    }
-
-    public void PrevHelmet()
-    {
-        PreviousIndex();
-        currentHelmet = HelmetManager.Instance.helmetsEquipped[currentHelmetIndex];
-        updateUI();
-    }
-
-    public void NextHelmet()
-    {
-        NextIndex();
-        currentHelmet = HelmetManager.Instance.helmetsEquipped[currentHelmetIndex];
-        updateUI();
-    }
-
-    private void NextIndex()
-    {
-        currentHelmetIndex = (currentHelmetIndex + 1) % helmetCount;
-    }
-
-    private void PreviousIndex()
-    {
-        currentHelmetIndex = (currentHelmetIndex - 1 + helmetCount) % helmetCount;
-    }
-
-    private void HasEnoughBounceResources()
-    {
-        if(ResourceManager.Instance.GetOwnedResourceAmount(bounceRes.resource) >= bounceRes.quantity)
-        {
-            EnableBounceButton(true);
+            EmptyListText.SetActive(true);
         }
         else
         {
-            EnableBounceButton(false);
+            EmptyListText.SetActive(false);
+
+            if (TotalPages() > 1)
+            {
+                pagesButtons.SetActive(true);
+            }
+            else
+            {
+                pagesButtons.SetActive(false);
+            }
         }
+
+        UpdatePage();
     }
-    private void HasEnoughHbResources()
+
+    private void UpdatePage()
     {
-        if (ResourceManager.Instance.GetOwnedResourceAmount(HBres.resource) >= HBres.quantity)
+        // Borra los hijos actuales
+        foreach (Transform child in blueprintListContainer)
         {
-            EnableHbButton(true);
+            Destroy(child.gameObject);
         }
-        else
+
+        int startIndex = currentPage * itemsPerPage;
+
+        for (int i = 0; i < itemsPerPage; i++)
         {
-            EnableHbButton(false);
+            int index = startIndex + i;
+            if (index >= availableBlueprints.Count) break;
+
+            HelmetBlueprint blueprint = availableBlueprints[index];
+            Instantiate(blueprintUIPrefab, blueprintListContainer).GetComponent<HelmetBluprintUI>().SetUp(blueprint);
         }
     }
 
-    // Update UI Functions
-
-    //Activate Panel
-    public void ActivatePanel()
+    private int TotalPages()
     {
-        gameObject.SetActive(true);
-        currentHelmetIndex = 0;
-        updateUI();
-        UpdateBounceResource();
-        UpdateHbResource();
-        HasEnoughBounceResources();
-        HasEnoughHbResources();
+        return Mathf.CeilToInt((float)availableBlueprints.Count / itemsPerPage);
     }
 
-    // Actualiza la información del casco
-    private void updateUI()
+    public void NextPage()
     {
-        currentHelmetTitle.text = currentHelmet.baseHelmet.helmetName;
-        currentHelmetImg.sprite = currentHelmet.baseHelmet.icon;
-        UpdateBouncesTxt();
-        UpdateHbTxt();
+        currentPage++;
+        if (currentPage >= TotalPages()) currentPage = 0; // ciclo
+        UpdatePage();
     }
 
-    private void UpdateBounceResource()
+    public void PreviousPage()
     {
-        bounceResource.SetupIndicator(bounceRes.resource, ResourceManager.Instance.GetOwnedResourceAmount(bounceRes.resource));
-    }
-
-    private void UpdateHbResource()
-    {
-        HBresource.SetupIndicator(HBres.resource, ResourceManager.Instance.GetOwnedResourceAmount(HBres.resource));
-    }
-
-    // Actualiza la cantidad de saltos del casco actual en el UI
-    private void UpdateBouncesTxt()
-    {
-        currentBounces.text = "VIDAS: " + currentHelmet.bounces.ToString();
-    }
-
-    // Actualiza la cantidad de headbutts del casco actual en el UI
-    private void UpdateHbTxt()
-    {
-        currentHB.text = "HEADBUTTS: " + currentHelmet.maxHeadbutts.ToString();
-    }
-
-    private void EnableBounceButton(bool enable)
-    {
-        buyBounceBtn.interactable = enable;
-    }
-
-    private void EnableHbButton(bool enable)
-    {
-        buyHBbtn.interactable = enable;
+        currentPage--;
+        if (currentPage < 0) currentPage = TotalPages() - 1; // ciclo
+        UpdatePage();
     }
 }
