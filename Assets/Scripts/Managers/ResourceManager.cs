@@ -121,4 +121,17 @@ public class ResourceManager : MonoBehaviour
     {
         return storedResources.ContainsKey(_resource) ? storedResources[_resource] : 0;
     }
+
+    public bool CanSpendResource(ResourceData _resource, int _amount)
+    {
+        //Si existe el recurso en el inventario y hay suficiente cantidad
+        if (ownedResources.ContainsKey(_resource) && ownedResources[_resource] >= _amount)
+        {
+            return true;
+        }
+        //Si no hay recurso o no hay la cantidad necesaria, regresamos FALSE
+
+        Debug.Log($"NOT ENOUGH RESOURCES!");
+        return false;
+    }
 }
