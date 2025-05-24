@@ -29,14 +29,14 @@ public class MatchManager : MonoBehaviour
 
     public void ResetComboStats()
     {
-        currentComboResource = null;
-        currentComboCount = 0;
+        //currentComboResource = null;
+        //currentComboCount = 0;
         lastBounceNeutral = true;
     }
 
     public void BouncedOnNeutralBlock()
     {
-        Debug.Log("NEUTRAL BLOCK BOUNCE");
+        //Debug.Log("NEUTRAL BLOCK BOUNCE");
         //SI NO VIENE DE UN SALTO NEUTRAL, VIENE DE UN RESOURCE. ROMPEMOS COMBO
         if (!lastBounceNeutral)
         {
@@ -47,6 +47,7 @@ public class MatchManager : MonoBehaviour
             //Debug.Log("DAMAGE");
             IncreaseDamageCount(1);
             UIManager.Instance.currentMatchPanel.EndCurrentCombo();
+            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         }
         else
         {
@@ -69,9 +70,12 @@ public class MatchManager : MonoBehaviour
         {
             //Debug.Log("NEW RESBLOCK");
             UIManager.Instance.currentMatchPanel.StartNewCombo(_resourceData,1);
+
             ClearAllHitBlocks();
             currentComboResource = _resourceData;
             currentComboRequirement = _resourceData.hardness;
+            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
+            UIManager.Instance.remainingBlockIndicator.UpdateIndicator(_resourceData, _resourceData.hardness);
             if (!lastBounceCombo&&!lastBounceNeutral)
             {
                 //Debug.Log(lastBounceNeutral);
@@ -92,6 +96,7 @@ public class MatchManager : MonoBehaviour
             MineAllHitBlocks();
             lastBounceCombo = true;
             UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
+            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         }
 
     }
@@ -104,6 +109,8 @@ public class MatchManager : MonoBehaviour
 
             currentComboCount++;
             UpdateComboBlockIndicator(currentComboRequirement - currentComboCount);
+            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
+            UIManager.Instance.remainingBlockIndicator.UpdateIndicatorCount(currentComboRequirement - currentComboCount);
             UIManager.Instance.currentMatchPanel.IncreaseCurrentCombo(currentComboCount);
         }
         lastBounceCombo = false;
@@ -144,7 +151,7 @@ public class MatchManager : MonoBehaviour
     {
 
         HelmetManager.Instance.currentHelmet.UseBounce();
-
+        UIManager.Instance.damageTakenIndicator.AnimateDamage();
 
         if (HelmetManager.Instance.currentHelmet.isWornOut)
         {

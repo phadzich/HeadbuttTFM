@@ -11,9 +11,10 @@ public class HelmetManager : MonoBehaviour
 
     [Header("HELMETS")]
     public List<HelmetData> allHelmets;
-    public Dictionary<string, HelmetInstance> helmetsOwned = new Dictionary<string,HelmetInstance>();
+    public List<HelmetInstance> helmetsOwned = new();
     public List<HelmetInstance> helmetsEquipped = new();
     public int maxEquippedHelmets = 3;
+    public int maxOwnHelmets = 10;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
 
     [Header("CURRENT HELMET")]
@@ -25,6 +26,7 @@ public class HelmetManager : MonoBehaviour
 
     //public Action<HelmetInstance> onHelmetInstanceDataChanged;
     public Action<HelmetInstance> onWearHelmetChanged;
+    public Action onHelmetDamaged;
 
     private void Awake()
     {
@@ -45,29 +47,29 @@ public class HelmetManager : MonoBehaviour
     //FUNCION DE PRUEBA PARA PROTOTIPO
     private void InitializeOwnedHelmets()
     {
-        HelmetInstance helmet1 = new HelmetInstance(allHelmets[0]);
-        HelmetInstance helmet2 = new HelmetInstance(allHelmets[1]);
-        HelmetInstance helmet3 = new HelmetInstance(allHelmets[2]);
-        UnlockHelmet(helmet1);
-        UnlockHelmet(helmet2);
-        UnlockHelmet(helmet3);
-        EquipHelmet(helmet1);
-        EquipHelmet(helmet2);
-        EquipHelmet(helmet3);
+        UnlockHelmet(allHelmets[0]);
+        //UnlockHelmet(allHelmets[1]);  
+        //UnlockHelmet(allHelmets[2]);
+        EquipHelmet(helmetsOwned[0]);
+        //EquipHelmet(helmetsOwned[1]);
+        //EquipHelmet(helmetsOwned[2]);
         onHelmetsEquipped?.Invoke(helmetsEquipped);
 
         WearHelmet(helmetsEquipped[helmetIndex]);
 
     }
 
-    public void UnlockHelmet(HelmetInstance helmet)
+    public void UnlockHelmet(HelmetData helmet)
     {
-        helmetsOwned.Add(helmet.id, helmet);
-    }
-
-    public HelmetInstance GetHelmetByID(string id)
-    {
-        return helmetsOwned[id];
+        if (helmetsOwned.Count < maxOwnHelmets)
+        {
+            HelmetInstance current = new HelmetInstance(helmet);
+            helmetsOwned.Add(current);
+        }
+        else
+        {
+            Debug.Log("No hay mas espacio para cascos en el armario");
+        }
     }
 
     public void EquipHelmet(HelmetInstance helmet)
@@ -75,11 +77,13 @@ public class HelmetManager : MonoBehaviour
         if(helmetsEquipped.Count < maxEquippedHelmets)
         {
             helmetsEquipped.Add(helmet);
+            onHelmetsEquipped?.Invoke(helmetsEquipped);
         } else
         {
             Debug.Log("No hay mas espacio para cascos");
         }
-       
+
+
     }
 
     public void WearHelmet(HelmetInstance helmet) {
