@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 304010650495473655}
   - component: {fileID: 5396428333272443609}
   m_Layer: 0
-  m_Name: GoldBlock
+  m_Name: Res03Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

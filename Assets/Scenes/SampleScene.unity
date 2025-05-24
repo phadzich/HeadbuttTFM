@@ -6269,7 +6269,8 @@ Transform:
   m_LocalPosition: {x: -0.158984, y: 1.3737106, z: 1.1821187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1925347360}
   m_Father: {fileID: 1903120177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1565896192
@@ -6286,6 +6287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelsList:
   - {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
+  sublevelMapGenerator: {fileID: 1925347361}
   currentLevel: {fileID: 0}
   currentSublevel: {fileID: 0}
   sublevelsList: []
@@ -7209,6 +7211,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1664707210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1925347359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925347360}
+  - component: {fileID: 1925347361}
+  m_Layer: 0
+  m_Name: SublevelMapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1925347360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925347359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1565896191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925347361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925347359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ef8a56673f2924f956c055e5b2bd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMappings:
+  - color: {r: 0.07450981, g: 0.14901961, b: 0.18823531, a: 1}
+    prefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
+  - color: {r: 0.8862746, g: 0.8980393, b: 0.9294118, a: 1}
+    prefab: {fileID: 8090959518607110755, guid: bf259b65fe82f72448705a6fe246e9a9, type: 3}
+  - color: {r: 1, g: 0.1254902, b: 0.36862746, a: 1}
+    prefab: {fileID: 8846097338804330060, guid: e5ce7adbe131efe47ae5cbcc75cc67e1, type: 3}
+  - color: {r: 0.23137257, g: 0.38431376, b: 0.6431373, a: 1}
+    prefab: {fileID: 8846097338804330060, guid: 613d3788928ab2242aee940826c8bb9b, type: 3}
+  - color: {r: 1, g: 0.78823537, b: 0.37647063, a: 1}
+    prefab: {fileID: 8846097338804330060, guid: c55cf6a314d83d94ca234fbf5f81ef80, type: 3}
+  testMap: {fileID: 2800000, guid: c7fd1143c0672d443b4f8a526566233d, type: 3}
+  mapTexture: {fileID: 0}
+  mapWidth: 0
+  mapHeight: 0
 --- !u!1 &1953570786
 GameObject:
   m_ObjectHideFlags: 0

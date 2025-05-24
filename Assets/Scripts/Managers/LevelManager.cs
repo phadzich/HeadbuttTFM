@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     public List<LevelConfig> levelsList;
+    public SublevelMapGenerator sublevelMapGenerator;
 
     [Header("CURRENT LEVEL")]
     public Level currentLevel;
@@ -105,8 +106,12 @@ public class LevelManager : MonoBehaviour
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             _sublevel.SetMiningObjectives(_miningSublevel.blocksToComplete);
+            /*
             GenerateMiningSublevel(_miningSublevel, _sublevelContainer, _depth);
             CheckIfExtraBlocksNeeded(_depth, _miningSublevel);
+            */
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, sublevelMapGenerator.testMap);
+
 
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
