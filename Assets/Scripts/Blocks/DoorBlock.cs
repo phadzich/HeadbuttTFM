@@ -24,9 +24,9 @@ public class DoorBlock : Block
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
     }
 
-    public void SetupBlock(Sublevel _parentSublevel)
+    public void SetupBlock(int _depth)
     {
-        parentSublevel = _parentSublevel;
+        parentSublevel = LevelManager.Instance.sublevelsList[_depth];
         requiredBlocks = parentSublevel.blocksToComplete;
         //Debug.Log(requiredResources);
         requirementsPanelUI.SetupPanel(requiredBlocks);

@@ -106,6 +106,7 @@ public class ResourceBlock : Block
 
     private void GetMinedState()
     {
+        //Debug.Log("MINED");
         isMined = true;
         resourceData = null;
         ShowHitIndicator(false);

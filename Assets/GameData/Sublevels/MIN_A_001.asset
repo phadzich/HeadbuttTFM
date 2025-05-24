@@ -15,12 +15,8 @@ MonoBehaviour:
   id: A_001
   width: 5
   height: 5
-  resourcesList:
-  - {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+  sublevel2DMap: {fileID: 2800000, guid: c7fd1143c0672d443b4f8a526566233d, type: 3}
   blocksToComplete: 9
   dmgBlocksList:
   - {fileID: 7176663917795707535, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
   dmgBlocksQty: 4
-  noiseScale: 1
-  noiseThreshold: 0.4
-  borderDepth: 2

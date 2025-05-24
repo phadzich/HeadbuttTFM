@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
+        //Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
             equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
 
         if(_instance == HelmetManager.Instance.currentHelmet)

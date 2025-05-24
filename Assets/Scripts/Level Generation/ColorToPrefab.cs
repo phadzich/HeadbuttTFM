@@ -4,5 +4,5 @@ using UnityEngine;
 public class ColorToPrefab
 {
     public Color color;
-    public GameObject prefab;
+    public string blockString;
 }
