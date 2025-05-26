@@ -2,6 +2,7 @@ using Mono.Cecil;
 using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -24,10 +25,12 @@ public class DoorBlock : Block
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
     }
 
-    public void SetupBlock(int _depth)
+    public void SetupBlock(int _depth,int _x, int _y)
     {
         parentSublevel = LevelManager.Instance.sublevelsList[_depth];
         requiredBlocks = parentSublevel.blocksToComplete;
+        isWalkable = true;
+        sublevelPosition = new Vector2(_x, _y);
         //Debug.Log(requiredResources);
         requirementsPanelUI.SetupPanel(requiredBlocks);
     }

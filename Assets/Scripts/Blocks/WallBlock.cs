@@ -1,7 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class FloorBlock : Block
+public class WallBlock : Block
 {
 
 
@@ -13,18 +13,15 @@ public class FloorBlock : Block
     {
         sublevelPosition = new Vector2(_xPos, _yPos);
         sublevelId = _subId;
-        isWalkable = true;
+        isWalkable = false;
     }
 
     public override void Bounce()
     {
-        MatchManager.Instance.BouncedOnNeutralBlock();
-
     }
 
     public override void Headbutt()
     {
-
 
     }
 

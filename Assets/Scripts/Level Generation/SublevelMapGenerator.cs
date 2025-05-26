@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
+using static UnityEditor.PlayerSettings;
 
 public class SublevelMapGenerator : MonoBehaviour
 {
-    public ColorToPrefab[] colorMappings;
+    public ColorToString[] colorMappings;
     public Texture2D testMap;
     Transform sublevelContainer;
     [SerializeField]
@@ -19,6 +21,8 @@ public class SublevelMapGenerator : MonoBehaviour
     int currentY;
     Vector3 nextPosition;
     int currentDepth;
+
+    public Dictionary<Vector2Int, Block> currentBlocks = new();
 
     public GameObject resourceBlockPrefab;
     public GameObject wallBlockPrefab;
@@ -41,7 +45,7 @@ public class SublevelMapGenerator : MonoBehaviour
 
     void InstanceAllBlocks(int _width, int _height)
     {
-
+        currentBlocks.Clear();
         int _spacing = 1;
         float offsetX = (_width - 1) * _spacing * 0.5f;
         float offsetZ = (_height - 1) * _spacing * 0.5f;
@@ -53,8 +57,26 @@ public class SublevelMapGenerator : MonoBehaviour
                 currentY = y;
                 nextPosition = new Vector3(x * _spacing - offsetX, sublevelContainer.transform.position.y, y * _spacing - offsetZ);
                 var _newBlock = BlockFromPixel(x, y);
-
+                Vector2Int pos = new(x, y);
+                currentBlocks[pos] = _newBlock.GetComponent<Block>();
             }
+        }
+        AssignNeighbourBlocks();
+
+    }
+
+    private void AssignNeighbourBlocks()
+    {
+        //Debug.Log(currentBlocks.Count);
+        foreach (var kvp in currentBlocks)
+        {
+            var pos = kvp.Key;
+            var block = kvp.Value;
+
+            currentBlocks.TryGetValue(pos + Vector2Int.up, out block.up);
+            currentBlocks.TryGetValue(pos + Vector2Int.down, out block.down);
+            currentBlocks.TryGetValue(pos + Vector2Int.left, out block.left);
+            currentBlocks.TryGetValue(pos + Vector2Int.right, out block.right);
         }
     }
 
@@ -68,7 +90,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 return null;
             }
 
-            foreach(ColorToPrefab _color in colorMappings)
+            foreach(ColorToString _color in colorMappings)
             {
 
             if (_color.color==_pixelColor)
@@ -122,14 +144,18 @@ public class SublevelMapGenerator : MonoBehaviour
         {
             case "WALL":
                 _bloque =  Instantiate(wallBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                WallBlock _wallBlock = _bloque.GetComponent<WallBlock>();
+                _wallBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "FLOOR":
                 _bloque = Instantiate(floorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                FloorBlock _floorBlock = _bloque.GetComponent<FloorBlock>();
+                _floorBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "DOOR":
                 _bloque = Instantiate(doorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
-                _doorBlock.SetupBlock(currentDepth);
+                _doorBlock.SetupBlock(currentDepth,currentX,currentY);
                 break;
         }
         return _bloque;

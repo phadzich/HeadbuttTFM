@@ -38,7 +38,7 @@ public class ResourceBlock : Block
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
-
+        isWalkable= true;
         InstanceResourceBlockMesh();
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         ShowHitIndicator(false);

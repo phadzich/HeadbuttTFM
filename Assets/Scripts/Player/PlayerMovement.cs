@@ -50,11 +50,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 origin = enanoParent.transform.position;
         Vector3 direction = Vector3.down;
-        //Debug.DrawRay(origin, direction * 5f, Color.red);
+        Debug.DrawRay(origin, direction * 20f, Color.red);
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, 22f))
+        int mask = ~(1 << LayerMask.NameToLayer("Particles"));
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, 20f, mask))
         {
-            //Debug.Log(hit.transform);
+            
             blockBelow = hit.collider.GetComponent<Block>();
         }
     }
@@ -80,37 +82,55 @@ public class PlayerMovement : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             moveInput = context.ReadValue<Vector2>();
-            //Debug.Log("Move RAW input: " + moveInput);
-            // Round each axis to the nearest whole number
             moveInput.x = Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y) ? Mathf.Sign(moveInput.x) : 0;
             moveInput.y = Mathf.Abs(moveInput.y) > Mathf.Abs(moveInput.x) ? Mathf.Sign(moveInput.y) : 0;
-            //Debug.Log("Move input: " + moveInput);
-
 
             if (!isMoving && !movementLocked)
             {
 
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
-                //Debug.Log("NextPos: " + nextPos);
-                if (nextPos.x == (-LevelManager.Instance.sublevelWidth - 1) / 2 || nextPos.x > (LevelManager.Instance.sublevelWidth - 1) / 2 || nextPos.z == (-LevelManager.Instance.sublevelHeight - 1) / 2 || nextPos.z > (LevelManager.Instance.sublevelHeight - 1) / 2)
-                {
-                    Debug.Log("EDGE");
-                }
-                else
+
+                if (CanMoveInDirection())
                 {
                     ChangePositionTarget(nextPos);
                     isMoving = true;
                 }
 
-
             }
-
-
         }
+    }
 
-
-
-
+    private bool CanMoveInDirection()
+    {
+        if (moveInput.x < 0)
+        {
+            if (blockBelow.left.isWalkable)
+            {
+                return true;
+            }
+        }
+        else if (moveInput.x > 0)
+        {
+            if (blockBelow.right.isWalkable)
+            {
+                return true;
+            }
+        }
+        else if (moveInput.y < 0)
+        {
+            if (blockBelow.down.isWalkable)
+            {
+                return true;
+            }
+        }
+        else if (moveInput.y > 0)
+        {
+            if (blockBelow.up.isWalkable)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void CheckMovementLock()
