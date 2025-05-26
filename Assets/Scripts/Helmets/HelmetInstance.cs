@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 [System.Serializable]
 public class HelmetInstance
@@ -8,7 +11,13 @@ public class HelmetInstance
     public int remainingBounces;
     public int remainingHeadbutts;
     public int maxHeadbutts;
+    public int bounces;
     public bool isWornOut => remainingBounces <= 0;
+    public bool canBeUpgraded => level < 5;
+
+    public int level = 1;
+
+    public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
 
     public HelmetInstance(HelmetData helmetSO)
     {
@@ -17,27 +26,30 @@ public class HelmetInstance
         remainingBounces = helmetSO.bounces;
         remainingHeadbutts = helmetSO.headbutts;
         maxHeadbutts = helmetSO.headbutts;
+        bounces = helmetSO.bounces;
     }
 
     public void ResetStats()
     {
-        remainingBounces = baseHelmet.bounces;
-        remainingHeadbutts = baseHelmet.headbutts;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        remainingBounces = bounces;
+        remainingHeadbutts = maxHeadbutts;
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public void UseBounce()
     {
         if (remainingBounces > 0)
             remainingBounces--;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public void UseHeadbutt()
     {
         if (remainingHeadbutts > 0)
             remainingHeadbutts--;
-        HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public bool hasBouncesLeft()
@@ -48,5 +60,28 @@ public class HelmetInstance
     public bool hasHeadbutts()
     {
         return remainingHeadbutts > 0;
+    }
+
+    public void upgradeJump(int quantity)
+    {
+        Debug.Log("Upgrading Bounce"+ quantity);
+        bounces += quantity;
+        remainingBounces += quantity;
+        HelmetInstanceChanged?.Invoke(this);
+ 
+        // reiniciar sus stats cuando lo mejoren
+    }
+
+    public void upgradeHeadbutt(int quantity)
+    {
+        maxHeadbutts += quantity;
+        remainingHeadbutts += quantity;
+        HelmetInstanceChanged?.Invoke(this);
+        // reiniciar sus stats cuando lo mejoren
+    }
+
+    public void upgradeLevel()
+    {
+        level++;
     }
 }

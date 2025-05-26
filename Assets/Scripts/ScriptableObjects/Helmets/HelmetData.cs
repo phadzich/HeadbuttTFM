@@ -11,8 +11,6 @@ public class HelmetData : ScriptableObject
     public int bounces;
     public int headbutts;
 
-    public int level;
-
     public GameObject mesh;
     public Sprite icon;
     public Color color;

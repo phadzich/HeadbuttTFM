@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 8_Amethist
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: a1eb05738d9b5ec4893ce2de1601c138, type: 3}
   id: 8
   shortName: Amethyst
   hardness: 7

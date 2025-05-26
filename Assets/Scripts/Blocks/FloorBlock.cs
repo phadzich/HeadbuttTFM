@@ -17,7 +17,7 @@ public class FloorBlock : Block
 
     public override void Bounce()
     {
-        GameManager.Instance.IncreaseLevelJumpCount(1);
+        MatchManager.Instance.BouncedOnNeutralBlock();
 
     }
 

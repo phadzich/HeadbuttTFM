@@ -8,44 +8,39 @@ using UnityEngine;
 public class DoorBlock : Block
 {
 
-    public Dictionary<ResourceData, int> requiredResources;
+    public int requiredBlocks;
     public DoorRequirementsPanel requirementsPanelUI;
     public bool isOpen;
     public GameObject doorTrapMesh;
+    public Sublevel parentSublevel;
 
     private void OnEnable()
     {
-        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
     }
 
     private void OnDisable()
     {
-        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
     }
 
-    public void SetupBlock(Dictionary<ResourceData, int> _requiredResources)
+    public void SetupBlock(int _depth)
     {
-        requiredResources = _requiredResources;
+        parentSublevel = LevelManager.Instance.sublevelsList[_depth];
+        requiredBlocks = parentSublevel.blocksToComplete;
         //Debug.Log(requiredResources);
-        requirementsPanelUI.SetupPanel(_requiredResources);
-        if (DoorRequirementsMet())
-        {
-            isOpen = true;
-            Activate();
-        }
+        requirementsPanelUI.SetupPanel(requiredBlocks);
     }
 
-    public void OnOwnedResourcesChanged()
+    public void OnSublevelBlocksMined()
     {
-        requirementsPanelUI.UpdateIndicators();
+        requirementsPanelUI.UpdateIndicators(parentSublevel.currentBlocksMined);
         if (!isOpen)
         {
-
             if (DoorRequirementsMet())
             {
                 isOpen = true;
                 Activate();
-
             }
         }
 
@@ -53,21 +48,12 @@ public class DoorBlock : Block
 
     public bool DoorRequirementsMet()
     {
-        int _requirementsCount = requiredResources.Count;
-        int _requirementsCompleted = 0;
-        foreach (KeyValuePair<ResourceData, int> _requirement in requiredResources)
+        if (parentSublevel.currentBlocksMined == requiredBlocks)
         {
-            if (ResourceManager.Instance.GetOwnedResourceAmount(_requirement.Key) >= _requirement.Value)
-            {
-                _requirementsCompleted++;
-            }
-
-        }
-        if (_requirementsCompleted == _requirementsCount)
-        {
-            //Debug.Log($"Completed {_requirementsCompleted} de {_requirementsCount}");
+            //Debug.Log($"COMPLETE {parentSublevel.name}: {parentSublevel.currentBlocksMined}/{requiredBlocks}");
             return true;
         }
+        //Debug.Log($"falta {parentSublevel.name}: {parentSublevel.currentBlocksMined}/{requiredBlocks}");
         return false;
     }
 

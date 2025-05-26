@@ -15,7 +15,12 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
     public XPPanel experiencePanel;
+    public SublevelPanel sublevelPanel;
     public GameObject craftButton;
+    public CurrentMatchPanel currentMatchPanel;
+    public LivesPanel livesPanel;
+    public RemainingBlocksIndicator remainingBlockIndicator;
+    public DamageTakenIndicator damageTakenIndicator;
 
     public TextMeshProUGUI totalBouncesTXT;
 
@@ -41,24 +46,48 @@ public class UIManager : MonoBehaviour
         equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
         equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
 
-        craftButton.SetActive(false);
+        //craftButton.SetActive(false);
     }
 
     private void OnEnable()
     {
         HelmetManager.Instance.onHelmetsEquipped += OnHelmetsEquipped;
-        HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
+        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        //HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
+        SuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
         XPManager.Instance.XPChanged += OnXPChanged;
         XPManager.Instance.LeveledUp += OnLevelUp;
+        LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
+        LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
     }
     private void OnDisable()
     {
         HelmetManager.Instance.onHelmetsEquipped -= OnHelmetsEquipped;
-        HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
+        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        //HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
+        UnsuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
+        LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
+        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
+    }
+
+    private void SuscribeToHelmetInstances()
+    {
+        foreach(HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        {
+            _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
+        }
+    }
+
+    private void UnsuscribeToHelmetInstances()
+    {
+        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        {
+            _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
+        }
     }
 
     private void OnXPChanged(int _current, int _max)
@@ -69,12 +98,28 @@ public class UIManager : MonoBehaviour
     private void OnLevelUp(int _currentLVL)
     {
         experiencePanel.UpdateLVL(_currentLVL);
-        craftButton.SetActive(true);
+        //craftButton.SetActive(true);
     }
 
+    private void OnOwnedResourcesChanged()
+    {
+        equippedHelmetsPanel.CheckIfUpgradesAvailable();
+    }
+    private void OnSublevelEntered()
+    {
+        Debug.Log($"UPDATING PANL");
+        sublevelPanel.UpdateSublevel();
+    }
+
+    private void OnSublevelBlocksMined()
+    {
+        sublevelPanel.UpdateGoals();
+    }
 
     private void OnHelmetsEquipped(List<HelmetInstance> _helmetList)
     {
+        UnsuscribeToHelmetInstances();
+        SuscribeToHelmetInstances();
         equippedHelmetsPanel.InstanceEquippedIndicators(_helmetList);
     }
 
@@ -82,11 +127,16 @@ public class UIManager : MonoBehaviour
     {
         //Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
             equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
-        if (_instance.maxHeadbutts>0)
+
+        if(_instance == HelmetManager.Instance.currentHelmet)
         {
-            headbuttsPanel.UpdateUsedHeadbutts(_instance);
+            if (_instance.maxHeadbutts > 0)
+            {
+                headbuttsPanel.UpdateUsedHeadbutts(_instance);
+            }
         }
-        totalBouncesTXT.text = CalculateTotalBounces().ToString();
+
+        livesPanel.UpdateLivesInfo(CalculateTotalBounces());
 
     }
 

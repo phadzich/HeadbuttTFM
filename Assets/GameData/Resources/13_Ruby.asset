@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 13_Ruby
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: b65ea572989fe954aacedc10df12ffa1, type: 3}
   id: 13
   shortName: Ruby
   hardness: 2

@@ -4,6 +4,9 @@ using UnityEngine;
 public class ResourceData : ScriptableObject
 {
 
+    [Header("Prefabs")]
+    public GameObject resourceDropPrefab;
+
     public int id;
     public string shortName;
     public int hardness;

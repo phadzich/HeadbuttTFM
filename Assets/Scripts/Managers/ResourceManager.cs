@@ -61,10 +61,11 @@ public class ResourceManager : MonoBehaviour
             //Gastamos esa cantidad y regresamos TRUE
             ownedResources[_resource] -= _amount;
             Debug.Log($"Spent {_amount} of {_resource.shortName}");
+            onOwnedResourcesChanged?.Invoke();
             return true;
         }
         //Si no hay recurso o no hay la cantidad necesaria, regresamos FALSE
-        onOwnedResourcesChanged?.Invoke();
+
         Debug.Log($"NOT ENOUGH RESOURCES!");
         return false;
     }
@@ -119,5 +120,18 @@ public class ResourceManager : MonoBehaviour
     public int GetStoredResourceAmount(ResourceData _resource)
     {
         return storedResources.ContainsKey(_resource) ? storedResources[_resource] : 0;
+    }
+
+    public bool CanSpendResource(ResourceData _resource, int _amount)
+    {
+        //Si existe el recurso en el inventario y hay suficiente cantidad
+        if (ownedResources.ContainsKey(_resource) && ownedResources[_resource] >= _amount)
+        {
+            return true;
+        }
+        //Si no hay recurso o no hay la cantidad necesaria, regresamos FALSE
+
+        //Debug.Log($"NOT ENOUGH RESOURCES!");
+        return false;
     }
 }
