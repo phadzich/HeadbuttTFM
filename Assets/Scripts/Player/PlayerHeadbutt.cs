@@ -22,8 +22,6 @@ public class PlayerHeadbutt : MonoBehaviour
     CinemachineImpulseSource impulseSource;
     [SerializeField]
     float maxHeight;
-    [SerializeField]
-    string bounceDirection;
 
 
 
@@ -35,9 +33,7 @@ public class PlayerHeadbutt : MonoBehaviour
 
     void Update()
     {
-        //SI ESTA EN ESTADO BOUNE
 
-        CheckBounceDirection();
         UpdateHeadbuttCooldown();
         KeepCentered();
     }
@@ -47,17 +43,6 @@ public class PlayerHeadbutt : MonoBehaviour
         transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
     }
 
-    private void CheckBounceDirection()
-    {
-        if (rb.linearVelocity.y >= 0)
-        {
-            bounceDirection = "UP";
-        }
-        else
-        {
-            bounceDirection = "DOWN";
-        }
-    }
 
     private void ScreenShake()
     {

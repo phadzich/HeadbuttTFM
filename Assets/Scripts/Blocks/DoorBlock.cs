@@ -15,6 +15,13 @@ public class DoorBlock : Block
     public GameObject doorTrapMesh;
     public Sublevel parentSublevel;
 
+    public Material openMaterial;
+
+    public GameObject borde1;
+    public GameObject borde2;
+    public GameObject borde3;
+    public GameObject borde4;
+
     private void OnEnable()
     {
         LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
@@ -42,8 +49,8 @@ public class DoorBlock : Block
         {
             if (DoorRequirementsMet())
             {
+                IndicateOpen();
                 isOpen = true;
-                Activate();
             }
         }
 
@@ -60,10 +67,21 @@ public class DoorBlock : Block
         return false;
     }
 
+    private void IndicateOpen()
+    {
+        borde1.GetComponent<MeshRenderer>().material = openMaterial;
+        borde2.GetComponent<MeshRenderer>().material = openMaterial;
+        borde3.GetComponent<MeshRenderer>().material = openMaterial;
+        borde4.GetComponent<MeshRenderer>().material = openMaterial;
+    }
+
     public override void Bounce()
     {
-
-    }
+        if (isOpen)
+        {
+            Activate();
+        }
+        }
 
     public override void Headbutt()
     {

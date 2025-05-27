@@ -90,11 +90,17 @@ public class PlayerMovement : MonoBehaviour
 
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
 
-                if (CanMoveInDirection())
+                if (blockBelow != null)
                 {
-                    ChangePositionTarget(nextPos);
-                    isMoving = true;
+                    {
+                        if (CanMoveInDirection())
+                        {
+                            ChangePositionTarget(nextPos);
+                            isMoving = true;
+                        }
+                    }
                 }
+
 
             }
         }
