@@ -635,7 +635,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1442466863767232534}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2747394880521830127}
+        m_TargetAssemblyTypeName: HelmetIndicator, Assembly-CSharp
+        m_MethodName: UpgradeHelmet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5076074886526464430
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,9 +900,15 @@ MonoBehaviour:
     remainingHeadbutts: 0
     maxHeadbutts: 0
     bounces: 0
+    level: 0
   helmetIcon: {fileID: 5786989939717553330}
   bouncesTxt: {fileID: 3193137415378971853}
   highlightIndicator: {fileID: 3146387113937213596}
+  upgradeButton: {fileID: 4602859169753769080}
+  req1Txt: {fileID: 315614993871030845}
+  req1Icon: {fileID: 5372790238576492371}
+  req2Txt: {fileID: 4323060199583126274}
+  req2Icon: {fileID: 484289086225462450}
 --- !u!1 &6320151137962769289
 GameObject:
   m_ObjectHideFlags: 0
