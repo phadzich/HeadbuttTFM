@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ColorToPrefab
+public class ColorToString
 {
     public Color color;
     public string blockString;

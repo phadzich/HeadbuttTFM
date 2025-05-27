@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5057792266103096273}
+  - component: {fileID: 4727795519740823972}
   m_Layer: 6
   m_Name: SublevelWall
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 2261776367985503273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4727795519740823972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5993808358622398738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c15c32e661ccb2498fc302115ffaf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sublevelId: 0
+  sublevelPosition: {x: 0, y: 0}
+  isWalkable: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  blockMeshParent: {fileID: 5057792266103096273}
+  blockMesh: {fileID: 7567080789797012425}
 --- !u!1 &7567080789797012425
 GameObject:
   m_ObjectHideFlags: 0
