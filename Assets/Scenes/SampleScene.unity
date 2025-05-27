@@ -4788,7 +4788,6 @@ MonoBehaviour:
   headbuttPower: 15
   timeSinceLastHeadbutt: 0
   maxHeight: 0
-  bounceDirection: 
 --- !u!1 &1244828961
 GameObject:
   m_ObjectHideFlags: 0
@@ -7255,27 +7254,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ef8a56673f2924f956c055e5b2bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorMappings:
-  - color: {r: 0.07450981, g: 0.14901961, b: 0.18823531, a: 1}
-    blockString: LVL_WALL_X
-  - color: {r: 0.8862746, g: 0.8980393, b: 0.9294118, a: 1}
-    blockString: LVL_FLOOR_X
-  - color: {r: 0, g: 1, b: 0, a: 1}
-    blockString: LVL_DOOR_X
-  - color: {r: 1, g: 0.1254902, b: 0.36862746, a: 1}
-    blockString: RES_01_DEF
-  - color: {r: 0.23137257, g: 0.38431376, b: 0.6431373, a: 1}
-    blockString: RES_02_DEF
-  - color: {r: 1, g: 0.78823537, b: 0.37647063, a: 1}
-    blockString: RES_03_DEF
-  testMap: {fileID: 2800000, guid: c7fd1143c0672d443b4f8a526566233d, type: 3}
+  colorMappings: {fileID: 11400000, guid: d66ad27369ecede488dcbf740ade7baf, type: 2}
+  testMap: {fileID: 2800000, guid: f2673c9dd3706e14fbc288e2bd209793, type: 3}
   mapTexture: {fileID: 0}
   mapWidth: 0
   mapHeight: 0
+  clearBlockPrefab: {fileID: 7994459182924363136, guid: a60e9798e9f07b1488bb7da5fe811ed8, type: 3}
   resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
   wallBlockPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   floorBlockPrefab: {fileID: 8090959518607110755, guid: bf259b65fe82f72448705a6fe246e9a9, type: 3}
   doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
+  puasBlockPrefab: {fileID: 8090959518607110755, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  lavaBlockPrefab: {fileID: 8090959518607110755, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
+  ballBlockPrefab: {fileID: 8090959518607110755, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
 --- !u!1 &1953570786
 GameObject:
   m_ObjectHideFlags: 0

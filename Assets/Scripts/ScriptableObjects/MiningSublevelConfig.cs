@@ -7,6 +7,4 @@ public class MiningSublevelConfig : SublevelConfig
 {
     public Texture2D sublevel2DMap;
     public int blocksToComplete;
-    public List<DamageBlock> dmgBlocksList;
-    public int dmgBlocksQty;
 }

@@ -108,7 +108,7 @@ public class LevelManager : MonoBehaviour
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            GenerateNPCSublevel(_npcSublevel, _sublevelContainer);
+            //GenerateNPCSublevel(_npcSublevel, _sublevelContainer);
         }
 
 
@@ -121,16 +121,6 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log($"{_kvp.Key} {_kvp.Value}");
         }
-    }
-
-
-    private void GenerateNPCSublevel(NPCSublevelConfig _npcSublevel, GameObject _sublevelContainer)
-    {
-        // GENERAR AQUI SUBLEVEL DE TIPO NPC
-        int _cols = _npcSublevel.width;
-        int _rows = _npcSublevel.height;
-        Debug.Log($"**Generating NPC Sublevel {_npcSublevel.name}**");
-        InstanceNPCBlocks(_cols, _rows, _sublevelContainer.transform);
     }
 
     public void ExitSublevel()
@@ -146,17 +136,12 @@ public class LevelManager : MonoBehaviour
         currentSublevel = sublevelsList[currentLevelDepth];
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-            sublevelWidth = _miningSublevel.width;
-            sublevelHeight = _miningSublevel.height;
             PlayerManager.Instance.EnterMiningLevel();
             //Debug.Log($"Entering {currentSublevel.id}");
             onSublevelEntered?.Invoke();
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            // CONFIGURAR AQUI SUBLEVEL DE TIPO NPC
-            sublevelWidth = _npcSublevel.width;
-            sublevelHeight = _npcSublevel.height;
             PlayerManager.Instance.EnterNPCLevel();
             //ENTRAR A ESTADO CHECKPOINT
         }

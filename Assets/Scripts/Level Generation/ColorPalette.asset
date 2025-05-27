@@ -13,15 +13,31 @@ MonoBehaviour:
   m_Name: ColorPalette
   m_EditorClassIdentifier: 
   colors:
-  - color: {r: 0.8862746, g: 0.8980393, b: 0.9294118, a: 1}
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    blockString: LVL_CLEAR_X
+  - color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     blockString: LVL_FLOOR_X
-  - color: {r: 0.07450981, g: 0.14901961, b: 0.18823531, a: 1}
+  - color: {r: 0, g: 0, b: 0, a: 1}
     blockString: LVL_WALL_X
   - color: {r: 0, g: 1, b: 0, a: 1}
     blockString: LVL_DOOR_X
-  - color: {r: 1, g: 0.1254902, b: 0.36862746, a: 1}
+  - color: {r: 0, g: 1, b: 1, a: 1}
     blockString: RES_01_DEF
-  - color: {r: 0.23137257, g: 0.38431376, b: 0.6431373, a: 1}
+  - color: {r: 0, g: 0.72156864, b: 1, a: 1}
     blockString: RES_02_DEF
-  - color: {r: 1, g: 0.78823537, b: 0.37647063, a: 1}
+  - color: {r: 0, g: 0.32941177, b: 1, a: 1}
     blockString: RES_03_DEF
+  - color: {r: 0, g: 0, b: 1, a: 1}
+    blockString: RES_04_DEF
+  - color: {r: 0.31764707, g: 0, b: 1, a: 1}
+    blockString: RES_05_DEF
+  - color: {r: 0.54509807, g: 0, b: 1, a: 1}
+    blockString: RES_06_DEF
+  - color: {r: 1, g: 0, b: 1, a: 1}
+    blockString: RES_07_DEF
+  - color: {r: 1, g: 0, b: 0, a: 1}
+    blockString: DMG_PUAS_X
+  - color: {r: 1, g: 0.5254902, b: 0, a: 1}
+    blockString: DMG_LAVA_X
+  - color: {r: 0.67058825, g: 0, b: 0, a: 1}
+    blockString: DMG_BALL_X

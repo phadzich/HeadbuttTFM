@@ -13,10 +13,5 @@ MonoBehaviour:
   m_Name: MIN_A_002
   m_EditorClassIdentifier: 
   id: A_002
-  width: 7
-  height: 7
   sublevel2DMap: {fileID: 2800000, guid: 4b8a7d4d35da7ab4c83a27ac60a0fe74, type: 3}
   blocksToComplete: 15
-  dmgBlocksList:
-  - {fileID: 6788644115671087910, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
-  dmgBlocksQty: 10

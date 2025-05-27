@@ -7,7 +7,7 @@ using static UnityEditor.PlayerSettings;
 
 public class SublevelMapGenerator : MonoBehaviour
 {
-    public ColorToString[] colorMappings;
+    public ColorPalette colorMappings;
     public Texture2D testMap;
     Transform sublevelContainer;
     [SerializeField]
@@ -24,10 +24,14 @@ public class SublevelMapGenerator : MonoBehaviour
 
     public Dictionary<Vector2Int, Block> currentBlocks = new();
 
+    public GameObject clearBlockPrefab;
     public GameObject resourceBlockPrefab;
     public GameObject wallBlockPrefab;
     public GameObject floorBlockPrefab;
     public GameObject doorBlockPrefab;
+    public GameObject puasBlockPrefab;
+    public GameObject lavaBlockPrefab;
+    public GameObject ballBlockPrefab;
 
     private void Start()
     {
@@ -90,7 +94,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 return null;
             }
 
-            foreach(ColorToString _color in colorMappings)
+            foreach(ColorToString _color in colorMappings.colors)
             {
 
             if (_color.color==_pixelColor)
@@ -122,7 +126,7 @@ public class SublevelMapGenerator : MonoBehaviour
             case "LVL":
                 return ConfigLVLBlock(_blockID);
             case "DMG":
-                break;
+                return ConfigDMGBlock(_blockID);
         }
         return null;
     }
@@ -142,6 +146,9 @@ public class SublevelMapGenerator : MonoBehaviour
         GameObject _bloque = null;
         switch (_blockID)
         {
+            case "CLEAR":
+                _bloque = Instantiate(clearBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                break;
             case "WALL":
                 _bloque =  Instantiate(wallBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 WallBlock _wallBlock = _bloque.GetComponent<WallBlock>();
@@ -156,6 +163,30 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(doorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
                 _doorBlock.SetupBlock(currentDepth,currentX,currentY);
+                break;
+        }
+        return _bloque;
+    }
+
+    GameObject ConfigDMGBlock(string _blockID)
+    {
+        GameObject _bloque = null;
+        switch (_blockID)
+        {
+            case "PUAS":
+                _bloque = Instantiate(puasBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _puasBlock = _bloque.GetComponent<DamageBlock>();
+                _puasBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "LAVA":
+                _bloque = Instantiate(lavaBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _lavaBlock = _bloque.GetComponent<DamageBlock>();
+                _lavaBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "BALL":
+                _bloque = Instantiate(ballBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _ballBlock = _bloque.GetComponent<BallDmgBlock>();
+                _ballBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;

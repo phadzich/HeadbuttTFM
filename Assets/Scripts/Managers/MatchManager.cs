@@ -40,12 +40,17 @@ public class MatchManager : MonoBehaviour
         //SI NO VIENE DE UN SALTO NEUTRAL, VIENE DE UN RESOURCE. ROMPEMOS COMBO
         if (!lastBounceNeutral)
         {
+            if (!lastBounceCombo)
+            {
+                IncreaseDamageCount(1);
+            }
             //Debug.Log("VIENE DE UN RESOURCE");
             ClearAllHitBlocks();
             currentComboResource = null;
             currentComboRequirement = 0;
             //Debug.Log("DAMAGE");
-            IncreaseDamageCount(1);
+
+
             UIManager.Instance.currentMatchPanel.EndCurrentCombo();
             UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         }
