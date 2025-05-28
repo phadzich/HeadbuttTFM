@@ -155,7 +155,7 @@ public class MatchManager : MonoBehaviour
     public void IncreaseDamageCount(int _damage)
     {
 
-        HelmetManager.Instance.currentHelmet.UseBounce();
+        HelmetManager.Instance.currentHelmet.TakeDamage();
         UIManager.Instance.damageTakenIndicator.AnimateDamage();
 
         if (HelmetManager.Instance.currentHelmet.isWornOut)

@@ -7739,6 +7739,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 374ebd5ef4d904c62a2aa995a53dbe83, type: 2}
   - {fileID: 11400000, guid: 0470e8e7f21a949aab631feaa59f855f, type: 2}
   - {fileID: 11400000, guid: 6aeefb0d0df2748898548311f201031d, type: 2}
+  - {fileID: 11400000, guid: eadffcc26ca734c3980314d6e200a8b7, type: 2}
+  - {fileID: 11400000, guid: baf2bdb229a5e407498c085d344e4bd7, type: 2}
+  - {fileID: 11400000, guid: 6fec0066a7ace4fd78396869dea86315, type: 2}
   helmetsOwned: []
   helmetsEquipped: []
   maxEquippedHelmets: 3
@@ -7746,10 +7749,10 @@ MonoBehaviour:
   currentHelmet:
     baseHelmet: {fileID: 0}
     id: 
-    remainingBounces: 0
+    currentDurability: 0
     remainingHeadbutts: 0
     maxHeadbutts: 0
-    bounces: 0
+    durability: 0
     level: 0
   currentMesh: {fileID: 2119067691}
   helmetIndex: 0

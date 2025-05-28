@@ -6,11 +6,11 @@ public class HelmetInstance
 {
     public HelmetData baseHelmet;
     public string id;
-    public int remainingBounces;
+    public int currentDurability;
     public int remainingHeadbutts;
     public int maxHeadbutts;
-    public int bounces;
-    public bool isWornOut => remainingBounces <= 0;
+    public int durability;
+    public bool isWornOut => currentDurability <= 0;
     public bool canBeUpgraded => level < 5;
 
     public int level = 1;
@@ -21,23 +21,23 @@ public class HelmetInstance
     {
         baseHelmet = helmetSO;
         id = Guid.NewGuid().ToString();
-        remainingBounces = helmetSO.bounces;
+        currentDurability = helmetSO.durability;
         remainingHeadbutts = helmetSO.headbutts;
         maxHeadbutts = helmetSO.headbutts;
-        bounces = helmetSO.bounces;
+        durability = helmetSO.durability;
     }
 
     public void ResetStats()
     {
-        remainingBounces = bounces;
+        currentDurability = durability;
         remainingHeadbutts = maxHeadbutts;
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void UseBounce()
+    public void TakeDamage()
     {
-        if (remainingBounces > 0)
-            remainingBounces--;
+        if (currentDurability > 0)
+            currentDurability--;
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         HelmetInstanceChanged?.Invoke(this);
     }
@@ -50,19 +50,14 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public bool hasBouncesLeft()
-    {
-        return remainingBounces > 0;
-    }
-
     public bool hasHeadbutts()
     {
         return remainingHeadbutts > 0;
     }
 
-    public void upgradeJump(int quantity)
+    public void IncreaseDurability(int quantity)
     {
-        bounces += quantity;
+        durability += quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 

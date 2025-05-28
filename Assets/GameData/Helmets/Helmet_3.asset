@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 3
   helmetName: Paisana
   description: Un casco EPICO
-  bounces: 2
+  durability: 2
   headbutts: 4
   mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
   icon: {fileID: 21300000, guid: e73caf9977989174da23a7f734c52365, type: 3}

@@ -8,7 +8,7 @@ public class HelmetData : ScriptableObject
     public string helmetName;
     [TextArea] public string description;
 
-    public int bounces;
+    public int durability;
     public int headbutts;
 
     public GameObject mesh;

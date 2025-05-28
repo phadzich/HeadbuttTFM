@@ -884,12 +884,13 @@ MonoBehaviour:
   helmetInstance:
     baseHelmet: {fileID: 0}
     id: 
-    remainingBounces: 0
+    currentDurability: 0
     remainingHeadbutts: 0
     maxHeadbutts: 0
-    bounces: 0
+    durability: 0
+    level: 0
   helmetIcon: {fileID: 5786989939717553330}
-  bouncesTxt: {fileID: 3193137415378971853}
+  durabilityTxt: {fileID: 3193137415378971853}
   highlightIndicator: {fileID: 3146387113937213596}
 --- !u!1 &6320151137962769289
 GameObject:
@@ -1039,7 +1040,7 @@ GameObject:
   - component: {fileID: 1120546760183825924}
   - component: {fileID: 3009114117760387138}
   m_Layer: 5
-  m_Name: HelmetBounces
+  m_Name: HelmetDurability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

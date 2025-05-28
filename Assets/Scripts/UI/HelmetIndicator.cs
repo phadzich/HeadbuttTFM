@@ -7,14 +7,14 @@ public class HelmetIndicator : MonoBehaviour
     public HelmetInstance helmetInstance;
 
     public Image helmetIcon;
-    public TextMeshProUGUI bouncesTxt;
+    public TextMeshProUGUI durabilityTxt;
     public Image highlightIndicator;
 
     
     public void SetupIndicator(HelmetInstance _instance)
     {
         helmetIcon.sprite = _instance.baseHelmet.icon;
-        bouncesTxt.text = _instance.remainingBounces.ToString();
+        durabilityTxt.text = _instance.currentDurability.ToString();
         helmetInstance = _instance;
         highlightIndicator.color = _instance.baseHelmet.color;
     }
@@ -22,7 +22,7 @@ public class HelmetIndicator : MonoBehaviour
     public void UpdateIndicator()
     {
         helmetIcon.sprite = helmetInstance.baseHelmet.icon;
-        bouncesTxt.text = helmetInstance.remainingBounces.ToString();
+        durabilityTxt.text = helmetInstance.currentDurability.ToString();
     }
 
     public void Wear()

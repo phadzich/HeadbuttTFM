@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
         int addedBounces = 0;
         foreach(HelmetInstance _helmetInstance in HelmetManager.Instance.helmetsEquipped)
         {
-            addedBounces += _helmetInstance.remainingBounces;
+            addedBounces += _helmetInstance.currentDurability;
         }
 
         return addedBounces;

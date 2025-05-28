@@ -79,7 +79,7 @@ public class CraftingManager : MonoBehaviour
                 }
                 helmet.upgradeLevel();
                 helmet.upgradeHeadbutt(5 * helmet.level); //Por el momento cada upgrade sube 5 rebotes * el nuevo nivel 
-                helmet.upgradeJump(3 * helmet.level); //Por el momento cada upgrade sube 3 headbutts * el nuevo nivel
+                helmet.IncreaseDurability(3 * helmet.level); //Por el momento cada upgrade sube 3 headbutts * el nuevo nivel
             }
             else
             {
