@@ -772,6 +772,7 @@ MonoBehaviour:
   currentComboResource: {fileID: 0}
   currentComboCount: 0
   currentComboRequirement: 0
+  xpPerCombo: 10
 --- !u!1 &254390357
 GameObject:
   m_ObjectHideFlags: 0
@@ -7749,11 +7750,12 @@ MonoBehaviour:
   currentHelmet:
     baseHelmet: {fileID: 0}
     id: 
+    currentMesh: {fileID: 0}
     currentDurability: 0
     remainingHeadbutts: 0
     maxHeadbutts: 0
     durability: 0
-    level: 0
+    helmetXP: {fileID: 0}
   currentMesh: {fileID: 2119067691}
   helmetIndex: 0
 --- !u!1 &2012362340

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9149684923588045384}
   - component: {fileID: 5916952121394799379}
   m_Layer: 0
-  m_Name: Helmet_4
+  m_Name: Helmet6_LVL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 50c06391c4c6f8746a64c70ca4fb02d1, type: 2}
+  - {fileID: 2100000, guid: fd7099357d25cad40bcbda1e26cdeffa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

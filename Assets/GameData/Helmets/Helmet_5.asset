@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
   m_Name: Helmet_5
   m_EditorClassIdentifier: 
-  id: 
+  id: 5
   helmetName: 
   description: 
   durability: 2
   headbutts: 15
-  mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
+  helmetEffect: 0
+  baseXP: 90
+  xpMultiplier: 1.5
+  meshesByLevel:
+  - {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
+  - {fileID: 1928718743684311021, guid: 97ea541f3bb8b47bba543d89ce9dd28a, type: 3}
+  - {fileID: 1928718743684311021, guid: 8122a6ecac15746909215bdd93952ee8, type: 3}
   icon: {fileID: 0}
   color: {r: 1, g: 0.688584, b: 0.49411762, a: 0}
-  effect: 0

@@ -14,6 +14,8 @@ public class MatchManager : MonoBehaviour
     public int currentComboCount;
     public int currentComboRequirement;
 
+    public int xpPerCombo = 10;
+
     private void Awake()
     {
         if (Instance == null)
@@ -100,6 +102,7 @@ public class MatchManager : MonoBehaviour
         {
             MineAllHitBlocks();
             lastBounceCombo = true;
+            HelmetManager.Instance.currentHelmet.helmetXP.AddXP(xpPerCombo); //Sube el XP del casco cuando completa un combo
             UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
             UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         }

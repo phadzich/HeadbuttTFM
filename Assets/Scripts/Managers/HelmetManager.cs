@@ -13,6 +13,7 @@ public class HelmetManager : MonoBehaviour
     public List<HelmetData> allHelmets;
     public List<HelmetInstance> helmetsOwned = new();
     public List<HelmetInstance> helmetsEquipped = new();
+    public HashSet<HelmetData> unlockedHelmets = new HashSet<HelmetData>();
     public int maxEquippedHelmets = 3;
     public int maxOwnHelmets = 10;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
@@ -65,6 +66,7 @@ public class HelmetManager : MonoBehaviour
         {
             HelmetInstance current = new HelmetInstance(helmet);
             helmetsOwned.Add(current);
+            unlockedHelmets.Add(helmet);
         }
         else
         {
@@ -86,7 +88,7 @@ public class HelmetManager : MonoBehaviour
 
     public void WearHelmet(HelmetInstance helmet) {
         currentHelmet = helmet;
-        currentMesh.SetHelmetMesh(helmet.baseHelmet.mesh);
+        currentMesh.SetHelmetMesh(helmet.currentMesh);
         onWearHelmetChanged?.Invoke(helmet);
     }
 
