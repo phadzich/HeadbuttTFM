@@ -2,6 +2,7 @@ using Mono.Cecil;
 using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -14,6 +15,13 @@ public class DoorBlock : Block
     public GameObject doorTrapMesh;
     public Sublevel parentSublevel;
 
+    public Material openMaterial;
+
+    public GameObject borde1;
+    public GameObject borde2;
+    public GameObject borde3;
+    public GameObject borde4;
+
     private void OnEnable()
     {
         LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
@@ -24,10 +32,12 @@ public class DoorBlock : Block
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
     }
 
-    public void SetupBlock(Sublevel _parentSublevel)
+    public void SetupBlock(int _depth,int _x, int _y)
     {
-        parentSublevel = _parentSublevel;
+        parentSublevel = LevelManager.Instance.sublevelsList[_depth];
         requiredBlocks = parentSublevel.blocksToComplete;
+        isWalkable = true;
+        sublevelPosition = new Vector2(_x, _y);
         //Debug.Log(requiredResources);
         requirementsPanelUI.SetupPanel(requiredBlocks);
     }
@@ -39,8 +49,8 @@ public class DoorBlock : Block
         {
             if (DoorRequirementsMet())
             {
+                IndicateOpen();
                 isOpen = true;
-                Activate();
             }
         }
 
@@ -57,10 +67,21 @@ public class DoorBlock : Block
         return false;
     }
 
+    private void IndicateOpen()
+    {
+        borde1.GetComponent<MeshRenderer>().material = openMaterial;
+        borde2.GetComponent<MeshRenderer>().material = openMaterial;
+        borde3.GetComponent<MeshRenderer>().material = openMaterial;
+        borde4.GetComponent<MeshRenderer>().material = openMaterial;
+    }
+
     public override void Bounce()
     {
-
-    }
+        if (isOpen)
+        {
+            Activate();
+        }
+        }
 
     public override void Headbutt()
     {

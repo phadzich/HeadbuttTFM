@@ -14,6 +14,11 @@ public class BallDmgBlock : DamageBlock
         Tween.LocalPositionY(ball.transform, endValue: height, duration: speed, ease: Ease.OutExpo, startDelay: Random.Range(0, .5f)).OnComplete(AnimateDown);
     }
 
+    private void OnDisable()
+    {
+        Tween.StopAll(ball.transform);
+    }
+
     void AnimateUp()
     {
         Tween.LocalPositionY(ball.transform, endValue: height, duration: speed, ease: Ease.OutExpo).OnComplete(AnimateDown);

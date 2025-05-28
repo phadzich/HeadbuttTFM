@@ -19,6 +19,7 @@ public class DamageBlock : Block
     {
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
+        isWalkable = true;
     }
 
     public override void Bounce()

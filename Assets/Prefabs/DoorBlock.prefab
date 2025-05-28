@@ -550,9 +550,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
+  isWalkable: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  requiredBlocks: 0
   requirementsPanelUI: {fileID: 6539700780272067071}
   isOpen: 0
   doorTrapMesh: {fileID: 5649766658453333689}
+  parentSublevel: {fileID: 0}
+  openMaterial: {fileID: 2100000, guid: 42cd4b3e3c05dc0439346935370fd540, type: 2}
+  borde1: {fileID: 5888506152927431402}
+  borde2: {fileID: 1738161332878892176}
+  borde3: {fileID: 1392089153480443680}
+  borde4: {fileID: 6828871421567710783}
 --- !u!65 &5503775828633544293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -664,7 +676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requirementIndicatorPF: {fileID: 2454509256824947879, guid: dd97b57bdc3875c499a5f03f5298d2d5, type: 3}
-  indicators: []
 --- !u!114 &7994625637335987117
 MonoBehaviour:
   m_ObjectHideFlags: 0
