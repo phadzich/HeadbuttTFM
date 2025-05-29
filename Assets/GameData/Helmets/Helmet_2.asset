@@ -15,6 +15,19 @@ MonoBehaviour:
   id: 2
   helmetName: Ingenierum
   description: Un casco MUUY grande
+  upgradePrices:
+  - toLevel: 2
+    requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 15
+    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+      quantity: 5
+  - toLevel: 3
+    requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 15
+    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+      quantity: 20
   durability: 2
   headbutts: 4
   helmetEffect: 0

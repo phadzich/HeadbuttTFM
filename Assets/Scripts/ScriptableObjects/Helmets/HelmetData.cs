@@ -8,6 +8,7 @@ public class HelmetData : ScriptableObject
     public string id;
     public string helmetName;
     [TextArea] public string description;
+    public List<UpgradeRequirement> upgradePrices;
 
     [Header("Stats")]
     public int durability;
@@ -17,7 +18,6 @@ public class HelmetData : ScriptableObject
     [Header("XP")]
     public int baseXP;
     public float xpMultiplier;
-
 
     [Header("Helmet Appearance")]
     public List<GameObject> meshesByLevel;

@@ -139,6 +139,11 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-
+    public List<ResourceRequirement> GetPriceForNextLevel()
+    {
+        int nextLevel = helmetXP.currentLevel + 1;
+        var requirement = baseHelmet.upgradePrices.Find(r => r.toLevel == nextLevel);
+        return requirement?.requirements ?? new List<ResourceRequirement>();
+    }
 
 }

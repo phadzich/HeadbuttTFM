@@ -3,24 +3,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class HelmetBluprintUI : MonoBehaviour
+public class HelmetUpgradeCard : MonoBehaviour
 {
-
-    public TextMeshProUGUI blueprintNameText;
-    public Image blueprintIcon;
+    public TextMeshProUGUI helmetNameText;
+    public Image helmetIcon;
+    public TextMeshProUGUI lvlTxt;
     public Transform resourceListContainer; // Donde se van a poner los ResourceIndicators
     public GameObject resourceIndicatorPrefab;
 
-    private HelmetBlueprint helmet;
+    private HelmetInstance helmet;
+
 
     // Se crea el prefab con la información del blueprint
-    public void SetUp(HelmetBlueprint blueprint)
+    public void SetUp(HelmetInstance helmetI)
     {
-        helmet = blueprint;
-        blueprintNameText.text = blueprint.recipeName;
-        blueprintIcon.sprite = blueprint.resultHelmet.icon;
+        helmet = helmetI;
+        helmetNameText.text = helmetI.baseHelmet.helmetName;
+        helmetIcon.sprite = helmetI.baseHelmet.icon;
+        lvlTxt.text = "LVL " + helmetI.helmetXP.currentLevel + " -> " + "LVL " + helmetI.helmetXP.nextLevel;
 
-        SetResources(blueprint.requiredResources);
+        SetResources(helmet.GetPriceForNextLevel());
     }
 
     // Crea los prefabs que muestran la cantidad de recursos
@@ -36,15 +38,10 @@ public class HelmetBluprintUI : MonoBehaviour
     }
 
     // Cuando el jugador da click en Craft, se desbloquea el casco y los recursos se gastan, la lista se actualiza por medio del evento onOwnedResourcesChanged
-    public void OnClickCraftingBtn()
+    public void OnClickUpgradeBtn()
     {
-        List<ResourceRequirement> resources = helmet.requiredResources;
-
-        foreach(var res in resources)
-        {
-            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
-        }
-
-        HelmetManager.Instance.UnlockHelmet(helmet.resultHelmet);
+        CraftingManager.Instance.UpgradeHelmet(helmet);
     }
+
+
 }

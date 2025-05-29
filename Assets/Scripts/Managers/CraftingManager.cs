@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class CraftingManager : MonoBehaviour
     public List<HelmetBlueprint> blueprints;
     public ResourceRequirement bouncePrice;
     public ResourceRequirement headbuttPrice;
+
+    public Action HelmetUpgraded; //Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
     {
@@ -54,7 +57,41 @@ public class CraftingManager : MonoBehaviour
     //Llamar cuando se quiera upgradear un casco
     public void UpgradeHelmet(HelmetInstance helmet)
     {
-        
+        // Revisamos que no este upgredeado al maximo nivel
+        if (helmet.canBeUpgraded)
+        {
+            List<ResourceRequirement> price = helmet.GetPriceForNextLevel();
+            bool canSpend = true;
+
+
+            // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
+            foreach (var res in price)
+            {
+                if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
+                {
+                    canSpend = false;
+                    break;
+                }
+            }
+
+            if (canSpend)
+            {
+                foreach (var res in price)
+                {
+                    ResourceManager.Instance.SpendResource(res.resource, res.quantity);
+                }
+                helmet.helmetXP.LevelUp();
+                HelmetUpgraded?.Invoke();
+            }
+            else
+            {
+                Debug.Log("NO HAY SUFICIENTES RECURSOS");
+            }
+        }
+        else
+        {
+            Debug.Log("HELMET LEVEL MAXED OUT");
+        }
 
     }
 }
