@@ -25,6 +25,8 @@ public class HelmetXP : MonoBehaviour
 
     public void AddXP(int amount)
     {
+        Debug.Log("XP " + IsReadyToLevelUp + "Current sublevel " + currentSublevel);
+        Debug.Log("XP for next " + XPForNextSublevel());
         // Si ya puede subir el nivel del casco deja de de subir experiencia
         if (IsReadyToLevelUp) return;
 
