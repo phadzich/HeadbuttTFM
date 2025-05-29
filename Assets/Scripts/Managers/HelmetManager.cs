@@ -13,6 +13,9 @@ public class HelmetManager : MonoBehaviour
     public List<HelmetData> allHelmets;
     public List<HelmetInstance> helmetsOwned = new();
     public List<HelmetInstance> helmetsEquipped = new();
+    public HashSet<HelmetData> unlockedHelmets = new HashSet<HelmetData>();
+
+    [Header("Stats")]
     public int maxEquippedHelmets = 3;
     public int maxOwnHelmets = 10;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
@@ -48,23 +51,25 @@ public class HelmetManager : MonoBehaviour
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
-        //UnlockHelmet(allHelmets[1]);  
-        //UnlockHelmet(allHelmets[2]);
+        UnlockHelmet(allHelmets[1]);
+        UnlockHelmet(allHelmets[2]);
         EquipHelmet(helmetsOwned[0]);
-        //EquipHelmet(helmetsOwned[1]);
-        //EquipHelmet(helmetsOwned[2]);
+        EquipHelmet(helmetsOwned[1]);
+        EquipHelmet(helmetsOwned[2]);
         onHelmetsEquipped?.Invoke(helmetsEquipped);
 
         WearHelmet(helmetsEquipped[helmetIndex]);
 
     }
 
+    // Función para desbloquear un casco, es decir que a partir de un blueprint se crea el casco
     public void UnlockHelmet(HelmetData helmet)
     {
         if (helmetsOwned.Count < maxOwnHelmets)
         {
             HelmetInstance current = new HelmetInstance(helmet);
             helmetsOwned.Add(current);
+            unlockedHelmets.Add(helmet);
         }
         else
         {
@@ -72,26 +77,27 @@ public class HelmetManager : MonoBehaviour
         }
     }
 
+    // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
     public void EquipHelmet(HelmetInstance helmet)
     {
         if(helmetsEquipped.Count < maxEquippedHelmets)
         {
             helmetsEquipped.Add(helmet);
-            onHelmetsEquipped?.Invoke(helmetsEquipped);
         } else
         {
             Debug.Log("No hay mas espacio para cascos");
         }
-
-
+       
     }
 
+    // Función para USAR un casco 
     public void WearHelmet(HelmetInstance helmet) {
         currentHelmet = helmet;
-        currentMesh.SetHelmetMesh(helmet.baseHelmet.mesh);
+        currentMesh.SetHelmetMesh(helmet.currentMesh);
         onWearHelmetChanged?.Invoke(helmet);
     }
 
+    //Reseta los stats de los cascos equipados
     public void ResetHelmetsStats()
     {
         foreach (HelmetInstance helmet in helmetsEquipped)
@@ -100,6 +106,16 @@ public class HelmetManager : MonoBehaviour
         }
     }
 
+    // Obtiene los cascos que estan listos y pueden subir de nivel
+    public List<HelmetInstance> GetHelmetsReadyToLevelUp()
+    {
+        return helmetsOwned.Where(h => h.helmetXP.CanLevelUp).ToList();
+    }
+
+
+    /* Funciones para cambiar entre cascos */
+
+    //Función para cambiar al siguiente casco
     public void NextHelmet(InputAction.CallbackContext context)
     {
         //Si el jugador solo cuenta con 1 casco
@@ -114,6 +130,7 @@ public class HelmetManager : MonoBehaviour
 
     }
 
+    //Función para cambiar al casco anterior
     public void PreviousHelmet(InputAction.CallbackContext context)
     {
         //Si el jugador solo cuenta con 1 casco

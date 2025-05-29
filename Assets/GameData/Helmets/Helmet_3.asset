@@ -15,9 +15,27 @@ MonoBehaviour:
   id: 3
   helmetName: Paisana
   description: Un casco EPICO
-  bounces: 2
+  upgradePrices:
+  - toLevel: 2
+    requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 15
+    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+      quantity: 5
+  - toLevel: 3
+    requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 15
+    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+      quantity: 20
+  durability: 2
   headbutts: 4
-  mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
+  helmetEffect: 0
+  baseXP: 70
+  xpMultiplier: 1.4
+  meshesByLevel:
+  - {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
+  - {fileID: 1928718743684311021, guid: ac27fbc7d0f464042a1ed95c2eb45900, type: 3}
+  - {fileID: 1928718743684311021, guid: 8efd470a3cd844a0ca17167b9376f6ab, type: 3}
   icon: {fileID: 21300000, guid: e73caf9977989174da23a7f734c52365, type: 3}
   color: {r: 0.8537736, g: 0.30204254, b: 0.8113326, a: 1}
-  effect: 0

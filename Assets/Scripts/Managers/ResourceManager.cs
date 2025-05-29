@@ -131,7 +131,7 @@ public class ResourceManager : MonoBehaviour
         }
         //Si no hay recurso o no hay la cantidad necesaria, regresamos FALSE
 
-        //Debug.Log($"NOT ENOUGH RESOURCES!");
+        Debug.Log($"NOT ENOUGH RESOURCES!");
         return false;
     }
 }

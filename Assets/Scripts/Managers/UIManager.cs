@@ -52,7 +52,6 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         HelmetManager.Instance.onHelmetsEquipped += OnHelmetsEquipped;
-        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
         //HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
         SuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
@@ -64,7 +63,6 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         HelmetManager.Instance.onHelmetsEquipped -= OnHelmetsEquipped;
-        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         //HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
         UnsuscribeToHelmetInstances();
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
@@ -101,10 +99,6 @@ public class UIManager : MonoBehaviour
         //craftButton.SetActive(true);
     }
 
-    private void OnOwnedResourcesChanged()
-    {
-        equippedHelmetsPanel.CheckIfUpgradesAvailable();
-    }
     private void OnSublevelEntered()
     {
         Debug.Log($"UPDATING PANL");
@@ -118,8 +112,6 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetsEquipped(List<HelmetInstance> _helmetList)
     {
-        UnsuscribeToHelmetInstances();
-        SuscribeToHelmetInstances();
         equippedHelmetsPanel.InstanceEquippedIndicators(_helmetList);
     }
 
@@ -136,7 +128,11 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        livesPanel.UpdateLivesInfo(CalculateTotalBounces());
+        //SOLO SI CAMBIARON LOS BOUNCES, UPDATE
+        if(totalBouncesTXT.text != CalculateTotalBounces().ToString())
+        {
+            livesPanel.UpdateLivesInfo(CalculateTotalBounces());
+        };
 
     }
 
@@ -152,7 +148,7 @@ public class UIManager : MonoBehaviour
         int addedBounces = 0;
         foreach(HelmetInstance _helmetInstance in HelmetManager.Instance.helmetsEquipped)
         {
-            addedBounces += _helmetInstance.remainingBounces;
+            addedBounces += _helmetInstance.currentDurability;
         }
 
         return addedBounces;

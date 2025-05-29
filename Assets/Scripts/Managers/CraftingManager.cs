@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class CraftingManager : MonoBehaviour
     public List<HelmetBlueprint> blueprints;
     public ResourceRequirement bouncePrice;
     public ResourceRequirement headbuttPrice;
+
+    public Action HelmetUpgraded; //Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
     {
@@ -39,7 +42,7 @@ public class CraftingManager : MonoBehaviour
 
     }
 
-    public HelmetBlueprint GetHelmetBlueprint(HelmetInstance helmet) {
+    private HelmetBlueprint GetHelmetBlueprint(HelmetInstance helmet) {
         foreach (var blueprint in blueprints)
         {
             if (blueprint.resultHelmet == helmet.baseHelmet)
@@ -52,40 +55,33 @@ public class CraftingManager : MonoBehaviour
     }
 
     //Llamar cuando se quiera upgradear un casco
-
-    public bool hasEnoughResourcesToUpgrade(HelmetInstance helmet)
-    {
-        List<ResourceRequirement> price = GetHelmetBlueprint(helmet).requiredResources;
-        int nextLevel = helmet.level + 1;
-        foreach (var res in price)
-        {
-            if (!ResourceManager.Instance.CanSpendResource(res.resource, res.MultiplyByLevel(nextLevel)))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-
     public void UpgradeHelmet(HelmetInstance helmet)
     {
-        // Revisamos que no este upgredeado al maximo nivel que por ahora es 5 para todos los cascos
+        // Revisamos que no este upgredeado al maximo nivel
         if (helmet.canBeUpgraded)
         {
-            List<ResourceRequirement> price = GetHelmetBlueprint(helmet).requiredResources;
-            int nextLevel = helmet.level + 1;
+            List<ResourceRequirement> price = helmet.GetPriceForNextLevel();
+            bool canSpend = true;
 
-            if (hasEnoughResourcesToUpgrade(helmet))
+
+            // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
+            foreach (var res in price)
+            {
+                if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
+                {
+                    canSpend = false;
+                    break;
+                }
+            }
+
+            if (canSpend)
             {
                 foreach (var res in price)
                 {
-                    ResourceManager.Instance.SpendResource(res.resource, res.MultiplyByLevel(nextLevel));
+                    ResourceManager.Instance.SpendResource(res.resource, res.quantity);
                 }
-                helmet.upgradeLevel();
-                helmet.upgradeHeadbutt(helmet.level); //Por el momento cada upgrade sube 5 rebotes * el nuevo nivel 
-                helmet.upgradeJump(helmet.level); //Por el momento cada upgrade sube 3 headbutts * el nuevo nivel
+                helmet.helmetXP.LevelUp();
+                HelmetUpgraded?.Invoke();
             }
             else
             {

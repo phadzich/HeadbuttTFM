@@ -4,17 +4,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HelmetData", menuName = "GameData/HelmetData")]
 public class HelmetData : ScriptableObject
 {
+    [Header("Info")]
     public string id;
     public string helmetName;
     [TextArea] public string description;
+    public List<UpgradeRequirement> upgradePrices;
 
-    public int bounces;
+    [Header("Stats")]
+    public int durability;
     public int headbutts;
+    public HelmetEffectType helmetEffect;
 
-    public GameObject mesh;
+    [Header("XP")]
+    public int baseXP;
+    public float xpMultiplier;
+
+    [Header("Helmet Appearance")]
+    public List<GameObject> meshesByLevel;
     public Sprite icon;
     public Color color;
-
-    // Efecto
-    public HelmetEffectType effect;
 }

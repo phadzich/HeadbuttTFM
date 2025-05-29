@@ -12,12 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
   m_Name: Helmet_6
   m_EditorClassIdentifier: 
-  id: 
+  id: 6
   helmetName: 
   description: 
-  bounces: 4
-  headbutts: 6
-  mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
+  upgradePrices:
+  - toLevel: 2
+    requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 15
+    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+      quantity: 5
+  - toLevel: 3
+    requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 15
+    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+      quantity: 20
+  durability: 2
+  headbutts: 18
+  helmetEffect: 0
+  baseXP: 90
+  xpMultiplier: 1.5
+  meshesByLevel:
+  - {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
+  - {fileID: 1928718743684311021, guid: e79066dabc73f44ccac6d0b31d7d99e6, type: 3}
+  - {fileID: 1928718743684311021, guid: 1b5c95376e4db48e4bacde625c4a9562, type: 3}
   icon: {fileID: 0}
   color: {r: 1, g: 0.32387626, b: 0.19339621, a: 0}
-  effect: 0

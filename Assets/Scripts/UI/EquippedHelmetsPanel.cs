@@ -24,7 +24,7 @@ public class EquippedHelmetsPanel : MonoBehaviour
         {
             if(_helmetInidcator.helmetInstance == _instance)
             {
-                Debug.Log($"Udpdating Helmet Indicator{_instance}");
+                //Debug.Log($"Udpdating Helmet Indicator{_instanceId}");
                 _helmetInidcator.UpdateIndicator();
             }
 
@@ -55,32 +55,6 @@ public class EquippedHelmetsPanel : MonoBehaviour
         foreach (Transform _child in indicatorsContainer)
         {
             Destroy(_child.gameObject);
-        }
-    }
-
-    public void CheckIfUpgradesAvailable()
-    {
-        foreach(HelmetIndicator _helmIndic in equippedIndicators)
-        {
-            if (CraftingManager.Instance.hasEnoughResourcesToUpgrade(_helmIndic.helmetInstance))
-            {
-                List<ResourceRequirement> _requirements = CraftingManager.Instance.GetHelmetBlueprint(_helmIndic.helmetInstance).requiredResources;
-                _helmIndic.ShowUpgradeButton(true);
-                if (_requirements.Count == 1)
-                {
-                    _helmIndic.UpdateReq01(_requirements[0]);
-                    _helmIndic.UpdateReq02(null);
-                }
-                else if (_requirements.Count == 2)
-                {
-                    _helmIndic.UpdateReq01(_requirements[0]);
-                    _helmIndic.UpdateReq02(_requirements[1]);
-                }
-            }
-            else
-            {
-                _helmIndic.ShowUpgradeButton(false);
-            }
         }
     }
 

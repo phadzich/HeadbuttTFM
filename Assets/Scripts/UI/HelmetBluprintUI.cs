@@ -8,7 +8,6 @@ public class HelmetBluprintUI : MonoBehaviour
 
     public TextMeshProUGUI blueprintNameText;
     public Image blueprintIcon;
-    public Button craftButton;
     public Transform resourceListContainer; // Donde se van a poner los ResourceIndicators
     public GameObject resourceIndicatorPrefab;
 
@@ -47,10 +46,5 @@ public class HelmetBluprintUI : MonoBehaviour
         }
 
         HelmetManager.Instance.UnlockHelmet(helmet.resultHelmet);
-
-        //POR AHORA LO EQUIPAMOS AUTOMATICAMENTE
-        HelmetInstance _newHelmetInstance = HelmetManager.Instance.helmetsOwned[HelmetManager.Instance.helmetsOwned.Count-1];
-        HelmetManager.Instance.EquipHelmet(_newHelmetInstance);
-        //HelmetManager.Instance.WearHelmet(_newHelmetInstance);
     }
 }

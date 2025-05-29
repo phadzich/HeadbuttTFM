@@ -14,6 +14,8 @@ public class MatchManager : MonoBehaviour
     public int currentComboCount;
     public int currentComboRequirement;
 
+    public int xpPerCombo = 10;
+
     private void Awake()
     {
         if (Instance == null)
@@ -29,14 +31,14 @@ public class MatchManager : MonoBehaviour
 
     public void ResetComboStats()
     {
-        //currentComboResource = null;
-        //currentComboCount = 0;
+        currentComboResource = null;
+        currentComboCount = 0;
         lastBounceNeutral = true;
     }
 
     public void BouncedOnNeutralBlock()
     {
-        //Debug.Log("NEUTRAL BLOCK BOUNCE");
+        Debug.Log("NEUTRAL BLOCK BOUNCE");
         //SI NO VIENE DE UN SALTO NEUTRAL, VIENE DE UN RESOURCE. ROMPEMOS COMBO
         if (!lastBounceNeutral)
         {
@@ -100,6 +102,7 @@ public class MatchManager : MonoBehaviour
         {
             MineAllHitBlocks();
             lastBounceCombo = true;
+            HelmetManager.Instance.currentHelmet.helmetXP.AddXP(xpPerCombo); //Sube el XP del casco cuando completa un combo
             UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
             UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         }
@@ -155,7 +158,7 @@ public class MatchManager : MonoBehaviour
     public void IncreaseDamageCount(int _damage)
     {
 
-        HelmetManager.Instance.currentHelmet.UseBounce();
+        HelmetManager.Instance.currentHelmet.TakeDamage();
         UIManager.Instance.damageTakenIndicator.AnimateDamage();
 
         if (HelmetManager.Instance.currentHelmet.isWornOut)
