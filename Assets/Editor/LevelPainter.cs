@@ -170,7 +170,7 @@ public class LevelPainter : EditorWindow
         Texture2D texture = new Texture2D(gridSize, gridSize);
         for (int x = 0; x < gridSize; x++)
             for (int y = 0; y < gridSize; y++)
-                texture.SetPixel(x, y, palette.colors[gridData[x, y]].color);
+                texture.SetPixel(x, y, palette.colors[gridData[x, gridSize - 1 - y]].color);
         texture.Apply();
 
         string path = EditorUtility.SaveFilePanel("Save Level Texture", "", "level.png", "png");
@@ -198,7 +198,7 @@ public class LevelPainter : EditorWindow
 
         for (int x = 0; x < gridSize; x++)
             for (int y = 0; y < gridSize; y++)
-                gridData[x, y] = FindClosestColorIndex(texture.GetPixel(x, y));
+                gridData[x, gridSize - 1 - y] = FindClosestColorIndex(texture.GetPixel(x, y));
 
         Repaint();
     }
