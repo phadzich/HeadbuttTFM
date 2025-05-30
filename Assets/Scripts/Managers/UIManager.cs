@@ -77,6 +77,9 @@ public class UIManager : MonoBehaviour
         foreach(HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
+            _helmInstance.helmetXP.XPChanged += OnHelmetXPChanged;
+            OnHelmetInstanceDataChanged(_helmInstance);
+            //OnHelmetXPChanged(_helmInstance.helmetXP, _helmInstance);
         }
     }
 
@@ -85,7 +88,14 @@ public class UIManager : MonoBehaviour
         foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
+            _helmInstance.helmetXP.XPChanged -= OnHelmetXPChanged;
         }
+    }
+
+    private void OnHelmetXPChanged(HelmetXP _xpComp, HelmetInstance _instance)
+    {
+        Debug.Log("OnHelmetXPChanged");
+        equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
     }
 
     private void OnXPChanged(int _current, int _max)

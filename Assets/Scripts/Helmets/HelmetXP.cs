@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HelmetXP : MonoBehaviour
+public class HelmetXP
 {
     // Level and sublevel info
     public int currentLevel = 1;
@@ -9,6 +9,7 @@ public class HelmetXP : MonoBehaviour
     public int currentXP = 0;
     public int baseRequiredXP;
     public float xpMultiplier;
+    public HelmetInstance helmetInstanceRef;
     public int nextLevel => currentLevel + 1;
 
     // State
@@ -16,14 +17,16 @@ public class HelmetXP : MonoBehaviour
     private bool IsAtMaxLevel => currentLevel == 3; // Checa si ya esta en el nivel mas alto
     public bool CanLevelUp => IsReadyToLevelUp && !IsAtMaxLevel; //Checa si el casco puede ser upgradeado tomando en cuenta lo anterior
 
-    public Action<int, int> XPChanged;
+    public Action<HelmetXP, HelmetInstance> XPChanged;
     public Action<int> SubleveledUp;
     public Action<int> LeveledUp;
 
-    public HelmetXP(int baseXP, float ogXPMult)
+    public HelmetXP(int baseXP, float ogXPMult,HelmetInstance _instanceRef)
     {
         baseRequiredXP = baseXP;
         xpMultiplier = ogXPMult;
+        helmetInstanceRef = _instanceRef;
+        XPChanged?.Invoke(this, helmetInstanceRef);
     }
 
     public void AddXP(int amount)
@@ -40,10 +43,10 @@ public class HelmetXP : MonoBehaviour
             currentXP -= XPForNextSublevel();
             SublevelUp();
         }
-        XPChanged?.Invoke(currentXP, XPForNextSublevel());
+        XPChanged?.Invoke(this,helmetInstanceRef);
     }
 
-    int XPForNextSublevel()
+    public int XPForNextSublevel()
     {
         float levelFactor = Mathf.Pow(1.2f, currentLevel - 1);
         return Mathf.RoundToInt(baseRequiredXP * levelFactor * Mathf.Pow(xpMultiplier, currentSublevel - 1));
@@ -52,7 +55,7 @@ public class HelmetXP : MonoBehaviour
     public void SublevelUp()
     {
         currentSublevel++;
-        SubleveledUp.Invoke(currentSublevel);
+        SubleveledUp?.Invoke(currentSublevel);
     }
 
     public void LevelUp()

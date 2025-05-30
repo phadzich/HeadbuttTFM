@@ -32,10 +32,10 @@ public class HelmetInstance
         remainingHeadbutts = helmetSO.headbutts;
         maxHeadbutts = helmetSO.headbutts;
         durability = helmetSO.durability;
-        helmetXP = new HelmetXP(helmetSO.baseXP, helmetSO.xpMultiplier);
-
+        helmetXP = new HelmetXP(helmetSO.baseXP, helmetSO.xpMultiplier,this);
         helmetXP.SubleveledUp += UpgradeStatsBySublevel;
         helmetXP.LeveledUp += UpgradeStatsByLevel;
+
     }
 
     public void ResetStats()
