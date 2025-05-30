@@ -34,9 +34,31 @@ public class LevelPainter : EditorWindow
         gridData = new int[gridSize, gridSize];
     }
 
+    private void ClearGrid()
+    {
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                gridData[x, y] = 0; // Color base, usualmente blanco
+            }
+        }
+        Repaint();
+    }
+
+    private void PaintCenterCross()
+    {
+        int center = gridSize / 2;
+        for (int i = 0; i < gridSize; i++)
+        {
+            gridData[center, i] = selectedColorIndex; // Vertical
+            gridData[i, center] = selectedColorIndex; // Horizontal
+        }
+        Repaint();
+    }
+
     private void OnGUI()
     {
-        scrollPos = GUILayout.BeginScrollView(scrollPos);
         GUILayout.Label("Palette", EditorStyles.boldLabel);
 
         if (palette == null)
@@ -65,7 +87,13 @@ public class LevelPainter : EditorWindow
         GUILayout.Space(10);
         GUILayout.Label("Grid", EditorStyles.boldLabel);
 
-        var rect = GUILayoutUtility.GetRect(gridSize * pixelSize, gridSize * pixelSize);
+        float canvasWidth = gridSize * pixelSize + 40; // espacio extra para coordenadas
+        float canvasHeight = gridSize * pixelSize + 20;
+
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(600));
+        Rect rect = GUILayoutUtility.GetRect(canvasWidth, canvasHeight);
+
+        // Dibuja las celdas
         for (int y = 0; y < gridSize; y++)
         {
             for (int x = 0; x < gridSize; x++)
@@ -73,30 +101,76 @@ public class LevelPainter : EditorWindow
                 Rect cellRect = new Rect(rect.x + x * pixelSize, rect.y + y * pixelSize, pixelSize, pixelSize);
                 EditorGUI.DrawRect(cellRect, palette.colors[gridData[x, y]].color);
 
-                if (Event.current.type == EventType.MouseDown && cellRect.Contains(Event.current.mousePosition))
+                if ((Event.current.type == EventType.MouseDown || Event.current.type == EventType.MouseDrag) && cellRect.Contains(Event.current.mousePosition))
                 {
                     gridData[x, y] = selectedColorIndex;
+                    Event.current.Use();
                     Repaint();
                 }
             }
         }
 
-        GUILayout.Space(gridSize * pixelSize + 10);
+        // Dibuja grilla
+        Handles.BeginGUI();
+        Handles.color = new Color(0, 0, 0, 0.3f);
+        for (int x = 0; x <= gridSize; x++)
+        {
+            float xPos = rect.x + x * pixelSize;
+            Handles.DrawLine(new Vector2(xPos, rect.y), new Vector2(xPos, rect.y + gridSize * pixelSize));
+        }
+        for (int y = 0; y <= gridSize; y++)
+        {
+            float yPos = rect.y + y * pixelSize;
+            Handles.DrawLine(new Vector2(rect.x, yPos), new Vector2(rect.x + gridSize * pixelSize, yPos));
+        }
+        Handles.EndGUI();
+
+        // Dibuja coordenadas
+        GUIStyle coordStyle = new GUIStyle(EditorStyles.label);
+        coordStyle.fontSize = 10;
+        coordStyle.normal.textColor = Color.black;
+
+        for (int x = 0; x < gridSize; x++)
+        {
+            float xPos = rect.x + x * pixelSize + pixelSize / 2f - 8;
+            GUI.Label(new Rect(xPos, rect.y - 20, 30, 20), x.ToString(), coordStyle);
+        }
+
+        for (int y = 0; y < gridSize; y++)
+        {
+            float yPos = rect.y + y * pixelSize + pixelSize / 2f - 8;
+            float xRight = rect.x + gridSize * pixelSize + 5;
+            GUI.Label(new Rect(xRight, yPos, 30, 20), y.ToString(), coordStyle);
+        }
+
+        // Muestra coordenadas del mouse
+        Vector2 localMouse = Event.current.mousePosition;
+        int hoveredX = (int)((localMouse.x - rect.x) / pixelSize);
+        int hoveredY = (int)((localMouse.y - rect.y) / pixelSize);
+        if (hoveredX >= 0 && hoveredX < gridSize && hoveredY >= 0 && hoveredY < gridSize)
+        {
+            GUI.Label(new Rect(localMouse.x + 10, localMouse.y, 100, 20), $"({hoveredX}, {hoveredY})", coordStyle);
+        }
+
+        EditorGUILayout.EndScrollView();
+
+        // Botones fuera del scroll
+        GUILayout.Space(10);
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Export PNG"))
-            ExportToPNG();
-        if (GUILayout.Button("Import PNG"))
-            ImportFromPNG();
+        if (GUILayout.Button("Export PNG")) ExportToPNG();
+        if (GUILayout.Button("Import PNG")) ImportFromPNG();
+        if (GUILayout.Button("Clear All")) ClearGrid();
+        if (GUILayout.Button("Paint Center Cross")) PaintCenterCross();
         GUILayout.EndHorizontal();
-        GUILayout.EndScrollView();
     }
+
 
     private void ExportToPNG()
     {
         Texture2D texture = new Texture2D(gridSize, gridSize);
         for (int x = 0; x < gridSize; x++)
             for (int y = 0; y < gridSize; y++)
-                texture.SetPixel(x, y, palette.colors[gridData[x, y]].color);
+                texture.SetPixel(x, y, palette.colors[gridData[x, gridSize - 1 - y]].color);
         texture.Apply();
 
         string path = EditorUtility.SaveFilePanel("Save Level Texture", "", "level.png", "png");
@@ -124,7 +198,7 @@ public class LevelPainter : EditorWindow
 
         for (int x = 0; x < gridSize; x++)
             for (int y = 0; y < gridSize; y++)
-                gridData[x, y] = FindClosestColorIndex(texture.GetPixel(x, y));
+                gridData[x, gridSize - 1 - y] = FindClosestColorIndex(texture.GetPixel(x, y));
 
         Repaint();
     }
