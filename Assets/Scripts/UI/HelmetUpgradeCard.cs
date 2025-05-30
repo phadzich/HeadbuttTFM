@@ -20,7 +20,7 @@ public class HelmetUpgradeCard : MonoBehaviour
         helmet = helmetI;
         helmetNameText.text = helmetI.baseHelmet.helmetName;
         helmetIcon.sprite = helmetI.baseHelmet.icon;
-        lvlTxt.text = "LVL " + helmetI.helmetXP.currentLevel + " -> " + "LVL " + helmetI.helmetXP.nextLevel;
+        lvlTxt.text = "EVO " + helmetI.helmetXP.currentLevel + " -> " + "EVO " + helmetI.helmetXP.nextLevel;
 
         SetResources(helmet.GetPriceForNextLevel());
     }
