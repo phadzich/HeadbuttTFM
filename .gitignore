@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Fonts/Gantari-Bold SDF.asset
+Assets/Fonts/Gantari-Light SDF.asset
+Assets/Fonts/Gantari-Medium SDF.asset

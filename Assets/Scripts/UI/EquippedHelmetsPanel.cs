@@ -14,17 +14,19 @@ public class EquippedHelmetsPanel : MonoBehaviour
             var newIndicatorUI = Instantiate(indicatorPrefab, indicatorsContainer);
             HelmetIndicator _indicator = newIndicatorUI.GetComponent<HelmetIndicator>();
             _indicator.SetupIndicator(_helmetInstance);
+
             equippedIndicators.Add(_indicator);
         }
     }
 
     public void UpdateHelmetInstanceInfo(HelmetInstance _instance)
     {
+        //Debug.Log("UpdateHelmetInstanceInfo");
         foreach (HelmetIndicator _helmetInidcator in equippedIndicators)
         {
             if(_helmetInidcator.helmetInstance == _instance)
             {
-                //Debug.Log($"Udpdating Helmet Indicator{_instanceId}");
+                //Debug.Log($"Udpdating Helmet Indicator{_instance.id}");
                 _helmetInidcator.UpdateIndicator();
             }
 
