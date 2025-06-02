@@ -128,6 +128,7 @@ public class LevelManager : MonoBehaviour
         sublevelsList[currentLevelDepth].gameObject.SetActive(false);
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
+        MatchManager.Instance.RestartMatches();
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
 
     }

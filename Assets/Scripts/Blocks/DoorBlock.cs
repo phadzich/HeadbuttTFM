@@ -38,15 +38,16 @@ public class DoorBlock : Block
         requiredBlocks = parentSublevel.blocksToComplete;
         isWalkable = true;
         sublevelPosition = new Vector2(_x, _y);
-        //Debug.Log(requiredResources);
         requirementsPanelUI.SetupPanel(requiredBlocks);
     }
 
     public void OnSublevelBlocksMined()
     {
+        Debug.Log("MINED HEARD");
         requirementsPanelUI.UpdateIndicators(parentSublevel.currentBlocksMined);
         if (!isOpen)
         {
+            Debug.Log("NOT OPEN");
             if (DoorRequirementsMet())
             {
                 IndicateOpen();
@@ -58,12 +59,12 @@ public class DoorBlock : Block
 
     public bool DoorRequirementsMet()
     {
-        if (parentSublevel.currentBlocksMined == requiredBlocks)
+        if (parentSublevel.currentBlocksMined >= requiredBlocks)
         {
-            //Debug.Log($"COMPLETE {parentSublevel.name}: {parentSublevel.currentBlocksMined}/{requiredBlocks}");
+            Debug.Log("DOOR MET");
             return true;
         }
-        //Debug.Log($"falta {parentSublevel.name}: {parentSublevel.currentBlocksMined}/{requiredBlocks}");
+
         return false;
     }
 

@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 public class MatchManager : MonoBehaviour
 {
     public static MatchManager Instance;
-    public bool lastBounceNeutral=true;
-    public bool lastBounceCombo;
+
     [Header("COMBO ACTUAL")]
     [SerializeField]
-    private List<ResourceBlock> hitBlocks;
-    public ResourceData currentComboResource;
-    public int currentComboCount;
-    public int currentComboRequirement;
+    private List<ResourceBlock> currentChainBlocks;
+    public ResourceData currentChainResource;
+    public ResourceData bouncedResource;
+    public ResourceBlock bouncedResourceBlock;
 
-    public int xpPerCombo = 10;
+    public int currentStreak;
+    public bool lastBounceChained;
 
     private void Awake()
     {
@@ -29,138 +29,198 @@ public class MatchManager : MonoBehaviour
         }
     }
 
-    public void ResetComboStats()
+    private void Start()
     {
-        currentComboResource = null;
-        currentComboCount = 0;
-        lastBounceNeutral = true;
+        RestartMatches();
     }
 
-    public void BouncedOnNeutralBlock()
+    public void RestartMatches()
     {
-        //Debug.Log("NEUTRAL BLOCK BOUNCE");
-        //SI NO VIENE DE UN SALTO NEUTRAL, VIENE DE UN RESOURCE. ROMPEMOS COMBO
-        if (!lastBounceNeutral)
+        EndStreak();
+        EndCurrentChain();
+
+    }
+    public void ResourceBounced(ResourceBlock _resBlock)
+    {
+        bouncedResourceBlock = _resBlock;
+        bouncedResource = bouncedResourceBlock.resourceData;
+        if (currentChainResource == null)
         {
-            if (!lastBounceCombo)
-            {
-                IncreaseDamageCount(1);
-            }
-            //Debug.Log("VIENE DE UN RESOURCE");
-            ClearAllHitBlocks();
-            currentComboResource = null;
-            currentComboRequirement = 0;
-            //Debug.Log("DAMAGE");
+            StartNewChain();
 
-
-            UIManager.Instance.currentMatchPanel.EndCurrentCombo();
-            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         }
         else
         {
-            //Debug.Log("VIENE DE OTRO NEUTRAL");
+            CompareChainResources();
         }
-        lastBounceNeutral = true;
     }
 
-    public void BouncedOnResourceBlock(ResourceData _resourceData, ResourceBlock _resourceBlock)
+    public void FloorBounced()
     {
-        //Debug.Log("RES BLOCK BOUNCE");
-        CheckIfNewCombo(_resourceData,_resourceBlock);
-        AddBlockToHitBlocks(_resourceBlock);
-    }
-
-    public void CheckIfNewCombo(ResourceData _resourceData, ResourceBlock _resourceBlock)
-    {
-        //SALTA SOBRE UN RECURSO DIFERENTE
-        if (currentComboResource != _resourceData)
+        bouncedResource = null;
+        bouncedResourceBlock = null;
+        EndStreak();
+        if (!lastBounceChained && currentChainResource != null)
         {
-            //Debug.Log("NEW RESBLOCK");
-            UIManager.Instance.currentMatchPanel.StartNewCombo(_resourceData,1);
-
-            ClearAllHitBlocks();
-            currentComboResource = _resourceData;
-            currentComboRequirement = _resourceData.hardness;
-            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
-            UIManager.Instance.remainingBlockIndicator.UpdateIndicator(_resourceData, _resourceData.hardness);
-            if (!lastBounceCombo&&!lastBounceNeutral)
-            {
-                //Debug.Log(lastBounceNeutral);
-                //Debug.Log("DAMAGE!");
-                IncreaseDamageCount(1);
-                UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
-            }
-            lastBounceNeutral = false;
-            lastBounceCombo = false;
+            FailCurrentChain();
         }
-
     }
 
-    public void CheckIfComboCompleted()
+    private void StartNewChain()
     {
-        if (currentComboCount == currentComboResource.hardness)
-        {
-            MineAllHitBlocks();
-            lastBounceCombo = true;
-            HelmetManager.Instance.currentHelmet.helmetXP.AddXP(xpPerCombo); //Sube el XP del casco cuando completa un combo
-            UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
-            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
-        }
+        //Debug.Log("New Chain Started");
 
+        currentChainBlocks.Add(bouncedResourceBlock);
+        currentChainResource = bouncedResource;
+        lastBounceChained = false;
+        UIManager.Instance.currentMatchPanel.StartNewCombo(currentChainResource,currentChainBlocks.Count);
+        UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
+        UIManager.Instance.remainingBlockIndicator.UpdateIndicator(bouncedResource, bouncedResource.hardness);
     }
 
-    public void AddBlockToHitBlocks(ResourceBlock _newBlock)
+    private void CompareChainResources()
     {
-        if (!hitBlocks.Contains(_newBlock))
+        if (bouncedResource != currentChainResource)
         {
-            hitBlocks.Add(_newBlock);
-
-            currentComboCount++;
-            UpdateComboBlockIndicator(currentComboRequirement - currentComboCount);
-            UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
-            UIManager.Instance.remainingBlockIndicator.UpdateIndicatorCount(currentComboRequirement - currentComboCount);
-            UIManager.Instance.currentMatchPanel.IncreaseCurrentCombo(currentComboCount);
+            FailCurrentChain();
+            StartNewChain();
         }
-        lastBounceCombo = false;
+        else
+        {
+            TryToAddToChain();
+        }
     }
 
-    public void UpdateComboBlockIndicator(int _comboDifference)
+    private void EndCurrentChain()
     {
-        foreach (ResourceBlock _block in hitBlocks)
-        {
-            _block.UpdateBounceIndicator(_comboDifference);
+        //Debug.Log("Ended Current Chain");
+        currentChainResource = null;
+        currentChainBlocks.Clear();
+        UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
+    }
+    private void FailCurrentChain()
+    {
+        //Debug.Log("Failed Current Chain");
+        HelmetManager.Instance.currentHelmet.TakeDamage(1);
+        UIManager.Instance.damageTakenIndicator.AnimateDamage();
+        ClearAllHitBlocks();
+        lastBounceChained = false;
+        EndStreak();
 
+        EndCurrentChain();
+
+        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
+        UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
+        UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
+
+    }
+
+    private void TryToAddToChain()
+    {
+        //Debug.Log("Trying to add to chain");
+        if (!currentChainBlocks.Contains(bouncedResourceBlock))
+        {
+            AddResBlockToChain();
         }
     }
 
+    private void AddResBlockToChain()
+    {
+
+        currentChainBlocks.Add(bouncedResourceBlock);
+        lastBounceChained = false;
+        bouncedResourceBlock.ShowHitIndicator(true);
+
+        //UI VISUALS
+        UIManager.Instance.remainingBlockIndicator.UpdateIndicatorCount(bouncedResource.hardness - currentChainBlocks.Count);
+        UIManager.Instance.currentMatchPanel.IncreaseCurrentCombo(currentChainBlocks.Count);
+
+        if (isChainCompleted())
+        {
+            CompleteCurrentChain();
+        }
+
+    }
+
+    private bool isChainCompleted()
+    {
+        if (currentChainBlocks.Count == currentChainResource.hardness)
+        {
+            lastBounceChained = true;
+            return true;
+        }
+        lastBounceChained = false;
+        return false;
+    }
+
+    private void CompleteCurrentChain()
+    {
+        //Debug.Log("Chain COMPLETED!");
+        RewardPlayer();
+        IncreaseStreak();
+
+        foreach (ResourceBlock _block in currentChainBlocks)
+        {
+            _block.Activate();
+        }
+        ClearAllHitBlocks();
+        EndCurrentChain();
+
+        UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
+        UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
+
+    }
     public void ClearAllHitBlocks()
     {
-        foreach (ResourceBlock _block in hitBlocks)
+        foreach (ResourceBlock _block in currentChainBlocks)
         {
             _block.ShowHitIndicator(false);
         }
-        hitBlocks.Clear();
-        //currentComboResource = null;
-        currentComboCount = 0;
-
+        currentChainBlocks.Clear();
+    }
+    private void RewardPlayer()
+    {
+        Debug.Log("Rewarding Player!");
+        RewardSublevelBlocks();
+        RewardResources();
+        RewardHelmetXP();
     }
 
-    public void MineAllHitBlocks()
+    private void IncreaseStreak()
     {
-        foreach (ResourceBlock _block in hitBlocks)
-        {
-            _block.Activate();
-
-        }
-        ClearAllHitBlocks();
+        //Debug.Log("Streak Increased");
+        currentStreak++;
     }
 
-    public void IncreaseDamageCount(int _damage)
+    private void EndStreak()
     {
+        //Debug.Log("Streak Restarted");
+        currentStreak =1;
+    }
 
-        HelmetManager.Instance.currentHelmet.TakeDamage();
-        UIManager.Instance.damageTakenIndicator.AnimateDamage();
+    private void RewardSublevelBlocks()
+    {
+        int _totalBlocks = currentChainBlocks.Count;
+        Debug.Log("REW Blocks " + _totalBlocks);
+        LevelManager.Instance.IncreaseMinedBlocks(_totalBlocks);
+    }
 
+    private void RewardResources()
+    {
+        int _totalRes = currentChainBlocks.Count * currentStreak;
+        Debug.Log("REW Resources " + _totalRes);
+        ResourceManager.Instance.AddResource(currentChainResource, _totalRes);
+    }
+
+    private void RewardHelmetXP()
+    {
+        int _totalXP = currentChainBlocks.Count * currentStreak;
+        Debug.Log("REW Helmet XP " + _totalXP);
+        HelmetManager.Instance.currentHelmet.helmetXP.AddXP(_totalXP);
+    }
+
+
+    /*
         if (HelmetManager.Instance.currentHelmet.isWornOut)
         {
             if (HelmetManager.Instance.HasHelmetsLeft)
@@ -173,6 +233,6 @@ public class MatchManager : MonoBehaviour
             }
 
         }
+    */
 
-    }
 }

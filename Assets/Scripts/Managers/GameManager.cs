@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartSublevelStats()
     {
-        MatchManager.Instance.ResetComboStats();
+        //MatchManager.Instance.ResetComboStats();
 
         HelmetManager.Instance.ResetHelmetsStats();
     }

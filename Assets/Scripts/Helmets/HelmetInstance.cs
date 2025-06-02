@@ -45,10 +45,10 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int _amount)
     {
         if (currentDurability > 0)
-            currentDurability--;
+            currentDurability-=_amount;
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         HelmetInstanceChanged?.Invoke(this);
     }

@@ -26,15 +26,17 @@ public class ResourceBlock : Block
     public TextMeshProUGUI remianingBouncesText;
     public GameObject resourceDropPrefab;
 
+    [Header("UI AND VFX")]
+    public ResourceBlockUIAnims uiAnims;
     private void Start()
     {
-
         impulseSource = GetComponent<CinemachineImpulseSource>();
         doorTriggerPrefab.SetActive(false);
     }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
     {
+        //Debug.Log(_resource);
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
@@ -42,6 +44,7 @@ public class ResourceBlock : Block
         InstanceResourceBlockMesh();
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         ShowHitIndicator(false);
+        uiAnims.resourceIcon.sprite = _resource.icon;
     }
 
     private void InstanceResourceBlockMesh()
@@ -59,14 +62,11 @@ public class ResourceBlock : Block
             ShowHitIndicator(true);
 
             //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
-            MatchManager.Instance.BouncedOnResourceBlock(resourceData, this);
-
-            //SI SE CUMPLE EL COMBO
-            MatchManager.Instance.CheckIfComboCompleted();
+            MatchManager.Instance.ResourceBounced(this);
         }
         else //SI YA ESTABA MINADO
         {
-            MatchManager.Instance.BouncedOnNeutralBlock();
+            MatchManager.Instance.FloorBounced();
         }
 
     }
@@ -78,9 +78,8 @@ public class ResourceBlock : Block
 
     public override void Activate()
     {
-        AddMinedResources();
-        LevelManager.Instance.IncreaseMinedBlocks(1);
-        XPManager.Instance.AddXP(resourceData.hardness);
+
+        //XPManager.Instance.AddXP(resourceData.hardness);
 
         // Spawn the correct resource prefab (linked in ResourceData)
         if (resourceData != null && resourceData.resourceDropPrefab != null)
@@ -91,7 +90,7 @@ public class ResourceBlock : Block
         GetMinedState();
         ScreenShake();
         MinedAnimation();
-
+        uiAnims.AnimateResourceRewards(MatchManager.Instance.currentStreak-1);
     }
 
     private void MinedAnimation()
@@ -117,21 +116,11 @@ public class ResourceBlock : Block
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
     }
 
-
-    private void AddMinedResources()
-    {
-        ResourceManager.Instance.AddResource(resourceData, 1);
-    }
-
     public void ShowHitIndicator(bool _visible)
     {
         hitIndicatorPF.SetActive(_visible);
     }
 
-    public void UpdateBounceIndicator(int _number)
-    {
-        remianingBouncesText.text = _number.ToString();
-    }
 
     void AnimateBounced()
     {
