@@ -23,16 +23,21 @@ public class SublevelMapGenerator : MonoBehaviour
     int currentDepth;
 
     public Dictionary<Vector2Int, Block> currentBlocks = new();
-
+    [Header("LEVEL")]
     public GameObject clearBlockPrefab;
-    public GameObject resourceBlockPrefab;
-    public GameObject wallBlockPrefab;
     public GameObject floorBlockPrefab;
+    public GameObject wallBlockPrefab;
+    [Header("MINING")]
+    public GameObject resourceBlockPrefab;
     public GameObject doorBlockPrefab;
+    [Header("DAMAGE")]
     public GameObject puasBlockPrefab;
     public GameObject lavaBlockPrefab;
     public GameObject ballBlockPrefab;
-
+    [Header("NPC")]
+    public GameObject npcDoorPrefab;
+    public GameObject npcCraftPrefab;
+    public GameObject npcElevatorPrefab;
     private void Start()
     {
         //GenerateSublevel(this.transform, testMap);
@@ -89,7 +94,7 @@ public class SublevelMapGenerator : MonoBehaviour
             Color _pixelColor = mapTexture.GetPixel(_x, _y);
 
 
-            if (_pixelColor.a == 0)
+        if (_pixelColor.a == 0)
             {
                 return null;
             }
@@ -99,6 +104,7 @@ public class SublevelMapGenerator : MonoBehaviour
 
             if (_color.color==_pixelColor)
                 {
+                
                 return GetBlockFromString(_color.blockString);
             }
             }
@@ -114,6 +120,7 @@ public class SublevelMapGenerator : MonoBehaviour
 
     GameObject GetBlockFromString (string _blockString)
     {
+
         var _stringParts = _blockString.Split('_');
         string _blockType = _stringParts[0];
         string _blockID = _stringParts[1];
@@ -127,6 +134,8 @@ public class SublevelMapGenerator : MonoBehaviour
                 return ConfigLVLBlock(_blockID);
             case "DMG":
                 return ConfigDMGBlock(_blockID);
+            case "NPC":
+                return ConfigNPCBlock(_blockID);
         }
         return null;
     }
@@ -167,7 +176,30 @@ public class SublevelMapGenerator : MonoBehaviour
         }
         return _bloque;
     }
-
+    GameObject ConfigNPCBlock(string _blockID)
+    {
+        GameObject _bloque = null;
+        switch (_blockID)
+        {
+            case "CRAFT":
+                _bloque = Instantiate(npcCraftPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                NPCBlock _npcCraftBlock = _bloque.GetComponent<NPCBlock>();
+                _npcCraftBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "ELEVATOR":
+                _bloque = Instantiate(npcElevatorPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                NPCBlock _npcElevatorBlock = _bloque.GetComponent<NPCBlock>();
+                _npcElevatorBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "DOOR":
+                _bloque = Instantiate(npcDoorPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                NPCBlock _npcDoorBlock = _bloque.GetComponent<NPCBlock>();
+                _npcDoorBlock.SetupBlock(currentDepth, currentX, currentY);
+                _npcDoorBlock.isWalkable= true;
+                break;
+        }
+        return _bloque;
+    }
     GameObject ConfigDMGBlock(string _blockID)
     {
         GameObject _bloque = null;

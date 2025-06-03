@@ -50,6 +50,16 @@ public class HelmetInstance
         if (currentDurability > 0)
             currentDurability-=_amount;
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+
+            if (HelmetManager.Instance.currentHelmet.isWornOut)
+            {
+            PlayerManager.Instance.RemovePlayerLives(1);
+                if (HelmetManager.Instance.HasHelmetsLeft)
+                {
+                    HelmetManager.Instance.WearNextAvailableHelmet();
+                }
+            }
+
         HelmetInstanceChanged?.Invoke(this);
     }
 

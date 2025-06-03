@@ -44,10 +44,17 @@ public class HelmetManager : MonoBehaviour
         }
 
         // PRUEBA SOLO PARA TENER HELMETS
-        InitializeOwnedHelmets();
+        //InitializeOwnedHelmets();
+
     }
 
     //FUNCION DE PRUEBA PARA PROTOTIPO
+
+    private void Start()
+    {
+        InitializeOwnedHelmets();
+    }
+
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
@@ -59,7 +66,7 @@ public class HelmetManager : MonoBehaviour
         onHelmetsEquipped?.Invoke(helmetsEquipped);
 
         WearHelmet(helmetsEquipped[helmetIndex]);
-
+        PlayerManager.Instance.MaxUpLives();
     }
 
     // Función para desbloquear un casco, es decir que a partir de un blueprint se crea el casco
@@ -83,6 +90,7 @@ public class HelmetManager : MonoBehaviour
         if(helmetsEquipped.Count < maxEquippedHelmets)
         {
             helmetsEquipped.Add(helmet);
+            PlayerManager.Instance.AddMaxLives(1);
         } else
         {
             Debug.Log("No hay mas espacio para cascos");

@@ -103,17 +103,13 @@ public class LevelManager : MonoBehaviour
             _sublevel.SetMiningObjectives(_miningSublevel.blocksToComplete);
 
             sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth);
-
-
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            //GenerateNPCSublevel(_npcSublevel, _sublevelContainer);
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth);
         }
 
-
     }
-
 
     void PrintStringDictionaryContents(Dictionary<ResourceData, int> _dictionary) 
     {

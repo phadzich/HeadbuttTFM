@@ -220,19 +220,4 @@ public class MatchManager : MonoBehaviour
     }
 
 
-    /*
-        if (HelmetManager.Instance.currentHelmet.isWornOut)
-        {
-            if (HelmetManager.Instance.HasHelmetsLeft)
-            {
-                HelmetManager.Instance.WearNextAvailableHelmet();
-            }
-            else
-            {
-                SceneManager.LoadScene("SampleScene");
-            }
-
-        }
-    */
-
 }

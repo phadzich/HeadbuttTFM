@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -11,7 +12,10 @@ public class PlayerManager : MonoBehaviour
     public PlayerAnimations playerAnimations;
     public PlayerBounce playerBounce;
     //public PlayerHeadbutt playerHeadbutt;
+    public int maxPlayerLives;
+    public int currentPlayerLives;
 
+    public Action<int, int> PlayerLivesChanged;
 
 
     private void Awake()
@@ -26,6 +30,31 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void MaxUpLives()
+    {
+        currentPlayerLives = maxPlayerLives;
+        PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
+    }
+
+    public void AddMaxLives(int _amount)
+    {
+        maxPlayerLives += _amount;
+        PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
+    }
+
+    public void AddPlayerLives(int _amount)
+    {
+        currentPlayerLives += _amount;
+        PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
+    }
+
+    public void RemovePlayerLives(int _amount)
+    {
+        currentPlayerLives -= _amount;
+        PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
+    }
+
 
     public void EnterMiningLevel()
     {

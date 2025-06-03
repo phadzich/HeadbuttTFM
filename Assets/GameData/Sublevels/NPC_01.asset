@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
-  m_Name: NPC_A_BLACKSMITH
+  m_Name: NPC_01
   m_EditorClassIdentifier: 
-  id: 2
+  id: NPC 01
   NPCtype: 1
-  width: 9
-  height: 9
+  sublevel2DMap: {fileID: 2800000, guid: 00ce1ce30bb8b204a83c79c1142362db, type: 3}
