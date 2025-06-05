@@ -9020,7 +9020,7 @@ MonoBehaviour:
   wallBlockPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
   doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
-  puasBlockPrefab: {fileID: 8090959518607110755, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  slimeBlockPrefab: {fileID: 8090959518607110755, guid: 4a57cbbbd6b8bb94bb387ebea7c12c89, type: 3}
   lavaBlockPrefab: {fileID: 8090959518607110755, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
   ballBlockPrefab: {fileID: 8090959518607110755, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
   npcDoorPrefab: {fileID: 8090959518607110755, guid: ffe2bafb2017e7148b7243dcf9846410, type: 3}

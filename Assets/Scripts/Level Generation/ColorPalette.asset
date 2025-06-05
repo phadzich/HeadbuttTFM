@@ -36,7 +36,7 @@ MonoBehaviour:
   - color: {r: 1, g: 0, b: 1, a: 1}
     blockString: RES_07_DEF
   - color: {r: 1, g: 0, b: 0, a: 1}
-    blockString: DMG_PUAS_X
+    blockString: DMG_SLIME_X
   - color: {r: 1, g: 0.5254902, b: 0, a: 1}
     blockString: DMG_LAVA_X
   - color: {r: 0.67058825, g: 0, b: 0, a: 1}
