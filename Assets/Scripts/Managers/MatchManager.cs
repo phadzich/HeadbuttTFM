@@ -31,6 +31,7 @@ public class MatchManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("MatchManager START");
         RestartMatches();
     }
 
@@ -102,7 +103,7 @@ public class MatchManager : MonoBehaviour
     {
         //Debug.Log("Failed Current Chain");
         HelmetManager.Instance.currentHelmet.TakeDamage(1);
-        UIManager.Instance.damageTakenIndicator.AnimateDamage();
+        //UIManager.Instance.damageTakenIndicator.AnimateDamage();
         ClearAllHitBlocks();
         lastBounceChained = false;
         EndStreak();
@@ -180,7 +181,7 @@ public class MatchManager : MonoBehaviour
     }
     private void RewardPlayer()
     {
-        Debug.Log("Rewarding Player!");
+        //Debug.Log("Rewarding Player!");
         RewardSublevelBlocks();
         RewardResources();
         RewardHelmetXP();
@@ -201,21 +202,21 @@ public class MatchManager : MonoBehaviour
     private void RewardSublevelBlocks()
     {
         int _totalBlocks = currentChainBlocks.Count;
-        Debug.Log("REW Blocks " + _totalBlocks);
+        //Debug.Log("REW Blocks " + _totalBlocks);
         LevelManager.Instance.IncreaseMinedBlocks(_totalBlocks);
     }
 
     private void RewardResources()
     {
         int _totalRes = currentChainBlocks.Count * currentStreak;
-        Debug.Log("REW Resources " + _totalRes);
+        //Debug.Log("REW Resources " + _totalRes);
         ResourceManager.Instance.AddResource(currentChainResource, _totalRes);
     }
 
     private void RewardHelmetXP()
     {
         int _totalXP = currentChainBlocks.Count * currentStreak;
-        Debug.Log("REW Helmet XP " + _totalXP);
+        //Debug.Log("REW Helmet XP " + _totalXP);
         HelmetManager.Instance.currentHelmet.helmetXP.AddXP(_totalXP);
     }
 

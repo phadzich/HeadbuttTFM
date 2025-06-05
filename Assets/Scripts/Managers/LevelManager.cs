@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("LevelManager START");
         //CARGAMOS EL PRIMER NIVEL
         LoadLevel(levelsList[0]);
     }
@@ -121,6 +122,12 @@ public class LevelManager : MonoBehaviour
 
     public void ExitSublevel()
     {
+        if (sublevelsList[currentLevelDepth].isTotallyMined)
+        {
+            HelmetManager.Instance.ResetHelmetsStats();
+            PlayerManager.Instance.MaxUpLives();
+            UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
+        }
         sublevelsList[currentLevelDepth].gameObject.SetActive(false);
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);

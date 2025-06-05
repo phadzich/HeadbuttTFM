@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     //public PlayerHeadbutt playerHeadbutt;
     public int maxPlayerLives;
     public int currentPlayerLives;
-
+    public DamageTakenIndicator damageTakenIndicator;
     public Action<int, int> PlayerLivesChanged;
 
 
@@ -31,6 +32,10 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Debug.Log("PlayerManager START");
+    }
     public void MaxUpLives()
     {
         currentPlayerLives = maxPlayerLives;
@@ -53,6 +58,10 @@ public class PlayerManager : MonoBehaviour
     {
         currentPlayerLives -= _amount;
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
+        if (currentPlayerLives <= 0)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
 

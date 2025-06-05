@@ -43,11 +43,11 @@ public class DoorBlock : Block
 
     public void OnSublevelBlocksMined()
     {
-        Debug.Log("MINED HEARD");
+        //Debug.Log("MINED HEARD");
         requirementsPanelUI.UpdateIndicators(parentSublevel.currentBlocksMined);
         if (!isOpen)
         {
-            Debug.Log("NOT OPEN");
+            //Debug.Log("NOT OPEN");
             if (DoorRequirementsMet())
             {
                 IndicateOpen();
@@ -61,7 +61,7 @@ public class DoorBlock : Block
     {
         if (parentSublevel.currentBlocksMined >= requiredBlocks)
         {
-            Debug.Log("DOOR MET");
+            //Debug.Log("DOOR MET");
             return true;
         }
 

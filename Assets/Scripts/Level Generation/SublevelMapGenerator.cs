@@ -50,6 +50,7 @@ public class SublevelMapGenerator : MonoBehaviour
         sublevelContainer = _parentTransform;
         currentDepth = _depth;
         InstanceAllBlocks(mapWidth, mapHeight);
+
     }
 
     void InstanceAllBlocks(int _width, int _height)
@@ -147,7 +148,7 @@ public class SublevelMapGenerator : MonoBehaviour
         ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();
         _resourceBlock.SetupBlock(0, currentX, currentY, _resourceData);
         _bloque.name = $"{_resourceBlock.resourceData.shortName}_c{currentX}r_{currentY}";
-
+        LevelManager.Instance.sublevelsList[currentDepth].maxResourceBlocks++;
         return _bloque;
     }
     GameObject ConfigLVLBlock(string _blockID)

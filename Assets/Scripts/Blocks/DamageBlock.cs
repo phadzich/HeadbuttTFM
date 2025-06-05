@@ -24,6 +24,7 @@ public class DamageBlock : Block
 
     public override void Bounce()
     {
+        DoDamage();
     }
 
     public override void Headbutt()
@@ -39,6 +40,10 @@ public class DamageBlock : Block
     public void DoDamage()
     {
         Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
+        if(typeOfDamage== damageType.Durability)
+        {
+            HelmetManager.Instance.currentHelmet.TakeDamage(damage);
+        }
         ScreenShake();
     }
 
@@ -50,7 +55,7 @@ public class DamageBlock : Block
     public enum damageType
     {
         Resources,
-        Bounces,
+        Durability,
         Headbutts
     }
 }

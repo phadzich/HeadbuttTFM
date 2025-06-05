@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     {
         //MatchManager.Instance.ResetComboStats();
 
-        HelmetManager.Instance.ResetHelmetsStats();
+        //HelmetManager.Instance.ResetHelmetsStats();
     }
 
     public void PauseGame(bool _isPaused)

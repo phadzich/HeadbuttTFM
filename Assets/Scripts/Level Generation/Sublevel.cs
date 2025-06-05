@@ -8,7 +8,10 @@ public class Sublevel : MonoBehaviour {
     public SublevelConfig config;
 
     public int currentBlocksMined;
+    public int maxResourceBlocks;
+    public bool isTotallyMined => currentBlocksMined == maxResourceBlocks;
     public int blocksToComplete;
+
 
     public void SetupSublevel (string _id, int _depth, bool _isActive, SublevelConfig _config)
     {
