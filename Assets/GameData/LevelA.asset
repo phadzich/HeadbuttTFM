@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60746830329ae014d946ba33d508659d, type: 3}
   m_Name: LevelA
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
   levelName: Level A
   levelDescription: Nivel de testeo
   subLevels:
