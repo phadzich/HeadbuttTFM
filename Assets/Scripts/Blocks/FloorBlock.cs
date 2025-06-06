@@ -18,7 +18,7 @@ public class FloorBlock : Block
 
     public override void Bounce()
     {
-        MatchManager.Instance.BouncedOnNeutralBlock();
+        MatchManager.Instance.FloorBounced();
 
     }
 

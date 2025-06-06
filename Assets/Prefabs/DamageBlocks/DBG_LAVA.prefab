@@ -5047,11 +5047,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
+  isWalkable: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
   typeOfDamage: 1
-  damage: 20
+  damage: 2
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 3486571716503860580}
   damageParticles: {fileID: 1241805286537262801}
+  impulseSource: {fileID: 0}
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

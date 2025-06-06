@@ -32,7 +32,7 @@ public class ResourceManager : MonoBehaviour
 
     private void Start()
     {
-
+        Debug.Log("LevelManager START");
         onOwnedResourcesChanged?.Invoke();
     }
 

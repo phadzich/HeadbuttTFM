@@ -31,13 +31,13 @@ public class HelmetXP
 
     public void AddXP(int amount)
     {
-        Debug.Log("XP " + IsReadyToLevelUp + "Current sublevel " + currentSublevel);
-        Debug.Log("XP for next " + XPForNextSublevel());
+        //Debug.Log("XP " + IsReadyToLevelUp + "Current sublevel " + currentSublevel);
+        //Debug.Log("XP for next " + XPForNextSublevel());
         // Si ya puede subir el nivel del casco deja de de subir experiencia
         if (IsReadyToLevelUp) return;
 
         currentXP += amount;
-        Debug.Log("XP UPDATE:" + currentXP);
+        //Debug.Log("XP UPDATE:" + currentXP);
         while (currentXP >= XPForNextSublevel())
         {
             currentXP -= XPForNextSublevel();
@@ -62,7 +62,7 @@ public class HelmetXP
     {
         currentLevel++;
         currentSublevel = 1; // reiniciamos los sublevels
-        Debug.Log("�Subiste a nivel " + currentLevel + "!");
+        //Debug.Log("�Subiste a nivel " + currentLevel + "!");
         LeveledUp?.Invoke(currentLevel);
     }
 

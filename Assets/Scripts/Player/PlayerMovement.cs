@@ -158,17 +158,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Knockback(Vector3 direction)
     {
-        // Normaliza y convierte a pasos de bloque
-        direction = new Vector3(
-            Mathf.RoundToInt(Mathf.Sign(direction.x)),
+        Debug.Log($"NewDirection: {direction}");
+        Vector3 alignedPosition = new Vector3(
+            Mathf.Round(transform.position.x),
             0,
-            Mathf.RoundToInt(Mathf.Sign(direction.z))
+            Mathf.Round(transform.position.z)
         );
-
-        Vector3 newPosition = transform.position + direction;
-
-        // Aquí usas tu sistema de movimiento actual
-        // Si tienes un método MoveToPosition(), lo llamas así:
+        Vector3 newPosition = alignedPosition + direction;
+        Debug.Log($"Knockback position: {newPosition}");
         ChangePositionTarget(newPosition);
     }
 }

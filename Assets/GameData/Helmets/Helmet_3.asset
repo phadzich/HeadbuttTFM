@@ -28,8 +28,8 @@ MonoBehaviour:
       quantity: 15
     - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
       quantity: 20
-  durability: 2
-  headbutts: 4
+  durability: 4
+  headbutts: 8
   helmetEffect: 0
   baseXP: 70
   xpMultiplier: 1.4

@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("LevelManager START");
         //CARGAMOS EL PRIMER NIVEL
         LoadLevel(levelsList[0]);
     }
@@ -103,17 +104,13 @@ public class LevelManager : MonoBehaviour
             _sublevel.SetMiningObjectives(_miningSublevel.blocksToComplete);
 
             sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth);
-
-
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            //GenerateNPCSublevel(_npcSublevel, _sublevelContainer);
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth);
         }
 
-
     }
-
 
     void PrintStringDictionaryContents(Dictionary<ResourceData, int> _dictionary) 
     {
@@ -125,9 +122,16 @@ public class LevelManager : MonoBehaviour
 
     public void ExitSublevel()
     {
+        if (sublevelsList[currentLevelDepth].isTotallyMined)
+        {
+            HelmetManager.Instance.ResetHelmetsStats();
+            PlayerManager.Instance.MaxUpLives();
+            UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
+        }
         sublevelsList[currentLevelDepth].gameObject.SetActive(false);
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
+        MatchManager.Instance.RestartMatches();
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
 
     }

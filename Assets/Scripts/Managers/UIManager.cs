@@ -9,8 +9,8 @@ public class UIManager : MonoBehaviour
     // WIP, HAY QUE CREAR EVENTOS Y SUSCRIBIRNOS A ELLOS
 
 
-    public EquippedHelmetsPanel equippedHelmetsPanel;
-    public HeadbuttsPanel headbuttsPanel;
+    public CurrentHelmetHUD currentHelmetHUD;
+
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     public CurrentMatchPanel currentMatchPanel;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
-    public DamageTakenIndicator damageTakenIndicator;
+
 
     public TextMeshProUGUI totalBouncesTXT;
 
@@ -40,46 +40,54 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("UIManager START");
         //POR AHORA HARDCODED
-        headbuttsPanel.UpdateUsedHeadbutts(HelmetManager.Instance.helmetsEquipped[0]);
+        //headbuttsPanel.UpdateUsedHeadbutts(HelmetManager.Instance.helmetsEquipped[0]);
 
-        equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
-        equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
+        //equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
+        //equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
 
         //craftButton.SetActive(false);
     }
 
     private void OnEnable()
     {
-        HelmetManager.Instance.onHelmetsEquipped += OnHelmetsEquipped;
-        //HelmetManager.Instance.onHelmetInstanceDataChanged += OnHelmetInstanceDataChanged;
-        SuscribeToHelmetInstances();
+        Debug.Log("UIManager ENABLED");
+
+        //HELMET EVENTS
+        HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
+
+        //XP EVENTS
         XPManager.Instance.XPChanged += OnXPChanged;
         XPManager.Instance.LeveledUp += OnLevelUp;
+
+        //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
+
+        //PLAYER EVENTS
+        PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
     }
     private void OnDisable()
     {
-        HelmetManager.Instance.onHelmetsEquipped -= OnHelmetsEquipped;
-        //HelmetManager.Instance.onHelmetInstanceDataChanged -= OnHelmetInstanceDataChanged;
-        UnsuscribeToHelmetInstances();
+        HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
+        PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
     }
 
     private void SuscribeToHelmetInstances()
     {
-        foreach(HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        UnsuscribeToHelmetInstances();
+        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
             _helmInstance.helmetXP.XPChanged += OnHelmetXPChanged;
             OnHelmetInstanceDataChanged(_helmInstance);
-            //OnHelmetXPChanged(_helmInstance.helmetXP, _helmInstance);
         }
     }
 
@@ -95,7 +103,7 @@ public class UIManager : MonoBehaviour
     private void OnHelmetXPChanged(HelmetXP _xpComp, HelmetInstance _instance)
     {
         Debug.Log("OnHelmetXPChanged");
-        equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
+        currentHelmetHUD.UpdateLVLInfo(_instance);
     }
 
     private void OnXPChanged(int _current, int _max)
@@ -111,7 +119,6 @@ public class UIManager : MonoBehaviour
 
     private void OnSublevelEntered()
     {
-        Debug.Log($"UPDATING PANL");
         sublevelPanel.UpdateSublevel();
     }
 
@@ -120,48 +127,26 @@ public class UIManager : MonoBehaviour
         sublevelPanel.UpdateGoals();
     }
 
-    private void OnHelmetsEquipped(List<HelmetInstance> _helmetList)
+    private void OnHelmetEquipped(HelmetInstance _helmInstance)
     {
-        equippedHelmetsPanel.InstanceEquippedIndicators(_helmetList);
+        currentHelmetHUD.EquipHelmet(_helmInstance);
+        SuscribeToHelmetInstances();
     }
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        //Debug.Log("INSTANCE DATA CHANGED"+ _instance.id);
-            equippedHelmetsPanel.UpdateHelmetInstanceInfo(_instance);
-
-        if(_instance == HelmetManager.Instance.currentHelmet)
-        {
-            if (_instance.maxHeadbutts > 0)
-            {
-                headbuttsPanel.UpdateUsedHeadbutts(_instance);
-            }
-        }
-
-        //SOLO SI CAMBIARON LOS BOUNCES, UPDATE
-        if(totalBouncesTXT.text != CalculateTotalBounces().ToString())
-        {
-            livesPanel.UpdateLivesInfo(CalculateTotalBounces());
-        };
+        currentHelmetHUD.UpdateCurrentHelmetStats();
 
     }
 
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
-        equippedHelmetsPanel.UpdateWearingHelmet(_instance);
-        headbuttsPanel.UpdateUsedHeadbutts(_instance);
-
+        currentHelmetHUD.WearNewHelmet(_instance);
     }
 
-    int CalculateTotalBounces()
+
+    private void OnPlayerLivesChanged(int _current, int _max)
     {
-        int addedBounces = 0;
-        foreach(HelmetInstance _helmetInstance in HelmetManager.Instance.helmetsEquipped)
-        {
-            addedBounces += _helmetInstance.currentDurability;
-        }
-
-        return addedBounces;
+        livesPanel.UpdateLivesInfo(_current);
     }
-
 }

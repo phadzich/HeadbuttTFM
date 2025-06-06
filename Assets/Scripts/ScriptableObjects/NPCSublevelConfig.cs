@@ -7,7 +7,7 @@ using UnityEngine;
 public class NPCSublevelConfig : SublevelConfig
 {
     public NPCType NPCtype;
-
+    public Texture2D sublevel2DMap;
 
     public enum NPCType
     {

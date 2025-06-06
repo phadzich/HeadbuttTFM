@@ -45,11 +45,21 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int _amount)
     {
         if (currentDurability > 0)
-            currentDurability--;
+            currentDurability-=_amount;
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+        PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
+            if (HelmetManager.Instance.currentHelmet.isWornOut)
+            {
+            PlayerManager.Instance.RemovePlayerLives(1);
+                if (HelmetManager.Instance.HasHelmetsLeft)
+                {
+                    HelmetManager.Instance.WearNextAvailableHelmet();
+                }
+            }
+
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -121,6 +131,7 @@ public class HelmetInstance
                 }
                 break;
         }
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public void UpgradeStatsByLevel(int currentLevel)
