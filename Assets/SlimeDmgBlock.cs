@@ -30,11 +30,11 @@ public class SlimeDmgBlock : DamageBlock
                 Vector2 delta = dir.sublevelPosition - PlayerManager.Instance.playerMovement.blockBelow.sublevelPosition;
                 Vector2 currentPos = PlayerManager.Instance.playerMovement.blockBelow.sublevelPosition;
                 newDirection = GetCardinalDirection(delta);
-                Debug.Log(dir);
+                //Debug.Log(dir);
                 break;
             }
         }
-        Debug.Log(newDirection);
+        //Debug.Log(newDirection);
         PlayerManager.Instance.playerMovement.Knockback(newDirection);
     }
     Vector3 GetCardinalDirection(Vector2 delta)

@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetXPChanged(HelmetXP _xpComp, HelmetInstance _instance)
     {
-        Debug.Log("OnHelmetXPChanged");
+        //Debug.Log("OnHelmetXPChanged");
         currentHelmetHUD.UpdateLVLInfo(_instance);
     }
 

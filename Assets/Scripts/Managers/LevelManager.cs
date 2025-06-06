@@ -146,8 +146,12 @@ public class LevelManager : MonoBehaviour
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            PlayerManager.Instance.EnterNPCLevel();
             //ENTRAR A ESTADO CHECKPOINT
+            PlayerManager.Instance.EnterNPCLevel();
+            HelmetManager.Instance.ResetHelmetsStats();
+            PlayerManager.Instance.MaxUpLives();
+            UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
+
         }
 
         //CARGAMOS EL SIGUIENTE
