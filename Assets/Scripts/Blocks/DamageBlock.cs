@@ -39,7 +39,7 @@ public class DamageBlock : Block
 
     public void DoDamage()
     {
-        Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
+        //Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
         if(typeOfDamage== damageType.Durability)
         {
             HelmetManager.Instance.currentHelmet.TakeDamage(damage);

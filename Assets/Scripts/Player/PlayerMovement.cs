@@ -158,14 +158,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Knockback(Vector3 direction)
     {
-        Debug.Log($"NewDirection: {direction}");
+        //Debug.Log($"NewDirection: {direction}");
         Vector3 alignedPosition = new Vector3(
             Mathf.Round(transform.position.x),
             0,
             Mathf.Round(transform.position.z)
         );
         Vector3 newPosition = alignedPosition + direction;
-        Debug.Log($"Knockback position: {newPosition}");
+        //Debug.Log($"Knockback position: {newPosition}");
         ChangePositionTarget(newPosition);
     }
 }

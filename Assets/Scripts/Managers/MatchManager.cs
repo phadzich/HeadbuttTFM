@@ -76,7 +76,7 @@ public class MatchManager : MonoBehaviour
         lastBounceChained = false;
         UIManager.Instance.currentMatchPanel.StartNewCombo(currentChainResource,currentChainBlocks.Count);
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
-        UIManager.Instance.remainingBlockIndicator.UpdateIndicator(bouncedResource, bouncedResource.hardness);
+        UIManager.Instance.remainingBlockIndicator.UpdateIndicator(bouncedResource, bouncedResource.hardness-1);
     }
 
     private void CompareChainResources()

@@ -9,7 +9,7 @@ public class RemainingBlocksIndicator : MonoBehaviour
 
     private void Start()
     {
-        ToggleIndicator(false);
+        //ToggleIndicator(false);
     }
     public void UpdateIndicator(ResourceData _resource, int _remaining)
     {
@@ -25,6 +25,7 @@ public class RemainingBlocksIndicator : MonoBehaviour
 
     public void ToggleIndicator(bool _visible)
     {
+        //Debug.Log(_visible);
         this.gameObject.SetActive(_visible);
     }
 }
