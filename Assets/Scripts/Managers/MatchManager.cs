@@ -104,6 +104,7 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("Failed Current Chain");
         HelmetManager.Instance.currentHelmet.TakeDamage(1);
         //UIManager.Instance.damageTakenIndicator.AnimateDamage();
+        FlashFailedBlocks();
         ClearAllHitBlocks();
         lastBounceChained = false;
         EndStreak();
@@ -114,6 +115,14 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
+    }
+
+    public void FlashFailedBlocks()
+    {
+        foreach (var block in currentChainBlocks)
+        {
+            block.AnimateFailed();
+        }
     }
 
     private void TryToAddToChain()

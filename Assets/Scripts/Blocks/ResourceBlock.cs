@@ -110,7 +110,7 @@ public class ResourceBlock : Block
         resourceData = null;
         ShowHitIndicator(false);
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
-
+        AnimateMined();
         //TRANSFORM, LUEGO DEBE SER ANIMADO
         blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .2f, blockMeshParent.localScale.z);
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
@@ -125,6 +125,15 @@ public class ResourceBlock : Block
     void AnimateBounced()
     {
         Tween.Scale(blockMesh.transform, startValue: new Vector3(1.2f, .8f, 1.2f), endValue: new Vector3(1, 1, 1), duration: .5f, ease: Ease.OutBack);
+    }
+
+    public void AnimateFailed()
+    {
+        StartCoroutine(uiAnims.FlashBlock(blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material, Color.red)); // o Color.red
+    }
+    public void AnimateMined()
+    {
+        StartCoroutine(uiAnims.FlashBlock(blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material, Color.white)); // o Color.red
     }
 
 }
