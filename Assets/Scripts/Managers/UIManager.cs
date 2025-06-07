@@ -147,6 +147,6 @@ public class UIManager : MonoBehaviour
 
     private void OnPlayerLivesChanged(int _current, int _max)
     {
-        livesPanel.UpdateLivesInfo(_current);
+        //livesPanel.UpdateLivesInfo(_current);
     }
 }

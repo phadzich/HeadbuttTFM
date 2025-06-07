@@ -61,6 +61,7 @@ public class MatchManager : MonoBehaviour
         bouncedResource = null;
         bouncedResourceBlock = null;
         EndStreak();
+        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         if (!lastBounceChained && currentChainResource != null)
         {
             FailCurrentChain();
@@ -113,7 +114,7 @@ public class MatchManager : MonoBehaviour
 
         UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
-        UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
+        //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
     }
 
