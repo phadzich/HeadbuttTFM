@@ -53,10 +53,7 @@ public class CraftingManager : MonoBehaviour
         }
 
         // Actualiza la informacion del casco como el efecto, elemento, xp
-        _helmet.helmetXP.Evolve(_blueprint.baseXP, _blueprint.xpMultiplier);
-        _helmet.UpdateHelmetEffect(_blueprint.effect);
-        _helmet.UpdateHelmetElement(_blueprint.element);
-        _helmet.UpdateInfo(_blueprint.helmetInfo);
+        _helmet.Evolve(_blueprint);
 
         HelmetUpgraded?.Invoke();
     }
