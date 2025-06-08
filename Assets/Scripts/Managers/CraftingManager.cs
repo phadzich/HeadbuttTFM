@@ -24,26 +24,55 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    public List<HelmetBlueprint> GetAvailableBlueprints()
+    public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
     {
-        Dictionary<ResourceData, int> playerResources = ResourceManager.Instance.ownedResources;
-        List<HelmetBlueprint> availableBlueprints = new();
+        unlockedBlueprints.Add(_helmetBP);
+    }
 
-        foreach (var blueprint in blueprints)
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementEnum _element)
+    {
+        List<HelmetBlueprint> blueprintsByElement = new();
+
+        foreach(var blueprint in unlockedBlueprints)
         {
-            if (blueprint.CanCraft(playerResources))
+            if(blueprint.element == _element)
             {
-                availableBlueprints.Add(blueprint);
+                blueprintsByElement.Add(blueprint);
             }
         }
 
-        return availableBlueprints;
-
+        return blueprintsByElement;
     }
 
     //Llamar cuando se quiera upgradear un casco
-    public void UpgradeHelmet(HelmetInstance helmet)
+    public void UpgradeHelmet(HelmetInstance _helmet, HelmetBlueprint _blueprint)
     {
+        foreach (var res in _blueprint.requiredResources)
+        {
+            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
+        }
 
+        // Actualiza la informacion del casco como el efecto, elemento, xp
+        _helmet.helmetXP.Evolve(_blueprint.baseXP, _blueprint.xpMultiplier);
+        _helmet.UpdateHelmetEffect(_blueprint.effect);
+        _helmet.UpdateHelmetElement(_blueprint.element);
+        _helmet.UpdateInfo(_blueprint.helmetInfo);
+
+        HelmetUpgraded?.Invoke();
+    }
+
+    public bool HasEnoughResources(HelmetBlueprint _blueprint) {
+
+        // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
+        foreach (var res in _blueprint.requiredResources)
+        {
+            if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
+            {
+                Debug.Log("NO HAY SUFICIENTES RECURSOS");
+                return false;
+            }
+        }
+
+        return true;
     }
 }

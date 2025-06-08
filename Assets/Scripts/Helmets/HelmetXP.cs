@@ -18,8 +18,8 @@ public class HelmetXP
     public bool CanEvolve => IsReadyToEvolve && !IsEvolveToMax; //Checa si el casco puede ser upgradeado tomando en cuenta lo anterior
 
     public Action<HelmetXP, HelmetInstance> XPChanged;
-    public Action<int> SubleveledUp;
     public Action<int> LeveledUp;
+    public Action<int> HelmetEvolved;
 
     public HelmetXP(int _baseXP, float _ogXPMult,HelmetInstance _instanceRef)
     {
@@ -53,15 +53,19 @@ public class HelmetXP
     public void SublevelUp()
     {
         currentLevel++;
-        SubleveledUp?.Invoke(currentLevel);
+        LeveledUp?.Invoke(currentLevel);
     }
 
-    public void Evolve()
+    public void Evolve(int _baseXP, float _xpMultiplier)
     {
         currentEvolution++;
         currentLevel = 1; // reiniciamos los sublevels
-        //Debug.Log("�Subiste a nivel " + currentLevel + "!");
-        LeveledUp?.Invoke(currentEvolution);
+
+        //Le asignamos la nueva base de XP y el multiplier
+        baseRequiredXP = _baseXP;
+        xpMultiplier = _xpMultiplier;
+
+        HelmetEvolved?.Invoke(currentEvolution);
     }
 
 }

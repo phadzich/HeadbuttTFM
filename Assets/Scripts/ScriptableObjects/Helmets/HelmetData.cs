@@ -6,7 +6,7 @@ public class HelmetData : ScriptableObject
 {
     [Header("Info and aesthetic")]
     public string id;
-    [SerializeField] public HelmetInfo helmetInfo;
+    [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
 
     [Header("Stats")]
     public int durability;

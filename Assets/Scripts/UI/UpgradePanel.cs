@@ -13,7 +13,7 @@ public class UpgradePanel : MonoBehaviour
 
     private int currentPage = 0;
 
-    private List<HelmetInstance> helmetsToUpgrade => HelmetManager.Instance.GetHelmetsReadyToLevelUp();
+    private List<HelmetInstance> helmetsToUpgrade => HelmetManager.Instance.GetHelmetsReadyToEvolve();
 
     private void OnEnable()
     {

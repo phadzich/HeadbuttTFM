@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HelmetBlueprint", menuName = "GameData/HelmetBlueprint")]
 public class HelmetBlueprint : ScriptableObject
 {
-    [SerializeField] public HelmetInfo helmetInfo;
+    [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
     public EffectTypeEnum effect;
     public ElementEnum element;
     public bool isOvercharged;

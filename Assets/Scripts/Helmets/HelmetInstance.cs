@@ -7,7 +7,7 @@ public class HelmetInstance
 {
     //Helmet info
     public string id;
-    public HelmetInfo currentInfo;
+    public HelmetInfo currentInfo = new HelmetInfo();
 
     //Helmet Stats
     public int maxHeadbutts;
@@ -32,11 +32,7 @@ public class HelmetInstance
     public HelmetInstance(HelmetData _helmetSO)
     {
         id = Guid.NewGuid().ToString();
-        currentInfo.mesh = _helmetSO.helmetInfo.mesh;
-        currentInfo.icon = _helmetSO.helmetInfo.icon;
-        currentInfo.color = _helmetSO.helmetInfo.color;
-        currentInfo.description = _helmetSO.helmetInfo.description;
-        currentInfo.name = _helmetSO.helmetInfo.name;
+        currentInfo = _helmetSO.helmetInfo.Copy();
 
         //Stats
         currentDurability = _helmetSO.durability;
@@ -86,42 +82,66 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void UpgradeDurability(int quantity)
+    /* Funciones para hacer upgrade a los stats y modificar la info del casco*/
+
+    public void UpgradeDurability(int _quantity)
     {
-        durability += quantity;
+        durability += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeHeadbutt(int quantity)
+    public void UpgradeHeadbutt(int _quantity)
     {
-        maxHeadbutts += quantity;
+        maxHeadbutts += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeBounceHeight(float quantity)
+    public void UpgradeBounceHeight(float _quantity)
     {
-        bounceHeight += quantity;
+        bounceHeight += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeHeadBForce(int quantity)
+    public void UpgradeHeadBForce(int _quantity)
     {
-        headBForce += quantity;
+        headBForce += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeHeadBCooldown(float quantity)
+    public void UpgradeHeadBCooldown(float _quantity)
     {
-        headBCooldown += quantity;
+        headBCooldown += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeKnockbackChance(int quantity)
+    public void UpgradeKnockbackChance(int _quantity)
     {
-        knockbackChance += quantity;
+        knockbackChance += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
 
+    public void UpdateInfo(HelmetInfo _newInfo)
+    {
+        currentInfo = _newInfo.Copy();
+    }
+
+    public void UpdateHelmetEffect(EffectTypeEnum _effect)
+    {
+        helmetEffect = _effect;
+    }
+
+    public void UpdateHelmetElement(ElementEnum _element)
+    {
+        helmetElement = _element;
+    }
+
+    public void Evolve(HelmetBlueprint _blueprint)
+    {
+        helmetXP.Evolve(_blueprint.baseXP, _blueprint.xpMultiplier);
+        UpdateHelmetEffect(_blueprint.effect);
+        UpdateHelmetElement(_blueprint.element);
+        UpdateInfo(_blueprint.helmetInfo);
+    }
 
 }

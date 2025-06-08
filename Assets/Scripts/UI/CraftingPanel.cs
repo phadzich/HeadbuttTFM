@@ -19,7 +19,7 @@ public class CraftingPanel : MonoBehaviour
     public int jumpQuantity = 3;
     public int headbuttQuantity = 2;
 
-    private List<HelmetBlueprint> availableBlueprints => CraftingManager.Instance.GetAvailableBlueprints();
+    private List<HelmetBlueprint> availableBlueprints = new();
 
     private void OnEnable()
     {

@@ -57,8 +57,8 @@ public class HelmetManager : MonoBehaviour
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
-        UnlockHelmet(allHelmets[1]);
-        UnlockHelmet(allHelmets[2]);
+        UnlockHelmet(allHelmets[0]);
+        UnlockHelmet(allHelmets[0]);
         EquipHelmet(helmetsOwned[0]);
         EquipHelmet(helmetsOwned[1]);
         EquipHelmet(helmetsOwned[2]);
@@ -85,7 +85,7 @@ public class HelmetManager : MonoBehaviour
     // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
     public void EquipHelmet(HelmetInstance helmet)
     {
-        if(helmetsEquipped.Count < maxEquippedHelmets)
+        if (helmetsEquipped.Count < maxEquippedHelmets)
         {
             helmetsEquipped.Add(helmet);
             onHelmetEquipped?.Invoke(helmet);
@@ -94,7 +94,7 @@ public class HelmetManager : MonoBehaviour
         {
             Debug.Log("No hay mas espacio para cascos");
         }
-       
+
     }
 
     // Función para USAR un casco 
@@ -114,7 +114,7 @@ public class HelmetManager : MonoBehaviour
     }
 
     // Obtiene los cascos que estan listos y pueden subir de nivel
-    public List<HelmetInstance> GetHelmetsReadyToLevelUp()
+    public List<HelmetInstance> GetHelmetsReadyToEvolve()
     {
         return helmetsOwned.Where(h => h.helmetXP.CanEvolve).ToList();
     }
