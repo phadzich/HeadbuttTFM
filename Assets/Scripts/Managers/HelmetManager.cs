@@ -69,12 +69,12 @@ public class HelmetManager : MonoBehaviour
     }
 
     // Función para desbloquear un casco, es decir que a partir de un blueprint se crea el casco
-    public void UnlockHelmet(HelmetData helmet)
+    public void UnlockHelmet(HelmetData _helmet)
     {
         if (helmetsOwned.Count < maxOwnHelmets)
         {
-            HelmetInstance current = new HelmetInstance(helmet);
-            helmetsOwned.Add(current);
+            HelmetInstance _current = new HelmetInstance(_helmet);
+            helmetsOwned.Add(_current);
         }
         else
         {
@@ -83,12 +83,12 @@ public class HelmetManager : MonoBehaviour
     }
 
     // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
-    public void EquipHelmet(HelmetInstance helmet)
+    public void EquipHelmet(HelmetInstance _helmet)
     {
         if (helmetsEquipped.Count < maxEquippedHelmets)
         {
-            helmetsEquipped.Add(helmet);
-            onHelmetEquipped?.Invoke(helmet);
+            helmetsEquipped.Add(_helmet);
+            onHelmetEquipped?.Invoke(_helmet);
             PlayerManager.Instance.AddMaxLives(1);
         } else
         {
@@ -98,18 +98,18 @@ public class HelmetManager : MonoBehaviour
     }
 
     // Función para USAR un casco 
-    public void WearHelmet(HelmetInstance helmet) {
-        currentHelmet = helmet;
-        currentMesh.SetHelmetMesh(helmet.currentInfo.mesh);
-        onWearHelmetChanged?.Invoke(helmet);
+    public void WearHelmet(HelmetInstance _helmet) {
+        currentHelmet = _helmet;
+        currentMesh.SetHelmetMesh(_helmet.currentInfo.mesh);
+        onWearHelmetChanged?.Invoke(_helmet);
     }
 
     //Reseta los stats de los cascos equipados
     public void ResetHelmetsStats()
     {
-        foreach (HelmetInstance helmet in helmetsEquipped)
+        foreach (HelmetInstance _helmet in helmetsEquipped)
         {
-            helmet.ResetStats();
+            _helmet.ResetStats();
         }
     }
 
@@ -152,14 +152,14 @@ public class HelmetManager : MonoBehaviour
 
     public void WearNextAvailableHelmet()
     {
-        int ogIndex = helmetIndex;
+        int _ogIndex = helmetIndex;
 
         do
         {
             NextIndex();
-        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != ogIndex);
+        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != _ogIndex);
 
-        if (helmetIndex == ogIndex) return;
+        if (helmetIndex == _ogIndex) return;
        
 
         WearHelmet(helmetsEquipped[helmetIndex]);
@@ -170,14 +170,14 @@ public class HelmetManager : MonoBehaviour
 
     public void WearPrevAvailableHelmet()
     {
-        int ogIndex = helmetIndex;
+        int _ogIndex = helmetIndex;
 
         do
         {
             PreviousIndex();
-        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != ogIndex);
+        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != _ogIndex);
 
-        if (helmetIndex == ogIndex) return;
+        if (helmetIndex == _ogIndex) return;
 
         WearHelmet(helmetsEquipped[helmetIndex]);
 
