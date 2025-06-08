@@ -18,11 +18,11 @@ public class HelmetUpgradeCard : MonoBehaviour
     public void SetUp(HelmetInstance helmetI)
     {
         helmet = helmetI;
-        helmetNameText.text = helmetI.baseHelmet.helmetName;
-        helmetIcon.sprite = helmetI.baseHelmet.icon;
-        lvlTxt.text = "EVO " + helmetI.helmetXP.currentLevel + " -> " + "EVO " + helmetI.helmetXP.nextLevel;
+        helmetNameText.text = helmetI.currentInfo.name;
+        helmetIcon.sprite = helmetI.currentInfo.icon;
+        lvlTxt.text = "EVO " + helmetI.helmetXP.currentEvolution + " -> " + "EVO " + helmetI.helmetXP.nextEvolution;
 
-        SetResources(helmet.GetPriceForNextLevel());
+        //SetResources(helmet.GetPriceForNextLevel());
     }
 
     // Crea los prefabs que muestran la cantidad de recursos

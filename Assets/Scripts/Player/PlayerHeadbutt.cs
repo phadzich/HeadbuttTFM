@@ -55,7 +55,7 @@ public class PlayerHeadbutt : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             if (!headbuttOnCooldown &&
-                HelmetManager.Instance.currentHelmet.hasHeadbutts() &&
+                HelmetManager.Instance.currentHelmet.HasHeadbutts &&
                 PlayerManager.Instance.playerMovement.blockBelow != null)
             {
                 HeadbuttUp();

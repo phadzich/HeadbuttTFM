@@ -17,8 +17,8 @@ public class HelmetBluprintUI : MonoBehaviour
     public void SetUp(HelmetBlueprint blueprint)
     {
         helmet = blueprint;
-        blueprintNameText.text = blueprint.recipeName;
-        blueprintIcon.sprite = blueprint.resultHelmet.icon;
+        blueprintNameText.text = blueprint.helmetInfo.name;
+        blueprintIcon.sprite = blueprint.helmetInfo.icon;
 
         SetResources(blueprint.requiredResources);
     }
@@ -45,6 +45,6 @@ public class HelmetBluprintUI : MonoBehaviour
             ResourceManager.Instance.SpendResource(res.resource, res.quantity);
         }
 
-        HelmetManager.Instance.UnlockHelmet(helmet.resultHelmet);
+        //HelmetManager.Instance.UnlockHelmet(helmet.resultHelmet);
     }
 }

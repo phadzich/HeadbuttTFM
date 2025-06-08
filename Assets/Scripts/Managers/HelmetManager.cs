@@ -13,12 +13,11 @@ public class HelmetManager : MonoBehaviour
     public List<HelmetData> allHelmets;
     public List<HelmetInstance> helmetsOwned = new();
     public List<HelmetInstance> helmetsEquipped = new();
-    public HashSet<HelmetData> unlockedHelmets = new HashSet<HelmetData>();
 
     [Header("Stats")]
     public int maxEquippedHelmets = 3;
     public int maxOwnHelmets = 10;
-    public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
+    public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.IsWornOut) >= 1;
 
     [Header("CURRENT HELMET")]
     public HelmetInstance currentHelmet;
@@ -48,14 +47,13 @@ public class HelmetManager : MonoBehaviour
 
     }
 
-    //FUNCION DE PRUEBA PARA PROTOTIPO
-
     private void Start()
     {
         Debug.Log("HelmetManager START");
         InitializeOwnedHelmets();
     }
 
+    //FUNCION DE PRUEBA PARA PROTOTIPO
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
@@ -77,7 +75,6 @@ public class HelmetManager : MonoBehaviour
         {
             HelmetInstance current = new HelmetInstance(helmet);
             helmetsOwned.Add(current);
-            unlockedHelmets.Add(helmet);
         }
         else
         {
@@ -103,7 +100,7 @@ public class HelmetManager : MonoBehaviour
     // Función para USAR un casco 
     public void WearHelmet(HelmetInstance helmet) {
         currentHelmet = helmet;
-        currentMesh.SetHelmetMesh(helmet.currentMesh);
+        currentMesh.SetHelmetMesh(helmet.currentInfo.mesh);
         onWearHelmetChanged?.Invoke(helmet);
     }
 
@@ -119,7 +116,7 @@ public class HelmetManager : MonoBehaviour
     // Obtiene los cascos que estan listos y pueden subir de nivel
     public List<HelmetInstance> GetHelmetsReadyToLevelUp()
     {
-        return helmetsOwned.Where(h => h.helmetXP.CanLevelUp).ToList();
+        return helmetsOwned.Where(h => h.helmetXP.CanEvolve).ToList();
     }
 
 
@@ -160,7 +157,7 @@ public class HelmetManager : MonoBehaviour
         do
         {
             NextIndex();
-        } while (helmetsEquipped[helmetIndex].isWornOut & helmetIndex != ogIndex);
+        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != ogIndex);
 
         if (helmetIndex == ogIndex) return;
        
@@ -178,7 +175,7 @@ public class HelmetManager : MonoBehaviour
         do
         {
             PreviousIndex();
-        } while (helmetsEquipped[helmetIndex].isWornOut & helmetIndex != ogIndex);
+        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != ogIndex);
 
         if (helmetIndex == ogIndex) return;
 

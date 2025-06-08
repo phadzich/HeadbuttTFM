@@ -41,7 +41,7 @@ public class CurrentHelmetHUD : MonoBehaviour
         //UNWEAR o DISABLE EL ANTERIOR
         if (_prevCounter != null)
         {
-            if (_prevHelmet.isWornOut)
+            if (_prevHelmet.IsWornOut)
             {
                 _prevCounter.WornOut();
             }
@@ -55,10 +55,10 @@ public class CurrentHelmetHUD : MonoBehaviour
 
         //WEAR EL NUEVO
         currentHelmetInstance = _helmIntance;
-        currentIcon.sprite = _helmIntance.baseHelmet.icon;
-        currentCooldownSlider.sprite = _helmIntance.baseHelmet.icon;
-        currentLevelTXT.text = $"LVL. {_helmIntance.helmetXP.currentSublevel}";
-        currentLevelSlider.fillAmount = (float)_helmIntance.helmetXP.currentXP / (float)_helmIntance.helmetXP.XPForNextSublevel();
+        currentIcon.sprite = _helmIntance.currentInfo.icon;
+        currentCooldownSlider.sprite = _helmIntance.currentInfo.icon;
+        currentLevelTXT.text = $"LVL. {_helmIntance.helmetXP.currentLevel}";
+        currentLevelSlider.fillAmount = (float)_helmIntance.helmetXP.currentXP / (float)_helmIntance.helmetXP.XPForNextLevel();
         FindCounterByInstance(_helmIntance).WearHelmet();
         InstanceNewStatsCounter();
     }
@@ -77,8 +77,8 @@ public class CurrentHelmetHUD : MonoBehaviour
 
     public void UpdateLVLInfo(HelmetInstance _helmInstance)
     {
-        currentLevelTXT.text = $"LVL. {_helmInstance.helmetXP.currentSublevel}";
-        currentLevelSlider.fillAmount = (float)_helmInstance.helmetXP.currentXP / (float)_helmInstance.helmetXP.XPForNextSublevel();
+        currentLevelTXT.text = $"LVL. {_helmInstance.helmetXP.currentLevel}";
+        currentLevelSlider.fillAmount = (float)_helmInstance.helmetXP.currentXP / (float)_helmInstance.helmetXP.XPForNextLevel();
     }
     public void UpdateCurrentHelmetStats()
     {
