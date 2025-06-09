@@ -24,13 +24,23 @@ public class CraftingPanel : MonoBehaviour
     private void OnEnable()
     {
 
-        UpdateHelmetList();
-        CraftingManager.Instance.HelmetSelected += 
+        LoadMainPage();
+        CraftingManager.Instance.HelmetSelected += ShowBlueprintPanel;
+        CraftingManager.Instance.HelmetEvolved += LoadMainPage;
 
     }
 
     private void OnDisable()
     {
+        CraftingManager.Instance.HelmetSelected -= ShowBlueprintPanel;
+        CraftingManager.Instance.HelmetEvolved -= LoadMainPage;
+    }
+
+    private void LoadMainPage()
+    {
+        helmetListContainer.SetActive(true);
+        blueprintListContainer.SetActive(false);
+        UpdateHelmetList();
     }
 
     /* Funciones del panel de HELMETS */
@@ -76,7 +86,7 @@ public class CraftingPanel : MonoBehaviour
             if (index >= availableHelmets.Count) break;
 
             HelmetInstance helmet = availableHelmets[index];
-            Instantiate(helmetUIPrefab, helmetListContainer.transform).GetComponent<HelmetUpgradeCard>().SetUp(helmet);
+            Instantiate(helmetUIPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(helmet);
         }
     }
 
@@ -105,6 +115,8 @@ public class CraftingPanel : MonoBehaviour
     {
         helmetListContainer.SetActive(false);
         blueprintListContainer.SetActive(true);
+        pagesButtons.SetActive(false);
+        UpdateBPList();
     }
 
     private void UpdateBPList()

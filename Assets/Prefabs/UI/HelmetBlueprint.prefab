@@ -651,5 +651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprintNameText: {fileID: 2880665588728162218}
   blueprintIcon: {fileID: 2125476917035613390}
+  craftBtn: {fileID: 5209492295116993819}
   resourceListContainer: {fileID: 7453230636213052585}
   resourceIndicatorPrefab: {fileID: 959469811146737447, guid: b107edc7c9e30804f93be7ba0cf49b4c, type: 3}

@@ -19,12 +19,12 @@ public class UpgradePanel : MonoBehaviour
     {
 
         UpdateList();
-        CraftingManager.Instance.HelmetUpgraded += UpdateList;
+        CraftingManager.Instance.HelmetEvolved += UpdateList;
     }
 
     private void OnDisable()
     {
-        CraftingManager.Instance.HelmetUpgraded -= UpdateList;
+        CraftingManager.Instance.HelmetEvolved -= UpdateList;
     }
 
     private void UpdateList()
@@ -68,7 +68,7 @@ public class UpgradePanel : MonoBehaviour
             if (index >= helmetsToUpgrade.Count) break;
 
             HelmetInstance helmet = helmetsToUpgrade[index];
-            Instantiate(upgradeCardUIPrefab, upgradeCardsContainer).GetComponent<HelmetUpgradeCard>().SetUp(helmet);
+            Instantiate(upgradeCardUIPrefab, upgradeCardsContainer).GetComponent<HelmetCard>().SetUp(helmet);
         }
     }
 

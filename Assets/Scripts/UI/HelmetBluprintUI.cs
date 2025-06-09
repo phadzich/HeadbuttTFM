@@ -52,6 +52,6 @@ public class HelmetBluprintUI : MonoBehaviour
     // Cuando el jugador da click en Craft, se desbloquea el casco y los recursos se gastan, la lista se actualiza por medio del evento onOwnedResourcesChanged
     public void OnClickCraftingBtn()
     {
-        CraftingManager.Instance.UpgradeHelmet(blueprint);
+        CraftingManager.Instance.EvolveHelmet(blueprint);
     }
 }

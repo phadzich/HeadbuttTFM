@@ -910,6 +910,124 @@ MonoBehaviour:
     headBForce: 0
     headBCooldown: 0
     knockbackChance: 0
+    helmetXP:
+      currentEvolution: 0
+      currentLevel: 0
+      currentXP: 0
+      baseRequiredXP: 0
+      xpMultiplier: 0
+      helmetInstanceRef:
+        id: 
+        currentInfo:
+          name: 
+          description: 
+          mesh: {fileID: 0}
+          icon: {fileID: 0}
+          color: {r: 0, g: 0, b: 0, a: 0}
+          rarity: 0
+        maxHeadbutts: 0
+        durability: 0
+        bounceHeight: 0
+        headBForce: 0
+        headBCooldown: 0
+        knockbackChance: 0
+        helmetXP:
+          currentEvolution: 0
+          currentLevel: 0
+          currentXP: 0
+          baseRequiredXP: 0
+          xpMultiplier: 0
+          helmetInstanceRef:
+            id: 
+            currentInfo:
+              name: 
+              description: 
+              mesh: {fileID: 0}
+              icon: {fileID: 0}
+              color: {r: 0, g: 0, b: 0, a: 0}
+              rarity: 0
+            maxHeadbutts: 0
+            durability: 0
+            bounceHeight: 0
+            headBForce: 0
+            headBCooldown: 0
+            knockbackChance: 0
+            helmetXP:
+              currentEvolution: 0
+              currentLevel: 0
+              currentXP: 0
+              baseRequiredXP: 0
+              xpMultiplier: 0
+              helmetInstanceRef:
+                id: 
+                currentInfo:
+                  name: 
+                  description: 
+                  mesh: {fileID: 0}
+                  icon: {fileID: 0}
+                  color: {r: 0, g: 0, b: 0, a: 0}
+                  rarity: 0
+                maxHeadbutts: 0
+                durability: 0
+                bounceHeight: 0
+                headBForce: 0
+                headBCooldown: 0
+                knockbackChance: 0
+                helmetXP:
+                  currentEvolution: 0
+                  currentLevel: 0
+                  currentXP: 0
+                  baseRequiredXP: 0
+                  xpMultiplier: 0
+                  helmetInstanceRef:
+                    id: 
+                    currentInfo:
+                      name: 
+                      description: 
+                      mesh: {fileID: 0}
+                      icon: {fileID: 0}
+                      color: {r: 0, g: 0, b: 0, a: 0}
+                      rarity: 0
+                    maxHeadbutts: 0
+                    durability: 0
+                    bounceHeight: 0
+                    headBForce: 0
+                    headBCooldown: 0
+                    knockbackChance: 0
+                    helmetXP:
+                      currentEvolution: 0
+                      currentLevel: 0
+                      currentXP: 0
+                      baseRequiredXP: 0
+                      xpMultiplier: 0
+                      helmetInstanceRef:
+                        id: 
+                        maxHeadbutts: 0
+                        durability: 0
+                        bounceHeight: 0
+                        headBForce: 0
+                        headBCooldown: 0
+                        knockbackChance: 0
+                        helmetEffect: 0
+                        helmetElement: 0
+                        currentDurability: 0
+                        remainingHeadbutts: 0
+                    helmetEffect: 0
+                    helmetElement: 0
+                    currentDurability: 0
+                    remainingHeadbutts: 0
+                helmetEffect: 0
+                helmetElement: 0
+                currentDurability: 0
+                remainingHeadbutts: 0
+            helmetEffect: 0
+            helmetElement: 0
+            currentDurability: 0
+            remainingHeadbutts: 0
+        helmetEffect: 0
+        helmetElement: 0
+        currentDurability: 0
+        remainingHeadbutts: 0
     helmetEffect: 0
     helmetElement: 0
     currentDurability: 0
@@ -2721,7 +2839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NO TIENES LOS SUFICIENTES RECURSOS
+  m_text: NO HAY CASCOS CON EL NIVEL SUFICIENTE PARA EVOLUCIONAR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cb39532a54e2af4285a4b0e3d92ca9c, type: 2}
   m_sharedMaterial: {fileID: -3854039104245858854, guid: 3cb39532a54e2af4285a4b0e3d92ca9c, type: 2}
@@ -2864,12 +2982,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueprints:
-  - {fileID: 11400000, guid: 0a57a16332469456393a41cf72c642f4, type: 2}
-  - {fileID: 11400000, guid: 5be10d057091547af8bdee08defbda04, type: 2}
-  - {fileID: 11400000, guid: f0a963690a1a1421a8b558da2f8f5367, type: 2}
-  - {fileID: 11400000, guid: 858c6eaac93c54ae4b0867fb46268465, type: 2}
-  - {fileID: 11400000, guid: 064178f4eda4a46899bc69bb8fb95283, type: 2}
-  - {fileID: 11400000, guid: aef8549bd51cc47acac44b378876e06c, type: 2}
+  - {fileID: 11400000, guid: b10f917df68ad4b22a9b0922b5c64d31, type: 2}
+  - {fileID: 11400000, guid: 95e00971eafe748c19a04d0d92c7fbe1, type: 2}
   selectedHelmet:
     id: 
     currentInfo:
@@ -2885,6 +2999,124 @@ MonoBehaviour:
     headBForce: 0
     headBCooldown: 0
     knockbackChance: 0
+    helmetXP:
+      currentEvolution: 0
+      currentLevel: 0
+      currentXP: 0
+      baseRequiredXP: 0
+      xpMultiplier: 0
+      helmetInstanceRef:
+        id: 
+        currentInfo:
+          name: 
+          description: 
+          mesh: {fileID: 0}
+          icon: {fileID: 0}
+          color: {r: 0, g: 0, b: 0, a: 0}
+          rarity: 0
+        maxHeadbutts: 0
+        durability: 0
+        bounceHeight: 0
+        headBForce: 0
+        headBCooldown: 0
+        knockbackChance: 0
+        helmetXP:
+          currentEvolution: 0
+          currentLevel: 0
+          currentXP: 0
+          baseRequiredXP: 0
+          xpMultiplier: 0
+          helmetInstanceRef:
+            id: 
+            currentInfo:
+              name: 
+              description: 
+              mesh: {fileID: 0}
+              icon: {fileID: 0}
+              color: {r: 0, g: 0, b: 0, a: 0}
+              rarity: 0
+            maxHeadbutts: 0
+            durability: 0
+            bounceHeight: 0
+            headBForce: 0
+            headBCooldown: 0
+            knockbackChance: 0
+            helmetXP:
+              currentEvolution: 0
+              currentLevel: 0
+              currentXP: 0
+              baseRequiredXP: 0
+              xpMultiplier: 0
+              helmetInstanceRef:
+                id: 
+                currentInfo:
+                  name: 
+                  description: 
+                  mesh: {fileID: 0}
+                  icon: {fileID: 0}
+                  color: {r: 0, g: 0, b: 0, a: 0}
+                  rarity: 0
+                maxHeadbutts: 0
+                durability: 0
+                bounceHeight: 0
+                headBForce: 0
+                headBCooldown: 0
+                knockbackChance: 0
+                helmetXP:
+                  currentEvolution: 0
+                  currentLevel: 0
+                  currentXP: 0
+                  baseRequiredXP: 0
+                  xpMultiplier: 0
+                  helmetInstanceRef:
+                    id: 
+                    currentInfo:
+                      name: 
+                      description: 
+                      mesh: {fileID: 0}
+                      icon: {fileID: 0}
+                      color: {r: 0, g: 0, b: 0, a: 0}
+                      rarity: 0
+                    maxHeadbutts: 0
+                    durability: 0
+                    bounceHeight: 0
+                    headBForce: 0
+                    headBCooldown: 0
+                    knockbackChance: 0
+                    helmetXP:
+                      currentEvolution: 0
+                      currentLevel: 0
+                      currentXP: 0
+                      baseRequiredXP: 0
+                      xpMultiplier: 0
+                      helmetInstanceRef:
+                        id: 
+                        maxHeadbutts: 0
+                        durability: 0
+                        bounceHeight: 0
+                        headBForce: 0
+                        headBCooldown: 0
+                        knockbackChance: 0
+                        helmetEffect: 0
+                        helmetElement: 0
+                        currentDurability: 0
+                        remainingHeadbutts: 0
+                    helmetEffect: 0
+                    helmetElement: 0
+                    currentDurability: 0
+                    remainingHeadbutts: 0
+                helmetEffect: 0
+                helmetElement: 0
+                currentDurability: 0
+                remainingHeadbutts: 0
+            helmetEffect: 0
+            helmetElement: 0
+            currentDurability: 0
+            remainingHeadbutts: 0
+        helmetEffect: 0
+        helmetElement: 0
+        currentDurability: 0
+        remainingHeadbutts: 0
     helmetEffect: 0
     helmetElement: 0
     currentDurability: 0
@@ -6728,7 +6960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1244828962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6816,8 +7048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helmetUIPrefab: {fileID: 5049575914752835320, guid: 6280bdd9d200148d58a6a8c2a88ba619, type: 3}
   blueprintUIPrefab: {fileID: 8900020519587195785, guid: dca622d8eb243457da052c7b2fe0c29f, type: 3}
-  helmetListContainer: {fileID: 304942957}
-  blueprintListContainer: {fileID: 841796440}
+  helmetListContainer: {fileID: 304942956}
+  blueprintListContainer: {fileID: 841796439}
   pagesButtons: {fileID: 929765258}
   EmptyListText: {fileID: 520312872}
   itemsPerPage: 3
@@ -11179,6 +11411,124 @@ MonoBehaviour:
     headBForce: 0
     headBCooldown: 0
     knockbackChance: 0
+    helmetXP:
+      currentEvolution: 0
+      currentLevel: 0
+      currentXP: 0
+      baseRequiredXP: 0
+      xpMultiplier: 0
+      helmetInstanceRef:
+        id: 
+        currentInfo:
+          name: 
+          description: 
+          mesh: {fileID: 0}
+          icon: {fileID: 0}
+          color: {r: 0, g: 0, b: 0, a: 0}
+          rarity: 0
+        maxHeadbutts: 0
+        durability: 0
+        bounceHeight: 0
+        headBForce: 0
+        headBCooldown: 0
+        knockbackChance: 0
+        helmetXP:
+          currentEvolution: 0
+          currentLevel: 0
+          currentXP: 0
+          baseRequiredXP: 0
+          xpMultiplier: 0
+          helmetInstanceRef:
+            id: 
+            currentInfo:
+              name: 
+              description: 
+              mesh: {fileID: 0}
+              icon: {fileID: 0}
+              color: {r: 0, g: 0, b: 0, a: 0}
+              rarity: 0
+            maxHeadbutts: 0
+            durability: 0
+            bounceHeight: 0
+            headBForce: 0
+            headBCooldown: 0
+            knockbackChance: 0
+            helmetXP:
+              currentEvolution: 0
+              currentLevel: 0
+              currentXP: 0
+              baseRequiredXP: 0
+              xpMultiplier: 0
+              helmetInstanceRef:
+                id: 
+                currentInfo:
+                  name: 
+                  description: 
+                  mesh: {fileID: 0}
+                  icon: {fileID: 0}
+                  color: {r: 0, g: 0, b: 0, a: 0}
+                  rarity: 0
+                maxHeadbutts: 0
+                durability: 0
+                bounceHeight: 0
+                headBForce: 0
+                headBCooldown: 0
+                knockbackChance: 0
+                helmetXP:
+                  currentEvolution: 0
+                  currentLevel: 0
+                  currentXP: 0
+                  baseRequiredXP: 0
+                  xpMultiplier: 0
+                  helmetInstanceRef:
+                    id: 
+                    currentInfo:
+                      name: 
+                      description: 
+                      mesh: {fileID: 0}
+                      icon: {fileID: 0}
+                      color: {r: 0, g: 0, b: 0, a: 0}
+                      rarity: 0
+                    maxHeadbutts: 0
+                    durability: 0
+                    bounceHeight: 0
+                    headBForce: 0
+                    headBCooldown: 0
+                    knockbackChance: 0
+                    helmetXP:
+                      currentEvolution: 0
+                      currentLevel: 0
+                      currentXP: 0
+                      baseRequiredXP: 0
+                      xpMultiplier: 0
+                      helmetInstanceRef:
+                        id: 
+                        maxHeadbutts: 0
+                        durability: 0
+                        bounceHeight: 0
+                        headBForce: 0
+                        headBCooldown: 0
+                        knockbackChance: 0
+                        helmetEffect: 0
+                        helmetElement: 0
+                        currentDurability: 0
+                        remainingHeadbutts: 0
+                    helmetEffect: 0
+                    helmetElement: 0
+                    currentDurability: 0
+                    remainingHeadbutts: 0
+                helmetEffect: 0
+                helmetElement: 0
+                currentDurability: 0
+                remainingHeadbutts: 0
+            helmetEffect: 0
+            helmetElement: 0
+            currentDurability: 0
+            remainingHeadbutts: 0
+        helmetEffect: 0
+        helmetElement: 0
+        currentDurability: 0
+        remainingHeadbutts: 0
     helmetEffect: 0
     helmetElement: 0
     currentDurability: 0

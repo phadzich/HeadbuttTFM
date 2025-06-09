@@ -12,7 +12,7 @@ public class CraftingManager : MonoBehaviour
     public HelmetInstance selectedHelmet;
 
     public Action HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
-    public Action HelmetUpgraded; // Se lanza cuando un casco ha sido upgradeado
+    public Action HelmetEvolved; // Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
     {
@@ -25,6 +25,13 @@ public class CraftingManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        // PRUEBA PARA PROTOTIPO QUE TODOS ESTEN DESBLOQUEADOS DESDE UN INICIO
+        UnlockHelmetBlueprint(blueprints[0]);
+        UnlockHelmetBlueprint(blueprints[1]);
     }
 
     public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
@@ -71,7 +78,7 @@ public class CraftingManager : MonoBehaviour
 
 
     //Llamar cuando se quiera upgradear un casco
-    public void UpgradeHelmet(HelmetBlueprint _blueprint)
+    public void EvolveHelmet(HelmetBlueprint _blueprint)
     {
         if (selectedHelmet == null) return;
 
@@ -83,6 +90,6 @@ public class CraftingManager : MonoBehaviour
         // Actualiza la informacion del casco como el efecto, elemento, xp
         selectedHelmet.Evolve(_blueprint);
 
-        HelmetUpgraded?.Invoke();
+        HelmetEvolved?.Invoke();
     }
 }
