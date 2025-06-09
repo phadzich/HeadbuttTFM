@@ -12,28 +12,36 @@ public class HelmetBluprintUI : MonoBehaviour
     public Transform resourceListContainer; // Donde se van a poner los ResourceIndicators
     public GameObject resourceIndicatorPrefab;
 
-    private HelmetBlueprint helmet;
+    private HelmetBlueprint blueprint;
 
     // Se crea el prefab con la información del blueprint
-    public void SetUp(HelmetBlueprint blueprint)
+    public void SetUp(HelmetBlueprint _blueprint)
     {
-        helmet = blueprint;
-        blueprintNameText.text = blueprint.helmetInfo.name;
-        blueprintIcon.sprite = blueprint.helmetInfo.icon;
+        blueprint = _blueprint;
+        blueprintNameText.text = _blueprint.helmetInfo.name;
+        blueprintIcon.sprite = _blueprint.helmetInfo.icon;
 
-        SetResources(blueprint.requiredResources);
+        CheckIfCanCraft(_blueprint);
+        SetResources(_blueprint.requiredResources);
     }
 
-    private void checkIfCanCraft()
+    private void CheckIfCanCraft(HelmetBlueprint _blueprint)
     {
-
+        if (_blueprint.CanCraft(ResourceManager.Instance.ownedResources))
+        {
+            craftBtn.enabled = true;
+        }
+        else
+        {
+            craftBtn.enabled = false;
+        }
     }
 
     // Crea los prefabs que muestran la cantidad de recursos
-    private void SetResources(List<ResourceRequirement> resources)
+    private void SetResources(List<ResourceRequirement> _resources)
     {
         // Instancia uno por cada blueprint
-        foreach (var resource in resources)
+        foreach (var resource in _resources)
         {
             GameObject res = Instantiate(resourceIndicatorPrefab, resourceListContainer);
             ResourceIndicator resourceUI = res.GetComponent<ResourceIndicator>();
@@ -44,13 +52,6 @@ public class HelmetBluprintUI : MonoBehaviour
     // Cuando el jugador da click en Craft, se desbloquea el casco y los recursos se gastan, la lista se actualiza por medio del evento onOwnedResourcesChanged
     public void OnClickCraftingBtn()
     {
-        List<ResourceRequirement> resources = helmet.requiredResources;
-
-        foreach(var res in resources)
-        {
-            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
-        }
-
-        //HelmetManager.Instance.UnlockHelmet(helmet.resultHelmet);
+        CraftingManager.Instance.UpgradeHelmet(blueprint);
     }
 }

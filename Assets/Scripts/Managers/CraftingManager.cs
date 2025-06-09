@@ -11,7 +11,8 @@ public class CraftingManager : MonoBehaviour
 
     public HelmetInstance selectedHelmet;
 
-    public Action HelmetUpgraded; //Se lanza cuando un casco ha sido upgradeado
+    public Action HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
+    public Action HelmetUpgraded; // Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
     {
@@ -46,11 +47,26 @@ public class CraftingManager : MonoBehaviour
         return blueprintsByElement;
     }
 
-    // Funcion para elegir un casco desde la UI
-    public void SelectHelmet(HelmetInstance helmet)
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByEvolutionReq(int _evolution)
     {
-        selectedHelmet = helmet;
-        // Aquí puedes incluso invocar un evento para que el UI cambie a mostrar blueprints
+        List<HelmetBlueprint> blueprintsByRequirement = new();
+
+        foreach (var blueprint in unlockedBlueprints)
+        {
+            if (blueprint.requiredEvolution == _evolution)
+            {
+                blueprintsByRequirement.Add(blueprint);
+            }
+        }
+
+        return blueprintsByRequirement;
+    }
+
+    // Funcion para elegir un casco desde la UI
+    public void SelectHelmet(HelmetInstance _helmet)
+    {
+        selectedHelmet = _helmet;
+        HelmetSelected?.Invoke();
     }
 
 

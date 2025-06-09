@@ -11,6 +11,7 @@ public class HelmetBlueprint : ScriptableObject
     public int baseXP;
     public float xpMultiplier;
     [SerializeField] public List<ResourceRequirement> requiredResources;
+    public int requiredEvolution;
 
     public bool CanCraft(Dictionary<ResourceData, int> playerResources)
     {

@@ -3,14 +3,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
     public GameObject helmetUIPrefab;
     public GameObject blueprintUIPrefab;
-    public Transform helmetListContainer;
-    public Transform blueprintListContainer;
+    public GameObject helmetListContainer;
+    public GameObject blueprintListContainer;
     public GameObject pagesButtons;
     public GameObject EmptyListText;
 
@@ -23,17 +24,18 @@ public class CraftingPanel : MonoBehaviour
     private void OnEnable()
     {
 
-        UpdateList();
+        UpdateHelmetList();
+        CraftingManager.Instance.HelmetSelected += 
 
-        ResourceManager.Instance.onOwnedResourcesChanged += UpdateList;
     }
 
     private void OnDisable()
     {
-        ResourceManager.Instance.onOwnedResourcesChanged -= UpdateList;
     }
 
-    private void UpdateList()
+    /* Funciones del panel de HELMETS */
+
+    private void UpdateHelmetList()
     {
         currentPage = 0;
 
@@ -61,7 +63,7 @@ public class CraftingPanel : MonoBehaviour
     private void UpdatePage()
     {
         // Borra los hijos actuales
-        foreach (Transform child in helmetListContainer)
+        foreach (Transform child in helmetListContainer.transform)
         {
             Destroy(child.gameObject);
         }
@@ -74,7 +76,7 @@ public class CraftingPanel : MonoBehaviour
             if (index >= availableHelmets.Count) break;
 
             HelmetInstance helmet = availableHelmets[index];
-            Instantiate(helmetUIPrefab, helmetListContainer).GetComponent<HelmetUpgradeCard>().SetUp(helmet);
+            Instantiate(helmetUIPrefab, helmetListContainer.transform).GetComponent<HelmetUpgradeCard>().SetUp(helmet);
         }
     }
 
@@ -96,4 +98,28 @@ public class CraftingPanel : MonoBehaviour
         if (currentPage < 0) currentPage = TotalPages() - 1; // ciclo
         UpdatePage();
     }
+
+    /* Funciones del panel de BLUEPRINTS */
+
+    public void ShowBlueprintPanel()
+    {
+        helmetListContainer.SetActive(false);
+        blueprintListContainer.SetActive(true);
+    }
+
+    private void UpdateBPList()
+    {
+        List<HelmetBlueprint> blueprints = CraftingManager.Instance.GetUnlockedBlueprintsByEvolutionReq(CraftingManager.Instance.selectedHelmet.helmetXP.currentEvolution);
+        // Borra los hijos actuales
+        foreach (Transform child in blueprintListContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var bp in blueprints)
+        {
+            Instantiate(blueprintUIPrefab, blueprintListContainer.transform).GetComponent<HelmetBluprintUI>().SetUp(bp);
+        }
+    }
+
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class HelmetUpgradeCard : MonoBehaviour
+public class HelmetCard : MonoBehaviour
 {
     public TextMeshProUGUI helmetNameText;
     public Image helmetIcon;
@@ -18,8 +18,6 @@ public class HelmetUpgradeCard : MonoBehaviour
         helmetNameText.text = helmetI.currentInfo.name;
         helmetIcon.sprite = helmetI.currentInfo.icon;
         lvlTxt.text = "Evolucion " + helmetI.helmetXP.currentEvolution;
-
-        //SetResources(helmet.GetPriceForNextLevel());
     }
 
     // Cuando el jugador da click en Craft, se desbloquea el casco y los recursos se gastan, la lista se actualiza por medio del evento onOwnedResourcesChanged
