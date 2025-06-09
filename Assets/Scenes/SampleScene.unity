@@ -896,14 +896,24 @@ MonoBehaviour:
   currentLevelSlider: {fileID: 787028399}
   currentCooldownSlider: {fileID: 1149743365}
   currentHelmetInstance:
-    baseHelmet: {fileID: 0}
     id: 
-    helmetEffect: 0
-    effectPower: 0
-    currentDurability: 0
-    remainingHeadbutts: 0
+    currentInfo:
+      name: 
+      description: 
+      mesh: {fileID: 0}
+      icon: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      rarity: 0
     maxHeadbutts: 0
     durability: 0
+    bounceHeight: 0
+    headBForce: 0
+    headBCooldown: 0
+    knockbackChance: 0
+    helmetEffect: 0
+    helmetElement: 0
+    currentDurability: 0
+    remainingHeadbutts: 0
   countersContainer: {fileID: 1741747054}
   equippedCounter: {fileID: 8449238150886845724, guid: 1517ab4cd48c1184686191d4afd05737, type: 3}
   equippedCounterList: []
@@ -11058,25 +11068,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allHelmets:
-  - {fileID: 11400000, guid: 374ebd5ef4d904c62a2aa995a53dbe83, type: 2}
-  - {fileID: 11400000, guid: 0470e8e7f21a949aab631feaa59f855f, type: 2}
-  - {fileID: 11400000, guid: 6aeefb0d0df2748898548311f201031d, type: 2}
-  - {fileID: 11400000, guid: eadffcc26ca734c3980314d6e200a8b7, type: 2}
-  - {fileID: 11400000, guid: baf2bdb229a5e407498c085d344e4bd7, type: 2}
-  - {fileID: 11400000, guid: 6fec0066a7ace4fd78396869dea86315, type: 2}
+  - {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
   helmetsOwned: []
   helmetsEquipped: []
   maxEquippedHelmets: 3
   maxOwnHelmets: 10
   currentHelmet:
-    baseHelmet: {fileID: 0}
     id: 
-    helmetEffect: 0
-    effectPower: 0
-    currentDurability: 0
-    remainingHeadbutts: 0
+    currentInfo:
+      name: 
+      description: 
+      mesh: {fileID: 0}
+      icon: {fileID: 0}
+      color: {r: 0, g: 0, b: 0, a: 0}
+      rarity: 0
     maxHeadbutts: 0
     durability: 0
+    bounceHeight: 0
+    headBForce: 0
+    headBCooldown: 0
+    knockbackChance: 0
+    helmetEffect: 0
+    helmetElement: 0
+    currentDurability: 0
+    remainingHeadbutts: 0
   currentMesh: {fileID: 2119067691}
   helmetIndex: 0
 --- !u!1 &2012362340

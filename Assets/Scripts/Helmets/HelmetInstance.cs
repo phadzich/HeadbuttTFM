@@ -5,36 +5,47 @@ using UnityEngine;
 [System.Serializable]
 public class HelmetInstance
 {
-    // Helmet info
-    public HelmetData baseHelmet;
+    //Helmet info
     public string id;
-    public GameObject currentMesh => baseHelmet.meshesByLevel[helmetXP.currentLevel-1];
-    public HelmetEffectType helmetEffect = HelmetEffectType.None;
-    public int effectPower = 0;
+    public HelmetInfo currentInfo = new HelmetInfo();
 
     //Helmet Stats
-    public int currentDurability;
-    public int remainingHeadbutts;
     public int maxHeadbutts;
     public int durability;
+    public float bounceHeight;
+    public int headBForce;
+    public float headBCooldown;
+    public int knockbackChance;
     public HelmetXP helmetXP;
+    public EffectTypeEnum helmetEffect;
+    public ElementEnum helmetElement;
 
-    public bool isWornOut => currentDurability <= 0;
-    public bool canBeUpgraded => helmetXP.currentLevel < 3;
+    //Current stats
+    public int currentDurability;
+    public int remainingHeadbutts;
+
+    public bool HasHeadbutts => remainingHeadbutts > 0;
+    public bool IsWornOut => currentDurability <= 0;
 
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
 
-    public HelmetInstance(HelmetData helmetSO)
+    public HelmetInstance(HelmetData _helmetSO)
     {
-        baseHelmet = helmetSO;
         id = Guid.NewGuid().ToString();
-        currentDurability = helmetSO.durability;
-        remainingHeadbutts = helmetSO.headbutts;
-        maxHeadbutts = helmetSO.headbutts;
-        durability = helmetSO.durability;
-        helmetXP = new HelmetXP(helmetSO.baseXP, helmetSO.xpMultiplier,this);
-        helmetXP.SubleveledUp += UpgradeStatsBySublevel;
-        helmetXP.LeveledUp += UpgradeStatsByLevel;
+        currentInfo = _helmetSO.helmetInfo.Copy();
+
+        //Stats
+        currentDurability = _helmetSO.durability;
+        remainingHeadbutts = _helmetSO.headbutts;
+        maxHeadbutts = _helmetSO.headbutts;
+        durability = _helmetSO.durability;
+        bounceHeight = _helmetSO.bounceHeight;
+        headBForce = _helmetSO.headBForce;
+        headBCooldown = _helmetSO.headBCooldown;
+        knockbackChance = _helmetSO.knockbackChance;
+        helmetXP = new HelmetXP(_helmetSO.baseXP, _helmetSO.xpMultiplier,this);
+        helmetEffect = EffectTypeEnum.None;
+        helmetElement = ElementEnum.None;
 
     }
 
@@ -51,7 +62,7 @@ public class HelmetInstance
             currentDurability-=_amount;
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
-            if (HelmetManager.Instance.currentHelmet.isWornOut)
+            if (IsWornOut)
             {
             PlayerManager.Instance.RemovePlayerLives(1);
                 if (HelmetManager.Instance.HasHelmetsLeft)
@@ -71,90 +82,66 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public bool hasHeadbutts()
-    {
-        return remainingHeadbutts > 0;
-    }
+    /* Funciones para hacer upgrade a los stats y modificar la info del casco*/
 
-    public void IncreaseDurability(int quantity)
+    public void UpgradeDurability(int _quantity)
     {
-        durability += quantity;
+        durability += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void upgradeHeadbutt(int quantity)
+    public void UpgradeHeadbutt(int _quantity)
     {
-        maxHeadbutts += quantity;
+        maxHeadbutts += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeStatsBySublevel(int currentSublevel)
+    public void UpgradeBounceHeight(float _quantity)
     {
-        switch (helmetXP.currentLevel) {
-            case 1:
-                if (currentSublevel == 2)
-                    IncreaseDurability(1);
-                else if (currentSublevel == 3)
-                    upgradeHeadbutt(1);
-                else if (currentSublevel == 5)
-                {
-                    IncreaseDurability(1);
-                    upgradeHeadbutt(1);
-                }
-                break;
-
-            case 2:
-                if (currentSublevel == 1)
-                    IncreaseDurability(1);
-                else if (currentSublevel == 3)
-                    effectPower += 1;
-                else if (currentSublevel == 4)
-                    upgradeHeadbutt(1);
-                else if (currentSublevel == 5)
-                {
-                    IncreaseDurability(1);
-                    effectPower += 1;
-                }
-                break;
-
-            case 3:
-                if (currentSublevel == 1)
-                    IncreaseDurability(1);
-                else if (currentSublevel == 3)
-                    effectPower += 1;
-                else if (currentSublevel == 4)
-                    upgradeHeadbutt(1);
-                else if (currentSublevel == 5)
-                {
-                    IncreaseDurability(1);
-                    effectPower += 1;
-                }
-                break;
-        }
-        HelmetInstanceChanged?.Invoke(this);
+        bounceHeight += _quantity;
+        // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeStatsByLevel(int currentLevel)
+    public void UpgradeHeadBForce(int _quantity)
     {
-        if (currentLevel == 2)
-        {
-            helmetEffect = baseHelmet.helmetEffect;
-            effectPower = 1; // Se desbloquea con poder inicial
-        }
-        else if (currentLevel == 3)
-        {
-            // Aquí podemos aplicar una mejora final especial
-            effectPower += 1;
-        }
-
-        HelmetInstanceChanged?.Invoke(this);
+        headBForce += _quantity;
+        // reiniciar sus stats cuando lo mejoren
     }
 
-    public List<ResourceRequirement> GetPriceForNextLevel()
+    public void UpgradeHeadBCooldown(float _quantity)
     {
-        int nextLevel = helmetXP.currentLevel + 1;
-        var requirement = baseHelmet.upgradePrices.Find(r => r.toLevel == nextLevel);
-        return requirement?.requirements ?? new List<ResourceRequirement>();
+        headBCooldown += _quantity;
+        // reiniciar sus stats cuando lo mejoren
+    }
+
+    public void UpgradeKnockbackChance(int _quantity)
+    {
+        knockbackChance += _quantity;
+        // reiniciar sus stats cuando lo mejoren
+    }
+
+
+    public void UpdateInfo(HelmetInfo _newInfo)
+    {
+        currentInfo = _newInfo.Copy();
+    }
+
+    public void UpdateHelmetEffect(EffectTypeEnum _effect)
+    {
+        helmetEffect = _effect;
+    }
+
+    public void UpdateHelmetElement(ElementEnum _element)
+    {
+        helmetElement = _element;
+    }
+
+    public void Evolve(HelmetBlueprint _blueprint)
+    {
+        helmetXP.Evolve(_blueprint.baseXP, _blueprint.xpMultiplier);
+        UpdateHelmetEffect(_blueprint.effect);
+        UpdateHelmetElement(_blueprint.element);
+        UpdateInfo(_blueprint.helmetInfo);
     }
 
 }

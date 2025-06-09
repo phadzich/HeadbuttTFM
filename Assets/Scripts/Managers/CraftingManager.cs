@@ -7,8 +7,7 @@ public class CraftingManager : MonoBehaviour
     public static CraftingManager Instance;
 
     public List<HelmetBlueprint> blueprints;
-    public ResourceRequirement bouncePrice;
-    public ResourceRequirement headbuttPrice;
+    public HashSet<HelmetBlueprint> unlockedBlueprints = new HashSet<HelmetBlueprint>();
 
     public Action HelmetUpgraded; //Se lanza cuando un casco ha sido upgradeado
 
@@ -25,73 +24,52 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    public List<HelmetBlueprint> GetAvailableBlueprints()
+    public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
     {
-        Dictionary<ResourceData, int> playerResources = ResourceManager.Instance.ownedResources;
-        List<HelmetBlueprint> availableBlueprints = new();
-
-        foreach (var blueprint in blueprints)
-        {
-            if (blueprint.CanCraft(playerResources))
-            {
-                availableBlueprints.Add(blueprint);
-            }
-        }
-
-        return availableBlueprints;
-
+        unlockedBlueprints.Add(_helmetBP);
     }
 
-    private HelmetBlueprint GetHelmetBlueprint(HelmetInstance helmet) {
-        foreach (var blueprint in blueprints)
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementEnum _element)
+    {
+        List<HelmetBlueprint> blueprintsByElement = new();
+
+        foreach(var blueprint in unlockedBlueprints)
         {
-            if (blueprint.resultHelmet == helmet.baseHelmet)
+            if(blueprint.element == _element)
             {
-                return blueprint;
+                blueprintsByElement.Add(blueprint);
             }
         }
 
-        return new HelmetBlueprint();
+        return blueprintsByElement;
     }
 
     //Llamar cuando se quiera upgradear un casco
-    public void UpgradeHelmet(HelmetInstance helmet)
+    public void UpgradeHelmet(HelmetInstance _helmet, HelmetBlueprint _blueprint)
     {
-        // Revisamos que no este upgredeado al maximo nivel
-        if (helmet.canBeUpgraded)
+        foreach (var res in _blueprint.requiredResources)
         {
-            List<ResourceRequirement> price = helmet.GetPriceForNextLevel();
-            bool canSpend = true;
+            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
+        }
 
+        // Actualiza la informacion del casco como el efecto, elemento, xp
+        _helmet.Evolve(_blueprint);
 
-            // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
-            foreach (var res in price)
-            {
-                if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
-                {
-                    canSpend = false;
-                    break;
-                }
-            }
+        HelmetUpgraded?.Invoke();
+    }
 
-            if (canSpend)
-            {
-                foreach (var res in price)
-                {
-                    ResourceManager.Instance.SpendResource(res.resource, res.quantity);
-                }
-                helmet.helmetXP.LevelUp();
-                HelmetUpgraded?.Invoke();
-            }
-            else
+    public bool HasEnoughResources(HelmetBlueprint _blueprint) {
+
+        // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
+        foreach (var res in _blueprint.requiredResources)
+        {
+            if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
             {
                 Debug.Log("NO HAY SUFICIENTES RECURSOS");
+                return false;
             }
         }
-        else
-        {
-            Debug.Log("HELMET LEVEL MAXED OUT");
-        }
 
+        return true;
     }
 }
