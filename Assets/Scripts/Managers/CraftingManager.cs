@@ -9,6 +9,8 @@ public class CraftingManager : MonoBehaviour
     public List<HelmetBlueprint> blueprints;
     public HashSet<HelmetBlueprint> unlockedBlueprints = new HashSet<HelmetBlueprint>();
 
+    public HelmetInstance selectedHelmet;
+
     public Action HelmetUpgraded; //Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
@@ -44,32 +46,27 @@ public class CraftingManager : MonoBehaviour
         return blueprintsByElement;
     }
 
-    //Llamar cuando se quiera upgradear un casco
-    public void UpgradeHelmet(HelmetInstance _helmet, HelmetBlueprint _blueprint)
+    // Funcion para elegir un casco desde la UI
+    public void SelectHelmet(HelmetInstance helmet)
     {
+        selectedHelmet = helmet;
+        // Aquí puedes incluso invocar un evento para que el UI cambie a mostrar blueprints
+    }
+
+
+    //Llamar cuando se quiera upgradear un casco
+    public void UpgradeHelmet(HelmetBlueprint _blueprint)
+    {
+        if (selectedHelmet == null) return;
+
         foreach (var res in _blueprint.requiredResources)
         {
             ResourceManager.Instance.SpendResource(res.resource, res.quantity);
         }
 
         // Actualiza la informacion del casco como el efecto, elemento, xp
-        _helmet.Evolve(_blueprint);
+        selectedHelmet.Evolve(_blueprint);
 
         HelmetUpgraded?.Invoke();
-    }
-
-    public bool HasEnoughResources(HelmetBlueprint _blueprint) {
-
-        // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
-        foreach (var res in _blueprint.requiredResources)
-        {
-            if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
-            {
-                Debug.Log("NO HAY SUFICIENTES RECURSOS");
-                return false;
-            }
-        }
-
-        return true;
     }
 }

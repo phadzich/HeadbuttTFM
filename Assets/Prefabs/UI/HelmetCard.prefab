@@ -201,7 +201,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade
+  m_text: 'Seleccionar
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cb39532a54e2af4285a4b0e3d92ca9c, type: 2}
   m_sharedMaterial: {fileID: -3854039104245858854, guid: 3cb39532a54e2af4285a4b0e3d92ca9c, type: 2}
@@ -272,83 +274,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &3853874602020248166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5003889653150862144}
-  - component: {fileID: 6874855709809624950}
-  - component: {fileID: 4567443996027821050}
-  m_Layer: 5
-  m_Name: Price
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &5003889653150862144
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853874602020248166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7237152698709147836}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 198.27956, y: -353.75104}
-  m_SizeDelta: {x: 217.64, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6874855709809624950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853874602020248166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
---- !u!114 &4567443996027821050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853874602020248166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!1 &5049575914752835320
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,8 +287,9 @@ GameObject:
   - component: {fileID: 48956894334237222}
   - component: {fileID: 774319937914755690}
   - component: {fileID: 3674501809474249985}
+  - component: {fileID: 3097722344969065132}
   m_Layer: 5
-  m_Name: HelmetUpgrade
+  m_Name: HelmetCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,14 +310,13 @@ RectTransform:
   - {fileID: 1683041041798952238}
   - {fileID: 4005110256021155271}
   - {fileID: 2805712197543684302}
-  - {fileID: 5003889653150862144}
   - {fileID: 1432175881149689565}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 396.5591, y: 470.963}
+  m_AnchoredPosition: {x: -45.453125, y: 38.738464}
+  m_SizeDelta: {x: 0, y: 393.4861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6092776757432746617
 CanvasRenderer:
@@ -416,8 +341,6 @@ MonoBehaviour:
   helmetNameText: {fileID: 5314247602778173722}
   helmetIcon: {fileID: 2051931831736790908}
   lvlTxt: {fileID: 8264719059487681714}
-  resourceListContainer: {fileID: 5003889653150862144}
-  resourceIndicatorPrefab: {fileID: 959469811146737447, guid: b107edc7c9e30804f93be7ba0cf49b4c, type: 3}
 --- !u!114 &774319937914755690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +397,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3097722344969065132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049575914752835320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 1
+  m_VerticalFit: 0
 --- !u!1 &5658089475619430161
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lvl 1 -> Lvl2
+  m_text: Evolucion 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ee2b348d5becdc488ba9229b870c1f5, type: 2}
   m_sharedMaterial: {fileID: 7639688528258780019, guid: 5ee2b348d5becdc488ba9229b870c1f5, type: 2}

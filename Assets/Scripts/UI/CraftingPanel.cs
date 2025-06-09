@@ -7,19 +7,18 @@ using System.Collections.Generic;
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
+    public GameObject helmetUIPrefab;
     public GameObject blueprintUIPrefab;
+    public Transform helmetListContainer;
     public Transform blueprintListContainer;
     public GameObject pagesButtons;
     public GameObject EmptyListText;
+
     public int itemsPerPage = 3;
 
     private int currentPage = 0;
 
-    [Header("Prices")]
-    public int jumpQuantity = 3;
-    public int headbuttQuantity = 2;
-
-    private List<HelmetBlueprint> availableBlueprints = new();
+    private List<HelmetInstance> availableHelmets => HelmetManager.Instance.GetHelmetsReadyToEvolve();
 
     private void OnEnable()
     {
@@ -38,7 +37,7 @@ public class CraftingPanel : MonoBehaviour
     {
         currentPage = 0;
 
-        if (availableBlueprints.Count == 0)
+        if (availableHelmets.Count == 0)
         {
             EmptyListText.SetActive(true);
         }
@@ -62,7 +61,7 @@ public class CraftingPanel : MonoBehaviour
     private void UpdatePage()
     {
         // Borra los hijos actuales
-        foreach (Transform child in blueprintListContainer)
+        foreach (Transform child in helmetListContainer)
         {
             Destroy(child.gameObject);
         }
@@ -72,16 +71,16 @@ public class CraftingPanel : MonoBehaviour
         for (int i = 0; i < itemsPerPage; i++)
         {
             int index = startIndex + i;
-            if (index >= availableBlueprints.Count) break;
+            if (index >= availableHelmets.Count) break;
 
-            HelmetBlueprint blueprint = availableBlueprints[index];
-            Instantiate(blueprintUIPrefab, blueprintListContainer).GetComponent<HelmetBluprintUI>().SetUp(blueprint);
+            HelmetInstance helmet = availableHelmets[index];
+            Instantiate(helmetUIPrefab, helmetListContainer).GetComponent<HelmetUpgradeCard>().SetUp(helmet);
         }
     }
 
     private int TotalPages()
     {
-        return Mathf.CeilToInt((float)availableBlueprints.Count / itemsPerPage);
+        return Mathf.CeilToInt((float)availableHelmets.Count / itemsPerPage);
     }
 
     public void NextPage()

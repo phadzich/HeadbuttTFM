@@ -8,6 +8,7 @@ public class HelmetBluprintUI : MonoBehaviour
 
     public TextMeshProUGUI blueprintNameText;
     public Image blueprintIcon;
+    public Button craftBtn;
     public Transform resourceListContainer; // Donde se van a poner los ResourceIndicators
     public GameObject resourceIndicatorPrefab;
 
@@ -21,6 +22,11 @@ public class HelmetBluprintUI : MonoBehaviour
         blueprintIcon.sprite = blueprint.helmetInfo.icon;
 
         SetResources(blueprint.requiredResources);
+    }
+
+    private void checkIfCanCraft()
+    {
+
     }
 
     // Crea los prefabs que muestran la cantidad de recursos
