@@ -1,14 +1,25 @@
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 
 public class NPCBlock : Block,IInteractable
 {
     public BoxCollider zoneCollider;
+    public TextMeshProUGUI interactLBL;
+    public string interactString;
+
+    public NPCType type;
     public void SetupBlock(int _subId, int _xPos, int _yPos)
     {
+        Debug.Log(this);
         sublevelId = _subId;
         sublevelPosition = new Vector2(_xPos, _yPos);
         isWalkable = false;
+        if (interactLBL != null)
+        {
+            interactLBL.text = interactString;
+        }
+ 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,22 +43,28 @@ public class NPCBlock : Block,IInteractable
     public void EnterZone(GameObject _other)
     {
         Debug.Log("ENTERED ZONE");
+        InputManager.Instance.currentInteractableNPC = this;
+        ShowInteraction(true);
     }
 
     public void ExitZone(GameObject _other)
     {
         Debug.Log("EXITED ZONE");
+        InputManager.Instance.currentInteractableNPC = null;
+        ShowInteraction(false);
     }
 
     public void Interact()
     {
-        throw new System.NotImplementedException();
+        UIManager.Instance.OpenNPCUI(type);
     }
 
 
-
-    public void ShowInteraction()
+    public void ShowInteraction(bool _visibility)
     {
-        throw new System.NotImplementedException();
+        interactLBL.gameObject.SetActive(_visibility);
     }
+
 }
+
+public enum NPCType { Crafter, Upgrader, Elevator }

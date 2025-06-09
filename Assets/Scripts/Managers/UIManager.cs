@@ -20,7 +20,9 @@ public class UIManager : MonoBehaviour
     public CurrentMatchPanel currentMatchPanel;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
-
+    public GameObject NPCCraftPanel;
+    public GameObject NPCUpgradePanel;
+    public GameObject NPCElevatorPanel;
 
     public TextMeshProUGUI totalBouncesTXT;
 
@@ -148,5 +150,22 @@ public class UIManager : MonoBehaviour
     private void OnPlayerLivesChanged(int _current, int _max)
     {
         //livesPanel.UpdateLivesInfo(_current);
+    }
+
+    public void OpenNPCUI(NPCType _type)
+    {
+        switch (_type)
+        {
+            case NPCType.Crafter:
+                NPCCraftPanel.SetActive(true);
+                break;
+            case NPCType.Upgrader:
+                NPCUpgradePanel.SetActive(true);
+                break;
+            case NPCType.Elevator:
+                NPCElevatorPanel.SetActive(true);
+                break;
+
+        }
     }
 }

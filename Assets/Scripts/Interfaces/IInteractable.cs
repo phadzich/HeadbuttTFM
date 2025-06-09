@@ -6,5 +6,5 @@ public interface IInteractable
     public void ExitZone(GameObject _other);
     public void Interact();
 
-    public void ShowInteraction();
+    public void ShowInteraction(bool _visibility);
 }

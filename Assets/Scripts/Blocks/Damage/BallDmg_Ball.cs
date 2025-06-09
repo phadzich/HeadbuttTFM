@@ -16,7 +16,7 @@ public class BallDmg_Ball : MonoBehaviour
                 dmgBlock.DoDamage();
                 dmgBlock.damageParticles.Play();
             lastDamageTime = Time.time;
-            dmgBlock.PushPlayerTowardCenter(other.gameObject.GetComponent<PlayerStates>().playerMovement);
+            dmgBlock.PushPlayerRandomly();
         }
 
         }

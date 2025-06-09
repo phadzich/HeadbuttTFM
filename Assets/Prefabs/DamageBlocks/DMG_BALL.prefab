@@ -4958,7 +4958,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34c6685f373750444a9b145269be7898, type: 2}
+  - {fileID: 2100000, guid: 1b708a0b1de541c448891c216c8418f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5182,9 +5182,11 @@ MonoBehaviour:
   blockMesh: {fileID: 0}
   damageParticles: {fileID: 1241805286537262801}
   impulseSource: {fileID: 0}
-  height: 5
+  height: 8
   speed: 1
   ball: {fileID: 4042318397848241673}
+  currentPos: {x: 0, y: 0, z: 0}
+  newDirection: {x: 0, y: 0, z: 0}
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0
