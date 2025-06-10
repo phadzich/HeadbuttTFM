@@ -13,7 +13,7 @@ public class UpgradePanel : MonoBehaviour
 
     private int currentPage = 0;
 
-    private List<HelmetInstance> helmetsToUpgrade => HelmetManager.Instance.GetHelmetsReadyToEvolve();
+    private List<HelmetInstance> helmetsToUpgrade => HelmetManager.Instance.helmetsOwned;
 
     private void OnEnable()
     {
@@ -68,7 +68,7 @@ public class UpgradePanel : MonoBehaviour
             if (index >= helmetsToUpgrade.Count) break;
 
             HelmetInstance helmet = helmetsToUpgrade[index];
-            Instantiate(upgradeCardUIPrefab, upgradeCardsContainer).GetComponent<HelmetCard>().SetUp(helmet);
+            Instantiate(upgradeCardUIPrefab, upgradeCardsContainer).GetComponent<UpgradeStatsCard>().SetUp(helmet);
         }
     }
 

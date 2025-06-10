@@ -19,4 +19,18 @@ public class HelmetData : ScriptableObject
     [Header("XP")]
     public int baseXP;
     public float xpMultiplier;
+
+    public float GetBaseValue(HelmetStatTypeEnum stat)
+    {
+        switch (stat)
+        {
+            case HelmetStatTypeEnum.Durability: return durability;
+            case HelmetStatTypeEnum.Headbutts: return headbutts;
+            case HelmetStatTypeEnum.BounceHeight: return bounceHeight;
+            case HelmetStatTypeEnum.HeadBForce: return headBForce;
+            case HelmetStatTypeEnum.HeadBCooldown: return headBCooldown;
+            case HelmetStatTypeEnum.KnockbackChance: return knockbackChance;
+            default: return 0f;
+        }
+    }
 }

@@ -10,7 +10,7 @@ public class HelmetXP
     public int currentXP = 0;
     public int baseRequiredXP;
     public float xpMultiplier;
-    public HelmetInstance helmetInstanceRef;
+    [System.NonSerialized] public HelmetInstance helmetInstanceRef;
     public int nextEvolution => currentEvolution + 1;
 
     // State

@@ -8,6 +8,7 @@ public class HelmetInstance
     //Helmet info
     public string id;
     public HelmetInfo currentInfo = new HelmetInfo();
+    public HelmetData baseHelmet;
 
     //Helmet Stats
     public int maxHeadbutts;
@@ -33,6 +34,7 @@ public class HelmetInstance
     {
         id = Guid.NewGuid().ToString();
         currentInfo = _helmetSO.helmetInfo.Copy();
+        baseHelmet = _helmetSO;
 
         //Stats
         currentDurability = _helmetSO.durability;
@@ -110,13 +112,13 @@ public class HelmetInstance
 
     public void UpgradeHeadBCooldown(float _quantity)
     {
-        headBCooldown += _quantity;
+        headBCooldown -= _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
     public void UpgradeKnockbackChance(int _quantity)
     {
-        knockbackChance += _quantity;
+        knockbackChance -= _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
@@ -134,6 +136,37 @@ public class HelmetInstance
     public void UpdateHelmetElement(ElementEnum _element)
     {
         helmetElement = _element;
+    }
+
+    private float GetBaseValue(HelmetStatTypeEnum stat)
+    {
+        switch (stat)
+        {
+            case HelmetStatTypeEnum.Durability: return durability;
+            case HelmetStatTypeEnum.Headbutts: return maxHeadbutts;
+            case HelmetStatTypeEnum.BounceHeight: return bounceHeight;
+            case HelmetStatTypeEnum.HeadBForce: return headBForce;
+            case HelmetStatTypeEnum.HeadBCooldown: return headBCooldown;
+            case HelmetStatTypeEnum.KnockbackChance: return knockbackChance;
+            default: return 0f;
+        }
+    }
+
+    // Obtiene la cantidad de veces que se ha hecho upgrade a un stat
+    public int GetUpgradeCount(HelmetStatTypeEnum stat, bool isDecreasing = false)
+    {
+        float baseValue = baseHelmet.GetBaseValue(stat);
+        float currentValue = GetBaseValue(stat);
+        float increment = HelmetManager.Instance.GetUpgradeIncrement(stat);
+
+        int upgrades;
+
+        if (isDecreasing)
+            upgrades = Mathf.FloorToInt((baseValue - currentValue) / increment);
+        else
+            upgrades = Mathf.FloorToInt((currentValue - baseValue) / increment);
+
+        return Mathf.Clamp(upgrades, 0, 10);
     }
 
     public void Evolve(HelmetBlueprint _blueprint)
