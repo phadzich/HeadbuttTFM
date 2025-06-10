@@ -22,17 +22,21 @@ public class ResourceTrader : MonoBehaviour
         upgradePointsTXT.text = upgradePoints.ToString();
     }
 
-    public void SpendUpgradePoints(int _amount)
+    public bool CanSpendUpgradePoints(int _amount)
     {
+        bool _result = false;
         if (_amount <= upgradePoints)
         {
+            _result = true;
             upgradePoints -= _amount;
             upgradePointsTXT.text = upgradePoints.ToString();
         }
         else
         {
+            _result = false;
             Debug.Log("Not enough Upgrade Points");
         }
+        return _result;
     }
 
     public void GenerateExchangeRates()

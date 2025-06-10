@@ -53,7 +53,9 @@ public class UpgradeStatsCard : MonoBehaviour
 
     public void UpdateDurability()
     {
-        durabilityStat.UpdateBar(helmet.GetUpgradeCount(HelmetStatTypeEnum.Durability), helmet.durability);
+
+            durabilityStat.UpdateBar(helmet.GetUpgradeCount(HelmetStatTypeEnum.Durability), helmet.durability);
+
     }
 
     public void UpdateHeadbutts()
@@ -85,37 +87,55 @@ public class UpgradeStatsCard : MonoBehaviour
 
     public void OnClickAddDurabilityBtn()
     {
-        helmet.UpgradeDurability(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.Durability)));
-        UpdateDurability();
+        if (ResourceManager.Instance.resourceTrader.CanSpendUpgradePoints(1))
+        {
+            helmet.UpgradeDurability(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.Durability)));
+            UpdateDurability();
+        }
     }
 
     public void OnClickAddHeadbuttsBtn()
     {
-        helmet.UpgradeHeadbutt(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.Headbutts)));
-        UpdateHeadbutts();
+        if (ResourceManager.Instance.resourceTrader.CanSpendUpgradePoints(1))
+        {
+            helmet.UpgradeHeadbutt(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.Headbutts)));
+            UpdateHeadbutts();
+        }
     }
 
     public void OnClickAddBounceHeightBtn()
     {
-        helmet.UpgradeBounceHeight(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.BounceHeight));
-        UpdateBounceH();
+        if (ResourceManager.Instance.resourceTrader.CanSpendUpgradePoints(1))
+        {
+            helmet.UpgradeBounceHeight(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.BounceHeight));
+            UpdateBounceH();
+        }
     }
 
     public void OnClickAddHbForceBtn()
     {
-        helmet.UpgradeHeadBForce(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.HeadBForce));
-        UpdateHbForce();
+        if (ResourceManager.Instance.resourceTrader.CanSpendUpgradePoints(1))
+        {
+            helmet.UpgradeHeadBForce(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.HeadBForce));
+            UpdateHbForce();
+        }
     }
 
     public void OnClickAddHbCooldownBtn()
     {
-        helmet.UpgradeHeadBCooldown(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.HeadBCooldown));
-        UpdateHbCooldown();
+        if (ResourceManager.Instance.resourceTrader.CanSpendUpgradePoints(1))
+        {
+            helmet.UpgradeHeadBCooldown(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.HeadBCooldown));
+            UpdateHbCooldown();
+        }
     }
 
     public void OnClickAddKnockbackChanceBtn()
     {
-        helmet.UpgradeKnockbackChance(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.KnockbackChance)));
-        UpdateKnockbackChance();
+        if (ResourceManager.Instance.resourceTrader.CanSpendUpgradePoints(1))
+        {
+            helmet.UpgradeKnockbackChance(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.KnockbackChance)));
+            UpdateKnockbackChance();
+        }
     }
 }
