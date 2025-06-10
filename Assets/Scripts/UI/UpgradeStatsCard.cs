@@ -103,7 +103,7 @@ public class UpgradeStatsCard : MonoBehaviour
 
     public void OnClickAddHbForceBtn()
     {
-        helmet.UpgradeHeadBForce(((int)HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.HeadBForce)));
+        helmet.UpgradeHeadBForce(HelmetManager.Instance.GetUpgradeIncrement(HelmetStatTypeEnum.HeadBForce));
         UpdateHbForce();
     }
 

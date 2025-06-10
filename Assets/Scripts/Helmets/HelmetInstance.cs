@@ -14,7 +14,7 @@ public class HelmetInstance
     public int maxHeadbutts;
     public int durability;
     public float bounceHeight;
-    public int headBForce;
+    public float headBForce;
     public float headBCooldown;
     public int knockbackChance;
     public HelmetXP helmetXP;
@@ -104,7 +104,7 @@ public class HelmetInstance
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeHeadBForce(int _quantity)
+    public void UpgradeHeadBForce(float _quantity)
     {
         headBForce += _quantity;
         // reiniciar sus stats cuando lo mejoren

@@ -22,8 +22,8 @@ public class HelmetManager : MonoBehaviour
     [Header("Stats upgrade amounts")]
     public float durabilityUpgradeAmount = 1f;
     public float headbuttUpgradeAmount = 1f;
-    public float bounceHeightUpgradeAmount = 0.1f;
-    public float hbForceUpgradeAmount = 1f;
+    public float bounceHeightUpgradeAmount = 0.2f;
+    public float hbForceUpgradeAmount = 0.5f;
     public float hbCooldownReductionAmount = 0.2f;
     public float knockbackChanceReductionAmount = 5f;
 

@@ -19,9 +19,46 @@ public class ExchangeButtonUI : MonoBehaviour
 
         resourceIcon.sprite = resourceData.icon;
         resourceAmountTXT.text = resourceAmount.ToString();
+        UpdateButtonStatus();
+
     }
     public void TryExchange()
     {
         ResourceManager.Instance.resourceTrader.BuyUpgradePoint(1, resourceData, resourceAmount);
+        UpdateButtonStatus();
+    }
+
+    private void EnableButton(bool _value)
+    {
+        if (_value == true)
+        {
+            this.GetComponent<Button>().interactable = true;
+
+        }
+        else
+        {
+            this.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    private void UpdateButtonStatus()
+    {
+        if (ResourceManager.Instance.ownedResources.ContainsKey(resourceData))
+        {
+            Debug.Log($"Req:{resourceAmount}  Res: {ResourceManager.Instance.ownedResources[resourceData]}");
+            if (resourceAmount <= ResourceManager.Instance.ownedResources[resourceData])
+            {
+                EnableButton(true);
+            }
+            else
+            {
+                EnableButton(false);
+            }
+
+        }
+        else
+        {
+            EnableButton(false);
+        }
     }
 }

@@ -80,6 +80,7 @@ public class PlayerBounce : MonoBehaviour
 
     private void BounceUp()
     {
+        jumpForce = HelmetManager.Instance.currentHelmet.bounceHeight;
         //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
             rb.linearVelocity = new Vector3(0, jumpForce, 0);

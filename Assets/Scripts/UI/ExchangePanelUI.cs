@@ -6,12 +6,12 @@ public class ExchangePanelUI : MonoBehaviour
     public ExchangeButtonUI exchangeButtonPrefab;
 
 
-    private void OnEnable()
+    private void Start()
     {
         PopulateButtons();
     }
 
-    private void PopulateButtons()
+    public void PopulateButtons()
     {
         ClearButtons();
         foreach (ResourceData _res in ResourceManager.Instance.allAvailableResources)

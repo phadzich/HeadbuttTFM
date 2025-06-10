@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   helmetInfo:
-    name: Casco default
+    name: Basic Helmet
     description: Casco basico hecho de cobre
     mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
     icon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
     color: {r: 0.69803923, g: 1, b: 0.23137255, a: 0}
     rarity: 0
   durability: 2
-  headbutts: 2
-  bounceHeight: 1
-  headBForce: 4
+  headbutts: 4
+  bounceHeight: 5
+  headBForce: 10
   headBCooldown: 3
   knockbackChance: 100
   baseXP: 10
