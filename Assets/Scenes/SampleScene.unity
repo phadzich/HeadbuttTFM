@@ -1642,7 +1642,7 @@ GameObject:
   - component: {fileID: 317350289}
   - component: {fileID: 317350288}
   m_Layer: 5
-  m_Name: PLAY (2)
+  m_Name: FEEDBACK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1711,7 +1711,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 317350289}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748712295}
+        m_TargetAssemblyTypeName: UIPanelConfig, Assembly-CSharp
+        m_MethodName: OpenGoogleForm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &317350289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9152,7 +9164,7 @@ GameObject:
   - component: {fileID: 1406031466}
   - component: {fileID: 1406031465}
   m_Layer: 5
-  m_Name: PLAY (3)
+  m_Name: EXIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11669,7 +11681,7 @@ GameObject:
   - component: {fileID: 1737033552}
   - component: {fileID: 1737033551}
   m_Layer: 5
-  m_Name: PLAY (1)
+  m_Name: RESTART
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
