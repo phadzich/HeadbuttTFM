@@ -7,7 +7,7 @@ public class ResourceTrader : MonoBehaviour
     Dictionary<ResourceData, float> upgradePointsExchangeRates;
     public int upgradePoints;
     public float diferenciaEntreRecursos = 1.5f;
-    public float escalaEconomia = 100f;
+    public float escalaEconomia = 80f;
 
     //HARDCODED, LUEGO EN UI EVENTS
     public TextMeshProUGUI upgradePointsTXT;
