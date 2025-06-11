@@ -13,12 +13,19 @@ public class HelmetManager : MonoBehaviour
     public List<HelmetData> allHelmets;
     public List<HelmetInstance> helmetsOwned = new();
     public List<HelmetInstance> helmetsEquipped = new();
-    public HashSet<HelmetData> unlockedHelmets = new HashSet<HelmetData>();
 
     [Header("Stats")]
     public int maxEquippedHelmets = 3;
     public int maxOwnHelmets = 10;
-    public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.isWornOut) >= 1;
+    public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.IsWornOut) >= 1;
+
+    [Header("Stats upgrade amounts")]
+    public float durabilityUpgradeAmount = 1f;
+    public float headbuttUpgradeAmount = 1f;
+    public float bounceHeightUpgradeAmount = 0.2f;
+    public float hbForceUpgradeAmount = 0.5f;
+    public float hbCooldownReductionAmount = 0.2f;
+    public float knockbackChanceReductionAmount = 5f;
 
     [Header("CURRENT HELMET")]
     public HelmetInstance currentHelmet;
@@ -48,19 +55,18 @@ public class HelmetManager : MonoBehaviour
 
     }
 
-    //FUNCION DE PRUEBA PARA PROTOTIPO
-
     private void Start()
     {
         Debug.Log("HelmetManager START");
         InitializeOwnedHelmets();
     }
 
+    //FUNCION DE PRUEBA PARA PROTOTIPO
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
-        UnlockHelmet(allHelmets[1]);
-        UnlockHelmet(allHelmets[2]);
+        UnlockHelmet(allHelmets[0]);
+        UnlockHelmet(allHelmets[0]);
         EquipHelmet(helmetsOwned[0]);
         EquipHelmet(helmetsOwned[1]);
         EquipHelmet(helmetsOwned[2]);
@@ -71,13 +77,12 @@ public class HelmetManager : MonoBehaviour
     }
 
     // Función para desbloquear un casco, es decir que a partir de un blueprint se crea el casco
-    public void UnlockHelmet(HelmetData helmet)
+    public void UnlockHelmet(HelmetData _helmet)
     {
         if (helmetsOwned.Count < maxOwnHelmets)
         {
-            HelmetInstance current = new HelmetInstance(helmet);
-            helmetsOwned.Add(current);
-            unlockedHelmets.Add(helmet);
+            HelmetInstance _current = new HelmetInstance(_helmet);
+            helmetsOwned.Add(_current);
         }
         else
         {
@@ -86,40 +91,55 @@ public class HelmetManager : MonoBehaviour
     }
 
     // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
-    public void EquipHelmet(HelmetInstance helmet)
+    public void EquipHelmet(HelmetInstance _helmet)
     {
-        if(helmetsEquipped.Count < maxEquippedHelmets)
+        if (helmetsEquipped.Count < maxEquippedHelmets)
         {
-            helmetsEquipped.Add(helmet);
-            onHelmetEquipped?.Invoke(helmet);
+            helmetsEquipped.Add(_helmet);
+            onHelmetEquipped?.Invoke(_helmet);
             PlayerManager.Instance.AddMaxLives(1);
         } else
         {
             Debug.Log("No hay mas espacio para cascos");
         }
-       
+
     }
 
     // Función para USAR un casco 
-    public void WearHelmet(HelmetInstance helmet) {
-        currentHelmet = helmet;
-        currentMesh.SetHelmetMesh(helmet.currentMesh);
-        onWearHelmetChanged?.Invoke(helmet);
+    public void WearHelmet(HelmetInstance _helmet) {
+        currentHelmet = _helmet;
+        currentMesh.SetHelmetMesh(_helmet.currentInfo.mesh);
+        onWearHelmetChanged?.Invoke(_helmet);
     }
 
     //Reseta los stats de los cascos equipados
     public void ResetHelmetsStats()
     {
-        foreach (HelmetInstance helmet in helmetsEquipped)
+        foreach (HelmetInstance _helmet in helmetsEquipped)
         {
-            helmet.ResetStats();
+            _helmet.ResetStats();
         }
     }
 
     // Obtiene los cascos que estan listos y pueden subir de nivel
-    public List<HelmetInstance> GetHelmetsReadyToLevelUp()
+    public List<HelmetInstance> GetHelmetsReadyToEvolve()
     {
-        return helmetsOwned.Where(h => h.helmetXP.CanLevelUp).ToList();
+        return helmetsOwned.Where(h => h.helmetXP.CanEvolve).ToList();
+    }
+
+    //Obtiene la cantidad que sube cada stat en cada upgrade
+    public float GetUpgradeIncrement(HelmetStatTypeEnum stat)
+    {
+        switch (stat)
+        {
+            case HelmetStatTypeEnum.Durability: return durabilityUpgradeAmount;
+            case HelmetStatTypeEnum.Headbutts: return headbuttUpgradeAmount;
+            case HelmetStatTypeEnum.BounceHeight: return bounceHeightUpgradeAmount;
+            case HelmetStatTypeEnum.HeadBForce: return hbForceUpgradeAmount;
+            case HelmetStatTypeEnum.HeadBCooldown: return hbCooldownReductionAmount;
+            case HelmetStatTypeEnum.KnockbackChance: return knockbackChanceReductionAmount;
+            default: return 0f;
+        }
     }
 
 
@@ -155,14 +175,14 @@ public class HelmetManager : MonoBehaviour
 
     public void WearNextAvailableHelmet()
     {
-        int ogIndex = helmetIndex;
+        int _ogIndex = helmetIndex;
 
         do
         {
             NextIndex();
-        } while (helmetsEquipped[helmetIndex].isWornOut & helmetIndex != ogIndex);
+        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != _ogIndex);
 
-        if (helmetIndex == ogIndex) return;
+        if (helmetIndex == _ogIndex) return;
        
 
         WearHelmet(helmetsEquipped[helmetIndex]);
@@ -173,14 +193,14 @@ public class HelmetManager : MonoBehaviour
 
     public void WearPrevAvailableHelmet()
     {
-        int ogIndex = helmetIndex;
+        int _ogIndex = helmetIndex;
 
         do
         {
             PreviousIndex();
-        } while (helmetsEquipped[helmetIndex].isWornOut & helmetIndex != ogIndex);
+        } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != _ogIndex);
 
-        if (helmetIndex == ogIndex) return;
+        if (helmetIndex == _ogIndex) return;
 
         WearHelmet(helmetsEquipped[helmetIndex]);
 

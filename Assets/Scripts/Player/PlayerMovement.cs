@@ -158,14 +158,36 @@ public class PlayerMovement : MonoBehaviour
 
     public void Knockback(Vector3 direction)
     {
-        //Debug.Log($"NewDirection: {direction}");
-        Vector3 alignedPosition = new Vector3(
-            Mathf.Round(transform.position.x),
-            0,
-            Mathf.Round(transform.position.z)
-        );
-        Vector3 newPosition = alignedPosition + direction;
-        //Debug.Log($"Knockback position: {newPosition}");
-        ChangePositionTarget(newPosition);
+        if (KnockbackChance())
+        {
+            Vector3 alignedPosition = new Vector3(
+    Mathf.Round(transform.position.x),
+    0,
+    Mathf.Round(transform.position.z)
+);
+            Vector3 newPosition = alignedPosition + direction;
+            //Debug.Log($"Knockback position: {newPosition}");
+            ChangePositionTarget(newPosition);
+        }
+
+    }
+
+    public bool KnockbackChance()
+    {
+        bool _shouldKnock = true;
+        int _chance = HelmetManager.Instance.currentHelmet.knockbackChance;
+        int _random = Random.Range(0, 100);
+        //Debug.Log(_chance);
+        //Debug.Log(_random);
+        if (_random <= _chance)
+        {
+            _shouldKnock = true;
+        }
+        else
+        {
+            _shouldKnock = false;
+        }
+        //Debug.Log(_shouldKnock);
+        return _shouldKnock;
     }
 }

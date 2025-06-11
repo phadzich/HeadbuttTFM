@@ -37,6 +37,7 @@ public class SublevelMapGenerator : MonoBehaviour
     [Header("NPC")]
     public GameObject npcDoorPrefab;
     public GameObject npcCraftPrefab;
+    public GameObject npcUpgradePrefab;
     public GameObject npcElevatorPrefab;
     private void Start()
     {
@@ -165,6 +166,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 _wallBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "FLOOR":
+                
                 _bloque = Instantiate(floorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 FloorBlock _floorBlock = _bloque.GetComponent<FloorBlock>();
                 _floorBlock.SetupBlock(currentDepth, currentX, currentY);
@@ -186,6 +188,12 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(npcCraftPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 NPCBlock _npcCraftBlock = _bloque.GetComponent<NPCBlock>();
                 _npcCraftBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "UPGRADE":
+                
+                _bloque = Instantiate(npcUpgradePrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                NPCBlock _npcUpgradeBlock = _bloque.GetComponent<NPCBlock>();
+                _npcUpgradeBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "ELEVATOR":
                 _bloque = Instantiate(npcElevatorPrefab, nextPosition, Quaternion.identity, sublevelContainer);

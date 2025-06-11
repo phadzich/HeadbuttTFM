@@ -45,5 +45,7 @@ MonoBehaviour:
     blockString: NPC_DOOR_X
   - color: {r: 0.3764706, g: 0.3019608, b: 0.21568628, a: 1}
     blockString: NPC_CRAFT_X
+  - color: {r: 0.5176471, g: 0.3882353, b: 0.12941177, a: 1}
+    blockString: NPC_UPGRADE_X
   - color: {r: 0.17254902, g: 0.35686275, b: 0.3882353, a: 1}
     blockString: NPC_ELEVATOR_X

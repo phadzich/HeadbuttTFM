@@ -61,6 +61,7 @@ public class MatchManager : MonoBehaviour
         bouncedResource = null;
         bouncedResourceBlock = null;
         EndStreak();
+        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         if (!lastBounceChained && currentChainResource != null)
         {
             FailCurrentChain();
@@ -101,9 +102,11 @@ public class MatchManager : MonoBehaviour
     }
     private void FailCurrentChain()
     {
+        PlayerManager.Instance.playerEmojis.FailedEmoji();
         //Debug.Log("Failed Current Chain");
         HelmetManager.Instance.currentHelmet.TakeDamage(1);
         //UIManager.Instance.damageTakenIndicator.AnimateDamage();
+        FlashFailedBlocks();
         ClearAllHitBlocks();
         lastBounceChained = false;
         EndStreak();
@@ -112,8 +115,16 @@ public class MatchManager : MonoBehaviour
 
         UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
-        UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
+        //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
+    }
+
+    public void FlashFailedBlocks()
+    {
+        foreach (var block in currentChainBlocks)
+        {
+            block.AnimateFailed();
+        }
     }
 
     private void TryToAddToChain()
@@ -159,7 +170,7 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("Chain COMPLETED!");
         RewardPlayer();
         IncreaseStreak();
-
+        PlayerManager.Instance.playerEmojis.CompletedEmoji();
         foreach (ResourceBlock _block in currentChainBlocks)
         {
             _block.Activate();

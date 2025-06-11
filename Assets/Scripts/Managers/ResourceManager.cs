@@ -7,6 +7,8 @@ public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
 
+    public ResourceTrader resourceTrader;
+
     [SerializeField]
     public Dictionary<ResourceData, int> ownedResources = new();
     [SerializeField]

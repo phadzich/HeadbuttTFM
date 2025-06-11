@@ -20,8 +20,11 @@ public class UIManager : MonoBehaviour
     public CurrentMatchPanel currentMatchPanel;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
-
-
+    public GameObject NPCCraftPanel;
+    public GameObject NPCUpgradePanel;
+    public ExchangePanelUI NPCUpgradeExchanger;
+    public GameObject NPCElevatorPanel;
+    public GameObject startPanel;
     public TextMeshProUGUI totalBouncesTXT;
 
     private void Awake()
@@ -41,6 +44,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("UIManager START");
+        startPanel.SetActive(true);
         //POR AHORA HARDCODED
         //headbuttsPanel.UpdateUsedHeadbutts(HelmetManager.Instance.helmetsEquipped[0]);
 
@@ -57,6 +61,7 @@ public class UIManager : MonoBehaviour
         //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
+        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
 
         //XP EVENTS
         XPManager.Instance.XPChanged += OnXPChanged;
@@ -69,6 +74,9 @@ public class UIManager : MonoBehaviour
         //PLAYER EVENTS
         PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
     }
+
+
+
     private void OnDisable()
     {
         HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
@@ -78,6 +86,7 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
+        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
     }
 
     private void SuscribeToHelmetInstances()
@@ -99,7 +108,10 @@ public class UIManager : MonoBehaviour
             _helmInstance.helmetXP.XPChanged -= OnHelmetXPChanged;
         }
     }
-
+    private void OnOwnedResourcesChanged()
+    {
+        NPCUpgradeExchanger.PopulateButtons();
+    }
     private void OnHelmetXPChanged(HelmetXP _xpComp, HelmetInstance _instance)
     {
         //Debug.Log("OnHelmetXPChanged");
@@ -147,6 +159,23 @@ public class UIManager : MonoBehaviour
 
     private void OnPlayerLivesChanged(int _current, int _max)
     {
-        livesPanel.UpdateLivesInfo(_current);
+        //livesPanel.UpdateLivesInfo(_current);
+    }
+
+    public void OpenNPCUI(NPCType _type)
+    {
+        switch (_type)
+        {
+            case NPCType.Crafter:
+                NPCCraftPanel.SetActive(true);
+                break;
+            case NPCType.Upgrader:
+                NPCUpgradePanel.SetActive(true);
+                break;
+            case NPCType.Elevator:
+                NPCElevatorPanel.SetActive(true);
+                break;
+
+        }
     }
 }

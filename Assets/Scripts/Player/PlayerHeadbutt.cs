@@ -51,22 +51,30 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void Headbutt(InputAction.CallbackContext context)
     {
-        // por ahora quite bounceDirection == "DOWN" && 
-        if (context.phase == InputActionPhase.Performed)
+        if(LevelManager.Instance.currentSublevel.config is MiningSublevelConfig)
         {
-            if (!headbuttOnCooldown &&
-                HelmetManager.Instance.currentHelmet.hasHeadbutts() &&
-                PlayerManager.Instance.playerMovement.blockBelow != null)
+            // por ahora quite bounceDirection == "DOWN" && 
+            if (context.phase == InputActionPhase.Performed)
             {
-                HeadbuttUp();
+                if (!headbuttOnCooldown &&
+                    HelmetManager.Instance.currentHelmet.HasHeadbutts &&
+                    PlayerManager.Instance.playerMovement.blockBelow != null)
+                {
+                    HeadbuttUp();
+                }
             }
+        }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
+            Debug.Log("NO HAY HBS EN NPC");
         }
+
 
     }
 
     private void HeadbuttUp()
     {
         //Debug.Log("HEADBUTT!");
+        headbuttPower = HelmetManager.Instance.currentHelmet.headBForce;
+        headbuttCooldown = HelmetManager.Instance.currentHelmet.headBCooldown;
         rb.transform.position = PlayerManager.Instance.playerMovement.blockBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
