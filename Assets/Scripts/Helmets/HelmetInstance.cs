@@ -24,6 +24,9 @@ public class HelmetInstance
 
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
 
+    public Action OnHeadbuttUsed;
+    public Action OnDamaged;
+
     public HelmetInstance(HelmetData helmetSO)
     {
         baseHelmet = helmetSO;
@@ -60,6 +63,7 @@ public class HelmetInstance
                 }
             }
 
+        OnDamaged?.Invoke();
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -67,6 +71,8 @@ public class HelmetInstance
     {
         if (remainingHeadbutts > 0)
             remainingHeadbutts--;
+
+        OnHeadbuttUsed?.Invoke();
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         HelmetInstanceChanged?.Invoke(this);
     }

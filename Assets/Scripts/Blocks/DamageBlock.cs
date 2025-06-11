@@ -13,7 +13,14 @@ public class DamageBlock : Block
     public ParticleSystem damageParticles;
     public CinemachineImpulseSource impulseSource;
 
+    [Header("SFX")]
+    public AudioClip damageSound;
+    private AudioSource audioSource;
 
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos)
     {
@@ -24,12 +31,14 @@ public class DamageBlock : Block
 
     public override void Bounce()
     {
+        audioSource.PlayOneShot(damageSound, 0.7f);
         DoDamage();
     }
 
     public override void Headbutt()
     {
-
+        audioSource.PlayOneShot(damageSound, 0.7f);
+        DoDamage();
     }
 
     public override void Activate()

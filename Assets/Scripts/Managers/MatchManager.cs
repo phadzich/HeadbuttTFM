@@ -16,6 +16,11 @@ public class MatchManager : MonoBehaviour
     public int currentStreak;
     public bool lastBounceChained;
 
+    [Header("SFX")]
+    public AudioClip chainFailSound;
+    public AudioClip floorBlockSound;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -33,6 +38,7 @@ public class MatchManager : MonoBehaviour
     {
         Debug.Log("MatchManager START");
         RestartMatches();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void RestartMatches()
@@ -65,6 +71,7 @@ public class MatchManager : MonoBehaviour
         {
             FailCurrentChain();
         }
+        audioSource.PlayOneShot(floorBlockSound, 0.7f);
     }
 
     private void StartNewChain()
@@ -114,6 +121,7 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
+        audioSource.PlayOneShot(chainFailSound, 0.5f);
     }
 
     private void TryToAddToChain()
