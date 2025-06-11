@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerCamera playerCamera;
     public PlayerAnimations playerAnimations;
     public PlayerBounce playerBounce;
+    public PlayerEmojis playerEmojis;
     //public PlayerHeadbutt playerHeadbutt;
     public int maxPlayerLives;
     public int currentPlayerLives;
@@ -58,6 +59,7 @@ public class PlayerManager : MonoBehaviour
     {
         currentPlayerLives -= _amount;
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
+        playerEmojis.DamagedEmoji();
         if (currentPlayerLives <= 0)
         {
             SceneManager.LoadScene("SampleScene");

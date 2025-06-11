@@ -102,6 +102,7 @@ public class MatchManager : MonoBehaviour
     }
     private void FailCurrentChain()
     {
+        PlayerManager.Instance.playerEmojis.FailedEmoji();
         //Debug.Log("Failed Current Chain");
         HelmetManager.Instance.currentHelmet.TakeDamage(1);
         //UIManager.Instance.damageTakenIndicator.AnimateDamage();
@@ -169,7 +170,7 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("Chain COMPLETED!");
         RewardPlayer();
         IncreaseStreak();
-
+        PlayerManager.Instance.playerEmojis.CompletedEmoji();
         foreach (ResourceBlock _block in currentChainBlocks)
         {
             _block.Activate();
