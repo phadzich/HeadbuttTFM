@@ -16,9 +16,16 @@ MonoBehaviour:
   levelName: Level1
   levelDescription: Primer nivel del juego
   subLevels:
+  - {fileID: 11400000, guid: 8825020f97bd7df4692cbe94b6b87921, type: 2}
+  - {fileID: 11400000, guid: 2454157efffa4944982e3dd1e3ef77e1, type: 2}
+  - {fileID: 11400000, guid: 2167d96f9cba3684985988bd7575df4a, type: 2}
+  - {fileID: 11400000, guid: 48c4df10035304b4db96e4e7a129ca5b, type: 2}
+  - {fileID: 11400000, guid: 1e2b13c756e1ede47aa2d3fd7d274472, type: 2}
+  - {fileID: 11400000, guid: a09dcc1efbe44c94fa0b7adf0e173880, type: 2}
+  - {fileID: 11400000, guid: 2de818ac6afe9a04baa82add3534ba9c, type: 2}
+  - {fileID: 11400000, guid: 5dfc3883fa595ef46860e35d42ec932f, type: 2}
+  - {fileID: 11400000, guid: e69befc1cbc4342478974072486651c2, type: 2}
   - {fileID: 11400000, guid: 98cb3791dec78f449a981e0a1ea62329, type: 2}
   - {fileID: 11400000, guid: b9cfb9e2d979ea14bab416071f36ef34, type: 2}
   - {fileID: 11400000, guid: d981c866662619c4297cdb06fa42ccd4, type: 2}
   - {fileID: 11400000, guid: a3189ab46ad829d40b1d5be5686a4cb1, type: 2}
-  - {fileID: 11400000, guid: 5dfc3883fa595ef46860e35d42ec932f, type: 2}
-  - {fileID: 11400000, guid: e69befc1cbc4342478974072486651c2, type: 2}

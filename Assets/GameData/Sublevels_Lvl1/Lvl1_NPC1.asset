@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
   m_Name: Lvl1_NPC1
   m_EditorClassIdentifier: 
-  id: NPC1
+  id: Lvl1_NPC2
   NPCtype: 0
-  sublevel2DMap: {fileID: 2800000, guid: c5f5eb0bc0b6ea64cadb56a9103101aa, type: 3}
+  sublevel2DMap: {fileID: 2800000, guid: 07b3faf2b8c465148a6ce4a80b38c78a, type: 3}
