@@ -29,11 +29,11 @@ public class HelmetBluprintUI : MonoBehaviour
     {
         if (_blueprint.CanCraft(ResourceManager.Instance.ownedResources))
         {
-            craftBtn.enabled = true;
+            craftBtn.interactable = true;
         }
         else
         {
-            craftBtn.enabled = false;
+            craftBtn.interactable = false;
         }
     }
 
