@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
-  m_Name: Lvl1_Sublvl7
+  m_Name: Lvl1_Sublvl_06
   m_EditorClassIdentifier: 
-  id: Lvl1Sub7
-  sublevel2DMap: {fileID: 2800000, guid: 7a8274a2ace46ec46ac4e8eb27213c78, type: 3}
-  blocksToComplete: 34
+  id: Lvl1Sub06
+  sublevel2DMap: {fileID: 2800000, guid: f21d322388cc83c44abb39903d8d2aee, type: 3}
+  blocksToComplete: 15
