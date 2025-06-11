@@ -9,8 +9,11 @@ public class SlimeDmgBlock : DamageBlock
     public override void Bounce()
     {
 
+        if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
+        {
+            PushPlayerRandomly();
+        }
 
-        PushPlayerRandomly();
     }
 
     public void PushPlayerRandomly()

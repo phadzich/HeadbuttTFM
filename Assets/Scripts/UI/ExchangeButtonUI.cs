@@ -15,7 +15,7 @@ public class ExchangeButtonUI : MonoBehaviour
         resourceData = _resourceData;
 
         resourceAmount = ResourceManager.Instance.resourceTrader.ResourcesNeededForUpgradePoint(resourceData);
-        Debug.Log(resourceAmount);
+        //Debug.Log(resourceAmount);
 
         resourceIcon.sprite = resourceData.icon;
         resourceAmountTXT.text = resourceAmount.ToString();

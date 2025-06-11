@@ -41,7 +41,7 @@ public class ResourceTrader : MonoBehaviour
 
     public void GenerateExchangeRates()
     {
-        Debug.Log("GENERATING EXCHANGE RATES");
+        //Debug.Log("GENERATING EXCHANGE RATES");
         upgradePointsExchangeRates = new Dictionary<ResourceData, float>();
         int _i = 1;
         foreach (ResourceData _res in ResourceManager.Instance.allAvailableResources)
@@ -57,11 +57,11 @@ public class ResourceTrader : MonoBehaviour
         int _result = 0;
 
         float _exchangeRate = upgradePointsExchangeRates[_resource];
-        Debug.Log(_exchangeRate);
+        //Debug.Log(_exchangeRate);
         float _floatResult = 1 / _exchangeRate;
-        Debug.Log(_floatResult);
+        //Debug.Log(_floatResult);
         _result = Mathf.RoundToInt(_floatResult);
-        Debug.Log(_result);
+        //Debug.Log(_result);
         return _result;
 
     }

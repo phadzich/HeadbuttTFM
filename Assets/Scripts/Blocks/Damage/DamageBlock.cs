@@ -5,7 +5,7 @@ public class DamageBlock : Block
 {
     public damageType typeOfDamage;
     public int damage;
-
+    public EffectTypeEnum helmetCounter;
 
 
     public Transform blockMeshParent;
@@ -24,7 +24,11 @@ public class DamageBlock : Block
 
     public override void Bounce()
     {
-        DoDamage();
+        if(HelmetManager.Instance.currentHelmet.helmetEffect!= helmetCounter)
+        {
+            DoDamage();
+        }
+
     }
 
     public override void Headbutt()

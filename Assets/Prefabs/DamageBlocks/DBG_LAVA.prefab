@@ -5054,6 +5054,7 @@ MonoBehaviour:
   right: {fileID: 0}
   typeOfDamage: 1
   damage: 2
+  helmetCounter: 1
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 3486571716503860580}
   damageParticles: {fileID: 1241805286537262801}

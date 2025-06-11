@@ -13,12 +13,17 @@ public class BallDmg_Ball : MonoBehaviour
         {
             float time = Time.time;
             if (Time.time - lastDamageTime >= damageCooldown)
-                dmgBlock.DoDamage();
-                dmgBlock.damageParticles.Play();
-            lastDamageTime = Time.time;
+                if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.LavaResistance)
+                {
+                    dmgBlock.DoDamage();
+                    dmgBlock.damageParticles.Play();
+                }
+        }
+        if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.SlimeResistance)
+        {
             dmgBlock.PushPlayerRandomly();
         }
-
+            lastDamageTime = Time.time;
         }
     }
 
