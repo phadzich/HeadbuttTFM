@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     public GameObject NPCUpgradePanel;
     public ExchangePanelUI NPCUpgradeExchanger;
     public GameObject NPCElevatorPanel;
-
+    public GameObject startPanel;
     public TextMeshProUGUI totalBouncesTXT;
 
     private void Awake()
@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("UIManager START");
+        startPanel.SetActive(true);
         //POR AHORA HARDCODED
         //headbuttsPanel.UpdateUsedHeadbutts(HelmetManager.Instance.helmetsEquipped[0]);
 

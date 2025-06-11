@@ -62,7 +62,8 @@ public class PlayerManager : MonoBehaviour
         playerEmojis.DamagedEmoji();
         if (currentPlayerLives <= 0)
         {
-            SceneManager.LoadScene("SampleScene");
+            GameManager.Instance.RestartScene();
+
         }
     }
 
