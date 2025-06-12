@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 7_Turquoise
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 0882e498dad04a84fb551d761d9b3d41, type: 3}
   id: 7
   shortName: Turquoise
   hardness: 6
   rarity: 2
   description: 
   icon: {fileID: 0}
-  color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 0}
+  color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}
   mesh: {fileID: 0}

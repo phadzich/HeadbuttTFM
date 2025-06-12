@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: MIN_A_007
+  m_EditorClassIdentifier: 
+  id: A_007
+  width: 15
+  height: 15
+  sublevel2DMap: {fileID: 2800000, guid: c7fd1143c0672d443b4f8a526566233d, type: 3}
+  blocksToComplete: 80
+  dmgBlocksList:
+  - {fileID: 6788644115671087910, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  - {fileID: 6788644115671087910, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
+  dmgBlocksQty: 15

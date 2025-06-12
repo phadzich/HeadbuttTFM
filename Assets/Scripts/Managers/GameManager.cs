@@ -8,131 +8,44 @@ using static Unity.Collections.AllocatorManager;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public LevelMovement levelMovement;
 
+    public int globalSeed;
+
+    [Header("REFERENCIAS")]
     [SerializeField]
-    private List<ResourceBlock> hitBlocks;
+    public PlayerMovement playerMovement;
 
-    public ResourceData currentComboResource;
-    public int currentComboCount;
-    public int levelJumpCount;
-    public int maxJumps;
-
-
-
-    public TextMeshProUGUI txtJumpCounts;
-    public TextMeshProUGUI txtMaxJumps;
-    public TextMeshProUGUI txtRemainingJumps;
-
-    public int levelHBCount;
-    public int maxHB;
-    public bool hasHeadbutts;
-
-    public TextMeshProUGUI txtHBCounts;
-    public TextMeshProUGUI txtMaxHB;
-    public TextMeshProUGUI txtRemainingHB;
 
     private void Awake()
     {
         Instance = this;
     }
-    private void Start()
+
+    public void RestartScene()
     {
-        txtMaxJumps.text = "MAX: " + maxJumps.ToString();
-        txtMaxHB.text = "MAX: " + maxHB.ToString();
+        SceneManager.LoadScene("SampleScene");
     }
 
-    public void CheckIfNewCombo(ResourceData _resourceData, ResourceBlock _resourceBlock)
+    public void QuitGame()
     {
-        //Si se salta sobre un recurso diferente, rompemos el combo
-        if (currentComboResource != _resourceData)
-        {
-            ClearAllHitBlocks();
-            currentComboResource = _resourceData;
-        }
-        //Sea diferente o no, lo agregamos a la lista del combo
-        AddBlockToHitBlocks(_resourceBlock);
+        Application.Quit();
+    }
+    public void RestartSublevelStats()
+    {
+        //MatchManager.Instance.ResetComboStats();
+
+        //HelmetManager.Instance.ResetHelmetsStats();
     }
 
-    public void CheckIfComboCompleted()
+    public void PauseGame(bool _isPaused)
     {
-        if (currentComboCount == currentComboResource.hardness)
+        if (_isPaused)
         {
-            MineAllHitBlocks();
-        }
-
-    }
-
-    public void AddBlockToHitBlocks(ResourceBlock _newBlock)
-    {
-        if(!hitBlocks.Contains(_newBlock))
-        {
-            hitBlocks.Add(_newBlock);
-            currentComboCount++;
-        }
-        IncreaseLevelJumpCount(1);
-    }
-
-    public void ClearAllHitBlocks()
-    {
-        foreach (ResourceBlock _block in hitBlocks)
-        {
-            _block.ShowHitIndicator(false);
-        }
-        hitBlocks.Clear();
-        currentComboResource= null;
-        currentComboCount = 0;
-
-    }
-
-    public void MineAllHitBlocks()
-    {
-        foreach (ResourceBlock _block in hitBlocks)
-        {
-            _block.Activate();
-            
-        }
-        ClearAllHitBlocks();
-    }
-
-    public void IncreaseLevelJumpCount(int _jumps)
-    {
-        levelJumpCount += _jumps;
-        txtJumpCounts.text = "JUMPS: " + levelJumpCount.ToString();
-
-        var _remaining = maxJumps - levelJumpCount;
-
-        txtRemainingJumps.text = "QUEDAN: " + _remaining.ToString();
-
-        if (levelJumpCount == maxJumps)
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
-
-    }
-
-    public void IncreaseLevelHBCount(int _jumps)
-    {
-        levelHBCount += _jumps;
-        txtHBCounts.text = "HEADBUTTS: " + levelHBCount.ToString();
-
-        var _remaining = maxHB - levelHBCount;
-
-        txtRemainingHB.text = "QUEDAN: " + _remaining.ToString();
-
-        if (levelHBCount >= maxHB)
-        {
-            levelHBCount = maxHB;
-            hasHeadbutts = false;
+            Time.timeScale = 0;
         }
         else
         {
-            hasHeadbutts = true;
+            Time.timeScale = 1;
         }
-
     }
-
-
-
-
 }

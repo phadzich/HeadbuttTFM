@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 14_Emerald
   m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: ce6a5cf6582f86643943a9cb045c63e3, type: 3}
   id: 14
   shortName: Emerald
   hardness: 2
