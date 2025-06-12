@@ -28,10 +28,17 @@ public class ResourceBlock : Block
 
     [Header("UI AND VFX")]
     public ResourceBlockUIAnims uiAnims;
+
+    [Header("SFX")]
+    public AudioClip hitSound;
+    public AudioClip headbuttSound;
+    private AudioSource audioSource;
+
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
         doorTriggerPrefab.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
@@ -63,16 +70,28 @@ public class ResourceBlock : Block
 
             //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
             MatchManager.Instance.ResourceBounced(this);
+
+            // Play hit sound - unmined
+            if (hitSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(hitSound, 0.7f);
+            }
         }
         else //SI YA ESTABA MINADO
         {
             MatchManager.Instance.FloorBounced();
         }
 
+
     }
 
     public override void Headbutt()
     {
+        if (headbuttSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(headbuttSound, 0.7f);
+        }
+
         Bounce();
     }
 
@@ -90,6 +109,7 @@ public class ResourceBlock : Block
         GetMinedState();
         ScreenShake();
         MinedAnimation();
+
         uiAnims.AnimateResourceRewards(MatchManager.Instance.currentStreak-1);
     }
 

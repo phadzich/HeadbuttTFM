@@ -1,11 +1,19 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SlimeDmgBlock : DamageBlock
 {
     Block[] directions = new Block[4];
+    [Header("Slime")]
     public Vector3 currentPos;
     public Vector3 newDirection;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void Bounce()
     {
 
@@ -14,6 +22,8 @@ public class SlimeDmgBlock : DamageBlock
             PushPlayerRandomly();
         }
 
+        PushPlayerRandomly();
+        audioSource.PlayOneShot(damageSound, 0.7f);
     }
 
     public void PushPlayerRandomly()

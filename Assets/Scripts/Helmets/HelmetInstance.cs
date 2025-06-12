@@ -29,6 +29,8 @@ public class HelmetInstance
     public bool IsWornOut => currentDurability <= 0;
 
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
+    public Action OnHeadbuttUsed;
+    public Action OnDamaged;
 
     public HelmetInstance(HelmetData _helmetSO)
     {
@@ -73,6 +75,7 @@ public class HelmetInstance
                 }
             }
 
+        OnDamaged?.Invoke();
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -80,6 +83,8 @@ public class HelmetInstance
     {
         if (remainingHeadbutts > 0)
             remainingHeadbutts--;
+
+        OnHeadbuttUsed?.Invoke();
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         HelmetInstanceChanged?.Invoke(this);
     }
