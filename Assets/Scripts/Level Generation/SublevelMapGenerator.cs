@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
-using static UnityEditor.PlayerSettings;
 
 public class SublevelMapGenerator : MonoBehaviour
 {
