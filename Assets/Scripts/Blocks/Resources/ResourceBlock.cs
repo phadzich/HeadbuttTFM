@@ -32,6 +32,7 @@ public class ResourceBlock : Block
     [Header("SFX")]
     public AudioClip hitSound;
     public AudioClip headbuttSound;
+    public AudioClip minedSound;
     private AudioSource audioSource;
 
     private void Start()
@@ -109,6 +110,7 @@ public class ResourceBlock : Block
         GetMinedState();
         ScreenShake();
         MinedAnimation();
+        audioSource.PlayOneShot(minedSound);
 
         uiAnims.AnimateResourceRewards(MatchManager.Instance.currentStreak-1);
     }

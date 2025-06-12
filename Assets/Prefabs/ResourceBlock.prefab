@@ -5712,6 +5712,7 @@ MonoBehaviour:
   uiAnims: {fileID: 5254807487003154241}
   hitSound: {fileID: 8300000, guid: af2e1992b6577624fa7e6d3a7eb665e8, type: 3}
   headbuttSound: {fileID: 8300000, guid: 5a06dd1785ddc1540a04f3a22cc56066, type: 3}
+  minedSound: {fileID: 8300000, guid: ec4dca90f64d22c4b8c6ae90c5afcdc2, type: 3}
 --- !u!114 &1003532578358748977
 MonoBehaviour:
   m_ObjectHideFlags: 0
