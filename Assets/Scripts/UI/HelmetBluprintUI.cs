@@ -7,6 +7,7 @@ public class HelmetBluprintUI : MonoBehaviour
 {
 
     public TextMeshProUGUI blueprintNameText;
+    public TextMeshProUGUI blueprintDescriptionText;
     public Image blueprintIcon;
     public Button craftBtn;
     public Transform resourceListContainer; // Donde se van a poner los ResourceIndicators
@@ -19,6 +20,7 @@ public class HelmetBluprintUI : MonoBehaviour
     {
         blueprint = _blueprint;
         blueprintNameText.text = _blueprint.helmetInfo.name;
+        blueprintDescriptionText.text = _blueprint.helmetInfo.description;
         blueprintIcon.sprite = _blueprint.helmetInfo.icon;
 
         CheckIfCanCraft(_blueprint);

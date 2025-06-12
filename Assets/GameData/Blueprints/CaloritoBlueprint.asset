@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helmetInfo:
     name: Magma Nific Helmet
-    description: "\xA1El piso es lava! Y t\xFA est\xE1s m\xE1s que listo con este
-      casco hecho para resistir hasta el m\xE1s ardiente de los suelos."
+    description: "\xA1El piso es lava! Ignora el efecto de la lava con este casco."
     mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
     icon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
     color: {r: 0.7372549, g: 0.07450981, b: 0.07450981, a: 0}

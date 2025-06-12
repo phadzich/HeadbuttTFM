@@ -787,6 +787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueprintNameText: {fileID: 2880665588728162218}
+  blueprintDescriptionText: {fileID: 452582746381579345}
   blueprintIcon: {fileID: 2125476917035613390}
   craftBtn: {fileID: 5209492295116993819}
   resourceListContainer: {fileID: 7453230636213052585}
