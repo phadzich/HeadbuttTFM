@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helmetInfo:
     name: Slime
-    description: Un casco forjado con un poco de baba, ignora el efecto del slime.
+    description: A helmet forged with a little bit of Baba. Ignores Slime knockbacks.
     mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
     icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
     color: {r: 0.06430225, g: 0.5573704, b: 0.8018868, a: 0}
