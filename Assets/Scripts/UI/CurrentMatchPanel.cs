@@ -58,7 +58,7 @@ public class CurrentMatchPanel : MonoBehaviour
 
     public void AnimateIn()
     {
-        Tween.PositionX(transform, startValue: startPosition - 400, endValue:startPosition,duration:.5f);
+        Tween.PositionX(transform, startValue: startPosition + 250, endValue:startPosition,duration:.5f);
     }
 
     public void AnimateOut(bool comboChanged)
@@ -72,7 +72,7 @@ public class CurrentMatchPanel : MonoBehaviour
 
     public void AnimateBreak()
     {
-        Tween.PositionX(transform, endValue: startPosition - 400, duration: .2f);
+        Tween.PositionX(transform, endValue: startPosition + 250, duration: .2f);
         Vector3 _shakeScale = new Vector3(.4f, .4f, 1);
         Tween.ShakeScale(transform, _shakeScale, duration: .2f);
     }

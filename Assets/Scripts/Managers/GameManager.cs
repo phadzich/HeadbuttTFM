@@ -21,7 +21,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void RestartSublevelStats()
     {
         //MatchManager.Instance.ResetComboStats();

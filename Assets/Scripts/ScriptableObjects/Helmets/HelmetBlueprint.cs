@@ -4,10 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HelmetBlueprint", menuName = "GameData/HelmetBlueprint")]
 public class HelmetBlueprint : ScriptableObject
 {
-    public string recipeName;
-    public HelmetData resultHelmet;
-    [SerializeField]
-    public List<ResourceRequirement> requiredResources;
+    [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
+    public EffectTypeEnum effect;
+    public ElementEnum element;
+    public bool isOvercharged;
+    public int baseXP;
+    public float xpMultiplier;
+    [SerializeField] public List<ResourceRequirement> requiredResources;
+    public int requiredEvolution;
 
     public bool CanCraft(Dictionary<ResourceData, int> playerResources)
     {

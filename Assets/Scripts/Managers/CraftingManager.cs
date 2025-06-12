@@ -7,10 +7,12 @@ public class CraftingManager : MonoBehaviour
     public static CraftingManager Instance;
 
     public List<HelmetBlueprint> blueprints;
-    public ResourceRequirement bouncePrice;
-    public ResourceRequirement headbuttPrice;
+    public HashSet<HelmetBlueprint> unlockedBlueprints = new HashSet<HelmetBlueprint>();
 
-    public Action HelmetUpgraded; //Se lanza cuando un casco ha sido upgradeado
+    public HelmetInstance selectedHelmet;
+
+    public Action HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
+    public Action HelmetEvolved; // Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
     {
@@ -25,73 +27,69 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    public List<HelmetBlueprint> GetAvailableBlueprints()
+    private void Start()
     {
-        Dictionary<ResourceData, int> playerResources = ResourceManager.Instance.ownedResources;
-        List<HelmetBlueprint> availableBlueprints = new();
+        // PRUEBA PARA PROTOTIPO QUE TODOS ESTEN DESBLOQUEADOS DESDE UN INICIO
+        UnlockHelmetBlueprint(blueprints[0]);
+        UnlockHelmetBlueprint(blueprints[1]);
+    }
 
-        foreach (var blueprint in blueprints)
+    public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
+    {
+        unlockedBlueprints.Add(_helmetBP);
+    }
+
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementEnum _element)
+    {
+        List<HelmetBlueprint> blueprintsByElement = new();
+
+        foreach(var blueprint in unlockedBlueprints)
         {
-            if (blueprint.CanCraft(playerResources))
+            if(blueprint.element == _element)
             {
-                availableBlueprints.Add(blueprint);
+                blueprintsByElement.Add(blueprint);
             }
         }
 
-        return availableBlueprints;
-
+        return blueprintsByElement;
     }
 
-    private HelmetBlueprint GetHelmetBlueprint(HelmetInstance helmet) {
-        foreach (var blueprint in blueprints)
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByEvolutionReq(int _evolution)
+    {
+        List<HelmetBlueprint> blueprintsByRequirement = new();
+
+        foreach (var blueprint in unlockedBlueprints)
         {
-            if (blueprint.resultHelmet == helmet.baseHelmet)
+            if (blueprint.requiredEvolution == _evolution)
             {
-                return blueprint;
+                blueprintsByRequirement.Add(blueprint);
             }
         }
 
-        return new HelmetBlueprint();
+        return blueprintsByRequirement;
     }
+
+    // Funcion para elegir un casco desde la UI
+    public void SelectHelmet(HelmetInstance _helmet)
+    {
+        selectedHelmet = _helmet;
+        HelmetSelected?.Invoke();
+    }
+
 
     //Llamar cuando se quiera upgradear un casco
-    public void UpgradeHelmet(HelmetInstance helmet)
+    public void EvolveHelmet(HelmetBlueprint _blueprint)
     {
-        // Revisamos que no este upgredeado al maximo nivel
-        if (helmet.canBeUpgraded)
+        if (selectedHelmet == null) return;
+
+        foreach (var res in _blueprint.requiredResources)
         {
-            List<ResourceRequirement> price = helmet.GetPriceForNextLevel();
-            bool canSpend = true;
-
-
-            // Revisamos si tiene los suficientes recursos porque cada upgrade tiene un precio diferente
-            foreach (var res in price)
-            {
-                if (!ResourceManager.Instance.CanSpendResource(res.resource, res.quantity))
-                {
-                    canSpend = false;
-                    break;
-                }
-            }
-
-            if (canSpend)
-            {
-                foreach (var res in price)
-                {
-                    ResourceManager.Instance.SpendResource(res.resource, res.quantity);
-                }
-                helmet.helmetXP.LevelUp();
-                HelmetUpgraded?.Invoke();
-            }
-            else
-            {
-                Debug.Log("NO HAY SUFICIENTES RECURSOS");
-            }
-        }
-        else
-        {
-            Debug.Log("HELMET LEVEL MAXED OUT");
+            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
         }
 
+        // Actualiza la informacion del casco como el efecto, elemento, xp
+        selectedHelmet.Evolve(_blueprint);
+
+        HelmetEvolved?.Invoke();
     }
 }
