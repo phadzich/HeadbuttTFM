@@ -1,5 +1,3 @@
-using Mono.Cecil;
-
 [System.Serializable]
 public class ResourceRequirement
 {
