@@ -12,6 +12,7 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
+    public CheckpointSystem checkpointSystem;
     public List<LevelConfig> levelsList;
     public SublevelMapGenerator sublevelMapGenerator;
 
@@ -79,12 +80,21 @@ public class LevelManager : MonoBehaviour
         //DETERMINAMOS DATA DEL DEPTH
         maxLevelDepth = _levelConfig.subLevels.Count - 1;
         currentLevelDepth = 0;
-
+        PreloadSublevelsList();
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
 
         //INDICAMOS QUE HEMOS ENTRADO EN EL
         EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
+
+    }
+
+    public void PreloadSublevelsList()
+    {
+        foreach(SublevelConfig _sublevelConfig in currentLevel.config.subLevels)
+        {
+            sublevelsList.Add(null);
+        }
 
     }
 
@@ -96,7 +106,7 @@ public class LevelManager : MonoBehaviour
 
 
         Sublevel _sublevel = _sublevelContainer.AddComponent<Sublevel>();
-        sublevelsList.Add(_sublevel);
+        sublevelsList[_depth]=_sublevel;
         _sublevel.SetupSublevel(_sublevelConfig.id, _depth, true, _sublevelConfig);
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
@@ -122,22 +132,36 @@ public class LevelManager : MonoBehaviour
 
     public void ExitSublevel()
     {
-        if (sublevelsList[currentLevelDepth].isTotallyMined)
-        {
-            HelmetManager.Instance.ResetHelmetsStats();
-            PlayerManager.Instance.MaxUpLives();
-            UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
-        }
-        sublevelsList[currentLevelDepth].gameObject.SetActive(false);
+        Debug.Log($"Exiting {currentSublevel}");
+
+        DestroySublevelContent(currentSublevel);
+            
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
         MatchManager.Instance.RestartMatches();
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
 
     }
+
+    public void DestroySublevelContent(Sublevel _sublevel)
+    {
+        Debug.Log($"Destroying {_sublevel}");
+        //sublevelsList.Remove(_sublevel);
+        Destroy(_sublevel.gameObject);
+    }
+
+    public void DestroySublevelsUntilCheckpoint(int _targetDepth)
+    {
+        for (int i = currentLevelDepth+1;i> _targetDepth; i--)
+        {
+            DestroySublevelContent(sublevelsList[i]);
+        }
+    }
+
     public void EnterSublevel(SublevelConfig _sublevelConfig)
     {
         currentSublevel = sublevelsList[currentLevelDepth];
+        Debug.Log($"Entering {currentSublevel}");
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             PlayerManager.Instance.EnterMiningLevel();
@@ -151,6 +175,7 @@ public class LevelManager : MonoBehaviour
             HelmetManager.Instance.ResetHelmetsStats();
             PlayerManager.Instance.MaxUpLives();
             UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
+            checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
 
         }
 

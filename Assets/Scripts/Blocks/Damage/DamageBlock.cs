@@ -15,10 +15,11 @@ public class DamageBlock : Block
 
     [Header("SFX")]
     public AudioClip damageSound;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     private void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         audioSource = GetComponent<AudioSource>();
     }
 

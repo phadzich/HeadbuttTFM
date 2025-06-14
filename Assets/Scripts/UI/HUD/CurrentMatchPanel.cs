@@ -10,7 +10,6 @@ public class CurrentMatchPanel : MonoBehaviour
     public TextMeshProUGUI currentComboText;
     public Image resourceIcon;
     private ResourceData currentResource;
-    private bool comboChanged;
 
     private float startPosition;
 
@@ -34,7 +33,6 @@ public class CurrentMatchPanel : MonoBehaviour
     }
     public void EndCurrentCombo()
     {
-        comboChanged = false;
         AnimateBreak();
     }
 
@@ -45,7 +43,6 @@ public class CurrentMatchPanel : MonoBehaviour
 
     public void ChangeCurrentCombo()
     {
-        comboChanged = true;
         AnimateBreak();
     }
 
@@ -59,15 +56,6 @@ public class CurrentMatchPanel : MonoBehaviour
     public void AnimateIn()
     {
         Tween.PositionX(transform, startValue: startPosition + 250, endValue:startPosition,duration:.5f);
-    }
-
-    public void AnimateOut(bool comboChanged)
-    {
-        if(comboChanged)
-        {
-            AnimateIn();
-        }
-
     }
 
     public void AnimateBreak()

@@ -5316,11 +5316,13 @@ MonoBehaviour:
   right: {fileID: 0}
   typeOfDamage: 1
   damage: 1
+  helmetCounter: 0
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 3486571716503860580}
   damageParticles: {fileID: 1241805286537262801}
   impulseSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
+  audioSource: {fileID: -5789247509426230537}
 --- !u!82 &-5789247509426230537
 AudioSource:
   m_ObjectHideFlags: 0

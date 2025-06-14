@@ -11,7 +11,7 @@ public class NPCBlock : Block,IInteractable
     public NPCType type;
     public void SetupBlock(int _subId, int _xPos, int _yPos)
     {
-        Debug.Log(this);
+        //Debug.Log(this);
         sublevelId = _subId;
         sublevelPosition = new Vector2(_xPos, _yPos);
         isWalkable = false;

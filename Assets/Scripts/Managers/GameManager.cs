@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using PrimeTween;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        PrimeTweenConfig.warnEndValueEqualsCurrent = false;
     }
 
     public void RestartScene()

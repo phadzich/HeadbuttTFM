@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour
         playerEmojis.DamagedEmoji();
         if (currentPlayerLives <= 0)
         {
-            GameManager.Instance.RestartScene();
+            LevelManager.Instance.checkpointSystem.RestoreToLastCheckpoint();
 
         }
     }

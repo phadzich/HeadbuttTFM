@@ -9,7 +9,6 @@ public class BallDmgBlock : DamageBlock
     public float height;
     public float speed;
     public GameObject ball;
-    private AudioSource audioSource;
 
     Block[] directions = new Block[4];
     public Vector3 currentPos;
@@ -18,7 +17,6 @@ public class BallDmgBlock : DamageBlock
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
         Tween.LocalPositionY(ball.transform, endValue: height, duration: speed, ease: Ease.OutExpo, startDelay: Random.Range(0, .5f)).OnComplete(AnimateDown);
-        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Bounce()

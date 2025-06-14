@@ -280,6 +280,7 @@ MonoBehaviour:
   damageParticles: {fileID: 0}
   impulseSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 144d17417291ef64d94d64bd12e681f5, type: 3}
+  audioSource: {fileID: -2063554094599321747}
   currentPos: {x: 0, y: 0, z: 0}
   newDirection: {x: 0, y: 0, z: 0}
 --- !u!82 &-2063554094599321747

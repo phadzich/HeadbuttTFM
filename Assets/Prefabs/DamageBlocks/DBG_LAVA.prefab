@@ -5061,6 +5061,7 @@ MonoBehaviour:
   damageParticles: {fileID: 1241805286537262801}
   impulseSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
+  audioSource: {fileID: 4953970179030551049}
 --- !u!82 &4953970179030551049
 AudioSource:
   m_ObjectHideFlags: 0

@@ -5185,9 +5185,12 @@ MonoBehaviour:
   damageParticles: {fileID: 1241805286537262801}
   impulseSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
+  audioSource: {fileID: -1587120826981845012}
   height: 5
   speed: 1
   ball: {fileID: 4042318397848241673}
+  currentPos: {x: 0, y: 0, z: 0}
+  newDirection: {x: 0, y: 0, z: 0}
 --- !u!82 &-1587120826981845012
 AudioSource:
   m_ObjectHideFlags: 0

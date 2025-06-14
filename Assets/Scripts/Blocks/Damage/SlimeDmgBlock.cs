@@ -8,11 +8,9 @@ public class SlimeDmgBlock : DamageBlock
     [Header("Slime")]
     public Vector3 currentPos;
     public Vector3 newDirection;
-    private AudioSource audioSource;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
     }
     public override void Bounce()
     {

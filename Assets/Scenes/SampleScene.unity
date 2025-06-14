@@ -1950,7 +1950,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.000012313965, z: -0.000012313965, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 0, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5422,7 +5422,7 @@ Transform:
   m_GameObject: {fileID: 863160636}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 0, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5445,6 +5445,7 @@ MonoBehaviour:
   Gain: 1
   Use2DDistance: 0
   UseCameraSpace: 1
+  SignalCombinationMode: 0
   ReactionSettings:
     m_SecondaryNoise: {fileID: 0}
     AmplitudeGain: 1
@@ -5734,6 +5735,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885131836}
   m_CullTransparentMesh: 1
+--- !u!1 &899462911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899462912}
+  - component: {fileID: 899462913}
+  m_Layer: 0
+  m_Name: CheckpointSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899462912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899462911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1565896191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899462913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899462911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720d26d5aae8131468fdaac82580e5bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointSaveData: {fileID: 11400000, guid: e316c49e9b1ae5a4b82cffc41827de7a, type: 2}
+  lastNPCSublevel: {fileID: 0}
 --- !u!1 &907588129
 GameObject:
   m_ObjectHideFlags: 0
@@ -7237,9 +7284,6 @@ MonoBehaviour:
   ambientVolume: 0.678
   musicClip: {fileID: 8300000, guid: f28ea46ac66709741aeabc200e784c3a, type: 3}
   musicVolume: 0.65
-  headbuttClip: {fileID: 8300000, guid: 5a06dd1785ddc1540a04f3a22cc56066, type: 3}
-  damageClip: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
-  sfxVolume: 1
 --- !u!82 &1112208451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8168,7 +8212,6 @@ GameObject:
   - component: {fileID: 1217362974}
   - component: {fileID: 1217362975}
   - component: {fileID: 1217362976}
-  - component: {fileID: 1217362977}
   - component: {fileID: 1217362978}
   m_Layer: 0
   m_Name: Enano
@@ -10843,6 +10886,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1925347360}
+  - {fileID: 899462912}
   m_Father: {fileID: 1903120177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1565896192
@@ -10857,6 +10901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab2ef1abcb9734459d5f372b35886cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointSystem: {fileID: 899462913}
   levelsList:
   - {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
   - {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
@@ -11749,6 +11794,7 @@ MonoBehaviour:
   playerCam: {fileID: 863160636}
   playerCamHeight: 18
   moveDownDuration: 1.5
+  moveUpDuration: 1
 --- !u!1 &1698741870
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ public class ExchangeButtonUI : MonoBehaviour
     {
         if (ResourceManager.Instance.ownedResources.ContainsKey(resourceData))
         {
-            Debug.Log($"Req:{resourceAmount}  Res: {ResourceManager.Instance.ownedResources[resourceData]}");
+            //Debug.Log($"Req:{resourceAmount}  Res: {ResourceManager.Instance.ownedResources[resourceData]}");
             if (resourceAmount <= ResourceManager.Instance.ownedResources[resourceData])
             {
                 EnableButton(true);
