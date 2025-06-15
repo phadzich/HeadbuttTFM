@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject NPCElevatorPanel;
     public GameObject startPanel;
     public TextMeshProUGUI totalBouncesTXT;
+    public HBPointsHUD hbPointsHUD;
 
     private void Awake()
     {
@@ -73,6 +74,7 @@ public class UIManager : MonoBehaviour
 
         //PLAYER EVENTS
         PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
+        PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
     }
 
 
@@ -87,6 +89,7 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
     }
 
     private void SuscribeToHelmetInstances()
@@ -107,6 +110,11 @@ public class UIManager : MonoBehaviour
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
             _helmInstance.helmetXP.XPChanged -= OnHelmetXPChanged;
         }
+    }
+
+    private void OnHBPointsChanged(float _current, float _max)
+    {
+        hbPointsHUD.UpdateFill(_current, _max);
     }
     private void OnOwnedResourcesChanged()
     {

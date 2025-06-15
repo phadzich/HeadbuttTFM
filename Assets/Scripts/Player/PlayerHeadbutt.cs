@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,9 @@ public class PlayerHeadbutt : MonoBehaviour
     PlayerStates playerStates;
     public GameObject bodyMesh;
 
+    [SerializeField] public float maxHBpoints;
+    [SerializeField] public float currentHBpoints;
+
     [Header("HEADBUTT CONFIG")]
     [SerializeField]
     float headbuttCooldown;
@@ -15,15 +19,13 @@ public class PlayerHeadbutt : MonoBehaviour
     bool headbuttOnCooldown;
     [SerializeField]
     float headbuttPower;
-    [Header("HEADBUTT CHECKS")]
 
+    [Header("HEADBUTT CHECKS")]
     [SerializeField]
     float timeSinceLastHeadbutt;
     CinemachineImpulseSource impulseSource;
-    [SerializeField]
-    float maxHeight;
 
-
+    public Action<float, float> onHBPointsChanged;
 
     private void Start()
     {
@@ -33,10 +35,52 @@ public class PlayerHeadbutt : MonoBehaviour
 
     void Update()
     {
-
         UpdateHeadbuttCooldown();
         KeepCentered();
     }
+
+    public void AddHBPoints(float _amount)
+    {
+        if(_amount>maxHBpoints - currentHBpoints)
+        {
+            ChangeHBpoints(maxHBpoints - currentHBpoints);
+        }
+        else
+        {
+            ChangeHBpoints(_amount);
+        }
+
+    }
+
+    public bool TryUseHBPoints(float _amount)
+    {
+        bool _result = false;
+
+        if (_amount > currentHBpoints)
+        {
+            _result = false;
+            Debug.Log("NOT ENOUGH HB POINTS");
+        }
+        else
+        {
+            _result = true;
+            UseHBPoints(_amount);
+        }
+
+            return _result;
+    }
+
+    public void UseHBPoints(float _amount)
+    {
+        ChangeHBpoints(-_amount);
+    }
+
+    public void ChangeHBpoints(float _amount)
+    {
+        currentHBpoints += _amount;
+        onHBPointsChanged?.Invoke(currentHBpoints,maxHBpoints);
+    }
+
 
     private void KeepCentered()
     {
@@ -57,7 +101,7 @@ public class PlayerHeadbutt : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 if (!headbuttOnCooldown &&
-                    HelmetManager.Instance.currentHelmet.HasHeadbutts &&
+                    TryUseHBPoints(1) &&
                     PlayerManager.Instance.playerMovement.blockBelow != null)
                 {
                     HeadbuttUp();

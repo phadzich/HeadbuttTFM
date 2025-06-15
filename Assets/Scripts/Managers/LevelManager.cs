@@ -147,7 +147,11 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log($"Destroying {_sublevel}");
         //sublevelsList.Remove(_sublevel);
-        Destroy(_sublevel.gameObject);
+        if (_sublevel != null)
+        {
+            Destroy(_sublevel.gameObject);
+        }
+
     }
 
     public void DestroySublevelsUntilCheckpoint(int _targetDepth)

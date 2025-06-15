@@ -14,7 +14,10 @@ public class MatchManager : MonoBehaviour
     public ResourceBlock bouncedResourceBlock;
 
     public int currentStreak;
+    public int maxStreak;
     public bool lastBounceChained;
+    public float HBRewardRatio;
+    public float streakRewardRatio;
 
     [Header("SFX")]
     public AudioClip chainFailSound;
@@ -204,12 +207,16 @@ public class MatchManager : MonoBehaviour
         RewardSublevelBlocks();
         RewardResources();
         RewardHelmetXP();
+        RewardHBPoints();
     }
 
     private void IncreaseStreak()
     {
         //Debug.Log("Streak Increased");
-        currentStreak++;
+        if (currentStreak < maxStreak)
+        {
+            currentStreak++;
+        }
     }
 
     private void EndStreak()
@@ -227,9 +234,16 @@ public class MatchManager : MonoBehaviour
 
     private void RewardResources()
     {
-        int _totalRes = currentChainBlocks.Count * currentStreak;
+        int _totalRes = currentChainBlocks.Count;
         //Debug.Log("REW Resources " + _totalRes);
         ResourceManager.Instance.AddResource(currentChainResource, _totalRes);
+    }
+
+    private void RewardHBPoints()
+    {
+        float _totalPoints = currentChainBlocks.Count * currentStreak*streakRewardRatio * HBRewardRatio;
+        //Debug.Log("REW Resources " + _totalRes);
+        PlayerManager.Instance.playerHeadbutt.AddHBPoints((float)_totalPoints);
     }
 
     private void RewardHelmetXP()
