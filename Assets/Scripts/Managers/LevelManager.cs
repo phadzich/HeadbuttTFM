@@ -129,13 +129,13 @@ public class LevelManager : MonoBehaviour
                     break;
             }
 
+            Debug.Log(_miningSublevel.id);
 
-
-            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth);
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,_sublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth);
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth,null, _sublevel);
         }
 
     }
@@ -150,7 +150,7 @@ public class LevelManager : MonoBehaviour
 
     public void ExitSublevel()
     {
-        Debug.Log($"Exiting {currentSublevel}");
+        //Debug.Log($"Exiting {currentSublevel}");
 
         DestroySublevelContent(currentSublevel);
             
@@ -163,7 +163,7 @@ public class LevelManager : MonoBehaviour
 
     public void DestroySublevelContent(Sublevel _sublevel)
     {
-        Debug.Log($"Destroying {_sublevel}");
+        //Debug.Log($"Destroying {_sublevel}");
         //sublevelsList.Remove(_sublevel);
         if (_sublevel != null)
         {
@@ -189,6 +189,15 @@ public class LevelManager : MonoBehaviour
             PlayerManager.Instance.EnterMiningLevel();
             //Debug.Log($"Entering {currentSublevel.id}");
             onSublevelEntered?.Invoke();
+            if (_miningSublevel.gateRequirements.Count > 0)
+            {
+                foreach (GateBlock _gate in currentSublevel.gateBlocks)
+                {
+                    _gate.StartGateCount();
+                }
+            }
+
+
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,12 +21,14 @@ public class SublevelMapGenerator : MonoBehaviour
     int currentY;
     Vector3 nextPosition;
     int currentDepth;
-
+    public MiningSublevelConfig miningConfig;
+    public Sublevel sublevel;
     public Dictionary<Vector2Int, Block> currentBlocks = new();
     [Header("LEVEL")]
     public GameObject clearBlockPrefab;
     public GameObject floorBlockPrefab;
     public GameObject wallBlockPrefab;
+    public GameObject gateBlockPrefab;
     [Header("MINING")]
     public GameObject resourceBlockPrefab;
     public GameObject doorBlockPrefab;
@@ -42,14 +45,17 @@ public class SublevelMapGenerator : MonoBehaviour
     {
         //GenerateSublevel(this.transform, testMap);
     }
-    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap,int _depth)
+    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, Sublevel _sublevel)
     {
+        miningConfig = _config;
+        sublevel = _sublevel;
         mapWidth = _inputMap.width;
         mapHeight = _inputMap.height;
         mapTexture = _inputMap;
         sublevelContainer = _parentTransform;
         currentDepth = _depth;
         InstanceAllBlocks(mapWidth, mapHeight);
+
 
     }
 
@@ -68,6 +74,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 nextPosition = new Vector3(x * _spacing - offsetX, sublevelContainer.transform.position.y, y * _spacing - offsetZ);
                 var _newBlock = BlockFromPixel(x, y);
                 Vector2Int pos = new(x, y);
+                //Debug.Log(_newBlock);
                 currentBlocks[pos] = _newBlock.GetComponent<Block>();
             }
         }
@@ -132,7 +139,7 @@ public class SublevelMapGenerator : MonoBehaviour
             case "RES":
                 return ConfigResourceBlock(int.Parse(_blockID));
             case "LVL":
-                return ConfigLVLBlock(_blockID);
+                return ConfigLVLBlock(_blockID, _blockVariant);
             case "DMG":
                 return ConfigDMGBlock(_blockID);
             case "NPC":
@@ -151,7 +158,7 @@ public class SublevelMapGenerator : MonoBehaviour
         LevelManager.Instance.sublevelsList[currentDepth].maxResourceBlocks++;
         return _bloque;
     }
-    GameObject ConfigLVLBlock(string _blockID)
+    GameObject ConfigLVLBlock(string _blockID,string _blockVariant)
     {
         GameObject _bloque = null;
         switch (_blockID)
@@ -165,7 +172,6 @@ public class SublevelMapGenerator : MonoBehaviour
                 _wallBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "FLOOR":
-                
                 _bloque = Instantiate(floorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 FloorBlock _floorBlock = _bloque.GetComponent<FloorBlock>();
                 _floorBlock.SetupBlock(currentDepth, currentX, currentY);
@@ -175,9 +181,28 @@ public class SublevelMapGenerator : MonoBehaviour
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
                 _doorBlock.SetupBlock(currentDepth,currentX,currentY);
                 break;
+            case "GATE":
+                _bloque = InstantiateGateBlock(_blockVariant);
+                break;
         }
         return _bloque;
     }
+
+    private GameObject InstantiateGateBlock(string _variant)
+    {
+        Debug.Log($"CREATING GATE {_variant}");
+        int _gateIndex = int.Parse(_variant);
+        var _bloque = Instantiate(gateBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+        GateBlock _gateBlock = _bloque.GetComponent<GateBlock>();
+        var _gateRequirement = miningConfig.gateRequirements[_gateIndex];
+        _gateBlock.SetupBlock(currentDepth, currentX, currentY, _gateIndex, _gateRequirement.requiredResource, _gateRequirement.requiredAmount);
+        Debug.Log(_gateBlock);
+        Debug.Log(sublevel);
+        sublevel.gateBlocks.Add(_gateBlock);
+        return _bloque;
+    }
+
+
     GameObject ConfigNPCBlock(string _blockID)
     {
         GameObject _bloque = null;

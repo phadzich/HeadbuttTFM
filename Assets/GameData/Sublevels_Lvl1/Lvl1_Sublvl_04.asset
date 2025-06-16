@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lvl1Sub04
   sublevel2DMap: {fileID: 2800000, guid: cd08e7cb00f850048b87c0259087c7bd, type: 3}
-  blocksToComplete: 15
+  goalType: 0
+  blocksToMine: 15
+  keysToCollect: 0
+  timeLimitSeconds: 0
+  gateRequirements: []

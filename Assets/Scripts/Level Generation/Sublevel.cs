@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Sublevel : MonoBehaviour { 
@@ -20,6 +22,8 @@ public class Sublevel : MonoBehaviour {
 
     public int maxResourceBlocks;
     public bool isTotallyMined => currentBlocksMined == maxResourceBlocks;
+
+    public List<GateBlock> gateBlocks = new List<GateBlock>();
 
     public void SetupSublevel (string _id, int _depth, bool _isActive, SublevelConfig _config)
     {
