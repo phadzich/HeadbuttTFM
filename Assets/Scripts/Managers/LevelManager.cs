@@ -1,13 +1,14 @@
 using NUnit.Framework;
-using System.Collections.Generic;
-using UnityEngine;
 using PrimeTween;
-using static UnityEngine.Rendering.DebugUI.Table;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
-using Unity.VisualScripting;
-using System;
+using static UnityEngine.Rendering.DebugUI.Table;
+using static UnityEngine.Rendering.STP;
 using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour
 {
@@ -111,7 +112,24 @@ public class LevelManager : MonoBehaviour
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-            _sublevel.SetMiningObjectives(_miningSublevel.blocksToComplete);
+
+            switch (_miningSublevel.goalType)
+            {
+                case SublevelGoalType.MineBlocks:
+                    _sublevel.SetMiningObjectives(_miningSublevel.blocksToMine);
+                    break;
+                case SublevelGoalType.CollectKeys:
+                    _sublevel.SetKeysObjectives(_miningSublevel.keysToCollect);
+                    break;
+                case SublevelGoalType.BeatTimer:
+                    _sublevel.SetTimerObjectives(_miningSublevel.timeLimitSeconds);
+                    break;
+                case SublevelGoalType.Open:
+                    _sublevel.isCompleted = true;
+                    break;
+            }
+
+
 
             sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth);
         }
