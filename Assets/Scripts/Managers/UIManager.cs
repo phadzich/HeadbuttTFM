@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     public GameObject startPanel;
     public TextMeshProUGUI totalBouncesTXT;
     public HBPointsHUD hbPointsHUD;
+    public ExitFloatinIndicatorHUD exitFloatinIndicatorHUD;
 
     private void Awake()
     {
@@ -140,6 +141,7 @@ public class UIManager : MonoBehaviour
     private void OnSublevelEntered()
     {
         sublevelPanel.UpdateSublevel();
+        exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
     }
 
     private void OnSublevelBlocksMined()

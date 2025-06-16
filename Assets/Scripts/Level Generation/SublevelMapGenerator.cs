@@ -180,6 +180,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(doorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
                 _doorBlock.SetupBlock(currentDepth,currentX,currentY);
+                LevelManager.Instance.currentExitDoor = _bloque;
                 break;
             case "GATE":
                 _bloque = InstantiateGateBlock(_blockVariant);
@@ -229,6 +230,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 NPCBlock _npcDoorBlock = _bloque.GetComponent<NPCBlock>();
                 _npcDoorBlock.SetupBlock(currentDepth, currentX, currentY);
                 _npcDoorBlock.isWalkable= true;
+                LevelManager.Instance.currentExitDoor = _bloque;
                 break;
         }
         return _bloque;

@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     public int currentLevelDepth;
     public int sublevelWidth;
     public int sublevelHeight;
+    public GameObject currentExitDoor;
 
     [Header("GENERAL PREFABS")]
     public GameObject npcBlockPrefab;
