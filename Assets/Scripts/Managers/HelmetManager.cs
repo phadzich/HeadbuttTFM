@@ -19,14 +19,6 @@ public class HelmetManager : MonoBehaviour
     public int maxOwnHelmets = 10;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.IsWornOut) >= 1;
 
-    [Header("Stats upgrade amounts")]
-    public float durabilityUpgradeAmount = 1f;
-    public float headbuttUpgradeAmount = 1f;
-    public float bounceHeightUpgradeAmount = 0.2f;
-    public float hbForceUpgradeAmount = 0.5f;
-    public float hbCooldownReductionAmount = 0.2f;
-    public float knockbackChanceReductionAmount = 5f;
-
     [Header("CURRENT HELMET")]
     public HelmetInstance currentHelmet;
     public HelmetMesh currentMesh;
@@ -124,24 +116,8 @@ public class HelmetManager : MonoBehaviour
     // Obtiene los cascos que estan listos y pueden subir de nivel
     public List<HelmetInstance> GetHelmetsReadyToEvolve()
     {
-        return helmetsOwned.Where(h => h.helmetXP.CanEvolve).ToList();
+        return helmetsOwned;
     }
-
-    //Obtiene la cantidad que sube cada stat en cada upgrade
-    public float GetUpgradeIncrement(HelmetStatTypeEnum stat)
-    {
-        switch (stat)
-        {
-            case HelmetStatTypeEnum.Durability: return durabilityUpgradeAmount;
-            case HelmetStatTypeEnum.Headbutts: return headbuttUpgradeAmount;
-            case HelmetStatTypeEnum.BounceHeight: return bounceHeightUpgradeAmount;
-            case HelmetStatTypeEnum.HeadBForce: return hbForceUpgradeAmount;
-            case HelmetStatTypeEnum.HeadBCooldown: return hbCooldownReductionAmount;
-            case HelmetStatTypeEnum.KnockbackChance: return knockbackChanceReductionAmount;
-            default: return 0f;
-        }
-    }
-
 
     /* Funciones para cambiar entre cascos */
 

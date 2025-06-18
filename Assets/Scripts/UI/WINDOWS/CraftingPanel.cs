@@ -121,7 +121,7 @@ public class CraftingPanel : MonoBehaviour
 
     private void UpdateBPList()
     {
-        List<HelmetBlueprint> blueprints = CraftingManager.Instance.GetUnlockedBlueprintsByEvolutionReq(CraftingManager.Instance.selectedHelmet.helmetXP.currentEvolution);
+        List<HelmetBlueprint> blueprints = CraftingManager.Instance.GetUnlockedBlueprintsByEvolutionReq(CraftingManager.Instance.selectedHelmet.currentEvolution);
         // Borra los hijos actuales
         foreach (Transform child in blueprintListContainer.transform)
         {
@@ -133,5 +133,4 @@ public class CraftingPanel : MonoBehaviour
             Instantiate(blueprintUIPrefab, blueprintListContainer.transform).GetComponent<HelmetBluprintUI>().SetUp(bp);
         }
     }
-
 }

@@ -55,10 +55,9 @@ public class UIManager : MonoBehaviour
         //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
-        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        //ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
 
         //XP EVENTS
-        XPManager.Instance.XPChanged += OnXPChanged;
         XPManager.Instance.LeveledUp += OnLevelUp;
 
         //LEVEL EVENTS
@@ -76,12 +75,11 @@ public class UIManager : MonoBehaviour
     {
         HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
-        XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
-        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        //ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
     }
 
@@ -91,7 +89,6 @@ public class UIManager : MonoBehaviour
         foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
-            _helmInstance.helmetXP.XPChanged += OnHelmetXPChanged;
             OnHelmetInstanceDataChanged(_helmInstance);
         }
     }
@@ -101,7 +98,6 @@ public class UIManager : MonoBehaviour
         foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
-            _helmInstance.helmetXP.XPChanged -= OnHelmetXPChanged;
         }
     }
 
@@ -109,19 +105,10 @@ public class UIManager : MonoBehaviour
     {
         hbPointsHUD.UpdateFill(_current, _max);
     }
+
     private void OnOwnedResourcesChanged()
     {
         NPCUpgradeExchanger.PopulateButtons();
-    }
-    private void OnHelmetXPChanged(HelmetXP _xpComp, HelmetInstance _instance)
-    {
-        //Debug.Log("OnHelmetXPChanged");
-        currentHelmetHUD.UpdateLVLInfo(_instance);
-    }
-
-    private void OnXPChanged(int _current, int _max)
-    {
-        experiencePanel.UpdateXP(_current, _max);
     }
 
     private void OnLevelUp(int _currentLVL)

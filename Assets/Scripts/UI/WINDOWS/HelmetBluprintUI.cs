@@ -19,9 +19,9 @@ public class HelmetBluprintUI : MonoBehaviour
     public void SetUp(HelmetBlueprint _blueprint)
     {
         blueprint = _blueprint;
-        blueprintNameText.text = _blueprint.helmetInfo.name;
-        blueprintDescriptionText.text = _blueprint.helmetInfo.description;
-        blueprintIcon.sprite = _blueprint.helmetInfo.icon;
+        blueprintNameText.text = _blueprint.resultHelmet.helmetInfo.name;
+        blueprintDescriptionText.text = _blueprint.resultHelmet.helmetInfo.description;
+        blueprintIcon.sprite = _blueprint.resultHelmet.helmetInfo.icon;
 
         CheckIfCanCraft(_blueprint);
         SetResources(_blueprint.requiredResources);

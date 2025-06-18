@@ -206,7 +206,6 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("Rewarding Player!");
         RewardSublevelBlocks();
         RewardResources();
-        RewardHelmetXP();
         RewardHBPoints();
     }
 
@@ -244,13 +243,6 @@ public class MatchManager : MonoBehaviour
         float _totalPoints = currentChainBlocks.Count * currentStreak*streakRewardRatio * HBRewardRatio;
         //Debug.Log("REW Resources " + _totalRes);
         PlayerManager.Instance.playerHeadbutt.AddHBPoints((float)_totalPoints);
-    }
-
-    private void RewardHelmetXP()
-    {
-        int _totalXP = currentChainBlocks.Count * currentStreak;
-        //Debug.Log("REW Helmet XP " + _totalXP);
-        HelmetManager.Instance.currentHelmet.helmetXP.AddXP(_totalXP);
     }
 
 

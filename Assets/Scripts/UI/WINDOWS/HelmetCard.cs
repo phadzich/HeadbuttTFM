@@ -17,7 +17,6 @@ public class HelmetCard : MonoBehaviour
         helmet = helmetI;
         helmetNameText.text = helmetI.currentInfo.name;
         helmetIcon.sprite = helmetI.currentInfo.icon;
-        lvlTxt.text = "Evolucion " + helmetI.helmetXP.currentEvolution;
     }
 
     // Cuando el jugador da click en Craft, se desbloquea el casco y los recursos se gastan, la lista se actualiza por medio del evento onOwnedResourcesChanged

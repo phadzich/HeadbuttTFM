@@ -56,14 +56,8 @@ public class CheckpointSavedData : ScriptableObject
                 currentInfo = _helmInstance.currentInfo,
                 baseHelmet = _helmInstance.baseHelmet,
                 currentDurability = _helmInstance.currentDurability,
-                remainingHeadbutts = _helmInstance.remainingHeadbutts,
-                maxHeadbutts = _helmInstance.maxHeadbutts,
                 durability = _helmInstance.durability,
-                bounceHeight = _helmInstance.bounceHeight,
                 headBForce = _helmInstance.headBForce,
-                headBCooldown = _helmInstance.headBCooldown,
-                knockbackChance = _helmInstance.knockbackChance,
-                helmetXP = _helmInstance.helmetXP,
                 helmetEffect = _helmInstance.helmetEffect,
                 helmetElement = _helmInstance.helmetElement
             });

@@ -32,6 +32,7 @@ public class CraftingManager : MonoBehaviour
         // PRUEBA PARA PROTOTIPO QUE TODOS ESTEN DESBLOQUEADOS DESDE UN INICIO
         UnlockHelmetBlueprint(blueprints[0]);
         UnlockHelmetBlueprint(blueprints[1]);
+        UnlockHelmetBlueprint(blueprints[2]);
     }
 
     public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
@@ -45,7 +46,7 @@ public class CraftingManager : MonoBehaviour
 
         foreach(var blueprint in unlockedBlueprints)
         {
-            if(blueprint.element == _element)
+            if(blueprint.resultHelmet.element == _element)
             {
                 blueprintsByElement.Add(blueprint);
             }
@@ -87,7 +88,7 @@ public class CraftingManager : MonoBehaviour
             ResourceManager.Instance.SpendResource(res.resource, res.quantity);
         }
 
-        // Actualiza la informacion del casco como el efecto, elemento, xp
+        // Actualiza la informacion del casco como el efecto, elemento
         selectedHelmet.Evolve(_blueprint);
 
         HelmetEvolved?.Invoke();

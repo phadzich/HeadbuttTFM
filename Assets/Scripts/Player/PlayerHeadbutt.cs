@@ -124,7 +124,6 @@ public class PlayerHeadbutt : MonoBehaviour
         PlayerManager.Instance.playerMovement.blockBelow.Headbutt();
         ScreenShake();
         RestartHeadbuttCooldown();
-        HelmetManager.Instance.currentHelmet.UseHeadbutt();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
     }
 

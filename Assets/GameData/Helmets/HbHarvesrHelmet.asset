@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: DefaultHelmet
+  m_Name: HbHarvesrHelmet
   m_EditorClassIdentifier: 
-  id: 1
+  id: 4
   helmetInfo:
-    name: Basic Helmet
-    description: Casco basico hecho de cobre
-    mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
-    icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
-    color: {r: 0.69803923, g: 1, b: 0.23137255, a: 0}
-    rarity: 0
-  effect: 0
-  element: 0
+    name: 'Harvest '
+    description: 
+    mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
+    icon: {fileID: 21300000, guid: eed8e052ac618b546bd6c9d2ea1596d8, type: 3}
+    color: {r: 0.9245283, g: 0.47836432, b: 0.18752226, a: 0}
+    rarity: 1
+  effect: 3
+  element: 3
   isOvercharged: 0
-  durability: 2
+  durability: 3
   headBForce: 10
-  evolution: 1
+  evolution: 2

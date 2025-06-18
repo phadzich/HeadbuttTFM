@@ -57,8 +57,6 @@ public class CurrentHelmetHUD : MonoBehaviour
         currentHelmetInstance = _helmIntance;
         currentIcon.sprite = _helmIntance.currentInfo.icon;
         currentCooldownSlider.sprite = _helmIntance.currentInfo.icon;
-        currentLevelTXT.text = $"LVL. {_helmIntance.helmetXP.currentLevel}";
-        currentLevelSlider.fillAmount = (float)_helmIntance.helmetXP.currentXP / (float)_helmIntance.helmetXP.XPForNextLevel();
         FindCounterByInstance(_helmIntance).WearHelmet();
         InstanceNewStatsCounter();
     }
@@ -75,11 +73,6 @@ public class CurrentHelmetHUD : MonoBehaviour
         }
     }
 
-    public void UpdateLVLInfo(HelmetInstance _helmInstance)
-    {
-        currentLevelTXT.text = $"LVL. {_helmInstance.helmetXP.currentLevel}";
-        currentLevelSlider.fillAmount = (float)_helmInstance.helmetXP.currentXP / (float)_helmInstance.helmetXP.XPForNextLevel();
-    }
     public void UpdateCurrentHelmetStats()
     {
         ClearPreviousStatCounters();
@@ -104,7 +97,7 @@ public class CurrentHelmetHUD : MonoBehaviour
                 durabilityCounterList.Add(_newCounter);
         }
 
-        //INSTANCE HBS
+        /*INSTANCE HBS
         for (int i = 0; i < currentHelmetInstance.maxHeadbutts; i++)
         {
             var _newCounterPF = Instantiate(hbCounter, HBcountersContainer);
@@ -118,7 +111,7 @@ public class CurrentHelmetHUD : MonoBehaviour
                 _newCounter.MakeUnavailable();
             }
             hbCounterList.Add(_newCounter);
-        }
+        }*/
     }
 
     private void ClearPreviousStatCounters()

@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
     public bool KnockbackChance()
     {
         bool _shouldKnock = true;
-        int _chance = HelmetManager.Instance.currentHelmet.knockbackChance;
+        int _chance = 100;
         int _random = Random.Range(0, 100);
         //Debug.Log(_chance);
         //Debug.Log(_random);
