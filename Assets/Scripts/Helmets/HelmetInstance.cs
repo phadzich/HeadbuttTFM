@@ -56,14 +56,15 @@ public class HelmetInstance
     public void ResetStats()
     {
         currentDurability = durability;
-        remainingHeadbutts = maxHeadbutts;
         HelmetInstanceChanged?.Invoke(this);
     }
 
     public void TakeDamage(int _amount)
     {
+        //Debug.Log($"Helmet Took {_amount}");
         if (currentDurability > 0)
             currentDurability-=_amount;
+        //Debug.Log($"Current Durability {currentDurability}");
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
             if (IsWornOut)

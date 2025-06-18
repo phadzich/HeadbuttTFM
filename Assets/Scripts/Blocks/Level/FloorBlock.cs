@@ -32,7 +32,8 @@ public class FloorBlock : Block
 
     public override void Headbutt()
     {
-            audioSource.PlayOneShot(headbuttSound, 0.7f);
+        MatchManager.Instance.FloorBounced();
+        audioSource.PlayOneShot(headbuttSound, 0.7f);
     }
 
     public override void Activate()

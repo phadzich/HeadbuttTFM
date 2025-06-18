@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
-    public CurrentMatchPanel currentMatchPanel;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
     public GameObject NPCCraftPanel;
@@ -46,14 +45,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("UIManager START");
-        startPanel.SetActive(true);
-        //POR AHORA HARDCODED
-        //headbuttsPanel.UpdateUsedHeadbutts(HelmetManager.Instance.helmetsEquipped[0]);
-
-        //equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
-        //equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
-
-        //craftButton.SetActive(false);
+        //startPanel.SetActive(true);
     }
 
     private void OnEnable()

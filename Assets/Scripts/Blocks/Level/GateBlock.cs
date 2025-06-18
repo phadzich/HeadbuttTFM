@@ -67,9 +67,9 @@ public class GateBlock : Block
     {
         if (isActive&& ResourceManager.Instance.ownedResources.ContainsKey(requiredResource))
         {
-            Debug.Log("Active and resource exists");
+            //Debug.Log("Active and resource exists");
             var _updatedAmount = ResourceManager.Instance.ownedResources[requiredResource];
-            Debug.Log(_updatedAmount);
+            //Debug.Log(_updatedAmount);
             currentAmount = ResourceManager.Instance.ownedResources[requiredResource] - startingAmount;
         }
 

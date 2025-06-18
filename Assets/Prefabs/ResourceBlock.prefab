@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 1003532578358748977}
   - component: {fileID: 5254807487003154241}
   - component: {fileID: -2244149244458819358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ResourceBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

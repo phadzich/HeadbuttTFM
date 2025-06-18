@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 6710683290038463050}
   - component: {fileID: 8766636805421840880}
   - component: {fileID: 5503775828633544293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

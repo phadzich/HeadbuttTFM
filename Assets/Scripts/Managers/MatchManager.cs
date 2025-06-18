@@ -70,12 +70,16 @@ public class MatchManager : MonoBehaviour
         bouncedResource = null;
         bouncedResourceBlock = null;
         EndStreak();
-        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         if (!lastBounceChained && currentChainResource != null)
         {
             FailCurrentChain();
         }
         audioSource.PlayOneShot(floorBlockSound, 0.7f);
+    }
+
+    public void EnemyBounced()
+    {
+        FloorBounced();
     }
 
     private void StartNewChain()
@@ -85,7 +89,6 @@ public class MatchManager : MonoBehaviour
         currentChainBlocks.Add(bouncedResourceBlock);
         currentChainResource = bouncedResource;
         lastBounceChained = false;
-        UIManager.Instance.currentMatchPanel.StartNewCombo(currentChainResource,currentChainBlocks.Count);
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
         UIManager.Instance.remainingBlockIndicator.UpdateIndicator(bouncedResource, bouncedResource.hardness-1);
     }
@@ -123,7 +126,6 @@ public class MatchManager : MonoBehaviour
 
         EndCurrentChain();
 
-        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
@@ -156,7 +158,6 @@ public class MatchManager : MonoBehaviour
 
         //UI VISUALS
         UIManager.Instance.remainingBlockIndicator.UpdateIndicatorCount(bouncedResource.hardness - currentChainBlocks.Count);
-        UIManager.Instance.currentMatchPanel.IncreaseCurrentCombo(currentChainBlocks.Count);
 
         if (isChainCompleted())
         {
@@ -189,7 +190,6 @@ public class MatchManager : MonoBehaviour
         ClearAllHitBlocks();
         EndCurrentChain();
 
-        UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
 
     }

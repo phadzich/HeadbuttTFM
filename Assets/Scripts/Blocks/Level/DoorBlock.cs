@@ -77,15 +77,24 @@ public class DoorBlock : Block
 
     public override void Bounce()
     {
+        TryToOpen();
+    }
+
+    public override void Headbutt()
+    {
+        TryToOpen();
+    }
+
+    private void TryToOpen()
+    {
         if (isOpen)
         {
             Activate();
         }
+        else
+        {
+            MatchManager.Instance.FloorBounced();
         }
-
-    public override void Headbutt()
-    {
-
     }
 
     public override void Activate()

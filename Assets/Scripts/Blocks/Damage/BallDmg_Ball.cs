@@ -16,12 +16,7 @@ public class BallDmg_Ball : MonoBehaviour
                 if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.LavaResistance)
                 {
                     dmgBlock.DoDamage();
-                    dmgBlock.damageParticles.Play();
                 }
-        }
-        if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.SlimeResistance)
-        {
-            dmgBlock.PushPlayerRandomly();
         }
             lastDamageTime = Time.time;
         }

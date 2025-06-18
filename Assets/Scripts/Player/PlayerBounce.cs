@@ -9,6 +9,7 @@ public class PlayerBounce : MonoBehaviour
 {
     Rigidbody rb;
     PlayerStates playerStates;
+    [SerializeField] private LayerMask blockLayerMask;
     public GameObject bodyMesh;
 
     [Header ("BOUNCE")]
@@ -66,7 +67,7 @@ public class PlayerBounce : MonoBehaviour
         Debug.DrawRay(origin, direction * _groundDistance, Color.red);
 
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance, blockLayerMask))
         {
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<Block>())

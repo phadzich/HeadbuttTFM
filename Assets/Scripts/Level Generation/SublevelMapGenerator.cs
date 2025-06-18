@@ -191,14 +191,14 @@ public class SublevelMapGenerator : MonoBehaviour
 
     private GameObject InstantiateGateBlock(string _variant)
     {
-        Debug.Log($"CREATING GATE {_variant}");
+        //Debug.Log($"CREATING GATE {_variant}");
         int _gateIndex = int.Parse(_variant);
         var _bloque = Instantiate(gateBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
         GateBlock _gateBlock = _bloque.GetComponent<GateBlock>();
         var _gateRequirement = miningConfig.gateRequirements[_gateIndex];
         _gateBlock.SetupBlock(currentDepth, currentX, currentY, _gateIndex, _gateRequirement.requiredResource, _gateRequirement.requiredAmount);
-        Debug.Log(_gateBlock);
-        Debug.Log(sublevel);
+        //Debug.Log(_gateBlock);
+        //Debug.Log(sublevel);
         sublevel.gateBlocks.Add(_gateBlock);
         return _bloque;
     }

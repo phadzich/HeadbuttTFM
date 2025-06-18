@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         PrimeTweenConfig.warnEndValueEqualsCurrent = false;
+        PrimeTweenConfig.warnZeroDuration = false;
+        PrimeTweenConfig.warnTweenOnDisabledTarget = false;
     }
 
     public void RestartScene()
