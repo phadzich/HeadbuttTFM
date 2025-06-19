@@ -7,7 +7,6 @@ public class HelmetCard : MonoBehaviour
 {
     public TextMeshProUGUI helmetNameText;
     public Image helmetIcon;
-    public TextMeshProUGUI lvlTxt;
     private HelmetInstance helmet;
 
 

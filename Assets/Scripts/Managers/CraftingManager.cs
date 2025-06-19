@@ -55,19 +55,9 @@ public class CraftingManager : MonoBehaviour
         return blueprintsByElement;
     }
 
-    public List<HelmetBlueprint> GetUnlockedBlueprintsByEvolutionReq(int _evolution)
+    public void CreateHelmet(HelmetBlueprint _blueprint)
     {
-        List<HelmetBlueprint> blueprintsByRequirement = new();
-
-        foreach (var blueprint in unlockedBlueprints)
-        {
-            if (blueprint.requiredEvolution == _evolution)
-            {
-                blueprintsByRequirement.Add(blueprint);
-            }
-        }
-
-        return blueprintsByRequirement;
+        // Funciones para crear un helmet, crear el instance, agregarlo a own helmets,etc
     }
 
     // Funcion para elegir un casco desde la UI
@@ -79,18 +69,22 @@ public class CraftingManager : MonoBehaviour
 
 
     //Llamar cuando se quiera upgradear un casco
-    public void EvolveHelmet(HelmetBlueprint _blueprint)
+    public void EvolveHelmet()
     {
         if (selectedHelmet == null) return;
 
-        foreach (var res in _blueprint.requiredResources)
+        //Obtenemos los upgrade requirements del casco para su siguiente evolucion
+        UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement(selectedHelmet.nextEvolution);
+
+        foreach (var res in req.requirements)
         {
             ResourceManager.Instance.SpendResource(res.resource, res.quantity);
         }
 
         // Actualiza la informacion del casco como el efecto, elemento
-        selectedHelmet.Evolve(_blueprint);
+        selectedHelmet.Evolve(req);
 
         HelmetEvolved?.Invoke();
     }
+
 }

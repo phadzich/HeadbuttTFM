@@ -57,8 +57,8 @@ public class HelmetManager : MonoBehaviour
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
-        UnlockHelmet(allHelmets[0]);
-        UnlockHelmet(allHelmets[0]);
+        UnlockHelmet(allHelmets[1]);
+        UnlockHelmet(allHelmets[2]);
         EquipHelmet(helmetsOwned[0]);
         EquipHelmet(helmetsOwned[1]);
         EquipHelmet(helmetsOwned[2]);

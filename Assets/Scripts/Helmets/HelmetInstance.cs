@@ -9,13 +9,20 @@ public class HelmetInstance
     public string id;
     public HelmetInfo currentInfo = new HelmetInfo();
     public HelmetData baseHelmet;
+    public ElementEnum helmetElement;
 
     //Helmet Stats
     public int durability;
     public float headBForce;
     public int currentEvolution;
+    public int nextEvolution => currentEvolution + 1;
+
+    // Efectos and overcharged
     public EffectTypeEnum helmetEffect;
-    public ElementEnum helmetElement;
+    public OverchargeEffectEnum overchargeEffect;
+
+    public EffectTypeEnum activeEffect;
+    public OverchargeEffectEnum activeOverchargeEffect;
 
     //Current stats
     public int currentDurability;
@@ -37,7 +44,15 @@ public class HelmetInstance
         currentEvolution = _helmetSO.evolution;
         durability = _helmetSO.durability;
         headBForce = _helmetSO.headBForce;
-        helmetEffect = EffectTypeEnum.None;
+
+        //Effects
+        helmetEffect = _helmetSO.effect;
+        overchargeEffect = _helmetSO.overchargeEffect;
+
+        // Se inician inactivos
+        activeEffect = EffectTypeEnum.None;
+        activeOverchargeEffect = OverchargeEffectEnum.None;
+
         helmetElement = ElementEnum.None;
         currentHBHarvest = 0.3f;
 
@@ -105,12 +120,54 @@ public class HelmetInstance
         helmetElement = _element;
     }
 
-    public void Evolve(HelmetBlueprint _blueprint)
+    /* Funciones para evolucionar el casco */
+
+    public UpgradeRequirement GetUpgradeRequirement(int _toEvolution)
     {
-        UpgradeCurrentEvolution(_blueprint.resultHelmet.evolution);
-        UpdateHelmetEffect(_blueprint.resultHelmet.effect);
-        UpdateHelmetElement(_blueprint.resultHelmet.element);
-        UpdateInfo(_blueprint.resultHelmet.helmetInfo);
+        if(_toEvolution == 2)
+        {
+            return baseHelmet.upgradeRequirements[0];
+        }
+
+        return baseHelmet.upgradeRequirements[1];
+    }
+
+    // Llamar cuando se quiera evolucionar el casco, la funcion actualiza los stats
+    public void Evolve(UpgradeRequirement req)
+    {
+        UpgradeCurrentEvolution(req.toEvolution);
+        UpdateInfo(req.newInfo);
+
+        UpgradeDurability(req.durabilityAdd);
+        UpgradeHeadBForce(req.HBForceAdd);
+
+        // Activamos el efecto del casco
+        if (req.activateEffect)
+        {
+            activeEffect = helmetEffect;
+        }
+
+        // Activamos el efecto overcharge del cascp
+        if (req.isOvercharged)
+        {
+            activeOverchargeEffect = overchargeEffect;
+        }
+    }
+
+    public bool CanEvolve()
+    {
+        var playerResources = ResourceManager.Instance.ownedResources;
+
+        UpgradeRequirement req = GetUpgradeRequirement(nextEvolution);
+
+        foreach (var requirement in req.requirements)
+        {
+            if (!ResourceManager.Instance.CanSpendResource(requirement.resource, requirement.quantity))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

@@ -68,7 +68,7 @@ public class UpgradePanel : MonoBehaviour
             if (index >= helmetsToUpgrade.Count) break;
 
             HelmetInstance helmet = helmetsToUpgrade[index];
-            Instantiate(upgradeCardUIPrefab, upgradeCardsContainer).GetComponent<UpgradeStatsCard>().SetUp(helmet);
+            Instantiate(upgradeCardUIPrefab, upgradeCardsContainer).GetComponent<HelmetInfoCard>().SetUp(helmet);
         }
     }
 

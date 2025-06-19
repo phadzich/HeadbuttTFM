@@ -4,29 +4,15 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 public class StatBar : MonoBehaviour
 {
-    public TextMeshProUGUI statVal;
+    public Slider bar;
 
-    public Image[] ticks; // Asignar en el Inspector
-    public Color filledColor;
-    public Color emptyColor;
-
-    public void UpdateBar(int _upgradeCount, float _currentValue)
+    public void SetMaxVal(int _max)
     {
-        UpdateTicks(_upgradeCount);
-        UpdateText(_currentValue);
+        bar.maxValue = _max;
     }
 
-    private void UpdateTicks(int _upgradeCount)
+    public void UpdateBar(float _currentValue)
     {
-
-        for (int i = 0; i < ticks.Length; i++)
-        {
-            ticks[i].color = i < _upgradeCount ? filledColor : emptyColor;
-        }
-    }
-
-    private void UpdateText(float _currentValue)
-    {
-        statVal.text = _currentValue.ToString("0.#"); // Formateado con 1 decimal máx.
+        bar.value = _currentValue;
     }
 }

@@ -9,15 +9,10 @@ public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
     public GameObject helmetUIPrefab;
-    public GameObject blueprintUIPrefab;
+    public GameObject helmetInfoCardPrefab;
     public GameObject helmetListContainer;
-    public GameObject blueprintListContainer;
-    public GameObject pagesButtons;
+    public GameObject cardContainer;
     public GameObject EmptyListText;
-
-    public int itemsPerPage = 3;
-
-    private int currentPage = 0;
 
     private List<HelmetInstance> availableHelmets => HelmetManager.Instance.GetHelmetsReadyToEvolve();
 
@@ -25,21 +20,22 @@ public class CraftingPanel : MonoBehaviour
     {
 
         LoadMainPage();
-        CraftingManager.Instance.HelmetSelected += ShowBlueprintPanel;
-        CraftingManager.Instance.HelmetEvolved += LoadMainPage;
+        CraftingManager.Instance.HelmetSelected += UpdateInfoCard;
+        CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
+        CraftingManager.Instance.HelmetEvolved += UpdateHelmetList;
 
     }
 
     private void OnDisable()
     {
-        CraftingManager.Instance.HelmetSelected -= ShowBlueprintPanel;
-        CraftingManager.Instance.HelmetEvolved -= LoadMainPage;
+        CraftingManager.Instance.HelmetSelected -= UpdateInfoCard;
+        CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
+        CraftingManager.Instance.HelmetEvolved -= UpdateHelmetList;
+        CraftingManager.Instance.SelectHelmet(null);
     }
 
     private void LoadMainPage()
     {
-        helmetListContainer.SetActive(true);
-        blueprintListContainer.SetActive(false);
         UpdateHelmetList();
     }
 
@@ -47,90 +43,28 @@ public class CraftingPanel : MonoBehaviour
 
     private void UpdateHelmetList()
     {
-        currentPage = 0;
-
-        if (availableHelmets.Count == 0)
-        {
-            EmptyListText.SetActive(true);
-        }
-        else
-        {
-            EmptyListText.SetActive(false);
-
-            if (TotalPages() > 1)
-            {
-                pagesButtons.SetActive(true);
-            }
-            else
-            {
-                pagesButtons.SetActive(false);
-            }
-        }
-
-        UpdatePage();
-    }
-
-    private void UpdatePage()
-    {
         // Borra los hijos actuales
         foreach (Transform child in helmetListContainer.transform)
         {
             Destroy(child.gameObject);
         }
 
-        int startIndex = currentPage * itemsPerPage;
-
-        for (int i = 0; i < itemsPerPage; i++)
+        foreach (var _helmet in availableHelmets)
         {
-            int index = startIndex + i;
-            if (index >= availableHelmets.Count) break;
-
-            HelmetInstance helmet = availableHelmets[index];
-            Instantiate(helmetUIPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(helmet);
+            Instantiate(helmetUIPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(_helmet);
         }
     }
 
-    private int TotalPages()
-    {
-        return Mathf.CeilToInt((float)availableHelmets.Count / itemsPerPage);
-    }
 
-    public void NextPage()
+    private void UpdateInfoCard()
     {
-        currentPage++;
-        if (currentPage >= TotalPages()) currentPage = 0; // ciclo
-        UpdatePage();
-    }
 
-    public void PreviousPage()
-    {
-        currentPage--;
-        if (currentPage < 0) currentPage = TotalPages() - 1; // ciclo
-        UpdatePage();
-    }
-
-    /* Funciones del panel de BLUEPRINTS */
-
-    public void ShowBlueprintPanel()
-    {
-        helmetListContainer.SetActive(false);
-        blueprintListContainer.SetActive(true);
-        pagesButtons.SetActive(false);
-        UpdateBPList();
-    }
-
-    private void UpdateBPList()
-    {
-        List<HelmetBlueprint> blueprints = CraftingManager.Instance.GetUnlockedBlueprintsByEvolutionReq(CraftingManager.Instance.selectedHelmet.currentEvolution);
         // Borra los hijos actuales
-        foreach (Transform child in blueprintListContainer.transform)
+        foreach (Transform child in cardContainer.transform)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (var bp in blueprints)
-        {
-            Instantiate(blueprintUIPrefab, blueprintListContainer.transform).GetComponent<HelmetBluprintUI>().SetUp(bp);
-        }
+        Instantiate(helmetInfoCardPrefab, cardContainer.transform).GetComponent<HelmetInfoCard>().SetUp(CraftingManager.Instance.selectedHelmet);
     }
 }
