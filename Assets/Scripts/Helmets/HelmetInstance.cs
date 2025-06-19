@@ -183,4 +183,17 @@ public class HelmetInstance
         UpdateInfo(_blueprint.helmetInfo);
     }
 
+    public void HealDurability(int _amount)
+    {
+        if (_amount > durability - currentDurability)
+        {
+            currentDurability = durability;
+        }
+        else
+        {
+            currentDurability += _amount;
+        }
+        HelmetInstanceChanged?.Invoke(this);
+    }
+
 }

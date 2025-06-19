@@ -32,6 +32,9 @@ public class HelmetManager : MonoBehaviour
     public HelmetMesh currentMesh;
     public int helmetIndex = 0;
 
+    [Header("POTION VALUES")]
+    [SerializeField] public List<int> potionValues;
+
     public Action<HelmetInstance> onHelmetEquipped;
 
     //public Action<HelmetInstance> onHelmetInstanceDataChanged;
@@ -120,6 +123,12 @@ public class HelmetManager : MonoBehaviour
             _helmet.ResetStats();
         }
     }
+
+    public void UseHelmetPotion(int _potionID)
+    {
+        currentHelmet.HealDurability(potionValues[_potionID]);
+    }
+
 
     // Obtiene los cascos que estan listos y pueden subir de nivel
     public List<HelmetInstance> GetHelmetsReadyToEvolve()

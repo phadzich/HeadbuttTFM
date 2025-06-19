@@ -4372,7 +4372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7295,7 +7295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5812555, b: 0, a: 1}
+  m_Color: {r: 0.39607847, g: 1, b: 0.61179584, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8421,6 +8421,7 @@ MonoBehaviour:
   headbuttOnCooldown: 0
   headbuttPower: 15
   timeSinceLastHeadbutt: 0
+  potionValues: 0100000003000000050000000a000000
 --- !u!82 &1217362978
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11633,6 +11634,9 @@ MonoBehaviour:
   isMoving: 0
   movementLocked: 0
   bounceDirection: 
+  blockLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   enanoParent: {fileID: 1217362969}
   blockLockdownRange: 0
   blockBelow: {fileID: 0}
@@ -13266,6 +13270,8 @@ MonoBehaviour:
   wallBlockPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   gateBlockPrefab: {fileID: 8090959518607110755, guid: ff8e3ab068a4b6542926ee9c3c0faed4, type: 3}
   keyBlockPrefab: {fileID: 8090959518607110755, guid: 4c659369bd631b247b3c00f41b25e95f, type: 3}
+  helmetPotionBlockPrefab: {fileID: 8090959518607110755, guid: dfcb55329fc866c4c8f97dd97eb133cf, type: 3}
+  hbPotionBlockPrefab: {fileID: 8090959518607110755, guid: aced4edf43a471e40b2c4b205d883cfc, type: 3}
   resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
   doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
   slimeBlockPrefab: {fileID: 8090959518607110755, guid: 4a57cbbbd6b8bb94bb387ebea7c12c89, type: 3}
@@ -13800,6 +13806,7 @@ MonoBehaviour:
     remainingHeadbutts: 0
   currentMesh: {fileID: 2119067691}
   helmetIndex: 0
+  potionValues: 01000000020000000400000008000000
 --- !u!1 &2009508293 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1433104102880006517, guid: 19182471396d43d4bb41f30aa4a2a5e1, type: 3}
