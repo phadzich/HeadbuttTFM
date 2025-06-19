@@ -7,9 +7,10 @@ using UnityEngine;
 
 public class DoorBlock : Block
 {
-
-    public int requiredBlocks;
-    public DoorRequirementsPanel requirementsPanelUI;
+    public SublevelGoalType currentGoalType;
+    public int requiredInt;
+    public int currentInt;
+    public DoorRequirementIndicator doorRequirementIndicator;
     public bool isOpen;
     public GameObject doorTrapMesh;
     public Sublevel parentSublevel;
@@ -23,27 +24,52 @@ public class DoorBlock : Block
 
     private void OnEnable()
     {
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
+        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
+        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
     }
 
     private void OnDisable()
     {
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
+        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
+        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
     }
 
-    public void SetupBlock(int _depth,int _x, int _y)
+    public void SetupBlock(int _depth,int _x, int _y,SublevelGoalType _goalType)
     {
+
         parentSublevel = LevelManager.Instance.sublevelsList[_depth];
-        requiredBlocks = parentSublevel.blocksToComplete;
+        currentGoalType = _goalType;
+        UpdateGoals();
         isWalkable = true;
         sublevelPosition = new Vector2(_x, _y);
-        requirementsPanelUI.SetupPanel(requiredBlocks);
+        doorRequirementIndicator.SetupIndicator(0, requiredInt, currentGoalType);
     }
 
-    public void OnSublevelBlocksMined()
+    public void UpdateGoals()
+    {
+        switch (currentGoalType)
+        {
+            case SublevelGoalType.MineBlocks:
+                requiredInt = parentSublevel.blocksToComplete;
+                currentInt = parentSublevel.currentBlocksMined;
+                break;
+            case SublevelGoalType.CollectKeys:
+                requiredInt = parentSublevel.keysToComplete;
+                currentInt = parentSublevel.currentKeysCollected;
+                break;
+            case SublevelGoalType.Open:
+                requiredInt = 0;
+                currentInt = 0;
+                break;
+        }
+
+    }
+
+    public void OnSublevelGoalsAdvanced()
     {
         //Debug.Log("MINED HEARD");
-        requirementsPanelUI.UpdateIndicators(parentSublevel.currentBlocksMined);
+        UpdateGoals();
+        doorRequirementIndicator.UpdateIndicator(currentInt);
         if (!isOpen)
         {
             //Debug.Log("NOT OPEN");
@@ -53,12 +79,11 @@ public class DoorBlock : Block
                 isOpen = true;
             }
         }
-
     }
 
     public bool DoorRequirementsMet()
     {
-        if (parentSublevel.currentBlocksMined >= requiredBlocks)
+        if (currentInt >= requiredInt)
         {
             //Debug.Log("DOOR MET");
             return true;
@@ -107,6 +132,6 @@ public class DoorBlock : Block
     private void AnimateOpenDoor()
     {
         Tween.LocalRotation(doorTrapMesh.transform, endValue: new Vector3(110, 0, 0), duration:1f, ease:Ease.InOutBack);
-        requirementsPanelUI.gameObject.SetActive(false);
+        doorRequirementIndicator.gameObject.SetActive(false);
     }
 }

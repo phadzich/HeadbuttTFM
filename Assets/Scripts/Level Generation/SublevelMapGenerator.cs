@@ -29,6 +29,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject floorBlockPrefab;
     public GameObject wallBlockPrefab;
     public GameObject gateBlockPrefab;
+    public GameObject keyBlockPrefab;
     [Header("MINING")]
     public GameObject resourceBlockPrefab;
     public GameObject doorBlockPrefab;
@@ -41,10 +42,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject npcCraftPrefab;
     public GameObject npcUpgradePrefab;
     public GameObject npcElevatorPrefab;
-    private void Start()
-    {
-        //GenerateSublevel(this.transform, testMap);
-    }
+
     public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, Sublevel _sublevel)
     {
         miningConfig = _config;
@@ -179,11 +177,16 @@ public class SublevelMapGenerator : MonoBehaviour
             case "DOOR":
                 _bloque = Instantiate(doorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
-                _doorBlock.SetupBlock(currentDepth,currentX,currentY);
+                _doorBlock.SetupBlock(currentDepth,currentX,currentY,miningConfig.goalType);
                 LevelManager.Instance.currentExitDoor = _bloque;
                 break;
             case "GATE":
                 _bloque = InstantiateGateBlock(_blockVariant);
+                break;
+            case "KEY":
+                _bloque = Instantiate(keyBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                KeyBlock _keyBlock = _bloque.GetComponent<KeyBlock>();
+                _keyBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;

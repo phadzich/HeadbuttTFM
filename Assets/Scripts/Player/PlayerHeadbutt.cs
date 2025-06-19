@@ -88,10 +88,6 @@ public class PlayerHeadbutt : MonoBehaviour
     }
 
 
-    private void ScreenShake()
-    {
-        impulseSource.GenerateImpulse();
-    }
 
     public void Headbutt(InputAction.CallbackContext context)
     {
@@ -110,8 +106,6 @@ public class PlayerHeadbutt : MonoBehaviour
         }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
             Debug.Log("NO HAY HBS EN NPC");
         }
-
-
     }
 
     private void HeadbuttUp()
@@ -124,7 +118,6 @@ public class PlayerHeadbutt : MonoBehaviour
         PlayerManager.Instance.playerMovement.blockBelow.Headbutt();
         ScreenShake();
         RestartHeadbuttCooldown();
-        HelmetManager.Instance.currentHelmet.UseHeadbutt();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
     }
 
@@ -148,6 +141,10 @@ public class PlayerHeadbutt : MonoBehaviour
 
     }
 
+    private void ScreenShake()
+    {
+        impulseSource.GenerateImpulse();
+    }
 
 
 }

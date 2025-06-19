@@ -57,3 +57,5 @@ MonoBehaviour:
     blockString: LVL_GATE_2
   - color: {r: 0.25882354, g: 0.34117648, b: 0.015686275, a: 1}
     blockString: LVL_GATE_3
+  - color: {r: 1, g: 0.73333335, b: 0, a: 1}
+    blockString: LVL_KEY_X

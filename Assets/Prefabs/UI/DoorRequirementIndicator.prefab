@@ -92,8 +92,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 4445889944239090132}
   text: {fileID: 5059654326810697386}
-  requiredBlocks: 0
-  currentBlocks: 0
+  requiredInt: 0
+  currentInt: 0
+  mineIcon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
+  keysIcon: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
+  exploreIcon: {fileID: 21300000, guid: b7bc454e771c95e469291e0f69e72aaf, type: 3}
+  checkpointIcon: {fileID: 21300000, guid: 6d5760b9c072ab84fb098f3248ff9d4d, type: 3}
 --- !u!1 &4560953141844644923
 GameObject:
   m_ObjectHideFlags: 0

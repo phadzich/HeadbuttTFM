@@ -5602,7 +5602,7 @@ GameObject:
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: 1035351308784975052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GateBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

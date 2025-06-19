@@ -63,7 +63,8 @@ public class UIManager : MonoBehaviour
 
         //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
+        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
+        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
 
         //PLAYER EVENTS
         PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
@@ -79,7 +80,8 @@ public class UIManager : MonoBehaviour
         XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
+        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
+        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
@@ -130,13 +132,24 @@ public class UIManager : MonoBehaviour
         //craftButton.SetActive(true);
     }
 
-    private void OnSublevelEntered()
+    private void OnSublevelEntered(Sublevel _sublevel)
     {
-        sublevelPanel.UpdateSublevel();
+        if (_sublevel.config is MiningSublevelConfig)
+        {
+            MiningSublevelConfig _config = _sublevel.config as MiningSublevelConfig;
+            sublevelPanel.ChangeGoalType(_config.goalType);
+            sublevelPanel.UpdateSublevel();
+        }
+        else
+        {
+            sublevelPanel.ShowCheckpoint();
+        }
+
+                
         exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
     }
 
-    private void OnSublevelBlocksMined()
+    private void OnSublevelGoalsAdvanced()
     {
         sublevelPanel.UpdateGoals();
     }
