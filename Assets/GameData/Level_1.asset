@@ -16,6 +16,8 @@ MonoBehaviour:
   levelName: Level1
   levelDescription: Primer nivel del juego
   subLevels:
+  - {fileID: 11400000, guid: 5ad0d969ad676f94192e275b5610602e, type: 2}
+  - {fileID: 11400000, guid: e264561c74f0f7b44aba713f68895960, type: 2}
   - {fileID: 11400000, guid: 8825020f97bd7df4692cbe94b6b87921, type: 2}
   - {fileID: 11400000, guid: 2454157efffa4944982e3dd1e3ef77e1, type: 2}
   - {fileID: 11400000, guid: 2167d96f9cba3684985988bd7575df4a, type: 2}
