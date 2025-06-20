@@ -24,7 +24,7 @@ MonoBehaviour:
     requiredAmount: 9
   - gateID: 2
     requiredResource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-    requiredAmount: 12
+    requiredAmount: 6
   - gateID: 3
     requiredResource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
     requiredAmount: 10
