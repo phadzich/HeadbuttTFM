@@ -40,6 +40,8 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject slimeBlockPrefab;
     public GameObject lavaBlockPrefab;
     public GameObject ballBlockPrefab;
+    public GameObject spikesBlockPrefab;
+    public GameObject headBlockPrefab;
     [Header("NPC")]
     public GameObject npcDoorPrefab;
     public GameObject npcCraftPrefab;
@@ -272,6 +274,16 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(ballBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DamageBlock _ballBlock = _bloque.GetComponent<BallDmgBlock>();
                 _ballBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "HEAD":
+                _bloque = Instantiate(headBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _headBlock = _bloque.GetComponent<DamageBlock>();
+                _headBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "SPIKES":
+                _bloque = Instantiate(spikesBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _spikesBlock = _bloque.GetComponent<DamageBlock>();
+                _spikesBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;

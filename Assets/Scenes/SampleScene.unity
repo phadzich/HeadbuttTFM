@@ -13277,6 +13277,8 @@ MonoBehaviour:
   slimeBlockPrefab: {fileID: 8090959518607110755, guid: 4a57cbbbd6b8bb94bb387ebea7c12c89, type: 3}
   lavaBlockPrefab: {fileID: 8090959518607110755, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
   ballBlockPrefab: {fileID: 8090959518607110755, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
+  spikesBlockPrefab: {fileID: 8090959518607110755, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  headBlockPrefab: {fileID: 8090959518607110755, guid: 7c90043c49f6d7e49bb27647f688871a, type: 3}
   npcDoorPrefab: {fileID: 8090959518607110755, guid: ffe2bafb2017e7148b7243dcf9846410, type: 3}
   npcCraftPrefab: {fileID: 3289155678676577984, guid: 185e28fa8d43ff14aa80192d57b3a512, type: 3}
   npcUpgradePrefab: {fileID: 3289155678676577984, guid: 718a9f8522f786e49a439f8784bcc1f5, type: 3}

@@ -10217,8 +10217,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4346770152422158823}
-  - component: {fileID: 8271733061511284825}
   - component: {fileID: 2326535436580803081}
+  - component: {fileID: 8271733061511284825}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -10244,6 +10244,27 @@ Transform:
   - {fileID: 307078797875476108}
   m_Father: {fileID: 1493166706564756805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2326535436580803081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424446760174300459}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.72565544, y: 0.7348101, z: 2.737574}
+  m_Center: {x: 0, y: 0.2875015, z: 0}
 --- !u!114 &8271733061511284825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10264,29 +10285,8 @@ MonoBehaviour:
   rotationAngle: 360
   rotationDuration: 6
   waitDuration: 1.5
-  dmgBlock: {fileID: 1928019344261533424}
-  damageCooldown: 2
---- !u!65 &2326535436580803081
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424446760174300459}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.4194498, y: 0.7348101, z: 2.737574}
-  m_Center: {x: 0, y: 0.2875015, z: 0}
+  dmgBlock: {fileID: 749449134591276513}
+  damageCooldown: 0.2
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -15286,7 +15286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
-  - component: {fileID: 1928019344261533424}
+  - component: {fileID: 749449134591276513}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -1587120826981845012}
   m_Layer: 8
@@ -15335,7 +15335,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1928019344261533424
+--- !u!114 &749449134591276513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15344,7 +15344,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8090959518607110755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29758ba10ed5db249a776459760fa60d, type: 3}
+  m_Script: {fileID: 11500000, guid: bcf8f0bdcf55e3d408c1c027bac86d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sublevelId: 0
@@ -15356,21 +15356,16 @@ MonoBehaviour:
   right: {fileID: 0}
   typeOfDamage: 1
   damage: 2
-  helmetCounter: 3
+  helmetCounter: 0
   breaksCombo: 1
-  blockMeshParent: {fileID: 0}
-  blockMesh: {fileID: 0}
-  damageParticles: {fileID: 0}
+  blockMeshParent: {fileID: 5009671167188453586}
+  blockMesh: {fileID: 3486571716503860580}
+  damageParticles: {fileID: 8681109256412394289}
   impulseSource: {fileID: 1003532578358748977}
   currentPos: {x: 0, y: 0, z: 0}
   newDirection: {x: 0, y: 0, z: 0}
   damageSound: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
   audioSource: {fileID: -1587120826981845012}
-  height: 0
-  speed: 0
-  ball: {fileID: 0}
-  holdDelay: 0
-  fireParticles: {fileID: 0}
 --- !u!114 &1003532578358748977
 MonoBehaviour:
   m_ObjectHideFlags: 0

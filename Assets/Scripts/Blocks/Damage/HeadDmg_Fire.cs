@@ -19,7 +19,7 @@ public class HeadDmg_Fire : MonoBehaviour
     private bool isBehaviorActive = false;
 
     [Header("VARIABLES DAÑO")]
-    public BallDmgBlock dmgBlock;
+    public DamageBlock dmgBlock;
     public float damageCooldown = 2f;
     private float lastDamageTime = -Mathf.Infinity;
 
