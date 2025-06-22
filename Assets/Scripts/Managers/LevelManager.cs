@@ -3,6 +3,7 @@ using PrimeTween;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -51,6 +52,8 @@ public class LevelManager : MonoBehaviour
     public Action onKeysCollected;
     public int currentSublevelBlocksMined;
 
+    public NavMeshSurface navMeshSurface; // Arrastra el GameObject con NavMeshSurface aquí
+
     private void Awake()
     {
         if (Instance == null)
@@ -86,6 +89,8 @@ public class LevelManager : MonoBehaviour
         PreloadSublevelsList();
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
+
+        //Se genera el NavMesh   
 
         //INDICAMOS QUE HEMOS ENTRADO EN EL
         EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
@@ -217,6 +222,8 @@ public class LevelManager : MonoBehaviour
         if (currentLevelDepth < maxLevelDepth)
         {
             GenerateSublevel(currentLevel.config.subLevels[currentLevelDepth + 1], currentLevelDepth + 1);
+
+            GenerateNavMesh();
         }
 
 
@@ -267,5 +274,19 @@ public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer
         GameObject newGameObject = new GameObject(_name);
         newGameObject.transform.SetParent(_parent);
         return newGameObject;
+    }
+
+    private void GenerateNavMesh()
+    {
+        if (navMeshSurface != null)
+        {
+            navMeshSurface.RemoveData();
+            navMeshSurface.BuildNavMesh(); // Esto horneará el NavMesh en tiempo de ejecución
+            Debug.Log("NavMesh baked dynamically.");
+        }
+        else
+        {
+            Debug.LogError("NavMeshSurface not assigned! Cannot bake NavMesh.");
+        }
     }
 }

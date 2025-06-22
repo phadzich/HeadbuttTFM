@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: GymTestSublvl01
   sublevel2DMap: {fileID: 2800000, guid: e5748984527469c4e857d1b23d645b43, type: 3}
-  goalType: 3
-  blocksToMine: 0
+  goalType: 0
+  blocksToMine: 10
   keysToCollect: 0
   timeLimitSeconds: 0
-  gateRequirements: []
+  gateRequirements:
+  - gateID: 0
+    requiredResource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+    requiredAmount: 3

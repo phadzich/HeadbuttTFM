@@ -39,6 +39,7 @@ public class SublevelMapGenerator : MonoBehaviour
     [Header("DAMAGE")]
     public GameObject slimeBlockPrefab;
     public GameObject lavaBlockPrefab;
+    public GameObject lavaSpawnBlockPrefab;
     public GameObject ballBlockPrefab;
     public GameObject spikesBlockPrefab;
     public GameObject headBlockPrefab;
@@ -269,6 +270,11 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(lavaBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DamageBlock _lavaBlock = _bloque.GetComponent<DamageBlock>();
                 _lavaBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "LAVASPAWN":
+                _bloque = Instantiate(lavaSpawnBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _lavaSpawnBlock = _bloque.GetComponent<DamageBlock>();
+                _lavaSpawnBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "BALL":
                 _bloque = Instantiate(ballBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);

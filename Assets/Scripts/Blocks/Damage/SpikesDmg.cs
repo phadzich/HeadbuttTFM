@@ -88,13 +88,6 @@ public class SpikesDmg : MonoBehaviour
         transform.localPosition = startPosition;
     }
 
-    /*/// <summary>
-    /// Coroutine auxiliar para mover las púas entre dos posiciones.
-    /// </summary>
-    /// <param name="startPos">Posición inicial del movimiento.</param>
-    /// <param name="endPos">Posición final del movimiento.</param>
-    /// <param name="duration">Duración del movimiento.</param>
-    /// <param name="enableCollider">Si el collider debe activarse al final de este movimiento.</param>*/
     IEnumerator MoveSpikes(Vector3 startPos, Vector3 endPos, float duration, bool enableCollider)
     {
         float timer = 0f;
