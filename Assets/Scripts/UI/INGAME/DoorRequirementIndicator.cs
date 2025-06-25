@@ -7,18 +7,38 @@ public class DoorRequirementIndicator : MonoBehaviour
 {
     public Image icon;
     public TextMeshProUGUI text;
-    public int requiredBlocks;
-    public int currentBlocks;
+    public int requiredInt;
+    public int currentInt;
 
-    public void SetupIndicator(int _required, int _current)
+
+    public Sprite mineIcon;
+    public Sprite keysIcon;
+    public Sprite exploreIcon;
+    public Sprite checkpointIcon;
+
+    public void SetupIndicator(int _current, int _required, SublevelGoalType _goalType)
     {
-        requiredBlocks = _required;
-        currentBlocks = _current;
+        requiredInt = _required;
+        currentInt = _current;
+
+        switch (_goalType)
+        {
+            case SublevelGoalType.MineBlocks:
+                icon.sprite = mineIcon;
+                break;
+            case SublevelGoalType.CollectKeys:
+                icon.sprite = keysIcon;
+                break;
+            case SublevelGoalType.Open:
+                icon.sprite = exploreIcon;
+                break;
+        }
+
         text.text = $"{_current.ToString()}/{_required.ToString()}";
     }
     public void UpdateIndicator(int _current)
     {
-        text.text = $"{_current.ToString()}/{requiredBlocks.ToString()}";
+        text.text = $"{_current.ToString()}/{requiredInt.ToString()}";
 
     }
 }

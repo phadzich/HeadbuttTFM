@@ -112,7 +112,7 @@ public class ResourceBlock : Block
         MinedAnimation();
         audioSource.PlayOneShot(minedSound);
 
-        uiAnims.AnimateResourceRewards(MatchManager.Instance.currentStreak-1);
+        uiAnims.AnimateResourceRewards(1);
     }
 
     private void MinedAnimation()

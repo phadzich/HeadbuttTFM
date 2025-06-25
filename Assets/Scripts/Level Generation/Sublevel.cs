@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,5 +50,11 @@ public class Sublevel : MonoBehaviour {
     {
         timeToBeat = _objective;
         currentTime = 0;
+    }
+
+    public void CollectKey(int _amount)
+    {
+        currentKeysCollected += _amount;
+        LevelManager.Instance.onKeysCollected?.Invoke();
     }
 }

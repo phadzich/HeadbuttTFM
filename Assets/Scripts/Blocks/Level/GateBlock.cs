@@ -92,7 +92,7 @@ public class GateBlock : Block
     {
         if (currentAmount >= requiredAmount)
         {
-            Debug.Log("GATE MET");
+            //Debug.Log("GATE MET");
             return true;
         }
 

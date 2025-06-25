@@ -29,6 +29,10 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject floorBlockPrefab;
     public GameObject wallBlockPrefab;
     public GameObject gateBlockPrefab;
+    [Header("ITEMS")]
+    public GameObject keyBlockPrefab;
+    public GameObject helmetPotionBlockPrefab;
+    public GameObject hbPotionBlockPrefab;
     [Header("MINING")]
     public GameObject resourceBlockPrefab;
     public GameObject doorBlockPrefab;
@@ -41,10 +45,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject npcCraftPrefab;
     public GameObject npcUpgradePrefab;
     public GameObject npcElevatorPrefab;
-    private void Start()
-    {
-        //GenerateSublevel(this.transform, testMap);
-    }
+
     public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, Sublevel _sublevel)
     {
         miningConfig = _config;
@@ -179,11 +180,28 @@ public class SublevelMapGenerator : MonoBehaviour
             case "DOOR":
                 _bloque = Instantiate(doorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
-                _doorBlock.SetupBlock(currentDepth,currentX,currentY);
+                _doorBlock.SetupBlock(currentDepth,currentX,currentY,miningConfig.goalType);
                 LevelManager.Instance.currentExitDoor = _bloque;
                 break;
             case "GATE":
                 _bloque = InstantiateGateBlock(_blockVariant);
+                break;
+            case "KEY":
+                _bloque = Instantiate(keyBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                KeyBlock _keyBlock = _bloque.GetComponent<KeyBlock>();
+                _keyBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "HBPOTION":
+                int _HBPOTIONIndex = int.Parse(_blockVariant);
+                _bloque = Instantiate(hbPotionBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                HBPotionBlock _hbPotBlock = _bloque.GetComponent<HBPotionBlock>();
+                _hbPotBlock.SetupBlock(currentDepth, currentX, currentY, _HBPOTIONIndex);
+                break;
+            case "HELMETPOTION":
+                int _HELMETPOTIONIndex = int.Parse(_blockVariant);
+                _bloque = Instantiate(helmetPotionBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                HelmetPotionBlock _helmetPotBlock = _bloque.GetComponent<HelmetPotionBlock>();
+                _helmetPotBlock.SetupBlock(currentDepth, currentX, currentY, _HELMETPOTIONIndex);
                 break;
         }
         return _bloque;

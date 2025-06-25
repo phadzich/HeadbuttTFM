@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,7 +28,8 @@ public class PlayerHeadbutt : MonoBehaviour
     CinemachineImpulseSource impulseSource;
 
     public Action<float, float> onHBPointsChanged;
-
+    [Header("POTION VALUES")]
+    [SerializeField] public List<int> potionValues;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,6 +40,11 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         UpdateHeadbuttCooldown();
         KeepCentered();
+    }
+
+    public void UseHBPotion(int _potionID)
+    {
+        AddHBPoints(potionValues[_potionID]);
     }
 
     public void AddHBPoints(float _amount)
@@ -88,10 +96,6 @@ public class PlayerHeadbutt : MonoBehaviour
     }
 
 
-    private void ScreenShake()
-    {
-        impulseSource.GenerateImpulse();
-    }
 
     public void Headbutt(InputAction.CallbackContext context)
     {
@@ -110,8 +114,6 @@ public class PlayerHeadbutt : MonoBehaviour
         }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
             Debug.Log("NO HAY HBS EN NPC");
         }
-
-
     }
 
     private void HeadbuttUp()
@@ -147,6 +149,10 @@ public class PlayerHeadbutt : MonoBehaviour
 
     }
 
+    private void ScreenShake()
+    {
+        impulseSource.GenerateImpulse();
+    }
 
 
 }

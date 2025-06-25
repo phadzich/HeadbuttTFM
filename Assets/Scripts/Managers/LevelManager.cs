@@ -47,7 +47,8 @@ public class LevelManager : MonoBehaviour
     public bool NPCLevel = false;
 
     public Action onSublevelBlocksMined;
-    public Action onSublevelEntered;
+    public Action<Sublevel> onSublevelEntered;
+    public Action onKeysCollected;
     public int currentSublevelBlocksMined;
 
     private void Awake()
@@ -130,7 +131,7 @@ public class LevelManager : MonoBehaviour
                     break;
             }
 
-            Debug.Log(_miningSublevel.id);
+            //Debug.Log(_miningSublevel.id);
 
             sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,_sublevel);
         }
@@ -185,11 +186,12 @@ public class LevelManager : MonoBehaviour
     {
         currentSublevel = sublevelsList[currentLevelDepth];
         Debug.Log($"Entering {currentSublevel}");
+        onSublevelEntered?.Invoke(currentSublevel);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             PlayerManager.Instance.EnterMiningLevel();
             //Debug.Log($"Entering {currentSublevel.id}");
-            onSublevelEntered?.Invoke();
+
             if (_miningSublevel.gateRequirements.Count > 0)
             {
                 foreach (GateBlock _gate in currentSublevel.gateBlocks)
