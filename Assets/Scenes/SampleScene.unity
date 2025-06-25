@@ -2171,6 +2171,70 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &346172463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346172466}
+  - component: {fileID: 346172467}
+  m_Layer: 0
+  m_Name: NavMeshBaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346172466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346172463}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1112208449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &346172467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346172463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 503
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.083333336
+  m_MinRegionArea: 1
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1 &379861179
 GameObject:
   m_ObjectHideFlags: 0
@@ -7350,7 +7414,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 346172466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1112208450
@@ -10804,6 +10869,7 @@ MonoBehaviour:
   distanceBetweenSublevels: 22
   NPCLevel: 0
   currentSublevelBlocksMined: 0
+  navMeshSurface: {fileID: 346172467}
 --- !u!1001 &1569697909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13276,7 +13342,10 @@ MonoBehaviour:
   doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
   slimeBlockPrefab: {fileID: 8090959518607110755, guid: 4a57cbbbd6b8bb94bb387ebea7c12c89, type: 3}
   lavaBlockPrefab: {fileID: 8090959518607110755, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
+  lavaSpawnBlockPrefab: {fileID: 1780837502515213412, guid: 85b4d2b193bf7c845b45dfe27597af25, type: 3}
   ballBlockPrefab: {fileID: 8090959518607110755, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
+  spikesBlockPrefab: {fileID: 8090959518607110755, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
+  headBlockPrefab: {fileID: 8090959518607110755, guid: 7c90043c49f6d7e49bb27647f688871a, type: 3}
   npcDoorPrefab: {fileID: 8090959518607110755, guid: ffe2bafb2017e7148b7243dcf9846410, type: 3}
   npcCraftPrefab: {fileID: 3289155678676577984, guid: 185e28fa8d43ff14aa80192d57b3a512, type: 3}
   npcUpgradePrefab: {fileID: 3289155678676577984, guid: 718a9f8522f786e49a439f8784bcc1f5, type: 3}

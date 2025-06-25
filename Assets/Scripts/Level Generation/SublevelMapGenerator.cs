@@ -39,7 +39,10 @@ public class SublevelMapGenerator : MonoBehaviour
     [Header("DAMAGE")]
     public GameObject slimeBlockPrefab;
     public GameObject lavaBlockPrefab;
+    public GameObject lavaSpawnBlockPrefab;
     public GameObject ballBlockPrefab;
+    public GameObject spikesBlockPrefab;
+    public GameObject headBlockPrefab;
     [Header("NPC")]
     public GameObject npcDoorPrefab;
     public GameObject npcCraftPrefab;
@@ -268,10 +271,25 @@ public class SublevelMapGenerator : MonoBehaviour
                 DamageBlock _lavaBlock = _bloque.GetComponent<DamageBlock>();
                 _lavaBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
+            case "LAVASPAWN":
+                _bloque = Instantiate(lavaSpawnBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _lavaSpawnBlock = _bloque.GetComponent<DamageBlock>();
+                _lavaSpawnBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
             case "BALL":
                 _bloque = Instantiate(ballBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DamageBlock _ballBlock = _bloque.GetComponent<BallDmgBlock>();
                 _ballBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "HEAD":
+                _bloque = Instantiate(headBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _headBlock = _bloque.GetComponent<DamageBlock>();
+                _headBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "SPIKES":
+                _bloque = Instantiate(spikesBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _spikesBlock = _bloque.GetComponent<DamageBlock>();
+                _spikesBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;

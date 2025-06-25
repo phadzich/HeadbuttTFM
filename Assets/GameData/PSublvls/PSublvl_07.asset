@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: PSublvl_07
+  m_EditorClassIdentifier: 
+  id: PSublvl_07
+  sublevel2DMap: {fileID: 2800000, guid: 38351cba7fe27b94e9f8fc9e45c43327, type: 3}
+  goalType: 3
+  blocksToMine: 0
+  keysToCollect: 0
+  timeLimitSeconds: 0
+  gateRequirements:
+  - gateID: 1
+    requiredResource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+    requiredAmount: 8
+  - gateID: 2
+    requiredResource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+    requiredAmount: 6
+  - gateID: 3
+    requiredResource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+    requiredAmount: 6
