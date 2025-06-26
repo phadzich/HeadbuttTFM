@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: Res04
+  m_Name: 07_AntiNazur
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: 1f03ba1ee77ee9748b9a632b54e5b1e2, type: 3}
-  id: 4
-  shortName: Barneyssium
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 0882e498dad04a84fb551d761d9b3d41, type: 3}
+  id: 7
+  shortName: AntiNazur
   hardness: 6
-  rarity: 1
+  rarity: 2
   description: 
-  icon: {fileID: 21300000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
-  color: {r: 0.14901961, g: 0.38039216, b: 0.6117647, a: 1}
-  mesh: {fileID: 8846097338804330060, guid: 17e608b235ac7a94c99210c88ae8208c, type: 3}
+  icon: {fileID: 0}
+  color: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}
+  mesh: {fileID: 8846097338804330060, guid: 7e43f7941866db94db56427c84cb5e16, type: 3}
+  immuneToElement: 0
+  compatibleWithElement: 5

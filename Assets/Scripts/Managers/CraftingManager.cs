@@ -40,7 +40,7 @@ public class CraftingManager : MonoBehaviour
         unlockedBlueprints.Add(_helmetBP);
     }
 
-    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementEnum _element)
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementData _element)
     {
         List<HelmetBlueprint> blueprintsByElement = new();
 

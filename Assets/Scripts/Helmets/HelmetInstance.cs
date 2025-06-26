@@ -9,7 +9,8 @@ public class HelmetInstance
     public string id;
     public HelmetInfo currentInfo = new HelmetInfo();
     public HelmetData baseHelmet;
-    public ElementEnum helmetElement;
+    public ElementData helmetElement;
+    public ElementData defaultElement;
 
     //Helmet Stats
     public int durability;
@@ -53,7 +54,7 @@ public class HelmetInstance
         activeEffect = EffectTypeEnum.None;
         activeOverchargeEffect = OverchargeEffectEnum.None;
 
-        helmetElement = ElementEnum.None;
+        helmetElement = defaultElement;
         currentHBHarvest = 0.3f;
 
     }
@@ -115,7 +116,7 @@ public class HelmetInstance
         helmetEffect = _effect;
     }
 
-    public void UpdateHelmetElement(ElementEnum _element)
+    public void UpdateHelmetElement(ElementData _element)
     {
         helmetElement = _element;
     }

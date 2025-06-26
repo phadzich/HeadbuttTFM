@@ -11,6 +11,7 @@ public class ResourceBlock : Block
     [Header("STATS")]
     public bool isDoor;
     public bool isMined;
+    public bool isSelected;
     public int bounceCount;
 
     [Header("APARIENCIA")]
@@ -62,39 +63,122 @@ public class ResourceBlock : Block
 
     public override void Bounce()
     {
-
-        if (!isMined) //ESTA VIRGEN
+        if (!isSelected)
         {
-            AnimateBounced();
-            //LO MARCAMOS
-            ShowHitIndicator(true);
-
-            //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
-            MatchManager.Instance.ResourceBounced(this);
-
-            // Play hit sound - unmined
-            if (hitSound != null && audioSource != null)
+            if (!isMined) //ESTA VIRGEN
             {
-                audioSource.PlayOneShot(hitSound, 0.7f);
+                Debug.Log($"BOUNCED OVER {resourceData.compatibleWithElement} with {HelmetManager.Instance.currentHelmet.baseHelmet.element.family}");
+                //SI ES DIRECTAMENTE COMPATIBLE CON EL HELMET
+                if (isCompatibleWithElement())
+                {
+                    SendBlockToMatchManager();
+                    // Play hit sound - unmined
+                    if (hitSound != null && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(hitSound, 0.7f);
+                    }
+                }
+                //NO ES DIRECTAMENTE COMPATIBLE, SE COMPORTA COMO PISO
+                else
+                {
+                    DontSendBlockToMatchManager();
+                }
+            }
+            else //SI YA ESTABA MINADO
+            {
+                DontSendBlockToMatchManager();
             }
         }
-        else //SI YA ESTABA MINADO
-        {
-            MatchManager.Instance.FloorBounced();
-        }
-
-
+        
     }
 
     public override void Headbutt()
     {
-        if (headbuttSound != null && audioSource != null)
+        if (!isSelected)
         {
-            audioSource.PlayOneShot(headbuttSound, 0.7f);
+            if (!isMined) //ESTA VIRGEN
+            {
+                Debug.Log($"HB OVER {resourceData.compatibleWithElement} with {HelmetManager.Instance.currentHelmet.baseHelmet.element.family}");
+                //SI NO ES IMMUNE
+                if (!isImmuneToElement())
+                {
+                    Debug.Log("HB sent");
+                    SendBlockToMatchManager();
+                    // Play hit sound - unmined
+                    if (headbuttSound != null && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(headbuttSound, 0.7f);
+                    }
+                }
+                //ES IMMUNE
+                else
+                {
+                    Debug.Log("HB IMMUNE");
+                    DontSendBlockToMatchManager();
+                }
+            }
+            else //SI YA ESTABA MINADO
+            {
+                Debug.Log("HB MINADO");
+                DontSendBlockToMatchManager();
+            }
         }
-
-        Bounce();
+            
     }
+
+    private void SendBlockToMatchManager()
+    {
+        //PROCEDEMOS CON LA SECUENCIA DE MATCH
+        AnimateBounced();
+        ShowHitIndicator(true);
+
+        //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
+        MatchManager.Instance.ResourceBounced(this);
+
+
+    }
+
+    private void DontSendBlockToMatchManager()
+    {
+        MatchManager.Instance.FloorBounced();
+    }
+
+    private bool isCompatibleWithElement()
+    {
+
+        if (HelmetManager.Instance.currentHelmet.baseHelmet.element.family == resourceData.compatibleWithElement
+            || resourceData.compatibleWithElement == ElementFamily.NONE)
+        {
+            Debug.Log("COMPATIBLE");
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool isImmuneToElement()
+    {
+        Debug.Log(resourceData.immuneToElement);
+        Debug.Log(HelmetManager.Instance.currentHelmet.baseHelmet.element.family);
+        if (HelmetManager.Instance.currentHelmet.baseHelmet.element.family == resourceData.immuneToElement)
+        {
+            Debug.Log("IMMUNE");
+
+            return true;
+
+        }
+        else
+        {
+            Debug.Log("NOT IMMUNE");
+            return false;
+
+        }
+    }
+
+
 
     public override void Activate()
     {

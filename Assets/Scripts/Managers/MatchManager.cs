@@ -87,6 +87,7 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("New Chain Started");
 
         currentChainBlocks.Add(bouncedResourceBlock);
+        bouncedResourceBlock.isSelected = true;
         currentChainResource = bouncedResource;
         lastBounceChained = false;
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
@@ -153,6 +154,7 @@ public class MatchManager : MonoBehaviour
     {
 
         currentChainBlocks.Add(bouncedResourceBlock);
+        bouncedResourceBlock.isSelected = true;
         lastBounceChained = false;
         bouncedResourceBlock.ShowHitIndicator(true);
 
@@ -198,6 +200,7 @@ public class MatchManager : MonoBehaviour
         foreach (ResourceBlock _block in currentChainBlocks)
         {
             _block.ShowHitIndicator(false);
+            _block.isSelected = false;
         }
         currentChainBlocks.Clear();
     }

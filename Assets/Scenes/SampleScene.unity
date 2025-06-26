@@ -908,22 +908,17 @@ MonoBehaviour:
       color: {r: 0, g: 0, b: 0, a: 0}
       rarity: 0
     baseHelmet: {fileID: 0}
-    maxHeadbutts: 0
+    helmetElement: {fileID: 0}
+    defaultElement: {fileID: 0}
     durability: 0
-    bounceHeight: 0
     headBForce: 0
-    headBCooldown: 0
-    knockbackChance: 0
-    helmetXP:
-      currentEvolution: 0
-      currentLevel: 0
-      currentXP: 0
-      baseRequiredXP: 0
-      xpMultiplier: 0
+    currentEvolution: 0
     helmetEffect: 0
-    helmetElement: 0
+    overchargeEffect: 0
+    activeEffect: 0
+    activeOverchargeEffect: 0
     currentDurability: 0
-    remainingHeadbutts: 0
+    currentHBHarvest: 0
   countersContainer: {fileID: 1741747054}
   equippedCounter: {fileID: 8449238150886845724, guid: 1517ab4cd48c1184686191d4afd05737, type: 3}
   equippedCounterList: []
@@ -2088,8 +2083,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0.000012313965, z: -0.000012313965, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 18, z: 0}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 18, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3516,6 +3511,7 @@ MonoBehaviour:
   blueprints:
   - {fileID: 11400000, guid: b10f917df68ad4b22a9b0922b5c64d31, type: 2}
   - {fileID: 11400000, guid: 95e00971eafe748c19a04d0d92c7fbe1, type: 2}
+  - {fileID: 11400000, guid: 81088cf07b36944108289fe6702ec3ee, type: 2}
   selectedHelmet:
     id: 
     currentInfo:
@@ -3526,22 +3522,17 @@ MonoBehaviour:
       color: {r: 0, g: 0, b: 0, a: 0}
       rarity: 0
     baseHelmet: {fileID: 0}
-    maxHeadbutts: 0
+    helmetElement: {fileID: 0}
+    defaultElement: {fileID: 0}
     durability: 0
-    bounceHeight: 0
     headBForce: 0
-    headBCooldown: 0
-    knockbackChance: 0
-    helmetXP:
-      currentEvolution: 0
-      currentLevel: 0
-      currentXP: 0
-      baseRequiredXP: 0
-      xpMultiplier: 0
+    currentEvolution: 0
     helmetEffect: 0
-    helmetElement: 0
+    overchargeEffect: 0
+    activeEffect: 0
+    activeOverchargeEffect: 0
     currentDurability: 0
-    remainingHeadbutts: 0
+    currentHBHarvest: 0
 --- !u!1 &605459607
 GameObject:
   m_ObjectHideFlags: 0
@@ -5477,13 +5468,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863160636}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 18, z: 0}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 18, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1664707210}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!114 &863160639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8690,12 +8681,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helmetUIPrefab: {fileID: 5049575914752835320, guid: 6280bdd9d200148d58a6a8c2a88ba619, type: 3}
-  blueprintUIPrefab: {fileID: 8900020519587195785, guid: dca622d8eb243457da052c7b2fe0c29f, type: 3}
+  helmetInfoCardPrefab: {fileID: 0}
   helmetListContainer: {fileID: 304942956}
-  blueprintListContainer: {fileID: 841796439}
-  pagesButtons: {fileID: 929765258}
+  cardContainer: {fileID: 0}
   EmptyListText: {fileID: 520312872}
-  itemsPerPage: 3
 --- !u!1 &1272368261
 GameObject:
   m_ObjectHideFlags: 0
@@ -13836,17 +13825,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allHelmets:
+  - {fileID: 11400000, guid: c0367ed8dffb4424f90be79dbbfb5322, type: 2}
   - {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+  - {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
   helmetsOwned: []
   helmetsEquipped: []
   maxEquippedHelmets: 3
   maxOwnHelmets: 10
-  durabilityUpgradeAmount: 1
-  headbuttUpgradeAmount: 1
-  bounceHeightUpgradeAmount: 0.2
-  hbForceUpgradeAmount: 0.5
-  hbCooldownReductionAmount: 0.2
-  knockbackChanceReductionAmount: 5
   currentHelmet:
     id: 
     currentInfo:
@@ -13857,22 +13842,17 @@ MonoBehaviour:
       color: {r: 0, g: 0, b: 0, a: 0}
       rarity: 0
     baseHelmet: {fileID: 0}
-    maxHeadbutts: 0
+    helmetElement: {fileID: 0}
+    defaultElement: {fileID: 0}
     durability: 0
-    bounceHeight: 0
     headBForce: 0
-    headBCooldown: 0
-    knockbackChance: 0
-    helmetXP:
-      currentEvolution: 0
-      currentLevel: 0
-      currentXP: 0
-      baseRequiredXP: 0
-      xpMultiplier: 0
+    currentEvolution: 0
     helmetEffect: 0
-    helmetElement: 0
+    overchargeEffect: 0
+    activeEffect: 0
+    activeOverchargeEffect: 0
     currentDurability: 0
-    remainingHeadbutts: 0
+    currentHBHarvest: 0
   currentMesh: {fileID: 2119067691}
   helmetIndex: 0
   potionValues: 01000000020000000400000008000000

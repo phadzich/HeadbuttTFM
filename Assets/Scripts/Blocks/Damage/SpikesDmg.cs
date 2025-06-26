@@ -119,7 +119,7 @@ public class SpikesDmg : MonoBehaviour
             Debug.Log("Contacto!");
             float time = Time.time;
             if (Time.time - lastDamageTime >= damageCooldown)
-                if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.LavaBoost)
+                if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.LavaResistance)
                 {
                     dmgBlock.DoDamage();
                 }

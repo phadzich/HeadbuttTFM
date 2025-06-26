@@ -15,6 +15,8 @@ public class ResourceData : ScriptableObject
     public Sprite icon;
     public Color color;
     public GameObject mesh;
+    public ElementFamily immuneToElement;
+    public ElementFamily compatibleWithElement;
 
     public enum ResourceRarity
     {
