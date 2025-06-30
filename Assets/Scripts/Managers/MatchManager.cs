@@ -8,6 +8,8 @@ public class MatchManager : MonoBehaviour
 
     [Header("COMBO ACTUAL")]
     [SerializeField]
+    private List<ResourceBlock> preSelectedBlocks;
+    [SerializeField]
     private List<ResourceBlock> currentChainBlocks;
     public ResourceData currentChainResource;
     public ResourceData bouncedResource;
@@ -48,27 +50,33 @@ public class MatchManager : MonoBehaviour
     {
         EndStreak();
         EndCurrentChain();
-
+        ResetPreselectedBlocks();
     }
     public void ResourceBounced(ResourceBlock _resBlock)
     {
         bouncedResourceBlock = _resBlock;
         bouncedResource = bouncedResourceBlock.resourceData;
+
+        if (!preSelectedBlocks.Contains(_resBlock))
+        {
+            preSelectedBlocks.Add(_resBlock);
+        }
+
+
+
         if (currentChainResource == null)
         {
-            StartNewChain();
-
+            //StartNewChain();
+            currentChainResource = bouncedResource;
         }
-        else
-        {
-            CompareChainResources();
-        }
+        CompareChainResources();
     }
 
     public void FloorBounced()
     {
         bouncedResource = null;
         bouncedResourceBlock = null;
+        ResetPreselectedBlocks();
         EndStreak();
         if (!lastBounceChained && currentChainResource != null)
         {
@@ -103,7 +111,8 @@ public class MatchManager : MonoBehaviour
         }
         else
         {
-            TryToAddToChain();
+
+            //TryToAddToChain();
         }
     }
 
@@ -124,6 +133,7 @@ public class MatchManager : MonoBehaviour
         ClearAllHitBlocks();
         lastBounceChained = false;
         EndStreak();
+        ResetPreselectedBlocks();
 
         EndCurrentChain();
 
@@ -141,7 +151,7 @@ public class MatchManager : MonoBehaviour
         }
     }
 
-    private void TryToAddToChain()
+    public void TryToAddToChain()
     {
         //Debug.Log("Trying to add to chain");
         if (!currentChainBlocks.Contains(bouncedResourceBlock))
@@ -156,7 +166,7 @@ public class MatchManager : MonoBehaviour
         currentChainBlocks.Add(bouncedResourceBlock);
         bouncedResourceBlock.isSelected = true;
         lastBounceChained = false;
-        bouncedResourceBlock.ShowHitIndicator(true);
+        //bouncedResourceBlock.ShowHitIndicator(true);
 
         //UI VISUALS
         UIManager.Instance.remainingBlockIndicator.UpdateIndicatorCount(bouncedResource.hardness - currentChainBlocks.Count);
@@ -199,10 +209,27 @@ public class MatchManager : MonoBehaviour
     {
         foreach (ResourceBlock _block in currentChainBlocks)
         {
-            _block.ShowHitIndicator(false);
+            _block.ShowHit1Indicator(false);
+            _block.ShowHit2Indicator(false);
+            _block.ShowHit3Indicator(false);
             _block.isSelected = false;
+            _block.requiredHits = 3;
         }
         currentChainBlocks.Clear();
+
+    }
+
+    public void ResetPreselectedBlocks()
+    {
+        foreach (ResourceBlock _block in preSelectedBlocks)
+        {
+            _block.ShowHit1Indicator(false);
+            _block.ShowHit2Indicator(false);
+            _block.ShowHit3Indicator(false);
+            _block.isSelected = false;
+            _block.requiredHits = 3;
+        }
+        preSelectedBlocks.Clear();
     }
     private void RewardPlayer()
     {
@@ -224,6 +251,7 @@ public class MatchManager : MonoBehaviour
     private void EndStreak()
     {
         //Debug.Log("Streak Restarted");
+
         currentStreak =1;
     }
 

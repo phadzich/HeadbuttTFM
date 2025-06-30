@@ -16,11 +16,11 @@ public class WallBlock : Block
         isWalkable = false;
     }
 
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
 
     }

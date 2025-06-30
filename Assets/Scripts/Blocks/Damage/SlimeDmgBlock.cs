@@ -8,7 +8,7 @@ public class SlimeDmgBlock : DamageBlock
     private void Start()
     {
     }
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
 
         if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
@@ -23,7 +23,7 @@ public class SlimeDmgBlock : DamageBlock
         audioSource.PlayOneShot(damageSound, 0.7f);
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
         if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
         {

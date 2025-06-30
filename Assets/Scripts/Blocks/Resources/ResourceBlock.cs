@@ -1,4 +1,5 @@
 using PrimeTween;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -12,7 +13,10 @@ public class ResourceBlock : Block
     public bool isDoor;
     public bool isMined;
     public bool isSelected;
-    public int bounceCount;
+
+    [Header("COMPATIBILIDAD")]
+    public List<ResourceFamily> resourceFamilies;
+    public int requiredHits = 3;
 
     [Header("APARIENCIA")]
     public Transform blockMeshParent;
@@ -22,8 +26,9 @@ public class ResourceBlock : Block
     public Material groundMaterial;
 
     [Header("PREFABS")]
-    public GameObject doorTriggerPrefab;
-    public GameObject hitIndicatorPF;
+    public GameObject hit1IndicatorPF;
+    public GameObject hit2IndicatorPF;
+    public GameObject hit3IndicatorPF;
     public TextMeshProUGUI remianingBouncesText;
     public GameObject resourceDropPrefab;
 
@@ -39,7 +44,6 @@ public class ResourceBlock : Block
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        doorTriggerPrefab.SetActive(false);
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -49,10 +53,14 @@ public class ResourceBlock : Block
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
+        resourceFamilies = _resource.resourceFamilies;
         isWalkable= true;
         InstanceResourceBlockMesh();
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
-        ShowHitIndicator(false);
+        ShowHit1Indicator(false);
+        ShowHit2Indicator(false);
+        ShowHit3Indicator(false);
+        requiredHits = 3;
         uiAnims.resourceIcon.sprite = _resource.icon;
     }
 
@@ -61,8 +69,55 @@ public class ResourceBlock : Block
         blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
     }
 
-    public override void Bounce()
+    private int CalculateHelmetDamage(List<ResourceFamily> _helmetFamilies)
     {
+        foreach (var _helmetFamily in _helmetFamilies)
+        {
+            foreach (var _resFamily in resourceFamilies)
+            {
+                if (_helmetFamily == _resFamily) //ES DEL MISMO RESOURCE FAMILY
+                {
+                    return 3;
+                }
+                else if (IsFamilyNeighbour(_helmetFamily, _resFamily)) //DIFERENTE FAMILIA, PERO NO LEJANA
+                {
+                    return 2;
+                }
+            }
+        }
+        return 1;
+    }
+
+    bool IsFamilyNeighbour(ResourceFamily _famA, ResourceFamily _famB)
+    {
+        return(_famA == ResourceFamily.EARTH && _famB==ResourceFamily.METAL)|| //earth + metal = cercanos
+            (_famA == ResourceFamily.METAL && (_famB == ResourceFamily.EARTH || _famB == ResourceFamily.GEM)) || // metal + cualquiera = cercanos
+           (_famA == ResourceFamily.GEM && _famB == ResourceFamily.METAL); // gem + metal = cercanos
+    }
+
+    public override void OnBounced(HelmetInstance _helmetInstance)
+    {
+        if (!isMined) //SI NO HA SIDO MINADO AUN
+        {
+
+            int _helmetDamage = CalculateHelmetDamage(_helmetInstance.baseHelmet.resourceFamilies);
+            requiredHits -= _helmetDamage;
+            BouncedOnResource();
+            if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
+            {
+                MatchManager.Instance.TryToAddToChain();
+            }
+            else //COMUNICAMOS EL PROGRESO INCOMPLETO
+            {
+                //Debug.Log($"Needs {requiredHits} hits");
+            }
+        }
+        else //YA HA SIDO MINADO, ACTUA COMO PISO
+        {
+            BouncedOnFloor();
+        }
+
+        /*
         if (!isSelected)
         {
             if (!isMined) //ESTA VIRGEN
@@ -89,11 +144,13 @@ public class ResourceBlock : Block
                 DontSendBlockToMatchManager();
             }
         }
-        
+        */
+
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
+        /*
         if (!isSelected)
         {
             if (!isMined) //ESTA VIRGEN
@@ -103,7 +160,7 @@ public class ResourceBlock : Block
                 if (!isImmuneToElement())
                 {
                     Debug.Log("HB sent");
-                    SendBlockToMatchManager();
+                    BouncedOnResource();
                     // Play hit sound - unmined
                     if (headbuttSound != null && audioSource != null)
                     {
@@ -114,71 +171,52 @@ public class ResourceBlock : Block
                 else
                 {
                     Debug.Log("HB IMMUNE");
-                    DontSendBlockToMatchManager();
+                    BouncedOnFloor();
                 }
             }
             else //SI YA ESTABA MINADO
             {
                 Debug.Log("HB MINADO");
-                DontSendBlockToMatchManager();
+                BouncedOnFloor();
             }
         }
+        */
             
     }
 
-    private void SendBlockToMatchManager()
+    private void BouncedOnResource()
     {
         //PROCEDEMOS CON LA SECUENCIA DE MATCH
         AnimateBounced();
-        ShowHitIndicator(true);
+        
+        if (requiredHits == 2)
+        {
+            ShowHit1Indicator(true);
+            ShowHit2Indicator(false);
+            ShowHit3Indicator(false);
+        }
+        else if (requiredHits == 1)
+        {
+            ShowHit2Indicator(true);
+            ShowHit1Indicator(true);
+            ShowHit3Indicator(false);
+        }
+        else if (requiredHits <= 0)
+        {
+            ShowHit2Indicator(true);
+            ShowHit1Indicator(true);
+            ShowHit3Indicator(true);
+        }
+
 
         //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
         MatchManager.Instance.ResourceBounced(this);
-
-
     }
 
-    private void DontSendBlockToMatchManager()
+    private void BouncedOnFloor()
     {
         MatchManager.Instance.FloorBounced();
     }
-
-    private bool isCompatibleWithElement()
-    {
-
-        if (HelmetManager.Instance.currentHelmet.baseHelmet.element.family == resourceData.compatibleWithElement
-            || resourceData.compatibleWithElement == ElementFamily.NONE)
-        {
-            Debug.Log("COMPATIBLE");
-            return true;
-
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool isImmuneToElement()
-    {
-        Debug.Log(resourceData.immuneToElement);
-        Debug.Log(HelmetManager.Instance.currentHelmet.baseHelmet.element.family);
-        if (HelmetManager.Instance.currentHelmet.baseHelmet.element.family == resourceData.immuneToElement)
-        {
-            Debug.Log("IMMUNE");
-
-            return true;
-
-        }
-        else
-        {
-            Debug.Log("NOT IMMUNE");
-            return false;
-
-        }
-    }
-
-
 
     public override void Activate()
     {
@@ -214,7 +252,9 @@ public class ResourceBlock : Block
         //Debug.Log("MINED");
         isMined = true;
         resourceData = null;
-        ShowHitIndicator(false);
+        ShowHit1Indicator(false);
+        ShowHit2Indicator(false);
+        ShowHit3Indicator(false);
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
         //TRANSFORM, LUEGO DEBE SER ANIMADO
@@ -222,11 +262,20 @@ public class ResourceBlock : Block
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
     }
 
-    public void ShowHitIndicator(bool _visible)
+    public void ShowHit1Indicator(bool _visible)
     {
-        hitIndicatorPF.SetActive(_visible);
+        hit1IndicatorPF.SetActive(_visible);
     }
 
+    public void ShowHit2Indicator(bool _visible)
+    {
+        hit2IndicatorPF.SetActive(_visible);
+    }
+
+    public void ShowHit3Indicator(bool _visible)
+    {
+        hit3IndicatorPF.SetActive(_visible);
+    }
 
     void AnimateBounced()
     {

@@ -23,12 +23,12 @@ public class HelmetPotionBlock : Block
         potionMesh.transform.localScale = new Vector3(meshSize, meshSize, meshSize);
     }
    
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
     }

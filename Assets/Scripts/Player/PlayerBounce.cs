@@ -85,7 +85,7 @@ public class PlayerBounce : MonoBehaviour
         //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
             rb.linearVelocity = new Vector3(0, jumpForce, 0);
-            PlayerManager.Instance.playerMovement.blockBelow.Bounce();
+            PlayerManager.Instance.playerMovement.blockBelow.OnBounced(HelmetManager.Instance.currentHelmet);
         PlayerManager.Instance.playerAnimations.BounceSS();
     }
 

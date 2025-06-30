@@ -20,9 +20,10 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
     color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
     rarity: 0
+  resourceFamilies: 00000000
   element: {fileID: 11400000, guid: b61ab19d1a267d74d80cd6d17464b7fa, type: 2}
   durability: 2
-  headBForce: 10
+  headBForce: 6
   evolution: 1
   effect: 3
   overchargeEffect: 2

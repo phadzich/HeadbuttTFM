@@ -123,7 +123,7 @@ public class PlayerHeadbutt : MonoBehaviour
         rb.transform.position = PlayerManager.Instance.playerMovement.blockBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
-        PlayerManager.Instance.playerMovement.blockBelow.Headbutt();
+        PlayerManager.Instance.playerMovement.blockBelow.OnHeadbutted(HelmetManager.Instance.currentHelmet);
         ScreenShake();
         RestartHeadbuttCooldown();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();

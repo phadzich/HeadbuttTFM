@@ -107,7 +107,7 @@ public class GateBlock : Block
     }
 
 
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
         if (isOpen)
         {
@@ -115,7 +115,7 @@ public class GateBlock : Block
         }
         }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
 
     }

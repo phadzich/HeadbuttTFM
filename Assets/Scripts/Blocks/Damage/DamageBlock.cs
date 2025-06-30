@@ -36,7 +36,7 @@ public class DamageBlock : Block
         isWalkable = true;
     }
 
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
         if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
         {
@@ -48,7 +48,7 @@ public class DamageBlock : Block
         }
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
         DoDamage();
         if (breaksCombo)

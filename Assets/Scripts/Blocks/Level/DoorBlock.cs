@@ -100,12 +100,12 @@ public class DoorBlock : Block
         borde4.GetComponent<MeshRenderer>().material = openMaterial;
     }
 
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
         TryToOpen();
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
         TryToOpen();
     }
