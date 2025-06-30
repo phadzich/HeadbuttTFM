@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 10_Antinazur
   m_EditorClassIdentifier: 
   resourceDropPrefab: {fileID: 4047506742962519041, guid: a519f26b745e9c04e9fc1dde780777c5, type: 3}
-  id: 6
+  id: 10
   shortName: Emmerald
   hardness: 15
   rarity: 1

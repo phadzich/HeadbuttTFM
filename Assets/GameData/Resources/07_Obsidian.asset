@@ -20,5 +20,5 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
   color: {r: 0.5745275, g: 0.25098044, b: 0.8784314, a: 1}
-  mesh: {fileID: 8846097338804330060, guid: 17e608b235ac7a94c99210c88ae8208c, type: 3}
+  mesh: {fileID: 8846097338804330060, guid: c5fa3a11db90a2d428e00b0a9d713adf, type: 3}
   resourceFamilies: 00000000

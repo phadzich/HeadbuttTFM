@@ -49,7 +49,7 @@ public class ResourceBlock : Block
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
     {
-        //Debug.Log(_resource);
+        Debug.Log(_resource);
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
@@ -255,6 +255,7 @@ public class ResourceBlock : Block
         ShowHit1Indicator(false);
         ShowHit2Indicator(false);
         ShowHit3Indicator(false);
+        blockMesh.transform.GetChild(1).gameObject.SetActive(false);
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
         //TRANSFORM, LUEGO DEBE SER ANIMADO
