@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 07_Obsidian
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: 0882e498dad04a84fb551d761d9b3d41, type: 3}
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 9a9ef42d496ea5147911bda19fcaaeeb, type: 3}
   id: 7
   shortName: Obsidian
   hardness: 9
   rarity: 2
   description: 
-  icon: {fileID: 21300000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
+  icon: {fileID: 21300000, guid: e409befd15b7d4040a9310bb69296592, type: 3}
   color: {r: 0.5745275, g: 0.25098044, b: 0.8784314, a: 1}
   mesh: {fileID: 8846097338804330060, guid: c5fa3a11db90a2d428e00b0a9d713adf, type: 3}
   resourceFamilies: 00000000

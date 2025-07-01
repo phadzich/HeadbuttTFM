@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 03_LapisLazuli
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: 1445a4e1a41e31c499b26132de288c19, type: 3}
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: afde9f91d43d2394fb70f85073aef2a0, type: 3}
   id: 3
   shortName: LapisLazuli
   hardness: 5
   rarity: 0
   description: 
-  icon: {fileID: 21300000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
+  icon: {fileID: 21300000, guid: 61250b903f909954ab0763275fc40994, type: 3}
   color: {r: 0.19953722, g: 0.31936038, b: 0.7169812, a: 1}
   mesh: {fileID: 8846097338804330060, guid: c10eb7e6c1c23ef4d924828e69379c2e, type: 3}
   resourceFamilies: 02000000

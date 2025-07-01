@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 09_Emmerald
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: a519f26b745e9c04e9fc1dde780777c5, type: 3}
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 19a343ee01883444698158032b32ef48, type: 3}
   id: 9
   shortName: Emmerald
   hardness: 11
   rarity: 1
   description: 
-  icon: {fileID: 21300000, guid: 0f4c3091be58eb24d9afc6cd21ac5b5a, type: 3}
+  icon: {fileID: 21300000, guid: 734ac855cc8a7b1439eb2054bb3ea886, type: 3}
   color: {r: 0.22394533, g: 0.7783019, b: 0.26600438, a: 1}
   mesh: {fileID: 8846097338804330060, guid: 243eea40ee0de184589fade18254640a, type: 3}
   resourceFamilies: 02000000

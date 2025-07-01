@@ -21,9 +21,12 @@ public class ResourceBlock : Block
     [Header("APARIENCIA")]
     public Transform blockMeshParent;
     public GameObject blockMesh;
+    public GameObject resourceContainer;
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
+    public Material bouncedMaterial;
+    public Material selectedMaterial;
 
     [Header("PREFABS")]
     public GameObject hit1IndicatorPF;
@@ -57,9 +60,7 @@ public class ResourceBlock : Block
         isWalkable= true;
         InstanceResourceBlockMesh();
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
-        ShowHit1Indicator(false);
-        ShowHit2Indicator(false);
-        ShowHit3Indicator(false);
+        VisualHit0();
         requiredHits = 3;
         uiAnims.resourceIcon.sprite = _resource.icon;
     }
@@ -67,6 +68,7 @@ public class ResourceBlock : Block
     private void InstanceResourceBlockMesh()
     {
         blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
+        resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
     private int CalculateHelmetDamage(List<ResourceFamily> _helmetFamilies)
@@ -191,28 +193,25 @@ public class ResourceBlock : Block
         
         if (requiredHits == 2)
         {
-            ShowHit1Indicator(true);
-            ShowHit2Indicator(false);
-            ShowHit3Indicator(false);
+            VisualHit1();
         }
         else if (requiredHits == 1)
         {
-            ShowHit2Indicator(true);
-            ShowHit1Indicator(true);
-            ShowHit3Indicator(false);
+            VisualHit2();
         }
         else if (requiredHits <= 0)
         {
-            ShowHit2Indicator(true);
-            ShowHit1Indicator(true);
-            ShowHit3Indicator(true);
+            VisualHit3();
+
         }
-
-
         //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
         MatchManager.Instance.ResourceBounced(this);
     }
 
+    public void MoveResourceToken(float _height)
+    {
+        resourceContainer.transform.localPosition = new Vector3(resourceContainer.transform.localPosition.x, _height, resourceContainer.transform.localPosition.z);
+    }
     private void BouncedOnFloor()
     {
         MatchManager.Instance.FloorBounced();
@@ -252,9 +251,7 @@ public class ResourceBlock : Block
         //Debug.Log("MINED");
         isMined = true;
         resourceData = null;
-        ShowHit1Indicator(false);
-        ShowHit2Indicator(false);
-        ShowHit3Indicator(false);
+        VisualHit0();
         blockMesh.transform.GetChild(1).gameObject.SetActive(false);
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
@@ -263,20 +260,50 @@ public class ResourceBlock : Block
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
     }
 
-    public void ShowHit1Indicator(bool _visible)
+    public void VisualHit0()
     {
-        hit1IndicatorPF.SetActive(_visible);
+        MoveResourceToken(0f);
+        hit1IndicatorPF.SetActive(false);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.SetActive(false);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.SetActive(false);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
     }
 
-    public void ShowHit2Indicator(bool _visible)
+    public void VisualHit1()
     {
-        hit2IndicatorPF.SetActive(_visible);
+        MoveResourceToken(.1f);
+        hit1IndicatorPF.SetActive(true);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.SetActive(false);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.SetActive(false);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
     }
 
-    public void ShowHit3Indicator(bool _visible)
+    public void VisualHit2()
     {
-        hit3IndicatorPF.SetActive(_visible);
+        MoveResourceToken(.2f);
+        hit1IndicatorPF.SetActive(true);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.SetActive(true);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.SetActive(false);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
     }
+
+    public void VisualHit3()
+    {
+        MoveResourceToken(.4f);
+        hit1IndicatorPF.SetActive(true);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit2IndicatorPF.SetActive(true);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit3IndicatorPF.SetActive(true);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+    }
+
 
     void AnimateBounced()
     {

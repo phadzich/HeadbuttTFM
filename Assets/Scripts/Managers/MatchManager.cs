@@ -209,9 +209,7 @@ public class MatchManager : MonoBehaviour
     {
         foreach (ResourceBlock _block in currentChainBlocks)
         {
-            _block.ShowHit1Indicator(false);
-            _block.ShowHit2Indicator(false);
-            _block.ShowHit3Indicator(false);
+            _block.VisualHit0();
             _block.isSelected = false;
             _block.requiredHits = 3;
         }
@@ -223,9 +221,7 @@ public class MatchManager : MonoBehaviour
     {
         foreach (ResourceBlock _block in preSelectedBlocks)
         {
-            _block.ShowHit1Indicator(false);
-            _block.ShowHit2Indicator(false);
-            _block.ShowHit3Indicator(false);
+            _block.VisualHit0();
             _block.isSelected = false;
             _block.requiredHits = 3;
         }
