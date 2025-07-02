@@ -11,10 +11,7 @@ public class SlimeDmgBlock : DamageBlock
     public override void OnBounced(HelmetInstance _helmetInstance)
     {
 
-        if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
-        {
-            PushPlayerRandomly();
-        }
+        PushPlayerRandomly();
 
     }
 
@@ -25,9 +22,6 @@ public class SlimeDmgBlock : DamageBlock
 
     public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
-        if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
-        {
-            PushPlayerRandomly();
-        }
+        PushPlayerRandomly();
     }
 }

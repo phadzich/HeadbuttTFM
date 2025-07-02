@@ -913,10 +913,7 @@ MonoBehaviour:
     durability: 0
     headBForce: 0
     currentEvolution: 0
-    helmetEffect: 0
-    overchargeEffect: 0
-    activeEffect: 0
-    activeOverchargeEffect: 0
+    activeEffects: []
     currentDurability: 0
     currentHBHarvest: 0
   countersContainer: {fileID: 1741747054}
@@ -1313,6 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cad2ff386bd804783c163f55638ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  preSelectedBlocks: []
   currentChainBlocks: []
   currentChainResource: {fileID: 0}
   bouncedResource: {fileID: 0}
@@ -3530,10 +3528,7 @@ MonoBehaviour:
     durability: 0
     headBForce: 0
     currentEvolution: 0
-    helmetEffect: 0
-    overchargeEffect: 0
-    activeEffect: 0
-    activeOverchargeEffect: 0
+    activeEffects: []
     currentDurability: 0
     currentHBHarvest: 0
 --- !u!1 &605459607
@@ -13850,10 +13845,7 @@ MonoBehaviour:
     durability: 0
     headBForce: 0
     currentEvolution: 0
-    helmetEffect: 0
-    overchargeEffect: 0
-    activeEffect: 0
-    activeOverchargeEffect: 0
+    activeEffects: []
     currentDurability: 0
     currentHBHarvest: 0
   currentMesh: {fileID: 2119067691}

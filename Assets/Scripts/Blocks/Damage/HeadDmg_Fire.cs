@@ -18,7 +18,7 @@ public class HeadDmg_Fire : MonoBehaviour
     private Coroutine currentRotationCoroutine;
     private bool isBehaviorActive = false;
 
-    [Header("VARIABLES DAÑO")]
+    [Header("VARIABLES DAï¿½O")]
     public DamageBlock dmgBlock;
     public float damageCooldown = 2f;
     private float lastDamageTime = -Mathf.Infinity;
@@ -133,11 +133,7 @@ public class HeadDmg_Fire : MonoBehaviour
         {
             Debug.Log("Contacto!");
             float time = Time.time;
-            if (Time.time - lastDamageTime >= damageCooldown)
-                if (HelmetManager.Instance.currentHelmet.helmetEffect != EffectTypeEnum.LavaResistance)
-                {
-                    dmgBlock.DoDamage();
-                }
+            if (Time.time - lastDamageTime >= damageCooldown) dmgBlock.DoDamage();
         }
         lastDamageTime = Time.time;
     }
