@@ -71,7 +71,7 @@ public class HelmetManager : MonoBehaviour
         PlayerManager.Instance.MaxUpLives();
     }
 
-    // Función para desbloquear un casco, es decir que a partir de un blueprint se crea el casco
+    // Función para desbloquear un casco
     public void UnlockHelmet(HelmetData _helmet)
     {
         if (helmetsOwned.Count < maxOwnHelmets)

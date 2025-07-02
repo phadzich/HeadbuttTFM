@@ -57,7 +57,12 @@ public class CraftingManager : MonoBehaviour
 
     public void CreateHelmet(HelmetBlueprint _blueprint)
     {
-        // Funciones para crear un helmet, crear el instance, agregarlo a own helmets,etc
+        // Pagamos el precio de la creacion del casco
+        PayResources(_blueprint.requiredResources);
+
+        // Desbloqueamos el casco
+        HelmetManager.Instance.UnlockHelmet(_blueprint.resultHelmet);
+
     }
 
     // Funcion para elegir un casco desde la UI
@@ -73,18 +78,26 @@ public class CraftingManager : MonoBehaviour
     {
         if (selectedHelmet == null) return;
 
-        //Obtenemos los upgrade requirements del casco para su siguiente evolucion
+        // Obtenemos los upgrade requirements del casco para su siguiente evolucion
         UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement(selectedHelmet.nextEvolution);
 
-        foreach (var res in req.requirements)
-        {
-            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
-        }
+        // Pagamos el precio de la evolucion
+        PayResources(req.requirements);
 
         // Actualiza la informacion del casco como el efecto, elemento
         selectedHelmet.Evolve(req);
 
         HelmetEvolved?.Invoke();
+    }
+
+    // Llamar esta funcion para pagar el costo de lo que se haga
+    // La verificacion de si hay suficientes recursos se hace en otro lado
+    private void PayResources(List<ResourceRequirement> _requirements)
+    {
+        foreach (var res in _requirements)
+        {
+            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
+        }
     }
 
 }
