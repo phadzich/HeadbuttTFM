@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c44ca9306a2e4d67b578ec9fd9eb471, type: 3}
-  m_Name: LavaBlueprint
+  m_Name: FireBreathBlueprint
   m_EditorClassIdentifier: 
   requiredEvolution: 1
-  resultHelmet: {fileID: 11400000, guid: 95645b3bd0e1a4043b1aa9d697165e32, type: 2}
+  resultHelmet: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
   requiredResources:
   - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-    quantity: 1
-  - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+    quantity: 5
+  - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
     quantity: 1

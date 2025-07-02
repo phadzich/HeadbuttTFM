@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: FireHelmet
+  m_Name: Firebreath
   m_EditorClassIdentifier: 
   id: 1
   helmetInfo:
-    name: Basic Helmet
+    name: Casco basico
     description: Casco basico hecho de cobre
     mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
     icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
@@ -25,18 +25,20 @@ MonoBehaviour:
   durability: 2
   headBForce: 10
   evolution: 1
-  effect: 1
-  overchargeEffect: 1
+  effects:
+  - {fileID: 11400000, guid: 94db2d76da05f46d9a7126fc612c567b, type: 2}
+  overchargedEffects:
+  - {fileID: 0}
   upgradeRequirements:
   - toEvolution: 2
     requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 1
+      quantity: 15
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 1
+      quantity: 10
     newInfo:
-      name: Magma Nific Helmet
-      description: "\xA1The floor is lava! Resist the effect with this helmet."
+      name: Firebreath Helmet
+      description: ...
       mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
       icon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
       color: {r: 0.8396226, g: 0, b: 0, a: 0}
@@ -48,12 +50,12 @@ MonoBehaviour:
   - toEvolution: 3
     requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 1
-    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 1
+      quantity: 25
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 20
     newInfo:
-      name: More Magma
-      description: LAVA
+      name: Magma Nific Helmet
+      description: ....
       mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
       icon: {fileID: 21300000, guid: eed8e052ac618b546bd6c9d2ea1596d8, type: 3}
       color: {r: 0.5566038, g: 0, b: 0, a: 0}

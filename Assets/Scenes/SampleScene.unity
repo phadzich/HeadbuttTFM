@@ -913,10 +913,7 @@ MonoBehaviour:
     durability: 0
     headBForce: 0
     currentEvolution: 0
-    helmetEffect: 0
-    overchargeEffect: 0
-    activeEffect: 0
-    activeOverchargeEffect: 0
+    activeEffects: []
     currentDurability: 0
     currentHBHarvest: 0
   countersContainer: {fileID: 1741747054}
@@ -3531,10 +3528,7 @@ MonoBehaviour:
     durability: 0
     headBForce: 0
     currentEvolution: 0
-    helmetEffect: 0
-    overchargeEffect: 0
-    activeEffect: 0
-    activeOverchargeEffect: 0
+    activeEffects: []
     currentDurability: 0
     currentHBHarvest: 0
 --- !u!1 &605459607
@@ -13851,10 +13845,7 @@ MonoBehaviour:
     durability: 0
     headBForce: 0
     currentEvolution: 0
-    helmetEffect: 0
-    overchargeEffect: 0
-    activeEffect: 0
-    activeOverchargeEffect: 0
+    activeEffects: []
     currentDurability: 0
     currentHBHarvest: 0
   currentMesh: {fileID: 2119067691}

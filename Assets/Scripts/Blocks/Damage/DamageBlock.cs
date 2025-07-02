@@ -38,10 +38,8 @@ public class DamageBlock : Block
 
     public override void OnBounced(HelmetInstance _helmetInstance)
     {
-        if (HelmetManager.Instance.currentHelmet.helmetEffect != helmetCounter)
-        {
-            DoDamage();
-        }
+        DoDamage();
+
         if (breaksCombo)
         {
             MatchManager.Instance.EnemyBounced();

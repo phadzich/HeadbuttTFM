@@ -19,11 +19,7 @@ public class HelmetInstance
     public int nextEvolution => currentEvolution + 1;
 
     // Efectos and overcharged
-    public EffectTypeEnum helmetEffect;
-    public OverchargeEffectEnum overchargeEffect;
-
-    public EffectTypeEnum activeEffect;
-    public OverchargeEffectEnum activeOverchargeEffect;
+    public List<HelmetEffect> activeEffects;
 
     //Current stats
     public int currentDurability;
@@ -45,14 +41,6 @@ public class HelmetInstance
         currentEvolution = _helmetSO.evolution;
         durability = _helmetSO.durability;
         headBForce = _helmetSO.headBForce;
-
-        //Effects
-        helmetEffect = _helmetSO.effect;
-        overchargeEffect = _helmetSO.overchargeEffect;
-
-        // Se inician inactivos
-        activeEffect = EffectTypeEnum.None;
-        activeOverchargeEffect = OverchargeEffectEnum.None;
 
         helmetElement = defaultElement;
         currentHBHarvest = 0.3f;
@@ -111,14 +99,54 @@ public class HelmetInstance
         currentInfo = _newInfo.Copy();
     }
 
-    public void UpdateHelmetEffect(EffectTypeEnum _effect)
+    public void AddEffect(HelmetEffect _effect)
     {
-        helmetEffect = _effect;
+        activeEffects.Add(_effect);
     }
 
     public void UpdateHelmetElement(ElementData _element)
     {
         helmetElement = _element;
+    }
+
+    public void HealDurability(int _amount)
+    {
+        if (_amount > durability - currentDurability)
+        {
+            currentDurability = durability;
+        }
+        else
+        {
+            currentDurability += _amount;
+        }
+        HelmetInstanceChanged?.Invoke(this);
+    }
+
+    // Llamar cuando se hace un HB
+    public void OnHeadbutt()
+    {
+        foreach (var effect in activeEffects)
+        {
+            effect.OnHeadbutt();
+        }
+    }
+
+    // Llamar en cada salto
+    public void OnBounce()
+    {
+        foreach (var effect in activeEffects)
+        {
+            effect.OnBounce();
+        }
+    }
+
+    // Llamar cuando se presiona la tecla de special attack
+    public void OnSpecialAttack()
+    {
+        foreach (var effect in activeEffects)
+        {
+            effect.OnSpecialAttack();
+        }
     }
 
     /* Funciones para evolucionar el casco */
@@ -145,13 +173,19 @@ public class HelmetInstance
         // Activamos el efecto del casco
         if (req.activateEffect)
         {
-            activeEffect = helmetEffect;
+            foreach(var _effect in baseHelmet.effects)
+            {
+                AddEffect(_effect.CreateEffect());
+            }
         }
 
         // Activamos el efecto overcharge del cascp
         if (req.isOvercharged)
         {
-            activeOverchargeEffect = overchargeEffect;
+            foreach (var _effect in baseHelmet.overchargedEffects)
+            {
+                AddEffect(_effect.CreateEffect());
+            }
         }
     }
 
@@ -169,19 +203,6 @@ public class HelmetInstance
             }
         }
         return true;
-    }
-
-    public void HealDurability(int _amount)
-    {
-        if (_amount > durability - currentDurability)
-        {
-            currentDurability = durability;
-        }
-        else
-        {
-            currentDurability += _amount;
-        }
-        HelmetInstanceChanged?.Invoke(this);
     }
 
 }

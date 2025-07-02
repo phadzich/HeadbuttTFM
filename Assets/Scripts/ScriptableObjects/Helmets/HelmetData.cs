@@ -7,18 +7,19 @@ public class HelmetData : ScriptableObject
     [Header("Info and aesthetic")]
     public string id;
     [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
+
     [Header("Compatibility")]
     public List<ResourceFamily> resourceFamilies;
     public ElementData element;
+
     [Header("Stats")]
     public int durability;
     public float headBForce;
     public int evolution;
 
     [Header("Effects")]
-
-    public EffectTypeEnum effect;
-    public OverchargeEffectEnum overchargeEffect;
+    public List<HelmetEffectData> effects;
+    public List<HelmetEffectData> overchargedEffects;
 
     [Header("Level up")]
     public UpgradeRequirement[] upgradeRequirements;

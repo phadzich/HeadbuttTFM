@@ -58,7 +58,7 @@ public class CheckpointSavedData : ScriptableObject
                 currentDurability = _helmInstance.currentDurability,
                 durability = _helmInstance.durability,
                 headBForce = _helmInstance.headBForce,
-                helmetEffect = _helmInstance.helmetEffect,
+                activeEffects = _helmInstance.activeEffects,
                 helmetElement = _helmInstance.helmetElement
             });
         }
