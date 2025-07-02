@@ -37,7 +37,7 @@ public class SpikesDmg : MonoBehaviour
         {
             isMoving = true;
             spikeCycleCoroutine = StartCoroutine(SpikeMovementCycle());
-            Debug.Log("Spike cycle started.");
+            //Debug.Log("Spike cycle started.");
         }
     }
     public void StopSpikeCycle()

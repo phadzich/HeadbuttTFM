@@ -154,7 +154,7 @@ public class SublevelMapGenerator : MonoBehaviour
 
     GameObject ConfigResourceBlock(int _resID)
     {
-        Debug.Log(_resID);
+        //Debug.Log(_resID);
         ResourceData _resourceData = GetResourceFromID(_resID);
         GameObject _bloque = Instantiate(resourceBlockPrefab,nextPosition,Quaternion.identity,sublevelContainer);
         ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();

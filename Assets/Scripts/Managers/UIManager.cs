@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject startPanel;
     public TextMeshProUGUI totalBouncesTXT;
     public HBPointsHUD hbPointsHUD;
+    public SpecialHeadbuttHUD specialHeadbuttHUD;
     public ExitFloatinIndicatorHUD exitFloatinIndicatorHUD;
 
     private void Awake()

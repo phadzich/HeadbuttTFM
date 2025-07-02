@@ -43,7 +43,7 @@ public class HeadDmg_Fire : MonoBehaviour
         {
             isBehaviorActive = true;
             currentRotationCoroutine = StartCoroutine(RotationCycle());
-            Debug.Log("Enemy Behavior Started.");
+            //Debug.Log("Enemy Behavior Started.");
         }
     }
 
@@ -58,7 +58,7 @@ public class HeadDmg_Fire : MonoBehaviour
                 currentRotationCoroutine = null;
             }
             ActivateAttackComponents(false);
-            Debug.Log("Enemy Behavior Stopped.");
+            //Debug.Log("Enemy Behavior Stopped.");
         }
     }
 

@@ -13,8 +13,8 @@ public class PlayerHeadbutt : MonoBehaviour
 
     [SerializeField] public float maxHBpoints;
     [SerializeField] public float currentHBpoints;
-
-    [Header("HEADBUTT CONFIG")]
+    public bool hasMaxHBPoints => currentHBpoints==maxHBpoints;
+[Header("HEADBUTT CONFIG")]
     [SerializeField]
     float headbuttCooldown;
     [SerializeField]
@@ -116,7 +116,7 @@ public class PlayerHeadbutt : MonoBehaviour
         }
     }
 
-    private void HeadbuttUp()
+    public void HeadbuttUp()
     {
         //Debug.Log("HEADBUTT!");
         headbuttPower = HelmetManager.Instance.currentHelmet.headBForce;

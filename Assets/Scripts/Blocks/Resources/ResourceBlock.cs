@@ -52,7 +52,7 @@ public class ResourceBlock : Block
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
     {
-        Debug.Log(_resource);
+        //Debug.Log(_resource);
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
@@ -119,71 +119,25 @@ public class ResourceBlock : Block
             BouncedOnFloor();
         }
 
-        /*
-        if (!isSelected)
-        {
-            if (!isMined) //ESTA VIRGEN
-            {
-                Debug.Log($"BOUNCED OVER {resourceData.compatibleWithElement} with {HelmetManager.Instance.currentHelmet.baseHelmet.element.family}");
-                //SI ES DIRECTAMENTE COMPATIBLE CON EL HELMET
-                if (isCompatibleWithElement())
-                {
-                    SendBlockToMatchManager();
-                    // Play hit sound - unmined
-                    if (hitSound != null && audioSource != null)
-                    {
-                        audioSource.PlayOneShot(hitSound, 0.7f);
-                    }
-                }
-                //NO ES DIRECTAMENTE COMPATIBLE, SE COMPORTA COMO PISO
-                else
-                {
-                    DontSendBlockToMatchManager();
-                }
-            }
-            else //SI YA ESTABA MINADO
-            {
-                DontSendBlockToMatchManager();
-            }
-        }
-        */
-
     }
 
     public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
-        /*
-        if (!isSelected)
+        audioSource.PlayOneShot(headbuttSound);
+        if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-            if (!isMined) //ESTA VIRGEN
+            requiredHits -= 3;
+            BouncedOnResource();
+            if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
             {
-                Debug.Log($"HB OVER {resourceData.compatibleWithElement} with {HelmetManager.Instance.currentHelmet.baseHelmet.element.family}");
-                //SI NO ES IMMUNE
-                if (!isImmuneToElement())
-                {
-                    Debug.Log("HB sent");
-                    BouncedOnResource();
-                    // Play hit sound - unmined
-                    if (headbuttSound != null && audioSource != null)
-                    {
-                        audioSource.PlayOneShot(headbuttSound, 0.7f);
-                    }
-                }
-                //ES IMMUNE
-                else
-                {
-                    Debug.Log("HB IMMUNE");
-                    BouncedOnFloor();
-                }
-            }
-            else //SI YA ESTABA MINADO
-            {
-                Debug.Log("HB MINADO");
-                BouncedOnFloor();
+                MatchManager.Instance.TryToAddToChain();
             }
         }
-        */
-            
+        else //YA HA SIDO MINADO, ACTUA COMO PISO
+        {
+            BouncedOnFloor();
+        }
+
     }
 
     private void BouncedOnResource()
@@ -193,14 +147,17 @@ public class ResourceBlock : Block
         
         if (requiredHits == 2)
         {
+            audioSource.PlayOneShot(hitSound, 0.3f);
             VisualHit1();
         }
         else if (requiredHits == 1)
         {
+            audioSource.PlayOneShot(hitSound, 0.5f);
             VisualHit2();
         }
         else if (requiredHits <= 0)
         {
+            audioSource.PlayOneShot(hitSound, 0.7f);
             VisualHit3();
 
         }

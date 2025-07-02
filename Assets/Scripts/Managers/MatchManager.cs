@@ -62,11 +62,9 @@ public class MatchManager : MonoBehaviour
             preSelectedBlocks.Add(_resBlock);
         }
 
-
-
         if (currentChainResource == null)
         {
-            //StartNewChain();
+            StartNewChain();
             currentChainResource = bouncedResource;
         }
         CompareChainResources();
@@ -107,6 +105,7 @@ public class MatchManager : MonoBehaviour
         if (bouncedResource != currentChainResource)
         {
             FailCurrentChain();
+            Debug.Log("Starting new chain");
             StartNewChain();
         }
         else

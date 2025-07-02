@@ -19,7 +19,8 @@ public class HelmetInstance
     public int nextEvolution => currentEvolution + 1;
 
     // Efectos and overcharged
-    public List<HelmetEffect> activeEffects;
+    [SerializeField]
+    public List<HelmetEffect> activeEffects = new List<HelmetEffect>();
 
     //Current stats
     public int currentDurability;
@@ -143,9 +144,9 @@ public class HelmetInstance
     // Llamar cuando se presiona la tecla de special attack
     public void OnSpecialAttack()
     {
-        foreach (var effect in activeEffects)
+        foreach (HelmetEffect _effect in activeEffects)
         {
-            effect.OnSpecialAttack();
+                _effect.OnSpecialAttack();
         }
     }
 

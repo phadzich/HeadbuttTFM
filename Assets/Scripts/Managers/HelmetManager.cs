@@ -66,6 +66,8 @@ public class HelmetManager : MonoBehaviour
         EquipHelmet(helmetsOwned[1]);
         EquipHelmet(helmetsOwned[2]);
 
+        //EVOLVE EL FIRE A LVL 2 PARA PRUEBAS
+        helmetsOwned[1].Evolve(helmetsOwned[1].GetUpgradeRequirement(2));
 
         WearHelmet(helmetsEquipped[helmetIndex]);
         PlayerManager.Instance.MaxUpLives();
@@ -105,6 +107,34 @@ public class HelmetManager : MonoBehaviour
         currentHelmet = _helmet;
         currentMesh.SetHelmetMesh(_helmet.currentInfo.mesh);
         onWearHelmetChanged?.Invoke(_helmet);
+        foreach(HelmetEffect _effect in _helmet.activeEffects)
+        {
+            _effect.OnWear();
+        }
+    }
+
+
+
+    public void TryUseHelmetSpecial(InputAction.CallbackContext context)
+    {
+        //SI NO HAY HELMET
+        if (currentHelmet == null) return;
+
+        //CUANDO EL INPUT ESTA PERFORMED
+        if (context.phase == InputActionPhase.Performed)
+            {
+            //BUSCA TODOS LOS EFECTOS CON SPECIAL ATTACKS Y LOS ACTIVA
+            foreach (HelmetEffect _effect in currentHelmet.activeEffects)
+            {
+                if (_effect.hasSpecialAttack)
+                {
+                    //BASTA QUE UNO EFFECT TENGA SPECIAL, LLAMAMOS A TODOS
+                    currentHelmet.OnSpecialAttack();
+                    break;
+                }
+            }
+
+        }
     }
 
     //Reseta los stats de los cascos equipados
@@ -168,8 +198,12 @@ public class HelmetManager : MonoBehaviour
         } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != _ogIndex);
 
         if (helmetIndex == _ogIndex) return;
-       
 
+        //MANUAL ENABLE A SUSCRIPCIONES
+        foreach (HelmetEffect _effect in currentHelmet.activeEffects)
+        {
+            _effect.OnUnwear();
+        }
         WearHelmet(helmetsEquipped[helmetIndex]);
 
         //Update UI
@@ -186,6 +220,12 @@ public class HelmetManager : MonoBehaviour
         } while (helmetsEquipped[helmetIndex].IsWornOut & helmetIndex != _ogIndex);
 
         if (helmetIndex == _ogIndex) return;
+
+        //MANUAL DISABLE A SUSCRIPCIONES
+        foreach (HelmetEffect _effect in currentHelmet.activeEffects)
+        {
+            _effect.OnUnwear();
+        }
 
         WearHelmet(helmetsEquipped[helmetIndex]);
 
