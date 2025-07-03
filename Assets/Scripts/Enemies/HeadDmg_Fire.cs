@@ -3,7 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class HeadDmg_Fire : MonoBehaviour
+public class HeadDmg_Fire : Enemy
 {
     [Header("COMPONENTES")]
     public BoxCollider attackCollider;
@@ -35,6 +35,12 @@ public class HeadDmg_Fire : MonoBehaviour
         }
 
         StartEnemyBehavior();
+    }
+
+    public override void OnHit()
+    {
+        // Logica de recibir un golpe
+        Debug.Log("HIT ENEMY HEAD");
     }
 
     public void StartEnemyBehavior()

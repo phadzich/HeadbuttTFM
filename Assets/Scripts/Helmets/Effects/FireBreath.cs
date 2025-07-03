@@ -37,6 +37,19 @@ public class FireBreath : HelmetEffect
             PlayerManager.Instance.playerHeadbutt.TryUseHBPoints(data.hbPointsUsed);
             PlayerManager.Instance.playerHeadbutt.HeadbuttUp();
             //LOGICA DEL COLLIDER!
+
+            var boxSize = new Vector3(data.damageArea, data.damageArea, data.damageArea);
+            Collider[] hitColliders = Physics.OverlapBox(PlayerManager.Instance.gameObject.transform.position, boxSize, Quaternion.identity, data.enemyLayer);
+
+            foreach (var hit in hitColliders)
+            {
+                Enemy enemy = hit.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    Debug.Log(enemy);
+                    enemy.OnHit();
+                }
+            }
         }
         else
         {

@@ -4,25 +4,25 @@ using System.Collections; // Necesario para Corrutinas
 public class Spawner : MonoBehaviour
 {
     [Header("GAMEOBJECT A INSTANCIAR")]
-    // --- Configuración del Objeto a Spawnear ---
+    // --- Configuraciï¿½n del Objeto a Spawnear ---
     public GameObject prefabToSpawn;
     public Transform spawnPoint;
     public ParticleSystem spawnParticles;
 
     // Referencia a la instancia actualmente activa que este spawner ha creado.
-    // Solo puede haber una instancia activa a la vez bajo esta condición.
+    // Solo puede haber una instancia activa a la vez bajo esta condiciï¿½n.
     private GameObject _currentActiveInstance = null; // <-- NUEVA VARIABLE
 
-    // --- Configuración de Condición de Activación ---
+    // --- Configuraciï¿½n de Condiciï¿½n de Activaciï¿½n ---
     public enum ActivationCondition
     {
         OnStart,            // Spawnea una vez al inicio del juego.
         OnPlayerTrigger,    // Spawnea cuando el jugador entra en su collider de trigger.
-        AfterDelayOnce,     // Spawnea una vez después de un retardo.
+        AfterDelayOnce,     // Spawnea una vez despuï¿½s de un retardo.
         TimedInterval       // Spawnea repetidamente a intervalos.
     }
 
-    [Header("PARÁMETROS ESPECÍFICOS")]
+    [Header("PARï¿½METROS ESPECï¿½FICOS")]
     public ActivationCondition activationCondition = ActivationCondition.OnPlayerTrigger;
     public string playerTriggerTag = "Player";
     public bool triggerOnce = true;
@@ -37,8 +37,8 @@ public class Spawner : MonoBehaviour
     private int _currentSpawns = 0; // Contador interno para maxSpawns
     private Coroutine _spawnCoroutine; // Referencia a la corrutina para poder detenerla
 
-    [Header("CONDICIÓN EXTRA: Una sola instancia a la vez")] // <-- NUEVA SECCIÓN EN EL INSPECTOR
-    [Tooltip("Si es verdadero, el spawner solo instanciará un nuevo objeto si la instancia anterior (creada por este spawner) ha sido destruida.")]
+    [Header("CONDICIï¿½N EXTRA: Una sola instancia a la vez")] // <-- NUEVA SECCIï¿½N EN EL INSPECTOR
+    [Tooltip("Si es verdadero, el spawner solo instanciarï¿½ un nuevo objeto si la instancia anterior (creada por este spawner) ha sido destruida.")]
     public bool allowOnlyOneActiveInstance = false; // <-- NUEVA VARIABLE BOOLEANA
 
     void Awake()
@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour
             StopCoroutine(_spawnCoroutine);
         }
         // Opcional: Si el spawner es destruido y _currentActiveInstance es suyo,
-        // puedes decidir destruirla también, pero es mejor que el objeto se gestione solo.
+        // puedes decidir destruirla tambiï¿½n, pero es mejor que el objeto se gestione solo.
         // if (_currentActiveInstance != null && allowOnlyOneActiveInstance)
         // {
         //     Destroy(_currentActiveInstance); 
@@ -86,26 +86,26 @@ public class Spawner : MonoBehaviour
     {
         if (activationCondition == ActivationCondition.OnPlayerTrigger)
         {
-            // Primero, verifica si el objeto que entró es el jugador.
+            // Primero, verifica si el objeto que entrï¿½ es el jugador.
             if (!other.CompareTag(playerTriggerTag))
             {
                 return;
             }
 
-            // Si es de un solo uso y ya se activó, ignora.
+            // Si es de un solo uso y ya se activï¿½, ignora.
             if (triggerOnce && _hasTriggeredOnce)
             {
                 return;
             }
 
-            // --- NUEVA LÓGICA: Verificar si ya hay una instancia activa ---
+            // --- NUEVA Lï¿½GICA: Verificar si ya hay una instancia activa ---
             if (allowOnlyOneActiveInstance && _currentActiveInstance != null)
             {
                 Debug.Log($"UnifiedSpawner '{gameObject.name}': No se puede spawnear '{prefabToSpawn.name}'. Ya existe una instancia activa.", this);
                 return; // No spawnea si ya hay uno activo
             }
 
-            // Si el cooldown está activo, verificamos si podemos spawnear más dentro de la ventana.
+            // Si el cooldown estï¿½ activo, verificamos si podemos spawnear mï¿½s dentro de la ventana.
             if (_isTriggerCooldownActive)
             {
                 if (maxTriggerSpawnsPerWindow == 0 || _currentSpawnsInWindow < maxTriggerSpawnsPerWindow)
@@ -124,7 +124,7 @@ public class Spawner : MonoBehaviour
             if (triggerOnce)
             {
                 _hasTriggeredOnce = true;
-                // gameObject.SetActive(false); // Desactivar el spawner después de un solo uso completo
+                // gameObject.SetActive(false); // Desactivar el spawner despuï¿½s de un solo uso completo
             }
         }
     }
@@ -133,7 +133,7 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(triggerCooldownTime);
         _isTriggerCooldownActive = false; // Desactiva el cooldown
-        _currentSpawnsInWindow = 0; // Reinicia el contador para la próxima ventana
+        _currentSpawnsInWindow = 0; // Reinicia el contador para la prï¿½xima ventana
     }
 
     private IEnumerator HandleTimedActivation()
@@ -144,34 +144,34 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(initialDelay);
         }
 
-        // Bucle principal para spawns repetidos o un único spawn después del retardo.
+        // Bucle principal para spawns repetidos o un ï¿½nico spawn despuï¿½s del retardo.
         while (true)
         {
-            // Condición de salida si se alcanzó el límite de spawns.
+            // Condiciï¿½n de salida si se alcanzï¿½ el lï¿½mite de spawns.
             if (maxSpawns != 0 && _currentSpawns >= maxSpawns)
             {
-                Debug.Log($"UnifiedSpawner '{gameObject.name}': Límite máximo de {maxSpawns} spawns alcanzado. Deteniendo spawns cronometrados.", this);
+                Debug.Log($"UnifiedSpawner '{gameObject.name}': Lï¿½mite mï¿½ximo de {maxSpawns} spawns alcanzado. Deteniendo spawns cronometrados.", this);
                 yield break; // Sale de la corrutina.
             }
 
-            // --- NUEVA LÓGICA: Verificar si ya hay una instancia activa ---
+            // --- NUEVA Lï¿½GICA: Verificar si ya hay una instancia activa ---
             if (allowOnlyOneActiveInstance && _currentActiveInstance != null)
             {
                 Debug.Log($"UnifiedSpawner '{gameObject.name}': No se puede spawnear '{prefabToSpawn.name}'. Ya existe una instancia activa. Esperando...", this);
                 yield return new WaitForSeconds(repeatInterval); // Espera antes de reintentar
-                continue; // Vuelve al inicio del bucle para reevaluar la condición
+                continue; // Vuelve al inicio del bucle para reevaluar la condiciï¿½n
             }
 
             PerformSpawn(); // Realiza el spawn.
             _currentSpawns++; // Incrementa el contador.
 
-            // Si la condición es solo un spawn al inicio o después de un retardo único, sal de la corrutina.
+            // Si la condiciï¿½n es solo un spawn al inicio o despuï¿½s de un retardo ï¿½nico, sal de la corrutina.
             if (activationCondition == ActivationCondition.AfterDelayOnce || activationCondition == ActivationCondition.OnStart)
             {
                 yield break;
             }
 
-            // Para TimedInterval, espera el siguiente intervalo antes de la próxima iteración.
+            // Para TimedInterval, espera el siguiente intervalo antes de la prï¿½xima iteraciï¿½n.
             yield return new WaitForSeconds(repeatInterval);
         }
     }
@@ -193,7 +193,7 @@ public class Spawner : MonoBehaviour
         {
             _currentActiveInstance = spawnedObject;
             // Intentar que el objeto spawneado notifique al spawner cuando sea destruido.
-            // Para que esto funcione, el objeto spawneado necesitará un script que implemente ISpawnable.
+            // Para que esto funcione, el objeto spawneado necesitarï¿½ un script que implemente ISpawnable.
             ISpawnable spawnerLink = spawnedObject.GetComponent<ISpawnable>();
             if (spawnerLink != null)
             {
@@ -201,7 +201,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Objeto '{spawnedObject.name}' instanciado, pero no tiene un componente que implemente 'Spawner.ISpawnable'. 'allowOnlyOneActiveInstance' puede no funcionar correctamente si el objeto no notifica su destrucción.", spawnedObject);
+                Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Objeto '{spawnedObject.name}' instanciado, pero no tiene un componente que implemente 'Spawner.ISpawnable'. 'allowOnlyOneActiveInstance' puede no funcionar correctamente si el objeto no notifica su destrucciï¿½n.", spawnedObject);
             }
         }
 
@@ -209,35 +209,35 @@ public class Spawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Método público para que los objetos instanciados notifiquen al spawner cuando son destruidos.
+    /// Mï¿½todo pï¿½blico para que los objetos instanciados notifiquen al spawner cuando son destruidos.
     /// Esto es crucial para la funcionalidad 'allowOnlyOneActiveInstance'.
     /// </summary>
     /// <param name="destroyedInstance">La instancia de GameObject que ha sido destruida.</param>
-    public void NotifySpawnedObjectDestroyed(GameObject destroyedInstance) // <-- NUEVO MÉTODO
+    public void NotifySpawnedObjectDestroyed(GameObject destroyedInstance) // <-- NUEVO Mï¿½TODO
     {
-        // Solo limpia la referencia si el objeto destruido es el que actualmente está registrado.
+        // Solo limpia la referencia si el objeto destruido es el que actualmente estï¿½ registrado.
         if (allowOnlyOneActiveInstance && _currentActiveInstance == destroyedInstance)
         {
             _currentActiveInstance = null; // Borra la referencia.
-            Debug.Log($"UnifiedSpawner '{gameObject.name}': Instancia '{destroyedInstance.name}' desregistrada. Spawner listo para crear una nueva (si 'allowOnlyOneActiveInstance' está activo).", this);
+            Debug.Log($"UnifiedSpawner '{gameObject.name}': Instancia '{destroyedInstance.name}' desregistrada. Spawner listo para crear una nueva (si 'allowOnlyOneActiveInstance' estï¿½ activo).", this);
         }
         else if (allowOnlyOneActiveInstance && _currentActiveInstance != null && _currentActiveInstance != destroyedInstance)
         {
-            Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Se intentó desregistrar '{destroyedInstance.name}', pero la instancia activa registrada es '{_currentActiveInstance.name}'. Ignorando.", destroyedInstance);
+            Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Se intentï¿½ desregistrar '{destroyedInstance.name}', pero la instancia activa registrada es '{_currentActiveInstance.name}'. Ignorando.", destroyedInstance);
         }
         else if (allowOnlyOneActiveInstance && _currentActiveInstance == null)
         {
-            // Esto podría ocurrir si el objeto ya fue desregistrado o no era la instancia que el spawner estaba esperando.
-            Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Se intentó desregistrar '{destroyedInstance.name}', pero no había ninguna instancia activa registrada. Ignorando.", destroyedInstance);
+            // Esto podrï¿½a ocurrir si el objeto ya fue desregistrado o no era la instancia que el spawner estaba esperando.
+            Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Se intentï¿½ desregistrar '{destroyedInstance.name}', pero no habï¿½a ninguna instancia activa registrada. Ignorando.", destroyedInstance);
         }
     }
 
     /// <summary>
     /// Interfaz que los scripts de los prefabs instanciados deben implementar
-    /// si necesitan notificar al Spawner de su destrucción.
+    /// si necesitan notificar al Spawner de su destrucciï¿½n.
     /// </summary>
     public interface ISpawnable // <-- NUEVA INTERFAZ
     {
-        void SetSpawner(Spawner spawner); // Método para que el spawner se asigne al objeto instanciado.
+        void SetSpawner(Spawner spawner); // Mï¿½todo para que el spawner se asigne al objeto instanciado.
     }
 }

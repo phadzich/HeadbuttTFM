@@ -1,23 +1,23 @@
 using UnityEngine;
-using UnityEngine.AI; // ¡Importante! Necesitas este namespace para NavMeshAgent
+using UnityEngine.AI; // ï¿½Importante! Necesitas este namespace para NavMeshAgent
 using System.Collections;
 
-public class GhostEnemy : MonoBehaviour
+public class GhostEnemy : Enemy
 {
     [Header("Target & Movement")]
-    [Tooltip("Referencia al Transform del jugador (se buscará automáticamente si es nula).")]
+    [Tooltip("Referencia al Transform del jugador (se buscarï¿½ automï¿½ticamente si es nula).")]
     public Transform target;
     [Tooltip("Velocidad de movimiento del fantasma. Esto se asigna al NavMeshAgent.")]
     public float moveSpeed = 3.5f;
-    [Tooltip("Distancia mínima al objetivo para considerar que se ha llegado y recalcular (si aplica).")]
+    [Tooltip("Distancia mï¿½nima al objetivo para considerar que se ha llegado y recalcular (si aplica).")]
     public float stoppingDistance = 0.5f;
 
     [Header("NavMesh Agent Settings")]
-    [Tooltip("Frecuencia con la que el fantasma recalcula su camino (en segundos). Menor valor = más reactivo, mayor costo.")]
+    [Tooltip("Frecuencia con la que el fantasma recalcula su camino (en segundos). Menor valor = mï¿½s reactivo, mayor costo.")]
     public float pathRecalculateFrequency = 0.5f;
 
     [Header("Lifetime")]
-    [Tooltip("Tiempo en segundos antes de que el fantasma desaparezca automáticamente. Establece 0 para que el fantasma NO sea destruido.")]
+    [Tooltip("Tiempo en segundos antes de que el fantasma desaparezca automï¿½ticamente. Establece 0 para que el fantasma NO sea destruido.")]
     public float lifetime = 5.0f;
 
     // Referencia al componente NavMeshAgent
@@ -25,9 +25,9 @@ public class GhostEnemy : MonoBehaviour
     // Para controlar la frecuencia de recalculado del camino
     private float nextRecalculateTime;
 
-    // Referencia al Spawner que lo creó
-    // Esto será asignado por el Spawner al instanciar el fantasma.
-    [HideInInspector] // Oculta esta variable en el Inspector, ya que será asignada por código.
+    // Referencia al Spawner que lo creï¿½
+    // Esto serï¿½ asignado por el Spawner al instanciar el fantasma.
+    [HideInInspector] // Oculta esta variable en el Inspector, ya que serï¿½ asignada por cï¿½digo.
     public Spawner creatorSpawner;
 
     void Awake()
@@ -36,8 +36,8 @@ public class GhostEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
         {
-            Debug.LogError("GhostEnemy: ¡NavMeshAgent component missing en este GameObject! El fantasma no podrá moverse.", this);
-            // Considera destruir el fantasma aquí si el NavMeshAgent es indispensable para su funcionamiento.
+            Debug.LogError("GhostEnemy: ï¿½NavMeshAgent component missing en este GameObject! El fantasma no podrï¿½ moverse.", this);
+            // Considera destruir el fantasma aquï¿½ si el NavMeshAgent es indispensable para su funcionamiento.
             // Destroy(gameObject); 
         }
         else
@@ -49,7 +49,7 @@ public class GhostEnemy : MonoBehaviour
             agent.updateUpAxis = false;
         }
 
-        // Buscar al jugador si la referencia no está asignada en el Inspector
+        // Buscar al jugador si la referencia no estï¿½ asignada en el Inspector
         if (target == null)
         {
             GameObject playerObject = GameObject.FindWithTag("Player");
@@ -59,7 +59,7 @@ public class GhostEnemy : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("GhostEnemy: Jugador (con tag 'Player') no encontrado en la escena. El fantasma no se moverá hacia un objetivo.", this);
+                Debug.LogWarning("GhostEnemy: Jugador (con tag 'Player') no encontrado en la escena. El fantasma no se moverï¿½ hacia un objetivo.", this);
             }
         }
     }
@@ -73,7 +73,7 @@ public class GhostEnemy : MonoBehaviour
         }
         else
         {
-            Debug.Log($"GhostEnemy: {gameObject.name} persistirá indefinidamente ya que su 'lifetime' es 0.");
+            Debug.Log($"GhostEnemy: {gameObject.name} persistirï¿½ indefinidamente ya que su 'lifetime' es 0.");
         }
 
         // Realizar la primera solicitud de destino inmediatamente
@@ -84,13 +84,13 @@ public class GhostEnemy : MonoBehaviour
 
     void Update()
     {
-        // Si no hay agente, objetivo o el agente no está en un NavMesh, no hacer nada.
+        // Si no hay agente, objetivo o el agente no estï¿½ en un NavMesh, no hacer nada.
         if (agent == null || target == null || !agent.isOnNavMesh)
         {
             return;
         }
 
-        // Recalcular el destino del agente periódicamente
+        // Recalcular el destino del agente periï¿½dicamente
         if (Time.time >= nextRecalculateTime)
         {
             SetAgentDestination();
@@ -98,14 +98,20 @@ public class GhostEnemy : MonoBehaviour
         }
     }
 
-    // Método para establecer el destino del NavMeshAgent (el jugador)
+    public override void OnHit()
+    {
+        // Logica de recibir un golpe
+        Debug.Log("HIT ENEMY GHOST");
+    }
+
+    // Mï¿½todo para establecer el destino del NavMeshAgent (el jugador)
     void SetAgentDestination()
     {
         if (target != null && agent.isOnNavMesh)
         {
             agent.SetDestination(target.position);
 
-            // Opcional: Visualización del camino del agente en el editor (solo para depuración)
+            // Opcional: Visualizaciï¿½n del camino del agente en el editor (solo para depuraciï¿½n)
             if (agent.hasPath)
             {
                 Color pathColor = Color.cyan;
@@ -117,12 +123,12 @@ public class GhostEnemy : MonoBehaviour
         }
         else if (!agent.isOnNavMesh)
         {
-            // Útil para depurar si el fantasma no logra encontrar un NavMesh al inicio
-            Debug.LogWarning($"GhostEnemy: {gameObject.name} no está en un NavMesh. No se puede establecer destino.");
+            // ï¿½til para depurar si el fantasma no logra encontrar un NavMesh al inicio
+            Debug.LogWarning($"GhostEnemy: {gameObject.name} no estï¿½ en un NavMesh. No se puede establecer destino.");
         }
     }
 
-    // Corrutina para destruir el fantasma después de su tiempo de vida
+    // Corrutina para destruir el fantasma despuï¿½s de su tiempo de vida
     private IEnumerator DestroyAfterLifetime()
     {
         if (lifetime <= 0)
@@ -133,13 +139,13 @@ public class GhostEnemy : MonoBehaviour
         yield return new WaitForSeconds(lifetime);
 
         // Notificar al spawner si existe antes de destruirse
-        // ESTA ES LA LÍNEA ADICIONAL PARA EL REGISTRO DEL SPAWNER
+        // ESTA ES LA Lï¿½NEA ADICIONAL PARA EL REGISTRO DEL SPAWNER
         if (creatorSpawner != null)
         {
             creatorSpawner.NotifySpawnedObjectDestroyed(gameObject);
         }
 
         Destroy(gameObject);
-        Debug.Log($"GhostEnemy: {gameObject.name} desapareció después de {lifetime} segundos.");
+        Debug.Log($"GhostEnemy: {gameObject.name} desapareciï¿½ despuï¿½s de {lifetime} segundos.");
     }
 }

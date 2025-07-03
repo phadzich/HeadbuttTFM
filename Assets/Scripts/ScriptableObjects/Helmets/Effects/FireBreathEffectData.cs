@@ -6,6 +6,7 @@ public class FireBreathEffectData : HelmetEffectData
     public float damageArea = 1f;
     public float damage = 1f;
     public int hbPointsUsed = 2;
+    [SerializeField] public LayerMask enemyLayer;
 
     public override HelmetEffect CreateEffect()
     {
