@@ -17,6 +17,7 @@ public class ResourceData : ScriptableObject
     public Color color;
     public GameObject mesh;
     public List<ResourceFamily> resourceFamilies;
+    public MiningPower requiredMiningPower;
 
     public enum ResourceRarity
     {

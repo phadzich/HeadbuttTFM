@@ -213,7 +213,6 @@ public class LevelManager : MonoBehaviour
             PlayerManager.Instance.EnterNPCLevel();
             HelmetManager.Instance.ResetHelmetsStats();
             PlayerManager.Instance.MaxUpLives();
-            UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
 
         }

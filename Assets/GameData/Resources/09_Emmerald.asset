@@ -22,3 +22,4 @@ MonoBehaviour:
   color: {r: 0.22394533, g: 0.7783019, b: 0.26600438, a: 1}
   mesh: {fileID: 8846097338804330060, guid: 243eea40ee0de184589fade18254640a, type: 3}
   resourceFamilies: 02000000
+  requiredMiningPower: 2

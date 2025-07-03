@@ -5817,6 +5817,7 @@ MonoBehaviour:
   resourceContainer: {fileID: 0}
   minedParticles: {fileID: 1241805286537262801}
   groundMaterial: {fileID: 2100000, guid: 5bbeece0847729a468b44fb1743ac9fa, type: 2}
+  dmgMaterial: {fileID: 2100000, guid: b5eaeae225f0f644cbc43e5224f7a117, type: 2}
   bouncedMaterial: {fileID: 2100000, guid: 144303f54b3813f4fae417335d57148a, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 42cd4b3e3c05dc0439346935370fd540, type: 2}
   hit1IndicatorPF: {fileID: 1446915181190860952}

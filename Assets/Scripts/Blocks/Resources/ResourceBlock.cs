@@ -16,6 +16,7 @@ public class ResourceBlock : Block
 
     [Header("COMPATIBILIDAD")]
     public List<ResourceFamily> resourceFamilies;
+
     public int requiredHits = 3;
 
     [Header("APARIENCIA")]
@@ -25,6 +26,7 @@ public class ResourceBlock : Block
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
+    public Material dmgMaterial;
     public Material bouncedMaterial;
     public Material selectedMaterial;
 
@@ -71,38 +73,32 @@ public class ResourceBlock : Block
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
-    private int CalculateHelmetDamage(List<ResourceFamily> _helmetFamilies)
+    private int CalculateHelmetDamage(MiningPower helmetPower, MiningPower resourceRequiredPower)
     {
-        foreach (var _helmetFamily in _helmetFamilies)
+        int helmetLevel = (int)helmetPower;
+        int resourceLevel = (int)resourceRequiredPower;
+
+        if (helmetLevel >= resourceLevel)
         {
-            foreach (var _resFamily in resourceFamilies)
-            {
-                if (_helmetFamily == _resFamily) //ES DEL MISMO RESOURCE FAMILY
-                {
-                    return 3;
-                }
-                else if (IsFamilyNeighbour(_helmetFamily, _resFamily)) //DIFERENTE FAMILIA, PERO NO LEJANA
-                {
-                    return 2;
-                }
-            }
+            return 3; // Perfecto match o superior
         }
-        return 1;
+        else if (helmetLevel == resourceLevel - 1)
+        {
+            return 2; // Está solo un nivel abajo
+        }
+        else
+        {
+            return 1; // Muy inferior
+        }
     }
 
-    bool IsFamilyNeighbour(ResourceFamily _famA, ResourceFamily _famB)
-    {
-        return(_famA == ResourceFamily.EARTH && _famB==ResourceFamily.METAL)|| //earth + metal = cercanos
-            (_famA == ResourceFamily.METAL && (_famB == ResourceFamily.EARTH || _famB == ResourceFamily.GEM)) || // metal + cualquiera = cercanos
-           (_famA == ResourceFamily.GEM && _famB == ResourceFamily.METAL); // gem + metal = cercanos
-    }
 
     public override void OnBounced(HelmetInstance _helmetInstance)
     {
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
 
-            int _helmetDamage = CalculateHelmetDamage(_helmetInstance.baseHelmet.resourceFamilies);
+            int _helmetDamage = CalculateHelmetDamage(_helmetInstance.baseHelmet.miningPower, resourceData.requiredMiningPower);
             requiredHits -= _helmetDamage;
             BouncedOnResource();
             if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
@@ -221,44 +217,44 @@ public class ResourceBlock : Block
     {
         MoveResourceToken(0f);
         hit1IndicatorPF.SetActive(false);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
         hit2IndicatorPF.SetActive(false);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
         hit3IndicatorPF.SetActive(false);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
     }
 
     public void VisualHit1()
     {
         MoveResourceToken(.1f);
         hit1IndicatorPF.SetActive(true);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
-        hit2IndicatorPF.SetActive(false);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
-        hit3IndicatorPF.SetActive(false);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
+        hit2IndicatorPF.SetActive(true);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
+        hit3IndicatorPF.SetActive(true);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
     }
 
     public void VisualHit2()
     {
         MoveResourceToken(.2f);
         hit1IndicatorPF.SetActive(true);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
         hit2IndicatorPF.SetActive(true);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
-        hit3IndicatorPF.SetActive(false);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
+        hit3IndicatorPF.SetActive(true);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
     }
 
     public void VisualHit3()
     {
         MoveResourceToken(.4f);
         hit1IndicatorPF.SetActive(true);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
         hit2IndicatorPF.SetActive(true);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
         hit3IndicatorPF.SetActive(true);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
     }
 
 

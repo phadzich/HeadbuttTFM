@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     // WIP, HAY QUE CREAR EVENTOS Y SUSCRIBIRNOS A ELLOS
 
 
-    public CurrentHelmetHUD currentHelmetHUD;
+    public CurrentHelmetsHUD currentHelmetsHUD;
 
 
     public static UIManager Instance;
@@ -144,19 +144,19 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetEquipped(HelmetInstance _helmInstance)
     {
-        currentHelmetHUD.EquipHelmet(_helmInstance);
+        currentHelmetsHUD.EquipHelmet(_helmInstance);
         SuscribeToHelmetInstances();
     }
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        currentHelmetHUD.UpdateCurrentHelmetStats();
+        //currentHelmetsHUD.UpdateCurrentHelmetStats();
 
     }
 
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
-        currentHelmetHUD.WearNewHelmet(_instance);
+        currentHelmetsHUD.WearNewHelmet(_instance);
     }
 
 
