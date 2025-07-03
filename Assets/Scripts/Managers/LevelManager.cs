@@ -70,6 +70,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("LevelManager START");
+
+        ResourceManager.Instance.InitOwnedResources();
         //CARGAMOS EL PRIMER NIVEL
         LoadLevel(levelsList[0]);
     }

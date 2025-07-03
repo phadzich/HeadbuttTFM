@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class CurrentHelmetsHUD : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class CurrentHelmetsHUD : MonoBehaviour
         HelmetHUD _newHelmet = _newHelmetHUDPF.GetComponent<HelmetHUD>();
         _newHelmet.LoadHelmet(_helmInstance);
         equippedHelmetHUDs.Add(_newHelmet);
+        ToggleExtraInfo(false);
     }
     public void WearNewHelmet(HelmetInstance _helmIntance)
     {
@@ -49,7 +51,23 @@ public class CurrentHelmetsHUD : MonoBehaviour
         currentHelmetHUD.WearHelmet();
     }
 
-    private HelmetHUD FindHUDbyInstance(HelmetInstance _instance)
+    public void UpdateUpgradePanels()
+    {
+        foreach (HelmetHUD _hud in equippedHelmetHUDs)
+        {
+            _hud.UpdateResourcesNeeded();
+        }
+    }
+
+    public void ToggleExtraInfo(bool _condition)
+    {
+        foreach (HelmetHUD _hud in equippedHelmetHUDs)
+        {
+            _hud.evolvePanel.SetActive(_condition);
+        }
+    }
+
+    public HelmetHUD FindHUDbyInstance(HelmetInstance _instance)
     {
         foreach(HelmetHUD _hud in equippedHelmetHUDs)
         {

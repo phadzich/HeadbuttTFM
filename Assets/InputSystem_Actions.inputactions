@@ -69,9 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Craft",
+                    "name": "ToggleInfo",
                     "type": "Button",
-                    "id": "c51374dd-e780-44d9-9673-6f36defbdf93",
+                    "id": "a0c8c041-85c3-42d9-8221-54a1d214b5ec",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -400,23 +400,23 @@
                 },
                 {
                     "name": "",
-                    "id": "8ef80cb1-b036-4ad6-a3c0-4f1aa94065b4",
-                    "path": "<Keyboard>/c",
+                    "id": "30fac515-48a0-48ba-b6f1-b6e0d4c2c0d2",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Craft",
+                    "action": "ToggleInfo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "2206d142-bac3-4faa-8a87-7c020b7e940e",
+                    "id": "097241d3-6c51-48d4-85a7-35f0d98799ca",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Craft",
+                    "action": "ToggleInfo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -51,13 +51,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistMax: 1
+    - _DistMax: 3
     - _Dist_Max: -198.3
-    - _Dist_Min: 0.3
+    - _Dist_Min: -1
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Radius: 0.35
+    - _Radius: 0.5
     - _Smoothness: 0.3
     m_Colors:
     - _Base_Color: {r: 0.084549636, g: 0.08962262, b: 0.08962262, a: 1}

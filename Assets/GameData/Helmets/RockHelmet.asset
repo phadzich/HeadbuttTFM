@@ -20,20 +20,20 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
     color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
     rarity: 0
-  resourceFamilies: 00000000
+  miningPower: 0
   element: {fileID: 11400000, guid: b61ab19d1a267d74d80cd6d17464b7fa, type: 2}
   durability: 2
   headBForce: 6
   evolution: 1
-  effect: 3
-  overchargeEffect: 2
+  effects: []
+  overchargedEffects: []
   upgradeRequirements:
   - toEvolution: 2
     requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 1
+      quantity: 10
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 1
+      quantity: 10
     newInfo:
       name: Harvest
       description: Obten el doble de HB points!
@@ -48,9 +48,9 @@ MonoBehaviour:
   - toEvolution: 3
     requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 1
+      quantity: 15
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 1
+      quantity: 15
     newInfo:
       name: Harvest MAX
       description: ...
