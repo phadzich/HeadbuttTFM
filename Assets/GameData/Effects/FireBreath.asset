@@ -15,7 +15,7 @@ MonoBehaviour:
   effectName: Fire breath
   description: "Si tu medidor de headbutt esta lleno, puedes utilizarlo para liberar
     una ola de fuego que hace da\xF1o alrededor."
-  damageArea: 1
+  damageArea: {x: 1.5, y: 1, z: 1.5}
   damage: 1
   hbPointsUsed: 2
   enemyLayer:

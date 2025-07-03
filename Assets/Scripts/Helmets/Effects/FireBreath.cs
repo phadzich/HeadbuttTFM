@@ -38,8 +38,12 @@ public class FireBreath : HelmetEffect
             PlayerManager.Instance.playerHeadbutt.HeadbuttUp();
             //LOGICA DEL COLLIDER!
 
-            var boxSize = new Vector3(data.damageArea, data.damageArea, data.damageArea);
-            Collider[] hitColliders = Physics.OverlapBox(PlayerManager.Instance.gameObject.transform.position, boxSize, Quaternion.identity, data.enemyLayer);
+
+            // Obtener la posicion del enano
+            Transform dwarfTransform = PlayerManager.Instance.transform.GetChild(0); // Obtenemos el objeto del enano a partir de su game object padre
+            Vector3 position = dwarfTransform.position; // Obtenemos su posicion para que sea el centro
+
+            Collider[] hitColliders = Physics.OverlapBox(position, data.damageArea, Quaternion.identity, data.enemyLayer);
 
             foreach (var hit in hitColliders)
             {
@@ -47,7 +51,7 @@ public class FireBreath : HelmetEffect
                 if (enemy != null)
                 {
                     Debug.Log(enemy);
-                    enemy.OnHit();
+                    enemy.OnHit(data.damage);
                 }
             }
         }

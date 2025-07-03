@@ -98,10 +98,11 @@ public class GhostEnemy : Enemy
         }
     }
 
-    public override void OnHit()
+    public override void OnHit(int damage)
     {
         // Logica de recibir un golpe
         Debug.Log("HIT ENEMY GHOST");
+        Debug.Log("Damage: "+damage);
     }
 
     // M�todo para establecer el destino del NavMeshAgent (el jugador)

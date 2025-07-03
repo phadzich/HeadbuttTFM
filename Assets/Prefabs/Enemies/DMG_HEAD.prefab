@@ -10218,7 +10218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4346770152422158823}
   - component: {fileID: 2326535436580803081}
-  - component: {fileID: 8271733061511284825}
+  - component: {fileID: 780196280553004621}
   m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
@@ -10265,7 +10265,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.72565544, y: 0.7348101, z: 2.737574}
   m_Center: {x: 0, y: 0.2875015, z: 0}
---- !u!114 &8271733061511284825
+--- !u!114 &780196280553004621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10274,19 +10274,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6424446760174300459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98921e2927552648945d870c3beeb8d, type: 3}
+  m_Script: {fileID: 11500000, guid: db4186fad9cf54579862b7217bf88d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 2326535436580803081}
-  rotationParticles:
-  - {fileID: 1241805286537262801}
-  - {fileID: 7210266915671184653}
-  animHead: {fileID: 9154451549196466941}
-  rotationAngle: 360
-  rotationDuration: 6
-  waitDuration: 1.5
-  dmgBlock: {fileID: 749449134591276513}
-  damageCooldown: 0.2
+  headDmg: {fileID: 1934632869242115123}
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -15286,6 +15277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
+  - component: {fileID: 1934632869242115123}
   - component: {fileID: 749449134591276513}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -1587120826981845012}
@@ -15329,12 +15321,34 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.6449156, z: 1}
+  m_Center: {x: 0, y: 0.32245815, z: 0}
+--- !u!114 &1934632869242115123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98921e2927552648945d870c3beeb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCollider: {fileID: 2326535436580803081}
+  rotationParticles:
+  - {fileID: 1241805286537262801}
+  - {fileID: 7210266915671184653}
+  animHead: {fileID: 9154451549196466941}
+  rotationAngle: 360
+  rotationDuration: 6
+  waitDuration: 1.5
+  dmgBlock: {fileID: 749449134591276513}
+  damageCooldown: 0.2
 --- !u!114 &749449134591276513
 MonoBehaviour:
   m_ObjectHideFlags: 0

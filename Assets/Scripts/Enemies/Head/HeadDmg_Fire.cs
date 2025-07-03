@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HeadDmg_Fire : Enemy
 {
+
     [Header("COMPONENTES")]
     public BoxCollider attackCollider;
     public ParticleSystem[] rotationParticles;
@@ -37,10 +38,11 @@ public class HeadDmg_Fire : Enemy
         StartEnemyBehavior();
     }
 
-    public override void OnHit()
+    public override void OnHit(int damage)
     {
         // Logica de recibir un golpe
         Debug.Log("HIT ENEMY HEAD");
+        Debug.Log("Damage: " + damage);
     }
 
     public void StartEnemyBehavior()
@@ -133,8 +135,8 @@ public class HeadDmg_Fire : Enemy
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {        
+    public void DoDamage(Collider other)
+    {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Contacto!");
@@ -143,5 +145,6 @@ public class HeadDmg_Fire : Enemy
         }
         lastDamageTime = Time.time;
     }
+
 }
 
