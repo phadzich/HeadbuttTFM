@@ -9,7 +9,7 @@ public class HelmetData : ScriptableObject
     [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
 
     [Header("Compatibility")]
-    public List<ResourceFamily> resourceFamilies;
+    public MiningPower miningPower;
     public ElementData element;
 
     [Header("Stats")]

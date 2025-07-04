@@ -64,7 +64,7 @@ public class MatchManager : MonoBehaviour
 
         if (currentChainResource == null)
         {
-            StartNewChain();
+            //StartNewChain();
             currentChainResource = bouncedResource;
         }
         CompareChainResources();
@@ -108,11 +108,6 @@ public class MatchManager : MonoBehaviour
             Debug.Log("Starting new chain");
             StartNewChain();
         }
-        else
-        {
-
-            //TryToAddToChain();
-        }
     }
 
     private void EndCurrentChain()
@@ -151,12 +146,19 @@ public class MatchManager : MonoBehaviour
     }
 
     public void TryToAddToChain()
-    {
-        //Debug.Log("Trying to add to chain");
-        if (!currentChainBlocks.Contains(bouncedResourceBlock))
+    {   
+        if(currentChainBlocks.Count == 0)
         {
-            AddResBlockToChain();
+            StartNewChain();
         }
+        else
+        {
+            if (!currentChainBlocks.Contains(bouncedResourceBlock))
+            {
+                AddResBlockToChain();
+            }
+        }
+
     }
 
     private void AddResBlockToChain()
@@ -241,6 +243,8 @@ public class MatchManager : MonoBehaviour
         {
             currentStreak++;
         }
+
+        UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
 
     private void EndStreak()
@@ -248,6 +252,7 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("Streak Restarted");
 
         currentStreak =1;
+        UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
 
     private void RewardSublevelBlocks()

@@ -33,10 +33,18 @@ public class ResourceManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("LevelManager START");
+        Debug.Log("ResourceManager START");
+
         onOwnedResourcesChanged?.Invoke();
     }
 
+    public void InitOwnedResources()
+    {
+        foreach (ResourceData _resource in allAvailableResources)
+        {
+            ownedResources.Add(_resource, 0);
+        } 
+    }
     public void AddResource(ResourceData _resource, int _amount)
     {
 

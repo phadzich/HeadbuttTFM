@@ -26,7 +26,7 @@ public class FireBreath : HelmetEffect
     private void OnHBPointsChanged(float _a, float _b)
     {
         bool hasMaxHBPoints = PlayerManager.Instance.playerHeadbutt.hasMaxHBPoints;
-        UIManager.Instance.specialHeadbuttHUD.FadeIcon(hasMaxHBPoints ? 0f : 0.7f);
+        UIManager.Instance.specialHeadbuttHUD.FadeIcon(hasMaxHBPoints ? 0f : 0.9f);
     }
 
     public override void OnSpecialAttack()

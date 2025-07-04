@@ -53,11 +53,12 @@ public class GateBlock : Block
     }
     public void StartGateCount()
     {
+        /*
         if (!ResourceManager.Instance.ownedResources.ContainsKey(requiredResource))
         {
             ResourceManager.Instance.AddResource(requiredResource, 0);
 
-        }
+        }*/
         startingAmount = ResourceManager.Instance.ownedResources[requiredResource];
         isActive = true;
         requirementsPanelUI.SetupIndicator(requiredAmount, 0, requiredResource.icon);
@@ -109,6 +110,7 @@ public class GateBlock : Block
 
     public override void OnBounced(HelmetInstance _helmetInstance)
     {
+        MatchManager.Instance.FloorBounced();
         if (isOpen)
         {
             Activate();
@@ -117,7 +119,7 @@ public class GateBlock : Block
 
     public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
-
+        MatchManager.Instance.FloorBounced();
     }
 
     public override void Activate()

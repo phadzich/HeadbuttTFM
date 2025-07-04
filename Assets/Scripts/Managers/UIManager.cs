@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
     // WIP, HAY QUE CREAR EVENTOS Y SUSCRIBIRNOS A ELLOS
 
 
-    public CurrentHelmetHUD currentHelmetHUD;
+    public CurrentHelmetsHUD currentHelmetsHUD;
 
 
     public static UIManager Instance;
@@ -56,7 +57,7 @@ public class UIManager : MonoBehaviour
         //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
-        //ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+
 
         //XP EVENTS
         XPManager.Instance.LeveledUp += OnLevelUp;
@@ -69,6 +70,8 @@ public class UIManager : MonoBehaviour
         //PLAYER EVENTS
         PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
+
+        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
     }
 
 
@@ -82,7 +85,7 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
-        //ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
     }
 
@@ -111,7 +114,9 @@ public class UIManager : MonoBehaviour
 
     private void OnOwnedResourcesChanged()
     {
-        NPCUpgradeExchanger.PopulateButtons();
+        //NPCUpgradeExchanger.PopulateButtons();
+        currentHelmetsHUD.UpdateUpgradePanels();
+
     }
 
     private void OnLevelUp(int _currentLVL)
@@ -144,19 +149,19 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetEquipped(HelmetInstance _helmInstance)
     {
-        currentHelmetHUD.EquipHelmet(_helmInstance);
+        currentHelmetsHUD.EquipHelmet(_helmInstance);
         SuscribeToHelmetInstances();
     }
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        currentHelmetHUD.UpdateCurrentHelmetStats();
+        currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
 
     }
 
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
-        currentHelmetHUD.WearNewHelmet(_instance);
+        currentHelmetsHUD.WearNewHelmet(_instance);
     }
 
 
@@ -180,5 +185,22 @@ public class UIManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void ToggleExtraInfo(InputAction.CallbackContext context)
+    {
+        //CUANDO EL INPUT ESTA PERFORMED
+        if (context.phase == InputActionPhase.Started)
+        {
+            currentHelmetsHUD.ToggleExtraInfo(true);
+            return;
+        }
+
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            currentHelmetsHUD.ToggleExtraInfo(false);
+            return;
+        }
+
     }
 }

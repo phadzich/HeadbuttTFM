@@ -70,6 +70,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("LevelManager START");
+
+        ResourceManager.Instance.InitOwnedResources();
         //CARGAMOS EL PRIMER NIVEL
         LoadLevel(levelsList[0]);
     }
@@ -213,7 +215,6 @@ public class LevelManager : MonoBehaviour
             PlayerManager.Instance.EnterNPCLevel();
             HelmetManager.Instance.ResetHelmetsStats();
             PlayerManager.Instance.MaxUpLives();
-            UIManager.Instance.currentHelmetHUD.RestartEquippedCounters();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
 
         }

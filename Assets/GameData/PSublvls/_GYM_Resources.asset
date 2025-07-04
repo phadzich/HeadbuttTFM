@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: ResTest
   sublevel2DMap: {fileID: 2800000, guid: ac1749c8a10975243bc6b498ae0fca4a, type: 3}
-  goalType: 0
+  goalType: 1
   blocksToMine: 0
-  keysToCollect: 4
+  keysToCollect: 5
   timeLimitSeconds: 0
   gateRequirements:
   - gateID: 0
@@ -29,5 +29,5 @@ MonoBehaviour:
     requiredResource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
     requiredAmount: 10
   - gateID: 3
-    requiredResource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+    requiredResource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
     requiredAmount: 10

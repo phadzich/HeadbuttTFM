@@ -80,6 +80,7 @@ public class HelmetInstance
     public void UpgradeDurability(int _quantity)
     {
         durability += _quantity;
+        currentDurability = durability;
         // reiniciar sus stats cuando lo mejoren
     }
 
@@ -188,6 +189,7 @@ public class HelmetInstance
                 AddEffect(_effect.CreateEffect());
             }
         }
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public bool CanEvolve()
