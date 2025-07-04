@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ResourceData", menuName = "GameData/ResourceData")]
@@ -15,6 +16,7 @@ public class ResourceData : ScriptableObject
     public Sprite icon;
     public Color color;
     public GameObject mesh;
+    public List<ResourceFamily> resourceFamilies;
 
     public enum ResourceRarity
     {

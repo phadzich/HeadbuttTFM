@@ -8,13 +8,18 @@ public class MatchManager : MonoBehaviour
 
     [Header("COMBO ACTUAL")]
     [SerializeField]
+    private List<ResourceBlock> preSelectedBlocks;
+    [SerializeField]
     private List<ResourceBlock> currentChainBlocks;
     public ResourceData currentChainResource;
     public ResourceData bouncedResource;
     public ResourceBlock bouncedResourceBlock;
 
     public int currentStreak;
+    public int maxStreak;
     public bool lastBounceChained;
+    public float HBRewardRatio;
+    public float streakRewardRatio;
 
     [Header("SFX")]
     public AudioClip chainFailSound;
@@ -45,29 +50,32 @@ public class MatchManager : MonoBehaviour
     {
         EndStreak();
         EndCurrentChain();
-
+        ResetPreselectedBlocks();
     }
     public void ResourceBounced(ResourceBlock _resBlock)
     {
         bouncedResourceBlock = _resBlock;
         bouncedResource = bouncedResourceBlock.resourceData;
+
+        if (!preSelectedBlocks.Contains(_resBlock))
+        {
+            preSelectedBlocks.Add(_resBlock);
+        }
+
         if (currentChainResource == null)
         {
             StartNewChain();
-
+            currentChainResource = bouncedResource;
         }
-        else
-        {
-            CompareChainResources();
-        }
+        CompareChainResources();
     }
 
     public void FloorBounced()
     {
         bouncedResource = null;
         bouncedResourceBlock = null;
+        ResetPreselectedBlocks();
         EndStreak();
-        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         if (!lastBounceChained && currentChainResource != null)
         {
             FailCurrentChain();
@@ -75,14 +83,19 @@ public class MatchManager : MonoBehaviour
         audioSource.PlayOneShot(floorBlockSound, 0.7f);
     }
 
+    public void EnemyBounced()
+    {
+        FloorBounced();
+    }
+
     private void StartNewChain()
     {
         //Debug.Log("New Chain Started");
 
         currentChainBlocks.Add(bouncedResourceBlock);
+        bouncedResourceBlock.isSelected = true;
         currentChainResource = bouncedResource;
         lastBounceChained = false;
-        UIManager.Instance.currentMatchPanel.StartNewCombo(currentChainResource,currentChainBlocks.Count);
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(true);
         UIManager.Instance.remainingBlockIndicator.UpdateIndicator(bouncedResource, bouncedResource.hardness-1);
     }
@@ -92,11 +105,13 @@ public class MatchManager : MonoBehaviour
         if (bouncedResource != currentChainResource)
         {
             FailCurrentChain();
+            Debug.Log("Starting new chain");
             StartNewChain();
         }
         else
         {
-            TryToAddToChain();
+
+            //TryToAddToChain();
         }
     }
 
@@ -117,10 +132,10 @@ public class MatchManager : MonoBehaviour
         ClearAllHitBlocks();
         lastBounceChained = false;
         EndStreak();
+        ResetPreselectedBlocks();
 
         EndCurrentChain();
 
-        UIManager.Instance.currentMatchPanel.EndCurrentCombo();
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
@@ -135,7 +150,7 @@ public class MatchManager : MonoBehaviour
         }
     }
 
-    private void TryToAddToChain()
+    public void TryToAddToChain()
     {
         //Debug.Log("Trying to add to chain");
         if (!currentChainBlocks.Contains(bouncedResourceBlock))
@@ -148,12 +163,12 @@ public class MatchManager : MonoBehaviour
     {
 
         currentChainBlocks.Add(bouncedResourceBlock);
+        bouncedResourceBlock.isSelected = true;
         lastBounceChained = false;
-        bouncedResourceBlock.ShowHitIndicator(true);
+        //bouncedResourceBlock.ShowHitIndicator(true);
 
         //UI VISUALS
         UIManager.Instance.remainingBlockIndicator.UpdateIndicatorCount(bouncedResource.hardness - currentChainBlocks.Count);
-        UIManager.Instance.currentMatchPanel.IncreaseCurrentCombo(currentChainBlocks.Count);
 
         if (isChainCompleted())
         {
@@ -186,7 +201,6 @@ public class MatchManager : MonoBehaviour
         ClearAllHitBlocks();
         EndCurrentChain();
 
-        UIManager.Instance.currentMatchPanel.CompleteCurrentCombo();
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
 
     }
@@ -194,27 +208,45 @@ public class MatchManager : MonoBehaviour
     {
         foreach (ResourceBlock _block in currentChainBlocks)
         {
-            _block.ShowHitIndicator(false);
+            _block.VisualHit0();
+            _block.isSelected = false;
+            _block.requiredHits = 3;
         }
         currentChainBlocks.Clear();
+
+    }
+
+    public void ResetPreselectedBlocks()
+    {
+        foreach (ResourceBlock _block in preSelectedBlocks)
+        {
+            _block.VisualHit0();
+            _block.isSelected = false;
+            _block.requiredHits = 3;
+        }
+        preSelectedBlocks.Clear();
     }
     private void RewardPlayer()
     {
         //Debug.Log("Rewarding Player!");
         RewardSublevelBlocks();
         RewardResources();
-        RewardHelmetXP();
+        RewardHBPoints();
     }
 
     private void IncreaseStreak()
     {
         //Debug.Log("Streak Increased");
-        currentStreak++;
+        if (currentStreak < maxStreak)
+        {
+            currentStreak++;
+        }
     }
 
     private void EndStreak()
     {
         //Debug.Log("Streak Restarted");
+
         currentStreak =1;
     }
 
@@ -227,16 +259,16 @@ public class MatchManager : MonoBehaviour
 
     private void RewardResources()
     {
-        int _totalRes = currentChainBlocks.Count * currentStreak;
+        int _totalRes = currentChainBlocks.Count;
         //Debug.Log("REW Resources " + _totalRes);
         ResourceManager.Instance.AddResource(currentChainResource, _totalRes);
     }
 
-    private void RewardHelmetXP()
+    private void RewardHBPoints()
     {
-        int _totalXP = currentChainBlocks.Count * currentStreak;
-        //Debug.Log("REW Helmet XP " + _totalXP);
-        HelmetManager.Instance.currentHelmet.helmetXP.AddXP(_totalXP);
+        float _totalPoints = currentChainBlocks.Count * currentStreak*streakRewardRatio * HBRewardRatio;
+        //Debug.Log("REW Resources " + _totalRes);
+        PlayerManager.Instance.playerHeadbutt.AddHBPoints((float)_totalPoints);
     }
 
 

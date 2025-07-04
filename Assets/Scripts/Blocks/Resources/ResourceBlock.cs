@@ -1,4 +1,5 @@
 using PrimeTween;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -11,18 +12,26 @@ public class ResourceBlock : Block
     [Header("STATS")]
     public bool isDoor;
     public bool isMined;
-    public int bounceCount;
+    public bool isSelected;
+
+    [Header("COMPATIBILIDAD")]
+    public List<ResourceFamily> resourceFamilies;
+    public int requiredHits = 3;
 
     [Header("APARIENCIA")]
     public Transform blockMeshParent;
     public GameObject blockMesh;
+    public GameObject resourceContainer;
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
+    public Material bouncedMaterial;
+    public Material selectedMaterial;
 
     [Header("PREFABS")]
-    public GameObject doorTriggerPrefab;
-    public GameObject hitIndicatorPF;
+    public GameObject hit1IndicatorPF;
+    public GameObject hit2IndicatorPF;
+    public GameObject hit3IndicatorPF;
     public TextMeshProUGUI remianingBouncesText;
     public GameObject resourceDropPrefab;
 
@@ -38,7 +47,6 @@ public class ResourceBlock : Block
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        doorTriggerPrefab.SetActive(false);
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -48,52 +56,122 @@ public class ResourceBlock : Block
         sublevelId = _subId;
         sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
+        resourceFamilies = _resource.resourceFamilies;
         isWalkable= true;
         InstanceResourceBlockMesh();
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
-        ShowHitIndicator(false);
+        VisualHit0();
+        requiredHits = 3;
         uiAnims.resourceIcon.sprite = _resource.icon;
     }
 
     private void InstanceResourceBlockMesh()
     {
         blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
+        resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
-    public override void Bounce()
+    private int CalculateHelmetDamage(List<ResourceFamily> _helmetFamilies)
     {
-
-        if (!isMined) //ESTA VIRGEN
+        foreach (var _helmetFamily in _helmetFamilies)
         {
-            AnimateBounced();
-            //LO MARCAMOS
-            ShowHitIndicator(true);
-
-            //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
-            MatchManager.Instance.ResourceBounced(this);
-
-            // Play hit sound - unmined
-            if (hitSound != null && audioSource != null)
+            foreach (var _resFamily in resourceFamilies)
             {
-                audioSource.PlayOneShot(hitSound, 0.7f);
+                if (_helmetFamily == _resFamily) //ES DEL MISMO RESOURCE FAMILY
+                {
+                    return 3;
+                }
+                else if (IsFamilyNeighbour(_helmetFamily, _resFamily)) //DIFERENTE FAMILIA, PERO NO LEJANA
+                {
+                    return 2;
+                }
             }
         }
-        else //SI YA ESTABA MINADO
-        {
-            MatchManager.Instance.FloorBounced();
-        }
+        return 1;
+    }
 
+    bool IsFamilyNeighbour(ResourceFamily _famA, ResourceFamily _famB)
+    {
+        return(_famA == ResourceFamily.EARTH && _famB==ResourceFamily.METAL)|| //earth + metal = cercanos
+            (_famA == ResourceFamily.METAL && (_famB == ResourceFamily.EARTH || _famB == ResourceFamily.GEM)) || // metal + cualquiera = cercanos
+           (_famA == ResourceFamily.GEM && _famB == ResourceFamily.METAL); // gem + metal = cercanos
+    }
+
+    public override void OnBounced(HelmetInstance _helmetInstance)
+    {
+        if (!isMined) //SI NO HA SIDO MINADO AUN
+        {
+
+            int _helmetDamage = CalculateHelmetDamage(_helmetInstance.baseHelmet.resourceFamilies);
+            requiredHits -= _helmetDamage;
+            BouncedOnResource();
+            if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
+            {
+                MatchManager.Instance.TryToAddToChain();
+            }
+            else //COMUNICAMOS EL PROGRESO INCOMPLETO
+            {
+                //Debug.Log($"Needs {requiredHits} hits");
+            }
+        }
+        else //YA HA SIDO MINADO, ACTUA COMO PISO
+        {
+            BouncedOnFloor();
+        }
 
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
-        if (headbuttSound != null && audioSource != null)
+        audioSource.PlayOneShot(headbuttSound);
+        if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-            audioSource.PlayOneShot(headbuttSound, 0.7f);
+            requiredHits -= 3;
+            BouncedOnResource();
+            if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
+            {
+                MatchManager.Instance.TryToAddToChain();
+            }
+        }
+        else //YA HA SIDO MINADO, ACTUA COMO PISO
+        {
+            BouncedOnFloor();
         }
 
-        Bounce();
+    }
+
+    private void BouncedOnResource()
+    {
+        //PROCEDEMOS CON LA SECUENCIA DE MATCH
+        AnimateBounced();
+        
+        if (requiredHits == 2)
+        {
+            audioSource.PlayOneShot(hitSound, 0.3f);
+            VisualHit1();
+        }
+        else if (requiredHits == 1)
+        {
+            audioSource.PlayOneShot(hitSound, 0.5f);
+            VisualHit2();
+        }
+        else if (requiredHits <= 0)
+        {
+            audioSource.PlayOneShot(hitSound, 0.7f);
+            VisualHit3();
+
+        }
+        //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
+        MatchManager.Instance.ResourceBounced(this);
+    }
+
+    public void MoveResourceToken(float _height)
+    {
+        resourceContainer.transform.localPosition = new Vector3(resourceContainer.transform.localPosition.x, _height, resourceContainer.transform.localPosition.z);
+    }
+    private void BouncedOnFloor()
+    {
+        MatchManager.Instance.FloorBounced();
     }
 
     public override void Activate()
@@ -112,7 +190,7 @@ public class ResourceBlock : Block
         MinedAnimation();
         audioSource.PlayOneShot(minedSound);
 
-        uiAnims.AnimateResourceRewards(MatchManager.Instance.currentStreak-1);
+        uiAnims.AnimateResourceRewards(1);
     }
 
     private void MinedAnimation()
@@ -130,7 +208,8 @@ public class ResourceBlock : Block
         //Debug.Log("MINED");
         isMined = true;
         resourceData = null;
-        ShowHitIndicator(false);
+        VisualHit0();
+        blockMesh.transform.GetChild(1).gameObject.SetActive(false);
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
         //TRANSFORM, LUEGO DEBE SER ANIMADO
@@ -138,9 +217,48 @@ public class ResourceBlock : Block
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
     }
 
-    public void ShowHitIndicator(bool _visible)
+    public void VisualHit0()
     {
-        hitIndicatorPF.SetActive(_visible);
+        MoveResourceToken(0f);
+        hit1IndicatorPF.SetActive(false);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.SetActive(false);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.SetActive(false);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+    }
+
+    public void VisualHit1()
+    {
+        MoveResourceToken(.1f);
+        hit1IndicatorPF.SetActive(true);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.SetActive(false);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.SetActive(false);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+    }
+
+    public void VisualHit2()
+    {
+        MoveResourceToken(.2f);
+        hit1IndicatorPF.SetActive(true);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit2IndicatorPF.SetActive(true);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+        hit3IndicatorPF.SetActive(false);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = bouncedMaterial;
+    }
+
+    public void VisualHit3()
+    {
+        MoveResourceToken(.4f);
+        hit1IndicatorPF.SetActive(true);
+        hit1IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit2IndicatorPF.SetActive(true);
+        hit2IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
+        hit3IndicatorPF.SetActive(true);
+        hit3IndicatorPF.GetComponent<MeshRenderer>().material = selectedMaterial;
     }
 
 

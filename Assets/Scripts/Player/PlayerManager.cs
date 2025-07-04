@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerAnimations playerAnimations;
     public PlayerBounce playerBounce;
     public PlayerEmojis playerEmojis;
+    public PlayerHeadbutt playerHeadbutt;
     //public PlayerHeadbutt playerHeadbutt;
     public int maxPlayerLives;
     public int currentPlayerLives;
@@ -62,7 +63,7 @@ public class PlayerManager : MonoBehaviour
         playerEmojis.DamagedEmoji();
         if (currentPlayerLives <= 0)
         {
-            GameManager.Instance.RestartScene();
+            LevelManager.Instance.checkpointSystem.RestoreToLastCheckpoint();
 
         }
     }

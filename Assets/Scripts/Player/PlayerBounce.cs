@@ -9,6 +9,7 @@ public class PlayerBounce : MonoBehaviour
 {
     Rigidbody rb;
     PlayerStates playerStates;
+    [SerializeField] private LayerMask blockLayerMask;
     public GameObject bodyMesh;
 
     [Header ("BOUNCE")]
@@ -66,7 +67,7 @@ public class PlayerBounce : MonoBehaviour
         Debug.DrawRay(origin, direction * _groundDistance, Color.red);
 
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance))
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance, blockLayerMask))
         {
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<Block>())
@@ -80,11 +81,11 @@ public class PlayerBounce : MonoBehaviour
 
     private void BounceUp()
     {
-        jumpForce = HelmetManager.Instance.currentHelmet.bounceHeight;
+        jumpForce = 5;
         //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
             rb.linearVelocity = new Vector3(0, jumpForce, 0);
-            PlayerManager.Instance.playerMovement.blockBelow.Bounce();
+            PlayerManager.Instance.playerMovement.blockBelow.OnBounced(HelmetManager.Instance.currentHelmet);
         PlayerManager.Instance.playerAnimations.BounceSS();
     }
 

@@ -25,14 +25,15 @@ public class FloorBlock : Block
         isWalkable = true;
     }
 
-    public override void Bounce()
+    public override void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
     }
 
-    public override void Headbutt()
+    public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
-            audioSource.PlayOneShot(headbuttSound, 0.7f);
+        MatchManager.Instance.FloorBounced();
+        audioSource.PlayOneShot(headbuttSound, 0.7f);
     }
 
     public override void Activate()

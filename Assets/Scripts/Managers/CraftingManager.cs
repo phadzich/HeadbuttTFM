@@ -32,6 +32,7 @@ public class CraftingManager : MonoBehaviour
         // PRUEBA PARA PROTOTIPO QUE TODOS ESTEN DESBLOQUEADOS DESDE UN INICIO
         UnlockHelmetBlueprint(blueprints[0]);
         UnlockHelmetBlueprint(blueprints[1]);
+        UnlockHelmetBlueprint(blueprints[2]);
     }
 
     public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
@@ -39,13 +40,13 @@ public class CraftingManager : MonoBehaviour
         unlockedBlueprints.Add(_helmetBP);
     }
 
-    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementEnum _element)
+    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementData _element)
     {
         List<HelmetBlueprint> blueprintsByElement = new();
 
         foreach(var blueprint in unlockedBlueprints)
         {
-            if(blueprint.element == _element)
+            if(blueprint.resultHelmet.element == _element)
             {
                 blueprintsByElement.Add(blueprint);
             }
@@ -54,19 +55,14 @@ public class CraftingManager : MonoBehaviour
         return blueprintsByElement;
     }
 
-    public List<HelmetBlueprint> GetUnlockedBlueprintsByEvolutionReq(int _evolution)
+    public void CreateHelmet(HelmetBlueprint _blueprint)
     {
-        List<HelmetBlueprint> blueprintsByRequirement = new();
+        // Pagamos el precio de la creacion del casco
+        PayResources(_blueprint.requiredResources);
 
-        foreach (var blueprint in unlockedBlueprints)
-        {
-            if (blueprint.requiredEvolution == _evolution)
-            {
-                blueprintsByRequirement.Add(blueprint);
-            }
-        }
+        // Desbloqueamos el casco
+        HelmetManager.Instance.UnlockHelmet(_blueprint.resultHelmet);
 
-        return blueprintsByRequirement;
     }
 
     // Funcion para elegir un casco desde la UI
@@ -78,18 +74,30 @@ public class CraftingManager : MonoBehaviour
 
 
     //Llamar cuando se quiera upgradear un casco
-    public void EvolveHelmet(HelmetBlueprint _blueprint)
+    public void EvolveHelmet()
     {
         if (selectedHelmet == null) return;
 
-        foreach (var res in _blueprint.requiredResources)
-        {
-            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
-        }
+        // Obtenemos los upgrade requirements del casco para su siguiente evolucion
+        UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement(selectedHelmet.nextEvolution);
 
-        // Actualiza la informacion del casco como el efecto, elemento, xp
-        selectedHelmet.Evolve(_blueprint);
+        // Pagamos el precio de la evolucion
+        PayResources(req.requirements);
+
+        // Actualiza la informacion del casco como el efecto, elemento
+        selectedHelmet.Evolve(req);
 
         HelmetEvolved?.Invoke();
     }
+
+    // Llamar esta funcion para pagar el costo de lo que se haga
+    // La verificacion de si hay suficientes recursos se hace en otro lado
+    private void PayResources(List<ResourceRequirement> _requirements)
+    {
+        foreach (var res in _requirements)
+        {
+            ResourceManager.Instance.SpendResource(res.resource, res.quantity);
+        }
+    }
+
 }

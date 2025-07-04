@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,36 +21,45 @@ public class SublevelMapGenerator : MonoBehaviour
     int currentY;
     Vector3 nextPosition;
     int currentDepth;
-
+    public MiningSublevelConfig miningConfig;
+    public Sublevel sublevel;
     public Dictionary<Vector2Int, Block> currentBlocks = new();
     [Header("LEVEL")]
     public GameObject clearBlockPrefab;
     public GameObject floorBlockPrefab;
     public GameObject wallBlockPrefab;
+    public GameObject gateBlockPrefab;
+    [Header("ITEMS")]
+    public GameObject keyBlockPrefab;
+    public GameObject helmetPotionBlockPrefab;
+    public GameObject hbPotionBlockPrefab;
     [Header("MINING")]
     public GameObject resourceBlockPrefab;
     public GameObject doorBlockPrefab;
     [Header("DAMAGE")]
     public GameObject slimeBlockPrefab;
     public GameObject lavaBlockPrefab;
+    public GameObject lavaSpawnBlockPrefab;
     public GameObject ballBlockPrefab;
+    public GameObject spikesBlockPrefab;
+    public GameObject headBlockPrefab;
     [Header("NPC")]
     public GameObject npcDoorPrefab;
     public GameObject npcCraftPrefab;
     public GameObject npcUpgradePrefab;
     public GameObject npcElevatorPrefab;
-    private void Start()
+
+    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, Sublevel _sublevel)
     {
-        //GenerateSublevel(this.transform, testMap);
-    }
-    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap,int _depth)
-    {
+        miningConfig = _config;
+        sublevel = _sublevel;
         mapWidth = _inputMap.width;
         mapHeight = _inputMap.height;
         mapTexture = _inputMap;
         sublevelContainer = _parentTransform;
         currentDepth = _depth;
         InstanceAllBlocks(mapWidth, mapHeight);
+
 
     }
 
@@ -68,6 +78,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 nextPosition = new Vector3(x * _spacing - offsetX, sublevelContainer.transform.position.y, y * _spacing - offsetZ);
                 var _newBlock = BlockFromPixel(x, y);
                 Vector2Int pos = new(x, y);
+                //Debug.Log(_newBlock);
                 currentBlocks[pos] = _newBlock.GetComponent<Block>();
             }
         }
@@ -132,7 +143,7 @@ public class SublevelMapGenerator : MonoBehaviour
             case "RES":
                 return ConfigResourceBlock(int.Parse(_blockID));
             case "LVL":
-                return ConfigLVLBlock(_blockID);
+                return ConfigLVLBlock(_blockID, _blockVariant);
             case "DMG":
                 return ConfigDMGBlock(_blockID);
             case "NPC":
@@ -143,6 +154,7 @@ public class SublevelMapGenerator : MonoBehaviour
 
     GameObject ConfigResourceBlock(int _resID)
     {
+        //Debug.Log(_resID);
         ResourceData _resourceData = GetResourceFromID(_resID);
         GameObject _bloque = Instantiate(resourceBlockPrefab,nextPosition,Quaternion.identity,sublevelContainer);
         ResourceBlock _resourceBlock = _bloque.GetComponent<ResourceBlock>();
@@ -151,7 +163,7 @@ public class SublevelMapGenerator : MonoBehaviour
         LevelManager.Instance.sublevelsList[currentDepth].maxResourceBlocks++;
         return _bloque;
     }
-    GameObject ConfigLVLBlock(string _blockID)
+    GameObject ConfigLVLBlock(string _blockID,string _blockVariant)
     {
         GameObject _bloque = null;
         switch (_blockID)
@@ -165,7 +177,6 @@ public class SublevelMapGenerator : MonoBehaviour
                 _wallBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "FLOOR":
-                
                 _bloque = Instantiate(floorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 FloorBlock _floorBlock = _bloque.GetComponent<FloorBlock>();
                 _floorBlock.SetupBlock(currentDepth, currentX, currentY);
@@ -173,11 +184,48 @@ public class SublevelMapGenerator : MonoBehaviour
             case "DOOR":
                 _bloque = Instantiate(doorBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DoorBlock _doorBlock = _bloque.GetComponent<DoorBlock>();
-                _doorBlock.SetupBlock(currentDepth,currentX,currentY);
+                _doorBlock.SetupBlock(currentDepth,currentX,currentY,miningConfig.goalType);
+                LevelManager.Instance.currentExitDoor = _bloque;
+                break;
+            case "GATE":
+                _bloque = InstantiateGateBlock(_blockVariant);
+                break;
+            case "KEY":
+                _bloque = Instantiate(keyBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                KeyBlock _keyBlock = _bloque.GetComponent<KeyBlock>();
+                _keyBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "HBPOTION":
+                int _HBPOTIONIndex = int.Parse(_blockVariant);
+                _bloque = Instantiate(hbPotionBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                HBPotionBlock _hbPotBlock = _bloque.GetComponent<HBPotionBlock>();
+                _hbPotBlock.SetupBlock(currentDepth, currentX, currentY, _HBPOTIONIndex);
+                break;
+            case "HELMETPOTION":
+                int _HELMETPOTIONIndex = int.Parse(_blockVariant);
+                _bloque = Instantiate(helmetPotionBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                HelmetPotionBlock _helmetPotBlock = _bloque.GetComponent<HelmetPotionBlock>();
+                _helmetPotBlock.SetupBlock(currentDepth, currentX, currentY, _HELMETPOTIONIndex);
                 break;
         }
         return _bloque;
     }
+
+    private GameObject InstantiateGateBlock(string _variant)
+    {
+        //Debug.Log($"CREATING GATE {_variant}");
+        int _gateIndex = int.Parse(_variant);
+        var _bloque = Instantiate(gateBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+        GateBlock _gateBlock = _bloque.GetComponent<GateBlock>();
+        var _gateRequirement = miningConfig.gateRequirements[_gateIndex];
+        _gateBlock.SetupBlock(currentDepth, currentX, currentY, _gateIndex, _gateRequirement.requiredResource, _gateRequirement.requiredAmount);
+        //Debug.Log(_gateBlock);
+        //Debug.Log(sublevel);
+        sublevel.gateBlocks.Add(_gateBlock);
+        return _bloque;
+    }
+
+
     GameObject ConfigNPCBlock(string _blockID)
     {
         GameObject _bloque = null;
@@ -204,6 +252,7 @@ public class SublevelMapGenerator : MonoBehaviour
                 NPCBlock _npcDoorBlock = _bloque.GetComponent<NPCBlock>();
                 _npcDoorBlock.SetupBlock(currentDepth, currentX, currentY);
                 _npcDoorBlock.isWalkable= true;
+                LevelManager.Instance.currentExitDoor = _bloque;
                 break;
         }
         return _bloque;
@@ -223,10 +272,25 @@ public class SublevelMapGenerator : MonoBehaviour
                 DamageBlock _lavaBlock = _bloque.GetComponent<DamageBlock>();
                 _lavaBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
+            case "LAVASPAWN":
+                _bloque = Instantiate(lavaSpawnBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _lavaSpawnBlock = _bloque.GetComponent<DamageBlock>();
+                _lavaSpawnBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
             case "BALL":
                 _bloque = Instantiate(ballBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DamageBlock _ballBlock = _bloque.GetComponent<BallDmgBlock>();
                 _ballBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "HEAD":
+                _bloque = Instantiate(headBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _headBlock = _bloque.GetComponent<DamageBlock>();
+                _headBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "SPIKES":
+                _bloque = Instantiate(spikesBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _spikesBlock = _bloque.GetComponent<DamageBlock>();
+                _spikesBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;

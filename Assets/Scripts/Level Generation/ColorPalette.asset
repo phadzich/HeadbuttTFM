@@ -35,12 +35,24 @@ MonoBehaviour:
     blockString: RES_06_DEF
   - color: {r: 1, g: 0, b: 1, a: 1}
     blockString: RES_07_DEF
+  - color: {r: 1, g: 0.3529412, b: 1, a: 1}
+    blockString: RES_08_DEF
+  - color: {r: 1, g: 0.4745098, b: 0.85490197, a: 1}
+    blockString: RES_09_DEF
+  - color: {r: 1, g: 0.56078434, b: 0.7529412, a: 1}
+    blockString: RES_10_DEF
   - color: {r: 1, g: 0, b: 0, a: 1}
     blockString: DMG_SLIME_X
   - color: {r: 1, g: 0.5254902, b: 0, a: 1}
     blockString: DMG_LAVA_X
   - color: {r: 0.67058825, g: 0, b: 0, a: 1}
     blockString: DMG_BALL_X
+  - color: {r: 0.5568628, g: 0.17647056, b: 0.8235294, a: 1}
+    blockString: DMG_HEAD_X
+  - color: {r: 0.39215687, g: 0.19607843, b: 0.84313726, a: 1}
+    blockString: DMG_SPIKES_X
+  - color: {r: 0.8235294, g: 0.7058824, b: 0.19607843, a: 1}
+    blockString: DMG_LAVASPAWN_X
   - color: {r: 0.36862746, g: 0.53333336, b: 0.27058825, a: 1}
     blockString: NPC_DOOR_X
   - color: {r: 0.3764706, g: 0.3019608, b: 0.21568628, a: 1}
@@ -49,3 +61,29 @@ MonoBehaviour:
     blockString: NPC_UPGRADE_X
   - color: {r: 0.17254902, g: 0.35686275, b: 0.3882353, a: 1}
     blockString: NPC_ELEVATOR_X
+  - color: {r: 0.7882353, g: 0.88235295, b: 0.5019608, a: 1}
+    blockString: LVL_GATE_0
+  - color: {r: 0.62352943, g: 0.7411765, b: 0.28235295, a: 1}
+    blockString: LVL_GATE_1
+  - color: {r: 0.4509804, g: 0.5568628, b: 0.13333334, a: 1}
+    blockString: LVL_GATE_2
+  - color: {r: 0.25882354, g: 0.34117648, b: 0.015686275, a: 1}
+    blockString: LVL_GATE_3
+  - color: {r: 1, g: 0.73333335, b: 0, a: 1}
+    blockString: LVL_KEY_X
+  - color: {r: 0.7411765, g: 1, b: 0.80784315, a: 1}
+    blockString: LVL_HBPOTION_0
+  - color: {r: 0.5529412, g: 1, b: 0.67058825, a: 1}
+    blockString: LVL_HBPOTION_1
+  - color: {r: 0.30980393, g: 1, b: 0.49019608, a: 1}
+    blockString: LVL_HBPOTION_2
+  - color: {r: 0.15294118, g: 0.8235294, b: 0.32941177, a: 1}
+    blockString: LVL_HBPOTION_3
+  - color: {r: 1, g: 0.6117647, b: 0.5647059, a: 1}
+    blockString: LVL_HELMETPOTION_0
+  - color: {r: 0.9764706, g: 0.41960785, b: 0.3529412, a: 1}
+    blockString: LVL_HELMETPOTION_1
+  - color: {r: 1, g: 0.28235295, b: 0.19607843, a: 1}
+    blockString: LVL_HELMETPOTION_2
+  - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
+    blockString: LVL_HELMETPOTION_3

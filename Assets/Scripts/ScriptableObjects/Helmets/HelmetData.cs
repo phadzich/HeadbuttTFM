@@ -8,29 +8,19 @@ public class HelmetData : ScriptableObject
     public string id;
     [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
 
+    [Header("Compatibility")]
+    public List<ResourceFamily> resourceFamilies;
+    public ElementData element;
+
     [Header("Stats")]
     public int durability;
-    public int headbutts;
-    public float bounceHeight;
-    public int headBForce;
-    public float headBCooldown;
-    public int knockbackChance;
+    public float headBForce;
+    public int evolution;
 
-    [Header("XP")]
-    public int baseXP;
-    public float xpMultiplier;
+    [Header("Effects")]
+    public List<HelmetEffectData> effects;
+    public List<HelmetEffectData> overchargedEffects;
 
-    public float GetBaseValue(HelmetStatTypeEnum stat)
-    {
-        switch (stat)
-        {
-            case HelmetStatTypeEnum.Durability: return durability;
-            case HelmetStatTypeEnum.Headbutts: return headbutts;
-            case HelmetStatTypeEnum.BounceHeight: return bounceHeight;
-            case HelmetStatTypeEnum.HeadBForce: return headBForce;
-            case HelmetStatTypeEnum.HeadBCooldown: return headBCooldown;
-            case HelmetStatTypeEnum.KnockbackChance: return knockbackChance;
-            default: return 0f;
-        }
-    }
+    [Header("Level up")]
+    public UpgradeRequirement[] upgradeRequirements;
 }

@@ -4,7 +4,7 @@ public enum EffectTypeEnum
 {
     None,
     LavaResistance,
-    SlimeResistance,
-    LavaBoost,
+    VisionBoost,
+    HbHarvestBoost,
     // Puedes seguir agregando aquí
 }

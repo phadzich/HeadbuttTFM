@@ -9,27 +9,26 @@ public class HelmetInstance
     public string id;
     public HelmetInfo currentInfo = new HelmetInfo();
     public HelmetData baseHelmet;
+    public ElementData helmetElement;
+    public ElementData defaultElement;
 
     //Helmet Stats
-    public int maxHeadbutts;
     public int durability;
-    public float bounceHeight;
     public float headBForce;
-    public float headBCooldown;
-    public int knockbackChance;
-    public HelmetXP helmetXP;
-    public EffectTypeEnum helmetEffect;
-    public ElementEnum helmetElement;
+    public int currentEvolution;
+    public int nextEvolution => currentEvolution + 1;
+
+    // Efectos and overcharged
+    [SerializeField]
+    public List<HelmetEffect> activeEffects = new List<HelmetEffect>();
 
     //Current stats
     public int currentDurability;
-    public int remainingHeadbutts;
+    public float currentHBHarvest;
 
-    public bool HasHeadbutts => remainingHeadbutts > 0;
     public bool IsWornOut => currentDurability <= 0;
 
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
-    public Action OnHeadbuttUsed;
     public Action OnDamaged;
 
     public HelmetInstance(HelmetData _helmetSO)
@@ -40,30 +39,27 @@ public class HelmetInstance
 
         //Stats
         currentDurability = _helmetSO.durability;
-        remainingHeadbutts = _helmetSO.headbutts;
-        maxHeadbutts = _helmetSO.headbutts;
+        currentEvolution = _helmetSO.evolution;
         durability = _helmetSO.durability;
-        bounceHeight = _helmetSO.bounceHeight;
         headBForce = _helmetSO.headBForce;
-        headBCooldown = _helmetSO.headBCooldown;
-        knockbackChance = _helmetSO.knockbackChance;
-        helmetXP = new HelmetXP(_helmetSO.baseXP, _helmetSO.xpMultiplier,this);
-        helmetEffect = EffectTypeEnum.None;
-        helmetElement = ElementEnum.None;
+
+        helmetElement = defaultElement;
+        currentHBHarvest = 0.3f;
 
     }
 
     public void ResetStats()
     {
         currentDurability = durability;
-        remainingHeadbutts = maxHeadbutts;
         HelmetInstanceChanged?.Invoke(this);
     }
 
     public void TakeDamage(int _amount)
     {
+        //Debug.Log($"Helmet Took {_amount}");
         if (currentDurability > 0)
             currentDurability-=_amount;
+        //Debug.Log($"Current Durability {currentDurability}");
         //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
             if (IsWornOut)
@@ -79,33 +75,11 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void UseHeadbutt()
-    {
-        if (remainingHeadbutts > 0)
-            remainingHeadbutts--;
-
-        OnHeadbuttUsed?.Invoke();
-        //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
-        HelmetInstanceChanged?.Invoke(this);
-    }
-
     /* Funciones para hacer upgrade a los stats y modificar la info del casco*/
 
     public void UpgradeDurability(int _quantity)
     {
         durability += _quantity;
-        // reiniciar sus stats cuando lo mejoren
-    }
-
-    public void UpgradeHeadbutt(int _quantity)
-    {
-        maxHeadbutts += _quantity;
-        // reiniciar sus stats cuando lo mejoren
-    }
-
-    public void UpgradeBounceHeight(float _quantity)
-    {
-        bounceHeight += _quantity;
         // reiniciar sus stats cuando lo mejoren
     }
 
@@ -115,16 +89,9 @@ public class HelmetInstance
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeHeadBCooldown(float _quantity)
+    public void UpgradeCurrentEvolution(int _evolution)
     {
-        headBCooldown -= _quantity;
-        // reiniciar sus stats cuando lo mejoren
-    }
-
-    public void UpgradeKnockbackChance(int _quantity)
-    {
-        knockbackChance -= _quantity;
-        // reiniciar sus stats cuando lo mejoren
+        currentEvolution = _evolution;
     }
 
 
@@ -133,53 +100,110 @@ public class HelmetInstance
         currentInfo = _newInfo.Copy();
     }
 
-    public void UpdateHelmetEffect(EffectTypeEnum _effect)
+    public void AddEffect(HelmetEffect _effect)
     {
-        helmetEffect = _effect;
+        activeEffects.Add(_effect);
     }
 
-    public void UpdateHelmetElement(ElementEnum _element)
+    public void UpdateHelmetElement(ElementData _element)
     {
         helmetElement = _element;
     }
 
-    private float GetBaseValue(HelmetStatTypeEnum stat)
+    public void HealDurability(int _amount)
     {
-        switch (stat)
+        if (_amount > durability - currentDurability)
         {
-            case HelmetStatTypeEnum.Durability: return durability;
-            case HelmetStatTypeEnum.Headbutts: return maxHeadbutts;
-            case HelmetStatTypeEnum.BounceHeight: return bounceHeight;
-            case HelmetStatTypeEnum.HeadBForce: return headBForce;
-            case HelmetStatTypeEnum.HeadBCooldown: return headBCooldown;
-            case HelmetStatTypeEnum.KnockbackChance: return knockbackChance;
-            default: return 0f;
+            currentDurability = durability;
+        }
+        else
+        {
+            currentDurability += _amount;
+        }
+        HelmetInstanceChanged?.Invoke(this);
+    }
+
+    // Llamar cuando se hace un HB
+    public void OnHeadbutt()
+    {
+        foreach (var effect in activeEffects)
+        {
+            effect.OnHeadbutt();
         }
     }
 
-    // Obtiene la cantidad de veces que se ha hecho upgrade a un stat
-    public int GetUpgradeCount(HelmetStatTypeEnum stat, bool isDecreasing = false)
+    // Llamar en cada salto
+    public void OnBounce()
     {
-        float baseValue = baseHelmet.GetBaseValue(stat);
-        float currentValue = GetBaseValue(stat);
-        float increment = HelmetManager.Instance.GetUpgradeIncrement(stat);
-
-        int upgrades;
-
-        if (isDecreasing)
-            upgrades = Mathf.FloorToInt((baseValue - currentValue) / increment);
-        else
-            upgrades = Mathf.FloorToInt((currentValue - baseValue) / increment);
-
-        return Mathf.Clamp(upgrades, 0, 10);
+        foreach (var effect in activeEffects)
+        {
+            effect.OnBounce();
+        }
     }
 
-    public void Evolve(HelmetBlueprint _blueprint)
+    // Llamar cuando se presiona la tecla de special attack
+    public void OnSpecialAttack()
     {
-        helmetXP.Evolve(_blueprint.baseXP, _blueprint.xpMultiplier);
-        UpdateHelmetEffect(_blueprint.effect);
-        UpdateHelmetElement(_blueprint.element);
-        UpdateInfo(_blueprint.helmetInfo);
+        foreach (HelmetEffect _effect in activeEffects)
+        {
+                _effect.OnSpecialAttack();
+        }
+    }
+
+    /* Funciones para evolucionar el casco */
+
+    public UpgradeRequirement GetUpgradeRequirement(int _toEvolution)
+    {
+        if(_toEvolution == 2)
+        {
+            return baseHelmet.upgradeRequirements[0];
+        }
+
+        return baseHelmet.upgradeRequirements[1];
+    }
+
+    // Llamar cuando se quiera evolucionar el casco, la funcion actualiza los stats
+    public void Evolve(UpgradeRequirement req)
+    {
+        UpgradeCurrentEvolution(req.toEvolution);
+        UpdateInfo(req.newInfo);
+
+        UpgradeDurability(req.durabilityAdd);
+        UpgradeHeadBForce(req.HBForceAdd);
+
+        // Activamos el efecto del casco
+        if (req.activateEffect)
+        {
+            foreach(var _effect in baseHelmet.effects)
+            {
+                AddEffect(_effect.CreateEffect());
+            }
+        }
+
+        // Activamos el efecto overcharge del cascp
+        if (req.isOvercharged)
+        {
+            foreach (var _effect in baseHelmet.overchargedEffects)
+            {
+                AddEffect(_effect.CreateEffect());
+            }
+        }
+    }
+
+    public bool CanEvolve()
+    {
+        var playerResources = ResourceManager.Instance.ownedResources;
+
+        UpgradeRequirement req = GetUpgradeRequirement(nextEvolution);
+
+        foreach (var requirement in req.requirements)
+        {
+            if (!ResourceManager.Instance.CanSpendResource(requirement.resource, requirement.quantity))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

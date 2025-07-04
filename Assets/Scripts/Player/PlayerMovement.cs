@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public string bounceDirection;
 
     [Header("DISTANCE TO BLOCK BELOW")]
+    [SerializeField] private LayerMask blockLayerMask;
     public Transform enanoParent;
     [SerializeField]
     float blockLockdownRange;
@@ -52,9 +53,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = Vector3.down;
         Debug.DrawRay(origin, direction * 20f, Color.red);
 
-        int mask = ~(1 << LayerMask.NameToLayer("Particles"));
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, 20f, mask))
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, 20f, blockLayerMask))
         {
             
             blockBelow = hit.collider.GetComponent<Block>();
@@ -175,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
     public bool KnockbackChance()
     {
         bool _shouldKnock = true;
-        int _chance = HelmetManager.Instance.currentHelmet.knockbackChance;
+        int _chance = 100;
         int _random = Random.Range(0, 100);
         //Debug.Log(_chance);
         //Debug.Log(_random);

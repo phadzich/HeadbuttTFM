@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
+  m_Name: 08_Gold
+  m_EditorClassIdentifier: 
+  resourceDropPrefab: {fileID: 4047506742962519041, guid: 38d674e6ef2148d4982c1941217711d1, type: 3}
+  id: 8
+  shortName: Gold
+  hardness: 10
+  rarity: 1
+  description: 
+  icon: {fileID: 21300000, guid: 788da675b39bfdd42bd7f7888f59995a, type: 3}
+  color: {r: 0.6933962, g: 0.6318515, b: 0.24530527, a: 1}
+  mesh: {fileID: 8846097338804330060, guid: 3173b33eba44e8347b6fcf3488eb82dd, type: 3}
+  resourceFamilies: 01000000

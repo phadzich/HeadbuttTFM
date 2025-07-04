@@ -1,3 +1,6 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,23 +11,25 @@ public class PlayerHeadbutt : MonoBehaviour
     PlayerStates playerStates;
     public GameObject bodyMesh;
 
-    [Header("HEADBUTT CONFIG")]
+    [SerializeField] public float maxHBpoints;
+    [SerializeField] public float currentHBpoints;
+    public bool hasMaxHBPoints => currentHBpoints==maxHBpoints;
+[Header("HEADBUTT CONFIG")]
     [SerializeField]
     float headbuttCooldown;
     [SerializeField]
     bool headbuttOnCooldown;
     [SerializeField]
     float headbuttPower;
-    [Header("HEADBUTT CHECKS")]
 
+    [Header("HEADBUTT CHECKS")]
     [SerializeField]
     float timeSinceLastHeadbutt;
     CinemachineImpulseSource impulseSource;
-    [SerializeField]
-    float maxHeight;
 
-
-
+    public Action<float, float> onHBPointsChanged;
+    [Header("POTION VALUES")]
+    [SerializeField] public List<int> potionValues;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,10 +38,57 @@ public class PlayerHeadbutt : MonoBehaviour
 
     void Update()
     {
-
         UpdateHeadbuttCooldown();
         KeepCentered();
     }
+
+    public void UseHBPotion(int _potionID)
+    {
+        AddHBPoints(potionValues[_potionID]);
+    }
+
+    public void AddHBPoints(float _amount)
+    {
+        if(_amount>maxHBpoints - currentHBpoints)
+        {
+            ChangeHBpoints(maxHBpoints - currentHBpoints);
+        }
+        else
+        {
+            ChangeHBpoints(_amount);
+        }
+
+    }
+
+    public bool TryUseHBPoints(float _amount)
+    {
+        bool _result = false;
+
+        if (_amount > currentHBpoints)
+        {
+            _result = false;
+            Debug.Log("NOT ENOUGH HB POINTS");
+        }
+        else
+        {
+            _result = true;
+            UseHBPoints(_amount);
+        }
+
+            return _result;
+    }
+
+    public void UseHBPoints(float _amount)
+    {
+        ChangeHBpoints(-_amount);
+    }
+
+    public void ChangeHBpoints(float _amount)
+    {
+        currentHBpoints += _amount;
+        onHBPointsChanged?.Invoke(currentHBpoints,maxHBpoints);
+    }
+
 
     private void KeepCentered()
     {
@@ -44,10 +96,6 @@ public class PlayerHeadbutt : MonoBehaviour
     }
 
 
-    private void ScreenShake()
-    {
-        impulseSource.GenerateImpulse();
-    }
 
     public void Headbutt(InputAction.CallbackContext context)
     {
@@ -57,7 +105,7 @@ public class PlayerHeadbutt : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 if (!headbuttOnCooldown &&
-                    HelmetManager.Instance.currentHelmet.HasHeadbutts &&
+                    TryUseHBPoints(1) &&
                     PlayerManager.Instance.playerMovement.blockBelow != null)
                 {
                     HeadbuttUp();
@@ -66,22 +114,18 @@ public class PlayerHeadbutt : MonoBehaviour
         }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
             Debug.Log("NO HAY HBS EN NPC");
         }
-
-
     }
 
-    private void HeadbuttUp()
+    public void HeadbuttUp()
     {
         //Debug.Log("HEADBUTT!");
         headbuttPower = HelmetManager.Instance.currentHelmet.headBForce;
-        headbuttCooldown = HelmetManager.Instance.currentHelmet.headBCooldown;
         rb.transform.position = PlayerManager.Instance.playerMovement.blockBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
-        PlayerManager.Instance.playerMovement.blockBelow.Headbutt();
+        PlayerManager.Instance.playerMovement.blockBelow.OnHeadbutted(HelmetManager.Instance.currentHelmet);
         ScreenShake();
         RestartHeadbuttCooldown();
-        HelmetManager.Instance.currentHelmet.UseHeadbutt();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
     }
 
@@ -105,6 +149,10 @@ public class PlayerHeadbutt : MonoBehaviour
 
     }
 
+    private void ScreenShake()
+    {
+        impulseSource.GenerateImpulse();
+    }
 
 
 }

@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
-    public CurrentMatchPanel currentMatchPanel;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
     public GameObject NPCCraftPanel;
@@ -26,6 +25,9 @@ public class UIManager : MonoBehaviour
     public GameObject NPCElevatorPanel;
     public GameObject startPanel;
     public TextMeshProUGUI totalBouncesTXT;
+    public HBPointsHUD hbPointsHUD;
+    public SpecialHeadbuttHUD specialHeadbuttHUD;
+    public ExitFloatinIndicatorHUD exitFloatinIndicatorHUD;
 
     private void Awake()
     {
@@ -44,14 +46,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("UIManager START");
-        startPanel.SetActive(true);
-        //POR AHORA HARDCODED
-        //headbuttsPanel.UpdateUsedHeadbutts(HelmetManager.Instance.helmetsEquipped[0]);
-
-        //equippedHelmetsPanel.InstanceEquippedIndicators(HelmetManager.Instance.helmetsEquipped);
-        //equippedHelmetsPanel.UpdateWearingHelmet(HelmetManager.Instance.helmetsEquipped[0]);
-
-        //craftButton.SetActive(false);
+        //startPanel.SetActive(true);
     }
 
     private void OnEnable()
@@ -61,18 +56,19 @@ public class UIManager : MonoBehaviour
         //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
-        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        //ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
 
         //XP EVENTS
-        XPManager.Instance.XPChanged += OnXPChanged;
         XPManager.Instance.LeveledUp += OnLevelUp;
 
         //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelBlocksMined;
+        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
+        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
 
         //PLAYER EVENTS
         PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
+        PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
     }
 
 
@@ -81,12 +77,13 @@ public class UIManager : MonoBehaviour
     {
         HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
-        XPManager.Instance.XPChanged -= OnXPChanged;
         XPManager.Instance.LeveledUp -= OnLevelUp;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelBlocksMined;
+        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
+        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
-        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        //ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
     }
 
     private void SuscribeToHelmetInstances()
@@ -95,7 +92,6 @@ public class UIManager : MonoBehaviour
         foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
-            _helmInstance.helmetXP.XPChanged += OnHelmetXPChanged;
             OnHelmetInstanceDataChanged(_helmInstance);
         }
     }
@@ -105,22 +101,17 @@ public class UIManager : MonoBehaviour
         foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
         {
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
-            _helmInstance.helmetXP.XPChanged -= OnHelmetXPChanged;
         }
     }
+
+    private void OnHBPointsChanged(float _current, float _max)
+    {
+        hbPointsHUD.UpdateFill(_current, _max);
+    }
+
     private void OnOwnedResourcesChanged()
     {
         NPCUpgradeExchanger.PopulateButtons();
-    }
-    private void OnHelmetXPChanged(HelmetXP _xpComp, HelmetInstance _instance)
-    {
-        //Debug.Log("OnHelmetXPChanged");
-        currentHelmetHUD.UpdateLVLInfo(_instance);
-    }
-
-    private void OnXPChanged(int _current, int _max)
-    {
-        experiencePanel.UpdateXP(_current, _max);
     }
 
     private void OnLevelUp(int _currentLVL)
@@ -129,12 +120,24 @@ public class UIManager : MonoBehaviour
         //craftButton.SetActive(true);
     }
 
-    private void OnSublevelEntered()
+    private void OnSublevelEntered(Sublevel _sublevel)
     {
-        sublevelPanel.UpdateSublevel();
+        if (_sublevel.config is MiningSublevelConfig)
+        {
+            MiningSublevelConfig _config = _sublevel.config as MiningSublevelConfig;
+            sublevelPanel.ChangeGoalType(_config.goalType);
+            sublevelPanel.UpdateSublevel();
+        }
+        else
+        {
+            sublevelPanel.ShowCheckpoint();
+        }
+
+                
+        exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
     }
 
-    private void OnSublevelBlocksMined()
+    private void OnSublevelGoalsAdvanced()
     {
         sublevelPanel.UpdateGoals();
     }
