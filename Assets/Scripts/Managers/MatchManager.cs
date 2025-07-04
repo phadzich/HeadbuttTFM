@@ -243,6 +243,8 @@ public class MatchManager : MonoBehaviour
         {
             currentStreak++;
         }
+
+        UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
 
     private void EndStreak()
@@ -250,6 +252,7 @@ public class MatchManager : MonoBehaviour
         //Debug.Log("Streak Restarted");
 
         currentStreak =1;
+        UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
 
     private void RewardSublevelBlocks()
