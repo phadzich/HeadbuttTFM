@@ -2,8 +2,11 @@ using UnityEngine;
 using UnityEngine.AI; // �Importante! Necesitas este namespace para NavMeshAgent
 using System.Collections;
 
-public class GhostEnemy : Enemy
+public class GhostEnemy : MonoBehaviour, IDamagableEnemy
 {
+    //Variables para detectar si el enemigo debe morir
+    private bool isDying = false;
+
     [Header("Target & Movement")]
     [Tooltip("Referencia al Transform del jugador (se buscar� autom�ticamente si es nula).")]
     public Transform target;
@@ -37,8 +40,7 @@ public class GhostEnemy : Enemy
         if (agent == null)
         {
             Debug.LogError("GhostEnemy: �NavMeshAgent component missing en este GameObject! El fantasma no podr� moverse.", this);
-            // Considera destruir el fantasma aqu� si el NavMeshAgent es indispensable para su funcionamiento.
-            // Destroy(gameObject); 
+
         }
         else
         {
@@ -90,22 +92,23 @@ public class GhostEnemy : Enemy
             return;
         }
 
+        // Si el enemigo está muriendo, detener el movimiento del NavMeshAgent
+        if (isDying && agent.enabled)
+        {
+            agent.isStopped = true; // Detiene el movimiento
+            agent.enabled = false; // Deshabilita el componente NavMeshAgent si ya no lo usaremos
+            return; // No recalcular ni mover si está muriendo
+        }
+
         // Recalcular el destino del agente peri�dicamente
         if (Time.time >= nextRecalculateTime)
         {
             SetAgentDestination();
             nextRecalculateTime = Time.time + pathRecalculateFrequency;
         }
-    }
+    }    
 
-    public override void OnHit(int damage)
-    {
-        // Logica de recibir un golpe
-        Debug.Log("HIT ENEMY GHOST");
-        Debug.Log("Damage: "+damage);
-    }
-
-    // M�todo para establecer el destino del NavMeshAgent (el jugador)
+    // Metodo para establecer el destino del NavMeshAgent (el jugador)
     void SetAgentDestination()
     {
         if (target != null && agent.isOnNavMesh)
@@ -129,24 +132,47 @@ public class GhostEnemy : Enemy
         }
     }
 
-    // Corrutina para destruir el fantasma despu�s de su tiempo de vida
+    // Implementación del método Die() de la interfaz IDamagableEnemy
+    public void Die()
+    {
+        if (isDying) return; // Ya está muriendo, evita duplicados
+
+        isDying = true; // Marca que está muriendo
+
+        // Deshabilita cualquier comportamiento adicional aquí para que no siga actuando
+        // Por ejemplo, deshabilita el colisionador, el NavMeshAgent, etc.
+        if (agent != null)
+        {
+            agent.isStopped = true;
+            agent.enabled = false; // Deshabilita el componente para que no interfiera
+        }
+        // Puedes deshabilitar el Collider si tiene uno que no sea trigger para el daño
+        // GetComponent<Collider>().enabled = false; 
+
+        // Llama a la corrutina de destrucción, que también notificará al spawner
+        StartCoroutine(DestroyAfterLifetime());
+    }
+
+    // Corrutina para destruir el fantasma después de su tiempo de vida O cuando es "Die"
     private IEnumerator DestroyAfterLifetime()
     {
-        if (lifetime <= 0)
+        // Si el enemigo ya está marcado como muriendo por daño, no esperamos el lifetime.
+        // Si no está muriendo, significa que estamos esperando el tiempo de vida.
+        if (!isDying && lifetime > 0)
         {
-            yield break;
+            yield return new WaitForSeconds(lifetime);
         }
-
-        yield return new WaitForSeconds(lifetime);
+        // Si _isDying es true (llamado desde Die()), no hay espera adicional, o ya se esperó el lifetime.
+        // Si lifetime es <= 0, no esperamos el tiempo de vida.
 
         // Notificar al spawner si existe antes de destruirse
-        // ESTA ES LA L�NEA ADICIONAL PARA EL REGISTRO DEL SPAWNER
         if (creatorSpawner != null)
         {
             creatorSpawner.NotifySpawnedObjectDestroyed(gameObject);
         }
 
         Destroy(gameObject);
-        Debug.Log($"GhostEnemy: {gameObject.name} desapareci� despu�s de {lifetime} segundos.");
+        Debug.Log($"GhostEnemy: {gameObject.name} desapareció."); // Mensaje más generalizado
     }
+
 }

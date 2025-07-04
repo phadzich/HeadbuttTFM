@@ -3,12 +3,13 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class HeadDmg_Fire : Enemy
+public class HeadDmg_Fire : Enemy, IDamagableEnemy
 {
 
     [Header("COMPONENTES")]
     public BoxCollider attackCollider;
     public ParticleSystem[] rotationParticles;
+    public Transform originRotation;
     public Animator animHead;
 
     [Header("VARIABLES ROTACION")]
@@ -19,10 +20,12 @@ public class HeadDmg_Fire : Enemy
     private Coroutine currentRotationCoroutine;
     private bool isBehaviorActive = false;
 
-    [Header("VARIABLES DAï¿½O")]
+    [Header("VARIABLES DANO")]
     public DamageBlock dmgBlock;
     public float damageCooldown = 2f;
-    private float lastDamageTime = -Mathf.Infinity;
+
+    // Referencia a la interfaz del enemigo dañable
+    private IDamagableEnemy _damagableEnemy;
 
     void Start()
     {
@@ -38,11 +41,38 @@ public class HeadDmg_Fire : Enemy
         StartEnemyBehavior();
     }
 
-    public override void OnHit(int damage)
+    //Solo debug////////////////
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K)) { OnHit(1); }
+    }
+    ///////////////////////////
+
+    public override void OnHit(int damageTaken)
+    {
+        life -= damageTaken; // Usa 'damageTaken' aquí
+
+        // Si la vida llega a 0, pedimos al componente que maneja la muerte que muera
+        if (life <= 0)
+        {
+            if (_damagableEnemy != null)
+            {
+                _damagableEnemy.Die(); // Llama al método Die() a través de la interfaz
+            }
+            else
+            {
+                // Si no hay un componente que maneje la muerte, destruye directamente
+                Debug.LogWarning($"EnemyDamage: {gameObject.name} murió, pero no hay un IDamagableEnemy para manejarlo. Destruyendo directamente.", this);
+            }
+        }
         // Logica de recibir un golpe
         Debug.Log("HIT ENEMY HEAD");
-        Debug.Log("Damage: " + damage);
+        Debug.Log("Damage: " + damageTaken);
+    }
+
+    public void Die()
+    {
+        // ... toda la lógica de lo que sucede cuando el enemigo muere ...
     }
 
     public void StartEnemyBehavior()
@@ -84,7 +114,7 @@ public class HeadDmg_Fire : Enemy
             {
                 if (!isBehaviorActive) break;
                 float currentYAngle = Mathf.Lerp(initialRotation.eulerAngles.y, targetAngle, timer / rotationDuration);
-                transform.rotation = Quaternion.Euler(initialRotation.eulerAngles.x, currentYAngle, initialRotation.eulerAngles.z);
+                originRotation.rotation = Quaternion.Euler(initialRotation.eulerAngles.x, currentYAngle, initialRotation.eulerAngles.z);
 
                 timer += Time.deltaTime;
                 yield return null;
@@ -134,17 +164,4 @@ public class HeadDmg_Fire : Enemy
         animHead.SetBool("attacking", activate);
 
     }
-
-    public void DoDamage(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Contacto!");
-            float time = Time.time;
-            if (Time.time - lastDamageTime >= damageCooldown) dmgBlock.DoDamage();
-        }
-        lastDamageTime = Time.time;
-    }
-
 }
-

@@ -201,7 +201,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Objeto '{spawnedObject.name}' instanciado, pero no tiene un componente que implemente 'Spawner.ISpawnable'. 'allowOnlyOneActiveInstance' puede no funcionar correctamente si el objeto no notifica su destrucci�n.", spawnedObject);
+                Debug.LogWarning($"UnifiedSpawner '{gameObject.name}': Objeto '{spawnedObject.name}' instanciado, pero no tiene un componente que implemente 'Spawner.ISpawnable'. 'allowOnlyOneActiveInstance' puede no funcionar correctamente si el objeto no notifica su destruccion.", spawnedObject);
             }
         }
 

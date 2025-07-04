@@ -10277,7 +10277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4186fad9cf54579862b7217bf88d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headDmg: {fileID: 1934632869242115123}
+  headDmg: {fileID: 749449134591276513}
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -15277,7 +15277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
-  - component: {fileID: 1934632869242115123}
+  - component: {fileID: 3259667318623936197}
   - component: {fileID: 749449134591276513}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -1587120826981845012}
@@ -15327,7 +15327,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.6449156, z: 1}
   m_Center: {x: 0, y: 0.32245815, z: 0}
---- !u!114 &1934632869242115123
+--- !u!114 &3259667318623936197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15339,16 +15339,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98921e2927552648945d870c3beeb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 4
   attackCollider: {fileID: 2326535436580803081}
   rotationParticles:
   - {fileID: 1241805286537262801}
   - {fileID: 7210266915671184653}
+  originRotation: {fileID: 4346770152422158823}
   animHead: {fileID: 9154451549196466941}
   rotationAngle: 360
   rotationDuration: 6
   waitDuration: 1.5
   dmgBlock: {fileID: 749449134591276513}
-  damageCooldown: 0.2
+  damageCooldown: 2
 --- !u!114 &749449134591276513
 MonoBehaviour:
   m_ObjectHideFlags: 0

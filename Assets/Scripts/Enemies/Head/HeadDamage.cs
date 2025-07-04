@@ -3,10 +3,14 @@ using UnityEngine;
 public class HeadDamage : MonoBehaviour
 {
 
-    public HeadDmg_Fire headDmg;
+    public DamageBlock headDmg;
 
     private void OnTriggerEnter(Collider other)
     {
-        headDmg.DoDamage(other);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Contacto!");
+            headDmg.DoDamage();
+        }        
     }
 }
