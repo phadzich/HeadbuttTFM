@@ -15,6 +15,14 @@ public class ResourceIndicator : MonoBehaviour
         this.resourceData = _resourceData;
         this.amount = _amount;
         UpdateUI(_amount);
+        if (_amount == 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
     }
 
     public void UpdateUI(int _amount)
