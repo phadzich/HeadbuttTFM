@@ -16,8 +16,7 @@ public class ResourceBlock : Block
 
     [Header("COMPATIBILIDAD")]
     public List<ResourceFamily> resourceFamilies;
-
-    public int requiredHits = 3;
+    public int helmetPowerMultiplier;
 
     [Header("APARIENCIA")]
     public Transform blockMeshParent;
@@ -26,14 +25,10 @@ public class ResourceBlock : Block
     public ParticleSystem minedParticles;
     CinemachineImpulseSource impulseSource;
     public Material groundMaterial;
-    public Material dmgMaterial;
-    public Material bouncedMaterial;
-    public Material selectedMaterial;
 
     [Header("PREFABS")]
-    public GameObject hit1IndicatorPF;
-    public GameObject hit2IndicatorPF;
-    public GameObject hit3IndicatorPF;
+    public GameObject hitIndicatorPF;
+
     public TextMeshProUGUI remianingBouncesText;
     public GameObject resourceDropPrefab;
 
@@ -60,10 +55,10 @@ public class ResourceBlock : Block
         resourceData = _resource;
         resourceFamilies = _resource.resourceFamilies;
         isWalkable= true;
+
         InstanceResourceBlockMesh();
+        ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
-        VisualHit0();
-        requiredHits = 3;
         uiAnims.resourceIcon.sprite = _resource.icon;
     }
 
@@ -73,23 +68,10 @@ public class ResourceBlock : Block
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
-    private int CalculateHelmetDamage(MiningPower helmetPower, MiningPower resourceRequiredPower)
+    private int HelmetPowerMultiplier(MiningPower helmetPower)
     {
-        int helmetLevel = (int)helmetPower;
-        int resourceLevel = (int)resourceRequiredPower;
-
-        if (helmetLevel >= resourceLevel)
-        {
-            return 3; // Perfecto match o superior
-        }
-        else if (helmetLevel == resourceLevel - 1)
-        {
-            return 2; // Está solo un nivel abajo
-        }
-        else
-        {
-            return 1; // Muy inferior
-        }
+        int multiplier = (int)helmetPower+1;
+        return multiplier;
     }
 
 
@@ -97,24 +79,14 @@ public class ResourceBlock : Block
     {
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-
-            int _helmetDamage = CalculateHelmetDamage(_helmetInstance.baseHelmet.miningPower, resourceData.requiredMiningPower);
-            requiredHits -= _helmetDamage;
+            helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
-            if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
-            {
-                MatchManager.Instance.TryToAddToChain();
-            }
-            else //COMUNICAMOS EL PROGRESO INCOMPLETO
-            {
-                //Debug.Log($"Needs {requiredHits} hits");
-            }
+            MatchManager.Instance.TryToAddToChain();
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
         {
             BouncedOnFloor();
         }
-
     }
 
     public override void OnHeadbutted(HelmetInstance _helmetInstance)
@@ -122,41 +94,22 @@ public class ResourceBlock : Block
         audioSource.PlayOneShot(headbuttSound);
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-            requiredHits -= 3;
+            helmetPowerMultiplier = 3;
             BouncedOnResource();
-            if (requiredHits <= 0) //SOLO SI SE CUMPLEN LOS HITS, INTENTAMOS AGREGALO AL CHAIN
-            {
-                MatchManager.Instance.TryToAddToChain();
-            }
+            MatchManager.Instance.TryToAddToChain();
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
         {
             BouncedOnFloor();
         }
-
     }
 
     private void BouncedOnResource()
     {
         //PROCEDEMOS CON LA SECUENCIA DE MATCH
         AnimateBounced();
-        
-        if (requiredHits == 2)
-        {
-            audioSource.PlayOneShot(hitSound, 0.3f);
-            VisualHit1();
-        }
-        else if (requiredHits == 1)
-        {
-            audioSource.PlayOneShot(hitSound, 0.5f);
-            VisualHit2();
-        }
-        else if (requiredHits <= 0)
-        {
-            audioSource.PlayOneShot(hitSound, 0.7f);
-            VisualHit3();
+        ToggleHitIndicator(true);
 
-        }
         //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
         MatchManager.Instance.ResourceBounced(this);
     }
@@ -172,9 +125,6 @@ public class ResourceBlock : Block
 
     public override void Activate()
     {
-
-        //XPManager.Instance.AddXP(resourceData.hardness);
-
         // Spawn the correct resource prefab (linked in ResourceData)
         if (resourceData != null && resourceData.resourceDropPrefab != null)
         {
@@ -186,7 +136,7 @@ public class ResourceBlock : Block
         MinedAnimation();
         audioSource.PlayOneShot(minedSound);
 
-        uiAnims.AnimateResourceRewards(1);
+        uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
     }
 
     private void MinedAnimation()
@@ -204,7 +154,7 @@ public class ResourceBlock : Block
         //Debug.Log("MINED");
         isMined = true;
         resourceData = null;
-        VisualHit0();
+        ToggleHitIndicator(false);
         blockMesh.transform.GetChild(1).gameObject.SetActive(false);
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
@@ -213,50 +163,19 @@ public class ResourceBlock : Block
         blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
     }
 
-    public void VisualHit0()
+    public void ToggleHitIndicator(bool _active)
     {
-        MoveResourceToken(0f);
-        hit1IndicatorPF.SetActive(false);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
-        hit2IndicatorPF.SetActive(false);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
-        hit3IndicatorPF.SetActive(false);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
+        hitIndicatorPF.SetActive(_active);
+        if (_active)
+        {
+            MoveResourceToken(.4f);
+        }
+        else
+        {
+            MoveResourceToken(0);
+        }
+        
     }
-
-    public void VisualHit1()
-    {
-        MoveResourceToken(.1f);
-        hit1IndicatorPF.SetActive(true);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
-        hit2IndicatorPF.SetActive(true);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
-        hit3IndicatorPF.SetActive(true);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
-    }
-
-    public void VisualHit2()
-    {
-        MoveResourceToken(.2f);
-        hit1IndicatorPF.SetActive(true);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = groundMaterial;
-        hit2IndicatorPF.SetActive(true);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
-        hit3IndicatorPF.SetActive(true);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
-    }
-
-    public void VisualHit3()
-    {
-        MoveResourceToken(.4f);
-        hit1IndicatorPF.SetActive(true);
-        hit1IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
-        hit2IndicatorPF.SetActive(true);
-        hit2IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
-        hit3IndicatorPF.SetActive(true);
-        hit3IndicatorPF.GetComponent<MeshRenderer>().material = dmgMaterial;
-    }
-
 
     void AnimateBounced()
     {

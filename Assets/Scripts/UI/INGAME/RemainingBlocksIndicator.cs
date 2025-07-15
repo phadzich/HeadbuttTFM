@@ -4,25 +4,36 @@ using UnityEngine.UI;
 
 public class RemainingBlocksIndicator : MonoBehaviour
 {
-    public Image resourceIcon;
-    public TextMeshProUGUI remainingText;
+    public GameObject resourceIcon;
+    public Transform gridContainer;
 
     private void Start()
     {
         //ToggleIndicator(false);
     }
-    public void UpdateIndicator(ResourceData _resource, int _remaining)
+    public void UpdateIndicator(ResourceData _resource, int _current, int _max)
     {
-        resourceIcon.sprite = _resource.icon;
-        remainingText.text = _remaining.ToString();
+        foreach(Transform _child in gridContainer)
+        {
+            Destroy(_child.gameObject);
+        }
+
+        for (int i = 0; i < _max; i++)
+        {
+            GameObject _newCounter = Instantiate(resourceIcon, gridContainer);
+            _newCounter.GetComponent<Image>().sprite = _resource.icon;
+            if (i < _current)
+            {
+                _newCounter.GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                _newCounter.GetComponent<Image>().color = Color.black;
+            }
+
+        }
+
     }
-
-    public void UpdateIndicatorCount(int _remaining)
-    {
-        remainingText.text = _remaining.ToString();
-    }
-
-
     public void ToggleIndicator(bool _visible)
     {
         //Debug.Log(_visible);
