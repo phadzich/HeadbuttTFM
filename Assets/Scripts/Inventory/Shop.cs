@@ -6,12 +6,14 @@ using UnityEngine;
 public class Shop
 {
     public ShopData shopData;
+    public int shopID;
     public string shopName;
     public List<ShopItem> shopInventory;
 
-    public void SetupShop(ShopData _shopData)
+    public Shop(ShopData _shopData)
     {
         shopData = _shopData;
+        shopID = shopData.shopID;
         shopName = shopData.shopName;
         shopInventory = shopData.shopItems;
     }

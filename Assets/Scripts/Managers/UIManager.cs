@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
+    public ShopPanel shopPanel;
     public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
@@ -185,6 +186,12 @@ public class UIManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void OpenShopUI(int _id)
+    {
+        Debug.Log(_id);
+        shopPanel.OpenShop(ShopManager.Instance.ShopById(_id));
     }
 
     public void ToggleExtraInfo(InputAction.CallbackContext context)

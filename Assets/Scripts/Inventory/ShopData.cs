@@ -4,5 +4,6 @@ using UnityEngine;
 public class ShopData : ScriptableObject
 {
     public string shopName;
+    public int shopID;
     public List<ShopItem> shopItems;
 }

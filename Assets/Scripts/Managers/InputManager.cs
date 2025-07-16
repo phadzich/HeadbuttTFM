@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     public PlayerInput playerInput;
 
-    [SerializeField] public NPCBlock currentInteractableNPC;
+    [SerializeField] public IInteractable currentInteractableNPC;
 
     private void Awake()
     {

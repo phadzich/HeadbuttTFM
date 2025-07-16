@@ -87,3 +87,7 @@ MonoBehaviour:
     blockString: LVL_HELMETPOTION_2
   - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
     blockString: LVL_HELMETPOTION_3
+  - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
+    blockString: LVL_HELMETPOTION_3
+  - color: {r: 0.34117648, g: 0.4392157, b: 0, a: 1}
+    blockString: NPC_SHOP_X
