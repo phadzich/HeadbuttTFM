@@ -54,8 +54,13 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void TakeDamage(int _amount)
+    public void TakeDamage(int _amount, bool _isEnemy = false)
     {
+        if(PlayerManager.Instance.onWaterShield && _isEnemy)
+        {
+            PlayerManager.Instance.DeactivateShield();
+            return;
+        }
         //Debug.Log($"Helmet Took {_amount}");
         if (currentDurability > 0)
             currentDurability-=_amount;

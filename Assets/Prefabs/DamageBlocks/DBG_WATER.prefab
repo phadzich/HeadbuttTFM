@@ -5112,7 +5112,7 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   typeOfDamage: 1
-  damage: 2
+  damage: 0
   helmetCounter: 0
   breaksCombo: 1
   blockMeshParent: {fileID: 5009671167188453586}
@@ -5136,13 +5136,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.606
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 126
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

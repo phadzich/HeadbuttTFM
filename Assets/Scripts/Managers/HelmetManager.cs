@@ -68,6 +68,7 @@ public class HelmetManager : MonoBehaviour
 
         //EVOLVE EL FIRE A LVL 2 PARA PRUEBAS
         helmetsOwned[1].Evolve(helmetsOwned[1].GetUpgradeRequirement(2));
+        helmetsOwned[2].Evolve(helmetsOwned[2].GetUpgradeRequirement(2));
 
         WearHelmet(helmetsEquipped[helmetIndex]);
         PlayerManager.Instance.MaxUpLives();

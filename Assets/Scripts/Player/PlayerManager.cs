@@ -19,7 +19,8 @@ public class PlayerManager : MonoBehaviour
     public int currentPlayerLives;
     public DamageTakenIndicator damageTakenIndicator;
     public Action<int, int> PlayerLivesChanged;
-
+    public bool onWaterShield = false;
+    public GameObject shieldMesh;
 
     private void Awake()
     {
@@ -68,6 +69,19 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void ActivateShield()
+    {
+        onWaterShield = true;
+        shieldMesh.SetActive(true);
+        Debug.Log("SHIELD ACTIVO");
+    }
+
+    public void DeactivateShield()
+    {
+        onWaterShield = false;
+        shieldMesh.SetActive(false);
+        Debug.Log("SHIELD DESACTIVADO");
+    }
 
     public void EnterMiningLevel()
     {

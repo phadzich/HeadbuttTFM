@@ -22,10 +22,11 @@ MonoBehaviour:
     rarity: 0
   miningPower: 2
   element: {fileID: 11400000, guid: 1789083da93af804fb6a189bea2f7707, type: 2}
-  durability: 2
+  durability: 6
   headBForce: 15
   evolution: 1
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: 4850531a44d9d274a987f7809eea8d99, type: 2}
   overchargedEffects: []
   upgradeRequirements:
   - toEvolution: 2
