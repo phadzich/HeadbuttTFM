@@ -60,6 +60,7 @@ public class MatchManager : MonoBehaviour
             currentChainResource = bouncedResource;
         }
         CompareChainResources();
+        
     }
 
     public void FloorBounced()

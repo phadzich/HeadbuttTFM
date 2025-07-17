@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
-  m_Name: PNPC_01
+  m_Script: {fileID: 11500000, guid: 29f35e337dec21b40ae3ccbd73c8565f, type: 3}
+  m_Name: LargeHBPotion
   m_EditorClassIdentifier: 
-  id: PNPC1
-  NPCtype: 0
-  sublevel2DMap: {fileID: 2800000, guid: 65bbd8487a639e24eaec4c6f3cb618ef, type: 3}
-  npcShopId: 1
+  itemName: Large HB Potion
+  illustration: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
+  potionType: 2
+  value: 5

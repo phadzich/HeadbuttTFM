@@ -5,7 +5,7 @@ public class PlayerCamera : MonoBehaviour
 {
     [Header("MAIN CAMERA")]
     public GameObject playerCam;
-    public float playerCamHeight = 20f;
+    public float playerCamHeight;
     public float moveDownDuration;
     public float moveUpDuration;
 

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d14a289e334ab46af28efc640004b1, type: 3}
+  m_Name: PotionShop_01
+  m_EditorClassIdentifier: 
+  shopName: Basic Shop
+  shopID: 1
+  shopItems:
+  - item: {fileID: 11400000, guid: 17b29fd6c303e584486af4709b385150, type: 2}
+    quantity: 10
+    price:
+      resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 0
+  - item: {fileID: 11400000, guid: cb6705fdc49e5e44fbb9f59c90012197, type: 2}
+    quantity: 10
+    price:
+      resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 0
+  - item: {fileID: 11400000, guid: be72a8ad40b1e7840a8507ac1f89dab4, type: 2}
+    quantity: 10
+    price:
+      resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 0
+  - item: {fileID: 11400000, guid: 8f515ab4ea4dfb943810fd42f5be76cb, type: 2}
+    quantity: 10
+    price:
+      resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 0
+  - item: {fileID: 11400000, guid: f83378b5714404349bafff3753b07b4c, type: 2}
+    quantity: 10
+    price:
+      resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 0
+  - item: {fileID: 11400000, guid: efd18d75e42951b43b7d57e4ff624d7d, type: 2}
+    quantity: 10
+    price:
+      resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 0

@@ -79,6 +79,7 @@ public class ResourceBlock : Block
     {
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
+            audioSource.PlayOneShot(hitSound);
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
             MatchManager.Instance.TryToAddToChain();
@@ -97,6 +98,7 @@ public class ResourceBlock : Block
             helmetPowerMultiplier = 3;
             BouncedOnResource();
             MatchManager.Instance.TryToAddToChain();
+
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
         {
