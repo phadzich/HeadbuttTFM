@@ -226,11 +226,7 @@ public class HelmetManager : MonoBehaviour
         {
             _effect.OnUnwear();
         }
-
         WearHelmet(helmetsEquipped[helmetIndex]);
-
-        //Update UI
-
     }
 
     public void NextIndex()

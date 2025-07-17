@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI totalBouncesTXT;
     public HBPointsHUD hbPointsHUD;
     public SpecialHeadbuttHUD specialHeadbuttHUD;
+    public ActiveItemHUD activeItemHUD;
     public ExitFloatinIndicatorHUD exitFloatinIndicatorHUD;
 
     private void Awake()
@@ -73,6 +74,9 @@ public class UIManager : MonoBehaviour
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
 
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        InventoryManager.Instance.ItemCycled += OnEquippedItemCycled;
+        InventoryManager.Instance.ItemEquipped += OnEquippedItemCycled;
+        InventoryManager.Instance.ItemConsumed += OnEquippedItemCycled;
     }
 
 
@@ -88,6 +92,9 @@ public class UIManager : MonoBehaviour
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
+        InventoryManager.Instance.ItemCycled -= OnEquippedItemCycled;
+        InventoryManager.Instance.ItemEquipped -= OnEquippedItemCycled;
+        InventoryManager.Instance.ItemConsumed -= OnEquippedItemCycled;
     }
 
     private void SuscribeToHelmetInstances()
@@ -117,6 +124,20 @@ public class UIManager : MonoBehaviour
     {
         //NPCUpgradeExchanger.PopulateButtons();
         currentHelmetsHUD.UpdateUpgradePanels();
+
+    }
+
+    private void OnEquippedItemCycled(Item _item, int _amount)
+    {
+        
+        if (_item != null)
+        {
+            activeItemHUD.ChangeActiveItem(_item, _amount);
+        }
+        else
+        {
+            activeItemHUD.DisableUI();
+        }
 
     }
 

@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: MediumHBPotion
   m_EditorClassIdentifier: 
   itemName: Medium HB Potion
-  price:
-    key: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-    value: 10
+  illustration: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
   potionType: 2
   value: 2

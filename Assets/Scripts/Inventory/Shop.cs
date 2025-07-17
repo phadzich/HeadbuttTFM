@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,29 +16,39 @@ public class Shop
         shopData = _shopData;
         shopID = shopData.shopID;
         shopName = shopData.shopName;
-        shopInventory = shopData.shopItems;
+        shopInventory = shopInventory = shopData.shopItems.Select(item => item.Clone()).ToList();
     }
+
+
     public void Sell(ShopItem _item, int _quantity)
     {
         int _totalResources = _item.price.quantity * _quantity;
 
         if (ResourceManager.Instance.SpendResource(_item.price.resource, _totalResources)){
-            RemoveFromInventory(_item, _quantity);
+            RemoveFromInventory(shopInventory.IndexOf(_item), _quantity);
+            InventoryManager.Instance.TryEquipItems(_item.item, _quantity);
         }
         else
         {
             Debug.Log("Not enough resources");
         }
     }
-    private void RemoveFromInventory(ShopItem _item, int _quantity)
+    private void RemoveFromInventory(int _itemIndex, int _quantity)
     {
-        /*
-        if (shopInventory[_item] < 0) {
-            shopInventory.Remove(_item);
+        Debug.Log(_itemIndex);
+        if (_itemIndex < 0)
+        {
+            return;
+        }
+        ShopItem _itemToRemove = shopInventory[_itemIndex];
+        int _availableQuantity = shopInventory[_itemIndex].quantity;
+        if (_availableQuantity <= _quantity)
+        {
+            shopInventory.Remove(_itemToRemove);
         }
         else
         {
-            shopInventory[_item] = shopInventory[_item] - _quantity;
-        }*/
+            _itemToRemove.quantity-= _quantity;
+        }
     }
 }

@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: SmallHBPotion
   m_EditorClassIdentifier: 
   itemName: Small HB Potion
-  price:
-    key: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-    value: 10
+  illustration: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
   potionType: 2
   value: 1
