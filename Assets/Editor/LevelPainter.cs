@@ -76,10 +76,24 @@ public class LevelPainter : EditorWindow
         for (int i = 0; i < palette.colors.Length; i++)
         {
             GUI.backgroundColor = palette.colors[i].color;
-            if (GUILayout.Button(new GUIContent(" ", palette.colors[i].blockString), GUILayout.Width(30), GUILayout.Height(30)))
+
+            Texture2D icon = palette.colors[i].icon;
+            GUIContent content;
+
+            if (icon != null)
+            {
+                content = new GUIContent(icon, palette.colors[i].blockString); // Ícono + tooltip
+            }
+            else
+            {
+                content = new GUIContent(" ", palette.colors[i].blockString); // Sin ícono
+            }
+
+            if (GUILayout.Button(content, GUILayout.Width(30), GUILayout.Height(30)))
             {
                 selectedColorIndex = i;
             }
+
         }
         GUILayout.EndHorizontal();
         GUI.backgroundColor = Color.white;
