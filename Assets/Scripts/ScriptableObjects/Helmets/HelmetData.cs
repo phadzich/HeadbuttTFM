@@ -5,7 +5,7 @@ using UnityEngine;
 public class HelmetData : ScriptableObject
 {
     [Header("Info and aesthetic")]
-    public string id;
+    public int id;
     [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
 
     [Header("Compatibility")]

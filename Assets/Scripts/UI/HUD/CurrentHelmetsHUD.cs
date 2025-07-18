@@ -27,6 +27,33 @@ public class CurrentHelmetsHUD : MonoBehaviour
         equippedHelmetHUDs.Add(_newHelmet);
         ToggleExtraInfo(false);
     }
+
+    public void ReplaceHelmet(HelmetInstance _helmInstance, int _index)
+    {
+        var _currentGO = helmetsContainer.GetChild(_index);
+
+        Vector3 posicion = _currentGO.position;
+        Quaternion rotacion = _currentGO.rotation;
+
+        // Eliminar el hijo actual
+        Destroy(_currentGO.gameObject);
+
+        // Instanciar el nuevo objeto en el mismo lugar
+        GameObject _newHelmetHUDPF = Instantiate(helmetHUDPF, posicion, rotacion);
+
+        // Hacer que el nuevo objeto sea hijo del padre
+        _newHelmetHUDPF.transform.SetParent(helmetsContainer);
+
+        // Opcional: colocar al nuevo hijo en el mismo índice en la jerarquía visual
+        _newHelmetHUDPF.transform.SetSiblingIndex(_index);
+
+        HelmetHUD _newHelmet = _newHelmetHUDPF.GetComponent<HelmetHUD>();
+        _newHelmet.LoadHelmet(_helmInstance);  
+        equippedHelmetHUDs[_index]=_newHelmet;
+
+        ToggleExtraInfo(false);
+    }
+
     public void WearNewHelmet(HelmetInstance _helmIntance)
     {
         prevHelmetHUD = currentHelmetHUD;
