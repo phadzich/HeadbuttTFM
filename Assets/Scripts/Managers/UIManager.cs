@@ -59,6 +59,7 @@ public class UIManager : MonoBehaviour
         //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
+        HelmetManager.Instance.onHelmetReplaced += OnHelmetReplaced;
 
 
         //XP EVENTS
@@ -83,18 +84,27 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
+        //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
+        HelmetManager.Instance.onHelmetReplaced -= OnHelmetReplaced;
+
+        //XP EVENTS
         XPManager.Instance.LeveledUp -= OnLevelUp;
+
+        //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
+
+        //PLAYER EVENTS
         PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
-        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
         InventoryManager.Instance.ItemCycled -= OnEquippedItemCycled;
         InventoryManager.Instance.ItemEquipped -= OnEquippedItemCycled;
         InventoryManager.Instance.ItemConsumed -= OnEquippedItemCycled;
+
+        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
     }
 
     private void SuscribeToHelmetInstances()
@@ -184,6 +194,12 @@ public class UIManager : MonoBehaviour
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
         currentHelmetsHUD.WearNewHelmet(_instance);
+    }
+
+    private void OnHelmetReplaced(HelmetInstance _instance, int _index)
+    {
+        currentHelmetsHUD.ReplaceHelmet(_instance, _index);
+        SuscribeToHelmetInstances();
     }
 
 

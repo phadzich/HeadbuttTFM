@@ -119,7 +119,7 @@ public class EnemyDamage : Enemy
         //Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
         if (typeOfDamage == damageType.Durability)
         {
-            HelmetManager.Instance.currentHelmet.TakeDamage(damage);
+            HelmetManager.Instance.currentHelmet.TakeDamage(damage, true);
         }
         ScreenShake();
         PlayDamageSound();

@@ -61,7 +61,10 @@ public class CraftingManager : MonoBehaviour
         PayResources(_blueprint.requiredResources);
 
         // Desbloqueamos el casco
-        HelmetManager.Instance.UnlockHelmet(_blueprint.resultHelmet);
+        HelmetInstance _current = HelmetManager.Instance.UnlockHelmet(_blueprint.resultHelmet);
+
+        // Lo usamos para pruebas
+        HelmetManager.Instance.ReplaceHelmet(_current, _blueprint.resultHelmet.id);
 
     }
 

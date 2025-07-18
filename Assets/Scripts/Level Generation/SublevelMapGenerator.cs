@@ -44,6 +44,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject ballBlockPrefab;
     public GameObject spikesBlockPrefab;
     public GameObject headBlockPrefab;
+    public GameObject waterBlockPrefab;
     [Header("NPC")]
     public GameObject npcDoorPrefab;
     public GameObject npcCraftPrefab;
@@ -300,6 +301,11 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(spikesBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DamageBlock _spikesBlock = _bloque.GetComponent<DamageBlock>();
                 _spikesBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "WATER":
+                _bloque = Instantiate(waterBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                DamageBlock _waterBlock = _bloque.GetComponent<DamageBlock>();
+                _waterBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;

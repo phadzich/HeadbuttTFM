@@ -27,6 +27,21 @@ public class HelmetBluprintUI : MonoBehaviour
         SetResources(_blueprint.requiredResources);
     }
 
+    void OnEnable()
+    {
+        ResourceManager.Instance.onOwnedResourcesChanged += CheckIfCanCraftCurrent;
+    }
+
+    void OnDisable()
+    {
+        ResourceManager.Instance.onOwnedResourcesChanged -= CheckIfCanCraftCurrent;
+    }
+
+    private void CheckIfCanCraftCurrent()
+    {
+        CheckIfCanCraft(blueprint);
+    }
+
     private void CheckIfCanCraft(HelmetBlueprint _blueprint)
     {
         if (_blueprint.CanCraft(ResourceManager.Instance.ownedResources))
@@ -55,5 +70,6 @@ public class HelmetBluprintUI : MonoBehaviour
     public void OnClickCraftingBtn()
     {
         CraftingManager.Instance.CreateHelmet(blueprint);
+
     }
 }

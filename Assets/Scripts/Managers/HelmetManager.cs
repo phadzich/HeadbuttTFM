@@ -28,6 +28,7 @@ public class HelmetManager : MonoBehaviour
     [SerializeField] public List<int> potionValues;
 
     public Action<HelmetInstance> onHelmetEquipped;
+    public Action<HelmetInstance, int> onHelmetReplaced;
 
     //public Action<HelmetInstance> onHelmetInstanceDataChanged;
     public Action<HelmetInstance> onWearHelmetChanged;
@@ -68,23 +69,23 @@ public class HelmetManager : MonoBehaviour
 
         //EVOLVE EL FIRE A LVL 2 PARA PRUEBAS
         helmetsOwned[1].Evolve(helmetsOwned[1].GetUpgradeRequirement(2));
+        helmetsOwned[2].Evolve(helmetsOwned[2].GetUpgradeRequirement(2));
 
         WearHelmet(helmetsEquipped[helmetIndex]);
         PlayerManager.Instance.MaxUpLives();
     }
 
     // Función para desbloquear un casco
-    public void UnlockHelmet(HelmetData _helmet)
+    public HelmetInstance UnlockHelmet(HelmetData _helmet)
     {
         if (helmetsOwned.Count < maxOwnHelmets)
         {
             HelmetInstance _current = new HelmetInstance(_helmet);
             helmetsOwned.Add(_current);
+            return _current;
         }
-        else
-        {
-            Debug.Log("No hay mas espacio para cascos en el armario");
-        }
+        Debug.Log("No hay mas espacio para cascos en el armario");
+        return null;
     }
 
     // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
@@ -100,6 +101,12 @@ public class HelmetManager : MonoBehaviour
             Debug.Log("No hay mas espacio para cascos");
         }
 
+    }
+
+    public void ReplaceHelmet(HelmetInstance _helmet, int _equipIndex = 0)
+    {
+        helmetsEquipped[_equipIndex] = _helmet;
+        onHelmetReplaced?.Invoke(_helmet, _equipIndex);
     }
 
     // Función para USAR un casco 
