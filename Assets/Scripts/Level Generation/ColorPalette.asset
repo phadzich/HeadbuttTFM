@@ -15,7 +15,7 @@ MonoBehaviour:
   colors:
   - color: {r: 1, g: 1, b: 1, a: 1}
     blockString: LVL_CLEAR_X
-    icon: {fileID: 2800000, guid: a6947f7b90b914d4486247dd8d643ba7, type: 3}
+    icon: {fileID: 0}
   - color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     blockString: LVL_FLOOR_X
     icon: {fileID: 2800000, guid: aefae54605abd4342b55fbbbab5d3164, type: 3}

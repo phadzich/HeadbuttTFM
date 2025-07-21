@@ -112,8 +112,26 @@ public class LevelPainter : EditorWindow
         {
             for (int x = 0; x < gridSize; x++)
             {
+
                 Rect cellRect = new Rect(rect.x + x * pixelSize, rect.y + y * pixelSize, pixelSize, pixelSize);
-                EditorGUI.DrawRect(cellRect, palette.colors[gridData[x, y]].color);
+
+                int colorIndex = gridData[x, y];
+                var palletteEntry = palette.colors[colorIndex];
+                EditorGUI.DrawRect(cellRect, palletteEntry.color);
+
+                if (palletteEntry.icon != null)
+                {
+                    float padding = pixelSize * 0.1f;
+                    Rect iconRect = new Rect(
+                        cellRect.x + padding,
+                        cellRect.y + padding,
+                        pixelSize - 2 * padding,
+                        pixelSize - 2 * padding);
+
+                    GUI.DrawTexture(iconRect, palletteEntry.icon, ScaleMode.ScaleToFit, true);
+                }
+
+
 
                 if ((Event.current.type == EventType.MouseDown || Event.current.type == EventType.MouseDrag) && cellRect.Contains(Event.current.mousePosition))
                 {
