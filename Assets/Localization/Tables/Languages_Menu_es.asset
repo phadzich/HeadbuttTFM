@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15
-    m_Localized: Medium
+    m_Localized: Normal
     m_Metadata:
       m_Items: []
   - m_Id: 16
@@ -92,6 +92,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 56969657917440
     m_Localized: Ventana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282757003026432
+    m_Localized: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282832483721216
+    m_Localized: Controles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282873835364352
+    m_Localized: Teclado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283079918297088
+    m_Localized: Mando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283122263990272
+    m_Localized: "Subt\xEDtulos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283239306043392
+    m_Localized: Activado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283292171051008
+    m_Localized: Desactivado
     m_Metadata:
       m_Items: []
   references:
