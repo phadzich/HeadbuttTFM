@@ -82,6 +82,18 @@ MonoBehaviour:
     m_Localized: Grande
     m_Metadata:
       m_Items: []
+  - m_Id: 56810752516096
+    m_Localized: Modo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56907980677120
+    m_Localized: Pantalla Completa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56969657917440
+    m_Localized: Ventana
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
