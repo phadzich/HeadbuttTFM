@@ -7,6 +7,7 @@ public class HelmetData : ScriptableObject
     [Header("Info and aesthetic")]
     public string id;
     [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
+    [SerializeField] public List<ResourceRequirement> requiredResources;
 
     [Header("Compatibility")]
     public MiningPower miningPower;
@@ -14,13 +15,10 @@ public class HelmetData : ScriptableObject
 
     [Header("Stats")]
     public int durability;
-    public float headBForce;
-    public int evolution;
 
     [Header("Effects")]
     public List<HelmetEffectData> effects;
-    public List<HelmetEffectData> overchargedEffects;
 
     [Header("Level up")]
-    public UpgradeRequirement[] upgradeRequirements;
+    public UpgradeRequirement[] levelUpRequirements;
 }

@@ -119,7 +119,6 @@ public class PlayerHeadbutt : MonoBehaviour
     public void HeadbuttUp()
     {
         //Debug.Log("HEADBUTT!");
-        headbuttPower = HelmetManager.Instance.currentHelmet.headBForce;
         rb.transform.position = PlayerManager.Instance.playerMovement.blockBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 

@@ -10,13 +10,12 @@ public class HelmetManager : MonoBehaviour
     public static HelmetManager Instance;
 
     [Header("HELMETS")]
-    public List<HelmetData> allHelmets;
-    public List<HelmetInstance> helmetsOwned = new();
+    public List<HelmetData> allHelmetData;
+    public List<HelmetInstance> allHelmets;
     public List<HelmetInstance> helmetsEquipped = new();
 
     [Header("Stats")]
     public int maxEquippedHelmets = 3;
-    public int maxOwnHelmets = 10;
     public bool HasHelmetsLeft => helmetsEquipped.Count(helmet => !helmet.IsWornOut) >= 1;
 
     [Header("CURRENT HELMET")]
@@ -53,10 +52,11 @@ public class HelmetManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("HelmetManager START");
-        InitializeOwnedHelmets();
+
+        CreateAllInstances();
     }
 
-    //FUNCION DE PRUEBA PARA PROTOTIPO
+    /*FUNCION DE PRUEBA PARA PROTOTIPO
     private void InitializeOwnedHelmets()
     {
         UnlockHelmet(allHelmets[0]);
@@ -72,21 +72,42 @@ public class HelmetManager : MonoBehaviour
 
         WearHelmet(helmetsEquipped[helmetIndex]);
         PlayerManager.Instance.MaxUpLives();
+    }*/
+
+    // Crear todas las instancias de cascos
+    public void CreateAllInstances()
+    {
+        foreach( var _data in allHelmetData)
+        {
+            CreateHelmetInstance(_data);
+        }
     }
 
-    // Función para desbloquear un casco
-    public void UnlockHelmet(HelmetData _helmet)
+    // Función para crear un helmet instance
+    public void CreateHelmetInstance(HelmetData _helmet)
     {
-        if (helmetsOwned.Count < maxOwnHelmets)
-        {
-            HelmetInstance _current = new HelmetInstance(_helmet);
-            helmetsOwned.Add(_current);
-        }
-        else
-        {
-            Debug.Log("No hay mas espacio para cascos en el armario");
-        }
+        HelmetInstance _current = new HelmetInstance(_helmet);
+        allHelmets.Add(_current);
     }
+
+    public void Discover(HelmetData _data)
+    {
+        GetInstanceFromData(_data).Discover();
+    }
+
+    public HelmetInstance GetInstanceFromData(HelmetData _data)
+    {
+        foreach(var _instance in allHelmets)
+        {
+            if(_instance.baseHelmet == _data)
+            {
+                return _instance;
+            }
+        }
+
+        return null;
+    }
+
 
     // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
     public void EquipHelmet(HelmetInstance _helmet)
@@ -150,13 +171,6 @@ public class HelmetManager : MonoBehaviour
     public void UseHelmetPotion(int _potionID)
     {
         currentHelmet.HealDurability(potionValues[_potionID]);
-    }
-
-
-    // Obtiene los cascos que estan listos y pueden subir de nivel
-    public List<HelmetInstance> GetHelmetsReadyToEvolve()
-    {
-        return helmetsOwned;
     }
 
     /* Funciones para cambiar entre cascos */

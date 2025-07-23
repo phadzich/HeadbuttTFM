@@ -18,7 +18,6 @@ public class HelmetInfoCard : MonoBehaviour
 
     [Header("Stat bars")]
     public StatBar durabilityStat;
-    public StatBar hbForceStat;
 
     // Se crea el prefab con la información del helmet
     public void SetUp(HelmetInstance _helmetI)
@@ -30,8 +29,6 @@ public class HelmetInfoCard : MonoBehaviour
 
         durabilityStat.UpdateBar(_helmetI.currentDurability);
         durabilityStat.SetMaxVal(7);
-        hbForceStat.UpdateBar(_helmetI.headBForce);
-        hbForceStat.SetMaxVal(20);
 
         if (!CanHideUpgradeItems()) // Si aun se puede upgradear seguimos mostrando el boton y el costo
         {
@@ -42,7 +39,7 @@ public class HelmetInfoCard : MonoBehaviour
 
     private bool CanHideUpgradeItems()
     {
-        if (helmet.currentEvolution == 3)
+        if (helmet.currentLevel == 3)
         {
             evolveBtn.gameObject.SetActive(false);
             resourceContainer.gameObject.SetActive(false);
@@ -72,7 +69,7 @@ public class HelmetInfoCard : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (var _res in helmet.GetUpgradeRequirement(helmet.nextEvolution).requirements)
+        foreach (var _res in helmet.GetUpgradeRequirement(helmet.nextLevel).requirements)
         {
             Instantiate(resourcePrefab, resourceContainer.transform).GetComponent<ResourceIndicator>().SetupIndicator(_res.resource,_res.quantity);
         }

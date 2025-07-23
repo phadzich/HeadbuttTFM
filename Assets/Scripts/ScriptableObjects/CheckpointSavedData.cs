@@ -23,7 +23,6 @@ public class CheckpointSavedData : ScriptableObject
         UpdatePlayerSpawnPosition();
         UpdateSavedSublevel();
         UpdateSavedResources();
-        UpdateSavedHelmets();
 
         UpdateSaveTimestamp();
     }
@@ -42,26 +41,6 @@ public class CheckpointSavedData : ScriptableObject
     {
         lastSaved = System.DateTime.Now;
         Debug.Log("SavedCheckpint at " + lastSaved);
-    }
-
-    private void UpdateSavedHelmets()
-    {
-        helmetInstances = new List<HelmetInstance>();
-
-        foreach (var _helmInstance in HelmetManager.Instance.helmetsEquipped)
-        {
-            helmetInstances.Add(new HelmetInstance(_helmInstance.baseHelmet)
-            {
-                id = _helmInstance.id,
-                currentInfo = _helmInstance.currentInfo,
-                baseHelmet = _helmInstance.baseHelmet,
-                currentDurability = _helmInstance.currentDurability,
-                durability = _helmInstance.durability,
-                headBForce = _helmInstance.headBForce,
-                activeEffects = _helmInstance.activeEffects,
-                helmetElement = _helmInstance.helmetElement
-            });
-        }
     }
 
     private void UpdateSavedResources()

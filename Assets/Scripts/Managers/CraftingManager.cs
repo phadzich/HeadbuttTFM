@@ -7,7 +7,7 @@ public class CraftingManager : MonoBehaviour
     public static CraftingManager Instance;
 
     public List<HelmetBlueprint> blueprints;
-    public HashSet<HelmetBlueprint> unlockedBlueprints = new HashSet<HelmetBlueprint>();
+    public List<HelmetBlueprint> unlockedBlueprints = new List<HelmetBlueprint>();
 
     public HelmetInstance selectedHelmet;
 
@@ -29,39 +29,33 @@ public class CraftingManager : MonoBehaviour
 
     private void Start()
     {
-        // PRUEBA PARA PROTOTIPO QUE TODOS ESTEN DESBLOQUEADOS DESDE UN INICIO
+        /* PRUEBA PARA PROTOTIPO QUE TODOS ESTEN DESBLOQUEADOS DESDE UN INICIO
         UnlockHelmetBlueprint(blueprints[0]);
         UnlockHelmetBlueprint(blueprints[1]);
-        UnlockHelmetBlueprint(blueprints[2]);
+        UnlockHelmetBlueprint(blueprints[2]);*/
     }
 
-    public void UnlockHelmetBlueprint(HelmetBlueprint _helmetBP)
-    {
-        unlockedBlueprints.Add(_helmetBP);
-    }
-
-    public List<HelmetBlueprint> GetUnlockedBlueprintsByElement(ElementData _element)
-    {
-        List<HelmetBlueprint> blueprintsByElement = new();
-
-        foreach(var blueprint in unlockedBlueprints)
-        {
-            if(blueprint.resultHelmet.element == _element)
-            {
-                blueprintsByElement.Add(blueprint);
-            }
-        }
-
-        return blueprintsByElement;
-    }
-
-    public void CreateHelmet(HelmetBlueprint _blueprint)
+    public void Craft(HelmetInstance _helmet)
     {
         // Pagamos el precio de la creacion del casco
-        PayResources(_blueprint.requiredResources);
+        if (CanCraft(_helmet.baseHelmet))
+        {
+            PayResources(_helmet.baseHelmet.requiredResources);
+            // Desbloqueamos el casco
+            _helmet.Craft();
+        }
+    }
 
-        // Desbloqueamos el casco
-        HelmetManager.Instance.UnlockHelmet(_blueprint.resultHelmet);
+    public bool CanCraft(HelmetData _data)
+    {
+        foreach (var requirement in _data.requiredResources)
+        {
+            if (!ResourceManager.Instance.ownedResources.ContainsKey(requirement.resource) || ResourceManager.Instance.ownedResources[requirement.resource] < requirement.quantity)
+            {
+                return false;
+            }
+        }
+        return true;
 
     }
 
@@ -79,7 +73,7 @@ public class CraftingManager : MonoBehaviour
         if (selectedHelmet == null) return;
 
         // Obtenemos los upgrade requirements del casco para su siguiente evolucion
-        UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement(selectedHelmet.nextEvolution);
+        UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement(selectedHelmet.nextLevel);
 
         // Pagamos el precio de la evolucion
         PayResources(req.requirements);

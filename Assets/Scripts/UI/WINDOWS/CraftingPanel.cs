@@ -14,7 +14,7 @@ public class CraftingPanel : MonoBehaviour
     public GameObject cardContainer;
     public GameObject EmptyListText;
 
-    private List<HelmetInstance> availableHelmets => HelmetManager.Instance.GetHelmetsReadyToEvolve();
+    private List<HelmetInstance> availableHelmets => HelmetManager.Instance.allHelmets;
 
     private void OnEnable()
     {

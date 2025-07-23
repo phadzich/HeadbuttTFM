@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class HelmetBluprintUI : MonoBehaviour
+public class HelmetCraftingUI : MonoBehaviour
 {
 
     public TextMeshProUGUI blueprintNameText;
@@ -54,6 +54,6 @@ public class HelmetBluprintUI : MonoBehaviour
     // Cuando el jugador da click en Craft, se desbloquea el casco y los recursos se gastan, la lista se actualiza por medio del evento onOwnedResourcesChanged
     public void OnClickCraftingBtn()
     {
-        CraftingManager.Instance.CreateHelmet(blueprint);
+        CraftingManager.Instance.selectedHelmet.Craft();
     }
 }

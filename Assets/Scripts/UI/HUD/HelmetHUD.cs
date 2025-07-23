@@ -46,7 +46,7 @@ public class HelmetHUD : MonoBehaviour
 
     public void UpdateResourcesNeeded()
     {
-        UpgradeRequirement _requirement = helmetInstance.GetUpgradeRequirement(helmetInstance.nextEvolution);
+        UpgradeRequirement _requirement = helmetInstance.GetUpgradeRequirement(helmetInstance.nextLevel);
 
         int _res01Q = _requirement.requirements[0].quantity;
         int _res02Q = _requirement.requirements[1].quantity;

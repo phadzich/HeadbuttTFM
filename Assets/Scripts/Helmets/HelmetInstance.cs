@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,13 +11,13 @@ public class HelmetInstance
     public HelmetInfo currentInfo = new HelmetInfo();
     public HelmetData baseHelmet;
     public ElementData helmetElement;
-    public ElementData defaultElement;
+    public bool isCrafted = false;
+    public bool isDiscovered = false;
 
     //Helmet Stats
     public int durability;
-    public float headBForce;
-    public int currentEvolution;
-    public int nextEvolution => currentEvolution + 1;
+    public int currentLevel;
+    public int nextLevel => currentLevel + 1;
 
     // Efectos and overcharged
     [SerializeField]
@@ -39,11 +40,10 @@ public class HelmetInstance
 
         //Stats
         currentDurability = _helmetSO.durability;
-        currentEvolution = _helmetSO.evolution;
+        currentLevel = 0;
         durability = _helmetSO.durability;
-        headBForce = _helmetSO.headBForce;
 
-        helmetElement = defaultElement;
+        helmetElement = _helmetSO.element;
         currentHBHarvest = 0.3f;
 
     }
@@ -89,15 +89,9 @@ public class HelmetInstance
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeHeadBForce(float _quantity)
-    {
-        headBForce += _quantity;
-        // reiniciar sus stats cuando lo mejoren
-    }
-
     public void UpgradeCurrentEvolution(int _evolution)
     {
-        currentEvolution = _evolution;
+        currentLevel = _evolution;
     }
 
 
@@ -156,16 +150,27 @@ public class HelmetInstance
         }
     }
 
+    public void Craft()
+    {
+        isCrafted = true;
+        currentLevel++;
+    }
+
+    public void Discover()
+    {
+        isDiscovered = true;
+    }
+
     /* Funciones para evolucionar el casco */
 
     public UpgradeRequirement GetUpgradeRequirement(int _toEvolution)
     {
         if(_toEvolution == 2)
         {
-            return baseHelmet.upgradeRequirements[0];
+            return baseHelmet.levelUpRequirements[0];
         }
 
-        return baseHelmet.upgradeRequirements[1];
+        return baseHelmet.levelUpRequirements[1];
     }
 
     // Llamar cuando se quiera evolucionar el casco, la funcion actualiza los stats
@@ -175,7 +180,6 @@ public class HelmetInstance
         UpdateInfo(req.newInfo);
 
         UpgradeDurability(req.durabilityAdd);
-        UpgradeHeadBForce(req.HBForceAdd);
 
         // Activamos el efecto del casco
         if (req.activateEffect)
@@ -186,14 +190,6 @@ public class HelmetInstance
             }
         }
 
-        // Activamos el efecto overcharge del cascp
-        if (req.isOvercharged)
-        {
-            foreach (var _effect in baseHelmet.overchargedEffects)
-            {
-                AddEffect(_effect.CreateEffect());
-            }
-        }
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -201,7 +197,7 @@ public class HelmetInstance
     {
         var playerResources = ResourceManager.Instance.ownedResources;
 
-        UpgradeRequirement req = GetUpgradeRequirement(nextEvolution);
+        UpgradeRequirement req = GetUpgradeRequirement(nextLevel);
 
         foreach (var requirement in req.requirements)
         {
