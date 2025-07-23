@@ -13,34 +13,27 @@ MonoBehaviour:
   m_Name: Firebreath
   m_EditorClassIdentifier: 
   id: 1
-  helmetInfo:
-    name: Casco basico
-    description: Casco basico hecho de cobre
-    mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
-    icon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
-    color: {r: 0.69803923, g: 1, b: 0.23137255, a: 0}
-    rarity: 0
+  helmetName: Firebreath
+  description: 
   requiredResources:
   - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
     quantity: 1
   - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
     quantity: 1
+  mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
+  icon: {fileID: 21300000, guid: eed8e052ac618b546bd6c9d2ea1596d8, type: 3}
+  color: {r: 0.8396226, g: 0.2815474, b: 0.1544589, a: 0}
+  rarity: 1
   miningPower: 1
   element: {fileID: 11400000, guid: bf9947344ddf4c442b1f971817cfab78, type: 2}
   durability: 2
   effects:
   - {fileID: 11400000, guid: 94db2d76da05f46d9a7126fc612c567b, type: 2}
   levelUpRequirements:
-  - toEvolution: 0
-    requirements: []
-    newInfo:
-      name: 
-      description: 
-      mesh: {fileID: 0}
-      icon: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      rarity: 0
+  - toLevel: 1
+    requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 1
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 1
     durabilityAdd: 0
-    HBForceAdd: 0
-    activateEffect: 0
-    isOvercharged: 0

@@ -23,9 +23,9 @@ public class HelmetInfoCard : MonoBehaviour
     public void SetUp(HelmetInstance _helmetI)
     {
         helmet = _helmetI;
-        helmetNameText.text = _helmetI.currentInfo.name;
-        helmetDescText.text = _helmetI.currentInfo.description;
-        helmetIcon.sprite = _helmetI.currentInfo.icon;
+        helmetNameText.text = _helmetI.baseHelmet.name;
+        helmetDescText.text = _helmetI.baseHelmet.description;
+        helmetIcon.sprite = _helmetI.baseHelmet.icon;
 
         durabilityStat.UpdateBar(_helmetI.currentDurability);
         durabilityStat.SetMaxVal(7);
@@ -77,6 +77,6 @@ public class HelmetInfoCard : MonoBehaviour
 
     public void EvolveBtnOnClick()
     {
-        CraftingManager.Instance.EvolveHelmet();
+        CraftingManager.Instance.LevelUpHelmet();
     }
 }

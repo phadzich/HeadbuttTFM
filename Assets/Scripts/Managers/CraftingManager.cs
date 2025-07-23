@@ -68,7 +68,7 @@ public class CraftingManager : MonoBehaviour
 
 
     //Llamar cuando se quiera upgradear un casco
-    public void EvolveHelmet()
+    public void LevelUpHelmet()
     {
         if (selectedHelmet == null) return;
 
@@ -79,7 +79,7 @@ public class CraftingManager : MonoBehaviour
         PayResources(req.requirements);
 
         // Actualiza la informacion del casco como el efecto, elemento
-        selectedHelmet.Evolve(req);
+        selectedHelmet.LevelUpHelmet(req);
 
         HelmetEvolved?.Invoke();
     }

@@ -118,7 +118,7 @@ public class HelmetManager : MonoBehaviour
     // Función para USAR un casco 
     public void WearHelmet(HelmetInstance _helmet) {
         currentHelmet = _helmet;
-        currentMesh.SetHelmetMesh(_helmet.currentInfo.mesh);
+        currentMesh.SetHelmetMesh(_helmet.baseHelmet.mesh);
         onWearHelmetChanged?.Invoke(_helmet);
         foreach(HelmetEffect _effect in _helmet.activeEffects)
         {

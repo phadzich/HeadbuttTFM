@@ -32,7 +32,7 @@ public class HelmetHUD : MonoBehaviour
     public void LoadHelmet(HelmetInstance _helmetInstance)
     {
         helmetInstance = _helmetInstance;
-        helmetIMG.sprite = helmetInstance.baseHelmet.helmetInfo.icon;
+        helmetIMG.sprite = helmetInstance.baseHelmet.icon;
         miningPowerIMG.sprite = miningPowerSprites[(int)_helmetInstance.baseHelmet.miningPower];
         UpdateDurability(_helmetInstance.currentDurability, _helmetInstance.durability);
         UnWearHelmet();

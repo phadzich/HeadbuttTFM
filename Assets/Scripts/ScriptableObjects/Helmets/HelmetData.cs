@@ -4,10 +4,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HelmetData", menuName = "GameData/HelmetData")]
 public class HelmetData : ScriptableObject
 {
-    [Header("Info and aesthetic")]
+    [Header("Helmet Info")]
     public string id;
-    [SerializeField] public HelmetInfo helmetInfo = new HelmetInfo();
+    public string helmetName;
+    [TextArea]
+    public string description;
     [SerializeField] public List<ResourceRequirement> requiredResources;
+
+    [Header("Aesthetic")]
+    public GameObject mesh;
+    public Sprite icon;
+    public Color color;
+    public Rarity rarity;
 
     [Header("Compatibility")]
     public MiningPower miningPower;

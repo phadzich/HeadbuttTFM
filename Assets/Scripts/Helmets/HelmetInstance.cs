@@ -8,7 +8,6 @@ public class HelmetInstance
 {
     //Helmet info
     public string id;
-    public HelmetInfo currentInfo = new HelmetInfo();
     public HelmetData baseHelmet;
     public ElementData helmetElement;
     public bool isCrafted = false;
@@ -35,7 +34,6 @@ public class HelmetInstance
     public HelmetInstance(HelmetData _helmetSO)
     {
         id = Guid.NewGuid().ToString();
-        currentInfo = _helmetSO.helmetInfo.Copy();
         baseHelmet = _helmetSO;
 
         //Stats
@@ -46,6 +44,16 @@ public class HelmetInstance
         helmetElement = _helmetSO.element;
         currentHBHarvest = 0.3f;
 
+        ActivateEffects(_helmetSO.effects);
+
+    }
+
+    public void ActivateEffects(List<HelmetEffectData> _effects)
+    {
+        foreach (var _effect in _effects)
+        {
+            AddEffect(_effect.CreateEffect());
+        }
     }
 
     public void ResetStats()
@@ -89,15 +97,9 @@ public class HelmetInstance
         // reiniciar sus stats cuando lo mejoren
     }
 
-    public void UpgradeCurrentEvolution(int _evolution)
+    public void LevelUp(int _level)
     {
-        currentLevel = _evolution;
-    }
-
-
-    public void UpdateInfo(HelmetInfo _newInfo)
-    {
-        currentInfo = _newInfo.Copy();
+        currentLevel = _level;
     }
 
     public void AddEffect(HelmetEffect _effect)
@@ -153,7 +155,7 @@ public class HelmetInstance
     public void Craft()
     {
         isCrafted = true;
-        currentLevel++;
+        LevelUpHelmet(GetUpgradeRequirement(nextLevel));
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -175,21 +177,11 @@ public class HelmetInstance
     }
 
     // Llamar cuando se quiera evolucionar el casco, la funcion actualiza los stats
-    public void Evolve(UpgradeRequirement req)
+    public void LevelUpHelmet(UpgradeRequirement req)
     {
-        UpgradeCurrentEvolution(req.toEvolution);
-        UpdateInfo(req.newInfo);
+        LevelUp(req.toLevel);
 
         UpgradeDurability(req.durabilityAdd);
-
-        // Activamos el efecto del casco
-        if (req.activateEffect)
-        {
-            foreach(var _effect in baseHelmet.effects)
-            {
-                AddEffect(_effect.CreateEffect());
-            }
-        }
 
         HelmetInstanceChanged?.Invoke(this);
     }

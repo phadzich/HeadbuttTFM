@@ -60,8 +60,8 @@ public class CraftingPanel : MonoBehaviour
 
     public void UpdateInfoCard(HelmetInstance _helmetInstance)
     {
-        helmetNameTXT.text = _helmetInstance.baseHelmet.helmetInfo.name;
-        helmetIcon.sprite = _helmetInstance.baseHelmet.helmetInfo.icon;
+        helmetNameTXT.text = _helmetInstance.baseHelmet.name;
+        helmetIcon.sprite = _helmetInstance.baseHelmet.icon;
 
         if (_helmetInstance.isDiscovered) {
             craftBTN.interactable = true;
