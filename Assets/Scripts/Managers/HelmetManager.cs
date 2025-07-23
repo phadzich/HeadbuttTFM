@@ -43,10 +43,6 @@ public class HelmetManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        // PRUEBA SOLO PARA TENER HELMETS
-        //InitializeOwnedHelmets();
-
     }
 
     private void Start()
@@ -54,25 +50,16 @@ public class HelmetManager : MonoBehaviour
         Debug.Log("HelmetManager START");
 
         CreateAllInstances();
+        InitializeOwnedHelmets();
     }
 
-    /*FUNCION DE PRUEBA PARA PROTOTIPO
+
     private void InitializeOwnedHelmets()
     {
-        UnlockHelmet(allHelmets[0]);
-        UnlockHelmet(allHelmets[1]);
-        UnlockHelmet(allHelmets[2]);
-        EquipHelmet(helmetsOwned[0]);
-        EquipHelmet(helmetsOwned[1]);
-        EquipHelmet(helmetsOwned[2]);
-
-        //EVOLVE EL FIRE A LVL 2 PARA PRUEBAS
-        helmetsOwned[1].Evolve(helmetsOwned[1].GetUpgradeRequirement(2));
-        helmetsOwned[2].Evolve(helmetsOwned[2].GetUpgradeRequirement(2));
-
-        WearHelmet(helmetsEquipped[helmetIndex]);
-        PlayerManager.Instance.MaxUpLives();
-    }*/
+        allHelmets[0].Discover();
+        allHelmets[1].Discover();
+        allHelmets[2].Discover();
+    }
 
     // Crear todas las instancias de cascos
     public void CreateAllInstances()
@@ -81,6 +68,7 @@ public class HelmetManager : MonoBehaviour
         {
             CreateHelmetInstance(_data);
         }
+        UIManager.Instance.SuscribeToHelmetInstances();
     }
 
     // Función para crear un helmet instance
@@ -110,13 +98,16 @@ public class HelmetManager : MonoBehaviour
 
 
     // Función para EQUIPAR un casco, esto quiere decir que cargara con el casco durante la partida
-    public void EquipHelmet(HelmetInstance _helmet)
+    public void EquipHelmet()
     {
+        HelmetInstance _craftedHelmet = CraftingManager.Instance.selectedHelmet;
+
         if (helmetsEquipped.Count < maxEquippedHelmets)
         {
-            helmetsEquipped.Add(_helmet);
-            onHelmetEquipped?.Invoke(_helmet);
-            PlayerManager.Instance.AddMaxLives(1);
+            helmetsEquipped.Add(_craftedHelmet);
+            onHelmetEquipped?.Invoke(_craftedHelmet);
+            WearHelmet(_craftedHelmet);
+
         } else
         {
             Debug.Log("No hay mas espacio para cascos");

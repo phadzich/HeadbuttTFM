@@ -8,11 +8,13 @@ using System;
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
-    public GameObject helmetUIPrefab;
-    public GameObject helmetInfoCardPrefab;
+    public GameObject helmetButtonPrefab;
     public GameObject helmetListContainer;
-    public GameObject cardContainer;
-    public GameObject EmptyListText;
+    public TextMeshProUGUI helmetNameTXT;
+    public Image helmetIcon;
+
+    public Button craftBTN;
+    public Button equipBTN;
 
     private List<HelmetInstance> availableHelmets => HelmetManager.Instance.allHelmets;
 
@@ -21,7 +23,7 @@ public class CraftingPanel : MonoBehaviour
 
         LoadMainPage();
         CraftingManager.Instance.HelmetSelected += UpdateInfoCard;
-        CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
+        //CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
         CraftingManager.Instance.HelmetEvolved += UpdateHelmetList;
 
     }
@@ -29,7 +31,7 @@ public class CraftingPanel : MonoBehaviour
     private void OnDisable()
     {
         CraftingManager.Instance.HelmetSelected -= UpdateInfoCard;
-        CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
+        //CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
         CraftingManager.Instance.HelmetEvolved -= UpdateHelmetList;
         CraftingManager.Instance.SelectHelmet(null);
     }
@@ -41,7 +43,7 @@ public class CraftingPanel : MonoBehaviour
 
     /* Funciones del panel de HELMETS */
 
-    private void UpdateHelmetList()
+    public void UpdateHelmetList()
     {
         // Borra los hijos actuales
         foreach (Transform child in helmetListContainer.transform)
@@ -51,20 +53,32 @@ public class CraftingPanel : MonoBehaviour
 
         foreach (var _helmet in availableHelmets)
         {
-            Instantiate(helmetUIPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(_helmet);
+            Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(_helmet);
         }
     }
 
 
-    private void UpdateInfoCard()
+    public void UpdateInfoCard(HelmetInstance _helmetInstance)
     {
+        helmetNameTXT.text = _helmetInstance.baseHelmet.helmetInfo.name;
+        helmetIcon.sprite = _helmetInstance.baseHelmet.helmetInfo.icon;
 
-        // Borra los hijos actuales
-        foreach (Transform child in cardContainer.transform)
-        {
-            Destroy(child.gameObject);
+        if (_helmetInstance.isDiscovered) {
+            craftBTN.interactable = true;
+            if (_helmetInstance.isCrafted)
+            {
+                equipBTN.interactable = true;
+            }
+            else
+            {
+                equipBTN.interactable = false;
+            }
         }
-
-        Instantiate(helmetInfoCardPrefab, cardContainer.transform).GetComponent<HelmetInfoCard>().SetUp(CraftingManager.Instance.selectedHelmet);
+        else
+        {
+            craftBTN.interactable = false;
+            equipBTN.interactable = false;
+        }
     }
+
 }

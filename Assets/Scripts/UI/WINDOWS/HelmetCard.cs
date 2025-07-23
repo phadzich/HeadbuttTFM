@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class HelmetCard : MonoBehaviour
 {
-    public TextMeshProUGUI helmetNameText;
     public Image helmetIcon;
     private HelmetInstance helmet;
 
@@ -14,7 +13,6 @@ public class HelmetCard : MonoBehaviour
     public void SetUp(HelmetInstance helmetI)
     {
         helmet = helmetI;
-        helmetNameText.text = helmetI.currentInfo.name;
         helmetIcon.sprite = helmetI.currentInfo.icon;
     }
 

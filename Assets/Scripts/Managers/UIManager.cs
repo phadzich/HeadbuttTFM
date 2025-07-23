@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
+    public CraftingPanel craftingPanel;
     public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
@@ -89,19 +90,19 @@ public class UIManager : MonoBehaviour
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
     }
 
-    private void SuscribeToHelmetInstances()
+    public void SuscribeToHelmetInstances()
     {
         UnsuscribeToHelmetInstances();
-        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.allHelmets)
         {
             _helmInstance.HelmetInstanceChanged += OnHelmetInstanceDataChanged;
-            OnHelmetInstanceDataChanged(_helmInstance);
+            //OnHelmetInstanceDataChanged(_helmInstance);
         }
     }
 
     private void UnsuscribeToHelmetInstances()
     {
-        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.helmetsEquipped)
+        foreach (HelmetInstance _helmInstance in HelmetManager.Instance.allHelmets)
         {
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
         }
@@ -150,13 +151,13 @@ public class UIManager : MonoBehaviour
     private void OnHelmetEquipped(HelmetInstance _helmInstance)
     {
         currentHelmetsHUD.EquipHelmet(_helmInstance);
-        SuscribeToHelmetInstances();
     }
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
-
+        //currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
+        craftingPanel.UpdateHelmetList();
+        craftingPanel.UpdateInfoCard(_instance);
     }
 
     private void OnWearHelmetChanged(HelmetInstance _instance)

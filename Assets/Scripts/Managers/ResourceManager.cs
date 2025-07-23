@@ -35,7 +35,16 @@ public class ResourceManager : MonoBehaviour
     {
         Debug.Log("ResourceManager START");
 
+        AddResource(allAvailableResources[0], 100);
+        AddResource(allAvailableResources[1], 100);
+        AddResource(allAvailableResources[2], 100);
+        AddResource(allAvailableResources[3], 100);
+        AddResource(allAvailableResources[4], 100);
+        AddResource(allAvailableResources[5], 100);
         onOwnedResourcesChanged?.Invoke();
+
+
+
     }
 
     public void InitOwnedResources()

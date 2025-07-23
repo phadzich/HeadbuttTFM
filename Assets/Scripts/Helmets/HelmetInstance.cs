@@ -154,6 +154,7 @@ public class HelmetInstance
     {
         isCrafted = true;
         currentLevel++;
+        HelmetInstanceChanged?.Invoke(this);
     }
 
     public void Discover()

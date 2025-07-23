@@ -11,7 +11,7 @@ public class CraftingManager : MonoBehaviour
 
     public HelmetInstance selectedHelmet;
 
-    public Action HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
+    public Action<HelmetInstance> HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
     public Action HelmetEvolved; // Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
@@ -35,14 +35,14 @@ public class CraftingManager : MonoBehaviour
         UnlockHelmetBlueprint(blueprints[2]);*/
     }
 
-    public void Craft(HelmetInstance _helmet)
+    public void Craft()
     {
         // Pagamos el precio de la creacion del casco
-        if (CanCraft(_helmet.baseHelmet))
+        if (CanCraft(selectedHelmet.baseHelmet))
         {
-            PayResources(_helmet.baseHelmet.requiredResources);
+            PayResources(selectedHelmet.baseHelmet.requiredResources);
             // Desbloqueamos el casco
-            _helmet.Craft();
+            selectedHelmet.Craft();
         }
     }
 
@@ -63,7 +63,7 @@ public class CraftingManager : MonoBehaviour
     public void SelectHelmet(HelmetInstance _helmet)
     {
         selectedHelmet = _helmet;
-        HelmetSelected?.Invoke();
+        HelmetSelected?.Invoke(_helmet);
     }
 
 
