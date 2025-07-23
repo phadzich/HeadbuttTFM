@@ -834,10 +834,10 @@ MonoBehaviour:
       rarity: 0
     baseHelmet: {fileID: 0}
     helmetElement: {fileID: 0}
-    defaultElement: {fileID: 0}
+    isCrafted: 0
+    isDiscovered: 0
     durability: 0
-    headBForce: 0
-    currentEvolution: 0
+    currentLevel: 0
     currentDurability: 0
     currentHBHarvest: 0
   prevHelmetHUD: {fileID: 0}
@@ -3322,6 +3322,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b10f917df68ad4b22a9b0922b5c64d31, type: 2}
   - {fileID: 11400000, guid: 95e00971eafe748c19a04d0d92c7fbe1, type: 2}
   - {fileID: 11400000, guid: 81088cf07b36944108289fe6702ec3ee, type: 2}
+  unlockedBlueprints: []
   selectedHelmet:
     id: 
     currentInfo:
@@ -3333,10 +3334,10 @@ MonoBehaviour:
       rarity: 0
     baseHelmet: {fileID: 0}
     helmetElement: {fileID: 0}
-    defaultElement: {fileID: 0}
+    isCrafted: 0
+    isDiscovered: 0
     durability: 0
-    headBForce: 0
-    currentEvolution: 0
+    currentLevel: 0
     currentDurability: 0
     currentHBHarvest: 0
 --- !u!1 &605459607
@@ -4707,7 +4708,7 @@ GameObject:
   - component: {fileID: 841796442}
   - component: {fileID: 841796441}
   m_Layer: 5
-  m_Name: BlueprintList
+  m_Name: HelmetInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7697,7 +7698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1244828962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7786,7 +7787,7 @@ MonoBehaviour:
   helmetUIPrefab: {fileID: 5049575914752835320, guid: 6280bdd9d200148d58a6a8c2a88ba619, type: 3}
   helmetInfoCardPrefab: {fileID: 0}
   helmetListContainer: {fileID: 304942956}
-  cardContainer: {fileID: 0}
+  cardContainer: {fileID: 841796439}
   EmptyListText: {fileID: 520312872}
 --- !u!1 &1272368261
 GameObject:
@@ -12418,14 +12419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378d998d223e34617abc2cfae1fe8bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allHelmets:
+  allHelmetData:
   - {fileID: 11400000, guid: c0367ed8dffb4424f90be79dbbfb5322, type: 2}
   - {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
   - {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
-  helmetsOwned: []
+  allHelmets: []
   helmetsEquipped: []
   maxEquippedHelmets: 3
-  maxOwnHelmets: 10
   currentHelmet:
     id: 
     currentInfo:
@@ -12437,10 +12437,10 @@ MonoBehaviour:
       rarity: 0
     baseHelmet: {fileID: 0}
     helmetElement: {fileID: 0}
-    defaultElement: {fileID: 0}
+    isCrafted: 0
+    isDiscovered: 0
     durability: 0
-    headBForce: 0
-    currentEvolution: 0
+    currentLevel: 0
     currentDurability: 0
     currentHBHarvest: 0
   currentMesh: {fileID: 2119067691}

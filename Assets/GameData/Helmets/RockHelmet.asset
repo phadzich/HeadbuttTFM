@@ -20,45 +20,13 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
     color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
     rarity: 0
+  requiredResources:
+  - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+    quantity: 1
+  - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+    quantity: 1
   miningPower: 0
   element: {fileID: 11400000, guid: b61ab19d1a267d74d80cd6d17464b7fa, type: 2}
   durability: 2
-  headBForce: 6
-  evolution: 1
   effects: []
-  overchargedEffects: []
-  upgradeRequirements:
-  - toEvolution: 2
-    requirements:
-    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 10
-    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 10
-    newInfo:
-      name: Harvest
-      description: Obten el doble de HB points!
-      mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
-      icon: {fileID: 21300000, guid: eed8e052ac618b546bd6c9d2ea1596d8, type: 3}
-      color: {r: 1, g: 0.50750905, b: 0.0990566, a: 0}
-      rarity: 1
-    durabilityAdd: 1
-    HBForceAdd: 2
-    activateEffect: 1
-    isOvercharged: 0
-  - toEvolution: 3
-    requirements:
-    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 15
-    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 15
-    newInfo:
-      name: Harvest MAX
-      description: ...
-      mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
-      icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
-      color: {r: 0.6226415, g: 0.22067921, b: 0, a: 0}
-      rarity: 0
-    durabilityAdd: 0
-    HBForceAdd: 0
-    activateEffect: 0
-    isOvercharged: 0
+  levelUpRequirements: []
