@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        SuscribeToHelmetInstances();
     }
 
     private void Start()

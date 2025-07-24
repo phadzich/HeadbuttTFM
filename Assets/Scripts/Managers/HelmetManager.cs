@@ -44,14 +44,15 @@ public class HelmetManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        CreateAllInstances();
+        InitializeOwnedHelmets();
     }
 
     private void Start()
     {
         Debug.Log("HelmetManager START");
 
-        CreateAllInstances();
-        InitializeOwnedHelmets();
     }
 
 
@@ -69,7 +70,6 @@ public class HelmetManager : MonoBehaviour
         {
             CreateHelmetInstance(_data);
         }
-        UIManager.Instance.SuscribeToHelmetInstances();
     }
 
     // Función para crear un helmet instance
@@ -107,6 +107,7 @@ public class HelmetManager : MonoBehaviour
         {
             helmetsEquipped.Add(_craftedHelmet);
             onHelmetEquipped?.Invoke(_craftedHelmet);
+            PlayerManager.Instance.AddMaxLives(1);
             WearHelmet(_craftedHelmet);
 
         } else

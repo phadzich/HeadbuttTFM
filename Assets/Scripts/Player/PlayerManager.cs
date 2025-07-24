@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour
     public void AddMaxLives(int _amount)
     {
         maxPlayerLives += _amount;
+        AddPlayerLives(1);
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
     }
 

@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: Lvl1_Sublvl_07
   m_EditorClassIdentifier: 
   id: Sublvl07
+  helmetBPData: {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
   sublevel2DMap: {fileID: 2800000, guid: 07fe706d164fea84dbd2c8566189d587, type: 3}
-  blocksToComplete: 18
+  goalType: 0
+  blocksToMine: 0
+  keysToCollect: 0
+  timeLimitSeconds: 0
+  gateRequirements: []

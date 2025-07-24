@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7859d135aa4f44a48bb2518de8ea32cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parentBlock: {fileID: 0}
+  _parentBlock: {fileID: 6400085663747694202}
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -1841608508445778008}
+  - component: {fileID: 6400085663747694202}
   m_Layer: 8
   m_Name: BPBlock
   m_TagString: Untagged
@@ -472,6 +473,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6400085663747694202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598a45b386464cd4baf4ad79978b6ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sublevelId: 0
+  sublevelPosition: {x: 0, y: 0}
+  isWalkable: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  bpID: 0
+  bpMesh: {fileID: 194956202476269144}
+  parentSublevel: {fileID: 0}
 --- !u!1001 &5554916423663574492
 PrefabInstance:
   m_ObjectHideFlags: 0

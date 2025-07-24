@@ -11503,7 +11503,7 @@ MonoBehaviour:
   wallBlockPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   gateBlockPrefab: {fileID: 8090959518607110755, guid: ff8e3ab068a4b6542926ee9c3c0faed4, type: 3}
   keyBlockPrefab: {fileID: 8090959518607110755, guid: 4c659369bd631b247b3c00f41b25e95f, type: 3}
-  bpBlockPrefab: {fileID: 8090959518607110755, guid: ce75a85288a772144afb79f58a3c524c, type: 3}
+  bpBlockPrefab: {fileID: 8090959518607110755, guid: a3453dd6640749c4aad1b696795a6ad5, type: 3}
   helmetPotionBlockPrefab: {fileID: 8090959518607110755, guid: dfcb55329fc866c4c8f97dd97eb133cf, type: 3}
   hbPotionBlockPrefab: {fileID: 8090959518607110755, guid: aced4edf43a471e40b2c4b205d883cfc, type: 3}
   resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
