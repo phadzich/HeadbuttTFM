@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using PrimeTween;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using Unity.AI.Navigation;
@@ -52,7 +53,7 @@ public class LevelManager : MonoBehaviour
     public Action onKeysCollected;
     public int currentSublevelBlocksMined;
 
-    public NavMeshSurface navMeshSurface; // Arrastra el GameObject con NavMeshSurface aquí
+    public NavMeshSurface navMeshSurface; // Arrastra el GameObject con NavMeshSurface aquï¿½
 
     private void Awake()
     {
@@ -160,8 +161,7 @@ public class LevelManager : MonoBehaviour
     public void ExitSublevel()
     {
         //Debug.Log($"Exiting {currentSublevel}");
-
-        DestroySublevelContent(currentSublevel);
+        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 2f));
             
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
@@ -172,13 +172,16 @@ public class LevelManager : MonoBehaviour
 
     public void DestroySublevelContent(Sublevel _sublevel)
     {
-        //Debug.Log($"Destroying {_sublevel}");
-        //sublevelsList.Remove(_sublevel);
         if (_sublevel != null)
         {
             Destroy(_sublevel.gameObject);
         }
+    }
 
+    public IEnumerator DestroySublevelContentDelayed(Sublevel _sublevel, float _waitTime)
+    {
+        yield return new WaitForSeconds(_waitTime);
+        DestroySublevelContent(_sublevel);
     }
 
     public void DestroySublevelsUntilCheckpoint(int _targetDepth)
@@ -282,7 +285,7 @@ public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer
         if (navMeshSurface != null)
         {
             navMeshSurface.RemoveData();
-            navMeshSurface.BuildNavMesh(); // Esto horneará el NavMesh en tiempo de ejecución
+            navMeshSurface.BuildNavMesh(); // Esto hornearï¿½ el NavMesh en tiempo de ejecuciï¿½n
             Debug.Log("NavMesh baked dynamically.");
         }
         else

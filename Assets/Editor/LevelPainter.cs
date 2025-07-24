@@ -76,10 +76,24 @@ public class LevelPainter : EditorWindow
         for (int i = 0; i < palette.colors.Length; i++)
         {
             GUI.backgroundColor = palette.colors[i].color;
-            if (GUILayout.Button(new GUIContent(" ", palette.colors[i].blockString), GUILayout.Width(30), GUILayout.Height(30)))
+
+            Texture2D icon = palette.colors[i].icon;
+            GUIContent content;
+
+            if (icon != null)
+            {
+                content = new GUIContent(icon, palette.colors[i].blockString); // Ícono + tooltip
+            }
+            else
+            {
+                content = new GUIContent(" ", palette.colors[i].blockString); // Sin ícono
+            }
+
+            if (GUILayout.Button(content, GUILayout.Width(30), GUILayout.Height(30)))
             {
                 selectedColorIndex = i;
             }
+
         }
         GUILayout.EndHorizontal();
         GUI.backgroundColor = Color.white;
@@ -98,8 +112,26 @@ public class LevelPainter : EditorWindow
         {
             for (int x = 0; x < gridSize; x++)
             {
+
                 Rect cellRect = new Rect(rect.x + x * pixelSize, rect.y + y * pixelSize, pixelSize, pixelSize);
-                EditorGUI.DrawRect(cellRect, palette.colors[gridData[x, y]].color);
+
+                int colorIndex = gridData[x, y];
+                var palletteEntry = palette.colors[colorIndex];
+                EditorGUI.DrawRect(cellRect, palletteEntry.color);
+
+                if (palletteEntry.icon != null)
+                {
+                    float padding = pixelSize * 0.1f;
+                    Rect iconRect = new Rect(
+                        cellRect.x + padding,
+                        cellRect.y + padding,
+                        pixelSize - 2 * padding,
+                        pixelSize - 2 * padding);
+
+                    GUI.DrawTexture(iconRect, palletteEntry.icon, ScaleMode.ScaleToFit, true);
+                }
+
+
 
                 if ((Event.current.type == EventType.MouseDown || Event.current.type == EventType.MouseDrag) && cellRect.Contains(Event.current.mousePosition))
                 {

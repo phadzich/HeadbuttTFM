@@ -51,6 +51,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject npcCraftPrefab;
     public GameObject npcUpgradePrefab;
     public GameObject npcElevatorPrefab;
+    public GameObject npcShopPrefab;
 
     public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, NPCSublevelConfig _npcConfig, Sublevel _sublevel)
     {
@@ -262,6 +263,12 @@ public class SublevelMapGenerator : MonoBehaviour
                 _npcDoorBlock.SetupBlock(currentDepth, currentX, currentY);
                 _npcDoorBlock.isWalkable= true;
                 LevelManager.Instance.currentExitDoor = _bloque;
+                break;
+            case "SHOP":
+
+                _bloque = Instantiate(npcShopPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                ShopBlock _npcShopBlock = _bloque.GetComponent<ShopBlock>();
+                _npcShopBlock.SetupBlock(currentDepth, currentX, currentY, npcConfig.npcShopId);
                 break;
         }
         return _bloque;
