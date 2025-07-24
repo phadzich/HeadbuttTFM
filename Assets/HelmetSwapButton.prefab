@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7237152698709147836}
   - component: {fileID: 6092776757432746617}
-  - component: {fileID: 48956894334237222}
   - component: {fileID: 774319937914755690}
   - component: {fileID: 5828314750097849209}
+  - component: {fileID: 8183297165119734365}
   m_Layer: 5
-  m_Name: HelmetButton
+  m_Name: HelmetSwapButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,20 +48,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5049575914752835320}
   m_CullTransparentMesh: 1
---- !u!114 &48956894334237222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049575914752835320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e202b1ff00c354f8997f5781224c7992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  helmetIcon: {fileID: 2051931831736790908}
-  secretColor: {r: 0, g: 0, b: 0, a: 0.52156866}
 --- !u!114 &774319937914755690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21168563, g: 0.6698113, b: 0.46484715, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -136,8 +122,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 48956894334237222}
-        m_TargetAssemblyTypeName: HelmetCard, Assembly-CSharp
+      - m_Target: {fileID: 8183297165119734365}
+        m_TargetAssemblyTypeName: HelmetSwapButton, Assembly-CSharp
         m_MethodName: OnClickSelectBtn
         m_Mode: 1
         m_Arguments:
@@ -148,6 +134,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8183297165119734365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049575914752835320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8474622461bf56c46afac7943f09ee15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helmetIcon: {fileID: 2051931831736790908}
 --- !u!1 &8640105011190994188
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class HelmetManager : MonoBehaviour
     [SerializeField] public List<int> potionValues;
 
     public Action<HelmetInstance> onHelmetEquipped;
+    public Action<int> onHelmetsSwapped;
 
     //public Action<HelmetInstance> onHelmetInstanceDataChanged;
     public Action<HelmetInstance> onWearHelmetChanged;
@@ -110,7 +111,7 @@ public class HelmetManager : MonoBehaviour
 
         } else
         {
-            Debug.Log("No hay mas espacio para cascos");
+            UIManager.Instance.craftingPanel.ToggleSwapPanel(true);
         }
 
     }
@@ -119,7 +120,7 @@ public class HelmetManager : MonoBehaviour
     {
         var index = helmetsEquipped.FindIndex((h => h == _helmetOut));
         helmetsEquipped[index] = _helmetIn;
-        onHelmetEquipped?.Invoke(_helmetIn);
+        onHelmetsSwapped?.Invoke(index);
         WearHelmet(_helmetIn);
     }
 
@@ -128,10 +129,7 @@ public class HelmetManager : MonoBehaviour
         currentHelmet = _helmet;
         currentMesh.SetHelmetMesh(_helmet.baseHelmet.mesh);
         onWearHelmetChanged?.Invoke(_helmet);
-        foreach(HelmetEffect _effect in _helmet.activeEffects)
-        {
-            _effect.OnWear();
-        }
+        _helmet.OnWear();
     }
 
 

@@ -6,9 +6,6 @@ public class CraftingManager : MonoBehaviour
 {
     public static CraftingManager Instance;
 
-    public List<HelmetBlueprint> blueprints;
-    public List<HelmetBlueprint> unlockedBlueprints = new List<HelmetBlueprint>();
-
     public HelmetInstance selectedHelmet;
 
     public Action<HelmetInstance> HelmetSelected; // Se lanza cuando un casco ha sido seleccionado

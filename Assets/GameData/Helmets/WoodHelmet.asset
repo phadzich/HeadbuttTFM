@@ -10,38 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: WaterHelmet
+  m_Name: WoodHelmet
   m_EditorClassIdentifier: 
-  id: 5
+  id: 3
   helmetName: 
   description: 
-  mesh: {fileID: 1928718743684311021, guid: c55dff30349ff4f0c8d49b627c5ab11f, type: 3}
-  icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
+  mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
+  icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
-  rarity: 1
-  miningPower: 2
-  element: {fileID: 11400000, guid: 1789083da93af804fb6a189bea2f7707, type: 2}
-  effects:
-  - {fileID: 11400000, guid: 4850531a44d9d274a987f7809eea8d99, type: 2}
+  rarity: 0
+  miningPower: 0
+  element: {fileID: 11400000, guid: b61ab19d1a267d74d80cd6d17464b7fa, type: 2}
+  effects: []
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
       quantity: 1
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
       quantity: 1
+    durability: 2
+    powerStat: 0
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 1
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 1
     durability: 3
-    powerStat: 10
+    powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
       quantity: 1
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
       quantity: 1
     durability: 4
-    powerStat: 15
-  - requirements:
-    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 1
-    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 1
-    durability: 5
-    powerStat: 20
+    powerStat: 0

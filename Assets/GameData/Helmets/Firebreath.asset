@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
   m_Name: Firebreath
   m_EditorClassIdentifier: 
-  id: 1
+  id: 4
   helmetName: Firebreath
   description: 
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}

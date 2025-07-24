@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
   m_Name: RockHelmet
   m_EditorClassIdentifier: 
-  id: 4
+  id: 1
   helmetName: 
   description: 
   mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}

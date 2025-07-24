@@ -152,6 +152,14 @@ public class HelmetInstance
         }
     }
 
+    public void OnWear()
+    {
+        foreach (HelmetEffect _effect in activeEffects)
+        {
+            _effect.OnWear();
+        }
+    }
+
     // Llamar cuando se presiona la tecla de special attack
     public void OnUpgradeEffect(float _stat)
     {

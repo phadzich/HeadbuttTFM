@@ -26,12 +26,15 @@ public class Sublevel : MonoBehaviour {
 
     public List<GateBlock> gateBlocks = new List<GateBlock>();
 
+    public HelmetData helmetToDiscover;
+
     public void SetupSublevel (string _id, int _depth, bool _isActive, SublevelConfig _config)
     {
         this.id = _id;
         this.depth = _depth;
         this.isActive = _isActive;
         this.config = _config;
+        this.helmetToDiscover = _config.helmetBPData;
     }
 
     public void SetMiningObjectives(int _objective)
@@ -56,5 +59,10 @@ public class Sublevel : MonoBehaviour {
     {
         currentKeysCollected += _amount;
         LevelManager.Instance.onKeysCollected?.Invoke();
+    }
+
+    public void CollectBP()
+    {
+        HelmetManager.Instance.Discover(helmetToDiscover);
     }
 }

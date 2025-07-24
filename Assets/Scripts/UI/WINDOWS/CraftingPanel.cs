@@ -8,10 +8,14 @@ using System;
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
+    public GameObject infoPanel;
     public GameObject helmetButtonPrefab;
     public GameObject helmetListContainer;
     public TextMeshProUGUI helmetNameTXT;
     public Image helmetIcon;
+
+    public SwapHelmetsPanelUI swapHelmetsUI;
+
 
     public Button craftBTN;
     public Button equipBTN;
@@ -25,7 +29,7 @@ public class CraftingPanel : MonoBehaviour
         CraftingManager.Instance.HelmetSelected += UpdateInfoCard;
         //CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;
-
+        infoPanel.SetActive(false);
     }
 
     private void OnDisable()
@@ -34,6 +38,7 @@ public class CraftingPanel : MonoBehaviour
         //CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted -= UpdateHelmetList;
         CraftingManager.Instance.SelectHelmet(null);
+        infoPanel.SetActive(false);
     }
 
     private void LoadMainPage()
@@ -57,9 +62,13 @@ public class CraftingPanel : MonoBehaviour
         }
     }
 
-
+    public void ToggleSwapPanel(bool _show)
+    {
+        swapHelmetsUI.gameObject.SetActive(_show);
+    }
     public void UpdateInfoCard(HelmetInstance _helmetInstance)
     {
+        infoPanel.SetActive(true);
         helmetNameTXT.text = _helmetInstance.baseHelmet.name;
         helmetIcon.sprite = _helmetInstance.baseHelmet.icon;
 

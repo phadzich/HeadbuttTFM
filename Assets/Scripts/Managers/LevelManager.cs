@@ -140,11 +140,11 @@ public class LevelManager : MonoBehaviour
 
             //Debug.Log(_miningSublevel.id);
 
-            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,_sublevel);
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,null,_sublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth,null, _sublevel);
+            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth,null, _npcSublevel, _sublevel);
         }
 
     }

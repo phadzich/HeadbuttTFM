@@ -6,4 +6,5 @@ using UnityEngine;
 public class SublevelConfig : ScriptableObject
 {
     public string id;
+    public HelmetData helmetBPData;
 }

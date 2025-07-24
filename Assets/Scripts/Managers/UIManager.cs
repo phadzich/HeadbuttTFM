@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviour
 
         //HELMET EVENTS
         HelmetManager.Instance.onHelmetEquipped += OnHelmetEquipped;
+        HelmetManager.Instance.onHelmetsSwapped += OnHelmetSwap;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
 
 
@@ -69,7 +70,6 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
 
         //PLAYER EVENTS
-        PlayerManager.Instance.PlayerLivesChanged += OnPlayerLivesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
 
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
@@ -81,11 +81,11 @@ public class UIManager : MonoBehaviour
     {
         HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
+        HelmetManager.Instance.onHelmetsSwapped -= OnHelmetSwap;
         XPManager.Instance.LeveledUp -= OnLevelUp;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
-        PlayerManager.Instance.PlayerLivesChanged -= OnPlayerLivesChanged;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
     }
@@ -160,15 +160,16 @@ public class UIManager : MonoBehaviour
         craftingPanel.UpdateInfoCard(_instance);
     }
 
+    private void OnHelmetSwap(int _index)
+    {
+        craftingPanel.UpdateHelmetList();
+        var _newHelmet = HelmetManager.Instance.helmetsEquipped[_index];
+        currentHelmetsHUD.equippedHelmetHUDs[_index].LoadHelmet(_newHelmet);
+    }
+
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
         currentHelmetsHUD.WearNewHelmet(_instance);
-    }
-
-
-    private void OnPlayerLivesChanged(int _current, int _max)
-    {
-        //livesPanel.UpdateLivesInfo(_current);
     }
 
     public void OpenNPCUI(NPCType _type)

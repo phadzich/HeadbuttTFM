@@ -22,6 +22,7 @@ public class SublevelMapGenerator : MonoBehaviour
     Vector3 nextPosition;
     int currentDepth;
     public MiningSublevelConfig miningConfig;
+    public NPCSublevelConfig npcConfig;
     public Sublevel sublevel;
     public Dictionary<Vector2Int, Block> currentBlocks = new();
     [Header("LEVEL")]
@@ -31,6 +32,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject gateBlockPrefab;
     [Header("ITEMS")]
     public GameObject keyBlockPrefab;
+    public GameObject bpBlockPrefab;
     public GameObject helmetPotionBlockPrefab;
     public GameObject hbPotionBlockPrefab;
     [Header("MINING")]
@@ -50,9 +52,10 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject npcUpgradePrefab;
     public GameObject npcElevatorPrefab;
 
-    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, Sublevel _sublevel)
+    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, NPCSublevelConfig _npcConfig, Sublevel _sublevel)
     {
         miningConfig = _config;
+        npcConfig = _npcConfig;
         sublevel = _sublevel;
         mapWidth = _inputMap.width;
         mapHeight = _inputMap.height;
@@ -195,6 +198,11 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(keyBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 KeyBlock _keyBlock = _bloque.GetComponent<KeyBlock>();
                 _keyBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
+            case "BP":
+                _bloque = Instantiate(bpBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                BPBlock _bpBlock = _bloque.GetComponent<BPBlock>();
+                _bpBlock.SetupBlock(currentDepth, currentX, currentY,sublevel.helmetToDiscover);
                 break;
             case "HBPOTION":
                 int _HBPOTIONIndex = int.Parse(_blockVariant);
