@@ -9,7 +9,6 @@ public class HelmetData : ScriptableObject
     public string helmetName;
     [TextArea]
     public string description;
-    [SerializeField] public List<ResourceRequirement> requiredResources;
 
     [Header("Aesthetic")]
     public GameObject mesh;
@@ -20,9 +19,6 @@ public class HelmetData : ScriptableObject
     [Header("Compatibility")]
     public MiningPower miningPower;
     public ElementData element;
-
-    [Header("Stats")]
-    public int durability;
 
     [Header("Effects")]
     public List<HelmetEffectData> effects;

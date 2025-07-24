@@ -115,6 +115,14 @@ public class HelmetManager : MonoBehaviour
 
     }
 
+    public void SwapHelmet(HelmetInstance _helmetIn, HelmetInstance _helmetOut)
+    {
+        var index = helmetsEquipped.FindIndex((h => h == _helmetOut));
+        helmetsEquipped[index] = _helmetIn;
+        onHelmetEquipped?.Invoke(_helmetIn);
+        WearHelmet(_helmetIn);
+    }
+
     // Función para USAR un casco 
     public void WearHelmet(HelmetInstance _helmet) {
         currentHelmet = _helmet;

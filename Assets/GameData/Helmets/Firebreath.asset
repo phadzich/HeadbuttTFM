@@ -15,25 +15,33 @@ MonoBehaviour:
   id: 1
   helmetName: Firebreath
   description: 
-  requiredResources:
-  - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-    quantity: 1
-  - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-    quantity: 1
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
   icon: {fileID: 21300000, guid: eed8e052ac618b546bd6c9d2ea1596d8, type: 3}
   color: {r: 0.8396226, g: 0.2815474, b: 0.1544589, a: 0}
   rarity: 1
   miningPower: 1
   element: {fileID: 11400000, guid: bf9947344ddf4c442b1f971817cfab78, type: 2}
-  durability: 2
   effects:
   - {fileID: 11400000, guid: 94db2d76da05f46d9a7126fc612c567b, type: 2}
   levelUpRequirements:
-  - toLevel: 1
-    requirements:
+  - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
       quantity: 1
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
       quantity: 1
-    durabilityAdd: 0
+    durability: 3
+    powerStat: 1
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 1
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 1
+    durability: 4
+    powerStat: 2
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 1
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 1
+    durability: 5
+    powerStat: 3

@@ -961,13 +961,6 @@ MonoBehaviour:
   currentIcon: {fileID: 0}
   currentHelmetInstance:
     id: 
-    currentInfo:
-      name: 
-      description: 
-      mesh: {fileID: 0}
-      icon: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      rarity: 0
     baseHelmet: {fileID: 0}
     helmetElement: {fileID: 0}
     isCrafted: 0
@@ -3459,13 +3452,6 @@ MonoBehaviour:
   unlockedBlueprints: []
   selectedHelmet:
     id: 
-    currentInfo:
-      name: 
-      description: 
-      mesh: {fileID: 0}
-      icon: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      rarity: 0
     baseHelmet: {fileID: 0}
     helmetElement: {fileID: 0}
     isCrafted: 0
@@ -5779,6 +5765,7 @@ MonoBehaviour:
   pagesButtons: {fileID: 1099206494}
   EmptyListText: {fileID: 210214722}
   itemsPerPage: 3
+  currentPage: 0
 --- !u!114 &943757557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12983,13 +12970,6 @@ MonoBehaviour:
   maxEquippedHelmets: 3
   currentHelmet:
     id: 
-    currentInfo:
-      name: 
-      description: 
-      mesh: {fileID: 0}
-      icon: {fileID: 0}
-      color: {r: 0, g: 0, b: 0, a: 0}
-      rarity: 0
     baseHelmet: {fileID: 0}
     helmetElement: {fileID: 0}
     isCrafted: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -69,11 +70,26 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void ActivateShield()
+    public void ActivateShield(float _duration)
     {
+        if (onWaterShield) return;
+
         onWaterShield = true;
         shieldMesh.SetActive(true);
+
+        // Empieza corrutina con duracion
+        var cor = StartTimer(_duration);
+        StartCoroutine(cor);
+
         Debug.Log("SHIELD ACTIVO");
+    }
+
+    IEnumerator StartTimer(float duration)
+    {
+        Debug.Log("START");
+        yield return new WaitForSeconds(duration);
+        Debug.Log("END");
+        DeactivateShield();
     }
 
     public void DeactivateShield()
@@ -95,3 +111,5 @@ public class PlayerManager : MonoBehaviour
         playerBounce.enabled = false;
     }
 }
+
+

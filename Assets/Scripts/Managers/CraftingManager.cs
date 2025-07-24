@@ -12,7 +12,7 @@ public class CraftingManager : MonoBehaviour
     public HelmetInstance selectedHelmet;
 
     public Action<HelmetInstance> HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
-    public Action HelmetEvolved; // Se lanza cuando un casco ha sido upgradeado
+    public Action HelmetCrafted; // Se lanza cuando un casco ha sido upgradeado
 
     private void Awake()
     {
@@ -37,18 +37,24 @@ public class CraftingManager : MonoBehaviour
 
     public void Craft()
     {
+
+        if (selectedHelmet == null) return;
         // Pagamos el precio de la creacion del casco
-        if (CanCraft(selectedHelmet.baseHelmet))
+        if (CanCraft(selectedHelmet.GetUpgradeRequirement()))
         {
-            PayResources(selectedHelmet.baseHelmet.requiredResources);
+            // Obtenemos los upgrade requirements del casco para su siguiente evolucion
+            UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement();
+            PayResources(req.requirements);
             // Desbloqueamos el casco
             selectedHelmet.Craft();
+
+            HelmetCrafted?.Invoke();
         }
     }
 
-    public bool CanCraft(HelmetData _data)
+    public bool CanCraft(UpgradeRequirement _req)
     {
-        foreach (var requirement in _data.requiredResources)
+        foreach (var requirement in _req.requirements)
         {
             if (!ResourceManager.Instance.ownedResources.ContainsKey(requirement.resource) || ResourceManager.Instance.ownedResources[requirement.resource] < requirement.quantity)
             {
@@ -64,24 +70,6 @@ public class CraftingManager : MonoBehaviour
     {
         selectedHelmet = _helmet;
         HelmetSelected?.Invoke(_helmet);
-    }
-
-
-    //Llamar cuando se quiera upgradear un casco
-    public void LevelUpHelmet()
-    {
-        if (selectedHelmet == null) return;
-
-        // Obtenemos los upgrade requirements del casco para su siguiente evolucion
-        UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement(selectedHelmet.nextLevel);
-
-        // Pagamos el precio de la evolucion
-        PayResources(req.requirements);
-
-        // Actualiza la informacion del casco como el efecto, elemento
-        selectedHelmet.LevelUpHelmet(req);
-
-        HelmetEvolved?.Invoke();
     }
 
     // Llamar esta funcion para pagar el costo de lo que se haga

@@ -5,9 +5,9 @@ using UnityEngine;
 public class UpgradeRequirement
 {
     [Tooltip("Nivel al que quieres subir con estos requisitos")]
-    public int toLevel; 
     public List<ResourceRequirement> requirements;
 
     [Header("Stats upgrade")]
-    public int durabilityAdd;
+    public int durability;
+    public float powerStat;
 }

@@ -24,7 +24,7 @@ public class CraftingPanel : MonoBehaviour
         LoadMainPage();
         CraftingManager.Instance.HelmetSelected += UpdateInfoCard;
         //CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
-        CraftingManager.Instance.HelmetEvolved += UpdateHelmetList;
+        CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;
 
     }
 
@@ -32,7 +32,7 @@ public class CraftingPanel : MonoBehaviour
     {
         CraftingManager.Instance.HelmetSelected -= UpdateInfoCard;
         //CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
-        CraftingManager.Instance.HelmetEvolved -= UpdateHelmetList;
+        CraftingManager.Instance.HelmetCrafted -= UpdateHelmetList;
         CraftingManager.Instance.SelectHelmet(null);
     }
 

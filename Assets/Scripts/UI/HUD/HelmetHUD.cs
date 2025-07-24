@@ -47,7 +47,7 @@ public class HelmetHUD : MonoBehaviour
 
     public void UpdateResourcesNeeded()
     {
-        UpgradeRequirement _requirement = helmetInstance.GetUpgradeRequirement(helmetInstance.nextLevel);
+        /*UpgradeRequirement _requirement = helmetInstance.GetUpgradeRequirement();
 
         int _res01Q = _requirement.requirements[0].quantity;
         int _res02Q = _requirement.requirements[1].quantity;
@@ -76,7 +76,7 @@ public class HelmetHUD : MonoBehaviour
             upgradeReadyVisibleIndicatorIMG.color = upgreadableColor;
             upgradeReadyVisibleIndicatorIMG.gameObject.SetActive(false);
             upgradeReadyIndicatorIMG.color = notUpgreadableColor;
-        }
+        }*/
     }
     public void WearHelmet()
     {

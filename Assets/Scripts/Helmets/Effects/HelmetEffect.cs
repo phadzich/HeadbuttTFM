@@ -11,5 +11,6 @@ public abstract class HelmetEffect
     public virtual void OnBounce() { }
     public virtual void OnSpecialAttack() { }
     public virtual void OnHitEnemy(GameObject enemy) { }
+    public virtual void OnUpgradeEffect(float stat) { }
     
 }

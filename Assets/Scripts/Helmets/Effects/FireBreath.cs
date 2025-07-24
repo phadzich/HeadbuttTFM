@@ -4,11 +4,13 @@ using UnityEngine;
 public class FireBreath : HelmetEffect
 {
     private readonly FireBreathEffectData data;
+    private Vector3 damageArea;
 
     public override bool hasSpecialAttack => true;
     public FireBreath(FireBreathEffectData _data)
     {
         data = _data;
+        damageArea = _data.damageArea;
     }
 
     public override void OnWear()
@@ -29,6 +31,13 @@ public class FireBreath : HelmetEffect
         UIManager.Instance.specialHeadbuttHUD.FadeIcon(hasMaxHBPoints ? 0f : 0.9f);
     }
 
+    public override void OnUpgradeEffect(float stat)
+    {
+        var area = 0.5f + stat;
+
+        damageArea = new Vector3(area, 1, area);
+    }
+
     public override void OnSpecialAttack()
     {
         if (PlayerManager.Instance.playerHeadbutt.hasMaxHBPoints)
@@ -43,7 +52,7 @@ public class FireBreath : HelmetEffect
             Transform dwarfTransform = PlayerManager.Instance.transform.GetChild(0); // Obtenemos el objeto del enano a partir de su game object padre
             Vector3 position = dwarfTransform.position; // Obtenemos su posicion para que sea el centro
 
-            Collider[] hitColliders = Physics.OverlapBox(position, data.damageArea, Quaternion.identity, data.enemyLayer);
+            Collider[] hitColliders = Physics.OverlapBox(position, damageArea, Quaternion.identity, data.enemyLayer);
 
             foreach (var hit in hitColliders)
             {

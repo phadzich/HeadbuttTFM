@@ -37,9 +37,9 @@ public class HelmetInstance
         baseHelmet = _helmetSO;
 
         //Stats
-        currentDurability = _helmetSO.durability;
+        currentDurability = 0;
         currentLevel = 0;
-        durability = _helmetSO.durability;
+        durability = 0;
 
         helmetElement = _helmetSO.element;
         currentHBHarvest = 0.3f;
@@ -92,7 +92,7 @@ public class HelmetInstance
 
     public void UpgradeDurability(int _quantity)
     {
-        durability += _quantity;
+        durability = _quantity;
         currentDurability = durability;
         // reiniciar sus stats cuando lo mejoren
     }
@@ -152,10 +152,19 @@ public class HelmetInstance
         }
     }
 
+    // Llamar cuando se presiona la tecla de special attack
+    public void OnUpgradeEffect(float _stat)
+    {
+        foreach (HelmetEffect _effect in activeEffects)
+        {
+            _effect.OnUpgradeEffect(_stat);
+        }
+    }
+
     public void Craft()
     {
         isCrafted = true;
-        LevelUpHelmet(GetUpgradeRequirement(nextLevel));
+        LevelUpHelmet(GetUpgradeRequirement());
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -166,40 +175,21 @@ public class HelmetInstance
 
     /* Funciones para evolucionar el casco */
 
-    public UpgradeRequirement GetUpgradeRequirement(int _toEvolution)
+    public UpgradeRequirement GetUpgradeRequirement()
     {
-        if(_toEvolution == 2)
-        {
-            return baseHelmet.levelUpRequirements[0];
-        }
-
-        return baseHelmet.levelUpRequirements[1];
+        return baseHelmet.levelUpRequirements[currentLevel];
     }
 
     // Llamar cuando se quiera evolucionar el casco, la funcion actualiza los stats
     public void LevelUpHelmet(UpgradeRequirement req)
     {
-        LevelUp(req.toLevel);
+        LevelUp(nextLevel);
 
-        UpgradeDurability(req.durabilityAdd);
+        UpgradeDurability(req.durability);
+        OnUpgradeEffect(req.powerStat);
 
         HelmetInstanceChanged?.Invoke(this);
-    }
 
-    public bool CanEvolve()
-    {
-        var playerResources = ResourceManager.Instance.ownedResources;
-
-        UpgradeRequirement req = GetUpgradeRequirement(nextLevel);
-
-        foreach (var requirement in req.requirements)
-        {
-            if (!ResourceManager.Instance.CanSpendResource(requirement.resource, requirement.quantity))
-            {
-                return false;
-            }
-        }
-        return true;
     }
 
 }
