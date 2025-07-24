@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
+    public ShopPanel shopPanel;
+    public ActiveItemHUD activeItemHUD;
     public CraftingPanel craftingPanel;
     public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
@@ -71,8 +73,12 @@ public class UIManager : MonoBehaviour
 
         //PLAYER EVENTS
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
-
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+
+        //PLAYER EVENTS
+        InventoryManager.Instance.ItemCycled += OnEquippedItemCycled;
+        InventoryManager.Instance.ItemEquipped += OnEquippedItemCycled;
+        InventoryManager.Instance.ItemConsumed += OnEquippedItemCycled;
     }
 
 
@@ -88,6 +94,9 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
+        InventoryManager.Instance.ItemCycled -= OnEquippedItemCycled;
+        InventoryManager.Instance.ItemEquipped -= OnEquippedItemCycled;
+        InventoryManager.Instance.ItemConsumed -= OnEquippedItemCycled;
     }
 
     public void SuscribeToHelmetInstances()
@@ -117,6 +126,20 @@ public class UIManager : MonoBehaviour
     {
         //NPCUpgradeExchanger.PopulateButtons();
         currentHelmetsHUD.UpdateUpgradePanels();
+
+    }
+
+    private void OnEquippedItemCycled(Item _item, int _amount)
+    {
+
+        if (_item != null)
+        {
+            activeItemHUD.ChangeActiveItem(_item, _amount);
+        }
+        else
+        {
+            activeItemHUD.DisableUI();
+        }
 
     }
 
@@ -188,6 +211,12 @@ public class UIManager : MonoBehaviour
 
         }
     }
+
+    public void OpenShopUI(int _id)
+    {
+        shopPanel.OpenShop(ShopManager.Instance.ShopById(_id));
+    }
+
 
     public void ToggleExtraInfo(InputAction.CallbackContext context)
     {
