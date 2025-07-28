@@ -19,11 +19,6 @@ public class MatchManager : MonoBehaviour
     public float HBRewardRatio;
     public float streakRewardRatio;
 
-    [Header("SFX")]
-    public AudioClip chainFailSound;
-    public AudioClip floorBlockSound;
-    private AudioSource audioSource;
-
     private void Awake()
     {
         if (Instance == null)
@@ -41,7 +36,6 @@ public class MatchManager : MonoBehaviour
     {
         Debug.Log("MatchManager START");
         RestartMatches();
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void RestartMatches()
@@ -71,7 +65,7 @@ public class MatchManager : MonoBehaviour
         {
             FailCurrentChain();
         }
-        audioSource.PlayOneShot(floorBlockSound, 0.7f);
+        SoundManager.PlaySound(SoundType.FLOORBOUNCE, 1f);
     }
 
     public void EnemyBounced()
@@ -124,7 +118,7 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
-        audioSource.PlayOneShot(chainFailSound, 0.5f);
+        SoundManager.PlaySound(SoundType.COMBOFAIL, 0.7f);
     }
 
     public void FlashFailedBlocks()

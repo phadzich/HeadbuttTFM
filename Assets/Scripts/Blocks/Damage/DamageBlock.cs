@@ -77,9 +77,14 @@ public class DamageBlock : Block
         impulseSource.GenerateImpulse();
     }
 
-    private void PlayDamageSound()
+    public void PlayDamageSound()
     {
-        audioSource.PlayOneShot(damageSound, 0.7f);
+        SoundManager.PlaySound(SoundType.FIREDAMAGE, 0.7f);
+    }
+
+    public void BallDmgSound()
+    {
+        SoundManager.PlaySound(SoundType.PUSHDAMAGE, 0.7f);
     }
 
     public void PushPlayerRandomly()

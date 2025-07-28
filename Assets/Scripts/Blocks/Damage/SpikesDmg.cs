@@ -54,7 +54,6 @@ public class SpikesDmg : MonoBehaviour
             {
                 damageCollider.enabled = false;
             }
-
             transform.localPosition = startPosition;
             Debug.Log("Spike cycle stopped.");
         }
@@ -66,6 +65,7 @@ public class SpikesDmg : MonoBehaviour
         {
             // 1. Mover las p�as hacia afuera (hacia endPosition)
             yield return StartCoroutine(MoveSpikes(startPosition, endPosition, movementDuration, true));
+            SoundManager.PlaySound3D(SoundType.SPIKEDAMAGE, transform.position, 0.2f);
 
             // 2. Esperar un tiempo mientras las p�as est�n afuera
             if (!isMoving) break; // Si se detuvo durante el movimiento, salir
@@ -84,7 +84,6 @@ public class SpikesDmg : MonoBehaviour
         {
             damageCollider.enabled = false;
         }
-
         transform.localPosition = startPosition;
     }
 
@@ -104,7 +103,7 @@ public class SpikesDmg : MonoBehaviour
         if (isMoving) 
         {
             transform.localPosition = endPos;
-           
+
             if (damageCollider != null)
             {
                 damageCollider.enabled = enableCollider;
@@ -119,6 +118,7 @@ public class SpikesDmg : MonoBehaviour
             Debug.Log("Contacto!");
             float time = Time.time;
             if (Time.time - lastDamageTime >= damageCooldown) dmgBlock.DoDamage();
+            SoundManager.PlaySound(SoundType.RECIEVEDAMAGE, 0.5f);
         }
         lastDamageTime = Time.time;
     }

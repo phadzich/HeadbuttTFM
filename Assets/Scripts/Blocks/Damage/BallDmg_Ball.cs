@@ -13,6 +13,7 @@ public class BallDmg_Ball : MonoBehaviour
         {
             float time = Time.time;
             if (Time.time - lastDamageTime >= damageCooldown) dmgBlock.DoDamage();
+            SoundManager.PlaySound(SoundType.FIREDAMAGE, 0.7f);
         }
             lastDamageTime = Time.time;
         }
