@@ -20,8 +20,8 @@ public class PlayerManager : MonoBehaviour
     public int currentPlayerLives;
     public DamageTakenIndicator damageTakenIndicator;
     public Action<int, int> PlayerLivesChanged;
-    public bool onWaterShield = false;
-    public GameObject shieldMesh;
+    public GameObject shieldPrefab;
+    public Shield activeShield;
 
     private void Awake()
     {
@@ -71,35 +71,24 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void ActivateShield(float _duration)
+    public void ActivateShield(float duration)
     {
-        if (onWaterShield) return;
+        if (activeShield != null) return;
 
-        onWaterShield = true;
-        shieldMesh.SetActive(true);
+        GameObject shieldGO = Instantiate(shieldPrefab, transform.GetChild(0));
+        shieldGO.transform.localPosition = Vector3.zero;
 
-        // Empieza corrutina con duracion
-        var cor = StartTimer(_duration);
-        StartCoroutine(cor);
-
-        Debug.Log("SHIELD ACTIVO");
-    }
-
-    IEnumerator StartTimer(float duration)
-    {
-        Debug.Log("START");
-        yield return new WaitForSeconds(duration);
-        Debug.Log("END");
-        DeactivateShield();
+        activeShield = shieldGO.GetComponent<Shield>();
+        activeShield.Setup(duration);
+        activeShield.Activate();
     }
 
     public void DeactivateShield()
     {
-        onWaterShield = false;
-        shieldMesh.SetActive(false);
-        Debug.Log("SHIELD DESACTIVADO");
+        activeShield.Deactivate();
     }
 
+    
     public void EnterMiningLevel()
     {
         playerAnimations.RotateBody(180);

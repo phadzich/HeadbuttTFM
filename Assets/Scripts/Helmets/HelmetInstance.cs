@@ -64,7 +64,7 @@ public class HelmetInstance
 
     public void TakeDamage(int _amount, bool _isEnemy = false)
     {
-        if(PlayerManager.Instance.onWaterShield && _isEnemy)
+        if(PlayerManager.Instance.activeShield != null && PlayerManager.Instance.activeShield.CanBlockDamage() && _isEnemy)
         {
             PlayerManager.Instance.DeactivateShield();
             return;
