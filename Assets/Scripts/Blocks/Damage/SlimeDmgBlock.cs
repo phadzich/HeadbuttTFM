@@ -12,16 +12,17 @@ public class SlimeDmgBlock : DamageBlock
     {
 
         PushPlayerRandomly();
-
+        SoundManager.PlaySound(SoundType.PUSHDAMAGE, 0.7f);
     }
 
     private void PlayBounceSound()
     {
-        audioSource.PlayOneShot(damageSound, 0.7f);
+        SoundManager.PlaySound(SoundType.PUSHDAMAGE, 0.7f);
     }
 
     public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
         PushPlayerRandomly();
+        SoundManager.PlaySound(SoundType.PUSHDAMAGE, 0.7f);
     }
 }

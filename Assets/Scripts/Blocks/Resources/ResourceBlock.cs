@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ResourceBlock : Block
 {
@@ -35,16 +36,9 @@ public class ResourceBlock : Block
     [Header("UI AND VFX")]
     public ResourceBlockUIAnims uiAnims;
 
-    [Header("SFX")]
-    public AudioClip hitSound;
-    public AudioClip headbuttSound;
-    public AudioClip minedSound;
-    private AudioSource audioSource;
-
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
@@ -82,6 +76,7 @@ public class ResourceBlock : Block
             audioSource.PlayOneShot(hitSound);
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
+            SoundManager.PlaySound(SoundType.RESOURCEBOUNCE, 0.7f);
             MatchManager.Instance.TryToAddToChain();
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
@@ -92,7 +87,7 @@ public class ResourceBlock : Block
 
     public override void OnHeadbutted(HelmetInstance _helmetInstance)
     {
-        audioSource.PlayOneShot(headbuttSound);
+        SoundManager.PlaySound(SoundType.HEADBUTTRESOURCE, 0.7f);
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
             helmetPowerMultiplier = 3;
@@ -136,7 +131,7 @@ public class ResourceBlock : Block
         GetMinedState();
         ScreenShake();
         MinedAnimation();
-        audioSource.PlayOneShot(minedSound);
+        SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
 
         uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
     }
