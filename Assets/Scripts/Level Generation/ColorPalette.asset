@@ -131,5 +131,5 @@ MonoBehaviour:
     blockString: LVL_BP_X
     icon: {fileID: 2800000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
   - color: {r: 0.3764706, g: 0.64705884, b: 0.7294118, a: 1}
-    blockString: DMG_WATER_X
+    blockString: LVL_WATER_X
     icon: {fileID: 2800000, guid: 71c789477c4e6f948852e4abd9486d1d, type: 3}

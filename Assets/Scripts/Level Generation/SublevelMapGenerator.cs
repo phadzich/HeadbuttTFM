@@ -30,6 +30,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject floorBlockPrefab;
     public GameObject wallBlockPrefab;
     public GameObject gateBlockPrefab;
+    public GameObject waterBlockPrefab;
     [Header("ITEMS")]
     public GameObject keyBlockPrefab;
     public GameObject bpBlockPrefab;
@@ -45,7 +46,6 @@ public class SublevelMapGenerator : MonoBehaviour
     public GameObject ballBlockPrefab;
     public GameObject spikesBlockPrefab;
     public GameObject headBlockPrefab;
-    public GameObject waterBlockPrefab;
     [Header("NPC")]
     public GameObject npcDoorPrefab;
     public GameObject npcCraftPrefab;
@@ -217,6 +217,11 @@ public class SublevelMapGenerator : MonoBehaviour
                 HelmetPotionBlock _helmetPotBlock = _bloque.GetComponent<HelmetPotionBlock>();
                 _helmetPotBlock.SetupBlock(currentDepth, currentX, currentY, _HELMETPOTIONIndex);
                 break;
+            case "WATER":
+                _bloque = Instantiate(waterBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+                SupportBlock _waterBlock = _bloque.GetComponent<SupportBlock>();
+                _waterBlock.SetupBlock(currentDepth, currentX, currentY);
+                break;
         }
         return _bloque;
     }
@@ -265,7 +270,6 @@ public class SublevelMapGenerator : MonoBehaviour
                 LevelManager.Instance.currentExitDoor = _bloque;
                 break;
             case "SHOP":
-
                 _bloque = Instantiate(npcShopPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 ShopBlock _npcShopBlock = _bloque.GetComponent<ShopBlock>();
                 _npcShopBlock.SetupBlock(currentDepth, currentX, currentY, npcConfig.npcShopId);
@@ -307,11 +311,6 @@ public class SublevelMapGenerator : MonoBehaviour
                 _bloque = Instantiate(spikesBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 DamageBlock _spikesBlock = _bloque.GetComponent<DamageBlock>();
                 _spikesBlock.SetupBlock(currentDepth, currentX, currentY);
-                break;
-            case "WATER":
-                _bloque = Instantiate(waterBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
-                DamageBlock _waterBlock = _bloque.GetComponent<DamageBlock>();
-                _waterBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
         return _bloque;
