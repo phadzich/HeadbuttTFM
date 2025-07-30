@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
     public ShopPanel shopPanel;
     public ActiveItemHUD activeItemHUD;
     public CraftingPanel craftingPanel;
-    public XPPanel experiencePanel;
     public SublevelPanel sublevelPanel;
     public GameObject craftButton;
     public LivesPanel livesPanel;
@@ -62,10 +61,6 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onHelmetsSwapped += OnHelmetSwap;
         HelmetManager.Instance.onWearHelmetChanged += OnWearHelmetChanged;
 
-
-        //XP EVENTS
-        XPManager.Instance.LeveledUp += OnLevelUp;
-
         //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
@@ -88,7 +83,6 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onHelmetEquipped -= OnHelmetEquipped;
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         HelmetManager.Instance.onHelmetsSwapped -= OnHelmetSwap;
-        XPManager.Instance.LeveledUp -= OnLevelUp;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
@@ -141,12 +135,6 @@ public class UIManager : MonoBehaviour
             activeItemHUD.DisableUI();
         }
 
-    }
-
-    private void OnLevelUp(int _currentLVL)
-    {
-        experiencePanel.UpdateLVL(_currentLVL);
-        //craftButton.SetActive(true);
     }
 
     private void OnSublevelEntered(Sublevel _sublevel)
