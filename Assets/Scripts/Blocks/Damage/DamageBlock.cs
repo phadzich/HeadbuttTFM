@@ -6,6 +6,7 @@ public class DamageBlock : Block
 {
     public damageType typeOfDamage;
     public int damage;
+    public EffectTypeEnum helmetCounter;
     public bool breaksCombo;
 
     public Transform blockMeshParent;
