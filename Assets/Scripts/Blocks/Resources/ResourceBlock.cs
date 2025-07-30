@@ -73,7 +73,6 @@ public class ResourceBlock : Block
     {
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-            audioSource.PlayOneShot(hitSound);
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
             SoundManager.PlaySound(SoundType.RESOURCEBOUNCE, 0.7f);
