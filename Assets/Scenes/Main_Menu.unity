@@ -4305,7 +4305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0a69ee5ddcb06419d1d7dc0e1ef656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextSizedropdown: {fileID: 2043775664}
+  TextSizeDropdown: {fileID: 2043775664}
   subtitlesDropdown: {fileID: 1252320815}
   modeDropdown: {fileID: 326929745}
   opcionesLocalizadas:
@@ -5821,7 +5821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1162684992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10373,7 +10373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1898532813
 RectTransform:
   m_ObjectHideFlags: 0
