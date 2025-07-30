@@ -7,15 +7,30 @@ using UnityEngine.Localization;
 
 public class ControladorIdiomas : MonoBehaviour
 {
-    public TMP_Dropdown TextSizeDropdown;             // Primer dropdown
-    public TMP_Dropdown subtitlesDropdown;    // Segundo dropdown (Subtitles)
-    public TMP_Dropdown modeDropdown;         // Tercer dropdown (Mode)
+    public static ControladorIdiomas Instance;
 
-    public List<LocalizedString> opcionesLocalizadas;  // Opciones primer dropdown
-    public List<LocalizedString> opcionesSubtitulos;   // Opciones segundo dropdown
-    public List<LocalizedString> opcionesModo;         // Opciones tercer dropdown
+    public TMP_Dropdown TextSizeDropdown;
+    public TMP_Dropdown subtitlesDropdown;
+    public TMP_Dropdown modeDropdown;
+
+    public List<LocalizedString> opcionesLocalizadas;
+    public List<LocalizedString> opcionesSubtitulos;
+    public List<LocalizedString> opcionesModo;
 
     private bool _active = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -44,7 +59,6 @@ public class ControladorIdiomas : MonoBehaviour
 
     private IEnumerator UpdateDropdownOptions()
     {
-        // Dropdown 1 (Text Size)
         TextSizeDropdown.options.Clear();
         for (int i = 0; i < opcionesLocalizadas.Count; i++)
         {
@@ -54,7 +68,6 @@ public class ControladorIdiomas : MonoBehaviour
         }
         TextSizeDropdown.RefreshShownValue();
 
-        // Dropdown 2 (Subtitles)
         subtitlesDropdown.options.Clear();
         for (int i = 0; i < opcionesSubtitulos.Count; i++)
         {
@@ -64,7 +77,6 @@ public class ControladorIdiomas : MonoBehaviour
         }
         subtitlesDropdown.RefreshShownValue();
 
-        // Dropdown 3 (Mode)
         modeDropdown.options.Clear();
         for (int i = 0; i < opcionesModo.Count; i++)
         {
