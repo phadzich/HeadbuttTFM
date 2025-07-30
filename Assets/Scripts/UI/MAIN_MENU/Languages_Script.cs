@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Localization.Settings;
 using TMPro;
 using System.Collections;

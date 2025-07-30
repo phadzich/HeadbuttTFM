@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: bf13a510cca8fdb4b8fda993017a6f2d
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 89a5158af339bae4786b4cc637e2b1d6
+    m_Address: Assets/Scripts/UI/PAUSE_MENU/Options_Menu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af76f1c5357b4964ea02d28eb43b291e
+    m_Address: Assets/Scripts/UI/MAIN_MENU/Global_Managers.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8abaf7b2aea0444db3d67785ce60f69, type: 2}
   m_SchemaSet:
