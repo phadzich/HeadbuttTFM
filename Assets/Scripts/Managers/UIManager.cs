@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public ActiveItemHUD activeItemHUD;
     public CraftingPanel craftingPanel;
     public SublevelPanel sublevelPanel;
+    public DialogueSystem dialogueSystem;
     public GameObject craftButton;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("UIManager START");
+        //dialogueSystem.StartDialogue(LevelManager.Instance.currentSublevel.config.dialogueSequence);
         //startPanel.SetActive(true);
     }
 

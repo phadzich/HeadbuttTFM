@@ -230,7 +230,10 @@ public class LevelManager : MonoBehaviour
             GenerateNavMesh();
         }
 
-
+        if (_sublevelConfig.dialogueSequence != null)
+        {
+            UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
+        }
 
         // RESETEAR O LO QUE SEA LOS HELMETS
         //HelmetManager.Instance.NewSublevel();
