@@ -25,6 +25,7 @@ public class ResourceIndicator : MonoBehaviour
         }
     }
 
+
     public void UpdateUI(int _amount)
     {
         //resourceIcon.sprite = resourceData.icon;

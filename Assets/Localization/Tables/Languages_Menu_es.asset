@@ -130,6 +130,18 @@ MonoBehaviour:
     m_Localized: "Men\xFA Principal"
     m_Metadata:
       m_Items: []
+  - m_Id: 3551862845939712
+    m_Localized: Ambiente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3551904851894272
+    m_Localized: Interfaz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3567919388237824
+    m_Localized: Punto de Control
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

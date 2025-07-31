@@ -1,5 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class TextSizeManager : MonoBehaviour
 {
@@ -8,12 +9,14 @@ public class TextSizeManager : MonoBehaviour
     public TMP_Dropdown textSizeDropdown;
     public TMP_Text[] targetTexts;
 
+    private Dictionary<TMP_Text, float> originalSizes = new Dictionary<TMP_Text, float>();
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Lo guardo entre escenas
+            DontDestroyOnLoad(gameObject); // Base para cambio de escenas
         }
         else
         {
@@ -25,8 +28,17 @@ public class TextSizeManager : MonoBehaviour
     {
         if (textSizeDropdown == null)
         {
-            Debug.LogWarning("Dropdown de tama�o de texto no asignado.");
+            Debug.LogWarning("Dropdown de tamaño de texto no asignado.");
             return;
+        }
+
+        // Aqui guardo los tamaños originales para cambiar entre normal y big y viceversa
+        foreach (TMP_Text text in targetTexts)
+        {
+            if (text != null && !originalSizes.ContainsKey(text))
+            {
+                originalSizes[text] = text.fontSize;
+            }
         }
 
         int savedIndex = PlayerPrefs.GetInt("TextSizeIndex", 0);
@@ -34,27 +46,38 @@ public class TextSizeManager : MonoBehaviour
         textSizeDropdown.RefreshShownValue();
 
         textSizeDropdown.onValueChanged.AddListener(ChangeTextSize);
-        ChangeTextSize(savedIndex); // Aplico tama�o guardado
+        ChangeTextSize(savedIndex); // Aplico el tamaño guardado
     }
 
     void ChangeTextSize(int index)
     {
-        float size = 40f;
-
-        switch (index)
-        {
-            case 0: size = 40f; break; // Normal
-            case 1: size = 50f; break; // Big
-            default: size = 40f; break;
-        }
-
         foreach (TMP_Text text in targetTexts)
         {
-            if (text != null)
-                text.fontSize = size;
+            if (text == null || !originalSizes.ContainsKey(text)) continue;
+
+            float baseSize = originalSizes[text];
+
+            // Incrementa la escala segun la siguiente logica
+            if (Mathf.Approximately(baseSize, 40f))
+            {
+                text.fontSize = index == 0 ? 40f : 50f;
+            }
+            else if (Mathf.Approximately(baseSize, 16f))
+            {
+                text.fontSize = index == 0 ? 16f : 22f;
+            }
+            else if (Mathf.Approximately(baseSize, 24f))
+            {
+                text.fontSize = index == 0 ? 24f : 32f;
+            }
+            else
+            {
+                Debug.Log($"Tamaño de texto no gestionado: {baseSize}, se mantiene.");
+            }
         }
 
         PlayerPrefs.SetInt("TextSizeIndex", index);
     }
 }
+
 
