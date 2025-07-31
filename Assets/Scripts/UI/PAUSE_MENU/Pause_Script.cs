@@ -1,54 +1,31 @@
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour
+public class PauseController : MonoBehaviour
 {
-    public GameObject pauseMenuPanel;
-    public GameObject optionsMenuPrefab;       // Aqui va el Options_Menu
-    public Transform uiCanvasTransform;        // Aqui el canvas
+    [SerializeField] private GameObject pauseMenuPanel;
+    [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
 
     private bool isPaused = false;
-    private GameObject currentOptionsMenu;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(pauseKey))
         {
-            if (isPaused)
-                ResumeGame();
-            else
-                PauseGame();
+            TogglePause();
         }
     }
 
-    void PauseGame()
+    public void TogglePause()
     {
-        pauseMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+        pauseMenuPanel.SetActive(isPaused);
     }
 
     public void ResumeGame()
     {
-        pauseMenuPanel.SetActive(false);
-        CloseOptionsMenu(); // Por si está abierto
-        Time.timeScale = 1f;
         isPaused = false;
-    }
-
-    public void OpenOptionsMenu()
-    {
-        if (currentOptionsMenu == null)
-        {
-            currentOptionsMenu = Instantiate(optionsMenuPrefab, uiCanvasTransform, false);
-        }
-    }
-
-    public void CloseOptionsMenu()
-    {
-        if (currentOptionsMenu != null)
-        {
-            Destroy(currentOptionsMenu);
-            currentOptionsMenu = null;
-        }
+        Time.timeScale = 1f;
+        pauseMenuPanel.SetActive(false);
     }
 }
