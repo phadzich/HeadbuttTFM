@@ -33,6 +33,7 @@ public class ResourceBlock : Block
 
     public TextMeshProUGUI remianingBouncesText;
     public ResourceDropFollow resourceDropPrefab;
+    public HeadbuttDropFollow hbDropPrefab;
 
     [Header("UI AND VFX")]
     public ResourceBlockUIAnims uiAnims;
@@ -59,20 +60,9 @@ public class ResourceBlock : Block
         uiAnims.resourceIcon.sprite = _resource.icon;
     }
 
-    private void InstantiateHBVFX()
+    private void ReleaseHBDrop()
     {
-        Vector3 screenPos = UIManager.Instance.hbPointsHUD.transform.position;
-        Vector3 worldTarget = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 10f));
-
-        var _vfxPF = Instantiate(vfxPrefab, Vector3.zero, Quaternion.identity,this.transform);
-        VisualEffect _vfx = _vfxPF.GetComponent<VisualEffect>();
-        _vfx.SetVector3(Shader.PropertyToID("TargetPosition"), worldTarget);
-        _vfx.SetVector3(Shader.PropertyToID("Origin"), this.transform.position);
-        _vfx.SendEvent("OnPlay");
-
-
-
-
+        hbDropPrefab.StartFollow();
     }
     private void InstanceResourceBlockMesh()
     {
@@ -149,9 +139,10 @@ public class ResourceBlock : Block
         ScreenShake();
         MinedAnimation();
         ReleaseResourceDrop();
+        ReleaseHBDrop();
         SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
 
-        uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
+        //uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
         //InstantiateHBVFX();
     }
 

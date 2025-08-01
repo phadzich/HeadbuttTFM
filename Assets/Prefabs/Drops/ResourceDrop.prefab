@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  MinModifier: 5
-  MaxModifier: 15
+  MinModifier: 0.5
+  MaxModifier: 1
   meshContainer: {fileID: 6526460954334320500}
   _isFollowing: 0

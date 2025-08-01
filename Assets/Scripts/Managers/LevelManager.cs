@@ -289,7 +289,7 @@ public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer
         {
             navMeshSurface.RemoveData();
             navMeshSurface.BuildNavMesh(); // Esto hornear� el NavMesh en tiempo de ejecuci�n
-            Debug.Log("NavMesh baked dynamically.");
+            //Debug.Log("NavMesh baked dynamically.");
         }
         else
         {

@@ -7,6 +7,7 @@ public class ResourceDropFollow : MonoBehaviour
     public float MinModifier;
     public float MaxModifier;
     public Transform meshContainer;
+    private float smoothTime = .2f;
 
     Vector3 _velocity = Vector3.zero;
     public bool _isFollowing = false;
@@ -23,7 +24,7 @@ public class ResourceDropFollow : MonoBehaviour
 
     public void StartFollowing()
         {
-        Debug.Log("STARTFOLLOWING");
+        smoothTime = Random.Range(.1f, .3f);
         _isFollowing = true;
         }
 
@@ -31,7 +32,7 @@ public class ResourceDropFollow : MonoBehaviour
     {
         if (_isFollowing)
         {
-            this.gameObject.transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, Time.deltaTime * Random.Range(MinModifier, MaxModifier));
+            this.gameObject.transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, smoothTime * Random.Range(MinModifier, MaxModifier));
         }
     }
 
