@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 01_Sandstone
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: b4a85a188f7b9d44abc0dc59d7696139, type: 3}
   id: 1
   shortName: Sandstone
   hardness: 3
@@ -20,5 +19,6 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: 905417b425d1f224e8ae80611fa7137d, type: 3}
   color: {r: 0.72156864, g: 0.4509804, b: 0.2, a: 1}
-  mesh: {fileID: 8846097338804330060, guid: e5ce7adbe131efe47ae5cbcc75cc67e1, type: 3}
+  blockMesh: {fileID: 8846097338804330060, guid: e5ce7adbe131efe47ae5cbcc75cc67e1, type: 3}
+  resMesh: {fileID: 9166234884787972917, guid: 89173741d08a05249af72134a8f266fe, type: 3}
   resourceFamilies: 00000000

@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.VFX;
 
 public class ResourceBlock : Block
 {
@@ -31,10 +32,11 @@ public class ResourceBlock : Block
     public GameObject hitIndicatorPF;
 
     public TextMeshProUGUI remianingBouncesText;
-    public GameObject resourceDropPrefab;
+    public ResourceDropFollow resourceDropPrefab;
 
     [Header("UI AND VFX")]
     public ResourceBlockUIAnims uiAnims;
+    public VisualEffect vfxPrefab;
 
     private void Start()
     {
@@ -51,15 +53,36 @@ public class ResourceBlock : Block
         isWalkable= true;
 
         InstanceResourceBlockMesh();
+        InstanceResourceDropMesh();
         ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         uiAnims.resourceIcon.sprite = _resource.icon;
     }
 
+    private void InstantiateHBVFX()
+    {
+        Vector3 screenPos = UIManager.Instance.hbPointsHUD.transform.position;
+        Vector3 worldTarget = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 10f));
+
+        var _vfxPF = Instantiate(vfxPrefab, Vector3.zero, Quaternion.identity,this.transform);
+        VisualEffect _vfx = _vfxPF.GetComponent<VisualEffect>();
+        _vfx.SetVector3(Shader.PropertyToID("TargetPosition"), worldTarget);
+        _vfx.SetVector3(Shader.PropertyToID("Origin"), this.transform.position);
+        _vfx.SendEvent("OnPlay");
+
+
+
+
+    }
     private void InstanceResourceBlockMesh()
     {
-        blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
+        blockMesh = Instantiate(resourceData.blockMesh, blockMeshParent);
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
+    }
+
+    private void InstanceResourceDropMesh()
+    {
+        resourceDropPrefab.ConfigDrop(resourceData.resMesh);
     }
 
     private int HelmetPowerMultiplier(MiningPower helmetPower)
@@ -121,19 +144,22 @@ public class ResourceBlock : Block
 
     public override void Activate()
     {
-        // Spawn the correct resource prefab (linked in ResourceData)
-        if (resourceData != null && resourceData.resourceDropPrefab != null)
-        {
-            Instantiate(resourceData.resourceDropPrefab, transform.position, Quaternion.identity);
-        }
 
         GetMinedState();
         ScreenShake();
         MinedAnimation();
+        ReleaseResourceDrop();
         SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
 
         uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
+        //InstantiateHBVFX();
     }
+
+    private void ReleaseResourceDrop()
+    {
+        resourceDropPrefab.gameObject.SetActive(true);
+    }
+
 
     private void MinedAnimation()
     {

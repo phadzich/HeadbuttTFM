@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 07_Obsidian
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: 9a9ef42d496ea5147911bda19fcaaeeb, type: 3}
   id: 7
   shortName: Obsidian
   hardness: 9
@@ -20,5 +19,6 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: e409befd15b7d4040a9310bb69296592, type: 3}
   color: {r: 0.5745275, g: 0.25098044, b: 0.8784314, a: 1}
-  mesh: {fileID: 8846097338804330060, guid: c5fa3a11db90a2d428e00b0a9d713adf, type: 3}
+  blockMesh: {fileID: 8846097338804330060, guid: c5fa3a11db90a2d428e00b0a9d713adf, type: 3}
+  resMesh: {fileID: 6255088177359255304, guid: 6cd2675aa07552c4fb20d51b03471028, type: 3}
   resourceFamilies: 00000000

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class ResourceDataAutoLinker : EditorWindow
-{
+{/*
     [MenuItem("Tools/Auto-Link Resource Prefabs")]
     static void AutoLinkPrefabs()
     {
@@ -42,4 +42,5 @@ public class ResourceDataAutoLinker : EditorWindow
         AssetDatabase.SaveAssets();
         Debug.Log($"✅ Auto-linked {linked} resource prefabs to ResourceData assets.");
     }
+    */
 }

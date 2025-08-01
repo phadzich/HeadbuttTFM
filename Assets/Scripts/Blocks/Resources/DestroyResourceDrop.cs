@@ -5,9 +5,11 @@ public class DestroyResourceDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other);
         if (other.CompareTag("Player"))
         {
-            Destroy(transform.parent.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
+
 }
