@@ -58,6 +58,8 @@ public class ResourceBlock : Block
         ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         uiAnims.resourceIcon.sprite = _resource.icon;
+        int _randomRotation = Random.Range(0, 4);
+        transform.Rotate(0, (float)_randomRotation * 90, 0);
     }
 
     private void ReleaseHBDrop()
