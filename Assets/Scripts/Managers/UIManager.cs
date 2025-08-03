@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,7 @@ public class UIManager : MonoBehaviour
 
 
     public CurrentHelmetsHUD currentHelmetsHUD;
-
+    public CinemachineCamera currentCam;
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
@@ -118,6 +119,16 @@ public class UIManager : MonoBehaviour
         hbPointsHUD.UpdateFill(_current, _max);
     }
 
+    public void ActivateCam(CinemachineCamera _newCam)
+    {
+        currentCam = _newCam;
+      _newCam.Priority = 20;
+    }
+
+    public void DeactivateCurrentCam()
+    {
+        currentCam.Priority = 0;
+    }
     private void OnOwnedResourcesChanged()
     {
         //NPCUpgradeExchanger.PopulateButtons();

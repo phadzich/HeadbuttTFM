@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1a7981b04df58b34cbad144957c16b45, type: 2}
     - target: {fileID: 919132149155446097, guid: b5b2aeb3fa18723439a7a64d466fe208, type: 3}
       propertyPath: m_Name
-      value: Turquenite
+      value: Res04_MESH
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5b2aeb3fa18723439a7a64d466fe208, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

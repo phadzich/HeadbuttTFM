@@ -12,28 +12,17 @@ public class PlayerCamera : MonoBehaviour
 
     public void MoveCamDown(int _count)
     {
-        Tween.PositionY(playerCam.transform,
-            startValue: playerCam.transform.position.y,
-            endValue: (_count * -LevelManager.Instance.distanceBetweenSublevels) + playerCamHeight,
-            duration: moveDownDuration,
-            ease: Ease.InOutQuad);
 
         Tween.PositionY(fogMesh.transform,
     startValue: fogMesh.transform.position.y,
     endValue: (_count * -LevelManager.Instance.distanceBetweenSublevels),
     duration: moveDownDuration,
-    startDelay:.5f,
+    startDelay:1f,
     ease: Ease.InOutQuad);
     }
 
     public void MoveCamToDepth(int _depth)
     {
-        //Debug.Log(_depth);
-        Tween.PositionY(playerCam.transform,
-            startValue: playerCam.transform.position.y,
-            endValue: (_depth*-LevelManager.Instance.distanceBetweenSublevels) + playerCamHeight,
-            duration: moveUpDuration,
-            ease: Ease.InOutQuad);
 
         Tween.PositionY(fogMesh.transform,
     startValue: fogMesh.transform.position.y,

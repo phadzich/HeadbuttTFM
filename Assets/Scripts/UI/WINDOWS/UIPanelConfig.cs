@@ -8,11 +8,14 @@ public class UIPanelConfig : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.PauseGame(pauseOnOpen);
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
+        //GameManager.Instance.PauseGame(pauseOnOpen);
     }
     private void OnDisable()
     {
-        GameManager.Instance.PauseGame(!unpauseOnClose);
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+        UIManager.Instance.DeactivateCurrentCam();
+        //GameManager.Instance.PauseGame(!unpauseOnClose);
     }
 
     public void OpenGoogleForm() { Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSc1K6Mk7Lu5aLRvEJxpBBAuJGeOzEsi3qPTpSMoP6H5tCkrRw/viewform?usp=dialog"); }

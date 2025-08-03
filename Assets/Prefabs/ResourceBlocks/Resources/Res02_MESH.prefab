@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 40731e7144f614247943728471026ccf, type: 2}
     - target: {fileID: 919132149155446097, guid: 39fb4c8132469ca4d95329576452c29e, type: 3}
       propertyPath: m_Name
-      value: Bronze
+      value: Res02_MESH
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 39fb4c8132469ca4d95329576452c29e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

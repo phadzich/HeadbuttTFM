@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bbfa7d462be206540acbda8ba3bf9075, type: 2}
     - target: {fileID: 919132149155446097, guid: 6523251b192a01e4ebb34b3f3dbddd04, type: 3}
       propertyPath: m_Name
-      value: LapisLazuli
+      value: Res03_MESH
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6523251b192a01e4ebb34b3f3dbddd04, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
