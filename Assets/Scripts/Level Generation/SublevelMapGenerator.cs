@@ -25,6 +25,7 @@ public class SublevelMapGenerator : MonoBehaviour
     public NPCSublevelConfig npcConfig;
     public Sublevel sublevel;
     public Dictionary<Vector2Int, Block> currentBlocks = new();
+
     [Header("LEVEL")]
     public GameObject clearBlockPrefab;
     public GameObject floorBlockPrefab;
@@ -106,29 +107,24 @@ public class SublevelMapGenerator : MonoBehaviour
         }
     }
 
-         private GameObject BlockFromPixel(int _x, int _y)
-        {
-            Color _pixelColor = mapTexture.GetPixel(_x, _y);
+    private GameObject BlockFromPixel(int _x, int _y) {
+        Color _pixelColor = mapTexture.GetPixel(_x, _y);
 
 
-        if (_pixelColor.a == 0)
-            {
-                return null;
-            }
+        if (_pixelColor.a == 0) {
+            return null;
+        }
 
-            foreach(ColorToString _color in colorMappings.colors)
-            {
-
-            if (_color.color==_pixelColor)
-                {
+        foreach(ColorToString _color in colorMappings.colors) {
+            if (_color.color==_pixelColor) {
                 
                 return GetBlockFromString(_color.blockString);
             }
-            }
+        }
 
 
         return null;
-        }
+    }
 
     //LOS COLOR MAPPINGS DEBEN SER COLOR A ALGO COMO RES_01_ICE Y HACER UN PARSER QUE AGARRE PREFAB RES, APLIQUE RECURSO 01 Y APLIQUE ESTADO ICE
     //PRIMERO UNA FUNCION QUE SEPARE TYPE, DATA, VARIANT SEGUN LOS SUBGUIONES
@@ -168,6 +164,21 @@ public class SublevelMapGenerator : MonoBehaviour
         LevelManager.Instance.sublevelsList[currentDepth].maxResourceBlocks++;
         return _bloque;
     }
+
+    private GameObject InstantiateGateBlock(string _variant)
+    {
+        //Debug.Log($"CREATING GATE {_variant}");
+        int _gateIndex = int.Parse(_variant);
+        var _bloque = Instantiate(gateBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
+        GateBlock _gateBlock = _bloque.GetComponent<GateBlock>();
+        var _gateRequirement = miningConfig.gateRequirements[_gateIndex];
+        _gateBlock.SetupBlock(currentDepth, currentX, currentY, _gateIndex, _gateRequirement.requiredResource, _gateRequirement.requiredAmount);
+        //Debug.Log(_gateBlock);
+        //Debug.Log(sublevel);
+        sublevel.gateBlocks.Add(_gateBlock);
+        return _bloque;
+    }
+
     GameObject ConfigLVLBlock(string _blockID,string _blockVariant)
     {
         GameObject _bloque = null;
@@ -223,20 +234,6 @@ public class SublevelMapGenerator : MonoBehaviour
                 _waterBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
         }
-        return _bloque;
-    }
-
-    private GameObject InstantiateGateBlock(string _variant)
-    {
-        //Debug.Log($"CREATING GATE {_variant}");
-        int _gateIndex = int.Parse(_variant);
-        var _bloque = Instantiate(gateBlockPrefab, nextPosition, Quaternion.identity, sublevelContainer);
-        GateBlock _gateBlock = _bloque.GetComponent<GateBlock>();
-        var _gateRequirement = miningConfig.gateRequirements[_gateIndex];
-        _gateBlock.SetupBlock(currentDepth, currentX, currentY, _gateIndex, _gateRequirement.requiredResource, _gateRequirement.requiredAmount);
-        //Debug.Log(_gateBlock);
-        //Debug.Log(sublevel);
-        sublevel.gateBlocks.Add(_gateBlock);
         return _bloque;
     }
 

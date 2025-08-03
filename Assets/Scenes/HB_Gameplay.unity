@@ -10286,9 +10286,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpointSystem: {fileID: 899462913}
   levelsList:
-  - {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
   - {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
+  - {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
   sublevelMapGenerator: {fileID: 1925347361}
+  sublevelMapNewGenerator: {fileID: 1925347362}
   currentLevel: {fileID: 0}
   currentSublevel: {fileID: 0}
   sublevelsList: []
@@ -10297,12 +10298,6 @@ MonoBehaviour:
   sublevelWidth: 15
   sublevelHeight: 15
   currentExitDoor: {fileID: 0}
-  npcBlockPrefab: {fileID: 8090959518607110755, guid: d298c2b52371ff54aa834c19704b1e73, type: 3}
-  resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
-  doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
-  floorBlockPrefab: {fileID: 8090959518607110755, guid: bf259b65fe82f72448705a6fe246e9a9, type: 3}
-  doorTriggerPrefab: {fileID: 4022598762078982033, guid: ec26b8757459834449c118bc6ce8c5a5, type: 3}
-  sublevelWallPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   levelsContainer: {fileID: 1112208449}
   currentLoadedLevelContainer: {fileID: 0}
   distanceBetweenSublevels: 50
@@ -10447,6 +10442,7 @@ MonoBehaviour:
   enanoParent: {fileID: 1217362969}
   blockLockdownRange: 0
   blockBelow: {fileID: 0}
+  blockNSBelow: {fileID: 0}
   knockbackDistance: 1
 --- !u!114 &1664707212
 MonoBehaviour:
@@ -11618,6 +11614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1925347360}
   - component: {fileID: 1925347361}
+  - component: {fileID: 1925347362}
   m_Layer: 0
   m_Name: SublevelMapGenerator
   m_TagString: Untagged
@@ -11647,7 +11644,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925347359}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ef8a56673f2924f956c055e5b2bd61, type: 3}
   m_Name: 
@@ -11664,6 +11661,7 @@ MonoBehaviour:
   floorBlockPrefab: {fileID: 8090959518607110755, guid: bf259b65fe82f72448705a6fe246e9a9, type: 3}
   wallBlockPrefab: {fileID: 5993808358622398738, guid: 605b293e9bd41db4191ccb92f5553718, type: 3}
   gateBlockPrefab: {fileID: 8090959518607110755, guid: ff8e3ab068a4b6542926ee9c3c0faed4, type: 3}
+  waterBlockPrefab: {fileID: 8090959518607110755, guid: 657ee419a4b855945a001b85c5d1bf75, type: 3}
   keyBlockPrefab: {fileID: 8090959518607110755, guid: 4c659369bd631b247b3c00f41b25e95f, type: 3}
   bpBlockPrefab: {fileID: 8090959518607110755, guid: a3453dd6640749c4aad1b696795a6ad5, type: 3}
   helmetPotionBlockPrefab: {fileID: 8090959518607110755, guid: dfcb55329fc866c4c8f97dd97eb133cf, type: 3}
@@ -11676,12 +11674,50 @@ MonoBehaviour:
   ballBlockPrefab: {fileID: 8090959518607110755, guid: bc01de7e135a10f45901dc4c99e96a02, type: 3}
   spikesBlockPrefab: {fileID: 8090959518607110755, guid: 52272c09dbc11ca4d99e4d1e5cb44f0d, type: 3}
   headBlockPrefab: {fileID: 8090959518607110755, guid: 7c90043c49f6d7e49bb27647f688871a, type: 3}
-  waterBlockPrefab: {fileID: 8090959518607110755, guid: 657ee419a4b855945a001b85c5d1bf75, type: 3}
   npcDoorPrefab: {fileID: 8090959518607110755, guid: ffe2bafb2017e7148b7243dcf9846410, type: 3}
   npcCraftPrefab: {fileID: 3289155678676577984, guid: 185e28fa8d43ff14aa80192d57b3a512, type: 3}
   npcUpgradePrefab: {fileID: 3289155678676577984, guid: 718a9f8522f786e49a439f8784bcc1f5, type: 3}
   npcElevatorPrefab: {fileID: 7440987867658177015, guid: 5559c59c86579c646925e3a2a2fbf566, type: 3}
   npcShopPrefab: {fileID: 3289155678676577984, guid: 9754b1648bb54d34c86b4ab18c4745ae, type: 3}
+--- !u!114 &1925347362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925347359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1783ce0ca8dbf4d2b857431b56a47e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMappings: {fileID: 11400000, guid: d66ad27369ecede488dcbf740ade7baf, type: 2}
+  testMap: {fileID: 2800000, guid: f2673c9dd3706e14fbc288e2bd209793, type: 3}
+  mapTexture: {fileID: 0}
+  mapWidth: 0
+  mapHeight: 0
+  blockCatalog:
+  - {fileID: 11400000, guid: 6b75ead45b84f49f6845721c4ececbec, type: 2}
+  - {fileID: 11400000, guid: 320a8eeb4a06844d7934086da19b1ccb, type: 2}
+  - {fileID: 11400000, guid: 7b3dc01942901443b81844369ce107c3, type: 2}
+  - {fileID: 11400000, guid: ac8e69f20de814322b523002cea86630, type: 2}
+  - {fileID: 11400000, guid: 2d58b1569912142b7a3eb993c9dafeb0, type: 2}
+  - {fileID: 11400000, guid: c7d03acfc1c2842edaaaf033886fb3ab, type: 2}
+  - {fileID: 11400000, guid: f3112078d25eb4013adf6c41b38da8c0, type: 2}
+  - {fileID: 11400000, guid: 548f35bb1be7e47beb5588711f3a1f66, type: 2}
+  - {fileID: 11400000, guid: caea2154a316a4f62ae83e981b65e5de, type: 2}
+  - {fileID: 11400000, guid: 2b8d5aba984374f34a16f02d00b6df77, type: 2}
+  - {fileID: 11400000, guid: 47f4d97560ba046869b4a0c5f3d703f1, type: 2}
+  - {fileID: 11400000, guid: e7dc12c07d8ab43ccbe4cf7aaf16da75, type: 2}
+  - {fileID: 11400000, guid: 03ca35399e74d493f9b4472ccbe7eb96, type: 2}
+  - {fileID: 11400000, guid: fcdc1cd37b7254259a86d9233f2006b0, type: 2}
+  - {fileID: 11400000, guid: 77e10d592a3b9442b80966bad0527f96, type: 2}
+  - {fileID: 11400000, guid: afa59fd82aec64930a87fd4aa3971971, type: 2}
+  - {fileID: 11400000, guid: 9db2e147225084a539ea31a7b61bfe4c, type: 2}
+  - {fileID: 11400000, guid: f139b6c3c37ff448fad65b64363cd002, type: 2}
+  - {fileID: 11400000, guid: fc0eab637befa4dbbbdea7cced72f42a, type: 2}
+  - {fileID: 11400000, guid: 119728c20c736412da691ac78dc343f9, type: 2}
+  - {fileID: 11400000, guid: 88d3996f9d1bc48f88659bb17edeac1d, type: 2}
 --- !u!1 &2008389151
 GameObject:
   m_ObjectHideFlags: 0

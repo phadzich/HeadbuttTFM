@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     public CheckpointSystem checkpointSystem;
     public List<LevelConfig> levelsList;
     public SublevelMapGenerator sublevelMapGenerator;
+    public SublevelMapNewGenerator sublevelMapNewGenerator;
 
     [Header("CURRENT LEVEL")]
     public Level currentLevel;
@@ -31,13 +32,6 @@ public class LevelManager : MonoBehaviour
     public int sublevelHeight;
     public GameObject currentExitDoor;
 
-    [Header("GENERAL PREFABS")]
-    public GameObject npcBlockPrefab;
-    public GameObject resourceBlockPrefab;
-    public GameObject doorBlockPrefab;
-    public GameObject floorBlockPrefab;
-    public GameObject doorTriggerPrefab;
-    public GameObject sublevelWallPrefab;
     [Header("LEVEL CONTAINERS")]
     public Transform levelsContainer;
     public GameObject currentLoadedLevelContainer;
@@ -141,11 +135,14 @@ public class LevelManager : MonoBehaviour
 
             //Debug.Log(_miningSublevel.id);
 
-            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,null,_sublevel);
+            //sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,null,_sublevel);
+
+            sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel, null, _sublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth,null, _npcSublevel, _sublevel);
+            //sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth,null, _npcSublevel, _sublevel);
+            sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth, null, _npcSublevel, _sublevel);
         }
 
     }
@@ -237,34 +234,6 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("Reseting Helmet Stats");
         GameManager.Instance.RestartSublevelStats();
     }
-
-
-public void InstanceNPCBlocks(int _cols, int _rows, Transform _sublevelContainer)
-    {
-        int _spacing = 1;
-
-        float offsetX = (_cols - 1) * _spacing * 0.5f;
-        float offsetZ = (_cols - 1) * _spacing * 0.5f;
-
-        for (int z = 0; z < _rows; z++)
-        {
-            for (int x = 0; x < _cols; x++)
-            {
-                Vector3 _posicion = new Vector3(x * _spacing - offsetX, _sublevelContainer.transform.position.y, z * _spacing - offsetZ);
-                GameObject _bloque = Instantiate(npcBlockPrefab, _posicion, Quaternion.identity, _sublevelContainer);
-                NPCBlock _npcBlock = _bloque.GetComponent<NPCBlock>();
-
-                _bloque.name = $"{_npcBlock.name}_c{x}r_{z}";
-                if (x == _cols / 2 && z == _rows / 2 && currentLevelDepth + 1 < maxLevelDepth)
-                {
-                    //Debug.Log("NPC Door trigger at" + currentLevelDepth);
-                    //_npcBlock.isDoor = true;
-                }
-                _npcBlock.SetupBlock(0, x, z);
-            }
-        }
-    }
-
 
     public void IncreaseMinedBlocks(int _newMinedBlocks)
     {

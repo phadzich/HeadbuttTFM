@@ -14,128 +14,122 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colors:
   - color: {r: 1, g: 1, b: 1, a: 1}
-    blockString: LVL_CLEAR_X
+    blockString: CLEAR_X
     icon: {fileID: 0}
   - color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-    blockString: LVL_FLOOR_X
+    blockString: FLOOR_X
     icon: {fileID: 2800000, guid: aefae54605abd4342b55fbbbab5d3164, type: 3}
   - color: {r: 0, g: 0, b: 0, a: 1}
-    blockString: LVL_WALL_X
+    blockString: WALL_X
     icon: {fileID: 2800000, guid: 0f3da2edf34ff464bbd153c03e9d76f6, type: 3}
   - color: {r: 0, g: 1, b: 0, a: 1}
-    blockString: LVL_DOOR_X
+    blockString: DOOR_X
     icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
   - color: {r: 0, g: 1, b: 1, a: 1}
-    blockString: RES_01_DEF
+    blockString: RES_01
     icon: {fileID: 2800000, guid: 905417b425d1f224e8ae80611fa7137d, type: 3}
   - color: {r: 0, g: 0.72156864, b: 1, a: 1}
-    blockString: RES_02_DEF
+    blockString: RES_02
     icon: {fileID: 2800000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
   - color: {r: 0, g: 0.32941177, b: 1, a: 1}
-    blockString: RES_03_DEF
+    blockString: RES_03
     icon: {fileID: 2800000, guid: 61250b903f909954ab0763275fc40994, type: 3}
   - color: {r: 0, g: 0, b: 1, a: 1}
-    blockString: RES_04_DEF
+    blockString: RES_04
     icon: {fileID: 2800000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
   - color: {r: 0.31764707, g: 0, b: 1, a: 1}
-    blockString: RES_05_DEF
+    blockString: RES_05
     icon: {fileID: 2800000, guid: 0f4c3091be58eb24d9afc6cd21ac5b5a, type: 3}
   - color: {r: 0.54509807, g: 0, b: 1, a: 1}
-    blockString: RES_06_DEF
+    blockString: RES_06
     icon: {fileID: 2800000, guid: d21e7c121be17864da483da23a70e1dd, type: 3}
   - color: {r: 1, g: 0, b: 1, a: 1}
-    blockString: RES_07_DEF
+    blockString: RES_07
     icon: {fileID: 2800000, guid: e409befd15b7d4040a9310bb69296592, type: 3}
   - color: {r: 1, g: 0.3529412, b: 1, a: 1}
-    blockString: RES_08_DEF
+    blockString: RES_08
     icon: {fileID: 2800000, guid: 788da675b39bfdd42bd7f7888f59995a, type: 3}
   - color: {r: 1, g: 0.4745098, b: 0.85490197, a: 1}
-    blockString: RES_09_DEF
+    blockString: RES_09
     icon: {fileID: 2800000, guid: 734ac855cc8a7b1439eb2054bb3ea886, type: 3}
   - color: {r: 1, g: 0.56078434, b: 0.7529412, a: 1}
-    blockString: RES_10_DEF
+    blockString: RES_10
     icon: {fileID: 2800000, guid: ec277fdb8de88dd4d89c2077c01b42c9, type: 3}
   - color: {r: 1, g: 0, b: 0, a: 1}
-    blockString: DMG_SLIME_X
+    blockString: SLIME_X
     icon: {fileID: 2800000, guid: 542e6432669fc4c4b98a57894742f148, type: 3}
   - color: {r: 1, g: 0.5254902, b: 0, a: 1}
-    blockString: DMG_LAVA_X
+    blockString: LAVA_X
     icon: {fileID: 2800000, guid: 25dfbcce0a016864e8d6243107ee41ea, type: 3}
   - color: {r: 0.67058825, g: 0, b: 0, a: 1}
-    blockString: DMG_BALL_X
+    blockString: BALL_X
     icon: {fileID: 2800000, guid: 5131e2ee54db36d498bcd547c42ab1c5, type: 3}
   - color: {r: 0.39215687, g: 0.19607843, b: 0.84313726, a: 1}
-    blockString: DMG_SPIKES_X
+    blockString: SPIKES_X
     icon: {fileID: 2800000, guid: 570a2a2eef0db0549b2dc3aff2a56532, type: 3}
   - color: {r: 0.8235294, g: 0.7058824, b: 0.19607843, a: 1}
-    blockString: DMG_LAVASPAWN_X
+    blockString: LAVASPAWN_X
     icon: {fileID: 2800000, guid: fdba121cdd7d06544b2d62ecedb6fb8d, type: 3}
   - color: {r: 0.8509804, g: 0.22352941, b: 0.03137255, a: 1}
-    blockString: DMG_HEAD_X
+    blockString: HEAD_X
     icon: {fileID: 2800000, guid: fdba121cdd7d06544b2d62ecedb6fb8d, type: 3}
   - color: {r: 0.3764706, g: 0.64705884, b: 0.7294118, a: 1}
-    blockString: DMG_WATER_X
+    blockString: WATER_X
     icon: {fileID: 2800000, guid: 71c789477c4e6f948852e4abd9486d1d, type: 3}
   - color: {r: 0.36862746, g: 0.53333336, b: 0.27058825, a: 1}
-    blockString: NPC_DOOR_X
+    blockString: DOOR_X
     icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
   - color: {r: 0.3764706, g: 0.3019608, b: 0.21568628, a: 1}
-    blockString: NPC_CRAFT_X
+    blockString: CRAFT_X
     icon: {fileID: 2800000, guid: 7c8f253f27425244c86fd4447b811dcf, type: 3}
   - color: {r: 0.5176471, g: 0.3882353, b: 0.12941177, a: 1}
-    blockString: NPC_UPGRADE_X
+    blockString: UPGRADE_X
     icon: {fileID: 2800000, guid: 7c8f253f27425244c86fd4447b811dcf, type: 3}
+  - color: {r: 0.34117648, g: 0.4392157, b: 0, a: 1}
+    blockString: SHOP_X
+    icon: {fileID: 2800000, guid: 55fb331a4447a9b408ea940c25afe95a, type: 3}
   - color: {r: 0.17254902, g: 0.35686275, b: 0.3882353, a: 1}
-    blockString: NPC_ELEVATOR_X
+    blockString: ELEVATOR_X
     icon: {fileID: 2800000, guid: 7c8f253f27425244c86fd4447b811dcf, type: 3}
   - color: {r: 0.7882353, g: 0.88235295, b: 0.5019608, a: 1}
-    blockString: LVL_GATE_0
+    blockString: GATE_0
     icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
   - color: {r: 0.62352943, g: 0.7411765, b: 0.28235295, a: 1}
-    blockString: LVL_GATE_1
+    blockString: GATE_1
     icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
   - color: {r: 0.4509804, g: 0.5568628, b: 0.13333334, a: 1}
-    blockString: LVL_GATE_2
+    blockString: GATE_2
     icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
   - color: {r: 0.25882354, g: 0.34117648, b: 0.015686275, a: 1}
-    blockString: LVL_GATE_3
+    blockString: GATE_3
     icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
   - color: {r: 1, g: 0.73333335, b: 0, a: 1}
-    blockString: LVL_KEY_X
+    blockString: KEY_X
     icon: {fileID: 2800000, guid: 023aec234547ee84d939a99dfd79b139, type: 3}
   - color: {r: 0.7411765, g: 1, b: 0.80784315, a: 1}
-    blockString: LVL_HBPOTION_0
+    blockString: HBPOTION_0
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 0.5529412, g: 1, b: 0.67058825, a: 1}
-    blockString: LVL_HBPOTION_1
+    blockString: HBPOTION_1
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 0.30980393, g: 1, b: 0.49019608, a: 1}
-    blockString: LVL_HBPOTION_2
+    blockString: HBPOTION_2
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 0.15294118, g: 0.8235294, b: 0.32941177, a: 1}
-    blockString: LVL_HBPOTION_3
+    blockString: HBPOTION_3
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 1, g: 0.6117647, b: 0.5647059, a: 1}
-    blockString: LVL_HELMETPOTION_0
+    blockString: HELMETPOTION_0
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 0.9764706, g: 0.41960785, b: 0.3529412, a: 1}
-    blockString: LVL_HELMETPOTION_1
+    blockString: HELMETPOTION_1
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 1, g: 0.28235295, b: 0.19607843, a: 1}
-    blockString: LVL_HELMETPOTION_2
+    blockString: HELMETPOTION_2
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
   - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
-    blockString: LVL_HELMETPOTION_3
+    blockString: HELMETPOTION_3
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
-  - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
-    blockString: LVL_HELMETPOTION_3
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
-  - color: {r: 0.34117648, g: 0.4392157, b: 0, a: 1}
-    blockString: NPC_SHOP_X
-    icon: {fileID: 2800000, guid: 55fb331a4447a9b408ea940c25afe95a, type: 3}
   - color: {r: 0.20392157, g: 1, b: 0.47058824, a: 1}
-    blockString: LVL_BP_X
+    blockString: BP_X
     icon: {fileID: 2800000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
-  - color: {r: 0.3764706, g: 0.64705884, b: 0.7294118, a: 1}
-    blockString: LVL_WATER_X
-    icon: {fileID: 2800000, guid: 71c789477c4e6f948852e4abd9486d1d, type: 3}

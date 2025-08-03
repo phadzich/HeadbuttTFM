@@ -70,7 +70,7 @@ public class PlayerBounce : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance, blockLayerMask))
         {
             //Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.gameObject.GetComponent<Block>())
+            if (hit.collider.gameObject.GetComponent<BlockNS>())
             {
                 //Debug.Log("HITBLOCK");
                 BounceUp();
@@ -85,7 +85,9 @@ public class PlayerBounce : MonoBehaviour
         //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
         rb.linearVelocity = new Vector3(0, jumpForce, 0);
-        PlayerManager.Instance.playerMovement.blockBelow.OnBounced(HelmetManager.Instance.currentHelmet);
+        //PlayerManager.Instance.playerMovement.blockBelow.OnBounced(HelmetManager.Instance.currentHelmet);
+        PlayerManager.Instance.playerMovement.blockNSBelow.OnBounced(HelmetManager.Instance.currentHelmet);
+        PlayerManager.Instance.playerAnimations.BounceSS();
         PlayerManager.Instance.playerAnimations.BounceSS();
         HelmetManager.Instance.currentHelmet.OnBounce();
     }

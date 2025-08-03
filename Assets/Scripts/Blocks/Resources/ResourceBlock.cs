@@ -107,7 +107,7 @@ public class ResourceBlock : Block
         ToggleHitIndicator(true);
 
         //SI ES UN RESOURCE DIFERENTE AL ANTERIOR, RESETEAMOS EL COMBO
-        MatchManager.Instance.ResourceBounced(this);
+        //MatchManager.Instance.ResourceBounced(this);
     }
 
     public void MoveResourceToken(float _height)

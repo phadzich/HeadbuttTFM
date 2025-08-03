@@ -19,8 +19,8 @@ public class WaterShield : HelmetEffect
 
     public override void OnHeadbutt()
     {
-        Debug.Log(PlayerManager.Instance.playerMovement.blockBelow.ToString());
-        if(PlayerManager.Instance.playerMovement.blockBelow.ToString() == "DBG_WATER(Clone) (DamageBlock)")
+        Debug.Log(PlayerManager.Instance.playerMovement.blockNSBelow.ToString());
+        if(PlayerManager.Instance.playerMovement.blockNSBelow.ToString() == "DBG_WATER(Clone) (DamageBlock)")
         {
             PlayerManager.Instance.ActivateShield(duration);
         }

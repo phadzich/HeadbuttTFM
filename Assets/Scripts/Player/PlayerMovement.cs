@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float blockLockdownRange;
     public Block blockBelow;
+    public BlockNS blockNSBelow;
 
     [Header("KNOCKBACK")]
     public float knockbackDistance = 1f;
@@ -34,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        CheckForBlockBelow();
+        //CheckForBlockBelow();
+        CheckForNSBlockBelow();
         CheckMovementLock();
 
         transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
@@ -60,13 +62,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void CheckForNSBlockBelow()
+    {
+        Vector3 origin = enanoParent.transform.position;
+        Vector3 direction = Vector3.down;
+        Debug.DrawRay(origin, direction * 20f, Color.red);
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, 20f, blockLayerMask))
+        {
+
+            blockNSBelow = hit.collider.GetComponent<BlockNS>();
+        }
+    }
+
     public void ChangePositionTarget(Vector3 newPos)
     {
         Vector3 alignedPosition = new Vector3(
-    Mathf.Round(newPos.x),
-    Mathf.Round(newPos.y),
-    Mathf.Round(newPos.z)
-);
+            Mathf.Round(newPos.x),
+            Mathf.Round(newPos.y),
+            Mathf.Round(newPos.z)
+        );
         positionTarget = new Vector3(alignedPosition.x, 0, alignedPosition.z);
         //Debug.Log("NewTarget: " + positionTarget);
 
@@ -89,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
 
-                if (blockBelow != null)
+                if (blockNSBelow != null)
                 {
                     {
                         if (CanMoveInDirection())
@@ -109,28 +124,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveInput.x < 0)
         {
-            if (blockBelow.left.isWalkable)
+            if (blockNSBelow.left.isWalkable)
             {
                 return true;
             }
         }
         else if (moveInput.x > 0)
         {
-            if (blockBelow.right.isWalkable)
+            if (blockNSBelow.right.isWalkable)
             {
                 return true;
             }
         }
         else if (moveInput.y < 0)
         {
-            if (blockBelow.down.isWalkable)
+            if (blockNSBelow.down.isWalkable)
             {
                 return true;
             }
         }
         else if (moveInput.y > 0)
         {
-            if (blockBelow.up.isWalkable)
+            if (blockNSBelow.up.isWalkable)
             {
                 return true;
             }

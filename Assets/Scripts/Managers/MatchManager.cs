@@ -8,10 +8,10 @@ public class MatchManager : MonoBehaviour
 
     [Header("COMBO ACTUAL")]
     [SerializeField]
-    private List<ResourceBlock> currentChainBlocks;
+    private List<ResourceEffect> currentChainBlocks;
     public ResourceData currentChainResource;
     public ResourceData bouncedResource;
-    public ResourceBlock bouncedResourceBlock;
+    public ResourceEffect bouncedResourceBlock;
 
     public int currentStreak;
     public int maxStreak;
@@ -43,7 +43,7 @@ public class MatchManager : MonoBehaviour
         EndStreak();
         EndCurrentChain();
     }
-    public void ResourceBounced(ResourceBlock _resBlock)
+    public void ResourceBounced(ResourceEffect _resBlock)
     {
         bouncedResourceBlock = _resBlock;
         bouncedResource = bouncedResourceBlock.resourceData;
@@ -182,7 +182,7 @@ public class MatchManager : MonoBehaviour
         RewardPlayer();
         IncreaseStreak();
         PlayerManager.Instance.playerEmojis.CompletedEmoji();
-        foreach (ResourceBlock _block in currentChainBlocks)
+        foreach (ResourceEffect _block in currentChainBlocks)
         {
             _block.Activate();
         }
@@ -194,7 +194,7 @@ public class MatchManager : MonoBehaviour
     }
     public void ClearAllHitBlocks()
     {
-        foreach (ResourceBlock _block in currentChainBlocks)
+        foreach (ResourceEffect _block in currentChainBlocks)
         {
             _block.ToggleHitIndicator(false);
             _block.isSelected = false;
@@ -240,7 +240,7 @@ public class MatchManager : MonoBehaviour
     private void RewardResources()
     {
         int _totalRes = 0;
-        foreach (ResourceBlock _block in currentChainBlocks)
+        foreach (ResourceEffect _block in currentChainBlocks)
         {
             _totalRes += _block.helmetPowerMultiplier;
         }

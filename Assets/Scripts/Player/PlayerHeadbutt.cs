@@ -106,7 +106,7 @@ public class PlayerHeadbutt : MonoBehaviour
             {
                 if (!headbuttOnCooldown &&
                     TryUseHBPoints(1) &&
-                    PlayerManager.Instance.playerMovement.blockBelow != null)
+                    PlayerManager.Instance.playerMovement.blockNSBelow != null)
                 {
                     HeadbuttUp();
                 }
@@ -119,10 +119,10 @@ public class PlayerHeadbutt : MonoBehaviour
     public void HeadbuttUp()
     {
         //Debug.Log("HEADBUTT!");
-        rb.transform.position = PlayerManager.Instance.playerMovement.blockBelow.transform.position+new Vector3(0,2f,0);
+        rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
-        PlayerManager.Instance.playerMovement.blockBelow.OnHeadbutted(HelmetManager.Instance.currentHelmet);
+        PlayerManager.Instance.playerMovement.blockNSBelow.OnHeadbutt(HelmetManager.Instance.currentHelmet);
         ScreenShake();
         RestartHeadbuttCooldown();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
