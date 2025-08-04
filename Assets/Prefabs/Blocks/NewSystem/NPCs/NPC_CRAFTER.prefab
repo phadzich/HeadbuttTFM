@@ -248,8 +248,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1906877703317968906}
   - component: {fileID: 4252424173855016198}
-  - component: {fileID: 7715968604358898914}
   - component: {fileID: 2200864634808554435}
+  - component: {fileID: 427814823203769699}
+  - component: {fileID: 5282001821105542660}
   m_Layer: 0
   m_Name: NPC_CRAFTER
   m_TagString: Untagged
@@ -296,29 +297,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7715968604358898914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3289155678676577984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd35cbec739f171488729c5b7ff98c09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  zoneCollider: {fileID: 4252424173855016198}
-  interactLBL: {fileID: 7783747253904331481}
-  interactString: '[E] to CRAFT'
-  type: 0
 --- !u!114 &2200864634808554435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +316,34 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &427814823203769699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289155678676577984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e2f9e19352541f7b32d49d11392235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5282001821105542660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289155678676577984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936c56e3e80641ceacd72dfcf3c19ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 4252424173855016198}
+  interactLBL: {fileID: 7783747253904331481}
+  interactString: '[E TO CRAFT]'
+  type: 1
 --- !u!1 &6717289482938130984
 GameObject:
   m_ObjectHideFlags: 0

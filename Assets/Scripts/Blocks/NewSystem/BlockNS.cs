@@ -46,10 +46,4 @@ public class BlockNS : MonoBehaviour
         foreach (var effect in effects)
             effect.OnHeadbutt(_helmetInstance);
     }
-
-    public void Activate()
-    {
-        foreach (var effect in effects)
-            effect.Activate();
-    }
 }

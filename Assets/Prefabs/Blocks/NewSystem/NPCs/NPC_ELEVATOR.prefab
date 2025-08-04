@@ -357,9 +357,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3941876415171897626}
-  - component: {fileID: 6803847758608182503}
   - component: {fileID: 5989572532095010444}
   - component: {fileID: -1488843006289267676}
+  - component: {fileID: 1291104954137893403}
+  - component: {fileID: 9219454354606091957}
   m_Layer: 0
   m_Name: NPC_ELEVATOR
   m_TagString: Untagged
@@ -384,29 +385,6 @@ Transform:
   - {fileID: 1976362574491691591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6803847758608182503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7440987867658177015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd35cbec739f171488729c5b7ff98c09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  zoneCollider: {fileID: 5989572532095010444}
-  interactLBL: {fileID: 5998183355576620826}
-  interactString: '[E] to use ELEVATOR'
-  type: 2
 --- !u!65 &5989572532095010444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -447,3 +425,31 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &1291104954137893403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440987867658177015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e2f9e19352541f7b32d49d11392235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9219454354606091957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440987867658177015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936c56e3e80641ceacd72dfcf3c19ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 5989572532095010444}
+  interactLBL: {fileID: 5998183355576620826}
+  interactString: '[E] TO USE ELEVATOR'
+  type: 3

@@ -2,5 +2,5 @@ using System;
 
 public interface IBlockSetup
 {
-    void SetupVariant(string variant, MapContext context);
+    void SetupVariant(string _variant, MapContext _context);
 }

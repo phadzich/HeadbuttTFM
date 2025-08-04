@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
-  - component: {fileID: 9095791024570774163}
   - component: {fileID: -793589647633595568}
+  - component: {fileID: 1346146343403606597}
+  - component: {fileID: 348321962598760842}
   m_Layer: 0
   m_Name: NPCDoorBlock
   m_TagString: Untagged
@@ -110,29 +111,6 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: 0, z: 0.3}
---- !u!114 &9095791024570774163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd35cbec739f171488729c5b7ff98c09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 1
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  zoneCollider: {fileID: 0}
-  interactLBL: {fileID: 0}
-  interactString: 
-  type: 0
 --- !u!114 &-793589647633595568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +130,34 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &1346146343403606597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94beff6fae3354385a6240183c38052d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &348321962598760842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936c56e3e80641ceacd72dfcf3c19ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 0}
+  interactLBL: {fileID: 0}
+  interactString: 
+  type: 0
 --- !u!1001 &97814796881235076
 PrefabInstance:
   m_ObjectHideFlags: 0

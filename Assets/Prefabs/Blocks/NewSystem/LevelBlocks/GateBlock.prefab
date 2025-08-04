@@ -5601,8 +5601,9 @@ GameObject:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
-  - component: {fileID: 1035351308784975052}
   - component: {fileID: 6162748558179783232}
+  - component: {fileID: 4906161519805421348}
+  - component: {fileID: 661646542904934717}
   m_Layer: 8
   m_Name: GateBlock
   m_TagString: Untagged
@@ -5703,35 +5704,6 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: 0, z: 0.3}
---- !u!114 &1035351308784975052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3dfca35dfa10e2439a58f2c99bedd7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  requirementsPanelUI: {fileID: 5857333956338788324}
-  isOpen: 0
-  isActive: 0
-  gatesMesh: {fileID: 5353304625375367961}
-  parentSublevel: {fileID: 0}
-  gateID: 0
-  requiredResource: {fileID: 0}
-  startingAmount: 0
-  requiredAmount: 0
-  currentAmount: 0
 --- !u!114 &6162748558179783232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5751,6 +5723,40 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &4906161519805421348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb289df28761740018c90a32c7bfde26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &661646542904934717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c23950fd7ead45728ff53f41f3521a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requirementsPanelUI: {fileID: 5857333956338788324}
+  isOpen: 0
+  isActive: 0
+  gatesMesh: {fileID: 5353304625375367961}
+  parentSublevel: {fileID: 0}
+  gateID: 0
+  requiredResource: {fileID: 0}
+  startingAmount: 0
+  requiredAmount: 0
+  currentAmount: 0
 --- !u!1 &8703336940572851301
 GameObject:
   m_ObjectHideFlags: 0

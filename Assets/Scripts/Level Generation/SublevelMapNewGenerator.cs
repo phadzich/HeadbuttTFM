@@ -98,8 +98,6 @@ public class SublevelMapNewGenerator : MonoBehaviour
 
             if (_color.color == _pixelColor)
             {
-                Debug.Log(_color.color);
-                Debug.Log(_pixelColor);
                 return GetBlockFromString(_color.blockString);
             }
         }

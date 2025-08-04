@@ -67,4 +67,4 @@ public class NPCBlock : Block,IInteractable
 
 }
 
-public enum NPCType { Crafter, Upgrader, Elevator }
+public enum NPCType { Door, Crafter, Upgrader, Elevator, Shop }

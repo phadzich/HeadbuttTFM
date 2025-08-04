@@ -52,15 +52,8 @@ public class HelmetManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("HelmetManager START");
-        EquipHelmetForTest();
     }
 
-    private void EquipHelmetForTest()
-    {
-        allHelmets[0].Craft();
-        CraftingManager.Instance.selectedHelmet = allHelmets[0];
-        EquipHelmet();
-    }
 
     private void InitializeOwnedHelmets()
     {

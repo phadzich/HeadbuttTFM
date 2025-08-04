@@ -1,7 +1,6 @@
 using PrimeTween;
 using UnityEngine;
 
-[RequireComponent(typeof(BlockNS))]
 [RequireComponent(typeof(DoorSetup))]
 public class DoorBehaviour : MonoBehaviour, IBlockEffect
 {

@@ -201,7 +201,7 @@ public class LevelManager : MonoBehaviour
 
             if (_miningSublevel.gateRequirements.Count > 0)
             {
-                foreach (GateBlock _gate in currentSublevel.gateBlocks)
+                foreach (GateBehaviour _gate in currentSublevel.gateBlocks)
                 {
                     _gate.StartGateCount();
                 }

@@ -5043,6 +5043,8 @@ GameObject:
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -5802765684275334743}
+  - component: {fileID: 1838900275681016779}
+  - component: {fileID: 8483314929420873799}
   m_Layer: 0
   m_Name: NPCBlock
   m_TagString: Untagged
@@ -5160,3 +5162,31 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &1838900275681016779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94beff6fae3354385a6240183c38052d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8483314929420873799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936c56e3e80641ceacd72dfcf3c19ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 0}
+  interactLBL: {fileID: 0}
+  interactString: 
+  type: 0

@@ -6,7 +6,6 @@ using Unity.Cinemachine;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
-[RequireComponent(typeof(BlockNS))]
 [RequireComponent(typeof(ResourceSetup))]
 public class ResourceEffect : MonoBehaviour, IBlockEffect
 {
@@ -56,6 +55,8 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         uiAnims.resourceIcon.sprite = _resource.icon;
 
         gameObject.name = $"{_resource.shortName}_c{_context.x}r_{_context.y}";
+
+        Debug.Log(_context.sublevel);
     }
 
     private void InstanceResourceBlockMesh()

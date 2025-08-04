@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b979f10a4684d9ea9144c55e988a45, type: 3}
-  m_Name: HelmetPotionBlock
+  m_Name: BPBlock
   m_EditorClassIdentifier: 
-  blockID: HELMETPOTION
-  prefab: {fileID: 8090959518607110755, guid: 238a1035695634d3897633676d4b5d68, type: 3}
+  blockID: BP
+  prefab: {fileID: 3305437815269156742, guid: 2dd3169d55fd840c8a52c67656046a2c, type: 3}

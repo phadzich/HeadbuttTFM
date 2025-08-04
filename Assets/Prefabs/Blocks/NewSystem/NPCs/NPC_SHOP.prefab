@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1906877703317968906}
   - component: {fileID: 4252424173855016198}
-  - component: {fileID: -5484355041190786039}
   - component: {fileID: -7488612472318317583}
+  - component: {fileID: 7911000371531539347}
+  - component: {fileID: 9130819640188984137}
   m_Layer: 0
   m_Name: NPC_SHOP
   m_TagString: Untagged
@@ -58,29 +59,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &-5484355041190786039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3289155678676577984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52ac2a4b2a7ebb4598fbd73f176a011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  zoneCollider: {fileID: 4252424173855016198}
-  interactLBL: {fileID: 8538010217278826421}
-  interactString: '[E] to SHOP'
-  shopID: 0
 --- !u!114 &-7488612472318317583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +78,34 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &7911000371531539347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289155678676577984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e2f9e19352541f7b32d49d11392235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9130819640188984137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289155678676577984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936c56e3e80641ceacd72dfcf3c19ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 4252424173855016198}
+  interactLBL: {fileID: 8538010217278826421}
+  interactString: '[E] TO SHOP'
+  type: 4
 --- !u!1 &3701955220957926400
 GameObject:
   m_ObjectHideFlags: 0

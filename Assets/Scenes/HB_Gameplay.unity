@@ -11667,7 +11667,7 @@ MonoBehaviour:
   helmetPotionBlockPrefab: {fileID: 8090959518607110755, guid: dfcb55329fc866c4c8f97dd97eb133cf, type: 3}
   hbPotionBlockPrefab: {fileID: 8090959518607110755, guid: aced4edf43a471e40b2c4b205d883cfc, type: 3}
   resourceBlockPrefab: {fileID: 8090959518607110755, guid: a75bfe30c3d33bc4da1f7ce30312b594, type: 3}
-  doorBlockPrefab: {fileID: 6088147569584951646, guid: 3044469bf31a39c40852d775eebbc097, type: 3}
+  doorBlockPrefab: {fileID: 6088147569584951646, guid: 2d6472bdf8eef4dbaa625bf545093e6f, type: 3}
   slimeBlockPrefab: {fileID: 8090959518607110755, guid: 4a57cbbbd6b8bb94bb387ebea7c12c89, type: 3}
   lavaBlockPrefab: {fileID: 8090959518607110755, guid: 10f74fda083c5e9478a5ab945b93ee39, type: 3}
   lavaSpawnBlockPrefab: {fileID: 1780837502515213412, guid: 85b4d2b193bf7c845b45dfe27597af25, type: 3}
@@ -11702,6 +11702,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b3dc01942901443b81844369ce107c3, type: 2}
   - {fileID: 11400000, guid: ac8e69f20de814322b523002cea86630, type: 2}
   - {fileID: 11400000, guid: 2d58b1569912142b7a3eb993c9dafeb0, type: 2}
+  - {fileID: 11400000, guid: 0e0cf8981668e4e8d88aeb876a753202, type: 2}
   - {fileID: 11400000, guid: c7d03acfc1c2842edaaaf033886fb3ab, type: 2}
   - {fileID: 11400000, guid: f3112078d25eb4013adf6c41b38da8c0, type: 2}
   - {fileID: 11400000, guid: 548f35bb1be7e47beb5588711f3a1f66, type: 2}

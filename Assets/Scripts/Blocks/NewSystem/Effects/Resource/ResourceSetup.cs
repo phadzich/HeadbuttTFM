@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(BlockNS))]
-[RequireComponent(typeof(ResourceEffect))]
 public class ResourceSetup : MonoBehaviour, IBlockSetup
 {
     public void SetupVariant(string _variant, MapContext _context)

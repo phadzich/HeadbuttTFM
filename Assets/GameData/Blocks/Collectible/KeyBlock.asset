@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: KeyBlock
   m_EditorClassIdentifier: 
   blockID: KEY
-  prefab: {fileID: 8090959518607110755, guid: 4d7d821fca0124dc9a65c6d9f3f5b227, type: 3}
+  prefab: {fileID: 3585026906433987620, guid: f4cf39bac0c9a400380bc9d5253a2ff7, type: 3}

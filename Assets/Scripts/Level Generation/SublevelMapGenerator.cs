@@ -175,7 +175,7 @@ public class SublevelMapGenerator : MonoBehaviour
         _gateBlock.SetupBlock(currentDepth, currentX, currentY, _gateIndex, _gateRequirement.requiredResource, _gateRequirement.requiredAmount);
         //Debug.Log(_gateBlock);
         //Debug.Log(sublevel);
-        sublevel.gateBlocks.Add(_gateBlock);
+        //sublevel.gateBlocks.Add(_gateBlock);
         return _bloque;
     }
 
@@ -249,7 +249,6 @@ public class SublevelMapGenerator : MonoBehaviour
                 _npcCraftBlock.SetupBlock(currentDepth, currentX, currentY);
                 break;
             case "UPGRADE":
-                
                 _bloque = Instantiate(npcUpgradePrefab, nextPosition, Quaternion.identity, sublevelContainer);
                 NPCBlock _npcUpgradeBlock = _bloque.GetComponent<NPCBlock>();
                 _npcUpgradeBlock.SetupBlock(currentDepth, currentX, currentY);

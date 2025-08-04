@@ -4994,6 +4994,7 @@ GameObject:
   - component: {fileID: 1003532578358748977}
   - component: {fileID: 4953970179030551049}
   - component: {fileID: -108890368050877570}
+  - component: {fileID: 715497001413960085}
   m_Layer: 8
   m_Name: LVL_WATER
   m_TagString: Untagged
@@ -5208,6 +5209,19 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &715497001413960085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4783cd5ebac74105a7ca4f981b51db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageParticles: {fileID: 7428737150881724064}
 --- !u!1001 &5874918283419271066
 PrefabInstance:
   m_ObjectHideFlags: 0

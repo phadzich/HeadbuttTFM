@@ -5166,6 +5166,7 @@ GameObject:
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -5789247509426230537}
   - component: {fileID: 7243449948537828661}
+  - component: {fileID: 6852165881499367983}
   m_Layer: 8
   m_Name: DMG_SPIKES
   m_TagString: Untagged
@@ -5381,6 +5382,23 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &6852165881499367983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4730b2c245d5455b909d3f840ad2ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfDamage: 1
+  damage: 2
+  breaksCombo: 1
+  damageParticles: {fileID: 0}
+  impulseSource: {fileID: 0}
 --- !u!1 &8652035593375995122
 GameObject:
   m_ObjectHideFlags: 0

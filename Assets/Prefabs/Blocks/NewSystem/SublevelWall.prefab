@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5057792266103096273}
   - component: {fileID: -4137761251042272085}
+  - component: {fileID: 3689594482653510688}
   m_Layer: 6
   m_Name: SublevelWall
   m_TagString: Untagged
@@ -53,6 +54,18 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &3689594482653510688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5993808358622398738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0f556803be84e419ec4bd7bcab12a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6262948188839253502
 GameObject:
   m_ObjectHideFlags: 0

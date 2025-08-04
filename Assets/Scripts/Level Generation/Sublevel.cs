@@ -24,7 +24,7 @@ public class Sublevel : MonoBehaviour {
     public int maxResourceBlocks;
     public bool isTotallyMined => currentBlocksMined == maxResourceBlocks;
 
-    public List<GateBlock> gateBlocks = new List<GateBlock>();
+    public List<GateBehaviour> gateBlocks = new List<GateBehaviour>();
 
     public HelmetData helmetToDiscover;
 

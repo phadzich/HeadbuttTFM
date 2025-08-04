@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1906877703317968906}
-  - component: {fileID: 6461179013000916468}
   - component: {fileID: 4252424173855016198}
   - component: {fileID: -839043744444223363}
+  - component: {fileID: 8390836003267858028}
+  - component: {fileID: 3773242141571962174}
   m_Layer: 0
   m_Name: NPC_UPGRADER
   m_TagString: Untagged
@@ -37,29 +38,6 @@ Transform:
   - {fileID: 3134265727116643629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6461179013000916468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3289155678676577984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd35cbec739f171488729c5b7ff98c09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  zoneCollider: {fileID: 4252424173855016198}
-  interactLBL: {fileID: 8538010217278826421}
-  interactString: '[E] to UPGRADE'
-  type: 1
 --- !u!65 &4252424173855016198
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100,6 +78,34 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &8390836003267858028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289155678676577984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e2f9e19352541f7b32d49d11392235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3773242141571962174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289155678676577984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936c56e3e80641ceacd72dfcf3c19ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 4252424173855016198}
+  interactLBL: {fileID: 8538010217278826421}
+  interactString: '[E] TO UPGRADE'
+  type: 2
 --- !u!1 &3701955220957926400
 GameObject:
   m_ObjectHideFlags: 0
