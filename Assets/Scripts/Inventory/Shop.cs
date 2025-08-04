@@ -26,7 +26,7 @@ public class Shop
 
         if (ResourceManager.Instance.SpendResource(_item.price.resource, _totalResources)){
             RemoveFromInventory(shopInventory.IndexOf(_item), _quantity);
-            InventoryManager.Instance.TryEquipItems(_item.item, _quantity);
+            InventoryManager.Instance.itemsInventory.TryEquipItems(_item.item, _quantity);
         }
         else
         {

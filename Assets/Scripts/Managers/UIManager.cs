@@ -74,9 +74,9 @@ public class UIManager : MonoBehaviour
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
 
         //PLAYER EVENTS
-        InventoryManager.Instance.ItemCycled += OnEquippedItemCycled;
-        InventoryManager.Instance.ItemEquipped += OnEquippedItemCycled;
-        InventoryManager.Instance.ItemConsumed += OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemCycled += OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemEquipped += OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemConsumed += OnEquippedItemCycled;
     }
 
 
@@ -91,9 +91,9 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
-        InventoryManager.Instance.ItemCycled -= OnEquippedItemCycled;
-        InventoryManager.Instance.ItemEquipped -= OnEquippedItemCycled;
-        InventoryManager.Instance.ItemConsumed -= OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemCycled -= OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemEquipped -= OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemConsumed -= OnEquippedItemCycled;
     }
 
     public void SuscribeToHelmetInstances()

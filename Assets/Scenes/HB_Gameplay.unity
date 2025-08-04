@@ -9004,8 +9004,8 @@ MonoBehaviour:
     m_ActionName: 'Player/ToggleInfo[/Keyboard/leftShift,/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2050942891}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+      - m_Target: {fileID: 2050942893}
+        m_TargetAssemblyTypeName: ItemsInventory, Assembly-CSharp
         m_MethodName: PreviousEquippedItem
         m_Mode: 0
         m_Arguments:
@@ -9020,8 +9020,8 @@ MonoBehaviour:
     m_ActionName: 'Player/PreviousItem[/Keyboard/3,/XInputControllerWindows/leftTrigger]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2050942891}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+      - m_Target: {fileID: 2050942893}
+        m_TargetAssemblyTypeName: ItemsInventory, Assembly-CSharp
         m_MethodName: NextEquippedItem
         m_Mode: 0
         m_Arguments:
@@ -9036,8 +9036,8 @@ MonoBehaviour:
     m_ActionName: 'Player/NextItem[/Keyboard/4,/XInputControllerWindows/rightTrigger]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2050942891}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+      - m_Target: {fileID: 2050942893}
+        m_TargetAssemblyTypeName: ItemsInventory, Assembly-CSharp
         m_MethodName: UseActiveItem
         m_Mode: 0
         m_Arguments:
@@ -13512,6 +13512,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2050942890}
   - component: {fileID: 2050942891}
+  - component: {fileID: 2050942892}
+  - component: {fileID: 2050942893}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -13544,6 +13546,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97a5913df0549a84fb7cd5c5f4dc2030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helmetsInventory: {fileID: 2050942892}
+  itemsInventory: {fileID: 2050942893}
+--- !u!114 &2050942892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050942889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83aaef36275732b4e9ace65e02dc435d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCraftedHelmets: []
+--- !u!114 &2050942893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050942889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76244d6797f02a541adce53b63a4141d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentActiveItem: {fileID: 0}
