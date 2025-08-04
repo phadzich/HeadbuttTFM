@@ -5397,8 +5397,9 @@ MonoBehaviour:
   typeOfDamage: 1
   damage: 2
   breaksCombo: 1
-  damageParticles: {fileID: 0}
-  impulseSource: {fileID: 0}
+  stopDamage: 1
+  damageParticles: {fileID: 6815472510273598667}
+  impulseSource: {fileID: 1003532578358748977}
 --- !u!1 &8652035593375995122
 GameObject:
   m_ObjectHideFlags: 0

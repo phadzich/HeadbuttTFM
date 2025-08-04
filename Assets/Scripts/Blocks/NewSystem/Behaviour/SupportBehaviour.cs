@@ -7,7 +7,7 @@ public class SupportBehaviour : MonoBehaviour, IBlockEffect
 
     public void Activate()
     {
-        throw new System.NotImplementedException();
+         
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)

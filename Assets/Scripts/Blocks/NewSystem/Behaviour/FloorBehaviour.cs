@@ -28,6 +28,6 @@ public class FloorBehaviour : MonoBehaviour, IBlockEffect
 
     public void Activate()
     {
-        throw new System.NotImplementedException();
+         
     }
 }

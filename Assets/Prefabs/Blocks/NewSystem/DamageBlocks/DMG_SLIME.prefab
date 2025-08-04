@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -2063554094599321747}
   - component: {fileID: 2228967659379579785}
+  - component: {fileID: 4052097463211627323}
   m_Layer: 8
   m_Name: DMG_SLIME
   m_TagString: Untagged
@@ -369,6 +370,19 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+--- !u!114 &4052097463211627323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be05b92abda03447e8259187cc33f16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newDirection: {x: 0, y: 0, z: 0}
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

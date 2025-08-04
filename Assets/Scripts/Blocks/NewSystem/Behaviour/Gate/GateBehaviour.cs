@@ -107,6 +107,6 @@ public class GateBehaviour : MonoBehaviour, IBlockEffect
 
     public void Activate()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

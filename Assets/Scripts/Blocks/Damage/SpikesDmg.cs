@@ -16,6 +16,8 @@ public class SpikesDmg : MonoBehaviour
     public float damageCooldown = 2f;
     private float lastDamageTime = -Mathf.Infinity;
 
+    private DamageEffect dmgEffect => GetComponentInParent<DamageEffect>();
+
     private Coroutine spikeCycleCoroutine;
     private bool isMoving = false; // Condici�n para evitar movimientos duplicados
 
@@ -67,13 +69,19 @@ public class SpikesDmg : MonoBehaviour
             yield return StartCoroutine(MoveSpikes(startPosition, endPosition, movementDuration, true));
             SoundManager.PlaySound3D(SoundType.SPIKEDAMAGE, transform.position, 0.2f);
 
+            doDamage();
+
             // 2. Esperar un tiempo mientras las p�as est�n afuera
             if (!isMoving) break; // Si se detuvo durante el movimiento, salir
             yield return new WaitForSeconds(timeOut);
 
+            doDamage();
+
             // 3. Mover las p�as hacia adentro (hacia startPosition)
             if (!isMoving) break; // Si se detuvo durante la espera, salir
             yield return StartCoroutine(MoveSpikes(endPosition, startPosition, movementDuration, false));
+
+
 
             // 4. Esperar un tiempo mientras las p�as est�n adentro
             if (!isMoving) break; // Si se detuvo durante el movimiento, salir
@@ -111,16 +119,9 @@ public class SpikesDmg : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void doDamage()
     {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Contacto!");
-            float time = Time.time;
-            if (Time.time - lastDamageTime >= damageCooldown) dmgBlock.DoDamage();
-            SoundManager.PlaySound(SoundType.RECIEVEDAMAGE, 0.5f);
-        }
-        lastDamageTime = Time.time;
+        dmgEffect.Activate();
     }
 
     // --- Dibujar Gizmos para ayudar a visualizar en el editor ---

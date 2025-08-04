@@ -7,6 +7,7 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
     public damageType typeOfDamage;
     public int damage;
     public bool breaksCombo;
+    public bool stopDamage;
 
     public ParticleSystem damageParticles;
     public CinemachineImpulseSource impulseSource;
@@ -18,25 +19,30 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     public void OnBounced(HelmetInstance _helmetInstance)
     {
-        DoDamage();
+        if (stopDamage) return;
 
-        if (breaksCombo)
-        {
-            MatchManager.Instance.EnemyBounced();
-        }
+        DoDamage();
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        if (stopDamage) return;
+
         DoDamage();
-        if (breaksCombo)
-        {
-            MatchManager.Instance.EnemyBounced();
-        }
+    }
+
+    public void Activate()
+    {
+        stopDamage = !stopDamage;
     }
 
     public void DoDamage()
     {
+        if (breaksCombo)
+        {
+            MatchManager.Instance.EnemyBounced();
+        }
+
         //Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
         switch (typeOfDamage)
         {
@@ -78,13 +84,10 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     public void PlayDamageSound()
     {
-        SoundManager.PlaySound(SoundType.FIREDAMAGE, 0.7f);
+        SoundManager.PlaySound(SoundType.RECIEVEDAMAGE, 0.5f);
     }
 
-    public void Activate()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public enum damageType
     {
