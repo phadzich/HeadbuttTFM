@@ -15,8 +15,23 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: bf13a510cca8fdb4b8fda993017a6f2d
   m_SerializeEntries:
+  - m_GUID: 022365a6dc088e1449657faacbbbbaae
+    m_Address: Assets/Prefabs/UI/LUTS/protanope_simulate_lut.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0797cd01431aa134380df96a8ffbe508
+    m_Address: Assets/Prefabs/UI/LUTS/protanope_correct_lut.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19b807d469bcbdf4daded75782324c63
     m_Address: Assets/Audio/AudioMixer.mixer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fe5422598f312e46bfa875bd98ba7a6
+    m_Address: Assets/Prefabs/UI/LUTS/tritanope_correct_lut.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -27,6 +42,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af76f1c5357b4964ea02d28eb43b291e
     m_Address: Assets/Scripts/UI/MAIN_MENU/Global_Managers.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee51d53ccfeb7824f95d6aa3a294b594
+    m_Address: Assets/Prefabs/UI/LUTS/deuteranope_correct_lut.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
