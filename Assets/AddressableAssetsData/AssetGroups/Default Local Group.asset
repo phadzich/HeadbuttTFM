@@ -15,11 +15,6 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: bf13a510cca8fdb4b8fda993017a6f2d
   m_SerializeEntries:
-  - m_GUID: 022365a6dc088e1449657faacbbbbaae
-    m_Address: Assets/Prefabs/UI/LUTS/protanope_simulate_lut.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0797cd01431aa134380df96a8ffbe508
     m_Address: Assets/Prefabs/UI/LUTS/protanope_correct_lut.png
     m_ReadOnly: 0

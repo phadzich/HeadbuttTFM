@@ -166,6 +166,10 @@ MonoBehaviour:
     m_Localized: None
     m_Metadata:
       m_Items: []
+  - m_Id: 5072889694461952
+    m_Localized: Intensity
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
