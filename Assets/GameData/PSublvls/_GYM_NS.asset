@@ -17,7 +17,7 @@ MonoBehaviour:
   sublevel2DMap: {fileID: 2800000, guid: f1eb7190015b54bfd9fdd995b80358bf, type: 3}
   goalType: 1
   blocksToMine: 0
-  keysToCollect: 5
+  keysToCollect: 1
   timeLimitSeconds: 0
   gateRequirements:
   - gateID: 0

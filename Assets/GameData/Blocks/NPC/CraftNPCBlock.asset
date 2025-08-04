@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CraftNPCBlock
   m_EditorClassIdentifier: 
   blockID: CRAFT
-  prefab: {fileID: 3289155678676577984, guid: de1cdd0e3770c47a6ba1229506b1935d, type: 3}
+  prefab: {fileID: 5439092240229453402, guid: daf823f824c3e4605848aaea3cebead9, type: 3}

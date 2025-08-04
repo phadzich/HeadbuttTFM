@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: UpgraderNPCBlock
   m_EditorClassIdentifier: 
   blockID: UPGRADE
-  prefab: {fileID: 3289155678676577984, guid: e2bf53cf0ee3740598eb095abc34746b, type: 3}
+  prefab: {fileID: 5629980668225553574, guid: 94b8f2779426e413196b7a8447fc9150, type: 3}

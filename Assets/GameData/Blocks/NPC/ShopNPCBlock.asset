@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ShopNPCBlock
   m_EditorClassIdentifier: 
   blockID: SHOP
-  prefab: {fileID: 3289155678676577984, guid: 0ce81b11f07b947eba083f1a87eaba95, type: 3}
+  prefab: {fileID: 4248826120001402904, guid: 1d74e43f2b3fd4fcb86542bcd375999a, type: 3}
