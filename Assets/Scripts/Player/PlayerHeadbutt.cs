@@ -151,8 +151,13 @@ public class PlayerHeadbutt : MonoBehaviour
 
     private void ScreenShake()
     {
-        impulseSource.GenerateImpulse();
+        // 0 = shake activado, 1 = shake desactivado
+        if (PlayerPrefs.GetInt("CameraShakeEnabled", 1) == 0)
+        {
+            impulseSource.GenerateImpulse();
+        }
     }
+
 
 
 }

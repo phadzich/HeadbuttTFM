@@ -115,11 +115,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283239306043392
-    m_Localized: Activated
+    m_Localized: Enable
     m_Metadata:
       m_Items: []
   - m_Id: 283292171051008
-    m_Localized: Deactivated
+    m_Localized: Disable
     m_Metadata:
       m_Items: []
   - m_Id: 3211138698911744
@@ -140,6 +140,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3567919388237824
     m_Localized: Checkpoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4988990884749312
+    m_Localized: Camera Shake
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001442737332224
+    m_Localized: Deuteranopia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001682878013440
+    m_Localized: Protanopia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001754827104256
+    m_Localized: Tritanopia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5002102446825472
+    m_Localized: Colorblind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5002457322692608
+    m_Localized: None
     m_Metadata:
       m_Items: []
   references:

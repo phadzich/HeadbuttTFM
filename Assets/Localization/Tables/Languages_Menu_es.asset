@@ -142,6 +142,30 @@ MonoBehaviour:
     m_Localized: Punto de Control
     m_Metadata:
       m_Items: []
+  - m_Id: 4988990884749312
+    m_Localized: "Temblor de C\xE1mara"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001442737332224
+    m_Localized: "Deuteranop\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001682878013440
+    m_Localized: "Protanop\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001754827104256
+    m_Localized: "Tritanop\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5002102446825472
+    m_Localized: "Modo Dalt\xF3nico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5002457322692608
+    m_Localized: Ninguno
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
