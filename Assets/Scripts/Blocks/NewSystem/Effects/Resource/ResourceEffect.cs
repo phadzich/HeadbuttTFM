@@ -56,7 +56,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
 
         gameObject.name = $"{_resource.shortName}_c{_context.x}r_{_context.y}";
 
-        Debug.Log(_context.sublevel);
+        //Debug.Log(_context.sublevel);
     }
 
     private void InstanceResourceBlockMesh()

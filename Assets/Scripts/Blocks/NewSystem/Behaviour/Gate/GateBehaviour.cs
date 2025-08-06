@@ -34,6 +34,7 @@ public class GateBehaviour : MonoBehaviour, IBlockEffect
         requiredResource = _gateReq.requiredResource;
         requiredAmount = _gateReq.requiredAmount;
         currentAmount = 0;
+        GetComponent<BlockNS>().isWalkable = false;
         ColorGates(requiredResource.resMesh.GetComponent<MeshRenderer>().sharedMaterial);
 
     }

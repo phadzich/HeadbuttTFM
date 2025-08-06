@@ -59,7 +59,7 @@ public class SublevelMapNewGenerator : MonoBehaviour
                 nextPosition = new Vector3(x * _spacing - offsetX, sublevelContainer.transform.position.y, y * _spacing - offsetZ);
                 var _newBlock = BlockFromPixel(x, y);
                 Vector2Int pos = new(x, y);
-                Debug.Log(_newBlock);
+                //Debug.Log(_newBlock);
                 currentBlocks[pos] = _newBlock.GetComponent<BlockNS>();
             }
         }
@@ -85,7 +85,7 @@ public class SublevelMapNewGenerator : MonoBehaviour
     private GameObject BlockFromPixel(int _x, int _y)
     {
         Color _pixelColor = mapTexture.GetPixel(_x, _y);
-        Debug.Log(_pixelColor.a);
+        //Debug.Log(_pixelColor.a);
 
         if (_pixelColor.a == 0)
         {

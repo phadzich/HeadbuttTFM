@@ -78,7 +78,7 @@ public class ResourceManager : MonoBehaviour
         {
             //Gastamos esa cantidad y regresamos TRUE
             ownedResources[_resource] -= _amount;
-            Debug.Log($"Spent {_amount} of {_resource.shortName}");
+            //Debug.Log($"Spent {_amount} of {_resource.shortName}");
             onOwnedResourcesChanged?.Invoke();
             return true;
         }

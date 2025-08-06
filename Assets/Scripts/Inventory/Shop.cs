@@ -35,7 +35,7 @@ public class Shop
     }
     private void RemoveFromInventory(int _itemIndex, int _quantity)
     {
-        Debug.Log(_itemIndex);
+        //Debug.Log(_itemIndex);
         if (_itemIndex < 0)
         {
             return;

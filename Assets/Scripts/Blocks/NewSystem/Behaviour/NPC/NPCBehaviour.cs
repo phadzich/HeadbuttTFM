@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(BlockNS))]
@@ -7,6 +8,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     public BoxCollider zoneCollider;
     public TextMeshProUGUI interactLBL;
     public string interactString;
+    public CinemachineCamera NPCCam;
 
     private int shopID;
 
@@ -85,7 +87,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
                 UIManager.Instance.OpenNPCUI(type);
                 break;
         }
-        
+
+        UIManager.Instance.ActivateCam(NPCCam);
+
     }
 
 
