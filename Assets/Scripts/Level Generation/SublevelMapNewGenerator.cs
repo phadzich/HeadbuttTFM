@@ -19,7 +19,6 @@ public class SublevelMapNewGenerator : MonoBehaviour
 
     Vector3 nextPosition;
     public Dictionary<Vector2Int, BlockNS> currentBlocks = new();
-    public List<BlockData> blockCatalog;
 
     private bool testingMigrate = false;
     private MapContext context;
@@ -98,7 +97,7 @@ public class SublevelMapNewGenerator : MonoBehaviour
 
             if (_color.color == _pixelColor)
             {
-                return GetBlockFromString(_color.blockString);
+                return GetBlockFromString(_color);
             }
         }
 
@@ -112,30 +111,17 @@ public class SublevelMapNewGenerator : MonoBehaviour
     //INSTANCIO, CONFIGURO Y EL GRID INSTANCER SOLO LO POSICIONA CORECTAMENTE, NO LO CONFIGURA.
 
  
-    GameObject GetBlockFromString(string _blockString)
+    GameObject GetBlockFromString(ColorToString _blockString)
     {
-        var _stringParts = _blockString.Split('_');
-        string _blockID = _stringParts[0];
+        var _stringParts = _blockString.blockString.Split('_');
         string _blockVariant = _stringParts[1];
 
-        GameObject _prefab = GetPrefabFromID(_blockID);
-
-        if (_prefab == null)
-        {
-            Debug.LogError($"No se encontró prefab para el bloque con ID '{_blockID}'");
-            return null;
-        }
+        GameObject _prefab = _blockString.prefab;
 
         GameObject _bloque = Instantiate(_prefab, nextPosition, Quaternion.identity, sublevelContainer);
         _bloque.GetComponent<BlockNS>().SetupBlock(_blockVariant, context);
 
         return _bloque;
-    }
-
-    GameObject GetPrefabFromID(string _block)
-    {
-        var blockData = blockCatalog.FirstOrDefault(b => b.blockID == _block);
-        return blockData?.prefab;
     }
 
 }

@@ -11696,29 +11696,6 @@ MonoBehaviour:
   mapTexture: {fileID: 0}
   mapWidth: 0
   mapHeight: 0
-  blockCatalog:
-  - {fileID: 11400000, guid: 6b75ead45b84f49f6845721c4ececbec, type: 2}
-  - {fileID: 11400000, guid: 320a8eeb4a06844d7934086da19b1ccb, type: 2}
-  - {fileID: 11400000, guid: 7b3dc01942901443b81844369ce107c3, type: 2}
-  - {fileID: 11400000, guid: ac8e69f20de814322b523002cea86630, type: 2}
-  - {fileID: 11400000, guid: 2d58b1569912142b7a3eb993c9dafeb0, type: 2}
-  - {fileID: 11400000, guid: 0e0cf8981668e4e8d88aeb876a753202, type: 2}
-  - {fileID: 11400000, guid: c7d03acfc1c2842edaaaf033886fb3ab, type: 2}
-  - {fileID: 11400000, guid: f3112078d25eb4013adf6c41b38da8c0, type: 2}
-  - {fileID: 11400000, guid: 548f35bb1be7e47beb5588711f3a1f66, type: 2}
-  - {fileID: 11400000, guid: caea2154a316a4f62ae83e981b65e5de, type: 2}
-  - {fileID: 11400000, guid: 2b8d5aba984374f34a16f02d00b6df77, type: 2}
-  - {fileID: 11400000, guid: 47f4d97560ba046869b4a0c5f3d703f1, type: 2}
-  - {fileID: 11400000, guid: e7dc12c07d8ab43ccbe4cf7aaf16da75, type: 2}
-  - {fileID: 11400000, guid: 03ca35399e74d493f9b4472ccbe7eb96, type: 2}
-  - {fileID: 11400000, guid: fcdc1cd37b7254259a86d9233f2006b0, type: 2}
-  - {fileID: 11400000, guid: 77e10d592a3b9442b80966bad0527f96, type: 2}
-  - {fileID: 11400000, guid: afa59fd82aec64930a87fd4aa3971971, type: 2}
-  - {fileID: 11400000, guid: 9db2e147225084a539ea31a7b61bfe4c, type: 2}
-  - {fileID: 11400000, guid: f139b6c3c37ff448fad65b64363cd002, type: 2}
-  - {fileID: 11400000, guid: fc0eab637befa4dbbbdea7cced72f42a, type: 2}
-  - {fileID: 11400000, guid: 119728c20c736412da691ac78dc343f9, type: 2}
-  - {fileID: 11400000, guid: 88d3996f9d1bc48f88659bb17edeac1d, type: 2}
 --- !u!1 &2008389151
 GameObject:
   m_ObjectHideFlags: 0
