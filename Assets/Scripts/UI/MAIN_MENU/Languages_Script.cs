@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Localization.Settings;
 using TMPro;
 using System.Collections;
@@ -7,15 +7,30 @@ using UnityEngine.Localization;
 
 public class ControladorIdiomas : MonoBehaviour
 {
-    public TMP_Dropdown TextSizeDropdown;             // Primer dropdown
-    public TMP_Dropdown subtitlesDropdown;    // Segundo dropdown (Subtitles)
-    public TMP_Dropdown modeDropdown;         // Tercer dropdown (Mode)
+    public static ControladorIdiomas Instance;
 
-    public List<LocalizedString> opcionesLocalizadas;  // Opciones primer dropdown
-    public List<LocalizedString> opcionesSubtitulos;   // Opciones segundo dropdown
-    public List<LocalizedString> opcionesModo;         // Opciones tercer dropdown
+    public TMP_Dropdown ColorblindDropdown;
+    public TMP_Dropdown CameraShakeDropdown;
+    public TMP_Dropdown modeDropdown;
+
+    public List<LocalizedString> opcionesColorBlind;
+    public List<LocalizedString> opcionesCamaraShake;
+    public List<LocalizedString> opcionesWindowMode;
 
     private bool _active = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -44,31 +59,28 @@ public class ControladorIdiomas : MonoBehaviour
 
     private IEnumerator UpdateDropdownOptions()
     {
-        // Dropdown 1 (Text Size)
-        TextSizeDropdown.options.Clear();
-        for (int i = 0; i < opcionesLocalizadas.Count; i++)
+        ColorblindDropdown.options.Clear();
+        for (int i = 0; i < opcionesColorBlind.Count; i++)
         {
-            var handle = opcionesLocalizadas[i].GetLocalizedStringAsync();
+            var handle = opcionesColorBlind[i].GetLocalizedStringAsync();
             yield return handle;
-            TextSizeDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
+            ColorblindDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
         }
-        TextSizeDropdown.RefreshShownValue();
+        ColorblindDropdown.RefreshShownValue();
 
-        // Dropdown 2 (Subtitles)
-        subtitlesDropdown.options.Clear();
-        for (int i = 0; i < opcionesSubtitulos.Count; i++)
+        CameraShakeDropdown.options.Clear();
+        for (int i = 0; i < opcionesCamaraShake.Count; i++)
         {
-            var handle = opcionesSubtitulos[i].GetLocalizedStringAsync();
+            var handle = opcionesCamaraShake[i].GetLocalizedStringAsync();
             yield return handle;
-            subtitlesDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
+            CameraShakeDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
         }
-        subtitlesDropdown.RefreshShownValue();
+        CameraShakeDropdown.RefreshShownValue();
 
-        // Dropdown 3 (Mode)
         modeDropdown.options.Clear();
-        for (int i = 0; i < opcionesModo.Count; i++)
+        for (int i = 0; i < opcionesWindowMode.Count; i++)
         {
-            var handle = opcionesModo[i].GetLocalizedStringAsync();
+            var handle = opcionesWindowMode[i].GetLocalizedStringAsync();
             yield return handle;
             modeDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
         }

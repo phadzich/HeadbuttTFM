@@ -3,15 +3,46 @@ using TMPro;
 
 public class DisplayModeDropdown : MonoBehaviour
 {
+    public static DisplayModeDropdown Instance;
+
     public TMP_Dropdown modeDropdown;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
+        SetupDropdown();
+    }
+
+    public void SetupDropdown()
+    {
+        if (modeDropdown == null)
+        {
+            modeDropdown = FindFirstObjectByType<TMP_Dropdown>();
+
+            if (modeDropdown == null)
+            {
+                Debug.LogWarning("No se encontró el Dropdown de modo de pantalla.");
+                return;
+            }
+        }
+
         int savedMode = PlayerPrefs.GetInt("DisplayMode", 0);
         modeDropdown.value = savedMode;
+        modeDropdown.RefreshShownValue();
 
         ApplyDisplayMode(savedMode);
-
         modeDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
     }
 
@@ -29,7 +60,7 @@ public class DisplayModeDropdown : MonoBehaviour
                 Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.ExclusiveFullScreen);
                 Debug.Log("Mode: Fullscreen");
                 break;
-            case 1: // Window
+            case 1: // Windowed
                 Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
                 Debug.Log("Mode: Window");
                 break;
@@ -41,6 +72,7 @@ public class DisplayModeDropdown : MonoBehaviour
 
     private void OnDestroy()
     {
-        modeDropdown.onValueChanged.RemoveListener(OnDropdownValueChanged);
+        if (modeDropdown != null)
+            modeDropdown.onValueChanged.RemoveListener(OnDropdownValueChanged);
     }
 }
