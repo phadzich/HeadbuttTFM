@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.VFX;
 
 public class ResourceBlock : Block
 {
@@ -31,10 +32,12 @@ public class ResourceBlock : Block
     public GameObject hitIndicatorPF;
 
     public TextMeshProUGUI remianingBouncesText;
-    public GameObject resourceDropPrefab;
+    public ResourceDropFollow resourceDropPrefab;
+    public HeadbuttDropFollow hbDropPrefab;
 
     [Header("UI AND VFX")]
     public ResourceBlockUIAnims uiAnims;
+    public VisualEffect vfxPrefab;
 
     private void Start()
     {
@@ -51,15 +54,27 @@ public class ResourceBlock : Block
         isWalkable= true;
 
         InstanceResourceBlockMesh();
+        InstanceResourceDropMesh();
         ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         uiAnims.resourceIcon.sprite = _resource.icon;
+        int _randomRotation = Random.Range(0, 4);
+        transform.Rotate(0, (float)_randomRotation * 90, 0);
     }
 
+    private void ReleaseHBDrop()
+    {
+        hbDropPrefab.StartFollow();
+    }
     private void InstanceResourceBlockMesh()
     {
-        blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
+        blockMesh = Instantiate(resourceData.blockMesh, blockMeshParent);
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
+    }
+
+    private void InstanceResourceDropMesh()
+    {
+        resourceDropPrefab.ConfigDrop(resourceData.resMesh);
     }
 
     private int HelmetPowerMultiplier(MiningPower helmetPower)
@@ -121,19 +136,23 @@ public class ResourceBlock : Block
 
     public override void Activate()
     {
-        // Spawn the correct resource prefab (linked in ResourceData)
-        if (resourceData != null && resourceData.resourceDropPrefab != null)
-        {
-            Instantiate(resourceData.resourceDropPrefab, transform.position, Quaternion.identity);
-        }
 
         GetMinedState();
         ScreenShake();
         MinedAnimation();
+        ReleaseResourceDrop();
+        ReleaseHBDrop();
         SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
 
-        uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
+        //uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
+        //InstantiateHBVFX();
     }
+
+    private void ReleaseResourceDrop()
+    {
+        resourceDropPrefab.gameObject.SetActive(true);
+    }
+
 
     private void MinedAnimation()
     {

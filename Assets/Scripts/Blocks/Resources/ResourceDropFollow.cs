@@ -3,37 +3,37 @@ using UnityEngine;
 public class ResourceDropFollow : MonoBehaviour
 {
 
-    public Transform Target;
+    public Transform target;
     public float MinModifier;
     public float MaxModifier;
+    public Transform meshContainer;
+    private float smoothTime = .2f;
 
     Vector3 _velocity = Vector3.zero;
-    bool _isFollowing = false;
+    public bool _isFollowing = false;
 
     void Start()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            Target = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Player not found! Make sure your player GameObject has the 'Player' tag.");
-        }
+        target = PlayerManager.Instance.playerMovement.enanoParent;
+    }
+
+    public void ConfigDrop(GameObject _resMesh)
+    {
+        Instantiate(_resMesh, meshContainer);
     }
 
     public void StartFollowing()
-        { 
-            _isFollowing = true;
+        {
+        smoothTime = Random.Range(.1f, .3f);
+        _isFollowing = true;
         }
 
     void Update()
     {
-        //Starts running right from the beginning...
         if (_isFollowing)
-        { 
-        transform.position = Vector3.SmoothDamp(transform.position, Target.position, ref _velocity, Time.deltaTime * Random.Range(MinModifier, MaxModifier));
+        {
+            this.gameObject.transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, smoothTime * Random.Range(MinModifier, MaxModifier));
         }
     }
+
 }

@@ -40,7 +40,7 @@ public class GateBlock : Block
         requiredResource = _reqResource;
         requiredAmount = _reqAmount;
         currentAmount = 0;
-        ColorGates(_reqResource.mesh.GetComponent<MeshRenderer>().sharedMaterial);
+        ColorGates(_reqResource.blockMesh.GetComponent<MeshRenderer>().sharedMaterial);
         
     }
 

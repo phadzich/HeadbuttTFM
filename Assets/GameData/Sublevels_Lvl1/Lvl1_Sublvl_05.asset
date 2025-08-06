@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lvl1Sub05
   helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+  dialogueSequence: {fileID: 11400000, guid: 88270742c9989f64ab6e0548fc54f944, type: 2}
   sublevel2DMap: {fileID: 2800000, guid: e509de7e01c0eaf4ca7ec2fe67eab20c, type: 3}
   goalType: 0
   blocksToMine: 12

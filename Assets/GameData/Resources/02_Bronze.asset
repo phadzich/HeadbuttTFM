@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
   m_Name: 02_Bronze
   m_EditorClassIdentifier: 
-  resourceDropPrefab: {fileID: 4047506742962519041, guid: 4bbc1b16a0bf2894da49964ae904507f, type: 3}
   id: 2
   shortName: Bronze
   hardness: 4
@@ -20,6 +19,6 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
   color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
-  mesh: {fileID: 8846097338804330060, guid: 50c79bbf9df025e4a9eca4c97c39ed67, type: 3}
+  blockMesh: {fileID: 8846097338804330060, guid: 50c79bbf9df025e4a9eca4c97c39ed67, type: 3}
+  resMesh: {fileID: 1122447648240941934, guid: 952b6846c2e20f74e8caea45e2d1db51, type: 3}
   resourceFamilies: 01000000
-  requiredMiningPower: 1

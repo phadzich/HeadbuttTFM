@@ -60,6 +60,10 @@ public class HelmetManager : MonoBehaviour
         allHelmets[0].Discover();
         allHelmets[1].Discover();
         allHelmets[2].Discover();
+
+        allHelmets[0].Craft();
+        allHelmets[1].Craft();
+        allHelmets[2].Craft();
     }
 
     // Crear todas las instancias de cascos

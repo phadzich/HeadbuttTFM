@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,7 @@ public class UIManager : MonoBehaviour
 
 
     public CurrentHelmetsHUD currentHelmetsHUD;
-
+    public CinemachineCamera currentCam;
 
     public static UIManager Instance;
     public ResourcesPanel resourcesPanel;
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
     public ActiveItemHUD activeItemHUD;
     public CraftingPanel craftingPanel;
     public SublevelPanel sublevelPanel;
+    public DialogueSystem dialogueSystem;
     public GameObject craftButton;
     public LivesPanel livesPanel;
     public RemainingBlocksIndicator remainingBlockIndicator;
@@ -49,6 +51,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("UIManager START");
+        //dialogueSystem.StartDialogue(LevelManager.Instance.currentSublevel.config.dialogueSequence);
         //startPanel.SetActive(true);
     }
 
@@ -71,9 +74,9 @@ public class UIManager : MonoBehaviour
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
 
         //PLAYER EVENTS
-        InventoryManager.Instance.ItemCycled += OnEquippedItemCycled;
-        InventoryManager.Instance.ItemEquipped += OnEquippedItemCycled;
-        InventoryManager.Instance.ItemConsumed += OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemCycled += OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemEquipped += OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemConsumed += OnEquippedItemCycled;
     }
 
 
@@ -88,9 +91,9 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
-        InventoryManager.Instance.ItemCycled -= OnEquippedItemCycled;
-        InventoryManager.Instance.ItemEquipped -= OnEquippedItemCycled;
-        InventoryManager.Instance.ItemConsumed -= OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemCycled -= OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemEquipped -= OnEquippedItemCycled;
+        InventoryManager.Instance.itemsInventory.ItemConsumed -= OnEquippedItemCycled;
     }
 
     public void SuscribeToHelmetInstances()
@@ -116,6 +119,16 @@ public class UIManager : MonoBehaviour
         hbPointsHUD.UpdateFill(_current, _max);
     }
 
+    public void ActivateCam(CinemachineCamera _newCam)
+    {
+        currentCam = _newCam;
+      _newCam.Priority = 20;
+    }
+
+    public void DeactivateCurrentCam()
+    {
+        currentCam.Priority = 0;
+    }
     private void OnOwnedResourcesChanged()
     {
         //NPCUpgradeExchanger.PopulateButtons();

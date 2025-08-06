@@ -6,8 +6,6 @@ public class ResourceData : ScriptableObject
 {
 
     [Header("Prefabs")]
-    public GameObject resourceDropPrefab;
-
     public int id;
     public string shortName;
     public int hardness;
@@ -15,7 +13,8 @@ public class ResourceData : ScriptableObject
     public string description;
     public Sprite icon;
     public Color color;
-    public GameObject mesh;
+    public GameObject blockMesh;
+    public GameObject resMesh;
     public List<ResourceFamily> resourceFamilies;
 
     public enum ResourceRarity

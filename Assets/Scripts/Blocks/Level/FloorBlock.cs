@@ -16,6 +16,7 @@ public class FloorBlock : Block
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     public void SetupBlock(int _subId, int _xPos, int _yPos)
@@ -23,6 +24,8 @@ public class FloorBlock : Block
         sublevelPosition = new Vector2(_xPos, _yPos);
         sublevelId = _subId;
         isWalkable = true;
+        int _randomRotation = Random.Range(0, 4);
+        transform.Rotate(0, (float)_randomRotation * 90, 0);
     }
 
     public override void OnBounced(HelmetInstance _helmetInstance)

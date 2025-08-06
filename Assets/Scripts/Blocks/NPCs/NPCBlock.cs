@@ -7,6 +7,7 @@ public class NPCBlock : Block,IInteractable
     public BoxCollider zoneCollider;
     public TextMeshProUGUI interactLBL;
     public string interactString;
+    public CinemachineCamera NPCCam;
 
     public NPCType type;
     public void SetupBlock(int _subId, int _xPos, int _yPos)
@@ -56,7 +57,15 @@ public class NPCBlock : Block,IInteractable
 
     public void Interact()
     {
+        UIManager.Instance.ActivateCam(NPCCam);
         UIManager.Instance.OpenNPCUI(type);
+ 
+    }
+
+    public void EndInteract()
+    {
+        UIManager.Instance.OpenNPCUI(type);
+        NPCCam.Priority = 0;
     }
 
 

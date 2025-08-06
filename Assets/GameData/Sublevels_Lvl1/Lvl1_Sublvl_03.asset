@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Lvl1_Sublvl_03
   m_EditorClassIdentifier: 
   id: Lvl1Sub03
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 11400000, guid: 47698643c3bec8f4c97a1eca1f9a8768, type: 2}
   sublevel2DMap: {fileID: 2800000, guid: 772ba73e0edcd6c4396a1796dd77177e, type: 3}
   goalType: 0
   blocksToMine: 12

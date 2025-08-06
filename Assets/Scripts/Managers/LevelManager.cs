@@ -227,7 +227,10 @@ public class LevelManager : MonoBehaviour
             GenerateNavMesh();
         }
 
-
+        if (_sublevelConfig.dialogueSequence != null)
+        {
+            UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
+        }
 
         // RESETEAR O LO QUE SEA LOS HELMETS
         //HelmetManager.Instance.NewSublevel();
@@ -255,7 +258,7 @@ public class LevelManager : MonoBehaviour
         {
             navMeshSurface.RemoveData();
             navMeshSurface.BuildNavMesh(); // Esto hornear� el NavMesh en tiempo de ejecuci�n
-            Debug.Log("NavMesh baked dynamically.");
+            //Debug.Log("NavMesh baked dynamically.");
         }
         else
         {

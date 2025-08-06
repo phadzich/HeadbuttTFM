@@ -14,6 +14,7 @@ public class WallBlock : Block
         sublevelPosition = new Vector2(_xPos, _yPos);
         sublevelId = _subId;
         isWalkable = false;
+        transform.Rotate(0, Random.Range(0f, 360f), 0, Space.World);
     }
 
     public override void OnBounced(HelmetInstance _helmetInstance)

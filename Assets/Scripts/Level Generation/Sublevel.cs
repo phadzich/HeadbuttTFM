@@ -10,6 +10,7 @@ public class Sublevel : MonoBehaviour {
     public bool isActive;
     public SublevelConfig config;
 
+
     public bool isCompleted;
 
     public int blocksToComplete;

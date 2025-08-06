@@ -1,3 +1,4 @@
+using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,13 @@ public class HBPointsHUD : MonoBehaviour
         float _fillAmount = _current / _max;
         fillIMG.fillAmount = _fillAmount;
         debugTXT.text = $"{_current}/{_max}";
+    }
+
+    public void AnimateBounce()
+    {
+        Vector3 _bounceScale = new Vector3(1.2f, 1.2f, 2f);
+        Tween.StopAll(this.transform);
+        Tween.Scale(this.transform, startValue: _bounceScale, endValue: Vector3.one, ease: Ease.OutBack,duration:.3f);
     }
 
     public void UpdateStreak(int _count)

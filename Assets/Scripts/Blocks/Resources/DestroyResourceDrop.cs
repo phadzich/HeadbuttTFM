@@ -7,7 +7,8 @@ public class DestroyResourceDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(transform.parent.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
+
 }
