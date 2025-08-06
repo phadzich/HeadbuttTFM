@@ -34,7 +34,7 @@ public class GateBehaviour : MonoBehaviour, IBlockEffect
         requiredResource = _gateReq.requiredResource;
         requiredAmount = _gateReq.requiredAmount;
         currentAmount = 0;
-        ColorGates(requiredResource.mesh.GetComponent<MeshRenderer>().sharedMaterial);
+        ColorGates(requiredResource.resMesh.GetComponent<MeshRenderer>().sharedMaterial);
 
     }
 

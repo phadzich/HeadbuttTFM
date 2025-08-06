@@ -61,7 +61,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
 
     private void InstanceResourceBlockMesh()
     {
-        blockMesh = Instantiate(resourceData.mesh, blockMeshParent);
+        blockMesh = Instantiate(resourceData.blockMesh, blockMeshParent);
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
@@ -124,12 +124,6 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
 
     public void Activate()
     {
-        // Spawn the correct resource prefab (linked in ResourceData)
-        if (resourceData != null && resourceData.resourceDropPrefab != null)
-        {
-            Instantiate(resourceData.resourceDropPrefab, transform.position, Quaternion.identity);
-        }
-
         GetMinedState();
         ScreenShake();
         MinedAnimation();

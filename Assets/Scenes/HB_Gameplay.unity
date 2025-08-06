@@ -13978,7 +13978,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
   - {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
   sublevelMapGenerator: {fileID: 1925347361}
-  sublevelMapNewGenerator: {fileID: 1925347362}
+  sublevelMapNewGenerator: {fileID: 0}
   currentLevel: {fileID: 0}
   currentSublevel: {fileID: 0}
   sublevelsList: []
@@ -16279,6 +16279,23 @@ MonoBehaviour:
   npcUpgradePrefab: {fileID: 3289155678676577984, guid: 718a9f8522f786e49a439f8784bcc1f5, type: 3}
   npcElevatorPrefab: {fileID: 7440987867658177015, guid: 5559c59c86579c646925e3a2a2fbf566, type: 3}
   npcShopPrefab: {fileID: 3289155678676577984, guid: 9754b1648bb54d34c86b4ab18c4745ae, type: 3}
+--- !u!114 &1925347362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925347359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1783ce0ca8dbf4d2b857431b56a47e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorMappings: {fileID: 11400000, guid: d66ad27369ecede488dcbf740ade7baf, type: 2}
+  testMap: {fileID: 2800000, guid: f2673c9dd3706e14fbc288e2bd209793, type: 3}
+  mapTexture: {fileID: 0}
+  mapWidth: 0
+  mapHeight: 0
 --- !u!1 &1933446461
 GameObject:
   m_ObjectHideFlags: 0
