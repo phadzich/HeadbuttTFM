@@ -7,6 +7,7 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockEffect
     [SerializeField] private GameObject collectableObject;
 
     private ICollectibleEffect[] collectables;
+    private bool isCollected = false;
 
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockEffect
 
     public void Activate()
     {
+        if (isCollected) return;
+
         foreach (var col in collectables)
         {
             col.Activate();
@@ -32,13 +35,15 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockEffect
             collectableObject.SetActive(false);
     }
 
-    // Llamado por el hijo
-    public void OnCollected()
+    public void OnBounced(HelmetInstance _helmetInstance)
     {
         Activate();
+        MatchManager.Instance.FloorBounced();
     }
 
-    public void OnBounced(HelmetInstance _helmetInstance) => MatchManager.Instance.FloorBounced();
-
-    public void OnHeadbutt(HelmetInstance _helmetInstance) => MatchManager.Instance.FloorBounced();
+    public void OnHeadbutt(HelmetInstance _helmetInstance)
+    {
+        Activate(); 
+        MatchManager.Instance.FloorBounced();
+    }
 }

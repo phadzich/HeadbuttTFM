@@ -21,10 +21,10 @@ public class HeadDmg_Fire : Enemy, IDamagableEnemy
     private bool isBehaviorActive = false;
 
     [Header("VARIABLES DANO")]
-    public DamageBlock dmgBlock;
+    //public DamageBlock dmgBlock;
     public float damageCooldown = 2f;
 
-    // Referencia a la interfaz del enemigo dañable
+    // Referencia a la interfaz del enemigo daï¿½able
     private IDamagableEnemy _damagableEnemy;
 
     void Start()
@@ -50,19 +50,19 @@ public class HeadDmg_Fire : Enemy, IDamagableEnemy
 
     public override void OnHit(int damageTaken)
     {
-        life -= damageTaken; // Usa 'damageTaken' aquí
+        life -= damageTaken; // Usa 'damageTaken' aquï¿½
 
         // Si la vida llega a 0, pedimos al componente que maneja la muerte que muera
         if (life <= 0)
         {
             if (_damagableEnemy != null)
             {
-                _damagableEnemy.Die(); // Llama al método Die() a través de la interfaz
+                _damagableEnemy.Die(); // Llama al mï¿½todo Die() a travï¿½s de la interfaz
             }
             else
             {
                 // Si no hay un componente que maneje la muerte, destruye directamente
-                Debug.LogWarning($"EnemyDamage: {gameObject.name} murió, pero no hay un IDamagableEnemy para manejarlo. Destruyendo directamente.", this);
+                Debug.LogWarning($"EnemyDamage: {gameObject.name} muriï¿½, pero no hay un IDamagableEnemy para manejarlo. Destruyendo directamente.", this);
             }
         }
         // Logica de recibir un golpe
@@ -72,7 +72,7 @@ public class HeadDmg_Fire : Enemy, IDamagableEnemy
 
     public void Die()
     {
-        // ... toda la lógica de lo que sucede cuando el enemigo muere ...
+        // ... toda la lï¿½gica de lo que sucede cuando el enemigo muere ...
     }
 
     public void StartEnemyBehavior()

@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
-public class BallDmgBlock : DamageBlock
+public class BallDmgBlock : MonoBehaviour
 {
     public float height;
     public float speed;

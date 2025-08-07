@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CollectibleTrigger))]
 public class BPCollectible : MonoBehaviour, ICollectibleEffect
 {
     private Sublevel parentSublevel;
@@ -13,7 +12,7 @@ public class BPCollectible : MonoBehaviour, ICollectibleEffect
 
         if (isAlreadyDiscovered())
         {
-            DeactivateBP();
+            return;
         }
     }
 
@@ -26,11 +25,5 @@ public class BPCollectible : MonoBehaviour, ICollectibleEffect
     {
         Debug.Log("BP OBTAINED!!!");
         LevelManager.Instance.currentSublevel.CollectBP();
-        DeactivateBP();
-    }
-
-    private void DeactivateBP()
-    {
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
     }
 }

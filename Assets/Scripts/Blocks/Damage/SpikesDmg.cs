@@ -12,7 +12,6 @@ public class SpikesDmg : MonoBehaviour
     public BoxCollider damageCollider;
 
     [Header("VARIABLES DA�O")]
-    public DamageBlock dmgBlock;
     public float damageCooldown = 2f;
     private float lastDamageTime = -Mathf.Infinity;
 

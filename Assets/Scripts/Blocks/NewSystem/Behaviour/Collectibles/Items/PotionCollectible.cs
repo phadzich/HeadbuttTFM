@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CollectibleTrigger))]
 public class PotionCollectible : MonoBehaviour, ICollectibleEffect
 {
     public GameObject potionMesh;

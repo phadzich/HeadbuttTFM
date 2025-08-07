@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform enanoParent;
     [SerializeField]
     float blockLockdownRange;
-    public Block blockBelow;
     public BlockNS blockNSBelow;
 
     [Header("KNOCKBACK")]
@@ -35,8 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        //CheckForBlockBelow();
-        CheckForNSBlockBelow();
+        CheckForBlockBelow();
         CheckMovementLock();
 
         transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
@@ -50,19 +48,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void CheckForBlockBelow()
-    {
-        Vector3 origin = enanoParent.transform.position;
-        Vector3 direction = Vector3.down;
-        Debug.DrawRay(origin, direction * 20f, Color.red);
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, 20f, blockLayerMask))
-        {
-            
-            blockBelow = hit.collider.GetComponent<Block>();
-        }
-    }
-
-    private void CheckForNSBlockBelow()
     {
         Vector3 origin = enanoParent.transform.position;
         Vector3 direction = Vector3.down;
@@ -86,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("NewTarget: " + positionTarget);
 
     }
-
-
 
     public void MovePlayer(InputAction.CallbackContext context)
     {

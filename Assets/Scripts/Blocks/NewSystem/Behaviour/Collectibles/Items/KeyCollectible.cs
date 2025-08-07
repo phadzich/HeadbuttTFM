@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CollectibleTrigger))]
 public class KeyCollectible : MonoBehaviour, ICollectibleEffect
 {
     public void Activate()

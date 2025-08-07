@@ -9,12 +9,4 @@ public class CollectibleTrigger : MonoBehaviour
         parent = GetComponentInParent<CollectibleBehaviour>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            parent.OnCollected();
-        }
-    }
-
 }

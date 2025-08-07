@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.VFX;
 
-public class ResourceBlock : Block
+public class ResourceBlock : MonoBehaviour
 {
     [Header("DATA")]
     public ResourceData resourceData;
@@ -47,11 +47,8 @@ public class ResourceBlock : Block
     public void SetupBlock(int _subId, int _xPos, int _yPos, ResourceData _resource)
     {
         //Debug.Log(_resource);
-        sublevelId = _subId;
-        sublevelPosition= new Vector2(_xPos, _yPos);
         resourceData = _resource;
         resourceFamilies = _resource.resourceFamilies;
-        isWalkable= true;
 
         InstanceResourceBlockMesh();
         InstanceResourceDropMesh();
@@ -84,7 +81,7 @@ public class ResourceBlock : Block
     }
 
 
-    public override void OnBounced(HelmetInstance _helmetInstance)
+    public void OnBounced(HelmetInstance _helmetInstance)
     {
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
@@ -99,7 +96,7 @@ public class ResourceBlock : Block
         }
     }
 
-    public override void OnHeadbutted(HelmetInstance _helmetInstance)
+    public void OnHeadbutted(HelmetInstance _helmetInstance)
     {
         SoundManager.PlaySound(SoundType.HEADBUTTRESOURCE, 0.7f);
         if (!isMined) //SI NO HA SIDO MINADO AUN
@@ -134,7 +131,7 @@ public class ResourceBlock : Block
         MatchManager.Instance.FloorBounced();
     }
 
-    public override void Activate()
+    public void Activate()
     {
 
         GetMinedState();

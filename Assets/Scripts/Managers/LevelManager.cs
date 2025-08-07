@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
     public CheckpointSystem checkpointSystem;
     public List<LevelConfig> levelsList;
-    public SublevelMapGenerator sublevelMapGenerator;
     public SublevelMapNewGenerator sublevelMapNewGenerator;
 
     [Header("CURRENT LEVEL")]
@@ -133,15 +132,10 @@ public class LevelManager : MonoBehaviour
                     break;
             }
 
-            //Debug.Log(_miningSublevel.id);
-
-            //sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel,null,_sublevel);
-
             sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel, null, _sublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            //sublevelMapGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth,null, _npcSublevel, _sublevel);
             sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth, null, _npcSublevel, _sublevel);
         }
 
