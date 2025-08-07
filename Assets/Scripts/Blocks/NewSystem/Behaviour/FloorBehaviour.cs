@@ -13,6 +13,7 @@ public class FloorBehaviour : MonoBehaviour, IBlockEffect
     {
         audioSource = GetComponent<AudioSource>();
         GetComponent<BlockNS>().isWalkable = true;
+        SetRandomRotation();
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)
@@ -29,5 +30,11 @@ public class FloorBehaviour : MonoBehaviour, IBlockEffect
     public void Activate()
     {
          
+    }
+
+    private void SetRandomRotation()
+    {
+        int _randomRotation = Random.Range(0, 4);
+        transform.Rotate(0, (float)_randomRotation * 90, 0);
     }
 }

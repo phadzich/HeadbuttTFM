@@ -34,9 +34,11 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public GameObject hitIndicatorPF;
 
     public TextMeshProUGUI remianingBouncesText;
-    public GameObject resourceDropPrefab;
+
 
     [Header("UI AND VFX")]
+    public ResourceDropFollow resourceDropPrefab;
+    public HeadbuttDropFollow hbDropPrefab;
     public ResourceBlockUIAnims uiAnims;
 
     private void Start()
@@ -50,10 +52,11 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         resourceFamilies = _resource.resourceFamilies;
 
         InstanceResourceBlockMesh();
+        InstanceResourceDropMesh();
         ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         uiAnims.resourceIcon.sprite = _resource.icon;
-
+        SetRandomRotation();
         gameObject.name = $"{_resource.shortName}_c{_context.x}r_{_context.y}";
 
         //Debug.Log(_context.sublevel);
@@ -71,6 +74,11 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         return multiplier;
     }
 
+    private void SetRandomRotation()
+    {
+        int _randomRotation = Random.Range(0, 4);
+        transform.Rotate(0, (float)_randomRotation * 90, 0);
+    }
 
     public void OnBounced(HelmetInstance _helmetInstance)
     {
@@ -127,6 +135,8 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         GetMinedState();
         ScreenShake();
         MinedAnimation();
+        ReleaseResourceDrop();
+        ReleaseHBDrop();
         SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
 
         uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
@@ -135,6 +145,20 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     private void MinedAnimation()
     {
         minedParticles.Play();
+    }
+
+    private void InstanceResourceDropMesh()
+    {
+        resourceDropPrefab.ConfigDrop(resourceData.resMesh);
+    }
+    private void ReleaseResourceDrop()
+    {
+        resourceDropPrefab.gameObject.SetActive(true);
+    }
+
+    private void ReleaseHBDrop()
+    {
+        hbDropPrefab.StartFollow();
     }
 
     private void ScreenShake()

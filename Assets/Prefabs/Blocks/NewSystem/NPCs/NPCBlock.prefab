@@ -481,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 7179204843015695118}
   serializedVersion: 2
   m_LocalRotation: {x: -0.08715578, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 0.875, z: -2.5}
+  m_LocalPosition: {x: 0, y: 1, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 0}
+    TrackingTarget: {fileID: 1906877703317968906}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -548,7 +548,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 0, z: -2.5}
+  FollowOffset: {x: 0, y: 1, z: -2.5}
 --- !u!114 &7383730614346004894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +563,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weight: 1
   FocusTracking: 3
-  FocusTarget: {fileID: 0}
+  FocusTarget: {fileID: 1906877703317968906}
   FocusOffset: 0
   Profile: {fileID: 11400000, guid: 343510ae2d02768489c16f6245529fde, type: 2}

@@ -55,9 +55,15 @@ public class ResourceBlock : MonoBehaviour
         ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
         uiAnims.resourceIcon.sprite = _resource.icon;
+        SetRandomRotation();
+    }
+
+    private void SetRandomRotation()
+    {
         int _randomRotation = Random.Range(0, 4);
         transform.Rotate(0, (float)_randomRotation * 90, 0);
     }
+
 
     private void ReleaseHBDrop()
     {

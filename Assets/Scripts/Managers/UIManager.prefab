@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &381758717377042116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3568492111163803094}
+  - component: {fileID: 8801381227787304174}
+  - component: {fileID: 5814737729881959325}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3568492111163803094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381758717377042116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8801381227787304174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381758717377042116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb784d066edd7434cb799dcc225d33b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHelmetsHUD: {fileID: 0}
+  currentCam: {fileID: 0}
+  resourcesPanel: {fileID: 0}
+  shopPanel: {fileID: 0}
+  activeItemHUD: {fileID: 0}
+  craftingPanel: {fileID: 0}
+  sublevelPanel: {fileID: 0}
+  dialogueSystem: {fileID: 5814737729881959325}
+  craftButton: {fileID: 0}
+  livesPanel: {fileID: 0}
+  remainingBlockIndicator: {fileID: 0}
+  NPCCraftPanel: {fileID: 0}
+  NPCUpgradePanel: {fileID: 0}
+  NPCUpgradeExchanger: {fileID: 0}
+  NPCElevatorPanel: {fileID: 0}
+  startPanel: {fileID: 0}
+  totalBouncesTXT: {fileID: 0}
+  hbPointsHUD: {fileID: 0}
+  specialHeadbuttHUD: {fileID: 0}
+  exitFloatinIndicatorHUD: {fileID: 0}
+--- !u!114 &5814737729881959325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381758717377042116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb3a86bfdf8a24bb6eca561ad014c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 0}
