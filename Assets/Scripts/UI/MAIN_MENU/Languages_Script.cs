@@ -12,10 +12,12 @@ public class ControladorIdiomas : MonoBehaviour
     public TMP_Dropdown ColorblindDropdown;
     public TMP_Dropdown CameraShakeDropdown;
     public TMP_Dropdown modeDropdown;
+    public TMP_Dropdown GraphicsQualityDropdown;
 
     public List<LocalizedString> opcionesColorBlind;
     public List<LocalizedString> opcionesCamaraShake;
     public List<LocalizedString> opcionesWindowMode;
+    public List<LocalizedString> opcionesGraphicsQuality;
 
     private bool _active = false;
 
@@ -85,5 +87,14 @@ public class ControladorIdiomas : MonoBehaviour
             modeDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
         }
         modeDropdown.RefreshShownValue();
+
+        GraphicsQualityDropdown.options.Clear();
+        for (int i = 0; i < opcionesGraphicsQuality.Count; i++)
+        {
+            var handle = opcionesGraphicsQuality[i].GetLocalizedStringAsync();
+            yield return handle;
+            GraphicsQualityDropdown.options.Add(new TMP_Dropdown.OptionData(handle.Result));
+        }
+        GraphicsQualityDropdown.RefreshShownValue();
     }
 }

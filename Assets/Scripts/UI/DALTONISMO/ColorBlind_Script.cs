@@ -90,7 +90,10 @@ public class ColorBlindManager : MonoBehaviour
             case "protanopia": selectedLUT = protanopiaLUT; break;
             case "deuteranopia": selectedLUT = deuteranopiaLUT; break;
             case "tritanopia": selectedLUT = tritanopiaLUT; break;
-            case "ninguno":
+            case "protanopía": selectedLUT = protanopiaLUT; break;
+            case "deuteranopía": selectedLUT = deuteranopiaLUT;break;
+            case "tritanopía": selectedLUT = tritanopiaLUT;break;
+            case "ninguno": 
                 colorLookup.active = false;
                 return;
         }

@@ -25,6 +25,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b83569d67af61e458304325a23e5dfd
+    m_Address: Assets/Settings/PC_RPAsset.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e6cbd92db86f4b18aec3ed561671858
+    m_Address: Assets/Settings/Mobile_RPAsset.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6fe5422598f312e46bfa875bd98ba7a6
     m_Address: Assets/Prefabs/UI/LUTS/tritanope_correct_lut.png
     m_ReadOnly: 0
@@ -32,6 +42,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 89a5158af339bae4786b4cc637e2b1d6
     m_Address: Assets/Scripts/UI/PAUSE_MENU/Options_Menu.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cfa2695fcbb2ec40a038453da00e9fa
+    m_Address: Assets/Settings/LOW_RPAsset.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a63404b7b153245409e127fb1b4bb625
+    m_Address: Assets/Settings/HIGH_RPAsset.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
