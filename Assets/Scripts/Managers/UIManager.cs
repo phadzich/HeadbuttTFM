@@ -8,31 +8,39 @@ using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
-    // WIP, HAY QUE CREAR EVENTOS Y SUSCRIBIRNOS A ELLOS
-
-
-    public CurrentHelmetsHUD currentHelmetsHUD;
-    public CinemachineCamera currentCam;
 
     public static UIManager Instance;
-    public ResourcesPanel resourcesPanel;
-    public ShopPanel shopPanel;
-    public ActiveItemHUD activeItemHUD;
-    public CraftingPanel craftingPanel;
-    public SublevelPanel sublevelPanel;
-    public DialogueSystem dialogueSystem;
-    public GameObject craftButton;
-    public LivesPanel livesPanel;
-    public RemainingBlocksIndicator remainingBlockIndicator;
+    public GameObject currentOpenUI;
+
+    [Header("NPCs")]
     public GameObject NPCCraftPanel;
     public GameObject NPCUpgradePanel;
     public ExchangePanelUI NPCUpgradeExchanger;
     public GameObject NPCElevatorPanel;
+    public GameObject NPCInventoryPanel;
+    public ShopPanel shopPanel;
+    public CraftingPanel craftingPanel;
+
+    [Header("FRONTEND")]
     public GameObject startPanel;
-    public TextMeshProUGUI totalBouncesTXT;
+
+    [Header("HUD")]
+    public CurrentHelmetsHUD currentHelmetsHUD;
+    public ActiveItemHUD activeItemHUD;
+    public ResourcesPanel resourcesPanel;
+    public SublevelPanel sublevelPanel;
     public HBPointsHUD hbPointsHUD;
     public SpecialHeadbuttHUD specialHeadbuttHUD;
+
+
+    [Header("PLAYER")]
+    public RemainingBlocksIndicator remainingBlockIndicator;
+    public CinemachineCamera currentCam;
     public ExitFloatinIndicatorHUD exitFloatinIndicatorHUD;
+
+    [Header("SYSTEMS")]
+    public DialogueSystem dialogueSystem;
+
 
     private void Awake()
     {
@@ -202,20 +210,33 @@ public class UIManager : MonoBehaviour
         {
             case NPCType.Crafter:
                 NPCCraftPanel.SetActive(true);
+                currentOpenUI = NPCCraftPanel.gameObject;
                 break;
             case NPCType.Upgrader:
                 NPCUpgradePanel.SetActive(true);
+                currentOpenUI = NPCUpgradePanel.gameObject;
                 break;
             case NPCType.Elevator:
                 NPCElevatorPanel.SetActive(true);
+                currentOpenUI = NPCElevatorPanel.gameObject;
                 break;
-
+            case NPCType.Inventory:
+                NPCInventoryPanel.SetActive(true);
+                currentOpenUI = NPCInventoryPanel.gameObject;
+                InventoryManager.Instance.itemsInventory.OpenUI();
+                break;
         }
     }
 
+    public void CloseCurrentOpenUI()
+    {
+        currentOpenUI.SetActive(false);
+        currentOpenUI = null;
+    }
     public void OpenShopUI(int _id)
     {
         shopPanel.OpenShop(ShopManager.Instance.ShopById(_id));
+        currentOpenUI = shopPanel.gameObject;
     }
 
 
