@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,8 +15,14 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField]private InventorySlot highlightedSlot;
     [SerializeField] private InventorySlot selectedSlot;
+    [SerializeField] private InventorySlot activeSlot;
 
 
+    public void UpdateEquippedSlotData(Item _item, int _count, InventorySlot _slot)
+    {
+        Debug.Log($"UDATINGSLOT {_slot}");
+        _slot.EquipItem(_item, _count);
+    }
 
     public void HighlightSlot(InventorySlot _slot)
     {
@@ -40,9 +47,21 @@ public class InventoryManager : MonoBehaviour
         {
             selectedSlot.SetSelected(false);
         }
+        if (_slot.slotType == SlotType.Item || _slot.slotType == SlotType.Helmet)
+        {
+            activeSlot = _slot;
+            Debug.Log($"USING {_slot.itemCount}x{_slot.itemData.itemName}");
+        }
+
+        if (_slot.slotType == SlotType.EquippedItem)
+        {
+            Debug.Log($"TRYING EQUIP {activeSlot.itemCount}x{activeSlot.itemData.itemName}");
+            itemsInventory.TryEquipItem(activeSlot.itemData, activeSlot.itemCount,_slot);
+        }
 
         selectedSlot = _slot;
         selectedSlot.SetSelected(true);
+
         UIManager.Instance.NPCInventoryPanel.ContextFromSelectedSlot(_slot);
     }
 

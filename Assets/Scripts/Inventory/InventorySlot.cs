@@ -41,6 +41,17 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         helmetInstance = null;
     }
 
+    public void EquipItem(Item _item, int _count)
+    {
+        Debug.Log("SLOT UPDATED!");
+        itemData = _item;
+        itemCount = _count;
+        icon.sprite = _item.illustration;
+        qtyTXT.text = itemCount.ToString();
+        slotType = SlotType.EquippedItem;
+        helmetInstance = null;
+    }
+
     public void AssignHelmet(HelmetInstance _helmet)
     {
         helmetInstance = _helmet;

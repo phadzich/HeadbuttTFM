@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,8 @@ public class InventoryPanelUI : MonoBehaviour
     public Transform equippedHelmetSlotsCont;
     public void ContextFromSelectedSlot(InventorySlot _slot)
     {
+        Debug.Log($"CHANGING CONTEXT {_slot}");
+
         switch (_slot.slotType)
         {
             case SlotType.Item: SetNavContext(NavContext.EquippedItems); prevContext = NavContext.ItemSlots; break;
@@ -22,6 +25,10 @@ public class InventoryPanelUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SetNavContext(NavContext.ItemSlots);
+    }
 
 
     private void SetNavContext(NavContext _newContext)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -13,14 +14,18 @@ public class ItemsInventory : MonoBehaviour
 
     [SerializeField] private GameObject firstSlot;
 
+    private int maxItemsPerSlot = 3;
+
     public Item currentActiveItem;
     public int currentActiveIndex;
-    public List<Item> equippedItems;
+    public List<Item> equippedItemsList;
 
     public UIPanel inventoryPanel;
 
-
+    [SerializeField]
     public Dictionary<Item, int> ownedItems;
+    [SerializeField]
+    public Dictionary<Item, int> equippedItems;
 
     public Action<Item, int> ItemEquipped;
     public Action<Item, int> ItemConsumed;
@@ -29,6 +34,7 @@ public class ItemsInventory : MonoBehaviour
     public void Init()
     {
         ownedItems = new Dictionary<Item, int>();
+        equippedItems = new Dictionary<Item, int>();
     }
 
     public void OpenUI()
@@ -43,8 +49,10 @@ public class ItemsInventory : MonoBehaviour
     }
     public void ChangeActiveItem()
     {
-        currentActiveItem = equippedItems[currentActiveIndex];
-
+        if (equippedItemsList.Count > 0)
+        {
+            currentActiveItem = equippedItemsList[currentActiveIndex];
+        }
     }
     public void TryAddOwnedItems(Item _item, int _amount)
     {
@@ -57,17 +65,90 @@ public class ItemsInventory : MonoBehaviour
         else
         {
             ownedItems.Add(_item, _amount);
-            UpdateKeysList();
-            ActivateNextItem();
-
+ 
+            //ActivateNextItem();
         }
         RefreshInventoryUI();
-        ItemEquipped?.Invoke(_item, ownedItems[_item]);
+
+    }
+    public void TryEquipItem(Item _item, int _amount,InventorySlot _slot)
+    {
+        Debug.Log(_item.itemName);
+        
+        if (!equippedItems.ContainsKey(_item))
+        {
+            Debug.Log("ITEM NOT EQUIPPED");
+            int _totalAmount = ownedItems[_item];
+            int _finalQtyEquipped = _amount;
+            //SE EXCEDE, REGRESAMOS EL EXCEDENTE y solo depositamos el max
+            if (_totalAmount > maxItemsPerSlot)
+            {
+                _finalQtyEquipped = maxItemsPerSlot;
+                var _returnAmount = _totalAmount - maxItemsPerSlot;
+                UpdateOwnedItem(_item,_returnAmount);
+            }
+            //ES EXACTO o MENOR, ELIMINAMOS EL ITEM DEL EQUIPPED
+            else
+            {
+                RemoveOwnedItem(_item);
+            }
+            EquipNewItem(_item, _finalQtyEquipped);
+            InventoryManager.Instance.UpdateEquippedSlotData(_item, _finalQtyEquipped, _slot);
+        }
+    
+        
+        /*
+        if (equippedItems.ContainsKey(_item))
+        {
+            Debug.Log("ITEM ALREADY EQUIPPED");
+            //EL TOTAL
+            int _totalAmount = equippedItems[_item] + _amount;
+            //SE EXCEDE, REGRESAMOS EL EXCEDENTE
+            if(_totalAmount> maxItemsPerSlot)
+            {
+                var _returnAmount = _totalAmount - maxItemsPerSlot;
+                equippedItems[_item] = maxItemsPerSlot;
+                ownedItems[_item] = _returnAmount;
+            }
+            //ES EXACTO, ELIMINAMOS EL ITEM DEL EQUIPPED
+            else if(_totalAmount == maxItemsPerSlot)
+            {
+                ownedItems.Remove(_item);
+            }
+            //ES MENOR AL MAX, SOLO CAMBIAMOS EL AMOUNT
+            else
+            {
+                equippedItems[_item] = _totalAmount;
+            }
+            InventoryManager.Instance.UpdateEquippedSlotData(_item, _totalAmount, _slot);
+        }
+
+        */
+        ItemEquipped?.Invoke(_item, equippedItems[_item]);
+        RefreshInventoryUI();
+        UpdateKeysList();
+        ActivateNextItem();
+    }
+
+
+    private void EquipNewItem(Item _newItem, int _amount)
+    {
+        equippedItems.Add(_newItem, maxItemsPerSlot);
+    }
+
+    private void UpdateOwnedItem(Item _ownedItem, int _amount)
+    {
+        ownedItems[_ownedItem] = _amount;
+    }
+
+    private void RemoveOwnedItem(Item _ownedItem)
+    {
+        ownedItems.Remove(_ownedItem);
     }
 
     private void UpdateKeysList()
     {
-        equippedItems = ownedItems.Keys.ToList();
+        equippedItemsList = equippedItems.Keys.ToList();
 
     }
     public void UseActiveItem(InputAction.CallbackContext context)
@@ -94,7 +175,6 @@ public class ItemsInventory : MonoBehaviour
         {
             ownedItems.Remove(_item);
             UpdateKeysList();
-
             ActivateNextItem();
         }
         else
@@ -113,7 +193,7 @@ public class ItemsInventory : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
 
-            if (ownedItems.Count <= 1) return;
+            if (equippedItems.Count <= 1) return;
             ActivateNextItem();
         }
     }
@@ -121,27 +201,27 @@ public class ItemsInventory : MonoBehaviour
     public void ActivateNextItem()
     {
 
-        if (ownedItems.Count <= 0)
+        if (equippedItems.Count <= 0)
         {
             ItemCycled?.Invoke(null, 0);
             return;
         }
-        currentActiveIndex = (currentActiveIndex + 1) % equippedItems.Count;
+        currentActiveIndex = (currentActiveIndex + 1) % equippedItemsList.Count;
         ChangeActiveItem();
 
-        ItemCycled?.Invoke(currentActiveItem, ownedItems[currentActiveItem]);
+        ItemCycled?.Invoke(currentActiveItem, equippedItems[currentActiveItem]);
     }
 
     public void ActivatePrevItem()
     {
-        if (ownedItems.Count <= 0)
+        if (equippedItems.Count <= 0)
         {
             ItemCycled?.Invoke(null, 0);
             return;
         }
-        currentActiveIndex = (currentActiveIndex - 1 + equippedItems.Count) % equippedItems.Count;
+        currentActiveIndex = (currentActiveIndex - 1 + equippedItemsList.Count) % equippedItemsList.Count;
         ChangeActiveItem();
-        ItemCycled?.Invoke(currentActiveItem, ownedItems[currentActiveItem]);
+        ItemCycled?.Invoke(currentActiveItem, equippedItems[currentActiveItem]);
     }
 
     public void PreviousEquippedItem(InputAction.CallbackContext context)
@@ -150,7 +230,7 @@ public class ItemsInventory : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
 
-            if (ownedItems.Count <= 1) return;
+            if (equippedItems.Count <= 1) return;
             ActivatePrevItem();
         }
     }

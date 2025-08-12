@@ -265,7 +265,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432750206491796824, guid: 8c562e80dd5280946856fd21582d8703, type: 3}
       propertyPath: m_Name
-      value: ItemSlot (1)
+      value: ItemSlotB
       objectReference: {fileID: 0}
     - target: {fileID: 3778712426579515737, guid: 8c562e80dd5280946856fd21582d8703, type: 3}
       propertyPath: m_Pivot.x
@@ -808,7 +808,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432750206491796824, guid: 8c562e80dd5280946856fd21582d8703, type: 3}
       propertyPath: m_Name
-      value: ItemSlot (2)
+      value: ItemSlotC
       objectReference: {fileID: 0}
     - target: {fileID: 3778712426579515737, guid: 8c562e80dd5280946856fd21582d8703, type: 3}
       propertyPath: m_Pivot.x
@@ -16698,7 +16698,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432750206491796824, guid: 8c562e80dd5280946856fd21582d8703, type: 3}
       propertyPath: m_Name
-      value: ItemSlot
+      value: ItemSlotA
       objectReference: {fileID: 0}
     - target: {fileID: 3778712426579515737, guid: 8c562e80dd5280946856fd21582d8703, type: 3}
       propertyPath: m_Pivot.x
