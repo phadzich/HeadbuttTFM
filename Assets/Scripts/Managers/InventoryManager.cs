@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -13,6 +14,8 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField]private InventorySlot highlightedSlot;
     [SerializeField] private InventorySlot selectedSlot;
+
+
 
     public void HighlightSlot(InventorySlot _slot)
     {
@@ -40,6 +43,7 @@ public class InventoryManager : MonoBehaviour
 
         selectedSlot = _slot;
         selectedSlot.SetSelected(true);
+        UIManager.Instance.NPCInventoryPanel.ContextFromSelectedSlot(_slot);
     }
 
     public void ClearSelection()
@@ -73,3 +77,5 @@ public class InventoryManager : MonoBehaviour
 
 
 }
+
+public enum NavContext { ItemSlots, EquippedItems, HelmetSlots, EquippedHelmets }

@@ -22,6 +22,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     [Header("STATE")]
     public bool isHighlighted;
     public bool isSelected;
+    public bool isActive;
 
     public bool IsOccupied => itemData != null || helmetInstance != null;
 
@@ -72,19 +73,29 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        InventoryManager.Instance.SelectSlot(this);
+        if (isActive) InventoryManager.Instance.SelectSlot(this);
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
 
-        InventoryManager.Instance.HighlightSlot(this);
+        if (isActive) InventoryManager.Instance.HighlightSlot(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        InventoryManager.Instance.UnhighlightSlot(this);
+        if (isActive) InventoryManager.Instance.UnhighlightSlot(this);
     }
 
+    public void SetContextActive(bool _active)
+    {
+        isActive = _active;
+        var _nav = mainButton.navigation;
+        _nav.mode = _active ? Navigation.Mode.Automatic : Navigation.Mode.None;
+        mainButton.navigation = _nav;
+        mainButton.interactable = _active;
+        //mainButton.enabled = _active;
+    }
 }
-public enum SlotType { Helmet, Item }
+public enum SlotType { Helmet, Item, EquippedHelmet, EquippedItem }

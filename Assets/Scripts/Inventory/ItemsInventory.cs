@@ -17,6 +17,9 @@ public class ItemsInventory : MonoBehaviour
     public int currentActiveIndex;
     public List<Item> equippedItems;
 
+    public UIPanel inventoryPanel;
+
+
     public Dictionary<Item, int> ownedItems;
 
     public Action<Item, int> ItemEquipped;
@@ -30,13 +33,13 @@ public class ItemsInventory : MonoBehaviour
 
     public void OpenUI()
     {
-        EventSystem.current.SetSelectedGameObject(firstSlot);
-        Debug.Log(EventSystem.current.currentSelectedGameObject?.name);
+        RefreshInventoryUI();
+        inventoryPanel.UpdateLastSelection(firstSlot);
     }
 
     public void CloseUI()
     {
-        firstSlot = EventSystem.current.currentSelectedGameObject;
+        inventoryPanel.UpdateLastSelection(firstSlot);
     }
     public void ChangeActiveItem()
     {
@@ -180,12 +183,11 @@ public class ItemsInventory : MonoBehaviour
         if (slotContainer.childCount > 0)
         {
             Transform firstChild = slotContainer.GetChild(0);
-            Debug.Log("First child after refresh: " + firstChild.name);
 
             if (firstChild.TryGetComponent(out InventorySlot slot))
             {
                 firstSlot = firstChild.gameObject;
-                Debug.Log("FIRSTSLOT");
+                inventoryPanel.UpdateLastSelection(firstSlot);
             }
             else
             {

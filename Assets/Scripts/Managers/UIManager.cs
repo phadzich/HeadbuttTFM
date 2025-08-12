@@ -16,8 +16,8 @@ public class UIManager : MonoBehaviour
     public GameObject NPCCraftPanel;
     public GameObject NPCUpgradePanel;
     public ExchangePanelUI NPCUpgradeExchanger;
+    public InventoryPanelUI NPCInventoryPanel;
     public GameObject NPCElevatorPanel;
-    public GameObject NPCInventoryPanel;
     public ShopPanel shopPanel;
     public CraftingPanel craftingPanel;
 
@@ -221,7 +221,7 @@ public class UIManager : MonoBehaviour
                 currentOpenUI = NPCElevatorPanel.gameObject;
                 break;
             case NPCType.Inventory:
-                NPCInventoryPanel.SetActive(true);
+                NPCInventoryPanel.gameObject.SetActive(true);
                 currentOpenUI = NPCInventoryPanel.gameObject;
                 InventoryManager.Instance.itemsInventory.OpenUI();
                 break;
