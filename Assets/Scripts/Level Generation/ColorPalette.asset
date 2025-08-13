@@ -173,3 +173,7 @@ MonoBehaviour:
     blockString: BP_X
     icon: {fileID: 2800000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
     prefab: {fileID: 3305437815269156742, guid: 2dd3169d55fd840c8a52c67656046a2c, type: 3}
+  - color: {r: 0.29803923, g: 0.13333334, b: 0.15294118, a: 1}
+    blockString: NPC_INVENTORY
+    icon: {fileID: 2800000, guid: 6ec256bd2a0668d4a94a864e937752a9, type: 3}
+    prefab: {fileID: 2063591786701279944, guid: c8551836dacea6c469fd2c4bc066d8df, type: 3}
