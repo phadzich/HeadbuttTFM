@@ -9,9 +9,6 @@ public class ResourceSetup : MonoBehaviour, IBlockSetup
         ResourceData _resourceData = GetResourceFromID(int.Parse(_variant));
         ResourceEffect resBlock = GetComponent<ResourceEffect>();
         resBlock.SetupBlock(_context, _resourceData);
-        _context.sublevel.maxResourceBlocks++;
-
-
     }
 
     ResourceData GetResourceFromID(int resID) =>

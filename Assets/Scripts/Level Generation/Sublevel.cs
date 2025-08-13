@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Sublevel : MonoBehaviour { 
@@ -9,21 +10,11 @@ public class Sublevel : MonoBehaviour {
     public int depth;
     public bool isActive;
     public SublevelConfig config;
-
+    public List<ISublevelObjective> activeObjectives;
+    public bool allObjectivesCompleted => (activeObjectives?.Count > 0) && activeObjectives.All(o => o.isCompleted);
+    public event Action onSublevelObjectivesUpdated;
 
     public bool isCompleted;
-
-    public int blocksToComplete;
-    public int currentBlocksMined;
-
-    public int keysToComplete;
-    public int currentKeysCollected;
-
-    public float timeToBeat;
-    public float currentTime;
-
-    public int maxResourceBlocks;
-    public bool isTotallyMined => currentBlocksMined == maxResourceBlocks;
 
     public List<GateBehaviour> gateBlocks = new List<GateBehaviour>();
 
@@ -36,32 +27,38 @@ public class Sublevel : MonoBehaviour {
         this.isActive = _isActive;
         this.config = _config;
         this.helmetToDiscover = _config.helmetBPData;
+         if(_config is MiningSublevelConfig)
+        {
+            SetupObjectives(_config as MiningSublevelConfig);
+
+        }
+
+
     }
 
-    public void SetMiningObjectives(int _objective)
+    private void SetupObjectives(MiningSublevelConfig _miningConfig)
     {
-        blocksToComplete = _objective;
-        currentBlocksMined = 0;
+        activeObjectives = new List<ISublevelObjective>(_miningConfig.objectives);
+
+        foreach (var _obj in activeObjectives)
+            _obj.Initialize();
     }
 
-    public void SetKeysObjectives(int _objective)
+
+    public void DispatchObjectiveEvent(object _e)
     {
-        keysToComplete = _objective;
-        currentKeysCollected = 0;
+        foreach (var _obj in activeObjectives)
+        {
+            _obj.UpdateProgress(_e);
+        }
+
+        NotifyObjectiveUpdated();
     }
 
-    public void SetTimerObjectives(float _objective)
+    public void NotifyObjectiveUpdated()
     {
-        timeToBeat = _objective;
-        currentTime = 0;
+        onSublevelObjectivesUpdated?.Invoke();
     }
-
-    public void CollectKey(int _amount)
-    {
-        currentKeysCollected += _amount;
-        LevelManager.Instance.onKeysCollected?.Invoke();
-    }
-
     public void CollectBP()
     {
         HelmetManager.Instance.Discover(helmetToDiscover);

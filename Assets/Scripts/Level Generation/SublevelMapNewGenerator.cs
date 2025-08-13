@@ -35,6 +35,7 @@ public class SublevelMapNewGenerator : MonoBehaviour
             npcConfig = _npcConfig
         };
 
+        LevelManager.Instance.currentContext = context;
         mapWidth = _inputMap.width;
         mapHeight = _inputMap.height;
         mapTexture = _inputMap;

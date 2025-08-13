@@ -28,7 +28,7 @@ public class GateBehaviour : MonoBehaviour, IBlockEffect
 
     public void SetupBlock(Sublevel _sublevel, int _gateID, GateRequirement _gateReq)
     {
-        Debug.Log(_gateID);
+        //Debug.Log(_gateID);
         parentSublevel = _sublevel;
         gateID = _gateID;
         requiredResource = _gateReq.requiredResource;

@@ -192,6 +192,9 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
 
     }
+
+
+
     public void ClearAllHitBlocks()
     {
         foreach (ResourceEffect _block in currentChainBlocks)
@@ -206,7 +209,6 @@ public class MatchManager : MonoBehaviour
     private void RewardPlayer()
     {
         //Debug.Log("Rewarding Player!");
-        RewardSublevelBlocks();
         RewardResources();
         RewardHBPoints();
     }
@@ -230,19 +232,15 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
 
-    private void RewardSublevelBlocks()
-    {
-        int _totalBlocks = currentChainBlocks.Count;
-        //Debug.Log("REW Blocks " + _totalBlocks);
-        LevelManager.Instance.IncreaseMinedBlocks(_totalBlocks);
-    }
-
     private void RewardResources()
     {
         int _totalRes = 0;
         foreach (ResourceEffect _block in currentChainBlocks)
         {
             _totalRes += _block.helmetPowerMultiplier;
+
+            var _resourceEvent = new CollectResourceEvent { resData = _block.resourceData, amount = _block.helmetPowerMultiplier };
+            LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_resourceEvent);
         }
 
         //Debug.Log("REW Resources " + _totalRes);

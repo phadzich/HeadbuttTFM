@@ -42,21 +42,7 @@ public class SublevelPanel : MonoBehaviour
     }
     public void UpdateGoals()
     {
-        switch (currentGoalType)
-        {
-            case SublevelGoalType.MineBlocks:
-                goalsText.text = $"{currentSublevel.currentBlocksMined}/{currentSublevel.blocksToComplete}";
-                CheckIfGoalCompleted(currentSublevel.currentBlocksMined, currentSublevel.blocksToComplete);
-                break;
-            case SublevelGoalType.CollectKeys:
-                goalsText.text = $"{currentSublevel.currentKeysCollected}/{currentSublevel.keysToComplete}";
-                CheckIfGoalCompleted(currentSublevel.currentKeysCollected, currentSublevel.keysToComplete);
-                break;
-            case SublevelGoalType.Open:
-                goalsText.text = "FREE";
-                CheckIfGoalCompleted(1, 1);
-                break;
-        }
+        
     }
 
     public void CheckIfGoalCompleted(int _a, int _b)

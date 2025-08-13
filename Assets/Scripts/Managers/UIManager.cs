@@ -74,8 +74,7 @@ public class UIManager : MonoBehaviour
 
         //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
+
 
         //PLAYER EVENTS
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
@@ -95,8 +94,6 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         HelmetManager.Instance.onHelmetsSwapped -= OnHelmetSwap;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
         InventoryManager.Instance.itemsInventory.ItemCycled -= OnEquippedItemCycled;

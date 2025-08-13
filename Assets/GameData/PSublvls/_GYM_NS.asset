@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: ResTest
   helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+  dialogueSequence: {fileID: 0}
   sublevel2DMap: {fileID: 2800000, guid: f1eb7190015b54bfd9fdd995b80358bf, type: 3}
   goalType: 1
+  objectives:
+  - rid: 6219506583283695693
   blocksToMine: 0
   keysToCollect: 1
   timeLimitSeconds: 0
@@ -32,3 +35,10 @@ MonoBehaviour:
   - gateID: 3
     requiredResource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
     requiredAmount: 10
+  references:
+    version: 2
+    RefIds:
+    - rid: 6219506583283695693
+      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        resourcesNeeded: 24

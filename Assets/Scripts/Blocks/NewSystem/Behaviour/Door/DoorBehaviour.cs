@@ -1,17 +1,19 @@
 using PrimeTween;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(DoorSetup))]
 public class DoorBehaviour : MonoBehaviour, IBlockEffect
 {
 
-    public SublevelGoalType currentGoalType;
-    public int requiredInt;
-    public int currentInt;
+    //public SublevelGoalType currentGoalType;
+    //public int requiredInt;
+    //public int currentInt;
     public DoorRequirementIndicator doorRequirementIndicator;
     public bool isOpen;
     public GameObject doorTrapMesh;
-    public Sublevel parentSublevel;
+    public MapContext mapContext;
+    //public Sublevel parentSublevel;
 
     public Material openMaterial;
 
@@ -20,71 +22,29 @@ public class DoorBehaviour : MonoBehaviour, IBlockEffect
     public GameObject borde3;
     public GameObject borde4;
 
-    private void OnEnable()
-    {
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
-    }
-
     private void OnDisable()
     {
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
+        mapContext.sublevel.onSublevelObjectivesUpdated -= CheckObjectives;
     }
 
     public void SetupBlock(MapContext _context)
     {
-        parentSublevel = _context.sublevel;
-        currentGoalType = _context.miningConfig.goalType;
-        UpdateGoals();
-        doorRequirementIndicator.SetupIndicator(0, requiredInt, currentGoalType);
+        mapContext = _context;
+        mapContext.sublevel.onSublevelObjectivesUpdated += CheckObjectives;
+        CheckObjectives();
     }
 
-    public void UpdateGoals()
+
+    public void CheckObjectives()
     {
-        switch (currentGoalType)
+        //Debug.Log("CHECKOBJECTIVES");
+        bool allCompleted = mapContext.sublevel.allObjectivesCompleted;
+        //doorRequirementIndicator.UpdateIndicator(currentInt);
+        if (allCompleted && !isOpen)
         {
-            case SublevelGoalType.MineBlocks:
-                requiredInt = parentSublevel.blocksToComplete;
-                currentInt = parentSublevel.currentBlocksMined;
-                break;
-            case SublevelGoalType.CollectKeys:
-                requiredInt = parentSublevel.keysToComplete;
-                currentInt = parentSublevel.currentKeysCollected;
-                break;
-            case SublevelGoalType.Open:
-                requiredInt = 0;
-                currentInt = 0;
-                break;
+            isOpen = true;
+            IndicateOpen();
         }
-
-    }
-
-    public void OnSublevelGoalsAdvanced()
-    {
-        //Debug.Log("MINED HEARD");
-        UpdateGoals();
-        doorRequirementIndicator.UpdateIndicator(currentInt);
-        if (!isOpen)
-        {
-            //Debug.Log("NOT OPEN");
-            if (DoorRequirementsMet())
-            {
-                IndicateOpen();
-                isOpen = true;
-            }
-        }
-    }
-
-    public bool DoorRequirementsMet()
-    {
-        if (currentInt >= requiredInt)
-        {
-            //Debug.Log("DOOR MET");
-            return true;
-        }
-
-        return false;
     }
 
     private void IndicateOpen()

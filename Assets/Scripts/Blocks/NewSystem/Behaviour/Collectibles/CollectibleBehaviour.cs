@@ -33,6 +33,7 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockEffect
 
         if (collectableObject != null)
             collectableObject.SetActive(false);
+        isCollected = true;
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)

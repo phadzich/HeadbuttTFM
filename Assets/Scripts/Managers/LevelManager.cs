@@ -12,6 +12,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.Rendering.DebugUI.Table;
 using static UnityEngine.Rendering.STP;
 using Random = UnityEngine.Random;
+using System.Linq;
+
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
@@ -20,6 +22,9 @@ public class LevelManager : MonoBehaviour
     public SublevelMapNewGenerator sublevelMapNewGenerator;
 
     [Header("CURRENT LEVEL")]
+    public MapContext currentContext;
+    private List<ISublevelObjective> activeObjectives;
+
     public Level currentLevel;
     public Sublevel currentSublevel;
     public List<Sublevel> sublevelsList;
@@ -41,10 +46,8 @@ public class LevelManager : MonoBehaviour
 
     public bool NPCLevel = false;
 
-    public Action onSublevelBlocksMined;
+
     public Action<Sublevel> onSublevelEntered;
-    public Action onKeysCollected;
-    public int currentSublevelBlocksMined;
 
     public NavMeshSurface navMeshSurface; // Arrastra el GameObject con NavMeshSurface aqu�
 
@@ -99,7 +102,6 @@ public class LevelManager : MonoBehaviour
         {
             sublevelsList.Add(null);
         }
-
     }
 
     public void GenerateSublevel(SublevelConfig _sublevelConfig, int _depth)
@@ -115,23 +117,6 @@ public class LevelManager : MonoBehaviour
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-
-            switch (_miningSublevel.goalType)
-            {
-                case SublevelGoalType.MineBlocks:
-                    _sublevel.SetMiningObjectives(_miningSublevel.blocksToMine);
-                    break;
-                case SublevelGoalType.CollectKeys:
-                    _sublevel.SetKeysObjectives(_miningSublevel.keysToCollect);
-                    break;
-                case SublevelGoalType.BeatTimer:
-                    _sublevel.SetTimerObjectives(_miningSublevel.timeLimitSeconds);
-                    break;
-                case SublevelGoalType.Open:
-                    _sublevel.isCompleted = true;
-                    break;
-            }
-
             sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel, null, _sublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
@@ -139,14 +124,6 @@ public class LevelManager : MonoBehaviour
             sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth, null, _npcSublevel, _sublevel);
         }
 
-    }
-
-    void PrintStringDictionaryContents(Dictionary<ResourceData, int> _dictionary) 
-    {
-        foreach (KeyValuePair<ResourceData, int> _kvp in _dictionary)
-        {
-            Debug.Log($"{_kvp.Key} {_kvp.Value}");
-        }
     }
 
     public void ExitSublevel()
@@ -192,7 +169,6 @@ public class LevelManager : MonoBehaviour
         {
             PlayerManager.Instance.EnterMiningLevel();
             //Debug.Log($"Entering {currentSublevel.id}");
-
             if (_miningSublevel.gateRequirements.Count > 0)
             {
                 foreach (GateBehaviour _gate in currentSublevel.gateBlocks)
@@ -200,9 +176,8 @@ public class LevelManager : MonoBehaviour
                     _gate.StartGateCount();
                 }
             }
-
-
         }
+
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
             //ENTRAR A ESTADO CHECKPOINT
@@ -210,7 +185,6 @@ public class LevelManager : MonoBehaviour
             HelmetManager.Instance.ResetHelmetsStats();
             PlayerManager.Instance.MaxUpLives();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
-
         }
 
         //CARGAMOS EL SIGUIENTE
@@ -232,13 +206,6 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.RestartSublevelStats();
     }
 
-    public void IncreaseMinedBlocks(int _newMinedBlocks)
-    {
-        currentSublevel.currentBlocksMined += _newMinedBlocks;
-        onSublevelBlocksMined?.Invoke();
-    }
-
-
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)
     {
         GameObject newGameObject = new GameObject(_name);
@@ -251,8 +218,7 @@ public class LevelManager : MonoBehaviour
         if (navMeshSurface != null)
         {
             navMeshSurface.RemoveData();
-            navMeshSurface.BuildNavMesh(); // Esto hornear� el NavMesh en tiempo de ejecuci�n
-            //Debug.Log("NavMesh baked dynamically.");
+            navMeshSurface.BuildNavMesh();
         }
         else
         {
