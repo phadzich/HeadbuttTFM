@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemySetup))]
-public class EnemyBehaviour : MonoBehaviour, IBlockEffect
+public class EnemyBehaviour : MonoBehaviour, IBlockBehaviour
 {
     EnemyData currentEnemy;
 
@@ -20,6 +20,14 @@ public class EnemyBehaviour : MonoBehaviour, IBlockEffect
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
         
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
     }
 
 }

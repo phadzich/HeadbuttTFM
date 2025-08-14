@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BlockNS))]
 [RequireComponent(typeof(CollectibleSetup))]
-public class CollectibleBehaviour : MonoBehaviour, IBlockEffect
+public class CollectibleBehaviour : MonoBehaviour, IBlockBehaviour
 {
     [SerializeField] private GameObject collectableObject;
 
@@ -46,5 +46,13 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockEffect
     {
         Activate(); 
         MatchManager.Instance.FloorBounced();
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
     }
 }

@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(DoorSetup))]
-public class DoorBehaviour : MonoBehaviour, IBlockEffect
+public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
 {
 
     //public SublevelGoalType currentGoalType;
@@ -88,5 +88,13 @@ public class DoorBehaviour : MonoBehaviour, IBlockEffect
     {
         Tween.LocalRotation(doorTrapMesh.transform, endValue: new Vector3(110, 0, 0), duration: 1f, ease: Ease.InOutBack);
         doorRequirementIndicator.gameObject.SetActive(false);
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
     }
 }

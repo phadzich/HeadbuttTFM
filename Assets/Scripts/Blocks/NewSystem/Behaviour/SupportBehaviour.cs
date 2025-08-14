@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SupportBehaviour : MonoBehaviour, IBlockEffect
+public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
 {
 
     public ParticleSystem damageParticles;
@@ -20,5 +20,13 @@ public class SupportBehaviour : MonoBehaviour, IBlockEffect
     {
         MatchManager.Instance.FloorBounced();
         damageParticles.Play();
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
     }
 }

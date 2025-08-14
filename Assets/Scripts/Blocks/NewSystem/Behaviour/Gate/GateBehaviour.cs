@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(GateSetup))]
-public class GateBehaviour : MonoBehaviour, IBlockEffect
+public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public GateRequirementIndicator requirementsPanelUI;
     public bool isOpen;
@@ -109,5 +109,13 @@ public class GateBehaviour : MonoBehaviour, IBlockEffect
     public void Activate()
     {
         
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
     }
 }

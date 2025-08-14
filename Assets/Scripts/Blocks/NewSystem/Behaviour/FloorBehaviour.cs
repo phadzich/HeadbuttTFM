@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BlockNS))]
-public class FloorBehaviour : MonoBehaviour, IBlockEffect
+public class FloorBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public Transform blockMeshParent;
 
@@ -36,5 +36,13 @@ public class FloorBehaviour : MonoBehaviour, IBlockEffect
     {
         int _randomRotation = Random.Range(0, 4);
         transform.Rotate(0, (float)_randomRotation * 90, 0);
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
     }
 }
