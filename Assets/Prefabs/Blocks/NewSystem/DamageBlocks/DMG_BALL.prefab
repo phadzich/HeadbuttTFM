@@ -9904,7 +9904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4d5153d010245478e3a6af6131d766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmgBlock: {fileID: 0}
   damageCooldown: 2
 --- !u!1 &6663836412425209496
 GameObject:
@@ -10162,7 +10161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
+  isWalkable: 1
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}
@@ -10182,6 +10181,7 @@ MonoBehaviour:
   typeOfDamage: 1
   damage: 2
   breaksCombo: 1
+  stopDamage: 0
   damageParticles: {fileID: 8681109256412394289}
   impulseSource: {fileID: 1003532578358748977}
 --- !u!1001 &4369515631803877429

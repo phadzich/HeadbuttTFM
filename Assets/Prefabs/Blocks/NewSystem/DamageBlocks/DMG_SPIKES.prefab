@@ -5377,7 +5377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
+  isWalkable: 1
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}
@@ -5473,5 +5473,4 @@ MonoBehaviour:
   timeOut: 2.5
   timeIn: 2
   damageCollider: {fileID: 3009992195122583179}
-  dmgBlock: {fileID: 0}
   damageCooldown: 2

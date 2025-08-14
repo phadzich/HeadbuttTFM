@@ -88,7 +88,7 @@ MonoBehaviour:
   - color: {r: 0.8235294, g: 0.7058824, b: 0.19607843, a: 1}
     blockString: LAVASPAWN_X
     icon: {fileID: 2800000, guid: fdba121cdd7d06544b2d62ecedb6fb8d, type: 3}
-    prefab: {fileID: 0}
+    prefab: {fileID: 4006885365906108092, guid: 33257095ed7974086bfae95ca6290443, type: 3}
   - color: {r: 0.8509804, g: 0.22352941, b: 0.03137255, a: 1}
     blockString: HEAD_X
     icon: {fileID: 2800000, guid: fdba121cdd7d06544b2d62ecedb6fb8d, type: 3}
@@ -168,7 +168,7 @@ MonoBehaviour:
   - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
     blockString: HELMETPOTION_3
     icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
-    prefab: {fileID: 3585026906433987620, guid: f4cf39bac0c9a400380bc9d5253a2ff7, type: 3}
+    prefab: {fileID: 4675552849340016843, guid: eefac41f3baaf4e9e865c211e5b3bff7, type: 3}
   - color: {r: 0.20392157, g: 1, b: 0.47058824, a: 1}
     blockString: BP_X
     icon: {fileID: 2800000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
@@ -177,3 +177,7 @@ MonoBehaviour:
     blockString: NPC_INVENTORY
     icon: {fileID: 2800000, guid: 6ec256bd2a0668d4a94a864e937752a9, type: 3}
     prefab: {fileID: 2063591786701279944, guid: c8551836dacea6c469fd2c4bc066d8df, type: 3}
+  - color: {r: 0.16470589, g: 0.40392157, b: 0.08235294, a: 1}
+    blockString: CACTUS_X
+    icon: {fileID: 2800000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 742a0c0962b9d4a46a83c26faa8cb029, type: 3}

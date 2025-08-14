@@ -5697,7 +5697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
+  isWalkable: 1
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}

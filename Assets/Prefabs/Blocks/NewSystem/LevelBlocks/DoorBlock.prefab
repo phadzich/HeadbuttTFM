@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
+  isWalkable: 1
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}
@@ -514,13 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff13acc5e0d6480ea0b09b0f7ee91be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGoalType: 0
-  requiredInt: 0
-  currentInt: 0
   doorRequirementIndicator: {fileID: 7331900020914566909}
   isOpen: 0
   doorTrapMesh: {fileID: 5649766658453333689}
-  parentSublevel: {fileID: 0}
   openMaterial: {fileID: 2100000, guid: 42cd4b3e3c05dc0439346935370fd540, type: 2}
   borde1: {fileID: 5888506152927431402}
   borde2: {fileID: 1738161332878892176}

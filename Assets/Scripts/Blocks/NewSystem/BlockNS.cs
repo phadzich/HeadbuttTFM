@@ -10,7 +10,7 @@ public class BlockNS : MonoBehaviour
     public MapContext mapContext;
 
     private IBlockEffect[] effects;
-    private IBlockBehaviour[] behaviours;
+    [SerializeField] private IBlockBehaviour[] behaviours;
 
     // Vecinos
     public BlockNS up;
@@ -39,7 +39,6 @@ public class BlockNS : MonoBehaviour
         mapContext = _context;
         sublevelId = _context.depth;
         sublevelPosition = new Vector2(_context.x, _context.y);
-        isWalkable = true;
 
         SetUpVariant(_variant, _context);
 
@@ -63,18 +62,19 @@ public class BlockNS : MonoBehaviour
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        Debug.Log("HeadbuttBLOCK");
         foreach (var effect in effects)
             effect.OnHeadbutt(_helmetInstance);
 
         foreach (var behaviour in behaviours)
+        {
+            Debug.Log(behaviour);
             behaviour.OnHeadbutt(_helmetInstance);
+        }
     }
 
     public void StartBehaviours(Sublevel _sublevel)
     {
-        Debug.Log(_sublevel);
-        Debug.Log("-----");
-        Debug.Log(mapContext.sublevel);
         if (_sublevel == mapContext.sublevel)
         {
             foreach (var behaviour in behaviours)

@@ -1,11 +1,36 @@
 using UnityEngine;
+using System.Collections;
+using System;
 
-public class SpawnBehaviour : MonoBehaviour, IBlockBehaviour
+public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public GameObject prefabToSpawn;
     public Transform spawnPoint;
 
-    public float spawnInterval = 3f; 
+    public float spawnInterval;
+
+    public void StartBehaviour()
+    {
+        Debug.Log("START SPAWN");
+        StartCoroutine(StartTimer());
+    }
+
+    public void StopBehaviour()
+    {
+        StopAllCoroutines();
+    }
+
+    private IEnumerator StartTimer()
+    {
+        yield return new WaitForSeconds(spawnInterval);
+        Spawn();
+    }
+
+    private void Spawn()
+    {
+        Instantiate(prefabToSpawn, spawnPoint);
+        StartCoroutine(StartTimer());
+    }
 
     public void OnBounced(HelmetInstance _helmetInstance)
     {
@@ -13,27 +38,5 @@ public class SpawnBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
-    }
-
-    public void StartBehaviour()
-    {
-        
-    }
-
-    public void StopBehaviour()
-    {
-        
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
