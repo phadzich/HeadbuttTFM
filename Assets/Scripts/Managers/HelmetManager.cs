@@ -150,30 +150,6 @@ public class HelmetManager : MonoBehaviour
         _helmet.OnWear();
     }
 
-
-
-    public void TryUseHelmetSpecial(InputAction.CallbackContext context)
-    {
-        //SI NO HAY HELMET
-        if (currentHelmet == null) return;
-
-        //CUANDO EL INPUT ESTA PERFORMED
-        if (context.phase == InputActionPhase.Performed)
-            {
-            //BUSCA TODOS LOS EFECTOS CON SPECIAL ATTACKS Y LOS ACTIVA
-            foreach (HelmetEffect _effect in currentHelmet.activeEffects)
-            {
-                if (_effect.hasSpecialAttack)
-                {
-                    //BASTA QUE UNO EFFECT TENGA SPECIAL, LLAMAMOS A TODOS
-                    currentHelmet.OnSpecialAttack();
-                    break;
-                }
-            }
-
-        }
-    }
-
     //Reseta los stats de los cascos equipados
     public void ResetHelmetsStats()
     {

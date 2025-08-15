@@ -50,7 +50,6 @@ public class Enemy: MonoBehaviour, IElemental
 
     public void OnHit(){
         HandleInteraction(InteractionSource.PlayerAttack);
-
         foreach (var behaviour in behaviours)
         {
             behaviour.OnHit();

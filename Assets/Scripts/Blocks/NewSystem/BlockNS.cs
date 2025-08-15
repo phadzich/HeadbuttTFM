@@ -67,10 +67,10 @@ public class BlockNS : MonoBehaviour, IElemental
         foreach (var behaviour in behaviours)
             behaviour.OnBounced(_helmetInstance);
 
-        HandleInteraction(_helmetInstance);
+        HandleInteraction(_helmetInstance, InteractionSource.PlayerBounce);
     }
 
-    private void HandleInteraction(HelmetInstance _helmetInstance)
+    private void HandleInteraction(HelmetInstance _helmetInstance, InteractionSource _source)
     {
         var handler = GetComponent<ElementInteractionComponent>();
         if (handler != null)
@@ -81,17 +81,17 @@ public class BlockNS : MonoBehaviour, IElemental
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
-        Debug.Log("HeadbuttBLOCK");
+        
         foreach (var effect in effects)
             effect.OnHeadbutt(_helmetInstance);
 
         foreach (var behaviour in behaviours)
         {
-            Debug.Log(behaviour);
+            
             behaviour.OnHeadbutt(_helmetInstance);
         }
 
-        HandleInteraction(_helmetInstance);
+        HandleInteraction(_helmetInstance, InteractionSource.PlayerHeadbutt);
     }
 
     public void StartBehaviours(Sublevel _sublevel)

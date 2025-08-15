@@ -12137,7 +12137,7 @@ MonoBehaviour:
   currentHBpoints: 10
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
-  headbuttPower: 15
+  headbuttPower: 12
   timeSinceLastHeadbutt: 0
   potionValues: 0100000003000000050000000a000000
 --- !u!81 &1217362978
@@ -21399,6 +21399,18 @@ PrefabInstance:
       propertyPath: currentMesh
       value: 
       objectReference: {fileID: 2119067691}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: allHelmetData.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 14a47a613b5a2ad46a798fb3333ae60e, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
     - target: {fileID: 5457872764868005915, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: m_Name
       value: HelmetManager

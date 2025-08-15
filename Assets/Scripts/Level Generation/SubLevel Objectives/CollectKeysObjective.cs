@@ -16,7 +16,7 @@ public class CollectKeysObjective : SublevelObjectiveBase
         if (eventData is CollectKeyEvent)
             keysCollected++;
         current = keysCollected;
-        Debug.Log($"{current}/{goal}");
+        //Debug.Log($"{current}/{goal}");
     }
 
     public override bool isCompleted => keysCollected >= keysNeeded;

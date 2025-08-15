@@ -104,6 +104,7 @@ public class PlayerHeadbutt : MonoBehaviour
             // por ahora quite bounceDirection == "DOWN" && 
             if (context.phase == InputActionPhase.Performed)
             {
+                
                 if (!headbuttOnCooldown &&
                     TryUseHBPoints(1) &&
                     PlayerManager.Instance.playerMovement.blockNSBelow != null)
@@ -118,7 +119,7 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void HeadbuttUp()
     {
-        //Debug.Log("HEADBUTT!");
+        
         rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 

@@ -1,12 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GameData/Effects/FireBreathEffectData")]
-public class FireBreathEffectData : HelmetEffectData
+[CreateAssetMenu(menuName = "GameData/Effects/WaterSplashEffectData")]
+public class WaterSplashEffectData : HelmetEffectData
 {
     public Vector3 damageArea;
     public int damage;
     public int hbPointsUsed;
-
     public GameObject effectParticles;
     public GameObject effectArea;
 
@@ -14,6 +13,6 @@ public class FireBreathEffectData : HelmetEffectData
 
     public override HelmetEffect CreateEffect()
     {
-        return new FireBreath(this);
+        return new WaterSplash(this);
     }
 }

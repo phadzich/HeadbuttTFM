@@ -1,13 +1,14 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
-public class FireBreath : HelmetEffect
+public class WaterSplash : HelmetEffect
 {
-    private readonly FireBreathEffectData data;
+    private readonly WaterSplashEffectData data;
     private Vector3 damageArea;
 
     public override bool hasSpecialAttack => true;
-    public FireBreath(FireBreathEffectData _data)
+    public WaterSplash(WaterSplashEffectData _data)
     {
         data = _data;
         damageArea = _data.damageArea;
@@ -41,22 +42,21 @@ public class FireBreath : HelmetEffect
     public override void OnHeadbutt()
     {
 
-
-        if (PlayerManager.Instance.playerHeadbutt.TryUseHBPoints(data.hbPointsUsed))
-        {
-            Debug.Log("FIREBREATH USED!");
+        if (PlayerManager.Instance.playerHeadbutt.TryUseHBPoints(data.hbPointsUsed)){
+            Debug.Log("WATERSPLASH USED!");
             HitEnemiesInArea();
-        }
+        }           
     }
+
     private void HitEnemiesInArea()
     {
         // Obtener la posicion del enano
         Transform dwarfTransform = PlayerManager.Instance.transform.GetChild(0); // Obtenemos el objeto del enano a partir de su game object padre
         Vector3 position = dwarfTransform.position; // Obtenemos su posicion para que sea el centro
 
-        Collider[] hitColliders = Physics.OverlapBox(position, damageArea, Quaternion.identity, data.enemyLayer);
-
         InstantiateParticles(position);
+
+        Collider[] hitColliders = Physics.OverlapBox(position, damageArea, Quaternion.identity, data.enemyLayer);
 
         foreach (var hit in hitColliders)
         {
@@ -71,7 +71,7 @@ public class FireBreath : HelmetEffect
 
     private void InstantiateParticles(Vector3 _position)
     {
-        GameObject _particles = GameObject.Instantiate(data.effectParticles, _position, Quaternion.identity);
+        GameObject _particles = GameObject.Instantiate(data.effectParticles, _position,Quaternion.identity);
         _particles?.GetComponent<SpecialHeadbuttParticles>().Play();
     }
 }

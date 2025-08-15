@@ -138,16 +138,6 @@ public class HelmetInstance: IElemental
             effect.OnBounce();
         }
     }
-
-    // Llamar cuando se presiona la tecla de special attack
-    public void OnSpecialAttack()
-    {
-        foreach (HelmetEffect _effect in activeEffects)
-        {
-                _effect.OnSpecialAttack();
-        }
-    }
-
     public void OnWear()
     {
         foreach (HelmetEffect _effect in activeEffects)

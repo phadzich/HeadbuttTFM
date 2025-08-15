@@ -21,7 +21,7 @@ public class DamageEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
     // Cuando OTROS reciben un impacto
     public void OnTrigger()
     {
-        Debug.Log("Contacto con enemigo!");
+        //Debug.Log("Contacto con enemigo!");
         float time = Time.time;
         if (Time.time - lastDamageTime >= damageCooldown) DoDamage();
         lastDamageTime = Time.time;

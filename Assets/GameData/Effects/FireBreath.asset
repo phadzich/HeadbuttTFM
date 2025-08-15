@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: FireBreath
   m_EditorClassIdentifier: 
   effectName: Fire breath
-  description: "Si tu medidor de headbutt esta lleno, puedes utilizarlo para liberar
-    una ola de fuego que hace da\xF1o alrededor."
+  description: "Consume 2 HB Energy para hacer da\xF1o de fuego a enemigos alrededor."
   damageArea: {x: 1.5, y: 1, z: 1.5}
   damage: 1
   hbPointsUsed: 2
+  effectParticles: {fileID: 5102639546771583594, guid: 0221b30be5e35ba4283a66a27190bd05, type: 3}
+  effectArea: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
