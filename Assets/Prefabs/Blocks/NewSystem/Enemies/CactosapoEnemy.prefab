@@ -95,8 +95,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205198111374811714}
-  m_Layer: 0
-  m_Name: BlockMeshParent
+  - component: {fileID: 6836845005986349514}
+  - component: {fileID: 1193650821216240910}
+  - component: {fileID: 8626908254177202607}
+  - component: {fileID: 5973006553659379225}
+  - component: {fileID: 289864635524325002}
+  m_Layer: 9
+  m_Name: CactoSapo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,6 +124,88 @@ Transform:
   - {fileID: 3213007418753002801}
   m_Father: {fileID: 4817991139435872062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6836845005986349514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518385022924172439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef82acc1033634c88afdcd09bd672044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 4
+--- !u!114 &1193650821216240910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518385022924172439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c7b9b63d24b624198031fe6f9e2532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: {fileID: 1298261001074707767}
+  projectilePrefab: {fileID: 2121837420294675754, guid: 6a5473ad49b4842c6967a910151b10ce, type: 3}
+  shootingInterval: 3
+  speedMultiplier: 1
+  intervalMultiplier: 1
+  projectileCount: 8
+  projectileSpeed: 5
+  AllowedSources: 02000000
+--- !u!114 &8626908254177202607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518385022924172439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a343314e6aed4907a49444d82ce0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5973006553659379225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518385022924172439}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
+  m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &289864635524325002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518385022924172439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1b24fb746a24d2ab978c30d19fe08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
+  damageMultiplier: 1
+  AllowedSources: 02000000
 --- !u!1 &4006885365906108092
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,9 +217,9 @@ GameObject:
   - component: {fileID: 4817991139435872062}
   - component: {fileID: 822097828634457691}
   - component: {fileID: 7367609909240226076}
-  - component: {fileID: 8161395416749261924}
-  - component: {fileID: 3923658587455584324}
   - component: {fileID: 4810703166137470484}
+  - component: {fileID: 4116787487908854233}
+  - component: {fileID: 2431500951007808153}
   m_Layer: 8
   m_Name: CactosapoEnemy
   m_TagString: Untagged
@@ -189,37 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a343314e6aed4907a49444d82ce0884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8161395416749261924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006885365906108092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e772f95755744d1fa4e2cb4fa49916a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 1
-  currentHealth: 0
---- !u!114 &3923658587455584324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006885365906108092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c744de9470eb74bb9b17c762ccca0ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axis: {fileID: 1298261001074707767}
-  projectilePrefab: {fileID: 2121837420294675754, guid: 6a5473ad49b4842c6967a910151b10ce, type: 3}
-  shootingInterval: 5
-  projectileCount: 8
-  projectileSpeed: 5
 --- !u!65 &4810703166137470484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -241,6 +297,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4116787487908854233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c7b9b63d24b624198031fe6f9e2532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: {fileID: 1298261001074707767}
+  projectilePrefab: {fileID: 2121837420294675754, guid: 6a5473ad49b4842c6967a910151b10ce, type: 3}
+  shootingInterval: 3
+  speedMultiplier: 1
+  intervalMultiplier: 1
+  projectileCount: 8
+  projectileSpeed: 5
+  AllowedSources: 02000000
+--- !u!114 &2431500951007808153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a343314e6aed4907a49444d82ce0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

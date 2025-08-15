@@ -68,8 +68,10 @@ public class Enemy: MonoBehaviour, IElemental
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
+            Debug.Log(other);
             OnTrigger();
         }
     }

@@ -60,6 +60,7 @@ public class WaterSplash : HelmetEffect
 
         foreach (var hit in hitColliders)
         {
+            Debug.Log(hit);
             Enemy enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
