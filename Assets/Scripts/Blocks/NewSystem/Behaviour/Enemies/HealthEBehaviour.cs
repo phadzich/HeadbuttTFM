@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 {
+
+    public HealthBarUI healthBarUI;
     public int maxHealth;
     public int currentHealth;
     public float damageMultiplier = 1;
@@ -17,27 +19,36 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
         Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
+        UpdateBarUI();
     }
 
     void Heal(int _amount)
     {
         currentHealth = currentHealth + _amount >= maxHealth ? maxHealth : currentHealth + _amount;
+        UpdateBarUI();
     }
 
     void Die()
     {
         Debug.Log("DEAD");
         Destroy(this.gameObject);
+
     }
 
     public void RestoreHealth()
     {
         currentHealth = maxHealth;
+        UpdateBarUI();
     }
 
     public void StartBehaviour()
     {
         RestoreHealth();
+    }
+
+    private void UpdateBarUI()
+    {
+        healthBarUI.UpdateBar(currentHealth, maxHealth);
     }
 
     public void StopBehaviour() { }
