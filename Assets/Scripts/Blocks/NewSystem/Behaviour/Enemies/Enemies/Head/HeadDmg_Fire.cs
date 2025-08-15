@@ -48,9 +48,9 @@ public class HeadDmg_Fire : Enemy, IDamagableEnemy
     }
     ///////////////////////////
 
-    public override void OnHit(int damageTaken)
+    public void OnHit(int damageTaken)
     {
-        life -= damageTaken; // Usa 'damageTaken' aqu�
+        /*life -= damageTaken; // Usa 'damageTaken' aqu�
 
         // Si la vida llega a 0, pedimos al componente que maneja la muerte que muera
         if (life <= 0)
@@ -67,7 +67,7 @@ public class HeadDmg_Fire : Enemy, IDamagableEnemy
         }
         // Logica de recibir un golpe
         Debug.Log("HIT ENEMY HEAD");
-        Debug.Log("Damage: " + damageTaken);
+        Debug.Log("Damage: " + damageTaken);*/
     }
 
     public void Die()

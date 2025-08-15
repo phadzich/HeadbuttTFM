@@ -4,12 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public class HelmetInstance
+public class HelmetInstance: IElemental
 {
     //Helmet info
     public string id;
     public HelmetData baseHelmet;
-    public ElementData helmetElement;
     public bool isCrafted = false;
     public bool isDiscovered = false;
 
@@ -28,6 +27,8 @@ public class HelmetInstance
 
     public bool IsWornOut => currentDurability <= 0;
 
+    public ElementType Element => baseHelmet.element;
+
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
     public Action OnDamaged;
 
@@ -41,7 +42,6 @@ public class HelmetInstance
         currentLevel = 0;
         durability = 0;
 
-        helmetElement = _helmetSO.element;
         currentHBHarvest = 0.3f;
 
         ActivateEffects(_helmetSO.effects);
@@ -64,6 +64,7 @@ public class HelmetInstance
 
     public void TakeDamage(int _amount, bool _isEnemy = false)
     {
+        // Si queremos que el shield se desactive debemos mandar isEnemy en true
         if(PlayerManager.Instance.activeShield != null && PlayerManager.Instance.activeShield.CanBlockDamage() && _isEnemy)
         {
             PlayerManager.Instance.DeactivateShield();
@@ -105,11 +106,6 @@ public class HelmetInstance
     public void AddEffect(HelmetEffect _effect)
     {
         activeEffects.Add(_effect);
-    }
-
-    public void UpdateHelmetElement(ElementData _element)
-    {
-        helmetElement = _element;
     }
 
     public void HealDurability(int _amount)

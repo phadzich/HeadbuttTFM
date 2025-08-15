@@ -81,9 +81,9 @@ public class EnemyDamage : Enemy
         PlayDamageSound();
         damageParticles.Play();
     }
-    public override void OnHit(int damageTaken) // Cambiado el nombre de la variable para evitar conflicto con la variable 'damage' de la clase
+    public void OnHit(int damageTaken) // Cambiado el nombre de la variable para evitar conflicto con la variable 'damage' de la clase
     {
-        life -= damageTaken; // Usa 'damageTaken' aqu�
+        /*life -= damageTaken; // Usa 'damageTaken' aqu�
 
         // Si la vida llega a 0, pedimos al componente que maneja la muerte que muera
         if (life <= 0)
@@ -101,7 +101,7 @@ public class EnemyDamage : Enemy
         }
 
         Debug.Log("HIT ENEMY GHOST");
-        Debug.Log("Damage Taken: " + damageTaken);
+        Debug.Log("Damage Taken: " + damageTaken);*/
     }
     public enum damageType
     {

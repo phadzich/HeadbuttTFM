@@ -88,6 +88,7 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+  elementType: 2
 --- !u!114 &7744871368983889960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594e73a36a94a404fb59706024e2127b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 4552600488085506810, guid: 11d650b4997294f1a9efe099ccf3affe, type: 3}
+  prefabToSpawn: {fileID: 4552600488085506810, guid: 438cc9a2e6a8f4aa49b37e82f53284ee, type: 3}
   spawnPoint: {fileID: 1298261001074707767}
   spawnInterval: 10
 --- !u!114 &8161395416749261924
@@ -202,7 +203,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6df32c23571610344a9d1e9eea6fce7f, type: 2}
+  - {fileID: -876546973899608171, guid: 04f427eca5755904d95ca1c6272e6044, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

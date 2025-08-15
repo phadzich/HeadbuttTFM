@@ -18,7 +18,7 @@ public class HelmetData : ScriptableObject
 
     [Header("Compatibility")]
     public MiningPower miningPower;
-    public ElementData element;
+    public ElementType element;
 
     [Header("Effects")]
     public List<HelmetEffectData> effects;

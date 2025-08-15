@@ -46,12 +46,12 @@ public class HelmetManager : MonoBehaviour
         }
 
         CreateAllInstances();
-        InitializeOwnedHelmets();
     }
 
     private void Start()
     {
         Debug.Log("HelmetManager START");
+        InitializeOwnedHelmets();
     }
 
 
@@ -60,10 +60,19 @@ public class HelmetManager : MonoBehaviour
         allHelmets[0].Discover();
         allHelmets[1].Discover();
         allHelmets[2].Discover();
+        allHelmets[3].Discover();
+        allHelmets[4].Discover();
 
         allHelmets[0].Craft();
         allHelmets[1].Craft();
         allHelmets[2].Craft();
+        allHelmets[3].Craft();
+        allHelmets[4].Craft();
+
+        EquipHelmet(allHelmets[2]);
+        EquipHelmet(allHelmets[3]);
+        EquipHelmet(allHelmets[4]);
+
     }
 
     // Crear todas las instancias de cascos
@@ -108,16 +117,21 @@ public class HelmetManager : MonoBehaviour
 
         if (helmetsEquipped.Count < maxEquippedHelmets)
         {
-            helmetsEquipped.Add(_craftedHelmet);
-            onHelmetEquipped?.Invoke(_craftedHelmet);
-            PlayerManager.Instance.AddMaxLives(1);
-            WearHelmet(_craftedHelmet);
+            EquipHelmet(_craftedHelmet);
 
         } else
         {
             UIManager.Instance.craftingPanel.ToggleSwapPanel(true);
         }
 
+    }
+
+    public void EquipHelmet(HelmetInstance _craftedHelmet)
+    {
+        helmetsEquipped.Add(_craftedHelmet);
+        onHelmetEquipped?.Invoke(_craftedHelmet);
+        PlayerManager.Instance.AddMaxLives(1);
+        WearHelmet(_craftedHelmet);
     }
 
     public void SwapHelmet(HelmetInstance _helmetIn, HelmetInstance _helmetOut)

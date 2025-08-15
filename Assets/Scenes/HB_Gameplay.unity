@@ -1724,7 +1724,6 @@ MonoBehaviour:
   currentHelmetInstance:
     id: 
     baseHelmet: {fileID: 0}
-    helmetElement: {fileID: 0}
     isCrafted: 0
     isDiscovered: 0
     durability: 0

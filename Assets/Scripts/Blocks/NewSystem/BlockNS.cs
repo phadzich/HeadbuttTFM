@@ -2,7 +2,7 @@ using UnityEngine;
 using static UnityEditor.UIElements.ToolbarMenu;
 using static UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState;
 
-public class BlockNS : MonoBehaviour
+public class BlockNS : MonoBehaviour, IElemental
 {
     public int sublevelId;
     public Vector2 sublevelPosition;
@@ -17,6 +17,14 @@ public class BlockNS : MonoBehaviour
     public BlockNS down;
     public BlockNS left;
     public BlockNS right;
+
+    [SerializeField] private ElementType elementType;
+
+    public ElementType Element
+    {
+        get => elementType;
+        set => elementType = value;
+    }
 
     void Awake()
     {
@@ -58,6 +66,17 @@ public class BlockNS : MonoBehaviour
 
         foreach (var behaviour in behaviours)
             behaviour.OnBounced(_helmetInstance);
+
+        HandleInteraction(_helmetInstance);
+    }
+
+    private void HandleInteraction(HelmetInstance _helmetInstance)
+    {
+        var handler = GetComponent<ElementInteractionComponent>();
+        if (handler != null)
+        {
+            handler.HandleInteraction(_helmetInstance.Element, InteractionSource.PlayerAttack);
+        }
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
@@ -71,6 +90,8 @@ public class BlockNS : MonoBehaviour
             Debug.Log(behaviour);
             behaviour.OnHeadbutt(_helmetInstance);
         }
+
+        HandleInteraction(_helmetInstance);
     }
 
     public void StartBehaviours(Sublevel _sublevel)

@@ -60,7 +60,7 @@ public class FireBreath : HelmetEffect
                 if (enemy != null)
                 {
                     Debug.Log(enemy);
-                    enemy.OnHit(data.damage);
+                    enemy.OnHit();
                 }
             }
         }

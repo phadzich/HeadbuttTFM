@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
-public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
+public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 {
     public int maxHealth;
     public int currentHealth;
+    public float damageMultiplier = 1;
+
     public bool isDead => currentHealth <= 0;
 
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
@@ -25,7 +27,7 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
     void Die()
     {
         Debug.Log("DEAD");
-        GetComponent<BlockNS>().StopBehaviours();
+        Destroy(this.gameObject);
     }
 
     public void RestoreHealth()
@@ -38,17 +40,7 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
         RestoreHealth();
     }
 
-    public void OnBounced(HelmetInstance _helmetInstance)
-    {
-    }
-
-    public void OnHeadbutt(HelmetInstance _helmetInstance)
-    {
-        Debug.Log("Headbutt");
-        RecieveDamage(((int)_helmetInstance.baseHelmet.miningPower) + 1);
-    }
-
-    public void StopBehaviour(){}
+    public void StopBehaviour() { }
 
     public void OnElementInteraction(ElementType sourceElement, ElementType targetElement)
     {
@@ -57,7 +49,12 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
             switch (sourceElement)
             {
                 case ElementType.Water:
-                    Debug.Log("InstantDead");
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
+                    break;
+                case ElementType.Fire:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
                     break;
             }
         }
@@ -67,13 +64,23 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
             switch (sourceElement)
             {
                 case ElementType.Fire:
-                    Debug.Log("InstantDead");
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
                     break;
                 case ElementType.Water:
-                    Debug.Log("BOOST");
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
                     break;
             }
         }
+    }
+
+    public void OnHit()
+    {
+        var _damage = ((int)HelmetManager.Instance.currentHelmet.baseHelmet.miningPower +1) * damageMultiplier;
+
+        RecieveDamage((int)_damage);
+        damageMultiplier = 1;
     }
 
     public bool IsAllowedForSource(InteractionSource source)
@@ -81,3 +88,4 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
         return AllowedSources.Count == 0 || AllowedSources.Contains(source);
     }
 }
+

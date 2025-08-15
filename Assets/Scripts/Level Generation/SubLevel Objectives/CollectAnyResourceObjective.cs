@@ -16,7 +16,6 @@ public class CollectAnyResourceObjective : SublevelObjectiveBase
         if (eventData is CollectResourceEvent)
             resourcesCollected++;
         current = resourcesCollected;
-        Debug.Log($"{current}/{goal}");
     }
 
     public override bool isCompleted => resourcesCollected >= resourcesNeeded;
