@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class HBPointsHUD : MonoBehaviour
 {
 
-    public Image fillIMG;
+    public Image hbIMG;
     public TextMeshProUGUI debugTXT;
     public TextMeshProUGUI streakTXT;
     public GameObject streakPanel;
+    public HBEnergyIndicators energyIndicators;
 
     private void Start()
     {
@@ -17,9 +18,8 @@ public class HBPointsHUD : MonoBehaviour
     }
     public void UpdateFill(float _current, float _max)
     {
-        float _fillAmount = _current / _max;
-        fillIMG.fillAmount = _fillAmount;
         debugTXT.text = $"{_current}/{_max}";
+        energyIndicators.UpdateHBUI(_current, _max);
     }
 
     public void AnimateBounce()
@@ -40,5 +40,10 @@ public class HBPointsHUD : MonoBehaviour
             streakPanel.SetActive(true);
             streakTXT.text = $"x{_count}";
         }
+    }
+
+    public void UpdateHBIcon()
+    {
+        
     }
 }
