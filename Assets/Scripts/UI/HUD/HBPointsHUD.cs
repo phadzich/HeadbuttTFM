@@ -7,10 +7,15 @@ public class HBPointsHUD : MonoBehaviour
 {
 
     public Image hbIMG;
+    public Sprite defaultHBIcon;
+    public TextMeshProUGUI hbCost;
     public TextMeshProUGUI debugTXT;
     public TextMeshProUGUI streakTXT;
     public GameObject streakPanel;
     public HBEnergyIndicators energyIndicators;
+
+    public HelmetEffectData currentEffect;
+    public int currentEffectTotalCost;
 
     private void Start()
     {
@@ -20,6 +25,18 @@ public class HBPointsHUD : MonoBehaviour
     {
         debugTXT.text = $"{_current}/{_max}";
         energyIndicators.UpdateHBUI(_current, _max);
+
+        if (currentEffect != null)
+        {
+            if (PlayerManager.Instance.playerHeadbutt.currentHBpoints < currentEffectTotalCost)
+            {
+                SetDefaultHBIcon();
+            }
+            else
+            {
+                SetSpecialHBIcon();
+            }
+        }
     }
 
     public void AnimateBounce()
@@ -42,8 +59,37 @@ public class HBPointsHUD : MonoBehaviour
         }
     }
 
-    public void UpdateHBIcon()
+    public void UpdateHBIcon(HelmetInstance _instance)
     {
-        
+        if (_instance.activeEffects.Count > 0) //tiene un effect
+        {
+            currentEffect = _instance.baseHelmet.effects[0];
+            currentEffectTotalCost = currentEffect.hbPointsUsed + 1;
+            if (_instance.activeEffects[0].hasSpecialAttack && PlayerManager.Instance.playerHeadbutt.currentHBpoints>= currentEffectTotalCost)//tiene un special HB, tiene que ser el primero en la lista
+            {
+                SetSpecialHBIcon();
+            }
+            else
+            {
+                SetDefaultHBIcon();
+            }
+        }
+        else
+        {
+            currentEffect = null;
+            SetDefaultHBIcon();
+        }
+    }
+
+    private void SetDefaultHBIcon()
+    {
+        hbIMG.sprite = defaultHBIcon;
+        hbCost.text = "1";
+    }
+
+    private void SetSpecialHBIcon()
+    {
+        hbIMG.sprite = currentEffect.effectIcon;
+        hbCost.text = (currentEffect.hbPointsUsed + 1).ToString();
     }
 }

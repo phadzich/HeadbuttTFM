@@ -5,6 +5,7 @@ public abstract class HelmetEffectData : ScriptableObject
     public string effectName;
     [TextArea]
     public string description;
-
+    public Sprite effectIcon;
+    public int hbPointsUsed;
     public abstract HelmetEffect CreateEffect();
 }

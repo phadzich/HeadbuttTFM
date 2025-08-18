@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Fire breath
   description: "Consume 2 HB Energy para hacer da\xF1o de fuego a enemigos alrededor."
+  effectIcon: {fileID: 21300000, guid: 4570c5762a0eacf4cbac535ee06e6746, type: 3}
   damageArea: {x: 1.5, y: 1, z: 1.5}
   damage: 1
   hbPointsUsed: 2

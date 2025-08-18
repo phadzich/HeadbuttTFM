@@ -12000,7 +12000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c8279c07b97c842a97b6e32adda887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillIMG: {fileID: 0}
+  hbIMG: {fileID: 1060285695}
+  defaultHBIcon: {fileID: 21300000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
+  hbCost: {fileID: 1889083510}
   debugTXT: {fileID: 188289649}
   streakTXT: {fileID: 1453470415}
   streakPanel: {fileID: 670290723}

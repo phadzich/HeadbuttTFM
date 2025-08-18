@@ -199,6 +199,7 @@ public class UIManager : MonoBehaviour
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
         currentHelmetsHUD.WearNewHelmet(_instance);
+        hbPointsHUD.UpdateHBIcon(_instance);
     }
 
     public void OpenNPCUI(NPCType _type)
