@@ -11,6 +11,7 @@ public class LevelPainter : EditorWindow
     private int[,] gridData;
     private int selectedColorIndex = 0;
     private Vector2 scrollPos;
+    private string lastFileName = "level";
 
     [MenuItem("Tools/Level Painter")]
     public static void ShowWindow()
@@ -205,11 +206,29 @@ public class LevelPainter : EditorWindow
                 texture.SetPixel(x, y, palette.colors[gridData[x, gridSize - 1 - y]].color);
         texture.Apply();
 
-        string path = EditorUtility.SaveFilePanel("Save Level Texture", "", "level.png", "png");
+        string path = EditorUtility.SaveFilePanel("Save Level Texture", "", lastFileName + ".png", "png");
         if (!string.IsNullOrEmpty(path))
         {
             File.WriteAllBytes(path, texture.EncodeToPNG());
             Debug.Log("Saved to: " + path);
+
+            //Refresh
+            AssetDatabase.Refresh();
+
+            // Convertir el path del sistema a path relativo para Unity
+            string relativePath = "Assets" + path.Substring(Application.dataPath.Length);
+
+            // Configurar automáticamente el importer
+            TextureImporter importer = AssetImporter.GetAtPath(relativePath) as TextureImporter;
+            if (importer != null)
+            {
+                importer.textureType = TextureImporterType.Sprite;
+                importer.isReadable = true;
+                importer.filterMode = FilterMode.Point;
+                importer.SaveAndReimport();
+            }
+
+            
         }
     }
 
@@ -232,6 +251,7 @@ public class LevelPainter : EditorWindow
             for (int y = 0; y < gridSize; y++)
                 gridData[x, gridSize - 1 - y] = FindClosestColorIndex(texture.GetPixel(x, y));
 
+        lastFileName = Path.GetFileNameWithoutExtension(path);
         Repaint();
     }
 
