@@ -12,6 +12,7 @@ public class LevelPainter : EditorWindow
     private int selectedColorIndex = 0;
     private Vector2 scrollPos;
     private string lastFileName = "level";
+    private bool isMiddleMouseHeld = false;
 
     [MenuItem("Tools/Level Painter")]
     public static void ShowWindow()
@@ -128,7 +129,38 @@ public class LevelPainter : EditorWindow
             }
 
         }
-        
+
+        // Detectar si se presiona o suelta la rueda
+        if (Event.current.type == EventType.MouseDown && Event.current.button == 2)
+        {
+            isMiddleMouseHeld = true;
+        }
+        else if (Event.current.type == EventType.MouseUp && Event.current.button == 2)
+        {
+            isMiddleMouseHeld = false;
+        }
+
+        // --- ZOOM (pinch en trackpad, Ctrl+Scroll o Scroll con rueda presionada) ---
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            float zoomSpeed = 1f;
+
+            // Caso 1: Zoom con pinch (trackpad manda Control+scroll en la mayoría de sistemas)
+            if (Event.current.control)
+            {
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+                Event.current.Use();
+                Repaint();
+            }
+            // Caso 2: Zoom con rueda presionada
+            else if (isMiddleMouseHeld)
+            {
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+                Event.current.Use();
+                Repaint();
+            }
+        }
+
 
         GUILayout.Space(10);
         GUILayout.Label("Grid", EditorStyles.boldLabel);
@@ -162,8 +194,6 @@ public class LevelPainter : EditorWindow
 
                     GUI.DrawTexture(iconRect, palletteEntry.icon, ScaleMode.ScaleToFit, true);
                 }
-
-
 
                 if ((Event.current.type == EventType.MouseDown || Event.current.type == EventType.MouseDrag) && cellRect.Contains(Event.current.mousePosition))
                 {
