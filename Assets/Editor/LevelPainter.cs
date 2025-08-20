@@ -6,11 +6,13 @@ public class LevelPainter : EditorWindow
 {
     public ColorPalette palette;
 
-    private int gridSize = 25;
-    private int pixelSize = 23;
+    private int gridSize = 50;
+    private int pixelSize = 25;
     private int[,] gridData;
     private int selectedColorIndex = 0;
     private Vector2 scrollPos;
+    private string lastFileName = "level";
+    private bool isMiddleMouseHeld = false;
 
     [MenuItem("Tools/Level Painter")]
     public static void ShowWindow()
@@ -57,6 +59,13 @@ public class LevelPainter : EditorWindow
         Repaint();
     }
 
+    private void PaintCenterCell()
+    {
+        int center = gridSize / 2;
+        gridData[center, center] = selectedColorIndex; // Solo la celda del centro
+        Repaint();
+    }
+
     private void OnGUI()
     {
         GUILayout.Label("Palette", EditorStyles.boldLabel);
@@ -98,13 +107,68 @@ public class LevelPainter : EditorWindow
         GUILayout.EndHorizontal();
         GUI.backgroundColor = Color.white;
 
+        // --- ZOOM (pinch en trackpad o rueda presionada) ---
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            if (Event.current.control)
+            {
+                float zoomSpeed = 1f;
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+
+                Event.current.Use();
+                Repaint();
+            }
+
+            else if (Event.current.button == 2)
+            {
+                float zoomSpeed = 1f;
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+
+                Event.current.Use();
+                Repaint();
+            }
+
+        }
+
+        // Detectar si se presiona o suelta la rueda
+        if (Event.current.type == EventType.MouseDown && Event.current.button == 2)
+        {
+            isMiddleMouseHeld = true;
+        }
+        else if (Event.current.type == EventType.MouseUp && Event.current.button == 2)
+        {
+            isMiddleMouseHeld = false;
+        }
+
+        // --- ZOOM (pinch en trackpad, Ctrl+Scroll o Scroll con rueda presionada) ---
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            float zoomSpeed = 1f;
+
+            // Caso 1: Zoom con pinch (trackpad manda Control+scroll en la mayoría de sistemas)
+            if (Event.current.control)
+            {
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+                Event.current.Use();
+                Repaint();
+            }
+            // Caso 2: Zoom con rueda presionada
+            else if (isMiddleMouseHeld)
+            {
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+                Event.current.Use();
+                Repaint();
+            }
+        }
+
+
         GUILayout.Space(10);
         GUILayout.Label("Grid", EditorStyles.boldLabel);
 
         float canvasWidth = gridSize * pixelSize + 40; // espacio extra para coordenadas
         float canvasHeight = gridSize * pixelSize + 20;
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(600));
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, true, true);
         Rect rect = GUILayoutUtility.GetRect(canvasWidth, canvasHeight);
 
         // Dibuja las celdas
@@ -130,8 +194,6 @@ public class LevelPainter : EditorWindow
 
                     GUI.DrawTexture(iconRect, palletteEntry.icon, ScaleMode.ScaleToFit, true);
                 }
-
-
 
                 if ((Event.current.type == EventType.MouseDown || Event.current.type == EventType.MouseDrag) && cellRect.Contains(Event.current.mousePosition))
                 {
@@ -193,6 +255,7 @@ public class LevelPainter : EditorWindow
         if (GUILayout.Button("Import PNG")) ImportFromPNG();
         if (GUILayout.Button("Clear All")) ClearGrid();
         if (GUILayout.Button("Paint Center Cross")) PaintCenterCross();
+        if (GUILayout.Button("Paint Center Cell")) PaintCenterCell();
         GUILayout.EndHorizontal();
     }
 
@@ -205,11 +268,29 @@ public class LevelPainter : EditorWindow
                 texture.SetPixel(x, y, palette.colors[gridData[x, gridSize - 1 - y]].color);
         texture.Apply();
 
-        string path = EditorUtility.SaveFilePanel("Save Level Texture", "", "level.png", "png");
+        string path = EditorUtility.SaveFilePanel("Save Level Texture", "", lastFileName + ".png", "png");
         if (!string.IsNullOrEmpty(path))
         {
             File.WriteAllBytes(path, texture.EncodeToPNG());
             Debug.Log("Saved to: " + path);
+
+            //Refresh
+            AssetDatabase.Refresh();
+
+            // Convertir el path del sistema a path relativo para Unity
+            string relativePath = "Assets" + path.Substring(Application.dataPath.Length);
+
+            // Configurar automáticamente el importer
+            TextureImporter importer = AssetImporter.GetAtPath(relativePath) as TextureImporter;
+            if (importer != null)
+            {
+                importer.textureType = TextureImporterType.Sprite;
+                importer.isReadable = true;
+                importer.filterMode = FilterMode.Point;
+                importer.SaveAndReimport();
+            }
+
+            
         }
     }
 
@@ -232,6 +313,7 @@ public class LevelPainter : EditorWindow
             for (int y = 0; y < gridSize; y++)
                 gridData[x, gridSize - 1 - y] = FindClosestColorIndex(texture.GetPixel(x, y));
 
+        lastFileName = Path.GetFileNameWithoutExtension(path);
         Repaint();
     }
 
