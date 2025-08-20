@@ -6,8 +6,8 @@ public class LevelPainter : EditorWindow
 {
     public ColorPalette palette;
 
-    private int gridSize = 25;
-    private int pixelSize = 23;
+    private int gridSize = 50;
+    private int pixelSize = 25;
     private int[,] gridData;
     private int selectedColorIndex = 0;
     private Vector2 scrollPos;
@@ -58,6 +58,13 @@ public class LevelPainter : EditorWindow
         Repaint();
     }
 
+    private void PaintCenterCell()
+    {
+        int center = gridSize / 2;
+        gridData[center, center] = selectedColorIndex; // Solo la celda del centro
+        Repaint();
+    }
+
     private void OnGUI()
     {
         GUILayout.Label("Palette", EditorStyles.boldLabel);
@@ -99,13 +106,37 @@ public class LevelPainter : EditorWindow
         GUILayout.EndHorizontal();
         GUI.backgroundColor = Color.white;
 
+        // --- ZOOM (pinch en trackpad o rueda presionada) ---
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            if (Event.current.control)
+            {
+                float zoomSpeed = 1f;
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+
+                Event.current.Use();
+                Repaint();
+            }
+
+            else if (Event.current.button == 2)
+            {
+                float zoomSpeed = 1f;
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+
+                Event.current.Use();
+                Repaint();
+            }
+
+        }
+        
+
         GUILayout.Space(10);
         GUILayout.Label("Grid", EditorStyles.boldLabel);
 
         float canvasWidth = gridSize * pixelSize + 40; // espacio extra para coordenadas
         float canvasHeight = gridSize * pixelSize + 20;
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(600));
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, true, true);
         Rect rect = GUILayoutUtility.GetRect(canvasWidth, canvasHeight);
 
         // Dibuja las celdas
@@ -194,6 +225,7 @@ public class LevelPainter : EditorWindow
         if (GUILayout.Button("Import PNG")) ImportFromPNG();
         if (GUILayout.Button("Clear All")) ClearGrid();
         if (GUILayout.Button("Paint Center Cross")) PaintCenterCross();
+        if (GUILayout.Button("Paint Center Cell")) PaintCenterCell();
         GUILayout.EndHorizontal();
     }
 
