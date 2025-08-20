@@ -71,7 +71,7 @@ public class Enemy: MonoBehaviour, IElemental
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log(other);
+
             OnTrigger();
         }
     }

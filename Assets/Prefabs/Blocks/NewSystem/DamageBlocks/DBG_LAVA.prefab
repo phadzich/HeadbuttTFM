@@ -5226,7 +5226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfDamage: 1
-  damage: 2
+  damage: 1
   breaksCombo: 1
   stopDamage: 0
   damageParticles: {fileID: 7428737150881724064}

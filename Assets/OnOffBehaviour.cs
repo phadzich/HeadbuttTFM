@@ -2,14 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
+public class OnOffBehaviour : MonoBehaviour, IBlockBehaviour
 {
-    public GameObject prefabToSpawn;
-    public Transform spawnPoint;
+    public GameObject prefabToSwitch;
+    public float onTime;
+    public float offTime;
+
     public bool randomStartDelay;
     public float randomStartDelayRange;
 
-    public float spawnInterval;
+
 
     public void StartBehaviour()
     {
@@ -20,7 +22,7 @@ public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
         }
         else
         {
-            StartCoroutine(StartTimer());
+            StartCoroutine(DelayOn());
         }
     }
 
@@ -32,18 +34,30 @@ public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
     private IEnumerator DelayTimer(float _delay)
     {
         yield return new WaitForSeconds(_delay);
-        StartCoroutine(StartTimer());
+        StartCoroutine(DelayOn());
     }
 
-    private IEnumerator StartTimer() { 
-        yield return new WaitForSeconds(spawnInterval);
-        Spawn();
+    private IEnumerator DelayOn() { 
+        yield return new WaitForSeconds(offTime);
+        TurnOn();
     }
 
-    private void Spawn()
+    private IEnumerator DelayOff()
     {
-        Instantiate(prefabToSpawn, spawnPoint);
-        StartCoroutine(StartTimer());
+        yield return new WaitForSeconds(onTime);
+        TurnOff();
+    }
+
+    private void TurnOn()
+    {
+        prefabToSwitch.SetActive(true);
+        StartCoroutine(DelayOff());
+    }
+
+    private void TurnOff()
+    {
+        prefabToSwitch.SetActive(false);
+        StartCoroutine(DelayOn());
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)

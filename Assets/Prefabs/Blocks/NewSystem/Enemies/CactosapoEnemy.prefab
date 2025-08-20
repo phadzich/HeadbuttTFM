@@ -220,8 +220,6 @@ GameObject:
   - component: {fileID: 822097828634457691}
   - component: {fileID: 7367609909240226076}
   - component: {fileID: 4810703166137470484}
-  - component: {fileID: 4116787487908854233}
-  - component: {fileID: 2431500951007808153}
   m_Layer: 8
   m_Name: CactosapoEnemy
   m_TagString: Untagged
@@ -299,38 +297,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4116787487908854233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006885365906108092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c7b9b63d24b624198031fe6f9e2532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axis: {fileID: 1298261001074707767}
-  projectilePrefab: {fileID: 2121837420294675754, guid: 6a5473ad49b4842c6967a910151b10ce, type: 3}
-  shootingInterval: 3
-  speedMultiplier: 1
-  intervalMultiplier: 1
-  projectileCount: 8
-  projectileSpeed: 5
-  AllowedSources: 02000000
---- !u!114 &2431500951007808153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006885365906108092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a343314e6aed4907a49444d82ce0884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0
