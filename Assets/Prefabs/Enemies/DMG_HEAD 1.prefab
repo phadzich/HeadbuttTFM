@@ -10277,7 +10277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4186fad9cf54579862b7217bf88d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headDmg: {fileID: 749449134591276513}
+  headDmg: {fileID: 0}
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -15278,11 +15278,11 @@ GameObject:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
   - component: {fileID: 3259667318623936197}
-  - component: {fileID: 749449134591276513}
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -1587120826981845012}
+  - component: {fileID: 5737534440395495114}
   m_Layer: 9
-  m_Name: DMG_HEAD
+  m_Name: DMG_HEAD 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15349,39 +15349,8 @@ MonoBehaviour:
   rotationAngle: 360
   rotationDuration: 6
   waitDuration: 1.5
-  dmgBlock: {fileID: 749449134591276513}
+  dmgBlock: {fileID: 0}
   damageCooldown: 2
---- !u!114 &749449134591276513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf8f0bdcf55e3d408c1c027bac86d00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sublevelId: 0
-  sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  typeOfDamage: 1
-  damage: 2
-  helmetCounter: 0
-  breaksCombo: 1
-  blockMeshParent: {fileID: 5009671167188453586}
-  blockMesh: {fileID: 3486571716503860580}
-  damageParticles: {fileID: 8681109256412394289}
-  impulseSource: {fileID: 1003532578358748977}
-  currentPos: {x: 0, y: 0, z: 0}
-  newDirection: {x: 0, y: 0, z: 0}
-  damageSound: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
-  audioSource: {fileID: -1587120826981845012}
 --- !u!114 &1003532578358748977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15532,3 +15501,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5737534440395495114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sublevelId: 0
+  sublevelPosition: {x: 0, y: 0}
+  isWalkable: 0
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}

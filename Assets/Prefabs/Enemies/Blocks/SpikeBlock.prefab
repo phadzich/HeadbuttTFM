@@ -5168,7 +5168,7 @@ GameObject:
   - component: {fileID: 7243449948537828661}
   - component: {fileID: 6852165881499367983}
   m_Layer: 8
-  m_Name: DMG_SPIKES
+  m_Name: SpikeBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

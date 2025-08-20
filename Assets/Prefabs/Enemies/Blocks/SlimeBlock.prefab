@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 6425833378088987669}
   - component: {fileID: 5020842433014142389}
   m_Layer: 8
-  m_Name: DMG_SLIME
+  m_Name: SlimeBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3917827667413856126
+--- !u!1 &2509709002535781762
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1003004765862008986}
-  - component: {fileID: 8681109256412394289}
-  - component: {fileID: 1905399111149089785}
+  - component: {fileID: 4219578131926014695}
+  - component: {fileID: 7428737150881724064}
+  - component: {fileID: 3265452807204076713}
   m_Layer: 7
-  m_Name: DamageParticles (1)
+  m_Name: DamageParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1003004765862008986
+--- !u!4 &4219578131926014695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917827667413856126}
+  m_GameObject: {fileID: 2509709002535781762}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.639, z: 0}
@@ -33,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1493166706564756805}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!198 &8681109256412394289
+--- !u!198 &7428737150881724064
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917827667413856126}
+  m_GameObject: {fileID: 2509709002535781762}
   serializedVersion: 8
   lengthInSec: 0.4
   simulationSpeed: 1
@@ -4872,14 +4872,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &1905399111149089785
+--- !u!199 &3265452807204076713
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917827667413856126}
+  m_GameObject: {fileID: 2509709002535781762}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4949,37 +4949,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &4042318397848241673
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5331094384424099233}
-  m_Layer: 9
-  m_Name: SpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5331094384424099233
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4042318397848241673}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1493166706564756805}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5023,12 +4992,14 @@ GameObject:
   - component: {fileID: 1493166706564756805}
   - component: {fileID: 360531678274450541}
   - component: {fileID: 1003532578358748977}
-  - component: {fileID: -1587120826981845012}
-  - component: {fileID: -4628646904535597047}
-  - component: {fileID: 1332458416251268981}
-  - component: {fileID: 7727228589074888871}
+  - component: {fileID: 4953970179030551049}
+  - component: {fileID: 7861879522261285439}
+  - component: {fileID: -8736473872049771343}
+  - component: {fileID: 6133741794092899820}
+  - component: {fileID: 1351411384633125323}
+  - component: {fileID: 7671590144533620282}
   m_Layer: 8
-  m_Name: EnemyFireball
+  m_Name: LavaBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5047,9 +5018,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4219578131926014695}
   - {fileID: 5009671167188453586}
-  - {fileID: 5331094384424099233}
-  - {fileID: 1003004765862008986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &360531678274450541
@@ -5125,8 +5095,8 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 100
     PropagationSpeed: 343
-  DefaultVelocity: {x: 0.1, y: 0.1, z: 0.3}
---- !u!82 &-1587120826981845012
+  DefaultVelocity: {x: 0, y: 0, z: 0.3}
+--- !u!82 &4953970179030551049
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5223,7 +5193,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-4628646904535597047
+--- !u!114 &7861879522261285439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5243,24 +5213,7 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   elementType: 2
---- !u!114 &1332458416251268981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594e73a36a94a404fb59706024e2127b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 4552600488085506810, guid: 7750890ca3ebe6643bc5adc8241298f0, type: 3}
-  spawnPoint: {fileID: 5331094384424099233}
-  randomStartDelay: 1
-  randomStartDelayRange: 1
-  spawnInterval: 4.5
---- !u!114 &7727228589074888871
+--- !u!114 &-8736473872049771343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5276,8 +5229,47 @@ MonoBehaviour:
   damage: 1
   breaksCombo: 1
   stopDamage: 0
-  damageParticles: {fileID: 8681109256412394289}
+  damageParticles: {fileID: 7428737150881724064}
   impulseSource: {fileID: 1003532578358748977}
+--- !u!114 &6133741794092899820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a343314e6aed4907a49444d82ce0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1351411384633125323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa91bd58fd4b41dfb0c2997c4e2c169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7671590144533620282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e772f95755744d1fa4e2cb4fa49916a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  AllowedSources: 00000000
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5327,12 +5319,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a758caa1f44f7f54c8258fad844d7dff, type: 2}
     - target: {fileID: 919132149155446097, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: m_Name
-      value: FloorBlock (1)
+      value: FloorBlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
