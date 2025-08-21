@@ -189,3 +189,7 @@ MonoBehaviour:
     blockString: FLAMETHROWER_X
     icon: {fileID: 2800000, guid: f33beec95c41b6d4eaf98679992eb978, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 56ef6fd8b3fe88a45a6d85c912abce02, type: 3}
+  - color: {r: 0.45882353, g: 0.39607844, b: 0.10980392, a: 1}
+    blockString: CHISPI_X
+    icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 931e9b872a369b8449094067e43ee324, type: 3}

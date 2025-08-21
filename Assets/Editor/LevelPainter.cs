@@ -6,7 +6,7 @@ public class LevelPainter : EditorWindow
 {
     public ColorPalette palette;
 
-    private int gridSize = 50;
+    private int gridSize = 51;
     private int pixelSize = 25;
     private int[,] gridData;
     private int selectedColorIndex = 0;
