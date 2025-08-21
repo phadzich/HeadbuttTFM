@@ -11,6 +11,7 @@ public class Sublevel : MonoBehaviour {
     public bool isActive;
     public SublevelConfig config;
     public List<ISublevelObjective> activeObjectives;
+    public List<IGateRequirement> activeGateRequirements;
     public bool allObjectivesCompleted => (activeObjectives?.Count > 0) && activeObjectives.All(o => o.isCompleted);
     public event Action onSublevelObjectivesUpdated;
 
@@ -30,7 +31,7 @@ public class Sublevel : MonoBehaviour {
          if(_config is MiningSublevelConfig)
         {
             SetupObjectives(_config as MiningSublevelConfig);
-
+            SetupGates(_config as MiningSublevelConfig);
         }
 
 
@@ -44,6 +45,14 @@ public class Sublevel : MonoBehaviour {
             _obj.Initialize();
     }
 
+    private void SetupGates(MiningSublevelConfig _miningConfig)
+    {
+        activeGateRequirements = new List<IGateRequirement>(_miningConfig.gateRequirements);
+
+        foreach (var _obj in activeGateRequirements)
+            _obj.Initialize();
+    }
+
 
     public void DispatchObjectiveEvent(object _e)
     {
@@ -52,13 +61,25 @@ public class Sublevel : MonoBehaviour {
             _obj.UpdateProgress(_e);
         }
 
+        foreach (var _req in activeGateRequirements)
+        {
+            _req.UpdateProgress(_e);
+        }
+
         NotifyObjectiveUpdated();
+        NotifyGateRequirementsUpdated();
     }
 
     public void NotifyObjectiveUpdated()
     {
         onSublevelObjectivesUpdated?.Invoke();
     }
+
+    public void NotifyGateRequirementsUpdated()
+    {
+        onSublevelObjectivesUpdated?.Invoke();
+    }
+
     public void CollectBP()
     {
         HelmetManager.Instance.Discover(helmetToDiscover);

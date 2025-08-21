@@ -168,14 +168,6 @@ public class LevelManager : MonoBehaviour
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             PlayerManager.Instance.EnterMiningLevel();
-            //Debug.Log($"Entering {currentSublevel.id}");
-            if (_miningSublevel.gateRequirements.Count > 0)
-            {
-                foreach (GateBehaviour _gate in currentSublevel.gateBlocks)
-                {
-                    _gate.StartGateCount();
-                }
-            }
         }
 
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)

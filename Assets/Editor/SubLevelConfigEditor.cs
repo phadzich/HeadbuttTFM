@@ -10,58 +10,87 @@ public class SubLevelConfigEditor : Editor
     {
         serializedObject.Update();
 
-        // 1. Dibujar todas las propiedades normales EXCEPTO 'objectives'
+        // 1. Dibujar todas las propiedades normales EXCEPTO 'objectives' y 'gateRequirements'
         SerializedProperty prop = serializedObject.GetIterator();
         bool enterChildren = true;
         while (prop.NextVisible(enterChildren))
         {
             enterChildren = false;
-            if (prop.name != "objectives") // evitamos dibujar objectives dos veces
+            if (prop.name != "objectives" && prop.name != "gateRequirements")
             {
                 EditorGUILayout.PropertyField(prop, true);
             }
         }
 
+        // ---------- OBJECTIVES ----------
+        DrawManagedReferenceList<ISublevelObjective>("objectives", "Objectives");
+
+        // ---------- GATE REQUIREMENTS ----------
+        DrawManagedReferenceList<IGateRequirement>("gateRequirements", "Gate Requirements");
+
+        serializedObject.ApplyModifiedProperties();
+    }
+
+    /// <summary>
+    /// Dibuja una lista de managed references de un tipo genérico (ej: ISublevelObjective, IGateRequirement).
+    /// </summary>
+    private void DrawManagedReferenceList<T>(string propertyName, string label)
+    {
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Objectives", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
 
-        SerializedProperty objectivesProp = serializedObject.FindProperty("objectives");
+        SerializedProperty listProp = serializedObject.FindProperty(propertyName);
+        if (listProp == null) return;
 
-        // 2. Mostrar lista de objetivos
-        for (int i = 0; i < objectivesProp.arraySize; i++)
+        int removeIndex = -1;
+
+        for (int i = 0; i < listProp.arraySize; i++)
         {
-            SerializedProperty element = objectivesProp.GetArrayElementAtIndex(i);
-            EditorGUILayout.PropertyField(element, new GUIContent($"Objective {i}"), true);
+            SerializedProperty element = listProp.GetArrayElementAtIndex(i);
+
+            EditorGUILayout.BeginVertical("box");
+
+            // Mostrar el tipo concreto de la referencia
+            Type objType = element.managedReferenceValue?.GetType();
+            if (objType != null)
+            {
+                EditorGUILayout.LabelField($"Type: {objType.Name}", EditorStyles.miniLabel);
+            }
+
+            EditorGUILayout.PropertyField(element, new GUIContent($"{label} {i}"), true);
 
             if (GUILayout.Button("Remove"))
-            {
-                objectivesProp.DeleteArrayElementAtIndex(i);
-            }
+                removeIndex = i;
+
+            EditorGUILayout.EndVertical();
+        }
+
+        if (removeIndex >= 0)
+        {
+            listProp.DeleteArrayElementAtIndex(removeIndex);
         }
 
         EditorGUILayout.Space();
 
-        // 3. Botón para añadir objetivo nuevo
-        if (GUILayout.Button("Add Objective"))
+        // Botón para añadir nuevo elemento
+        if (GUILayout.Button($"Add {label}"))
         {
             GenericMenu menu = new GenericMenu();
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
-                .Where(t => typeof(ISublevelObjective).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
+                .Where(t => typeof(T).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
 
-            foreach (var type in types)
+            foreach (var type in types.OrderBy(t => t.Name))
             {
                 menu.AddItem(new GUIContent(type.Name), false, () =>
                 {
-                    objectivesProp.arraySize++;
-                    var newElement = objectivesProp.GetArrayElementAtIndex(objectivesProp.arraySize - 1);
+                    listProp.arraySize++;
+                    var newElement = listProp.GetArrayElementAtIndex(listProp.arraySize - 1);
                     newElement.managedReferenceValue = Activator.CreateInstance(type);
                     serializedObject.ApplyModifiedProperties();
                 });
             }
             menu.ShowAsContext();
         }
-
-        serializedObject.ApplyModifiedProperties();
     }
 }

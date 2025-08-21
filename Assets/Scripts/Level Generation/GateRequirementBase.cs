@@ -1,5 +1,5 @@
 [System.Serializable]
-public abstract class SublevelObjectiveBase : ISublevelObjective
+public abstract class GateRequirementBase : IGateRequirement
 {
     public abstract void Initialize();
     public abstract void UpdateProgress(object eventData);

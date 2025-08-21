@@ -10,7 +10,7 @@ public class GateSetup : MonoBehaviour, IBlockSetup
         var _gateRequirement = _context.miningConfig.gateRequirements[_gateIndex];
 
         var gateBehav = GetComponent<GateBehaviour>();
-        gateBehav.SetupBlock(_context.sublevel, _gateIndex, _gateRequirement);
+        gateBehav.SetupBlock(_context,_gateRequirement, _gateIndex);
 
         _context.sublevel.gateBlocks.Add(gateBehav);
     }

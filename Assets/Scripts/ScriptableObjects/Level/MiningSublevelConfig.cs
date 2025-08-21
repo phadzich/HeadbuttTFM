@@ -11,12 +11,14 @@ public class MiningSublevelConfig : SublevelConfig
     public Texture2D sublevel2DMap;
     public SublevelGoalType goalType;
 
+    [Header("Objectives")]
     [SerializeReference]
     public List<ISublevelObjective> objectives = new List<ISublevelObjective>();
 
 
     [Header("Gates")]
-    public List<GateRequirement> gateRequirements;
+    [SerializeReference]
+    public List<IGateRequirement> gateRequirements;
 
 }
 public enum SublevelGoalType

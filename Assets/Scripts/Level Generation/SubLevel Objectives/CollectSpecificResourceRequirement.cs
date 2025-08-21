@@ -1,6 +1,5 @@
-using UnityEngine;
 [System.Serializable]
-public class CollectSpecificResourceObjective : SublevelObjectiveBase
+public class CollectSpecificResourceRequirement : GateRequirementBase
 {
     public ResourceData resource;
     public int resourcesNeeded;
