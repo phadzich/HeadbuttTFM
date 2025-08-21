@@ -93,6 +93,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerAnimations.RotateBody(180);
         playerBounce.enabled = true;
+        playerHeadbutt.ChangeHBpoints(0);
     }
 
     public void EnterNPCLevel()

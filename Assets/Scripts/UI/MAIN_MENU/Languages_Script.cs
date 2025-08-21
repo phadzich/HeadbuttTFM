@@ -24,7 +24,6 @@ public class ControladorIdiomas : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

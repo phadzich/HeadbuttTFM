@@ -3,11 +3,13 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyDeathsRequirement : RequirementBase
 {
+    [SerializeField] private Sprite icon;
+    public override Sprite GetIcon() => icon;
+
     public int enemiesNeeded;
 
-    public override void Initialize(int _id)
+    public override void Initialize()
     {
-        targetId = _id;
         goal = enemiesNeeded;
         current = 0;
     }
@@ -17,7 +19,6 @@ public class EnemyDeathsRequirement : RequirementBase
         if (eventData is EnemyDeathsEvent enemyDeathsEvent)
         {
             current ++;
-            Debug.Log($"ENEMY DEATHS {current}/{goal} completed {isCompleted}");
         }
     }
 

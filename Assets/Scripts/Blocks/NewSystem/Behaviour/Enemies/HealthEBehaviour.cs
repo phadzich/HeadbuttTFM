@@ -16,7 +16,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void RecieveDamage(int _amount)
     {
-        Debug.Log($"DAMAGE: {_amount}");
+        //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
         UpdateBarUI();
@@ -30,7 +30,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void Die()
     {
-        Debug.Log("DEAD");
+        //Debug.Log("DEAD");
         DispatchDeathEvent();
         Destroy(this.gameObject);
 

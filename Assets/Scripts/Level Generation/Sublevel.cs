@@ -34,8 +34,6 @@ public class Sublevel : MonoBehaviour {
             SetupObjectives(_miningConfig);
             SetupGates(_miningConfig);
         }
-
-
     }
 
     private void SetupObjectives(MiningSublevelConfig _miningConfig)
@@ -60,7 +58,7 @@ public class Sublevel : MonoBehaviour {
 
         for (int i = 0; i < activeGateRequirements.Count; i++)
         {
-            activeGateRequirements[i]?.Initialize(i); // defensivo contra nulls internos
+            activeGateRequirements[i]?.Initialize(); // defensivo contra nulls internos
         }
     }
 

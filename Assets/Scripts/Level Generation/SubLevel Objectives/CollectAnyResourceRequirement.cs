@@ -1,14 +1,18 @@
 using UnityEngine;
 public class CollectAnyResourceRequirement : RequirementBase
 {
+    
+
+    [SerializeField] private Sprite icon;
+    public override Sprite GetIcon() => icon;
     public int resourcesNeeded;
     private int resourcesCollected;
 
-    public override void Initialize(int _id)
+    public override void Initialize()
     {
-        targetId = _id;
         resourcesCollected = 0;
         goal = resourcesNeeded;
+        current = 0;
     }
 
     public override void UpdateProgress(object eventData)

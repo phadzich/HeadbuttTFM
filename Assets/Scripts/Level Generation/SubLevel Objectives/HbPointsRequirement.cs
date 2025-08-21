@@ -3,13 +3,14 @@ using UnityEngine;
 [System.Serializable]
 public class HbPointsRequirement : RequirementBase
 {
+    [SerializeField] private Sprite icon;
+    public override Sprite GetIcon() => icon;
     public int HbPointsNeeded;
-    private int actualPoints;
 
-    public override void Initialize(int _id)
+    public override void Initialize()
     {
-        targetId = _id;
-        actualPoints = 0;
+        current = 0;
+        //current = (int)PlayerManager.Instance.playerHeadbutt.currentHBpoints;
         goal = HbPointsNeeded;
     }
 
@@ -18,7 +19,7 @@ public class HbPointsRequirement : RequirementBase
         if (eventData is HbPointsEvent hbPointsEvent)
         {
             current = hbPointsEvent.currentPoints;
-            Debug.Log($"HB POINTS {current}/{goal} completed {isCompleted}");
+            //Debug.Log($"HB POINTS {current}/{goal} completed {isCompleted}");
         }
     }
 

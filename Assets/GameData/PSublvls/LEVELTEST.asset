@@ -32,8 +32,12 @@ MonoBehaviour:
     - rid: 6219506760158019683
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 87a6384037cd6ec49a3e722b01da68d2, type: 3}
         enemiesNeeded: 1
     - rid: 6219506760158019684
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
+        customID: 1
+        icon: {fileID: 21300000, guid: 87a6384037cd6ec49a3e722b01da68d2, type: 3}
         enemiesNeeded: 3

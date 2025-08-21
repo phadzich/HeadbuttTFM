@@ -231,7 +231,7 @@ public class MatchManager : MonoBehaviour
 
         currentStreak =1;
         UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
-        DispatchStreakEvent();
+
     }
 
     private void DispatchStreakEvent()

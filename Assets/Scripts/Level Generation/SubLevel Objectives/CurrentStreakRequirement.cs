@@ -3,13 +3,13 @@ using UnityEngine;
 [System.Serializable]
 public class CurrentStreakRequirement : RequirementBase
 {
+    [SerializeField] private Sprite icon;
+    public override Sprite GetIcon() => icon;
     public int streakNeeded;
-    private int actualStreak;
 
-    public override void Initialize(int _id)
+    public override void Initialize()
     {     
-        targetId = _id;
-        actualStreak = 0;
+        current = 0;
         goal = streakNeeded;
         //Debug.Log("INIT");
         //Debug.Log(gateId);
@@ -20,7 +20,7 @@ public class CurrentStreakRequirement : RequirementBase
         if (eventData is MatchStreakEvent streakEvent)
         {
             current = streakEvent.currentStreak;
-            Debug.Log($"Streak {current}/{goal} completed {isCompleted}");
+            //Debug.Log($"Streak {current}/{goal} completed {isCompleted}");
         }
     }
 

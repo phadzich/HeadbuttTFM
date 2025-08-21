@@ -23,7 +23,6 @@ public class Resolution_Script : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Lo llevo entre escenas
         }
         else
         {
@@ -64,6 +63,6 @@ public class Resolution_Script : MonoBehaviour
         Vector2Int selectedResolution = availableResolutions[index];
         Screen.SetResolution(selectedResolution.x, selectedResolution.y, FullScreenMode.Windowed);
         PlayerPrefs.SetInt("ResolutionIndex", index);
-        Debug.Log($"Resolución cambiada a: {selectedResolution.x}x{selectedResolution.y}");
+        //Debug.Log($"Resolución cambiada a: {selectedResolution.x}x{selectedResolution.y}");
     }
 }

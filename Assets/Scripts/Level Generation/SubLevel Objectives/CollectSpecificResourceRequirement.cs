@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -6,15 +7,13 @@ public class CollectSpecificResourceRequirement : RequirementBase
     public ResourceData resource;
     public int resourcesNeeded;
     private int resourcesCollected;
+    public override Sprite GetIcon() => resource.icon;
 
-    public override void Initialize(int _id)
+    public override void Initialize()
     {
-        
-        targetId = _id;
         resourcesCollected = 0;
         goal = resourcesNeeded;
-        //Debug.Log("INIT");
-        //Debug.Log(gateId);
+        current = 0;
     }
 
     public override void UpdateProgress(object eventData)

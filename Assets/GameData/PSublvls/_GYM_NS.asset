@@ -24,27 +24,48 @@ MonoBehaviour:
   - rid: 6219506760158019675
   - rid: 6219506760158019676
   - rid: 6219506760158019677
+  - rid: 6219506760158019685
+  - rid: 6219506760158019686
   references:
     version: 2
     RefIds:
     - rid: 6219506583283695693
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
-        resourcesNeeded: 24
+        resourcesNeeded: 0
     - rid: 6219506760158019673
       type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
+        customID: 0
         resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
         resourcesNeeded: 3
     - rid: 6219506760158019675
       type: {class: CurrentStreakRequirement, ns: , asm: Assembly-CSharp}
       data:
+        customID: 0
+        icon: {fileID: 21300000, guid: fd80b5c69d18e15409b99cb544806d8f, type: 3}
         streakNeeded: 3
     - rid: 6219506760158019676
       type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
+        customID: 1
+        icon: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
         resourcesNeeded: 20
     - rid: 6219506760158019677
       type: {class: HbPointsRequirement, ns: , asm: Assembly-CSharp}
       data:
-        HbPointsNeeded: 0
+        customID: 1
+        icon: {fileID: 21300000, guid: 5daa49d1d6ba363429f7a0cbad191d36, type: 3}
+        HbPointsNeeded: 8
+    - rid: 6219506760158019685
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 2
+        icon: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+        resourcesNeeded: 3
+    - rid: 6219506760158019686
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 3
+        icon: {fileID: 21300000, guid: ebe96802d5d2e354293beeba2ca05293, type: 3}
+        resourcesNeeded: 40

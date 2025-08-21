@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(GateSetup))]
 public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 {
-    public GateRequirementIndicator requirementsPanelUI;
     public MapContext mapContext;
     public bool isOpen;
     public bool isActive;
     public GameObject gatesMesh;
     public Sublevel parentSublevel;
+    public GateRequirementsUI gateReqsUI;
 
     private int gateID;
 
@@ -28,38 +28,53 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
         GetComponent<BlockNS>().isWalkable = false;
         mapContext = _context;
         gateID = _id;
-        Debug.Log($"[SetupBlock] Gate {name} initialized with gateID={gateID} in {_context.sublevel}", this);
-        //Debug.Log(gateID);
+
         mapContext.sublevel.onSublevelObjectivesUpdated += CheckRequirements;
+
+        // inicializar requirements una sola vez aquí
+        InitializeRequirements();
         CheckRequirements();
     }
 
-    public void CheckRequirements()
+    private void InitializeRequirements()
     {
-        //Debug.Log($"[Gate {gateID}] Running CheckObjectives with {mapContext.sublevel.activeGateRequirements.Count} requirements", this);
-        if (isOpen) return; // ya abierto, no hace falta chequear
         if (mapContext?.sublevel == null) return;
 
         var myReqs = mapContext.sublevel.activeGateRequirements
             .Where(r => r.targetId == gateID)
             .ToList();
 
-        //Debug.Log(myReqs.Count);
+        foreach (var req in myReqs)
+        {
+            // suscribirse solo una vez
+            req.OnProgressChanged += (cur, reqd) => gateReqsUI.UpdateRequirement(req, cur, reqd);
+
+            // crear UI solo una vez
+            gateReqsUI.AddRequirement(req, req.current, req.goal);
+        }
+    }
+    public void CheckRequirements()
+    {
+        if (isOpen) return;
+        if (mapContext?.sublevel == null) return;
+
+        var myReqs = mapContext.sublevel.activeGateRequirements
+            .Where(r => r.targetId == gateID)
+            .ToList();
 
         if (myReqs.Count == 0) return;
-        //Debug.Log($"THIS Gate component: {name}, gateID = {gateID}", this);
+
         bool allCompleted = true;
         foreach (var req in myReqs)
         {
-            Debug.Log($"[Gate {gateID}] Req {req.GetType().Name} Progress {req.current}/{req.goal}");
-            if (!req.isCompleted) allCompleted = false;
+           if (!req.isCompleted) allCompleted = false;
+            
         }
 
         if (allCompleted)
         {
             isOpen = true;
             IndicateOpen();
-            //Debug.Log($"[Gate {gateID}] OPENED (all requirements completed)");
         }
     }
 
@@ -67,14 +82,11 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     {
         GetComponent<BlockNS>().isWalkable = true;
         gatesMesh.SetActive(false);
-        requirementsPanelUI.gameObject.SetActive(false);
+        gateReqsUI.gameObject.SetActive(false);
     }
-
-
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
-
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)

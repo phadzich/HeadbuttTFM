@@ -1,14 +1,17 @@
 using System;
+using UnityEngine;
 
 public interface IRequirement
 {
-    void Initialize(int gateId);
+    void Initialize();
     void UpdateProgress(object _eventData);
     void Reset()
     {
         current = 0;
     }
-    int targetId { get; set; }
+
+    Sprite GetIcon();
+    int targetId { get; }
     bool isCompleted { get; }
     float progress { get; }
     int current { get; set; }
