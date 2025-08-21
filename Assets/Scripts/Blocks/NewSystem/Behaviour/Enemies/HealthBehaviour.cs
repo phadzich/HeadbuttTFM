@@ -74,6 +74,20 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
                     break;
             }
         }
+
+        if (targetElement == ElementType.Electric)
+        {
+            switch (sourceElement)
+            {
+                case ElementType.Fire:
+                    Debug.Log("Resist");
+                    break;
+                case ElementType.Water:
+                    Debug.Log("Resist");
+                    break;
+            }
+        }
+
     }
 
     public bool IsAllowedForSource(InteractionSource source)
