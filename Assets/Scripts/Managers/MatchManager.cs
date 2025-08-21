@@ -35,7 +35,7 @@ public class MatchManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("MatchManager START");
-        RestartMatches();
+        //RestartMatches();
     }
 
     public void RestartMatches()
@@ -220,6 +220,7 @@ public class MatchManager : MonoBehaviour
         {
             currentStreak++;
         }
+        DispatchStreakEvent();
 
         UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
@@ -230,8 +231,14 @@ public class MatchManager : MonoBehaviour
 
         currentStreak =1;
         UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
+        DispatchStreakEvent();
     }
 
+    private void DispatchStreakEvent()
+    {
+        var _streakEvent = new MatchStreakEvent { currentStreak = currentStreak };
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_streakEvent);
+    }
     private void RewardResources()
     {
         int _totalRes = 0;

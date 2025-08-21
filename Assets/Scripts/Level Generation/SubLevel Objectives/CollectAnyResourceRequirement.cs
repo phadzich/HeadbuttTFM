@@ -1,12 +1,12 @@
 using UnityEngine;
-[System.Serializable]
-public class CollectAnyResourceObjective : SublevelObjectiveBase
+public class CollectAnyResourceRequirement : RequirementBase
 {
     public int resourcesNeeded;
     private int resourcesCollected;
 
-    public override void Initialize()
+    public override void Initialize(int _id)
     {
+        targetId = _id;
         resourcesCollected = 0;
         goal = resourcesNeeded;
     }
@@ -18,6 +18,6 @@ public class CollectAnyResourceObjective : SublevelObjectiveBase
         current = resourcesCollected;
     }
 
-    public override bool isCompleted => resourcesCollected >= resourcesNeeded;
-    public override float progress => (float)resourcesCollected / resourcesNeeded;
+    public override bool isCompleted => current >= goal;
+    public override float progress => (float)current / goal;
 }

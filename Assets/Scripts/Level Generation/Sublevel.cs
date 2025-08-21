@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Android.Gradle;
 using UnityEngine;
 
 public class Sublevel : MonoBehaviour { 
@@ -11,13 +12,12 @@ public class Sublevel : MonoBehaviour {
     public bool isActive;
     public SublevelConfig config;
     public List<ISublevelObjective> activeObjectives;
-    public List<IGateRequirement> activeGateRequirements;
+    public List<IRequirement> activeGateRequirements;
+    public List<IRequirement> activeChestRequirements;
     public bool allObjectivesCompleted => (activeObjectives?.Count > 0) && activeObjectives.All(o => o.isCompleted);
     public event Action onSublevelObjectivesUpdated;
 
     public bool isCompleted;
-
-    public List<GateBehaviour> gateBlocks = new List<GateBehaviour>();
 
     public HelmetData helmetToDiscover;
 
@@ -28,10 +28,11 @@ public class Sublevel : MonoBehaviour {
         this.isActive = _isActive;
         this.config = _config;
         this.helmetToDiscover = _config.helmetBPData;
-         if(_config is MiningSublevelConfig)
+
+         if(_config is MiningSublevelConfig _miningConfig)
         {
-            SetupObjectives(_config as MiningSublevelConfig);
-            SetupGates(_config as MiningSublevelConfig);
+            SetupObjectives(_miningConfig);
+            SetupGates(_miningConfig);
         }
 
 
@@ -39,18 +40,28 @@ public class Sublevel : MonoBehaviour {
 
     private void SetupObjectives(MiningSublevelConfig _miningConfig)
     {
-        activeObjectives = new List<ISublevelObjective>(_miningConfig.objectives);
+        // Si no hay objectives, lista vacía
+        activeObjectives = _miningConfig.objectives != null
+            ? new List<ISublevelObjective>(_miningConfig.objectives)
+            : new List<ISublevelObjective>();
 
-        foreach (var _obj in activeObjectives)
-            _obj.Initialize();
+        foreach (var obj in activeObjectives)
+        {
+            obj?.Initialize(); // defensivo, en caso haya un null dentro
+        }
     }
 
     private void SetupGates(MiningSublevelConfig _miningConfig)
     {
-        activeGateRequirements = new List<IGateRequirement>(_miningConfig.gateRequirements);
+        // Si no hay gates, lista vacía
+        activeGateRequirements = _miningConfig.gateRequirements != null
+            ? new List<IRequirement>(_miningConfig.gateRequirements)
+            : new List<IRequirement>();
 
-        foreach (var _obj in activeGateRequirements)
-            _obj.Initialize();
+        for (int i = 0; i < activeGateRequirements.Count; i++)
+        {
+            activeGateRequirements[i]?.Initialize(i); // defensivo contra nulls internos
+        }
     }
 
 
@@ -66,17 +77,12 @@ public class Sublevel : MonoBehaviour {
             _req.UpdateProgress(_e);
         }
 
-        NotifyObjectiveUpdated();
-        NotifyGateRequirementsUpdated();
+        NotifyObjectivesAndRequirementsUpdated();
     }
 
-    public void NotifyObjectiveUpdated()
+    public void NotifyObjectivesAndRequirementsUpdated()
     {
-        onSublevelObjectivesUpdated?.Invoke();
-    }
-
-    public void NotifyGateRequirementsUpdated()
-    {
+        //Debug.Log($"[Sublevel] Raising objectives update, listeners: {onSublevelObjectivesUpdated?.GetInvocationList().Length ?? 0}");
         onSublevelObjectivesUpdated?.Invoke();
     }
 

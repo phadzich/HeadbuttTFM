@@ -1,16 +1,26 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 using System;
 using System.Linq;
 
 [CustomEditor(typeof(MiningSublevelConfig))]
 public class SubLevelConfigEditor : Editor
 {
+    private ReorderableList objectivesList;
+    private ReorderableList gateReqList;
+
+    private void OnEnable()
+    {
+        objectivesList = CreateManagedRefList<ISublevelObjective>("objectives", "Objectives");
+        gateReqList = CreateManagedRefList<IRequirement>("gateRequirements", "Gate Requirements");
+    }
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
-        // 1. Dibujar todas las propiedades normales EXCEPTO 'objectives' y 'gateRequirements'
+        // Dibujar las propiedades normales excepto las listas
         SerializedProperty prop = serializedObject.GetIterator();
         bool enterChildren = true;
         while (prop.NextVisible(enterChildren))
@@ -22,58 +32,45 @@ public class SubLevelConfigEditor : Editor
             }
         }
 
-        // ---------- OBJECTIVES ----------
-        DrawManagedReferenceList<ISublevelObjective>("objectives", "Objectives");
+        EditorGUILayout.Space();
+        objectivesList.DoLayoutList();
 
-        // ---------- GATE REQUIREMENTS ----------
-        DrawManagedReferenceList<IGateRequirement>("gateRequirements", "Gate Requirements");
+        EditorGUILayout.Space();
+        gateReqList.DoLayoutList();
 
         serializedObject.ApplyModifiedProperties();
     }
 
-    /// <summary>
-    /// Dibuja una lista de managed references de un tipo genérico (ej: ISublevelObjective, IGateRequirement).
-    /// </summary>
-    private void DrawManagedReferenceList<T>(string propertyName, string label)
+    private ReorderableList CreateManagedRefList<T>(string propertyName, string label)
     {
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
+        SerializedProperty prop = serializedObject.FindProperty(propertyName);
+        var list = new ReorderableList(serializedObject, prop, true, true, true, true);
 
-        SerializedProperty listProp = serializedObject.FindProperty(propertyName);
-        if (listProp == null) return;
-
-        int removeIndex = -1;
-
-        for (int i = 0; i < listProp.arraySize; i++)
+        list.drawHeaderCallback = (Rect rect) =>
         {
-            SerializedProperty element = listProp.GetArrayElementAtIndex(i);
+            EditorGUI.LabelField(rect, label, EditorStyles.boldLabel);
+        };
 
-            EditorGUILayout.BeginVertical("box");
-
-            // Mostrar el tipo concreto de la referencia
-            Type objType = element.managedReferenceValue?.GetType();
-            if (objType != null)
-            {
-                EditorGUILayout.LabelField($"Type: {objType.Name}", EditorStyles.miniLabel);
-            }
-
-            EditorGUILayout.PropertyField(element, new GUIContent($"{label} {i}"), true);
-
-            if (GUILayout.Button("Remove"))
-                removeIndex = i;
-
-            EditorGUILayout.EndVertical();
-        }
-
-        if (removeIndex >= 0)
+        list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
         {
-            listProp.DeleteArrayElementAtIndex(removeIndex);
-        }
+            var element = prop.GetArrayElementAtIndex(index);
 
-        EditorGUILayout.Space();
+            rect.y += 2;
+            EditorGUI.PropertyField(
+                new Rect(rect.x, rect.y, rect.width, EditorGUI.GetPropertyHeight(element, true)),
+                element,
+                new GUIContent($"{label} {index}"),
+                true
+            );
+        };
 
-        // Botón para añadir nuevo elemento
-        if (GUILayout.Button($"Add {label}"))
+        list.elementHeightCallback = (int index) =>
+        {
+            var element = prop.GetArrayElementAtIndex(index);
+            return EditorGUI.GetPropertyHeight(element, true) + 6;
+        };
+
+        list.onAddDropdownCallback = (Rect buttonRect, ReorderableList l) =>
         {
             GenericMenu menu = new GenericMenu();
             var types = AppDomain.CurrentDomain.GetAssemblies()
@@ -84,13 +81,15 @@ public class SubLevelConfigEditor : Editor
             {
                 menu.AddItem(new GUIContent(type.Name), false, () =>
                 {
-                    listProp.arraySize++;
-                    var newElement = listProp.GetArrayElementAtIndex(listProp.arraySize - 1);
+                    prop.arraySize++;
+                    var newElement = prop.GetArrayElementAtIndex(prop.arraySize - 1);
                     newElement.managedReferenceValue = Activator.CreateInstance(type);
                     serializedObject.ApplyModifiedProperties();
                 });
             }
             menu.ShowAsContext();
-        }
+        };
+
+        return list;
     }
 }

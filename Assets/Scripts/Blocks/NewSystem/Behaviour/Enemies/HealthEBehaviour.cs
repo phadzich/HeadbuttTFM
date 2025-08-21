@@ -31,10 +31,15 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
     void Die()
     {
         Debug.Log("DEAD");
+        DispatchDeathEvent();
         Destroy(this.gameObject);
 
     }
-
+    private void DispatchDeathEvent()
+    {
+        var _enemyDeathEvent = new EnemyDeathsEvent {};
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_enemyDeathEvent);
+    }
     public void RestoreHealth()
     {
         currentHealth = maxHealth;

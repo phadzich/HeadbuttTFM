@@ -20,16 +20,31 @@ MonoBehaviour:
   objectives:
   - rid: 6219506760158019659
   gateRequirements:
-  - rid: 6219506760158019658
+  - rid: 6219506760158019679
+  - rid: 6219506760158019680
+  - rid: 6219506760158019681
+  - rid: 6219506760158019682
   references:
     version: 2
     RefIds:
-    - rid: 6219506760158019658
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-        resourcesNeeded: 10
     - rid: 6219506760158019659
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         resourcesNeeded: 5
+    - rid: 6219506760158019679
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        enemiesNeeded: 3
+    - rid: 6219506760158019680
+      type: {class: HbPointsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        HbPointsNeeded: 4
+    - rid: 6219506760158019681
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        resourcesNeeded: 5
+    - rid: 6219506760158019682
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+        resourcesNeeded: 3

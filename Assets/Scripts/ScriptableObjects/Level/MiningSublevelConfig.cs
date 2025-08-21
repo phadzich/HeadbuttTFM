@@ -18,7 +18,7 @@ public class MiningSublevelConfig : SublevelConfig
 
     [Header("Gates")]
     [SerializeReference]
-    public List<IGateRequirement> gateRequirements;
+    public List<IRequirement> gateRequirements;
 
 }
 public enum SublevelGoalType

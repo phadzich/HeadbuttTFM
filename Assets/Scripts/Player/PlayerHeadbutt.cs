@@ -87,6 +87,11 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         currentHBpoints += _amount;
         onHBPointsChanged?.Invoke(currentHBpoints,maxHBpoints);
+
+
+        var _intHBs = (int)Math.Floor(currentHBpoints);
+        var _hbPointsEvent = new HbPointsEvent { currentPoints = _intHBs };
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_hbPointsEvent);
     }
 
 

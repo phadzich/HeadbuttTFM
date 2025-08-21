@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(GateSetup))]
@@ -11,7 +12,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     public GameObject gatesMesh;
     public Sublevel parentSublevel;
 
-    public int gateID;
+    private int gateID;
 
     private void OnEnable()
     {
@@ -19,27 +20,46 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void OnDisable()
     {
+        mapContext.sublevel.onSublevelObjectivesUpdated -= CheckRequirements;
     }
 
-    public void SetupBlock(MapContext _context, IGateRequirement _requirement, int _id)
+    public void SetupBlock(MapContext _context, IRequirement _requirement, int _id)
     {
         GetComponent<BlockNS>().isWalkable = false;
         mapContext = _context;
         gateID = _id;
-        mapContext.sublevel.onSublevelObjectivesUpdated += CheckObjectives;
-        CheckObjectives();
-
+        Debug.Log($"[SetupBlock] Gate {name} initialized with gateID={gateID} in {_context.sublevel}", this);
+        //Debug.Log(gateID);
+        mapContext.sublevel.onSublevelObjectivesUpdated += CheckRequirements;
+        CheckRequirements();
     }
 
-    public void CheckObjectives()
+    public void CheckRequirements()
     {
-        //Debug.Log("CHECKOBJECTIVES");
-        bool allCompleted = mapContext.sublevel.allObjectivesCompleted;
-        //doorRequirementIndicator.UpdateIndicator(currentInt);
-        if (allCompleted && !isOpen)
+        //Debug.Log($"[Gate {gateID}] Running CheckObjectives with {mapContext.sublevel.activeGateRequirements.Count} requirements", this);
+        if (isOpen) return; // ya abierto, no hace falta chequear
+        if (mapContext?.sublevel == null) return;
+
+        var myReqs = mapContext.sublevel.activeGateRequirements
+            .Where(r => r.targetId == gateID)
+            .ToList();
+
+        //Debug.Log(myReqs.Count);
+
+        if (myReqs.Count == 0) return;
+        //Debug.Log($"THIS Gate component: {name}, gateID = {gateID}", this);
+        bool allCompleted = true;
+        foreach (var req in myReqs)
+        {
+            Debug.Log($"[Gate {gateID}] Req {req.GetType().Name} Progress {req.current}/{req.goal}");
+            if (!req.isCompleted) allCompleted = false;
+        }
+
+        if (allCompleted)
         {
             isOpen = true;
             IndicateOpen();
+            //Debug.Log($"[Gate {gateID}] OPENED (all requirements completed)");
         }
     }
 
@@ -69,6 +89,15 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void StartBehaviour()
     {
+        CheckRequirements();
+    }
+
+    private void ResetRequirements()
+    {
+        foreach (var req in mapContext.sublevel.activeGateRequirements)
+        {
+            req.Reset();
+        }
     }
 
     public void StopBehaviour()

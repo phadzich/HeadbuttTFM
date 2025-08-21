@@ -1,14 +1,20 @@
+using UnityEngine;
+
 [System.Serializable]
-public class CollectSpecificResourceRequirement : GateRequirementBase
+public class CollectSpecificResourceRequirement : RequirementBase
 {
     public ResourceData resource;
     public int resourcesNeeded;
     private int resourcesCollected;
 
-    public override void Initialize()
+    public override void Initialize(int _id)
     {
+        
+        targetId = _id;
         resourcesCollected = 0;
         goal = resourcesNeeded;
+        //Debug.Log("INIT");
+        //Debug.Log(gateId);
     }
 
     public override void UpdateProgress(object eventData)
@@ -21,6 +27,8 @@ public class CollectSpecificResourceRequirement : GateRequirementBase
             }
         }
         current = resourcesCollected;
+        //Debug.Log($"{current}/{goal}");
+        //Debug.Log($"{gateId}:{isCompleted}");
     }
 
     public override bool isCompleted => resourcesCollected >= resourcesNeeded;

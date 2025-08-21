@@ -19,7 +19,9 @@ MonoBehaviour:
   goalType: 0
   objectives:
   - rid: 5424620312094048330
-  gateRequirements: []
+  gateRequirements:
+  - rid: 6219506760158019683
+  - rid: 6219506760158019684
   references:
     version: 2
     RefIds:
@@ -27,3 +29,11 @@ MonoBehaviour:
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         resourcesNeeded: 0
+    - rid: 6219506760158019683
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        enemiesNeeded: 1
+    - rid: 6219506760158019684
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        enemiesNeeded: 3
