@@ -193,3 +193,7 @@ MonoBehaviour:
     blockString: CHISPI_X
     icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
     prefab: {fileID: 4006885365906108092, guid: 931e9b872a369b8449094067e43ee324, type: 3}
+  - color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    blockString: CAPATAZ_X
+    icon: {fileID: 2800000, guid: 03ad305ee86df2f4198ddddb0ad19dd3, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 8d05a73f2a3aa9d46bb7feacda2d4ae8, type: 3}
