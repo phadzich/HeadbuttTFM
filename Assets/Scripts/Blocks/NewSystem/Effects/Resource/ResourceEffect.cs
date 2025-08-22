@@ -19,7 +19,6 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public bool isSelected;
 
     [Header("COMPATIBILIDAD")]
-    public List<ResourceFamily> resourceFamilies;
     public int helmetPowerMultiplier;
 
     [Header("APARIENCIA")]
@@ -49,7 +48,6 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public void SetupBlock(MapContext _context, ResourceData _resource)
     {
         resourceData = _resource;
-        resourceFamilies = _resource.resourceFamilies;
 
         InstanceResourceBlockMesh();
         InstanceResourceDropMesh();

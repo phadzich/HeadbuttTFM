@@ -12,8 +12,10 @@ public class ResourceIndicator : MonoBehaviour
 
     public void SetupIndicator(ResourceData _resourceData, int _amount)
     {
+        
         this.resourceData = _resourceData;
         this.amount = _amount;
+        amountText.color = resourceData.color;
         UpdateUI(_amount);
         if (_amount == 0)
         {

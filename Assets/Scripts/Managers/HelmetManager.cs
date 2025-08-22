@@ -60,18 +60,16 @@ public class HelmetManager : MonoBehaviour
         allHelmets[0].Discover();
         allHelmets[1].Discover();
         allHelmets[2].Discover();
-        allHelmets[3].Discover();
-        allHelmets[4].Discover();
+
 
         allHelmets[0].Craft();
         allHelmets[1].Craft();
         allHelmets[2].Craft();
-        allHelmets[3].Craft();
-        allHelmets[4].Craft();
 
+
+        EquipHelmet(allHelmets[0]);
+        EquipHelmet(allHelmets[1]);
         EquipHelmet(allHelmets[2]);
-        EquipHelmet(allHelmets[3]);
-        EquipHelmet(allHelmets[4]);
 
     }
 

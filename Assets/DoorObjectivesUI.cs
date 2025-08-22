@@ -25,7 +25,7 @@ public class DoorObjectivesUI: MonoBehaviour
     {
         //Debug.Log("Updating counter gate");
         if (visuals.TryGetValue(obj, out var ui))
-            ui.SetProgress(cur, reqd);
+            ui.SetProgress(cur, reqd, obj.progress);
     }
 
 }

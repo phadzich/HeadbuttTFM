@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: 08_Gold
+  m_Name: Res03_Gold
   m_EditorClassIdentifier: 
-  id: 8
+  id: 3
   shortName: Gold
-  hardness: 10
-  rarity: 1
+  hardness: 5
+  rarity: 0
   description: 
-  icon: {fileID: 21300000, guid: 788da675b39bfdd42bd7f7888f59995a, type: 3}
-  color: {r: 0.6933962, g: 0.6318515, b: 0.24530527, a: 1}
-  blockMesh: {fileID: 8846097338804330060, guid: 3173b33eba44e8347b6fcf3488eb82dd, type: 3}
-  resMesh: {fileID: 3272673421996182743, guid: 4e1e3151604f5c44e9ac6857c28ba1d0, type: 3}
-  resourceFamilies: 01000000
+  icon: {fileID: 21300000, guid: fc7257e490ceeb24bb30aebe65d3fdc6, type: 3}
+  color: {r: 0.8018868, g: 0.68352515, b: 0.28746888, a: 1}
+  blockMesh: {fileID: 8846097338804330060, guid: c10eb7e6c1c23ef4d924828e69379c2e, type: 3}
+  resMesh: {fileID: 3626995379597402887, guid: 99d921da2e0cb544b8d37828eabedd82, type: 3}

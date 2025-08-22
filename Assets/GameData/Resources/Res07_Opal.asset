@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: 07_Obsidian
+  m_Name: Res07_Opal
   m_EditorClassIdentifier: 
   id: 7
-  shortName: Obsidian
-  hardness: 9
-  rarity: 2
+  shortName: Opal
+  hardness: 6
+  rarity: 1
   description: 
-  icon: {fileID: 21300000, guid: e409befd15b7d4040a9310bb69296592, type: 3}
-  color: {r: 0.5745275, g: 0.25098044, b: 0.8784314, a: 1}
+  icon: {fileID: 21300000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
+  color: {r: 0.9622642, g: 0.8883738, b: 0.23148806, a: 1}
   blockMesh: {fileID: 8846097338804330060, guid: c5fa3a11db90a2d428e00b0a9d713adf, type: 3}
   resMesh: {fileID: 6255088177359255304, guid: 6cd2675aa07552c4fb20d51b03471028, type: 3}
-  resourceFamilies: 00000000

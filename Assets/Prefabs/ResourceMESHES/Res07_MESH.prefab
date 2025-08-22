@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4ab1e81af66c576479b9b0f33ef8c17b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2f30342db0b2b6f4298840d49ddc6a81, type: 2}
+      objectReference: {fileID: 2100000, guid: cf9459af30afdf240a575e5428173e8d, type: 2}
     - target: {fileID: 919132149155446097, guid: 4ab1e81af66c576479b9b0f33ef8c17b, type: 3}
       propertyPath: m_Name
       value: Res07_MESH

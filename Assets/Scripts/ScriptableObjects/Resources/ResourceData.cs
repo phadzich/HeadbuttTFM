@@ -15,7 +15,6 @@ public class ResourceData : ScriptableObject
     public Color color;
     public GameObject blockMesh;
     public GameObject resMesh;
-    public List<ResourceFamily> resourceFamilies;
 
     public enum ResourceRarity
     {

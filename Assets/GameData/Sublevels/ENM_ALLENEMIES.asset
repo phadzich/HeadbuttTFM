@@ -30,6 +30,7 @@ MonoBehaviour:
     - rid: 6219506760158019659
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
+        icon: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
         resourcesNeeded: 5
     - rid: 6219506760158019679
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}

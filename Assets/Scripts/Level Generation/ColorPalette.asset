@@ -31,43 +31,43 @@ MonoBehaviour:
     prefab: {fileID: 6088147569584951646, guid: b7f2f5b7ee87c43579447c568a7f09ff, type: 3}
   - color: {r: 0, g: 1, b: 1, a: 1}
     blockString: RES_01
-    icon: {fileID: 2800000, guid: 905417b425d1f224e8ae80611fa7137d, type: 3}
+    icon: {fileID: 2800000, guid: 627ffe450a10f9d45a7bf2de0ca9fd31, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 0, g: 0.72156864, b: 1, a: 1}
     blockString: RES_02
-    icon: {fileID: 2800000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
+    icon: {fileID: 2800000, guid: 9dc7eb4263d0162408fbda5366113594, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 0, g: 0.32941177, b: 1, a: 1}
     blockString: RES_03
-    icon: {fileID: 2800000, guid: 61250b903f909954ab0763275fc40994, type: 3}
+    icon: {fileID: 2800000, guid: fc7257e490ceeb24bb30aebe65d3fdc6, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 0, g: 0, b: 1, a: 1}
     blockString: RES_04
-    icon: {fileID: 2800000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
+    icon: {fileID: 2800000, guid: 3116a8241e2e1b54698706cdf8e632e5, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 0.31764707, g: 0, b: 1, a: 1}
     blockString: RES_05
-    icon: {fileID: 2800000, guid: 0f4c3091be58eb24d9afc6cd21ac5b5a, type: 3}
+    icon: {fileID: 2800000, guid: 8652451e55acc8c4e881e5bbbbdc0a67, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 0.54509807, g: 0, b: 1, a: 1}
     blockString: RES_06
-    icon: {fileID: 2800000, guid: d21e7c121be17864da483da23a70e1dd, type: 3}
+    icon: {fileID: 2800000, guid: afbedd7eb118a6d4585314e4e6edea3d, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 1, g: 0, b: 1, a: 1}
     blockString: RES_07
-    icon: {fileID: 2800000, guid: e409befd15b7d4040a9310bb69296592, type: 3}
+    icon: {fileID: 2800000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 1, g: 0.3529412, b: 1, a: 1}
     blockString: RES_08
-    icon: {fileID: 2800000, guid: 788da675b39bfdd42bd7f7888f59995a, type: 3}
+    icon: {fileID: 2800000, guid: dbf96a6126697624d976dd1534089a9f, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 1, g: 0.4745098, b: 0.85490197, a: 1}
-    blockString: RES_09
-    icon: {fileID: 2800000, guid: 734ac855cc8a7b1439eb2054bb3ea886, type: 3}
+    blockString: RES_08
+    icon: {fileID: 2800000, guid: dbf96a6126697624d976dd1534089a9f, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 1, g: 0.56078434, b: 0.7529412, a: 1}
-    blockString: RES_10
-    icon: {fileID: 2800000, guid: ec277fdb8de88dd4d89c2077c01b42c9, type: 3}
+    blockString: RES_08
+    icon: {fileID: 2800000, guid: dbf96a6126697624d976dd1534089a9f, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
   - color: {r: 1, g: 0, b: 0, a: 1}
     blockString: SLIME_X

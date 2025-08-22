@@ -129,7 +129,7 @@ public class LevelManager : MonoBehaviour
     public void ExitSublevel()
     {
         //Debug.Log($"Exiting {currentSublevel}");
-        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 2f));
+        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
             
         currentLevelDepth++;
         PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);

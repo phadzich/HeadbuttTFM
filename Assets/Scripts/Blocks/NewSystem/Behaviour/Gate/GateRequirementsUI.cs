@@ -26,7 +26,7 @@ public class GateRequirementsUI: MonoBehaviour
     {
         //Debug.Log("Updating counter gate");
         if (visuals.TryGetValue(req, out var ui))
-            ui.SetProgress(cur, reqd);
+            ui.SetProgress(cur, reqd, req.progress);
     }
 
 }

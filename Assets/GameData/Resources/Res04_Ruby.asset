@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcad9044cb27c14badc13525aa737ef, type: 3}
-  m_Name: 04_Turquenite
+  m_Name: Res04_Ruby
   m_EditorClassIdentifier: 
   id: 4
-  shortName: Turquenite
+  shortName: Ruby
   hardness: 6
-  rarity: 0
+  rarity: 1
   description: 
-  icon: {fileID: 21300000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
-  color: {r: 0.20882218, g: 0.19811319, b: 0.26415092, a: 1}
+  icon: {fileID: 21300000, guid: 3116a8241e2e1b54698706cdf8e632e5, type: 3}
+  color: {r: 0.8584906, g: 0.13363297, b: 0.29888922, a: 1}
   blockMesh: {fileID: 8846097338804330060, guid: f5376036bdbea7d4e8709806b41654b9, type: 3}
   resMesh: {fileID: 5765530133747635414, guid: 04091672ac70a9e4786983b079babad8, type: 3}
-  resourceFamilies: 00000000
