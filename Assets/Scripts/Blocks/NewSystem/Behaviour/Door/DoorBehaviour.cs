@@ -9,7 +9,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     //public SublevelGoalType currentGoalType;
     //public int requiredInt;
     //public int currentInt;
-    public DoorRequirementIndicator doorRequirementIndicator;
+    public DoorObjectivesUI doorObjectivesUI;
     public bool isOpen;
     public GameObject doorTrapMesh;
     public MapContext mapContext;
@@ -31,9 +31,23 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     {
         mapContext = _context;
         mapContext.sublevel.onSublevelObjectivesUpdated += CheckObjectives;
+        InitializeObjectives();
         CheckObjectives();
+
     }
 
+    private void InitializeObjectives()
+    {
+
+        foreach (var _objective in mapContext.sublevel.activeObjectives)
+        {
+            // suscribirse solo una vez
+            _objective.OnProgressChanged += (cur, reqd) => doorObjectivesUI.UpdateRequirement(_objective, cur, reqd);
+
+            // crear UI solo una vez
+            doorObjectivesUI.AddObjective(_objective, _objective.current, _objective.goal);
+        }
+    }
 
     public void CheckObjectives()
     {
@@ -87,7 +101,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     private void AnimateOpenDoor()
     {
         Tween.LocalRotation(doorTrapMesh.transform, endValue: new Vector3(110, 0, 0), duration: 1f, ease: Ease.InOutBack);
-        doorRequirementIndicator.gameObject.SetActive(false);
+        doorObjectivesUI.gameObject.SetActive(false);
     }
 
     public void StartBehaviour()

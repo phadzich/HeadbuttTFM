@@ -7,9 +7,15 @@ public class RequirementUI : MonoBehaviour
     [SerializeField] private Image reqIcon;
     [SerializeField] private Image reqProgressFill;
 
-    public void Setup(IRequirement _req, int _cur, int _reqd)
+    public void SetupRequirement(IRequirement _req, int _cur, int _reqd)
     {
         reqIcon.sprite = _req.GetIcon();
+        SetProgress(_cur, _reqd);
+    }
+
+    public void SetupObjective(ISublevelObjective _obj, int _cur, int _reqd)
+    {
+        reqIcon.sprite = _obj.GetIcon();
         SetProgress(_cur, _reqd);
     }
 

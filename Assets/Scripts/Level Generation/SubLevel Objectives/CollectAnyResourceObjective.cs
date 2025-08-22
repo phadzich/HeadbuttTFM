@@ -2,6 +2,9 @@ using UnityEngine;
 [System.Serializable]
 public class CollectAnyResourceObjective : SublevelObjectiveBase
 {
+
+    [SerializeField] private Sprite icon;
+    public override Sprite GetIcon() => icon;
     public int resourcesNeeded;
     private int resourcesCollected;
 

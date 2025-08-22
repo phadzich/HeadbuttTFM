@@ -18,7 +18,7 @@ public class GateRequirementsUI: MonoBehaviour
         }
 
         var ui = Instantiate(requirementPrefab, container);
-        ui.Setup(req, cur, reqd);
+        ui.SetupRequirement(req, cur, reqd);
         visuals[req] = ui;
     }
 

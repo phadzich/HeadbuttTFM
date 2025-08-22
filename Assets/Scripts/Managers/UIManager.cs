@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     public CurrentHelmetsHUD currentHelmetsHUD;
     public ActiveItemHUD activeItemHUD;
     public ResourcesPanel resourcesPanel;
-    public SublevelPanel sublevelPanel;
+    public SublevelObjectivesHUD sublevelObjsHUD;
     public HBPointsHUD hbPointsHUD;
     public SpecialHeadbuttHUD specialHeadbuttHUD;
 
@@ -160,22 +160,16 @@ public class UIManager : MonoBehaviour
         if (_sublevel.config is MiningSublevelConfig)
         {
             MiningSublevelConfig _config = _sublevel.config as MiningSublevelConfig;
-            sublevelPanel.ChangeGoalType(_config.goalType);
-            sublevelPanel.UpdateSublevel();
+            sublevelObjsHUD.OnSublevelEntered(_sublevel);
         }
         else
         {
-            sublevelPanel.ShowCheckpoint();
+            sublevelObjsHUD.ShowCheckpoint();
         }
 
-                
         exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
     }
 
-    private void OnSublevelGoalsAdvanced()
-    {
-        sublevelPanel.UpdateGoals();
-    }
 
     private void OnHelmetEquipped(HelmetInstance _helmInstance)
     {
