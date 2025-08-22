@@ -85,6 +85,29 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     break;
             }
         }
+
+        if (targetElement == ElementType.Electric)
+        {
+            switch (sourceElement)
+            {
+                case ElementType.Fire:
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
+                    break;
+                case ElementType.Water:
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
+                    break;
+                case ElementType.Grass:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+                case ElementType.Electric:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+            }
+        }
     }
 
     public void OnHit()
