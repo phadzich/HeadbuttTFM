@@ -16,6 +16,8 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
     public int projectileCount;
     public float projectileSpeed;
 
+    private EnemySFX sfx => GetComponent<EnemySFX>();
+
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
     public void StartBehaviour()
     {
@@ -50,6 +52,9 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
             // Darle velocidad
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+            projectile.GetComponent<DamageEEffect>().sfx = sfx;
+
             if (rb != null)
             {
                 rb.linearVelocity = dir * projectileSpeed*speedMultiplier;

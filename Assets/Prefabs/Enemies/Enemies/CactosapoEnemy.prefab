@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleSound: {fileID: 8300000, guid: 836581d71b703b74499dc18960133e63, type: 3}
   attackSound: {fileID: 8300000, guid: 605e817c9fa001e44b7fdfe24ef4224f, type: 3}
-  hurtSound: {fileID: 8300000, guid: 144d17417291ef64d94d64bd12e681f5, type: 3}
+  damageSound: {fileID: 8300000, guid: 611feaaf153758542b63b294276ffebd, type: 3}
   deathSound: {fileID: 8300000, guid: acdc8f6a5c4db1048a630563972710f4, type: 3}
 --- !u!1 &4006885365906108092
 GameObject:

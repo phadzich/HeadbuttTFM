@@ -18,7 +18,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void RecieveDamage(int _amount)
     {
-        sfx.PlayDamage();
+        if (sfx != null) sfx.PlayDamage();
         //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
@@ -33,7 +33,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void Die()
     {
-        sfx.PlayDeath();
+        if (sfx != null) sfx.PlayDeath();
         //Debug.Log("DEAD");
         DispatchDeathEvent();
         Destroy(this.gameObject);

@@ -7,7 +7,7 @@ public class EnemySFX : MonoBehaviour
     [Header("Clips de Sonido")]
     public AudioClip idleSound;
     public AudioClip attackSound;
-    public AudioClip hurtSound;
+    public AudioClip damageSound;
     public AudioClip deathSound;
 
     private Coroutine idleRoutine;
@@ -60,7 +60,7 @@ public class EnemySFX : MonoBehaviour
     {
         Debug.Log("DAMAGE SOUND");
         StopIdle();
-        StartCoroutine(PlayAndResumeIdle(hurtSound));
+        StartCoroutine(PlayAndResumeIdle(damageSound));
     }
 
     public void PlayDeath()
