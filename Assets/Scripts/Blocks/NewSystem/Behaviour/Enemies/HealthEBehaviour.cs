@@ -12,10 +12,13 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     public bool isDead => currentHealth <= 0;
 
+    private EnemySFX sfx => GetComponent<EnemySFX>();
+
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
 
     void RecieveDamage(int _amount)
     {
+        sfx.PlayDamage();
         //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
@@ -30,6 +33,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void Die()
     {
+        sfx.PlayDeath();
         //Debug.Log("DEAD");
         DispatchDeathEvent();
         Destroy(this.gameObject);
