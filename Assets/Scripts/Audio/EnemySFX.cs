@@ -52,6 +52,7 @@ public class EnemySFX : MonoBehaviour
 
     public void PlayAttack()
     {
+        Debug.Log("ATTACK SOUND");
         StopIdle();
         StartCoroutine(PlayAndResumeIdle(attackSound));
     }
