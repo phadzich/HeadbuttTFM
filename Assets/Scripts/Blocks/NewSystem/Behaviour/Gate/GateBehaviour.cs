@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     public GameObject gatesMesh;
     public Sublevel parentSublevel;
     public GateRequirementsUI gateReqsUI;
+    private List<IRequirement> myReqs = new();
+    private Dictionary<IRequirement, Action<int, int>> handlers = new();
 
     private int gateID;
 
@@ -40,35 +43,47 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     {
         if (mapContext?.sublevel == null) return;
 
-        var myReqs = mapContext.sublevel.activeGateRequirements
+        // cargar y cachear los reqs
+        myReqs = mapContext.sublevel.activeGateRequirements
             .Where(r => r.targetId == gateID)
             .ToList();
 
         foreach (var req in myReqs)
         {
-            // suscribirse solo una vez
-            req.OnProgressChanged += (cur, reqd) => gateReqsUI.UpdateRequirement(req, cur, reqd);
+            if (handlers.ContainsKey(req)) continue;
 
-            // crear UI solo una vez
+            // crear handler
+            Action<int, int> handler = (cur, reqd) => gateReqsUI.UpdateRequirement(req, cur, reqd);
+
+            req.OnProgressChanged += handler;
+            handlers[req] = handler;
+
+            // crear UI
             gateReqsUI.AddRequirement(req, req.current, req.goal);
         }
     }
+
+    private void OnDestroy()
+    {
+        foreach (var kvp in handlers)
+        {
+            kvp.Key.OnProgressChanged -= kvp.Value;
+        }
+        handlers.Clear();
+    }
+
     public void CheckRequirements()
     {
-        if (isOpen) return;
-        if (mapContext?.sublevel == null) return;
-
-        var myReqs = mapContext.sublevel.activeGateRequirements
-            .Where(r => r.targetId == gateID)
-            .ToList();
-
-        if (myReqs.Count == 0) return;
+        if (isOpen || myReqs == null || myReqs.Count == 0) return;
 
         bool allCompleted = true;
         foreach (var req in myReqs)
         {
-           if (!req.isCompleted) allCompleted = false;
-            
+            if (!req.isCompleted)
+            {
+                allCompleted = false;
+                break; // ni sigas, ya sabes que falta
+            }
         }
 
         if (allCompleted)

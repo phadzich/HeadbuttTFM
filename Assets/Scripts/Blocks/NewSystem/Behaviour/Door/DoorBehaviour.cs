@@ -1,5 +1,6 @@
 using PrimeTween;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(DoorSetup))]
@@ -21,7 +22,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     public GameObject borde2;
     public GameObject borde3;
     public GameObject borde4;
-
+    private Dictionary<ISublevelObjective, Action<int, int>> handlers = new();
     private void OnDisable()
     {
         mapContext.sublevel.onSublevelObjectivesUpdated -= CheckObjectives;
@@ -38,14 +39,17 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void InitializeObjectives()
     {
-
-        foreach (var _objective in mapContext.sublevel.activeObjectives)
+        foreach (var obj in mapContext.sublevel.activeObjectives)
         {
-            // suscribirse solo una vez
-            _objective.OnProgressChanged += (cur, reqd) => doorObjectivesUI.UpdateRequirement(_objective, cur, reqd);
+            if (handlers.ContainsKey(obj)) continue;
 
-            // crear UI solo una vez
-            doorObjectivesUI.AddObjective(_objective, _objective.current, _objective.goal);
+            // crear handler y guardarlo
+            Action<int, int> handler = (cur, reqd) => doorObjectivesUI.UpdateObjective(obj, cur, reqd);
+            obj.OnProgressChanged += handler;
+            handlers[obj] = handler;
+
+            // crear UI
+            doorObjectivesUI.AddObjective(obj, obj.current, obj.goal);
         }
     }
 
@@ -110,5 +114,14 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void StopBehaviour()
     {
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var kvp in handlers)
+        {
+            kvp.Key.OnProgressChanged -= kvp.Value;
+        }
+        handlers.Clear();
     }
 }

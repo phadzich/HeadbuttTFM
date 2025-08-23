@@ -21,7 +21,7 @@ public class DoorObjectivesUI: MonoBehaviour
         visuals[obj] = ui;
     }
 
-    public void UpdateRequirement(ISublevelObjective obj, int cur, int reqd)
+    public void UpdateObjective(ISublevelObjective obj, int cur, int reqd)
     {
         //Debug.Log("Updating counter gate");
         if (visuals.TryGetValue(obj, out var ui))
