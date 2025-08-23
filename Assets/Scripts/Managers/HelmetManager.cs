@@ -142,6 +142,7 @@ public class HelmetManager : MonoBehaviour
 
     // Función para USAR un casco 
     public void WearHelmet(HelmetInstance _helmet) {
+        helmetIndex = helmetsEquipped.IndexOf(_helmet);
         currentHelmet = _helmet;
         currentMesh.SetHelmetMesh(_helmet.baseHelmet.mesh);
         onWearHelmetChanged?.Invoke(_helmet);
@@ -155,6 +156,8 @@ public class HelmetManager : MonoBehaviour
         {
             _helmet.ResetStats();
         }
+
+        UIManager.Instance.currentHelmetsHUD.RefreshAllHelmets();
     }
 
     public void UseHelmetPotion(int _potionID)

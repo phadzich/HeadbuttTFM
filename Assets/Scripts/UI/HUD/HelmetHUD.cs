@@ -92,6 +92,12 @@ public class HelmetHUD : MonoBehaviour
         selectedArrowIMG.gameObject.SetActive(false);
     }
 
+    public void UnBroken()
+    {
+        UnWearHelmet();
+        faderIMG.gameObject.SetActive(false);
+    }
+
     public void UnWearHelmet()
     {
         selectionBG.color = unselectedColor;

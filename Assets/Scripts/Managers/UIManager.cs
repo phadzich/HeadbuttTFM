@@ -53,12 +53,13 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SuscribeToHelmetInstances();
+
     }
 
     private void Start()
     {
         Debug.Log("UIManager START");
+        SuscribeToHelmetInstances();
         //dialogueSystem.StartDialogue(LevelManager.Instance.currentSublevel.config.dialogueSequence);
         //startPanel.SetActive(true);
     }
@@ -178,7 +179,8 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        //currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
+        Debug.Log(_instance);
+        currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
         craftingPanel.UpdateHelmetList();
         craftingPanel.UpdateInfoCard(_instance);
     }
