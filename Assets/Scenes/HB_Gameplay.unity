@@ -14027,7 +14027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyMesh: {fileID: 1072653608}
   maxHBpoints: 10
-  currentHBpoints: 4
+  currentHBpoints: 0
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
   headbuttPower: 12
