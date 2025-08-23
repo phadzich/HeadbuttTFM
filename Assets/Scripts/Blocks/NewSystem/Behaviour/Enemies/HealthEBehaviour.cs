@@ -73,6 +73,53 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 0;
                     Debug.Log("NO Damage");
                     break;
+                case ElementType.Grass:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Electric:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+                case ElementType.Metal:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+                case ElementType.None:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+            }
+        }
+
+        if (targetElement == ElementType.Water)
+        {
+            switch (sourceElement)
+            {
+                case ElementType.Water:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Fire:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Grass:
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
+                    break;
+                case ElementType.Electric:
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
+                    break;
+                case ElementType.Metal:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+                case ElementType.None:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
             }
         }
 
@@ -88,6 +135,22 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 0;
                     Debug.Log("NO Damage");
                     break;
+                case ElementType.Grass:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Electric:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Metal:
+                    damageMultiplier = 2;
+                    Debug.Log("Double Damage");
+                    break;
+                case ElementType.None:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
             }
         }
 
@@ -96,20 +159,59 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
             switch (sourceElement)
             {
                 case ElementType.Fire:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+                case ElementType.Water:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Grass:
                     damageMultiplier = 2;
                     Debug.Log("Double Damage");
+                    break;
+                case ElementType.Electric:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Metal:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+                case ElementType.None:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
+                    break;
+            }
+        }
+
+        if (targetElement == ElementType.Metal)
+        {
+            switch (sourceElement)
+            {
+                case ElementType.Fire:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
                     break;
                 case ElementType.Water:
                     damageMultiplier = 2;
                     Debug.Log("Double Damage");
                     break;
                 case ElementType.Grass:
+                    damageMultiplier = 0;
+                    Debug.Log("NO Damage");
+                    break;
+                case ElementType.Electric:
                     damageMultiplier = 1;
                     Debug.Log("Normal Damage");
                     break;
-                case ElementType.Electric:
+                case ElementType.Metal:
                     damageMultiplier = 0;
                     Debug.Log("NO Damage");
+                    break;
+                case ElementType.None:
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
                     break;
             }
         }
