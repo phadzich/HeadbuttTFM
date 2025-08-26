@@ -22,15 +22,15 @@ public class Shop
 
     public void Sell(ShopItem _item, int _quantity)
     {
-        int _totalResources = _item.price.quantity * _quantity;
+        int _totalCoins = _item.price * _quantity;
 
-        if (ResourceManager.Instance.SpendResource(_item.price.resource, _totalResources)){
+        if (ResourceManager.Instance.coinTrader.CanSpendCoins(_totalCoins)){
             RemoveFromInventory(shopInventory.IndexOf(_item), _quantity);
             InventoryManager.Instance.itemsInventory.TryAddOwnedItems(_item.item, _quantity);
         }
         else
         {
-            Debug.Log("Not enough resources");
+            Debug.Log("Not enough coins");
         }
     }
     private void RemoveFromInventory(int _itemIndex, int _quantity)

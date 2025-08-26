@@ -8,11 +8,12 @@ public class CoinsHUD : MonoBehaviour
     public Image resourceIcon;
     public TextMeshProUGUI amountText;
     public GameObject coinsPanel;
+    private int lastAmount;
 
     public void UpdateAmount(int _amount)
     {
         amountText.text = _amount.ToString();
-        if (_amount > 0)
+        if (_amount > lastAmount)
         {
             AnimateAdd();
         }
@@ -20,6 +21,7 @@ public class CoinsHUD : MonoBehaviour
         {
             AnimateSpend();
         }
+        lastAmount = _amount;
     }
 
     private void AnimateAdd()

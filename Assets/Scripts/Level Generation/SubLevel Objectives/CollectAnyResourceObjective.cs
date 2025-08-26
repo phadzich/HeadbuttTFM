@@ -10,17 +10,16 @@ public class CollectAnyResourceObjective : SublevelObjectiveBase
 
     public override void Initialize()
     {
-        resourcesCollected = 0;
+        current = 0;
         goal = resourcesNeeded;
     }
 
     public override void UpdateProgress(object eventData)
     {
         if (eventData is CollectResourceEvent)
-            resourcesCollected++;
-        current = resourcesCollected;
+            current++;
     }
 
-    public override bool isCompleted => resourcesCollected >= resourcesNeeded;
-    public override float progress => (float)resourcesCollected / resourcesNeeded;
+    public override bool isCompleted => current >= goal;
+    public override float progress => (float)current / goal;
 }

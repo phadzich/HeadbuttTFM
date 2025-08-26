@@ -5,5 +5,9 @@ public class HelmetBPLoot : LootBase
 {
     public HelmetData helmetBlueprint;
     public override Sprite GetIcon() => helmetBlueprint.icon;
-    public override void Claim() => Debug.Log($"CLAIMED {helmetBlueprint.helmetName}");
+    public override void Claim()
+    {
+        HelmetManager.Instance.Discover(helmetBlueprint);
+        Debug.Log($"CLAIMED {helmetBlueprint.helmetName}");
+    }
 }

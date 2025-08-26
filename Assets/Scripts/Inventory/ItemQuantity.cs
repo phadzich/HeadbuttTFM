@@ -3,7 +3,7 @@ public class ShopItem
 {
     public Item item;
     public int quantity;
-    public ResourceRequirement price;
+    public int price;
 
     public ShopItem Clone()
     {

@@ -9,15 +9,13 @@ public class ShopItemUI : MonoBehaviour
     public TextMeshProUGUI itemNameTXT;
     public Image itemImage;
 
-    public Image resIcon;
-   public TextMeshProUGUI resAmountTXT;
+    public TextMeshProUGUI coinsPrice;
     public void SetupItem(ShopItem _shopItem)
     {
         shopItem = _shopItem;
         itemImage.sprite = shopItem.item.illustration;
         itemNameTXT.text = shopItem.item.itemName;
-        resIcon.sprite = shopItem.price.resource.icon;
-        resAmountTXT.text = shopItem.price.quantity.ToString();
+        coinsPrice.text = shopItem.price.ToString();
     }
 
     public void TryBuyItem()

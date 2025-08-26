@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31252a3c8b7543418c3366b85c65454, type: 3}
   m_Name: LootIcons
   m_EditorClassIdentifier: 
-  coinSprite: {fileID: 21300000, guid: 4570c5762a0eacf4cbac535ee06e6746, type: 3}
+  coinSprite: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
   defaultSprite: {fileID: 21300000, guid: a2b2657c1c8a116438e92cd3bfae9f9e, type: 3}
