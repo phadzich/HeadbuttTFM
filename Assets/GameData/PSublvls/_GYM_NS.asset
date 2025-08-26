@@ -19,15 +19,14 @@ MonoBehaviour:
   objectives:
   - rid: 6219506583283695693
   gateRequirements:
-  - rid: 6219506760158019673
-  - rid: 6219506760158019675
   - rid: 6219506760158019676
   - rid: 6219506760158019677
   - rid: 6219506760158019685
   - rid: 6219506760158019686
+  - rid: 6219506872587386954
   chestsRequirements:
-  - rid: 6219506858037084234
   - rid: 6219506858037084235
+  - rid: 6219506872587386955
   chestsLoot:
   - rid: 6219506861952204800
   - rid: 6219506861952204801
@@ -46,18 +45,6 @@ MonoBehaviour:
       data:
         icon: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
         resourcesNeeded: 0
-    - rid: 6219506760158019673
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-        resourcesNeeded: 3
-    - rid: 6219506760158019675
-      type: {class: CurrentStreakRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        icon: {fileID: 21300000, guid: fd80b5c69d18e15409b99cb544806d8f, type: 3}
-        streakNeeded: 3
     - rid: 6219506760158019676
       type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -82,12 +69,6 @@ MonoBehaviour:
         customID: 3
         icon: {fileID: 21300000, guid: ebe96802d5d2e354293beeba2ca05293, type: 3}
         resourcesNeeded: 40
-    - rid: 6219506858037084234
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-        resourcesNeeded: 6
     - rid: 6219506858037084235
       type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -123,3 +104,17 @@ MonoBehaviour:
         chestID: 1
         amount: 250
         resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+    - rid: 6219506872587386954
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 55fb331a4447a9b408ea940c25afe95a, type: 3}
+        switchesID: 0
+        switchesNeeded: 3
+    - rid: 6219506872587386955
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 55fb331a4447a9b408ea940c25afe95a, type: 3}
+        switchesID: 1
+        switchesNeeded: 4

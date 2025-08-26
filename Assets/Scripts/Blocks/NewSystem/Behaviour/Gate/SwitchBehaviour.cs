@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SwitchSetup))]
 public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public MapContext mapContext;
     [SerializeField] float duration;
+    [SerializeField] float elapsedTime;
     public bool isActive;
     public GameObject buttonMesh;
     public GameObject shapeMesh;
@@ -17,6 +20,53 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
     public List<Material> materialList;
     public List<Mesh> shapeMeshes;
     [SerializeField]private int switchID;
+    public GameObject timerUI;
+    public Image timerFill;
+    public TextMeshProUGUI timerText;
+
+    private void Update()
+    {
+        if (isActive)
+        {
+            elapsedTime += Time.deltaTime;
+
+            timerText.text = ((int)(duration-elapsedTime)).ToString();
+            timerFill.fillAmount = 1-(elapsedTime/duration);
+
+            if (elapsedTime > duration)
+            {
+                Debug.Log($"Switch {switchID} out of time");
+                DeactivateSwitch();
+            }
+        }
+    }
+
+    private void ActivateSwitch()
+    {
+        Debug.Log($"Switch {switchID} started");
+        ToggleShapeMesh(true);
+        isActive = true;
+        elapsedTime = 0;
+        DispatchStateEvent(isActive);
+        timerUI.SetActive(true);
+    }
+
+    private void DeactivateSwitch()
+    {
+        Debug.Log($"Switch {switchID} stopped");
+        ToggleShapeMesh(false);
+        isActive = false;
+        DispatchStateEvent(isActive);
+        timerUI.SetActive(false);
+    }
+
+    private void DispatchStateEvent(bool _condition)
+    {
+        var _switchEvent = new ActiveSwitchEvent();
+        _switchEvent.isActive = _condition;
+        _switchEvent.switchID = switchID;
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_switchEvent);
+    }
 
     public void SetupBlock(MapContext _context, int _id)
     {
@@ -24,7 +74,14 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
         mapContext = _context;
         switchID = _id;
         ChangeMeshByID();
+        ToggleShapeMesh(false);
         GetDurationFromSublevel();
+        timerUI.SetActive(false);
+    }
+
+    private void ToggleShapeMesh(bool _value)
+    {
+        shapeMesh.SetActive(_value);
     }
 
     private void ChangeMeshByID()
@@ -44,12 +101,6 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
             }
         }
     }
-
-    public void IndicateActive()
-    {
-        GetComponent<BlockNS>().isWalkable = true;
-        shapeMesh.SetActive(true);
-    }
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
@@ -57,6 +108,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        if (!isActive) ActivateSwitch();
         MatchManager.Instance.FloorBounced();
     }
 

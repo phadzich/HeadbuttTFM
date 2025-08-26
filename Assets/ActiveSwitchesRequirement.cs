@@ -31,7 +31,7 @@ public class ActiveSwitchesRequirement : RequirementBase
                 }
             
             }
-            Debug.Log($"{current}/{goal}");
+            Debug.Log($"SW{switchesID}: {current}/{goal}");
         }
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2549837424098944897}
   - component: {fileID: 7099818236109559251}
   - component: {fileID: 3455332311868530197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6854661047786264483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HBDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
