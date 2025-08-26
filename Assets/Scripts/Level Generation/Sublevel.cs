@@ -14,6 +14,7 @@ public class Sublevel : MonoBehaviour {
     public List<ISublevelObjective> activeObjectives;
     public List<IRequirement> activeGateRequirements;
     public List<IRequirement> activeChestRequirements;
+    public List<float> activeSwitchesDurations = new();
     public List<LootBase> activeChestRewards;
     public bool allObjectivesCompleted => (activeObjectives?.Count > 0) && activeObjectives.All(o => o.isCompleted);
     public event Action onSublevelObjectivesUpdated;
@@ -35,7 +36,7 @@ public class Sublevel : MonoBehaviour {
             SetupObjectives(_miningConfig);
             SetupGates(_miningConfig);
             SetupChests(_miningConfig);
-
+            SetupSwitches(_miningConfig);
         }
 
 
@@ -51,6 +52,14 @@ public class Sublevel : MonoBehaviour {
         foreach (var obj in activeObjectives)
         {
             obj?.Initialize(); // defensivo, en caso haya un null dentro
+        }
+    }
+
+    private void SetupSwitches(MiningSublevelConfig _miningConfig)
+    {
+        foreach (float _duration in _miningConfig.switchesDurations)
+        {
+            activeSwitchesDurations.Add(_duration);
         }
     }
 

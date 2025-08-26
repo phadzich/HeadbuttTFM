@@ -34,6 +34,10 @@ MonoBehaviour:
   - rid: 6219506861952204802
   - rid: 6219506861952204803
   - rid: 6219506861952204804
+  switchesDurations:
+  - 5
+  - 8
+  - 10
   references:
     version: 2
     RefIds:

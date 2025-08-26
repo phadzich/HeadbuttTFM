@@ -7,6 +7,7 @@ using UnityEngine;
 public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public MapContext mapContext;
+    [SerializeField] float duration;
     public bool isActive;
     public GameObject buttonMesh;
     public GameObject shapeMesh;
@@ -23,12 +24,25 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
         mapContext = _context;
         switchID = _id;
         ChangeMeshByID();
+        GetDurationFromSublevel();
     }
 
     private void ChangeMeshByID()
     {
         meshFilter.mesh = shapeMeshes[switchID];
         meshRenderer.material = materialList[switchID];
+    }
+
+    private void GetDurationFromSublevel()
+    {
+        for (int i = 0; i < mapContext.sublevel.activeSwitchesDurations.Count; i++)
+        {
+            if (i == switchID)
+            {
+                duration = mapContext.sublevel.activeSwitchesDurations[i];
+                break;
+            }
+        }
     }
 
     public void IndicateActive()

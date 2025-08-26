@@ -26,6 +26,10 @@ public class MiningSublevelConfig : SublevelConfig
     [SerializeReference]
     public List<LootBase> chestsLoot;
 
+    [Header("Switches")]
+    [SerializeReference]
+    public List<float> switchesDurations;
+
 }
 public enum SublevelGoalType
 {
