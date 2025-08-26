@@ -35,7 +35,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
             if (elapsedTime > duration)
             {
-                Debug.Log($"Switch {switchID} out of time");
+
                 DeactivateSwitch();
             }
         }
@@ -43,7 +43,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void ActivateSwitch()
     {
-        Debug.Log($"Switch {switchID} started");
+
         ToggleShapeMesh(true);
         isActive = true;
         elapsedTime = 0;
@@ -53,7 +53,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void DeactivateSwitch()
     {
-        Debug.Log($"Switch {switchID} stopped");
+
         ToggleShapeMesh(false);
         isActive = false;
         DispatchStateEvent(isActive);

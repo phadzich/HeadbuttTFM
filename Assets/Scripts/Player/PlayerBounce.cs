@@ -41,18 +41,10 @@ public class PlayerBounce : MonoBehaviour
     {
         if(rb.linearVelocity.y >= 0)
         {
-            if (bounceDirection == "DOWN")
-            {
-
-            }
             bounceDirection = "UP";
-
         }
         else
         {
-            if (bounceDirection == "UP")
-            {
-            }
             bounceDirection = "DOWN";
         }
         PlayerManager.Instance.playerMovement.bounceDirection = bounceDirection;
@@ -64,15 +56,12 @@ public class PlayerBounce : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 direction = Vector3.down;
         float _groundDistance = .5f;
-        Debug.DrawRay(origin, direction * _groundDistance, Color.red);
 
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance, blockLayerMask))
         {
-            //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<BlockNS>())
             {
-                //Debug.Log("HITBLOCK");
                 BounceUp();
             }
 
@@ -82,7 +71,6 @@ public class PlayerBounce : MonoBehaviour
     private void BounceUp()
     {
         jumpForce = 5;
-        //Debug.Log("BOUNCE!");
         rb.linearVelocity = Vector3.zero;
         rb.linearVelocity = new Vector3(0, jumpForce, 0);
         //PlayerManager.Instance.playerMovement.blockBelow.OnBounced(HelmetManager.Instance.currentHelmet);

@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 6855268377189405096}
   - component: {fileID: 5753518532738647219}
   - component: {fileID: 691920507415590915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 8307225594121920074}
   - component: {fileID: 1241805286537262801}
   - component: {fileID: 1315004992237884369}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MinedParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5401,7 +5401,7 @@ GameObject:
   - component: {fileID: 1033397537703637504}
   - component: {fileID: 5158068903636557030}
   - component: {fileID: 7796163617154937013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5508,7 +5508,7 @@ GameObject:
   - component: {fileID: 3620252403588952957}
   - component: {fileID: 4696366274605729277}
   - component: {fileID: 6007409050337913918}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5596,7 +5596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5009671167188453586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockMeshParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5702,6 +5702,7 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+  elementType: 0
 --- !u!114 &1003532578358748977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5771,7 +5772,6 @@ MonoBehaviour:
   isDoor: 0
   isMined: 0
   isSelected: 0
-  resourceFamilies: 
   helmetPowerMultiplier: 0
   blockMeshParent: {fileID: 5009671167188453586}
   blockMesh: {fileID: 0}
@@ -5919,7 +5919,7 @@ GameObject:
   - component: {fileID: 5584827084848424048}
   - component: {fileID: 8271058696950918892}
   - component: {fileID: 6573447480626614740}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6027,7 +6027,7 @@ GameObject:
   - component: {fileID: 1104778903688366496}
   - component: {fileID: 4945344347954072388}
   - component: {fileID: 3999678865013703717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

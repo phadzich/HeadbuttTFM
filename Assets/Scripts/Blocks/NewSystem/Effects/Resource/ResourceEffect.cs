@@ -174,8 +174,8 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
         //TRANSFORM, LUEGO DEBE SER ANIMADO
-        blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .2f, blockMeshParent.localScale.z);
-        blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
+        blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .9f, blockMeshParent.localScale.z);
+        blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .1f, blockMeshParent.position.z);
     }
 
     public void ToggleHitIndicator(bool _active)
