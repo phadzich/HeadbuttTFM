@@ -14,6 +14,7 @@ public class Sublevel : MonoBehaviour {
     public List<ISublevelObjective> activeObjectives;
     public List<IRequirement> activeGateRequirements;
     public List<IRequirement> activeChestRequirements;
+    public List<LootBase> activeChestRewards;
     public bool allObjectivesCompleted => (activeObjectives?.Count > 0) && activeObjectives.All(o => o.isCompleted);
     public event Action onSublevelObjectivesUpdated;
 
@@ -33,7 +34,11 @@ public class Sublevel : MonoBehaviour {
         {
             SetupObjectives(_miningConfig);
             SetupGates(_miningConfig);
+            SetupChests(_miningConfig);
+
         }
+
+
     }
 
     private void SetupObjectives(MiningSublevelConfig _miningConfig)
@@ -62,6 +67,23 @@ public class Sublevel : MonoBehaviour {
         }
     }
 
+    private void SetupChests(MiningSublevelConfig _miningConfig)
+    {
+        // Si no hay chests, lista vacía
+        activeChestRequirements = _miningConfig.chestsRequirements != null
+            ? new List<IRequirement>(_miningConfig.chestsRequirements)
+            : new List<IRequirement>();
+
+        for (int i = 0; i < activeChestRequirements.Count; i++)
+        {
+            activeChestRequirements[i]?.Initialize(); // defensivo contra nulls internos
+        }
+
+        activeChestRewards = _miningConfig.chestsLoot != null
+    ? new List<LootBase>(_miningConfig.chestsLoot)
+    : new List<LootBase>();
+    }
+
 
     public void DispatchObjectiveEvent(object _e)
     {
@@ -70,9 +92,14 @@ public class Sublevel : MonoBehaviour {
             _obj.UpdateProgress(_e);
         }
 
-        foreach (var _req in activeGateRequirements)
+        foreach (var _gateReq in activeGateRequirements)
         {
-            _req.UpdateProgress(_e);
+            _gateReq.UpdateProgress(_e);
+        }
+
+        foreach (var _chestReq in activeChestRequirements)
+        {
+            _chestReq.UpdateProgress(_e);
         }
 
         NotifyObjectivesAndRequirementsUpdated();

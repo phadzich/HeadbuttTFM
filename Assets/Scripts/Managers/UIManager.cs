@@ -179,7 +179,7 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        Debug.Log(_instance);
+        //Debug.Log(_instance);
         currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
         craftingPanel.UpdateHelmetList();
         craftingPanel.UpdateInfoCard(_instance);

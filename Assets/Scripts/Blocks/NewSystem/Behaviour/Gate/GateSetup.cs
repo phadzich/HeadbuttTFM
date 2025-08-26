@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(GateBehaviour))]
 [RequireComponent(typeof(BlockNS))]
 public class GateSetup : MonoBehaviour, IBlockSetup
 {

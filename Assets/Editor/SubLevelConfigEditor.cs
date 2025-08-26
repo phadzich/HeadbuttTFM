@@ -9,11 +9,17 @@ public class SubLevelConfigEditor : Editor
 {
     private ReorderableList objectivesList;
     private ReorderableList gateReqList;
+    private ReorderableList chestsReqList;
+    private ReorderableList chestsLootList;
 
     private void OnEnable()
     {
         objectivesList = CreateManagedRefList<ISublevelObjective>("objectives", "Objectives");
         gateReqList = CreateManagedRefList<IRequirement>("gateRequirements", "Gate Requirements");
+        chestsReqList = CreateManagedRefList<IRequirement>("chestsRequirements", "Chests Requirements");
+
+        // NUEVO: lista de LootBase
+        chestsLootList = CreateManagedRefList<LootBase>("chestsLoot", "Chests Loot");
     }
 
     public override void OnInspectorGUI()
@@ -26,7 +32,7 @@ public class SubLevelConfigEditor : Editor
         while (prop.NextVisible(enterChildren))
         {
             enterChildren = false;
-            if (prop.name != "objectives" && prop.name != "gateRequirements")
+            if (prop.name != "objectives" && prop.name != "gateRequirements" && prop.name != "chestsRequirements" && prop.name != "chestsLoot")
             {
                 EditorGUILayout.PropertyField(prop, true);
             }
@@ -37,6 +43,12 @@ public class SubLevelConfigEditor : Editor
 
         EditorGUILayout.Space();
         gateReqList.DoLayoutList();
+
+        EditorGUILayout.Space();
+        chestsReqList.DoLayoutList();
+
+        EditorGUILayout.Space();
+        chestsLootList.DoLayoutList();
 
         serializedObject.ApplyModifiedProperties();
     }

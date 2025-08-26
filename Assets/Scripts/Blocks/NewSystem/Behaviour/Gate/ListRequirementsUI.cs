@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GateRequirementsUI: MonoBehaviour
+public class ListRequirementsUI: MonoBehaviour
 {
     [SerializeField] private Transform container;
     [SerializeField] private RequirementUI requirementPrefab;

@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(GateSetup))]
-public class GateBehaviour : MonoBehaviour, IBlockBehaviour
+[RequireComponent(typeof(ChestSetup))]
+public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public MapContext mapContext;
     public bool isOpen;
-    public bool isActive;
-    public GameObject gatesMesh;
-    public Sublevel parentSublevel;
-    public ListRequirementsUI gateReqsUI;
+    public bool isClaimed;
+    public GameObject doorMesh;
+    public GameObject bodyMesh;
+    public ListRequirementsUI chestReqsUI;
     private List<IRequirement> myReqs = new();
+    private List<LootBase> myLoot = new();
     private Dictionary<IRequirement, Action<int, int>> handlers = new();
 
-    private int gateID;
+    private int chestID;
 
     private void OnEnable()
     {
@@ -30,13 +31,24 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     {
         GetComponent<BlockNS>().isWalkable = false;
         mapContext = _context;
-        gateID = _id;
+        chestID = _id;
+        isClaimed = false;
 
         mapContext.sublevel.onSublevelObjectivesUpdated += CheckRequirements;
 
-        // inicializar requirements una sola vez aquí
         InitializeRequirements();
+        GetLootFromConfig();
         CheckRequirements();
+    }
+
+    private void GetLootFromConfig()
+    {
+        if (mapContext?.sublevel == null) return;
+
+        // cargar y cachear los rewards
+        myLoot = mapContext.sublevel.activeChestRewards
+            .Where(r => r.targetId == chestID)
+            .ToList();
     }
 
     private void InitializeRequirements()
@@ -44,22 +56,23 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
         if (mapContext?.sublevel == null) return;
 
         // cargar y cachear los reqs
-        myReqs = mapContext.sublevel.activeGateRequirements
-            .Where(r => r.targetId == gateID)
+        myReqs = mapContext.sublevel.activeChestRequirements
+            .Where(r => r.targetId == chestID)
             .ToList();
 
         foreach (var req in myReqs)
         {
             if (handlers.ContainsKey(req)) continue;
 
-            // crear handler
-            Action<int, int> handler = (cur, reqd) => gateReqsUI.UpdateRequirement(req, cur, reqd);
+            Action<int, int> handler = (cur, reqd) => {
+                chestReqsUI.UpdateRequirement(req, cur, reqd);
+            };
 
             req.OnProgressChanged += handler;
             handlers[req] = handler;
 
             // crear UI
-            gateReqsUI.AddRequirement(req, req.current, req.goal);
+            chestReqsUI.AddRequirement(req, req.current, req.goal);
         }
     }
 
@@ -89,6 +102,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
         if (allCompleted)
         {
             isOpen = true;
+            GetComponent<BlockNS>().isWalkable = true;
             IndicateOpen();
         }
     }
@@ -96,17 +110,39 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     public void IndicateOpen()
     {
         GetComponent<BlockNS>().isWalkable = true;
-        gatesMesh.SetActive(false);
-        gateReqsUI.gameObject.SetActive(false);
+        doorMesh.SetActive(false);
+        chestReqsUI.gameObject.SetActive(false);
     }
     public void OnBounced(HelmetInstance _helmetInstance)
     {
-        MatchManager.Instance.FloorBounced();
+        TryClaim();
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
-        MatchManager.Instance.FloorBounced();
+        TryClaim();
+    }
+
+    private void TryClaim()
+    {
+        if (!isClaimed) //AUN NO SE RECLAMA, reclamar
+        {
+            ClaimRewards();
+        }
+        else // YA SE RECLAMo, damage
+        {
+            MatchManager.Instance.FloorBounced();
+        }
+    }
+
+    private void ClaimRewards()
+    {
+        foreach(ILoot _loot in myLoot)
+        {
+            _loot.Claim();
+        }
+        isClaimed = true;
+        bodyMesh.SetActive(false);
     }
 
     public void Activate()
@@ -117,14 +153,6 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     public void StartBehaviour()
     {
         CheckRequirements();
-    }
-
-    private void ResetRequirements()
-    {
-        foreach (var req in mapContext.sublevel.activeGateRequirements)
-        {
-            req.Reset();
-        }
     }
 
     public void StopBehaviour()

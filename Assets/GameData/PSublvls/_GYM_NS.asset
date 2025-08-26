@@ -16,7 +16,6 @@ MonoBehaviour:
   helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
   dialogueSequence: {fileID: 0}
   sublevel2DMap: {fileID: 2800000, guid: f1eb7190015b54bfd9fdd995b80358bf, type: 3}
-  goalType: 1
   objectives:
   - rid: 6219506583283695693
   gateRequirements:
@@ -26,6 +25,13 @@ MonoBehaviour:
   - rid: 6219506760158019677
   - rid: 6219506760158019685
   - rid: 6219506760158019686
+  chestsRequirements:
+  - rid: 6219506858037084234
+  - rid: 6219506858037084235
+  chestsLoot:
+  - rid: 6219506858037084237
+  - rid: 6219506858037084238
+  - rid: 6219506858037084239
   references:
     version: 2
     RefIds:
@@ -70,3 +76,31 @@ MonoBehaviour:
         customID: 3
         icon: {fileID: 21300000, guid: ebe96802d5d2e354293beeba2ca05293, type: 3}
         resourcesNeeded: 40
+    - rid: 6219506858037084234
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
+        resourcesNeeded: 6
+    - rid: 6219506858037084235
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        icon: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
+        resourcesNeeded: 10
+    - rid: 6219506858037084237
+      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        amount: 5
+    - rid: 6219506858037084238
+      type: {class: HelmetBPReward, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        helmetBlueprint: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+    - rid: 6219506858037084239
+      type: {class: ResourceReward, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+        amount: 99

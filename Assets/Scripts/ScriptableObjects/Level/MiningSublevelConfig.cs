@@ -9,7 +9,6 @@ using System.Linq;
 public class MiningSublevelConfig : SublevelConfig
 {
     public Texture2D sublevel2DMap;
-    public SublevelGoalType goalType;
 
     [Header("Objectives")]
     [SerializeReference]
@@ -19,6 +18,13 @@ public class MiningSublevelConfig : SublevelConfig
     [Header("Gates")]
     [SerializeReference]
     public List<IRequirement> gateRequirements;
+
+    [Header("Chests")]
+    [SerializeReference]
+    public List<IRequirement> chestsRequirements;
+
+    [SerializeReference]
+    public List<LootBase> chestsLoot;
 
 }
 public enum SublevelGoalType
