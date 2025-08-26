@@ -29,9 +29,11 @@ MonoBehaviour:
   - rid: 6219506858037084234
   - rid: 6219506858037084235
   chestsLoot:
-  - rid: 6219506858037084237
-  - rid: 6219506858037084238
-  - rid: 6219506858037084239
+  - rid: 6219506861952204800
+  - rid: 6219506861952204801
+  - rid: 6219506861952204802
+  - rid: 6219506861952204803
+  - rid: 6219506861952204804
   references:
     version: 2
     RefIds:
@@ -88,19 +90,32 @@ MonoBehaviour:
         customID: 1
         icon: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
         resourcesNeeded: 10
-    - rid: 6219506858037084237
-      type: {class: CoinReward, ns: , asm: Assembly-CSharp}
+    - rid: 6219506861952204800
+      type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
-        customID: 0
-        amount: 5
-    - rid: 6219506858037084238
-      type: {class: HelmetBPReward, ns: , asm: Assembly-CSharp}
+        chestID: 0
+        amount: 10
+    - rid: 6219506861952204801
+      type: {class: HelmetBPLoot, ns: , asm: Assembly-CSharp}
       data:
-        customID: 1
+        chestID: 0
+        amount: 1
         helmetBlueprint: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
-    - rid: 6219506858037084239
-      type: {class: ResourceReward, ns: , asm: Assembly-CSharp}
+    - rid: 6219506861952204802
+      type: {class: ItemLoot, ns: , asm: Assembly-CSharp}
       data:
-        customID: 1
-        resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-        amount: 99
+        chestID: 1
+        amount: 10
+        item: {fileID: 11400000, guid: cb6705fdc49e5e44fbb9f59c90012197, type: 2}
+    - rid: 6219506861952204803
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 10
+        resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+    - rid: 6219506861952204804
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 250
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}

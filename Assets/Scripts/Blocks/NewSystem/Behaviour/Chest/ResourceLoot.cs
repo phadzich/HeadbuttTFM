@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ResourceReward : LootBase
+public class ResourceLoot : LootBase
 {
     public ResourceData resource;
-    public int amount;
+    public override Sprite GetIcon() => resource.icon;
     public override void Claim() => Debug.Log($"{amount} {resource}");
 }

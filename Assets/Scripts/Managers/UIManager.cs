@@ -41,6 +41,9 @@ public class UIManager : MonoBehaviour
     [Header("SYSTEMS")]
     public DialogueSystem dialogueSystem;
 
+    [Header("LIBRARIES")]
+    public LootIconsLibrary lootIcons;
+
 
     private void Awake()
     {

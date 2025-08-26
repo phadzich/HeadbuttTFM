@@ -11,6 +11,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
     public bool isClaimed;
     public GameObject doorMesh;
     public GameObject bodyMesh;
+    public LootPopupUI lootPopup;
     public ListRequirementsUI chestReqsUI;
     private List<IRequirement> myReqs = new();
     private List<LootBase> myLoot = new();
@@ -39,6 +40,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
         InitializeRequirements();
         GetLootFromConfig();
         CheckRequirements();
+        lootPopup.Hide();
     }
 
     private void GetLootFromConfig()
@@ -49,6 +51,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
         myLoot = mapContext.sublevel.activeChestRewards
             .Where(r => r.targetId == chestID)
             .ToList();
+
     }
 
     private void InitializeRequirements()
@@ -143,6 +146,8 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
         }
         isClaimed = true;
         bodyMesh.SetActive(false);
+
+        lootPopup.ShowLoot(myLoot);
     }
 
     public void Activate()

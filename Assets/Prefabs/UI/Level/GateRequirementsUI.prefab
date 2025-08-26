@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6583660559024895359}
   - component: {fileID: 7094322362000626366}
   - component: {fileID: 8256572869758205756}
+  - component: {fileID: 6944867174754071262}
   m_Layer: 0
   m_Name: GateRequirementsUI
   m_TagString: Untagged
@@ -132,3 +133,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 1
+--- !u!114 &6944867174754071262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454509256824947879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadbb7fdc549084459f200ea617dd743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

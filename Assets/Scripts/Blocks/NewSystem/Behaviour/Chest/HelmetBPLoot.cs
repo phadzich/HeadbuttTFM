@@ -1,7 +1,9 @@
+using Mono.Cecil;
 using UnityEngine;
 
-public class HelmetBPReward : LootBase
+public class HelmetBPLoot : LootBase
 {
     public HelmetData helmetBlueprint;
+    public override Sprite GetIcon() => helmetBlueprint.icon;
     public override void Claim() => Debug.Log($"CLAIMED {helmetBlueprint.helmetName}");
 }

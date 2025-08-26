@@ -24512,6 +24512,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 975058483}
     - target: {fileID: 8801381227787304174, guid: 4924fd67bd9042b4ca9252fb9e28a23b, type: 3}
+      propertyPath: lootIcons
+      value: 
+      objectReference: {fileID: 11400000, guid: 256541bb239a7e641bc2bfad4b093627, type: 2}
+    - target: {fileID: 8801381227787304174, guid: 4924fd67bd9042b4ca9252fb9e28a23b, type: 3}
       propertyPath: shopPanel
       value: 
       objectReference: {fileID: 871180068}
