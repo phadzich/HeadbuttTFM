@@ -133,6 +133,11 @@ public class PlayerHeadbutt : MonoBehaviour
         RestartHeadbuttCooldown();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
         HelmetManager.Instance.currentHelmet.OnHeadbutt();
+        PlayerManager.Instance.ActivateMoving();
+
+        // Interrumpir efectos
+        var states = PlayerManager.Instance.playerStates;
+        if (states.isStunned) states.InterruptEffect();
     }
 
     private void UpdateHeadbuttCooldown()

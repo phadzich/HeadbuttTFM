@@ -13943,6 +13943,7 @@ MonoBehaviour:
   headbuttMaterial: {fileID: 2100000, guid: 645ec21a301f4ea4ab7e9ef0c1c0d823, type: 2}
   bodyMeshRenderer: {fileID: 1072653611}
   playerMovement: {fileID: 1664707211}
+  isStunned: 0
 --- !u!114 &1217362975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24270,11 +24271,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1112208449}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
+      propertyPath: levelsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
+    - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
+      propertyPath: 'levelsList.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
     - target: {fileID: 4416718780810096706, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}

@@ -79,7 +79,7 @@ public class PlayerBounce : MonoBehaviour
         }
     }
 
-    private void BounceUp()
+    public void BounceUp()
     {
         jumpForce = 5;
         //Debug.Log("BOUNCE!");
