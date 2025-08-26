@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 
     [Header("NPCs")]
     public GameObject NPCCraftPanel;
-    public GameObject NPCUpgradePanel;
+    public GameObject NPCTraderPanel;
     public ExchangePanelUI NPCUpgradeExchanger;
     public InventoryPanelUI NPCInventoryPanel;
     public GameObject NPCElevatorPanel;
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     public ResourcesPanel resourcesPanel;
     public SublevelObjectivesHUD sublevelObjsHUD;
     public HBPointsHUD hbPointsHUD;
-    public SpecialHeadbuttHUD specialHeadbuttHUD;
+    public CoinsHUD coinsHUD;
 
 
     [Header("PLAYER")]
@@ -63,8 +63,6 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("UIManager START");
         SuscribeToHelmetInstances();
-        //dialogueSystem.StartDialogue(LevelManager.Instance.currentSublevel.config.dialogueSequence);
-        //startPanel.SetActive(true);
     }
 
     private void OnEnable()
@@ -79,12 +77,12 @@ public class UIManager : MonoBehaviour
         //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
 
-
         //PLAYER EVENTS
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        ResourceManager.Instance.coinTrader.onCoinsChanged += OnCoinsChanged;
 
-        //PLAYER EVENTS
+        //INVENTORY EVENTS
         InventoryManager.Instance.itemsInventory.ItemCycled += OnEquippedItemCycled;
         InventoryManager.Instance.itemsInventory.ItemEquipped += OnEquippedItemCycled;
         InventoryManager.Instance.itemsInventory.ItemConsumed += OnEquippedItemCycled;
@@ -99,6 +97,7 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onHelmetsSwapped -= OnHelmetSwap;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        ResourceManager.Instance.coinTrader.onCoinsChanged -= OnCoinsChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
         InventoryManager.Instance.itemsInventory.ItemCycled -= OnEquippedItemCycled;
         InventoryManager.Instance.itemsInventory.ItemEquipped -= OnEquippedItemCycled;
@@ -121,6 +120,11 @@ public class UIManager : MonoBehaviour
         {
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
         }
+    }
+
+    private void OnCoinsChanged(int _current)
+    {
+        coinsHUD.UpdateAmount(_current);
     }
 
     private void OnHBPointsChanged(float _current, float _max)
@@ -209,9 +213,9 @@ public class UIManager : MonoBehaviour
                 NPCCraftPanel.SetActive(true);
                 currentOpenUI = NPCCraftPanel.gameObject;
                 break;
-            case NPCType.Upgrader:
-                NPCUpgradePanel.SetActive(true);
-                currentOpenUI = NPCUpgradePanel.gameObject;
+            case NPCType.Trader:
+                NPCTraderPanel.SetActive(true);
+                currentOpenUI = NPCTraderPanel.gameObject;
                 break;
             case NPCType.Elevator:
                 NPCElevatorPanel.SetActive(true);

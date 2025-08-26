@@ -99,4 +99,4 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     }
 }
 
-public enum NPCType { Door, Crafter, Upgrader, Elevator, Shop, Inventory }
+public enum NPCType { Door, Crafter, Trader, Elevator, Shop, Inventory }
