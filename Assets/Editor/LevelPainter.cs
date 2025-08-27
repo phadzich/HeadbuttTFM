@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 
 public class LevelPainter : EditorWindow
 {
@@ -24,7 +26,6 @@ public class LevelPainter : EditorWindow
     {
         if (palette == null)
         {
-            // Intenta cargar una paleta por defecto desde Resources (opcional)
             palette = Resources.Load<ColorPalette>("DefaultColorPalette");
         }
 
@@ -39,12 +40,8 @@ public class LevelPainter : EditorWindow
     private void ClearGrid()
     {
         for (int x = 0; x < gridSize; x++)
-        {
             for (int y = 0; y < gridSize; y++)
-            {
-                gridData[x, y] = 0; // Color base, usualmente blanco
-            }
-        }
+                gridData[x, y] = 0;
         Repaint();
     }
 
@@ -53,8 +50,8 @@ public class LevelPainter : EditorWindow
         int center = gridSize / 2;
         for (int i = 0; i < gridSize; i++)
         {
-            gridData[center, i] = selectedColorIndex; // Vertical
-            gridData[i, center] = selectedColorIndex; // Horizontal
+            gridData[center, i] = selectedColorIndex;
+            gridData[i, center] = selectedColorIndex;
         }
         Repaint();
     }
@@ -62,7 +59,7 @@ public class LevelPainter : EditorWindow
     private void PaintCenterCell()
     {
         int center = gridSize / 2;
-        gridData[center, center] = selectedColorIndex; // Solo la celda del centro
+        gridData[center, center] = selectedColorIndex;
         Repaint();
     }
 
@@ -81,102 +78,25 @@ public class LevelPainter : EditorWindow
             palette = (ColorPalette)EditorGUILayout.ObjectField("Palette", palette, typeof(ColorPalette), false);
         }
 
-        GUILayout.BeginHorizontal();
-        for (int i = 0; i < palette.colors.Length; i++)
-        {
-            GUI.backgroundColor = palette.colors[i].color;
+        DrawPalette(); 
 
-            Texture2D icon = palette.colors[i].icon;
-            GUIContent content;
-
-            if (icon != null)
-            {
-                content = new GUIContent(icon, palette.colors[i].blockString); // Ícono + tooltip
-            }
-            else
-            {
-                content = new GUIContent(" ", palette.colors[i].blockString); // Sin ícono
-            }
-
-            if (GUILayout.Button(content, GUILayout.Width(30), GUILayout.Height(30)))
-            {
-                selectedColorIndex = i;
-            }
-
-        }
-        GUILayout.EndHorizontal();
-        GUI.backgroundColor = Color.white;
-
-        // --- ZOOM (pinch en trackpad o rueda presionada) ---
-        if (Event.current.type == EventType.ScrollWheel)
-        {
-            if (Event.current.control)
-            {
-                float zoomSpeed = 1f;
-                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
-
-                Event.current.Use();
-                Repaint();
-            }
-
-            else if (Event.current.button == 2)
-            {
-                float zoomSpeed = 1f;
-                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
-
-                Event.current.Use();
-                Repaint();
-            }
-
-        }
-
-        // Detectar si se presiona o suelta la rueda
-        if (Event.current.type == EventType.MouseDown && Event.current.button == 2)
-        {
-            isMiddleMouseHeld = true;
-        }
-        else if (Event.current.type == EventType.MouseUp && Event.current.button == 2)
-        {
-            isMiddleMouseHeld = false;
-        }
-
-        // --- ZOOM (pinch en trackpad, Ctrl+Scroll o Scroll con rueda presionada) ---
-        if (Event.current.type == EventType.ScrollWheel)
-        {
-            float zoomSpeed = 1f;
-
-            // Caso 1: Zoom con pinch (trackpad manda Control+scroll en la mayoría de sistemas)
-            if (Event.current.control)
-            {
-                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
-                Event.current.Use();
-                Repaint();
-            }
-            // Caso 2: Zoom con rueda presionada
-            else if (isMiddleMouseHeld)
-            {
-                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
-                Event.current.Use();
-                Repaint();
-            }
-        }
-
+        // --- ZOOM ---
+        HandleZoom();
 
         GUILayout.Space(10);
         GUILayout.Label("Grid", EditorStyles.boldLabel);
 
-        float canvasWidth = gridSize * pixelSize + 40; // espacio extra para coordenadas
+        float canvasWidth = gridSize * pixelSize + 40;
         float canvasHeight = gridSize * pixelSize + 20;
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos, true, true);
         Rect rect = GUILayoutUtility.GetRect(canvasWidth, canvasHeight);
 
-        // Dibuja las celdas
+        // --- Dibuja celdas ---
         for (int y = 0; y < gridSize; y++)
         {
             for (int x = 0; x < gridSize; x++)
             {
-
                 Rect cellRect = new Rect(rect.x + x * pixelSize, rect.y + y * pixelSize, pixelSize, pixelSize);
 
                 int colorIndex = gridData[x, y];
@@ -204,7 +124,7 @@ public class LevelPainter : EditorWindow
             }
         }
 
-        // Dibuja grilla
+        // --- Dibuja grilla ---
         Handles.BeginGUI();
         Handles.color = new Color(0, 0, 0, 0.3f);
         for (int x = 0; x <= gridSize; x++)
@@ -219,7 +139,7 @@ public class LevelPainter : EditorWindow
         }
         Handles.EndGUI();
 
-        // Dibuja coordenadas
+        // --- Coordenadas ---
         GUIStyle coordStyle = new GUIStyle(EditorStyles.label);
         coordStyle.fontSize = 10;
         coordStyle.normal.textColor = Color.black;
@@ -237,7 +157,7 @@ public class LevelPainter : EditorWindow
             GUI.Label(new Rect(xRight, yPos, 30, 20), y.ToString(), coordStyle);
         }
 
-        // Muestra coordenadas del mouse
+        // Mouse hover coords
         Vector2 localMouse = Event.current.mousePosition;
         int hoveredX = (int)((localMouse.x - rect.x) / pixelSize);
         int hoveredY = (int)((localMouse.y - rect.y) / pixelSize);
@@ -248,7 +168,6 @@ public class LevelPainter : EditorWindow
 
         EditorGUILayout.EndScrollView();
 
-        // Botones fuera del scroll
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Export PNG")) ExportToPNG();
@@ -259,6 +178,71 @@ public class LevelPainter : EditorWindow
         GUILayout.EndHorizontal();
     }
 
+    private void DrawPalette()
+    {
+        float buttonSize = 30f;
+        float spacing = 4f;
+        float totalWidth = EditorGUIUtility.currentViewWidth - 200f; // ancho real
+        int buttonsPerRow = Mathf.FloorToInt(totalWidth / (buttonSize + spacing));
+        if (buttonsPerRow < 1) buttonsPerRow = 1;
+
+        var grouped = palette.colors.GroupBy(c => c.category);
+
+        int count = 0;
+        EditorGUILayout.BeginHorizontal();
+
+        foreach (var group in grouped)
+        {
+            // Para el label de la categoría
+            GUILayout.BeginVertical(GUILayout.Width(buttonSize));
+            GUILayout.Label(group.Key.ToString(), EditorStyles.miniLabel, GUILayout.Width(buttonSize));
+            GUILayout.EndVertical();
+
+            foreach (var entry in group)
+            {
+                GUI.backgroundColor = entry.color;
+
+                GUIContent content = entry.icon != null
+                    ? new GUIContent(entry.icon, entry.blockString)
+                    : new GUIContent(" ", entry.blockString);
+
+                if (GUILayout.Button(content, GUILayout.Width(buttonSize), GUILayout.Height(buttonSize)))
+                {
+                    selectedColorIndex = System.Array.IndexOf(palette.colors, entry);
+                }
+
+                count++;
+                if (count % buttonsPerRow == 0)
+                {
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.BeginHorizontal();
+                }
+            }
+        }
+
+        EditorGUILayout.EndHorizontal();
+        GUI.backgroundColor = Color.white;
+    }
+
+
+    private void HandleZoom()
+    {
+        if (Event.current.type == EventType.MouseDown && Event.current.button == 2)
+            isMiddleMouseHeld = true;
+        else if (Event.current.type == EventType.MouseUp && Event.current.button == 2)
+            isMiddleMouseHeld = false;
+
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            float zoomSpeed = 1f;
+            if (Event.current.control || isMiddleMouseHeld)
+            {
+                pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
+                Event.current.Use();
+                Repaint();
+            }
+        }
+    }
 
     private void ExportToPNG()
     {
@@ -274,13 +258,9 @@ public class LevelPainter : EditorWindow
             File.WriteAllBytes(path, texture.EncodeToPNG());
             Debug.Log("Saved to: " + path);
 
-            //Refresh
             AssetDatabase.Refresh();
-
-            // Convertir el path del sistema a path relativo para Unity
             string relativePath = "Assets" + path.Substring(Application.dataPath.Length);
 
-            // Configurar automáticamente el importer
             TextureImporter importer = AssetImporter.GetAtPath(relativePath) as TextureImporter;
             if (importer != null)
             {
@@ -289,8 +269,6 @@ public class LevelPainter : EditorWindow
                 importer.filterMode = FilterMode.Point;
                 importer.SaveAndReimport();
             }
-
-            
         }
     }
 
