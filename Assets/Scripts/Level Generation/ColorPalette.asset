@@ -298,3 +298,13 @@ MonoBehaviour:
     blockString: DROPBLOCK_1
     icon: {fileID: 2800000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 086f18628c15acf4da00c5f919a4ddf9, type: 3}
+  - category: 7
+    color: {r: 0.16862746, g: 0.4627451, b: 0.8509804, a: 1}
+    blockString: BOILING_X
+    icon: {fileID: 2800000, guid: 03140352b1f3536499b48bdb90f1b974, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: b8eab3300c7f2a343a0554b97ada3558, type: 3}
+  - category: 7
+    color: {r: 0.25882354, g: 0.42745098, b: 0.7607843, a: 1}
+    blockString: BOILINGBALL_X
+    icon: {fileID: 2800000, guid: afc406df1bc91784e88ea17a3fe0fca4, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 9c6600dde9c862b4ab750aa5ca1a7c99, type: 3}
