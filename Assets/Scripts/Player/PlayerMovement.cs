@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 positionTarget;
     public Vector3 restartPosition;
     public float speed = 10f;
+    public float normalSpeed = 10f;
+    public float dropSpeed = 2f;
     [SerializeField]
     private bool isMoving;
     public bool movementLocked;
@@ -196,5 +199,27 @@ public class PlayerMovement : MonoBehaviour
         enanoParent.position = positionTarget;
         ChangePositionTarget(positionTarget);
     }
+
+    public void MoveToDrop(Vector3 _dropPosition)
+    {
+        StartCoroutine(DelayMoveToDrop(_dropPosition));
+    }
+
+    public IEnumerator RestoreToNormalSpeed()
+    {
+        yield return new WaitForSeconds(1.5f);
+        speed = normalSpeed;
+    }
+    public IEnumerator DelayMoveToDrop(Vector3 _dropPosition)
+    {
+        yield return new WaitForSeconds(1f);
+        speed = dropSpeed;
+        var _newPos = new Vector3(_dropPosition.x, _dropPosition.y + 15f, _dropPosition.z);
+        positionTarget = _newPos;
+        ChangePositionTarget(_newPos);
+        StartCoroutine(RestoreToNormalSpeed());
+        Debug.Log($"Player falling at {_newPos}");
+    }
+
 
 }

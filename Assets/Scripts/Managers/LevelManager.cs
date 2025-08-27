@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     public int sublevelWidth;
     public int sublevelHeight;
     public GameObject currentExitDoor;
+    public GameObject currentDropBlock;
 
     [Header("LEVEL CONTAINERS")]
     public Transform levelsContainer;
@@ -140,6 +141,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Exiting {currentLevel}");
         StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
         MatchManager.Instance.RestartMatches();
+        currentDropBlock = null;
     }
 
     public void ChangeLevel(int _levelIndex)
@@ -183,6 +185,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
         PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
+        //PlayerManager.Instance.
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             PlayerManager.Instance.EnterMiningLevel();
@@ -210,10 +213,12 @@ public class LevelManager : MonoBehaviour
             UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
         }
 
-        // RESETEAR O LO QUE SEA LOS HELMETS
-        //HelmetManager.Instance.NewSublevel();
-        //Debug.Log("Reseting Helmet Stats");
-        GameManager.Instance.RestartSublevelStats();
+        if (currentDropBlock != null)
+        {
+            PlayerManager.Instance.playerMovement.MoveToDrop(currentDropBlock.transform.position);
+        }
+
+            GameManager.Instance.RestartSublevelStats();
     }
 
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)
