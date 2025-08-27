@@ -18793,6 +18793,8 @@ MonoBehaviour:
   positionTarget: {x: 0, y: 0, z: 0}
   restartPosition: {x: 0, y: 0, z: 0}
   speed: 10
+  normalSpeed: 10
+  dropSpeed: 2
   isMoving: 0
   movementLocked: 0
   bounceDirection: 
@@ -24961,26 +24963,30 @@ PrefabInstance:
       objectReference: {fileID: 1112208449}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: levelsList.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: d43ad82d098d9174b9566cccb19489e4, type: 2}
+      objectReference: {fileID: 11400000, guid: 987a574890e769f4b951e7b3444a8982, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: b57eec10b32796b439b1c12f736cd51b, type: 2}
+      objectReference: {fileID: 11400000, guid: d43ad82d098d9174b9566cccb19489e4, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
+      objectReference: {fileID: 11400000, guid: b57eec10b32796b439b1c12f736cd51b, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
+      objectReference: {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
+    - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
+      propertyPath: 'levelsList.Array.data[5]'
       value: 
       objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
     - target: {fileID: 4416718780810096706, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
