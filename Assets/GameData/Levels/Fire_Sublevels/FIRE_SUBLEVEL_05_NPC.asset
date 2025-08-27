@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
+  m_Name: FIRE_SUBLEVEL_05_NPC
+  m_EditorClassIdentifier: 
+  id: 23453
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
+  NPCtype: 0
+  sublevel2DMap: {fileID: 2800000, guid: ff7b5c8867d10d54996027a85f872867, type: 3}
+  npcShopId: 0
