@@ -88,9 +88,7 @@ public class LevelManager : MonoBehaviour
         PreloadSublevelsList();
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
-
-        //Se genera el NavMesh   
-
+        PlayerManager.Instance.EnterNewLevel();
         //INDICAMOS QUE HEMOS ENTRADO EN EL
         EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
 
@@ -132,10 +130,29 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
             
         currentLevelDepth++;
-        PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
+        //PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
         MatchManager.Instance.RestartMatches();
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
 
+    }
+    public void ExitLevel()
+    {
+        Debug.Log($"Exiting {currentLevel}");
+        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
+        MatchManager.Instance.RestartMatches();
+    }
+
+    public void ChangeLevel(int _levelIndex)
+    {
+        ExitLevel();
+        UnloadLevel();
+        LoadLevel(levelsList[_levelIndex]);
+
+    }
+
+    private void UnloadLevel()
+    {
+        Destroy(currentLoadedLevelContainer.gameObject);
     }
 
     public void DestroySublevelContent(Sublevel _sublevel)
@@ -165,6 +182,7 @@ public class LevelManager : MonoBehaviour
         currentSublevel = sublevelsList[currentLevelDepth];
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
+        PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             PlayerManager.Instance.EnterMiningLevel();

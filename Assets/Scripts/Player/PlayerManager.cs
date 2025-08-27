@@ -113,6 +113,11 @@ public class PlayerManager : MonoBehaviour
         playerBounce.enabled = true;
         playerMovement.enabled = true;
     }
+
+    public void EnterNewLevel()
+    {
+        playerMovement.RespawnPlayer();
+    }
 }
 
 

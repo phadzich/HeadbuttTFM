@@ -27,7 +27,7 @@ public class EnemySFX : MonoBehaviour
 
     private void PlayIdle()
     {
-        Debug.Log("IDLE SOUND");
+        //Debug.Log("IDLE SOUND");
         if (idleRoutine == null) // solo iniciar si no hay una activa
             idleRoutine = StartCoroutine(IdleSoundRoutine());
     }
@@ -52,21 +52,21 @@ public class EnemySFX : MonoBehaviour
 
     public void PlayAttack()
     {
-        Debug.Log("ATTACK SOUND");
+        //Debug.Log("ATTACK SOUND");
         StopIdle();
         StartCoroutine(PlayAndResumeIdle(attackSound));
     }
 
     public void PlayDamage()
     {
-        Debug.Log("DAMAGE SOUND");
+        //Debug.Log("DAMAGE SOUND");
         StopIdle();
         StartCoroutine(PlayAndResumeIdle(damageSound));
     }
 
     public void PlayDeath()
     {
-        Debug.Log("DIE SOUND");
+        //Debug.Log("DIE SOUND");
         StopIdle();
         PlayClip(deathSound);
     }

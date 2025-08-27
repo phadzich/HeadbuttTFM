@@ -16,8 +16,17 @@ MonoBehaviour:
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 11400000, guid: 4f69c473da642f44f9ed010d0aeacfb4, type: 2}
   sublevel2DMap: {fileID: 2800000, guid: e68d8509e79e8e7439269a43f4b3cdc4, type: 3}
-  goalType: 0
-  blocksToMine: 3
-  keysToCollect: 0
-  timeLimitSeconds: 0
+  objectives:
+  - rid: 6219506894629240906
   gateRequirements: []
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6219506894629240906
+      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+        resourcesNeeded: 3

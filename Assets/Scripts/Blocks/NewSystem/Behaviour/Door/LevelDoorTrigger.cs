@@ -9,7 +9,7 @@ public class LevelDoorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log($"LOADING LEVEL {doorbehaviour.targetLevelIndex}");
-
+            LevelManager.Instance.ChangeLevel(doorbehaviour.targetLevelIndex);
             DisableTrigger();
             Invoke("EnableTrigger", 4f);
         }

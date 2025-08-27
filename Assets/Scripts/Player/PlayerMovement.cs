@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("MOVEMENT")]
     [SerializeField]
     public Vector3 positionTarget;
+    public Vector3 restartPosition;
     public float speed = 10f;
     [SerializeField]
     private bool isMoving;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         positionTarget = transform.position;
+        restartPosition = positionTarget;
     }
     private void Update()
     {
@@ -187,4 +189,12 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(_shouldKnock);
         return _shouldKnock;
     }
+
+    public void RespawnPlayer()
+    {
+        positionTarget = new Vector3(0,10,0);
+        enanoParent.position = positionTarget;
+        ChangePositionTarget(positionTarget);
+    }
+
 }
