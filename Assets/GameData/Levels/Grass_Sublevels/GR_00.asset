@@ -9,24 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
   m_Name: GR_00
   m_EditorClassIdentifier: 
   id: 
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  NPCtype: 0
   sublevel2DMap: {fileID: 2800000, guid: 1ba8f39f46728f841bccebcd20e06438, type: 3}
-  objectives:
-  - rid: 8875823637113864266
-  gateRequirements: []
-  chestsRequirements: []
-  chestsLoot: []
-  switchesDurations: []
-  references:
-    version: 2
-    RefIds:
-    - rid: 8875823637113864266
-      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
-      data:
-        icon: {fileID: 21300000, guid: 627ffe450a10f9d45a7bf2de0ca9fd31, type: 3}
-        resourcesNeeded: 3
+  npcShopId: 0
