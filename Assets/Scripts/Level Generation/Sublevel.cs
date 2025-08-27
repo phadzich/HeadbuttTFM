@@ -2,7 +2,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Android.Gradle;
 using UnityEngine;
 
 public class Sublevel : MonoBehaviour { 

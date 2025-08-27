@@ -101,6 +101,18 @@ public class PlayerManager : MonoBehaviour
         playerAnimations.RotateBody(0);
         playerBounce.enabled = false;
     }
+
+    public void DeactivateMoving()
+    {
+        playerBounce.enabled = false;
+        playerMovement.enabled = false;
+    }
+
+    public void ActivateMoving()
+    {
+        playerBounce.enabled = true;
+        playerMovement.enabled = true;
+    }
 }
 
 

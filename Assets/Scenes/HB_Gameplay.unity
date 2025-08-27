@@ -14076,6 +14076,7 @@ MonoBehaviour:
   headbuttMaterial: {fileID: 2100000, guid: 645ec21a301f4ea4ab7e9ef0c1c0d823, type: 2}
   bodyMeshRenderer: {fileID: 1072653611}
   playerMovement: {fileID: 1664707211}
+  isStunned: 0
 --- !u!114 &1217362975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14160,7 +14161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyMesh: {fileID: 1072653608}
   maxHBpoints: 10
-  currentHBpoints: 0
+  currentHBpoints: 10
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
   headbuttPower: 12

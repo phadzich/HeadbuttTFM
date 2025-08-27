@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: -5637371131414228034}
   - component: {fileID: 5931977566970396181}
   - component: {fileID: 4068651909371928903}
+  - component: {fileID: 2407478681958869221}
   m_Layer: 9
   m_Name: EnemyChispi_Spawn
   m_TagString: Untagged
@@ -351,6 +352,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290318464b3f75e4682401ec615c0444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2407478681958869221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552600488085506810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleSound: {fileID: 8300000, guid: acdc8f6a5c4db1048a630563972710f4, type: 3}
+  attackSound: {fileID: 8300000, guid: 605bbefcc2c7a0343a55ba0d184f7623, type: 3}
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 611feaaf153758542b63b294276ffebd, type: 3}
 --- !u!1 &5457371427021623550
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 3854741464479103993}
   - component: {fileID: 7893907645816430499}
   - component: {fileID: 2247327307012515035}
-  - component: {fileID: 5392649305406290093}
+  - component: {fileID: 6610249393429423994}
   - component: {fileID: 2932336095951011063}
   - component: {fileID: 5320953857245270746}
   - component: {fileID: 8786373107083286859}
   - component: {fileID: 6333479158378275223}
   m_Layer: 0
-  m_Name: CactusProjectile
+  m_Name: StunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef82acc1033634c88afdcd09bd672044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 4
---- !u!114 &5392649305406290093
+  elementType: 5
+--- !u!114 &6610249393429423994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,12 +110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2121837420294675754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caafae65540fa4e9fb56d91814d46fea, type: 3}
+  m_Script: {fileID: 11500000, guid: 6770119343d2f44d7ba4cfdbb6439c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  damageCooldown: 0.5
-  lastDamageTime: 0
+  stunTime: 3
   AllowedSources: 03000000
 --- !u!114 &2932336095951011063
 MonoBehaviour:
@@ -319,7 +317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 645ec21a301f4ea4ab7e9ef0c1c0d823, type: 2}
+  - {fileID: 2100000, guid: d76afd0e04918fd4a91cabcf396e480b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

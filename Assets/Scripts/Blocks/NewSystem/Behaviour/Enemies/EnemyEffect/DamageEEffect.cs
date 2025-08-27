@@ -7,6 +7,8 @@ public class DamageEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
     public float damageCooldown;
     public float lastDamageTime;
 
+    private EnemySFX sfx => GetComponent<EnemySFX>();
+
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
 
     // Cuando NOSOTROS recibimos un impacto
@@ -15,6 +17,8 @@ public class DamageEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
 
     private void DoDamage()
     {
+        Debug.Log(sfx==null);
+        if (sfx!= null) sfx.PlayAttack();
         Debug.Log("EnemyDMG "+ damage);
         HelmetManager.Instance.currentHelmet.TakeDamage(damage, true);
     }

@@ -50,6 +50,7 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
             // Darle velocidad
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
             if (rb != null)
             {
                 rb.linearVelocity = dir * projectileSpeed*speedMultiplier;
