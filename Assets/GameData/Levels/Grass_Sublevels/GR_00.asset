@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
-  m_Name: GR_01
+  m_Name: GR_00
   m_EditorClassIdentifier: 
   id: 
   helmetBPData: {fileID: 0}

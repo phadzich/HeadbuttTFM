@@ -12,13 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60746830329ae014d946ba33d508659d, type: 3}
   m_Name: Level_Grass
   m_EditorClassIdentifier: 
-  id: 0
+  id: 5
   levelName: Grass
-  levelDescription: 
+  levelDescription: CheckPoint00
   subLevels:
-  - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
-  - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
-  - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
-  - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
-  - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
   - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
