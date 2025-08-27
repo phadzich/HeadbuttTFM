@@ -17,8 +17,8 @@ MonoBehaviour:
   levelDescription: CheckPoint00
   subLevels:
   - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
-  - {fileID: 11400000, guid: 62e8d4d6c508e9347ba216a50632e652, type: 2}
   - {fileID: 11400000, guid: d80363ffc8889494999752fcbec75d1d, type: 2}
   - {fileID: 11400000, guid: b9bc78fbbf1a84b46a66e41f904c14bc, type: 2}
   - {fileID: 11400000, guid: bf9098493a01fb143ab11a3b4234ac71, type: 2}
   - {fileID: 11400000, guid: 15193faa6779d484d897c66625afd660, type: 2}
+  - {fileID: 11400000, guid: 62e8d4d6c508e9347ba216a50632e652, type: 2}
