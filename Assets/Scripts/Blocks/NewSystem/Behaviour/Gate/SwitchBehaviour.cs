@@ -9,8 +9,8 @@ using UnityEngine.UI;
 public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public MapContext mapContext;
-    [SerializeField] float duration;
-    [SerializeField] float elapsedTime;
+    [SerializeField] public float duration;
+    [SerializeField] public float elapsedTime;
     public bool isActive;
     public GameObject buttonMesh;
     public GameObject shapeMesh;
@@ -65,6 +65,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
         var _switchEvent = new ActiveSwitchEvent();
         _switchEvent.isActive = _condition;
         _switchEvent.switchID = switchID;
+        _switchEvent.switchBehaviour = this;
         LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_switchEvent);
     }
 
