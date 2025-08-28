@@ -56,7 +56,7 @@ public class Enemy: MonoBehaviour, IElemental
         }
     }
 
-    public void OnTrigger()
+    public void OnTrigger(GameObject _trigger)
     {
         HandleInteraction(InteractionSource.EnemyCollision);
 
@@ -71,9 +71,10 @@ public class Enemy: MonoBehaviour, IElemental
 
         if (other.CompareTag("Player"))
         {
-
-            OnTrigger();
+            OnTrigger(other.gameObject);
         }
+
+       
     }
 
 

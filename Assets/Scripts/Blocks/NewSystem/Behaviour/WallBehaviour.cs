@@ -24,4 +24,22 @@ public class WallBehaviour : MonoBehaviour, IBlockBehaviour
     {
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Projectile"))
+        {
+            TryDestroyProjectile(other.gameObject);
+        }
+    }
+
+    private void TryDestroyProjectile(GameObject _projectile)
+    {
+        if (_projectile.GetComponent<DestroyOnCollisionEEfect>() != null)
+        {
+            {
+                _projectile.GetComponent<DestroyOnCollisionEEfect>().OnTrigger();
+            }
+        }
+    }
 }
