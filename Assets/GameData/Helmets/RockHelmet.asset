@@ -20,8 +20,9 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 0
   miningPower: 0
-  element: {fileID: 11400000, guid: b61ab19d1a267d74d80cd6d17464b7fa, type: 2}
-  effects: []
+  element: 0
+  effects:
+  - {fileID: 11400000, guid: 1b58e6dd41f3b304cab613134a21a786, type: 2}
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
