@@ -308,3 +308,23 @@ MonoBehaviour:
     blockString: BOILINGBALL_X
     icon: {fileID: 2800000, guid: afc406df1bc91784e88ea17a3fe0fca4, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 9c6600dde9c862b4ab750aa5ca1a7c99, type: 3}
+  - category: 8
+    color: {r: 0.16862746, g: 0.4392157, b: 0.27450982, a: 1}
+    blockString: POISON_X
+    icon: {fileID: 2800000, guid: 40cff9574af9448439e8e6eedf736960, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 1ff0095f3e4661b42a854296fc94b969, type: 3}
+  - category: 8
+    color: {r: 0.22745098, g: 0.5058824, b: 0.3372549, a: 1}
+    blockString: SHROOM_X
+    icon: {fileID: 2800000, guid: 8834d9df0ed34414095b4a72981cb7cc, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 6c694fb6e909a2140a30c6504d545c2c, type: 3}
+  - category: 8
+    color: {r: 0.30980393, g: 0.6666667, b: 0.39607844, a: 1}
+    blockString: THORNS_X
+    icon: {fileID: 2800000, guid: 4ce197259a9bac645916ea8fbb04de5a, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 9cf46f1943af8ac4a839ad5812ce8148, type: 3}
+  - category: 8
+    color: {r: 0.2784314, g: 0.75686276, b: 0.39607844, a: 1}
+    blockString: POISONBALL_X
+    icon: {fileID: 2800000, guid: afc406df1bc91784e88ea17a3fe0fca4, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: c8a6a518e93bfc64b95390db779d1030, type: 3}

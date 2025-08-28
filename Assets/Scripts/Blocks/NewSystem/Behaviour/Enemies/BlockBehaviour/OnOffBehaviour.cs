@@ -11,7 +11,7 @@ public class OnOffBehaviour : MonoBehaviour, IBlockBehaviour
     public bool randomStartDelay;
     public float randomStartDelayRange;
 
-
+    private EnemySFX sfx => GetComponent<EnemySFX>();
 
     public void StartBehaviour()
     {
@@ -51,6 +51,9 @@ public class OnOffBehaviour : MonoBehaviour, IBlockBehaviour
     private void TurnOn()
     {
         prefabToSwitch.SetActive(true);
+
+        if (sfx != null) sfx.PlayAttack();
+
         StartCoroutine(DelayOff());
     }
 
