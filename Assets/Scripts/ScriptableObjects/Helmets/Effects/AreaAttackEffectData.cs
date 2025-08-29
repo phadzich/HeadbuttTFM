@@ -1,8 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GameData/Effects/BasicAttackEffectData")]
-public class BasicAttackEffectData : HelmetEffectData
+[CreateAssetMenu(menuName = "GameData/Effects/FireBreathEffectData")]
+public class AreaAttackEffectData : HelmetEffectData
 {
+    public Vector3 damageArea;
+
     public GameObject effectParticles;
     public GameObject effectArea;
 
@@ -10,6 +12,6 @@ public class BasicAttackEffectData : HelmetEffectData
 
     public override HelmetEffect CreateEffect()
     {
-        return new BasicAttack(this);
+        return new AreaAttackEffect(this);
     }
 }

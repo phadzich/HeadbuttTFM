@@ -1,7 +1,7 @@
 public enum ElementType
 {
     None,
-    Metal,
+    Neutral,
     Fire,
     Water,
     Grass,

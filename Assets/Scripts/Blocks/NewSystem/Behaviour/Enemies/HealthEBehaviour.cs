@@ -85,7 +85,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 1;
                     Debug.Log("Normal Damage");
                     break;
-                case ElementType.Metal:
+                case ElementType.Neutral:
                     damageMultiplier = 1;
                     Debug.Log("Normal Damage");
                     break;
@@ -116,7 +116,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 2;
                     Debug.Log("Double Damage");
                     break;
-                case ElementType.Metal:
+                case ElementType.Neutral:
                     damageMultiplier = 1;
                     Debug.Log("Normal Damage");
                     break;
@@ -147,7 +147,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 0;
                     Debug.Log("NO Damage");
                     break;
-                case ElementType.Metal:
+                case ElementType.Neutral:
                     damageMultiplier = 2;
                     Debug.Log("Double Damage");
                     break;
@@ -178,7 +178,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 0;
                     Debug.Log("NO Damage");
                     break;
-                case ElementType.Metal:
+                case ElementType.Neutral:
                     damageMultiplier = 1;
                     Debug.Log("Normal Damage");
                     break;
@@ -189,7 +189,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
             }
         }
 
-        if (targetElement == ElementType.Metal)
+        if (targetElement == ElementType.Neutral)
         {
             switch (sourceElement)
             {
@@ -209,7 +209,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     damageMultiplier = 1;
                     Debug.Log("Normal Damage");
                     break;
-                case ElementType.Metal:
+                case ElementType.Neutral:
                     damageMultiplier = 0;
                     Debug.Log("NO Damage");
                     break;

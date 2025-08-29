@@ -1,28 +1,26 @@
 using UnityEngine;
 
 [System.Serializable]
-public class BasicAttack : HelmetEffect
+public class AreaAttackEffect : HelmetEffect
 {
-    private readonly BasicAttackEffectData data;
+    private readonly AreaAttackEffectData data;
     private Vector3 damageArea;
 
     public override bool hasSpecialAttack => true;
-    public BasicAttack(BasicAttackEffectData _data)
+    public AreaAttackEffect(AreaAttackEffectData _data)
     {
         data = _data;
-        damageArea = new Vector3(.5f, 1, .5f);
+        damageArea = _data.damageArea;
     }
 
     public override void OnWear()
     {
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
-        //UIManager.Instance.specialHeadbuttHUD.ShowIcon();
         OnHBPointsChanged(0, 0);
     }
     public override void OnUnwear()
     {
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
-        //UIManager.Instance.specialHeadbuttHUD.HideIcon();
     }
 
     private void OnHBPointsChanged(float _a, float _b)
@@ -33,15 +31,16 @@ public class BasicAttack : HelmetEffect
 
     public override void OnUpgradeEffect(float stat)
     {
-        //
+        var area = 0.5f + stat;
 
+        damageArea = new Vector3(area, 1, area);
     }
 
     public override void OnHeadbutt()
     {
         if (PlayerManager.Instance.playerHeadbutt.TryUseHBPoints(data.hbPointsUsed))
         {
-            Debug.Log("BASIC ATTACK USED!");
+            //Debug.Log("FIREBREATH USED!");
             HitEnemiesInArea();
         }
     }
@@ -49,7 +48,7 @@ public class BasicAttack : HelmetEffect
     {
         // Obtener la posicion del enano
         Transform dwarfTransform = PlayerManager.Instance.transform.GetChild(0); // Obtenemos el objeto del enano a partir de su game object padre
-        Vector3 position = new Vector3(dwarfTransform.position.x, dwarfTransform.position.y-1, dwarfTransform.position.z); // Obtenemos su posicion para que sea el centro
+        Vector3 position = dwarfTransform.position; // Obtenemos su posicion para que sea el centro
 
         Collider[] hitColliders = Physics.OverlapBox(position, damageArea, Quaternion.identity, data.enemyLayer);
 
