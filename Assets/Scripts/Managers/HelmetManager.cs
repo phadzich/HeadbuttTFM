@@ -57,19 +57,19 @@ public class HelmetManager : MonoBehaviour
 
     private void InitializeOwnedHelmets()
     {
-        allHelmets[0].Discover();
-        allHelmets[1].Discover();
-        allHelmets[2].Discover();
+        allHelmets[5].Discover();
+        allHelmets[6].Discover();
+        allHelmets[7].Discover();
 
 
-        allHelmets[0].Craft();
-        allHelmets[1].Craft();
-        allHelmets[2].Craft();
+        allHelmets[5].Craft();
+        allHelmets[6].Craft();
+        allHelmets[7].Craft();
 
 
-        EquipHelmet(allHelmets[0]);
-        EquipHelmet(allHelmets[1]);
-        EquipHelmet(allHelmets[2]);
+        EquipHelmet(allHelmets[5]);
+        EquipHelmet(allHelmets[6]);
+        EquipHelmet(allHelmets[7]);
 
     }
 

@@ -22,7 +22,7 @@ MonoBehaviour:
   miningPower: 2
   element: 4
   effects:
-  - {fileID: 11400000, guid: 94db2d76da05f46d9a7126fc612c567b, type: 2}
+  - {fileID: 11400000, guid: 334a396437922e94499239fa4f18f2ff, type: 2}
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}

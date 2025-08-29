@@ -144,12 +144,12 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
                     Debug.Log("NO Damage");
                     break;
                 case ElementType.Electric:
-                    damageMultiplier = 0;
-                    Debug.Log("NO Damage");
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
                     break;
                 case ElementType.Neutral:
-                    damageMultiplier = 2;
-                    Debug.Log("Double Damage");
+                    damageMultiplier = 1;
+                    Debug.Log("Normal Damage");
                     break;
                 case ElementType.None:
                     damageMultiplier = 1;

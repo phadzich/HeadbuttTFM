@@ -15,8 +15,7 @@ MonoBehaviour:
   effectName: Fire Headbutt
   description: 
   effectIcon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
-  hbPointsUsed: 0
-  damage: 1
+  hbPointsUsed: 1
   effectParticles: {fileID: 5102639546771583594, guid: f2eb17abfdeb66d488068a176e79dd97, type: 3}
   effectArea: {fileID: 0}
   enemyLayer:
