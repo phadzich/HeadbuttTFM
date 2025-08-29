@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f287970a84a322c49b454ebc18bfcac1, type: 3}
+  m_Name: CrossAttack_Electric
+  m_EditorClassIdentifier: 
+  effectName: Cross Attack
+  description: 
+  effectIcon: {fileID: 21300000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
+  hbPointsUsed: 2
+  crossRange: 0
+  effectParticles: {fileID: 5102639546771583594, guid: 763a413a16d44444180682676ae1f799, type: 3}
+  effectArea: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512

@@ -15,7 +15,7 @@ MonoBehaviour:
   effectName: LeafStomp
   description: "Consume 2 HB Energy para hacer da\xF1o elemental a enemigos alrededor."
   effectIcon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
-  hbPointsUsed: 2
+  hbPointsUsed: 3
   damageArea: {x: 1.5, y: 1, z: 1.5}
   effectParticles: {fileID: 5102639546771583594, guid: 659fb7288c35b2549a519b3919aeb712, type: 3}
   effectArea: {fileID: 0}

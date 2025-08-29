@@ -69,5 +69,6 @@ public class AreaAttackEffect : HelmetEffect
     {
         GameObject _particles = GameObject.Instantiate(data.effectParticles, _position, Quaternion.identity);
         _particles?.GetComponent<SpecialHeadbuttParticles>().Play();
+        _particles?.GetComponent<SpecialHeadbuttParticles>().SetSize(new Vector3(damageArea.x*2,1, damageArea.z*2)); // centro normal
     }
 }

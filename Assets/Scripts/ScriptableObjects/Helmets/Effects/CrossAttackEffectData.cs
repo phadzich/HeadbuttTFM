@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GameData/Effects/AreaAttackEffectData")]
-public class AreaAttackEffectData : HelmetEffectData
+[CreateAssetMenu(menuName = "GameData/Effects/CrossAttackEffectData")]
+public class CrossAttackEffectData : HelmetEffectData
 {
-    public Vector3 damageArea;
+    public int crossRange;
 
     public GameObject effectParticles;
     public GameObject effectArea;
@@ -12,6 +12,6 @@ public class AreaAttackEffectData : HelmetEffectData
 
     public override HelmetEffect CreateEffect()
     {
-        return new AreaAttackEffect(this);
+        return new CrossAttackEffect(this);
     }
 }

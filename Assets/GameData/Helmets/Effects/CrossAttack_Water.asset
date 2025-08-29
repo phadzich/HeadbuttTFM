@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9372abac5e3941f89bd9d08b0b2ceb1, type: 3}
-  m_Name: AreaAttack_Water
+  m_Script: {fileID: 11500000, guid: f287970a84a322c49b454ebc18bfcac1, type: 3}
+  m_Name: CrossAttack_Water
   m_EditorClassIdentifier: 
-  effectName: Watersplash
-  description: "Consume 2 HB Energy para hacer da\xF1o elemental a enemigos alrededor."
+  effectName: Cross Attack
+  description: 
   effectIcon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
-  hbPointsUsed: 3
-  damageArea: {x: 1.5, y: 1, z: 1.5}
+  hbPointsUsed: 2
+  crossRange: 0
   effectParticles: {fileID: 5102639546771583594, guid: 5686ea6b427a5574899e0ba5d83208f9, type: 3}
   effectArea: {fileID: 0}
   enemyLayer:

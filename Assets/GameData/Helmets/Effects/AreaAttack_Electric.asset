@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9372abac5e3941f89bd9d08b0b2ceb1, type: 3}
-  m_Name: AreaAttack_Fire
+  m_Name: AreaAttack_Electric
   m_EditorClassIdentifier: 
-  effectName: Firebreath
+  effectName: Megashock
   description: "Consume 2 HB Energy para hacer da\xF1o elemental a enemigos alrededor."
-  effectIcon: {fileID: 21300000, guid: 4570c5762a0eacf4cbac535ee06e6746, type: 3}
+  effectIcon: {fileID: 21300000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
   hbPointsUsed: 3
   damageArea: {x: 1.5, y: 1, z: 1.5}
-  effectParticles: {fileID: 5102639546771583594, guid: 0221b30be5e35ba4283a66a27190bd05, type: 3}
+  effectParticles: {fileID: 5102639546771583594, guid: 763a413a16d44444180682676ae1f799, type: 3}
   effectArea: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
