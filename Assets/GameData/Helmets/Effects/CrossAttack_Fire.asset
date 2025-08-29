@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Cross Attack
   description: 
-  effectIcon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
+  effectIcon: {fileID: 21300000, guid: a3f6fe19c86f235418269e8981d1e776, type: 3}
   hbPointsUsed: 2
   crossRange: 0
   effectParticles: {fileID: 5102639546771583594, guid: 0221b30be5e35ba4283a66a27190bd05, type: 3}

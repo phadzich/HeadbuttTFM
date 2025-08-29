@@ -13109,7 +13109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hbIMG: {fileID: 1060285695}
-  defaultHBIcon: {fileID: 21300000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
+  defaultHBIcon: {fileID: 21300000, guid: 970933763c2c01e4c93298c65f47ae67, type: 3}
   hbCost: {fileID: 1889083510}
   debugTXT: {fileID: 188289649}
   streakTXT: {fileID: 1453470415}
@@ -14161,7 +14161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyMesh: {fileID: 1072653608}
   maxHBpoints: 10
-  currentHBpoints: 10
+  currentHBpoints: 0
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
   headbuttPower: 15

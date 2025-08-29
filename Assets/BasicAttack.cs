@@ -41,7 +41,7 @@ public class BasicAttack : HelmetEffect
     {
         if (PlayerManager.Instance.playerHeadbutt.TryUseHBPoints(data.hbPointsUsed))
         {
-            Debug.Log("BASIC ATTACK USED!");
+            //Debug.Log("BASIC ATTACK USED!");
             HitEnemiesInArea();
         }
     }
@@ -49,7 +49,7 @@ public class BasicAttack : HelmetEffect
     {
         // Obtener la posicion del enano
         Transform dwarfTransform = PlayerManager.Instance.transform.GetChild(0); // Obtenemos el objeto del enano a partir de su game object padre
-        Vector3 position = new Vector3(dwarfTransform.position.x, dwarfTransform.position.y-1, dwarfTransform.position.z); // Obtenemos su posicion para que sea el centro
+        Vector3 position = dwarfTransform.position; // Obtenemos su posicion para que sea el centro
 
         Collider[] hitColliders = Physics.OverlapBox(position, damageArea, Quaternion.identity, data.enemyLayer);
 
@@ -60,7 +60,7 @@ public class BasicAttack : HelmetEffect
             Enemy enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
-                Debug.Log(enemy);
+                //Debug.Log(enemy);
                 enemy.OnHit();
             }
         }

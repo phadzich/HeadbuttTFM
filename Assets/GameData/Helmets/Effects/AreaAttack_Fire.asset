@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Firebreath
   description: "Consume 2 HB Energy para hacer da\xF1o elemental a enemigos alrededor."
-  effectIcon: {fileID: 21300000, guid: 4570c5762a0eacf4cbac535ee06e6746, type: 3}
+  effectIcon: {fileID: 21300000, guid: 9bb4b97fe7bc9f848aca06ed0fb3de56, type: 3}
   hbPointsUsed: 3
   damageArea: {x: 1.5, y: 1, z: 1.5}
   effectParticles: {fileID: 5102639546771583594, guid: 0221b30be5e35ba4283a66a27190bd05, type: 3}

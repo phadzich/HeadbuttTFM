@@ -57,20 +57,16 @@ public class HelmetManager : MonoBehaviour
 
     private void InitializeOwnedHelmets()
     {
-        allHelmets[8].Discover();
-        allHelmets[9].Discover();
-        allHelmets[10].Discover();
+        QuickTest(0);
+        QuickTest(1);
+        QuickTest(2);
+    }
 
-
-        allHelmets[8].Craft();
-        allHelmets[9].Craft();
-        allHelmets[10].Craft();
-
-
-        EquipHelmet(allHelmets[8]);
-        EquipHelmet(allHelmets[9]);
-        EquipHelmet(allHelmets[10]);
-
+    private void QuickTest(int _id)
+    {
+        allHelmets[_id].Discover();
+        allHelmets[_id].Craft();
+        EquipHelmet(allHelmets[_id]);
     }
 
     // Crear todas las instancias de cascos

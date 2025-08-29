@@ -64,7 +64,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     public void OnElementInteraction(ElementType sourceElement, ElementType targetElement)
     {
-        Debug.Log("checking interactions");
+        //Debug.Log("checking interactions");
         if (targetElement == ElementType.Fire)
         {
             switch (sourceElement)
