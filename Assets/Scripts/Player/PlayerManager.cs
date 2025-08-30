@@ -15,13 +15,14 @@ public class PlayerManager : MonoBehaviour
     public PlayerBounce playerBounce;
     public PlayerEmojis playerEmojis;
     public PlayerHeadbutt playerHeadbutt;
-    //public PlayerHeadbutt playerHeadbutt;
+    public PlayerEffects playerEffects;
+
     public int maxPlayerLives;
     public int currentPlayerLives;
     public DamageTakenIndicator damageTakenIndicator;
     public Action<int, int> PlayerLivesChanged;
     public GameObject shieldPrefab;
-    public Shield activeShield;
+    public GameObject activeShield;
 
     private void Awake()
     {
@@ -71,21 +72,15 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void ActivateShield(float duration)
+    public void ActivateShield()
     {
-        if (activeShield != null) return;
-
         GameObject shieldGO = Instantiate(shieldPrefab, transform.GetChild(0));
         shieldGO.transform.localPosition = Vector3.zero;
-
-        activeShield = shieldGO.GetComponent<Shield>();
-        activeShield.Setup(duration);
-        activeShield.Activate();
     }
 
     public void DeactivateShield()
     {
-        activeShield.Deactivate();
+        Destroy(activeShield);
     }
 
     
@@ -100,18 +95,6 @@ public class PlayerManager : MonoBehaviour
     {
         playerAnimations.RotateBody(0);
         playerBounce.enabled = false;
-    }
-
-    public void DeactivateMoving()
-    {
-        playerBounce.enabled = false;
-        playerMovement.enabled = false;
-    }
-
-    public void ActivateMoving()
-    {
-        playerBounce.enabled = true;
-        playerMovement.enabled = true;
     }
 
     public void EnterNewLevel()

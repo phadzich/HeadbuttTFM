@@ -14,7 +14,8 @@ public class PlayerHeadbutt : MonoBehaviour
     [SerializeField] public float maxHBpoints;
     [SerializeField] public float currentHBpoints;
     public bool hasMaxHBPoints => currentHBpoints==maxHBpoints;
-[Header("HEADBUTT CONFIG")]
+
+    [Header("HEADBUTT CONFIG")]
     [SerializeField]
     float headbuttCooldown;
     [SerializeField]
@@ -101,10 +102,15 @@ public class PlayerHeadbutt : MonoBehaviour
     }
 
 
-
     public void Headbutt(InputAction.CallbackContext context)
     {
-        if(LevelManager.Instance.currentSublevel.config is MiningSublevelConfig)
+
+        if ( PlayerManager.Instance.playerStates.isOnState(PlayerMainStateEnum.Dead))
+        {
+            return; // no puede Headbutt
+        }
+
+        if (LevelManager.Instance.currentSublevel.config is MiningSublevelConfig)
         {
             // por ahora quite bounceDirection == "DOWN" && 
             if (context.phase == InputActionPhase.Performed)
@@ -124,7 +130,8 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void HeadbuttUp()
     {
-        
+        PlayerManager.Instance.playerStates.currentMainState = PlayerMainStateEnum.Headbutt;
+
         rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,2f,0);
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
@@ -133,11 +140,10 @@ public class PlayerHeadbutt : MonoBehaviour
         RestartHeadbuttCooldown();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
         HelmetManager.Instance.currentHelmet.OnHeadbutt();
-        PlayerManager.Instance.ActivateMoving();
 
         // Interrumpir efectos
         var states = PlayerManager.Instance.playerStates;
-        if (states.isStunned) states.InterruptEffect();
+        //if (states.isStunned) states.InterruptEffect();
     }
 
     private void UpdateHeadbuttCooldown()

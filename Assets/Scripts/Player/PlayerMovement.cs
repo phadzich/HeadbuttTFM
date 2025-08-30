@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public float dropSpeed = 2f;
     [SerializeField]
     private bool isMoving;
-    public bool movementLocked;
     public string bounceDirection;
 
     [Header("DISTANCE TO BLOCK BELOW")]
@@ -80,14 +79,13 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer(InputAction.CallbackContext context)
     {
 
-
         if (context.phase == InputActionPhase.Performed)
         {
             moveInput = context.ReadValue<Vector2>();
             moveInput.x = Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y) ? Mathf.Sign(moveInput.x) : 0;
             moveInput.y = Mathf.Abs(moveInput.y) > Mathf.Abs(moveInput.x) ? Mathf.Sign(moveInput.y) : 0;
 
-            if (!isMoving && !movementLocked)
+            if (!isMoving && PlayerManager.Instance.playerStates.canMove)
             {
 
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
@@ -145,17 +143,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 origin = enanoParent.transform.position;
         Vector3 direction = Vector3.down;
-        //Debug.DrawRay(origin, direction * blockLockdownRange, Color.yellow);
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN")
-        {
+        bool blockBelow = Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN";
 
-            GameManager.Instance.playerMovement.movementLocked = true;
-        }
-        else
-        {
-            GameManager.Instance.playerMovement.movementLocked = false;
-        }
+        PlayerManager.Instance.playerStates.canMove = !blockBelow && !PlayerManager.Instance.playerStates.hasEffect(PlayerEffectStateEnum.Stunned);
     }
 
     public void Knockback(Vector3 direction)
@@ -163,9 +154,9 @@ public class PlayerMovement : MonoBehaviour
         if (KnockbackChance())
         {
             Vector3 alignedPosition = new Vector3(
-    Mathf.Round(transform.position.x),
-    0,
-    Mathf.Round(transform.position.z)
+            Mathf.Round(transform.position.x),
+            0,
+            Mathf.Round(transform.position.z)
 );
             Vector3 newPosition = alignedPosition + direction;
             //Debug.Log($"Knockback position: {newPosition}");
@@ -195,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        PlayerManager.Instance.playerStates.canMove = true;
         positionTarget = new Vector3(0,10,0);
         enanoParent.position = positionTarget;
         ChangePositionTarget(positionTarget);
@@ -202,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveToDrop(Vector3 _dropPosition)
     {
+        PlayerManager.Instance.playerStates.canMove = false;
         StartCoroutine(DelayMoveToDrop(_dropPosition));
     }
 
@@ -209,7 +202,9 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         speed = normalSpeed;
+        PlayerManager.Instance.playerStates.canMove = true;
     }
+
     public IEnumerator DelayMoveToDrop(Vector3 _dropPosition)
     {
         yield return new WaitForSeconds(1f);

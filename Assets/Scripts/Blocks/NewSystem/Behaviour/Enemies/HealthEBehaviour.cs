@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
     public float damageMultiplier = 1;
 
     public bool isDead => currentHealth <= 0;
+    public event Action<HealthEBehaviour> OnDeath;
 
     private EnemySFX sfx => GetComponent<EnemySFX>();
 
@@ -33,6 +35,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void Die()
     {
+        OnDeath?.Invoke(this);
         if (sfx != null) sfx.PlayDeath();
         //Debug.Log("DEAD");
         DispatchDeathEvent();

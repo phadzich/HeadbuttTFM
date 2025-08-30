@@ -27,7 +27,12 @@ public class PlayerBounce : MonoBehaviour
 
     void Update()
     {
-        //SI ESTA EN ESTADO BOUNE
+
+        if (PlayerManager.Instance.playerStates.hasEffect(PlayerEffectStateEnum.Stunned) ||
+            PlayerManager.Instance.playerStates.isOnState(PlayerMainStateEnum.Dead))
+        {
+            return; // no puede Headbutt
+        }
 
         CheckBounceDirection();
         if (bounceDirection == "DOWN")
@@ -70,6 +75,8 @@ public class PlayerBounce : MonoBehaviour
 
     public void BounceUp()
     {
+        PlayerManager.Instance.playerStates.currentMainState = PlayerMainStateEnum.Bouncing;
+
         jumpForce = 5;
         rb.linearVelocity = Vector3.zero;
         rb.linearVelocity = new Vector3(0, jumpForce, 0);
