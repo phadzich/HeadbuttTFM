@@ -22,7 +22,6 @@ public class StunEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
 
     public void OnTrigger()
     {
-        Debug.Log("STUNN PLAYER");
         if (sfx != null) sfx.PlayAttack();
         PlayerManager.Instance.playerEffects.GetStunned(stunTime);
     }
