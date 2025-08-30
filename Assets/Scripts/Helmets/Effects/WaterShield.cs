@@ -22,7 +22,7 @@ public class WaterShield : HelmetEffect
         Debug.Log(PlayerManager.Instance.playerMovement.blockNSBelow.ToString());
         if(PlayerManager.Instance.playerMovement.blockNSBelow.ToString() == "DBG_WATER(Clone) (DamageBlock)")
         {
-            PlayerManager.Instance.ActivateShield(duration);
+            PlayerManager.Instance.playerEffects.ShieldOn(duration);
         }
     }
 

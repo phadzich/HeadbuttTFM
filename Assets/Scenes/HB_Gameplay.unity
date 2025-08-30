@@ -13964,6 +13964,7 @@ GameObject:
   - component: {fileID: 1217362973}
   - component: {fileID: 1217362977}
   - component: {fileID: 1217362974}
+  - component: {fileID: 1217362979}
   - component: {fileID: 1217362975}
   - component: {fileID: 1217362976}
   - component: {fileID: 1217362978}
@@ -14071,12 +14072,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982852fd1dbdfbc4fb8470a695d72bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 1565896192}
-  idleMaterial: {fileID: 2100000, guid: dde0cd1894898424ebe6006fea0c086d, type: 2}
-  headbuttMaterial: {fileID: 2100000, guid: 645ec21a301f4ea4ab7e9ef0c1c0d823, type: 2}
-  bodyMeshRenderer: {fileID: 1072653611}
-  playerMovement: {fileID: 1664707211}
-  isStunned: 0
+  currentMainState: 0
+  currentEffects: 
+  canMove: 1
+  canReceiveDamage: 1
+  canBounce: 0
+  bounceAfterStunPending: 0
 --- !u!114 &1217362975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14175,6 +14176,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217362968}
   m_Enabled: 0
+--- !u!114 &1217362979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217362968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a77f9d2bd6fe4139985aeebc83eaec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 5
 --- !u!1 &1218356005
 GameObject:
   m_ObjectHideFlags: 0
@@ -17838,17 +17852,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4416718780810096706, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
   m_PrefabInstance: {fileID: 4369845708437272193}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1565896192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
-  m_PrefabInstance: {fileID: 4369845708437272193}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ab2ef1abcb9734459d5f372b35886cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1578054102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18793,6 +18796,8 @@ MonoBehaviour:
   positionTarget: {x: 0, y: 0, z: 0}
   restartPosition: {x: 0, y: 0, z: 0}
   speed: 10
+  normalSpeed: 10
+  dropSpeed: 2
   isMoving: 0
   movementLocked: 0
   bounceDirection: 
@@ -18822,6 +18827,7 @@ MonoBehaviour:
   playerBounce: {fileID: 1217362973}
   playerEmojis: {fileID: 941113252}
   playerHeadbutt: {fileID: 1217362977}
+  playerEffects: {fileID: 1217362979}
   maxPlayerLives: 0
   currentPlayerLives: 0
   damageTakenIndicator: {fileID: 110562964}
@@ -24978,11 +24984,11 @@ PrefabInstance:
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
+      objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
+      objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
     - target: {fileID: 4416718780810096706, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.158984

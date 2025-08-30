@@ -62,14 +62,15 @@ public class HelmetInstance: IElemental
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void TakeDamage(int _amount, bool _isEnemy = false)
+    public void TakeDamage(int _amount)
     {
-        // Si queremos que el shield se desactive debemos mandar isEnemy en true
+        /* Si queremos que el shield se desactive debemos mandar isEnemy en true
         if(PlayerManager.Instance.activeShield != null && PlayerManager.Instance.activeShield.CanBlockDamage() && _isEnemy)
         {
             PlayerManager.Instance.DeactivateShield();
             return;
-        }
+        }*/
+
         //Debug.Log($"Helmet Took {_amount}");
         if (currentDurability > 0)
             currentDurability-=_amount;

@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class PlayerEffects : MonoBehaviour
 {
-    [SerializeField] public bool isCooldownActive = false;
+    [SerializeField] public bool isCooldownActive => playerStates.hasEffect(PlayerEffectStateEnum.Cooldown);
     [SerializeField] private float cooldownTime;
 
-    private PlayerStates playerStates => PlayerManager.Instance.playerStates;
+    private PlayerStates playerStates;
     private Coroutine _shieldRoutine;
+
+    private void Start()
+    {
+        playerStates = GetComponent<PlayerStates>();
+    }
 
     public void GetStunned(float _stunnedDuration)
     {
-        if (playerStates.canReceiveDamage) // SI PUEDE RECIBIR DAÑO
+        if (playerStates.canReceiveDamage && !playerStates.hasEffect(PlayerEffectStateEnum.Stunned)) // SI PUEDE RECIBIR DAÑO
         {
             PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Stunned;
             playerStates.AddEffect(_effect);
@@ -21,7 +26,6 @@ public class PlayerEffects : MonoBehaviour
         }
         else // SI NO PUEDE RECIBIR DAÑO (en cooldown o en shield)
         {
-            Debug.Log("NO PUEDE RECIBIR DAMAGE");
             if (playerStates.hasEffect(PlayerEffectStateEnum.Shield))
             {
                 ShieldOff();
@@ -35,6 +39,8 @@ public class PlayerEffects : MonoBehaviour
         if (_shieldRoutine != null)
             return false;
 
+        PlayerManager.Instance.ActivateShield();
+
         PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Shield;
         playerStates.AddEffect(_effect);
 
@@ -45,6 +51,7 @@ public class PlayerEffects : MonoBehaviour
 
     public void ShieldOff()
     {
+        PlayerManager.Instance.DeactivateShield();
         PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Shield;
 
         if (_shieldRoutine != null)
@@ -85,14 +92,11 @@ public class PlayerEffects : MonoBehaviour
 
     private IEnumerator StartCooldown()
     {
-        Debug.Log("EN COOLDOWN");
-        isCooldownActive = true;
-        playerStates.canReceiveDamage = false; // bloquea daño durante cooldown
-        Debug.Log($"can {playerStates.canReceiveDamage}");
+        PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Cooldown;
+
+        playerStates.AddEffect(_effect); // bloquea daño durante cooldown
         yield return new WaitForSeconds(cooldownTime);
-        playerStates.canReceiveDamage = true;  // desbloquea daño
-        Debug.Log($"can {playerStates.canReceiveDamage}");
-        isCooldownActive = false;
+        playerStates.RemoveEffect(_effect);  // desbloquea daño
     }
 
 }
@@ -100,6 +104,7 @@ public class PlayerEffects : MonoBehaviour
 
 public enum PlayerEffectStateEnum
 {
+    Cooldown,
     Shield,
     Stunned,
     Damaged

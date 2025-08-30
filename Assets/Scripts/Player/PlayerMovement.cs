@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float dropSpeed = 2f;
     [SerializeField]
     private bool isMoving;
+    public bool movementLocked;
     public string bounceDirection;
 
     [Header("DISTANCE TO BLOCK BELOW")]
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(InputAction.CallbackContext context)
     {
+        if (!PlayerManager.Instance.playerStates.canMove) return;
 
         if (context.phase == InputActionPhase.Performed)
         {
@@ -85,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             moveInput.x = Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y) ? Mathf.Sign(moveInput.x) : 0;
             moveInput.y = Mathf.Abs(moveInput.y) > Mathf.Abs(moveInput.x) ? Mathf.Sign(moveInput.y) : 0;
 
-            if (!isMoving && PlayerManager.Instance.playerStates.canMove)
+            if (!isMoving && movementLocked)
             {
 
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
@@ -146,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool blockBelow = Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN";
 
-        PlayerManager.Instance.playerStates.canMove = !blockBelow && !PlayerManager.Instance.playerStates.hasEffect(PlayerEffectStateEnum.Stunned);
+        movementLocked = !blockBelow;
     }
 
     public void Knockback(Vector3 direction)
@@ -186,7 +188,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        PlayerManager.Instance.playerStates.canMove = true;
         positionTarget = new Vector3(0,10,0);
         enanoParent.position = positionTarget;
         ChangePositionTarget(positionTarget);
@@ -194,7 +195,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveToDrop(Vector3 _dropPosition)
     {
-        PlayerManager.Instance.playerStates.canMove = false;
         StartCoroutine(DelayMoveToDrop(_dropPosition));
     }
 
@@ -202,7 +202,6 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         speed = normalSpeed;
-        PlayerManager.Instance.playerStates.canMove = true;
     }
 
     public IEnumerator DelayMoveToDrop(Vector3 _dropPosition)

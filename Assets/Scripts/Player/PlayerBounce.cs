@@ -16,7 +16,7 @@ public class PlayerBounce : MonoBehaviour
     [SerializeField]
     float jumpForce;
     [SerializeField]
-    string bounceDirection;
+    public string bounceDirection;
 
     private void Start()
     {
@@ -28,10 +28,9 @@ public class PlayerBounce : MonoBehaviour
     void Update()
     {
 
-        if (PlayerManager.Instance.playerStates.hasEffect(PlayerEffectStateEnum.Stunned) ||
-            PlayerManager.Instance.playerStates.isOnState(PlayerMainStateEnum.Dead))
+        if (!PlayerManager.Instance.playerStates.canBounce)
         {
-            return; // no puede Headbutt
+            return; // no puede saltar
         }
 
         CheckBounceDirection();
@@ -75,7 +74,7 @@ public class PlayerBounce : MonoBehaviour
 
     public void BounceUp()
     {
-        PlayerManager.Instance.playerStates.currentMainState = PlayerMainStateEnum.Bouncing;
+        PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
 
         jumpForce = 5;
         rb.linearVelocity = Vector3.zero;

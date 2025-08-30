@@ -86,15 +86,16 @@ public class PlayerManager : MonoBehaviour
     
     public void EnterMiningLevel()
     {
+
         playerAnimations.RotateBody(180);
-        playerBounce.enabled = true;
+        playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
         playerHeadbutt.ChangeHBpoints(0);
     }
 
     public void EnterNPCLevel()
     {
         playerAnimations.RotateBody(0);
-        playerBounce.enabled = false;
+        playerStates.ChangeState(PlayerMainStateEnum.Walk);
     }
 
     public void EnterNewLevel()

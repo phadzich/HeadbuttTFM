@@ -6,11 +6,13 @@ public class PlayerStates : MonoBehaviour
 {
 
     public PlayerMainStateEnum currentMainState;
-    public List<PlayerEffectStateEnum> currentEffects { get; private set; } = new();
+    [SerializeField] public List<PlayerEffectStateEnum> currentEffects = new();
 
     public bool canMove;
     public bool canReceiveDamage;
-    private bool bounceAfterStunPending = false;
+    public bool canBounce;
+
+    public bool bounceAfterStunPending = false;
 
     private void Start()
     {
@@ -28,27 +30,56 @@ public class PlayerStates : MonoBehaviour
     {
         switch (currentMainState)
         {
+            case PlayerMainStateEnum.Idle:
+                canMove = true;
+                canBounce = false;
+                break;
+
+            case PlayerMainStateEnum.Falling:
+                canMove = false;
+                break;
+
+            case PlayerMainStateEnum.Disabled:
+                canBounce = false;
+                canMove = false;
+                break;
+
             case PlayerMainStateEnum.Bouncing:
+                canBounce = true;
+                canMove = true;
 
                 if (bounceAfterStunPending)
                 {
                     PlayerManager.Instance.playerBounce.BounceUp();
                     bounceAfterStunPending = false;
                 }
+
                 //animator.Play("Bouncing");
                 break;
 
             case PlayerMainStateEnum.Headbutt:
-                // lógica de salto alto
+                canMove = true;
+
+                if (hasEffect(PlayerEffectStateEnum.Stunned))
+                {
+                    bounceAfterStunPending = false;
+                    RemoveEffect(PlayerEffectStateEnum.Stunned);
+                }
+
                 //animator.Play("Headbutt");
                 break;
 
             case PlayerMainStateEnum.Walk:
+                canBounce = false;
+                canMove = true;
                 // caminar sin saltar
                 //animator.Play("Walk");
                 break;
 
             case PlayerMainStateEnum.Dead:
+                canBounce = false;
+                canMove = false;
+
                 // jugador muerto
                 //animator.Play("Dead");
                 break;
@@ -57,27 +88,23 @@ public class PlayerStates : MonoBehaviour
 
     void HandleEffects()
     {
-        if (currentEffects.Contains(PlayerEffectStateEnum.Shield))
+        if (hasEffect(PlayerEffectStateEnum.Shield) || hasEffect(PlayerEffectStateEnum.Cooldown))
         {
-
             canReceiveDamage = false;
-            PlayerManager.Instance.ActivateShield();
         }
         else
         {
             canReceiveDamage = true;
-            PlayerManager.Instance.DeactivateShield();
         }
 
-        if (currentEffects.Contains(PlayerEffectStateEnum.Stunned))
+        if (hasEffect(PlayerEffectStateEnum.Stunned))
         {
-            currentMainState = PlayerMainStateEnum.None;
-            canMove = false;
+            ChangeState(PlayerMainStateEnum.Disabled);
             bounceAfterStunPending = true;
         }
-        else
+        else if (bounceAfterStunPending)
         {
-            currentMainState = PlayerMainStateEnum.Bouncing;
+            ChangeState(PlayerMainStateEnum.Bouncing);
             canMove = true;
         }
 
@@ -90,6 +117,11 @@ public class PlayerStates : MonoBehaviour
         }
 
         // puedes agregar más efectos aquí
+    }
+
+    public void ChangeState(PlayerMainStateEnum _state)
+    {
+        currentMainState = _state;
     }
 
     public void AddEffect(PlayerEffectStateEnum _effect)
