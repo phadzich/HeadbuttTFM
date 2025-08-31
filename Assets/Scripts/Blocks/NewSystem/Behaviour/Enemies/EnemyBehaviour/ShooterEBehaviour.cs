@@ -16,7 +16,18 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
     public int projectileCount;
     public float projectileSpeed;
 
+    [SerializeField] private ShootingMode shootingMode;
+    [SerializeField] private ShootingDirection direction;
+
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
+
+
+    public void SetUpShooter(ShootingMode _mode, ShootingDirection _direction)
+    {
+        shootingMode = _mode;
+        direction = _direction;
+    }
+
     public void StartBehaviour()
     {
         StartCoroutine(StartTimer());
@@ -35,46 +46,64 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
     public void Shoot()
     {
-        float angleStep = 360f / projectileCount;
-        float angle = 0f;
-
-        for (int i = 0; i < projectileCount; i++)
+        if (shootingMode == ShootingMode.Radial)
         {
-            // Dirección en base al ángulo
-            float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
-            float dirZ = Mathf.Sin(angle * Mathf.Deg2Rad);
-            Vector3 dir = new Vector3(dirX, 0, dirZ);
+            float angleStep = 360f / projectileCount;
+            float angle = 0f;
 
-            // Instanciar bala
-            GameObject projectile = Instantiate(projectilePrefab, axis.position, Quaternion.LookRotation(dir));
-
-            // Darle velocidad
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-
-            if (rb != null)
+            for (int i = 0; i < projectileCount; i++)
             {
-                rb.linearVelocity = dir * projectileSpeed*speedMultiplier;
+                float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+                float dirZ = Mathf.Sin(angle * Mathf.Deg2Rad);
+                Vector3 dir = new Vector3(dirX, 0, dirZ);
+
+                SpawnProjectile(dir);
+
+                angle += angleStep;
+            }
+        }
+        else if (shootingMode == ShootingMode.Directional)
+        {
+            Vector3 dir = Vector3.zero;
+
+            switch (direction)
+            {
+                case ShootingDirection.Front:
+                    dir = axis.forward;
+                    break;
+                case ShootingDirection.Back:
+                    dir = -axis.forward;
+                    break;
+                case ShootingDirection.Left:
+                    dir = -axis.right;
+                    break;
+                case ShootingDirection.Right:
+                    dir = axis.right;
+                    break;
             }
 
-            // Avanzar ángulo
-            angle += angleStep;
+            for (int i = 0; i < projectileCount; i++)
+            {
+                SpawnProjectile(dir);
+            }
         }
 
         StartCoroutine(StartTimer());
     }
 
-    public void OnBounced(HelmetInstance _helmetInstance)
+    private void SpawnProjectile(Vector3 dir)
     {
-    }
+        GameObject projectile = Instantiate(projectilePrefab, axis.position, Quaternion.LookRotation(dir));
 
-    public void OnHeadbutt(HelmetInstance _helmetInstance)
-    {
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = dir * projectileSpeed * speedMultiplier;
+        }
     }
 
     public void OnHit()
-    {
-        
-    }
+    {}
 
     public bool IsAllowedForSource(InteractionSource source)
     {
@@ -101,4 +130,19 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
             }
         }
     }
+}
+
+public enum ShootingMode
+{
+    Radial,
+    Directional
+}
+
+public enum ShootingDirection
+{
+    None,
+    Front,
+    Back,
+    Left,
+    Right
 }
