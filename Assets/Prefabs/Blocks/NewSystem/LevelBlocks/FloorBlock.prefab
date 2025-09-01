@@ -260,6 +260,7 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+  elementType: 0
 --- !u!114 &7169784077314590461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +425,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 08737c773ff3794438d3f5f39134596f, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 1b8a0ea6c3488724fb5f2e7bf5d29dbf, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -6806604924453562500, guid: 54b121f1abd75b246bd3523a29cc733d, type: 3}
     - target: {fileID: 919132149155446097, guid: 1b8a0ea6c3488724fb5f2e7bf5d29dbf, type: 3}
       propertyPath: m_Name
       value: BL_01
