@@ -13109,7 +13109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hbIMG: {fileID: 1060285695}
-  defaultHBIcon: {fileID: 21300000, guid: 970933763c2c01e4c93298c65f47ae67, type: 3}
+  defaultHBIcon: {fileID: 21300000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
   hbCost: {fileID: 1889083510}
   debugTXT: {fileID: 188289649}
   streakTXT: {fileID: 1453470415}
@@ -13964,6 +13964,7 @@ GameObject:
   - component: {fileID: 1217362973}
   - component: {fileID: 1217362977}
   - component: {fileID: 1217362974}
+  - component: {fileID: 1217362979}
   - component: {fileID: 1217362975}
   - component: {fileID: 1217362976}
   - component: {fileID: 1217362978}
@@ -14071,12 +14072,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982852fd1dbdfbc4fb8470a695d72bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 1565896192}
-  idleMaterial: {fileID: 2100000, guid: dde0cd1894898424ebe6006fea0c086d, type: 2}
-  headbuttMaterial: {fileID: 2100000, guid: 645ec21a301f4ea4ab7e9ef0c1c0d823, type: 2}
-  bodyMeshRenderer: {fileID: 1072653611}
-  playerMovement: {fileID: 1664707211}
-  isStunned: 0
+  currentMainState: 0
+  currentEffects: 
+  canMove: 1
+  canReceiveDamage: 1
+  canBounce: 0
+  bounceAfterStunPending: 0
 --- !u!114 &1217362975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14164,7 +14165,7 @@ MonoBehaviour:
   currentHBpoints: 0
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
-  headbuttPower: 15
+  headbuttPower: 12
   timeSinceLastHeadbutt: 0
   potionValues: 0100000003000000050000000a000000
 --- !u!81 &1217362978
@@ -14175,6 +14176,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217362968}
   m_Enabled: 0
+--- !u!114 &1217362979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217362968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a77f9d2bd6fe4139985aeebc83eaec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 2
 --- !u!1 &1218356005
 GameObject:
   m_ObjectHideFlags: 0
@@ -17838,17 +17852,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4416718780810096706, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
   m_PrefabInstance: {fileID: 4369845708437272193}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1565896192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
-  m_PrefabInstance: {fileID: 4369845708437272193}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ab2ef1abcb9734459d5f372b35886cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1578054102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18824,6 +18827,7 @@ MonoBehaviour:
   playerBounce: {fileID: 1217362973}
   playerEmojis: {fileID: 941113252}
   playerHeadbutt: {fileID: 1217362977}
+  playerEffects: {fileID: 1217362979}
   maxPlayerLives: 0
   currentPlayerLives: 0
   damageTakenIndicator: {fileID: 110562964}
@@ -24787,80 +24791,16 @@ PrefabInstance:
       objectReference: {fileID: 2119067691}
     - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: allHelmetData.Array.size
-      value: 18
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c0367ed8dffb4424f90be79dbbfb5322, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: dd281fa57da8b534894b2c5eccd42612, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 0db0ee255d364e243addd65b93f1bc98, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b3612914ce1c50c4c84e09543b7f9252, type: 2}
     - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: 'allHelmetData.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: db432aec72dd97c43a43e1f0c041461e, type: 2}
+      objectReference: {fileID: 11400000, guid: 14a47a613b5a2ad46a798fb3333ae60e, type: 2}
     - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: 'allHelmetData.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: ba6903ef13f40d548ae03d36f176dd2c, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[6]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f1b97e22ef2480149a18448f867effe0, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[7]'
-      value: 
-      objectReference: {fileID: 11400000, guid: fd7caafd5b131384e9ab4e56af55bc40, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[8]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 219cca8772e885448bbe31c98495b142, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[9]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 425602adad533b142a24ce6f90512d63, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[10]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 50eb5291ce9c92644aadb95622a10e7b, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[11]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 5caf23eee91b65843b736a0a70db4712, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[12]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 34b2164db3cb3284aa0f695f297d8552, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[13]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[14]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ecf1a5385f89f8b4590305e4b9378860, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[15]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2aa09c66aa8ccf541b115e8622ef33ab, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[16]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 32f85f57cd7e8664097e41983a903f32, type: 2}
-    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
-      propertyPath: 'allHelmetData.Array.data[17]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9090c75ac7d033f4295749c6befe33da, type: 2}
+      objectReference: {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
     - target: {fileID: 5457872764868005915, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: m_Name
       value: HelmetManager
@@ -25027,32 +24967,28 @@ PrefabInstance:
       objectReference: {fileID: 1112208449}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: levelsList.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 987a574890e769f4b951e7b3444a8982, type: 2}
+      objectReference: {fileID: 11400000, guid: d43ad82d098d9174b9566cccb19489e4, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
+      objectReference: {fileID: 11400000, guid: b57eec10b32796b439b1c12f736cd51b, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
+      objectReference: {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: d43ad82d098d9174b9566cccb19489e4, type: 2}
+      objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: b57eec10b32796b439b1c12f736cd51b, type: 2}
-    - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
-      propertyPath: 'levelsList.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c052469daa9414540806c94524261b5a, type: 2}
+      objectReference: {fileID: 11400000, guid: e5fb51f1cdbfc1f45ad029e2db9bb83f, type: 2}
     - target: {fileID: 4416718780810096706, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.158984

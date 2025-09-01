@@ -64,7 +64,7 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     private void DurabilityDamage()
     {
-        HelmetManager.Instance.currentHelmet.TakeDamage(damage, true);
+        PlayerManager.Instance.playerEffects.TakeDamage(damage);
     }
 
     private void ResourcesDamage()

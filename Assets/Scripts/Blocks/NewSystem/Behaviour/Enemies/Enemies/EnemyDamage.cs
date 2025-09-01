@@ -75,7 +75,7 @@ public class EnemyDamage : Enemy
         //Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
         if (typeOfDamage == damageType.Durability)
         {
-            HelmetManager.Instance.currentHelmet.TakeDamage(damage, true);
+            PlayerManager.Instance.playerEffects.TakeDamage(damage);
         }
         ScreenShake();
         PlayDamageSound();

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
 {
@@ -10,6 +11,10 @@ public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
     public float randomStartDelayRange;
 
     public float spawnInterval;
+    [SerializeField] private List<HealthEBehaviour> currEnemiesSpawned = new List<HealthEBehaviour>();
+    public int enemyLimit;
+
+    private bool canSpawn => currEnemiesSpawned.Count < enemyLimit;
 
     public void StartBehaviour()
     {
@@ -35,15 +40,29 @@ public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
         StartCoroutine(StartTimer());
     }
 
-    private IEnumerator StartTimer() { 
+    private IEnumerator StartTimer() {
         yield return new WaitForSeconds(spawnInterval);
         Spawn();
     }
 
     private void Spawn()
     {
-        Instantiate(prefabToSpawn, spawnPoint);
+        if (!canSpawn) return;
+
+        GameObject _enemy = Instantiate(prefabToSpawn, spawnPoint);
+
+        HealthEBehaviour health = _enemy.GetComponent<HealthEBehaviour>();
+
+        // Suscribimos al evento OnDeath
+        health.OnDeath += HandleEnemyDeath;
+
+        currEnemiesSpawned.Add(health);
         StartCoroutine(StartTimer());
+    }
+
+    private void HandleEnemyDeath(HealthEBehaviour enemy)
+    {
+        currEnemiesSpawned.Remove(enemy);
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)

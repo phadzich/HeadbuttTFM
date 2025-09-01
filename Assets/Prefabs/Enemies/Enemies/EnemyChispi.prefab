@@ -106,6 +106,8 @@ MonoBehaviour:
   randomStartDelay: 0
   randomStartDelayRange: 0
   spawnInterval: 10
+  currEnemiesSpawned: []
+  enemyLimit: 3
 --- !u!114 &8161395416749261924
 MonoBehaviour:
   m_ObjectHideFlags: 0

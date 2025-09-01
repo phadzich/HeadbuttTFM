@@ -20,7 +20,7 @@ public class DamageEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
         Debug.Log(sfx==null);
         if (sfx!= null) sfx.PlayAttack();
         Debug.Log("EnemyDMG "+ damage);
-        HelmetManager.Instance.currentHelmet.TakeDamage(damage, true);
+        PlayerManager.Instance.playerEffects.TakeDamage(damage);
     }
 
     // Cuando OTROS reciben un impacto

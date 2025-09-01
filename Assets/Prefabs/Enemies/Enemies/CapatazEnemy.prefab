@@ -183,6 +183,8 @@ MonoBehaviour:
   intervalMultiplier: 1
   projectileCount: 4
   projectileSpeed: 5
+  shootingMode: 0
+  direction: 0
   AllowedSources: 02000000
 --- !u!114 &8626908254177202607
 MonoBehaviour:
@@ -282,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4817991139435872062}
   - component: {fileID: 822097828634457691}
+  - component: {fileID: 1949458581339940092}
   - component: {fileID: 7367609909240226076}
   - component: {fileID: 4810703166137470484}
   - component: {fileID: 7760247699740865073}
@@ -330,6 +333,19 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   elementType: 4
+--- !u!114 &1949458581339940092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bccb8d06bf954c328c9badf2fe8de0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooterEBehaviour: {fileID: 1193650821216240910}
 --- !u!114 &7367609909240226076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleSound: {fileID: 0}
   attackSound: {fileID: 0}
-  hurtSound: {fileID: 0}
+  damageSound: {fileID: 0}
   deathSound: {fileID: 0}
 --- !u!1 &4246945198350386805
 GameObject:
