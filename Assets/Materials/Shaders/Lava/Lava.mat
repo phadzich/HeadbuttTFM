@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Lava
+  m_Name: Lava
   m_Shader: {fileID: -6465566751694194690, guid: 04f427eca5755904d95ca1c6272e6044, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -66,17 +66,17 @@ Material:
     - Vector1_7B9C2379: 0.65
     - Vector1_88114E4A: 0.4
     - Vector1_A0F0BBF5: 0.7
-    - Vector1_B70459B8: 0.05
+    - Vector1_B70459B8: 0
     - Vector1_BDCBE303: -0.04
     - Vector1_C11943F1: -0.22
     - Vector1_DEBF9F77: 0.23
     - Vector1_E512B7AC: 0.66
     - Vector1_E8E0DC8: 10
     - Vector1_E97BF845: 0.5
-    - Vector1_ECBD0369: 0.03
+    - Vector1_ECBD0369: 0
     - Vector1_EEB61C8: -0.04
     - Vector1_F2179F34: 0.211
-    - Vector1_F4FD793F: 0.1
+    - Vector1_F4FD793F: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

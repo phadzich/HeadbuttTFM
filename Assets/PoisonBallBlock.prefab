@@ -5025,8 +5025,8 @@ GameObject:
   - component: {fileID: 1003532578358748977}
   - component: {fileID: -1587120826981845012}
   - component: {fileID: -4628646904535597047}
-  - component: {fileID: 1332458416251268981}
   - component: {fileID: 7727228589074888871}
+  - component: {fileID: 5331558793977947015}
   m_Layer: 8
   m_Name: PoisonBallBlock
   m_TagString: Untagged
@@ -5243,23 +5243,6 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   elementType: 4
---- !u!114 &1332458416251268981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594e73a36a94a404fb59706024e2127b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 4552600488085506810, guid: bf2e62e2972670946be3a5fa3af26d6c, type: 3}
-  spawnPoint: {fileID: 5331094384424099233}
-  randomStartDelay: 1
-  randomStartDelayRange: 1
-  spawnInterval: 4.5
 --- !u!114 &7727228589074888871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5278,6 +5261,23 @@ MonoBehaviour:
   stopDamage: 0
   damageParticles: {fileID: 8681109256412394289}
   impulseSource: {fileID: 1003532578358748977}
+--- !u!114 &5331558793977947015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5cc96569b4e40418bb0a6dc081d3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 4552600488085506810, guid: bf2e62e2972670946be3a5fa3af26d6c, type: 3}
+  spawnPoint: {fileID: 5331094384424099233}
+  randomStartDelay: 1
+  randomStartDelayRange: 1
+  spawnInterval: 4
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

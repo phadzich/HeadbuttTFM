@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8786373107083286859}
   - component: {fileID: 6333479158378275223}
   m_Layer: 0
-  m_Name: StunProjectile
+  m_Name: IceProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef82acc1033634c88afdcd09bd672044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 5
+  elementType: 3
 --- !u!114 &6610249393429423994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.5102, y: 3.5102, z: 3.5102}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6450672809420639519}
@@ -293,7 +293,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2753903616025912957}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -3983063591393173388, guid: ff6059e1383afa840b0269581eff61c0, type: 3}
 --- !u!23 &5210051974828758999
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d76afd0e04918fd4a91cabcf396e480b, type: 2}
+  - {fileID: 2100000, guid: 1ef9e85bc74c003479f390920a80bd7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -365,7 +365,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.59341, y: 0.14695206, z: 0.10816678}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5071966708935970820}

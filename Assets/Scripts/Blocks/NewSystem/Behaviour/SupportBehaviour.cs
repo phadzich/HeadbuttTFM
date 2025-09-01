@@ -3,7 +3,7 @@ using UnityEngine;
 public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
 {
 
-    public ParticleSystem damageParticles;
+    public ParticleSystem feedbackParticles;
 
     public void Activate()
     {
@@ -13,13 +13,13 @@ public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
-        damageParticles.Play();
+        feedbackParticles.Play();
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
-        damageParticles.Play();
+        feedbackParticles.Play();
     }
 
     public void StartBehaviour()
