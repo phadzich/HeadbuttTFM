@@ -59,7 +59,7 @@ public class PlayerStates : MonoBehaviour
 
             case PlayerMainStateEnum.Headbutt:
                 canMove = true;
-
+                canBounce = true;
                 if (hasEffect(PlayerEffectStateEnum.Stunned))
                 {
                     bounceAfterStunPending = false;

@@ -124,7 +124,7 @@ public class PlayerHeadbutt : MonoBehaviour
                 }
             }
         }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
-            Debug.Log("NO HAY HBS EN NPC");
+            
         }
     }
 
