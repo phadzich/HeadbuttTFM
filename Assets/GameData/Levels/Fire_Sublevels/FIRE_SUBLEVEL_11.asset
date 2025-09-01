@@ -16,12 +16,13 @@ MonoBehaviour:
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
   sublevel2DMap: {fileID: 2800000, guid: 42785369b608954439dd7a017d886844, type: 3}
-  objectives: []
+  objectives:
+  - rid: 7431280957495181391
   gateRequirements:
   - rid: 7431280952935448584
-  - rid: 7431280952935448585
+  - rid: 7431280957495181389
   chestsRequirements:
-  - rid: 7431280952935448589
+  - rid: 7431280957495181390
   chestsLoot:
   - rid: 7431280952935448586
   - rid: 7431280952935448587
@@ -39,15 +40,6 @@ MonoBehaviour:
         customID: 0
         resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
         resourcesNeeded: 24
-    - rid: 7431280952935448585
-      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 1
-        icon: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
-        switchesID: 0
-        switchesNeeded: 3
-        activeSwitches: []
-        lowestTime: 0
     - rid: 7431280952935448586
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
@@ -65,9 +57,20 @@ MonoBehaviour:
         chestID: 0
         amount: 20
         resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-    - rid: 7431280952935448589
+    - rid: 7431280957495181389
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
+        resourcesNeeded: 60
+    - rid: 7431280957495181390
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
-        icon: {fileID: 21300000, guid: e9cba319f0ad0094b9de4fffafb8438f, type: 3}
-        enemiesNeeded: 3
+        icon: {fileID: 21300000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
+        enemiesNeeded: 4
+    - rid: 7431280957495181391
+      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
+        resourcesNeeded: 60
