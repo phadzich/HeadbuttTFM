@@ -44,14 +44,23 @@ public class HelmetInstance: IElemental
 
         currentHBHarvest = 0.3f;
 
+        Debug.Log(_helmetSO.helmetName);
+
         ActivateEffects(_helmetSO.effects);
 
     }
 
     public void ActivateEffects(List<HelmetEffectData> _effects)
     {
+        Debug.Log(_effects);
+
         foreach (var _effect in _effects)
         {
+            if (_effect == null)
+            {
+                //Debug.Log("HAY UNA LISTA CREADA PERO EL EFECTO ES NULL"); 
+                continue;
+            }
             AddEffect(_effect.CreateEffect());
         }
     }
@@ -64,13 +73,6 @@ public class HelmetInstance: IElemental
 
     public void TakeDamage(int _amount)
     {
-        /* Si queremos que el shield se desactive debemos mandar isEnemy en true
-        if(PlayerManager.Instance.activeShield != null && PlayerManager.Instance.activeShield.CanBlockDamage() && _isEnemy)
-        {
-            PlayerManager.Instance.DeactivateShield();
-            return;
-        }*/
-
         //Debug.Log($"Helmet Took {_amount}");
         if (currentDurability > 0)
             currentDurability-=_amount;

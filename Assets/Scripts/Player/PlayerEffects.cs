@@ -9,7 +9,6 @@ public class PlayerEffects : MonoBehaviour
     [SerializeField] private float cooldownTime;
 
     private PlayerStates playerStates;
-    private Coroutine _shieldRoutine;
 
     private void Start()
     {
@@ -29,39 +28,10 @@ public class PlayerEffects : MonoBehaviour
         {
             if (playerStates.hasEffect(PlayerEffectStateEnum.Shield))
             {
-                ShieldOff();
+                StartCoroutine(ShieldOff(0f));
             }
         }
 
-    }
-
-    public bool ShieldOn(float _shieldDuration)
-    {
-        if (_shieldRoutine != null)
-            return false;
-
-        PlayerManager.Instance.ActivateShield();
-
-        PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Shield;
-        playerStates.AddEffect(_effect);
-
-        _shieldRoutine = StartCoroutine(RemoveEffectAfterTime(_effect, _shieldDuration));
-
-        return true;
-    }
-
-    public void ShieldOff()
-    {
-        PlayerManager.Instance.DeactivateShield();
-        PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Shield;
-
-        if (_shieldRoutine != null)
-        {
-            StopCoroutine(_shieldRoutine);
-            _shieldRoutine = null;
-        }
-
-        StartCoroutine(RemoveEffectAfterTime(_effect, 0f));
     }
 
     public void TakeDamage(int _amount)
@@ -76,10 +46,39 @@ public class PlayerEffects : MonoBehaviour
         {
             if (playerStates.hasEffect(PlayerEffectStateEnum.Shield))
             {
-                ShieldOff();
+                StartCoroutine(ShieldOff(0f));
             }
         }
     }
+
+    // Shield effect
+
+    public void ShieldOn(float _shieldDuration)
+    {
+        if (playerStates.hasEffect(PlayerEffectStateEnum.Shield))
+            return;
+
+        PlayerManager.Instance.ActivateShield();
+
+        playerStates.AddEffect(PlayerEffectStateEnum.Shield);
+
+        StartCoroutine(ShieldOff(_shieldDuration));
+
+    }
+
+    private IEnumerator ShieldOff(float _time)
+    {
+        if (_time > 0f)
+            yield return new WaitForSeconds(_time);
+
+        PlayerManager.Instance.DeactivateShield();
+
+        playerStates.RemoveEffect(PlayerEffectStateEnum.Shield);
+
+        if (!isCooldownActive) StartCoroutine(StartCooldown());
+    }
+
+    // General functions
 
     private IEnumerator RemoveEffectAfterTime(PlayerEffectStateEnum _effect, float _time)
     {

@@ -4,6 +4,8 @@ using static UnityEngine.InputSystem.Android.LowLevel.AndroidGameControllerState
 
 public class BlockNS : MonoBehaviour, IElemental
 {
+    public string blockName;
+
     public int sublevelId;
     public Vector2 sublevelPosition;
     public bool isWalkable = false;
@@ -42,8 +44,10 @@ public class BlockNS : MonoBehaviour, IElemental
         LevelManager.Instance.onSublevelEntered -= StartBehaviours;
     }
 
-    public void SetupBlock(string _variant, MapContext _context)
+    public void SetupBlock(string _name,string _variant, MapContext _context)
     {
+        blockName = _name;
+
         mapContext = _context;
         sublevelId = _context.depth;
         sublevelPosition = new Vector2(_context.x, _context.y);

@@ -9,4 +9,6 @@ public class SublevelConfig : ScriptableObject
     public HelmetData helmetBPData;
 
     public DialogueSequence dialogueSequence;
+
+    public int limitPerSpawn;
 }
