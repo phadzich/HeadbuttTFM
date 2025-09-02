@@ -15,11 +15,14 @@ MonoBehaviour:
   id: EffectTest
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 3
   sublevel2DMap: {fileID: 2800000, guid: 8d94f62584e824ba69cb2f33b54db5ab, type: 3}
-  goalType: 0
   objectives:
   - rid: 6219506583283695693
   gateRequirements: []
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations: []
   references:
     version: 2
     RefIds:
