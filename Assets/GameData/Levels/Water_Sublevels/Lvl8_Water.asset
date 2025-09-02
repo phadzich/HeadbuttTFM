@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: Lvl8_Water
+  m_EditorClassIdentifier: 
+  id: 18
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
+  sublevel2DMap: {fileID: 2800000, guid: e0113722940dbe34a965405128066c67, type: 3}
+  objectives:
+  - rid: 3561225397364064367
+  gateRequirements:
+  - rid: 3561225397364064360
+  - rid: 3561225397364064361
+  - rid: 3561225397364064362
+  - rid: 3561225397364064363
+  - rid: 3561225397364064364
+  - rid: 3561225397364064366
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  references:
+    version: 2
+    RefIds:
+    - rid: 3561225397364064360
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+        resourcesNeeded: 6
+    - rid: 3561225397364064361
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+        resourcesNeeded: 8
+    - rid: 3561225397364064362
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+        resourcesNeeded: 10
+    - rid: 3561225397364064363
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+        resourcesNeeded: 18
+    - rid: 3561225397364064364
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+        resourcesNeeded: 12
+    - rid: 3561225397364064366
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 2
+        icon: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
+        switchesID: 1
+        switchesNeeded: 5
+        activeSwitches: []
+        lowestTime: 0
+    - rid: 3561225397364064367
+      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
+        resourcesNeeded: 12

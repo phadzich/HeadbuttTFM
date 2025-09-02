@@ -26,7 +26,11 @@ public enum SoundType
     RECIEVEDAMAGE,
 
     LEVELMUSIC,
+    LEVELWATERMUSIC,
     LEVELAMBIENT,
+    LEVELWATERAMBIENT,
+    LEVELGRASSMUSIC,
+    LEVELGRASSAMBIENT,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
