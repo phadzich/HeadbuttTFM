@@ -17,9 +17,9 @@ public class DamageEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
 
     private void DoDamage()
     {
-        Debug.Log(sfx==null);
+        //Debug.Log(sfx==null);
         if (sfx!= null) sfx.PlayAttack();
-        Debug.Log("EnemyDMG "+ damage);
+        //Debug.Log("EnemyDMG "+ damage);
         PlayerManager.Instance.playerEffects.TakeDamage(damage);
     }
 

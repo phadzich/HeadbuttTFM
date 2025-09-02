@@ -6,7 +6,7 @@ public class ShooterESetup : MonoBehaviour, IBlockSetup
 
     public void SetupVariant(string _variant, MapContext _context)
     {
-        Debug.Log(_variant);
+        //Debug.Log(_variant);
         switch (_variant)
         {
             case "RAD":

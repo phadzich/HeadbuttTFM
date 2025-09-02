@@ -10,6 +10,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
     public int maxHealth;
     public int currentHealth;
     public float damageMultiplier = 1;
+    private ElementType lastElement;
 
     public bool isDead => currentHealth <= 0;
     public event Action<HealthEBehaviour> OnDeath;
@@ -18,13 +19,14 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
 
-    void RecieveDamage(int _amount)
+    void RecieveDamage(int _amount,ElementType _element)
     {
         if (sfx != null) sfx.PlayDamage();
         //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
         UpdateBarUI();
+        healthBarUI.PopDamage(_amount, _element);
     }
 
     void Heal(int _amount)
@@ -37,10 +39,9 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
     {
         OnDeath?.Invoke(this);
         if (sfx != null) sfx.PlayDeath();
-        //Debug.Log("DEAD");
         DispatchDeathEvent();
         Destroy(this.gameObject);
-
+        ResourceManager.Instance.coinTrader.AddCoins(maxHealth);
     }
     private void DispatchDeathEvent()
     {
@@ -67,7 +68,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     public void OnElementInteraction(ElementType sourceElement, ElementType targetElement)
     {
-        //Debug.Log("checking interactions");
+        lastElement = sourceElement;
         if (targetElement == ElementType.Fire)
         {
             switch (sourceElement)
@@ -194,41 +195,18 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
         if (targetElement == ElementType.Neutral)
         {
-            switch (sourceElement)
-            {
-                case ElementType.Fire:
-                    damageMultiplier = 1;
-                    Debug.Log("Normal Damage");
-                    break;
-                case ElementType.Water:
-                    damageMultiplier = 2;
-                    Debug.Log("Double Damage");
-                    break;
-                case ElementType.Grass:
-                    damageMultiplier = 0;
-                    Debug.Log("NO Damage");
-                    break;
-                case ElementType.Electric:
-                    damageMultiplier = 1;
-                    Debug.Log("Normal Damage");
-                    break;
-                case ElementType.Neutral:
-                    damageMultiplier = 0;
-                    Debug.Log("NO Damage");
-                    break;
-                case ElementType.None:
-                    damageMultiplier = 1;
-                    Debug.Log("Normal Damage");
-                    break;
-            }
+            damageMultiplier = 1;
+            Debug.Log("Normal Damage");
         }
+
+
     }
 
     public void OnHit()
     {
         var _damage = ((int)HelmetManager.Instance.currentHelmet.baseHelmet.miningPower +1) * damageMultiplier;
 
-        RecieveDamage((int)_damage);
+        RecieveDamage((int)_damage, lastElement);
         damageMultiplier = 1;
     }
 

@@ -10047,7 +10047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarUI: {fileID: 4755765932428251963}
-  maxHealth: 1
+  maxHealth: 2
   currentHealth: 0
   damageMultiplier: 1
   AllowedSources: 02000000
@@ -10082,7 +10082,6 @@ MonoBehaviour:
   damage: 1
   damageCooldown: 0.5
   lastDamageTime: 0
-  sfx: {fileID: 0}
   AllowedSources: 03000000
 --- !u!114 &6496891236144867814
 MonoBehaviour:
