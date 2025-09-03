@@ -242,8 +242,10 @@ public class MatchManager : MonoBehaviour
     private void RewardResources()
     {
         int _totalRes = 0;
+
         foreach (ResourceEffect _block in currentChainBlocks)
         {
+
             _totalRes += _block.helmetPowerMultiplier;
 
             var _resourceEvent = new CollectResourceEvent { resData = _block.resourceData, amount = _block.helmetPowerMultiplier };

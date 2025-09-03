@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("KNOCKBACK")]
     public float knockbackDistance = 1f;
+    public bool isKnockedBack;
 
     private void Start()
     {
@@ -80,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer(InputAction.CallbackContext context)
     {
         if (!PlayerManager.Instance.playerStates.canMove) return;
+        if (isKnockedBack) return;
 
         if (context.phase == InputActionPhase.Performed)
         {
@@ -153,37 +155,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void Knockback(Vector3 direction)
     {
-        if (KnockbackChance())
-        {
-            Vector3 alignedPosition = new Vector3(
-            Mathf.Round(transform.position.x),
+        isKnockedBack = true;
+
+        Vector3 alignedPosition = new Vector3(
+            blockNSBelow.transform.position.x,
             0,
-            Mathf.Round(transform.position.z)
-);
-            Vector3 newPosition = alignedPosition + direction;
-            //Debug.Log($"Knockback position: {newPosition}");
-            ChangePositionTarget(newPosition);
-        }
+            blockNSBelow.transform.position.z
+        );
 
+        Vector3 newPosition = alignedPosition + direction;
+
+
+        ChangePositionTarget(newPosition);
+
+        StartCoroutine(ReleaseKnockbackLock());
     }
-
-    public bool KnockbackChance()
+    private IEnumerator ReleaseKnockbackLock()
     {
-        bool _shouldKnock = true;
-        int _chance = 100;
-        int _random = Random.Range(0, 100);
-        //Debug.Log(_chance);
-        //Debug.Log(_random);
-        if (_random <= _chance)
-        {
-            _shouldKnock = true;
-        }
-        else
-        {
-            _shouldKnock = false;
-        }
-        //Debug.Log(_shouldKnock);
-        return _shouldKnock;
+        yield return new WaitForSeconds(0.15f);
+        isKnockedBack = false;
     }
 
     public void RespawnPlayer()
