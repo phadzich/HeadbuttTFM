@@ -115,12 +115,13 @@ public class SublevelMapNewGenerator : MonoBehaviour
     GameObject GetBlockFromString(ColorToString _blockString)
     {
         var _stringParts = _blockString.blockString.Split('_');
+        string _blockName = _stringParts[0];
         string _blockVariant = _stringParts[1];
 
         GameObject _prefab = _blockString.prefab;
 
         GameObject _bloque = Instantiate(_prefab, nextPosition, Quaternion.identity, sublevelContainer);
-        _bloque.GetComponent<BlockNS>().SetupBlock(_blockVariant, context);
+        _bloque.GetComponent<BlockNS>().SetupBlock(_blockName, _blockVariant, context);
 
         return _bloque;
     }

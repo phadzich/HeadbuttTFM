@@ -12,12 +12,14 @@ public class TimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
 
     public float spawnInterval;
     [SerializeField] private List<HealthEBehaviour> currEnemiesSpawned = new List<HealthEBehaviour>();
-    public int enemyLimit;
+    [SerializeField] private int enemyLimit;
 
     private bool canSpawn => currEnemiesSpawned.Count < enemyLimit;
 
     public void StartBehaviour()
     {
+        enemyLimit = LevelManager.Instance.currentContext.sublevel.config.limitPerSpawn;
+
         if (randomStartDelay)
         {
             float _delay = UnityEngine.Random.Range(0, randomStartDelayRange);

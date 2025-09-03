@@ -76,6 +76,7 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject shieldGO = Instantiate(shieldPrefab, transform.GetChild(0));
         shieldGO.transform.localPosition = Vector3.zero;
+        activeShield = shieldGO;
     }
 
     public void DeactivateShield()
