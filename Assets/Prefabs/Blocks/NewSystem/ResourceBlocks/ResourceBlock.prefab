@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 517025886362202884}
   - component: {fileID: 6855268377189405096}
   - component: {fileID: 5753518532738647219}
-  - component: {fileID: 691920507415590915}
   m_Layer: 7
   m_Name: Hit1
   m_TagString: Untagged
@@ -325,27 +324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &691920507415590915
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446915181190860952}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2753730291402104914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5400,7 +5378,6 @@ GameObject:
   - component: {fileID: 2938223922590577798}
   - component: {fileID: 1033397537703637504}
   - component: {fileID: 5158068903636557030}
-  - component: {fileID: 7796163617154937013}
   m_Layer: 7
   m_Name: Hit1 (3)
   m_TagString: Untagged
@@ -5476,27 +5453,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7796163617154937013
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4866890890264239012}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4961428947968815997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5695,6 +5651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -5918,7 +5875,6 @@ GameObject:
   - component: {fileID: 838992896568455357}
   - component: {fileID: 5584827084848424048}
   - component: {fileID: 8271058696950918892}
-  - component: {fileID: 6573447480626614740}
   m_Layer: 7
   m_Name: Hit1 (1)
   m_TagString: Untagged
@@ -5994,27 +5950,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6573447480626614740
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8229144016772829469}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8283868404475461677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6026,7 +5961,6 @@ GameObject:
   - component: {fileID: 3474872564467301423}
   - component: {fileID: 1104778903688366496}
   - component: {fileID: 4945344347954072388}
-  - component: {fileID: 3999678865013703717}
   m_Layer: 7
   m_Name: Hit1 (2)
   m_TagString: Untagged
@@ -6102,27 +6036,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3999678865013703717
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8283868404475461677}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &729708703955802475
 PrefabInstance:
   m_ObjectHideFlags: 0
