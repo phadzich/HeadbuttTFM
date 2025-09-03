@@ -87,7 +87,6 @@ public class PlayerManager : MonoBehaviour
     
     public void EnterMiningLevel()
     {
-
         playerAnimations.RotateBody(180);
         playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
         playerHeadbutt.ChangeHBpoints(0);

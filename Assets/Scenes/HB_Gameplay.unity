@@ -13962,9 +13962,9 @@ GameObject:
   - component: {fileID: 1217362969}
   - component: {fileID: 1217362972}
   - component: {fileID: 1217362971}
+  - component: {fileID: 1217362974}
   - component: {fileID: 1217362973}
   - component: {fileID: 1217362977}
-  - component: {fileID: 1217362974}
   - component: {fileID: 1217362979}
   - component: {fileID: 1217362975}
   - component: {fileID: 1217362976}
@@ -14078,6 +14078,7 @@ MonoBehaviour:
   canMove: 1
   canReceiveDamage: 1
   canBounce: 0
+  canHeadbutt: 0
   bounceAfterStunPending: 0
 --- !u!114 &1217362975
 MonoBehaviour:

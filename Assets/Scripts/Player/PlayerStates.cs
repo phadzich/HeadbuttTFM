@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStates : MonoBehaviour
 {
+    Rigidbody rb;
 
     public PlayerMainStateEnum currentMainState;
     [SerializeField] public List<PlayerEffectStateEnum> currentEffects = new();
@@ -11,12 +12,13 @@ public class PlayerStates : MonoBehaviour
     public bool canMove;
     public bool canReceiveDamage;
     public bool canBounce;
+    public bool canHeadbutt;
 
     public bool bounceAfterStunPending = false;
 
     private void Start()
     {
-        canMove = true;
+        rb = GetComponent<Rigidbody>();
         canReceiveDamage = true;
     }
 
@@ -33,20 +35,34 @@ public class PlayerStates : MonoBehaviour
             case PlayerMainStateEnum.Idle:
                 canMove = true;
                 canBounce = false;
-                break;
+                canHeadbutt = false;
 
-            case PlayerMainStateEnum.Falling:
-                canMove = false;
                 break;
 
             case PlayerMainStateEnum.Disabled:
-                canBounce = false;
                 canMove = false;
+                canBounce = false;
+                canHeadbutt = true;
+
+                break;
+
+            case PlayerMainStateEnum.FallingIntoMINE:
+                canMove = false;
+                canHeadbutt = false;
+                bounceAfterStunPending = true;
+
+                break;
+
+            case PlayerMainStateEnum.FallingIntoNPC:
+                canMove = false;
+                canHeadbutt = false;
+
                 break;
 
             case PlayerMainStateEnum.Bouncing:
                 canBounce = true;
                 canMove = true;
+                canHeadbutt = true;
 
                 if (bounceAfterStunPending)
                 {
@@ -60,6 +76,8 @@ public class PlayerStates : MonoBehaviour
             case PlayerMainStateEnum.Headbutt:
                 canMove = true;
                 canBounce = true;
+                canHeadbutt = true;
+
                 if (hasEffect(PlayerEffectStateEnum.Stunned))
                 {
                     bounceAfterStunPending = false;
@@ -72,6 +90,8 @@ public class PlayerStates : MonoBehaviour
             case PlayerMainStateEnum.Walk:
                 canBounce = false;
                 canMove = true;
+                canHeadbutt = false;
+
                 // caminar sin saltar
                 //animator.Play("Walk");
                 break;
@@ -79,6 +99,7 @@ public class PlayerStates : MonoBehaviour
             case PlayerMainStateEnum.Dead:
                 canBounce = false;
                 canMove = false;
+                canHeadbutt = false;
 
                 // jugador muerto
                 //animator.Play("Dead");
@@ -105,7 +126,6 @@ public class PlayerStates : MonoBehaviour
         else if (bounceAfterStunPending)
         {
             ChangeState(PlayerMainStateEnum.Bouncing);
-            canMove = true;
         }
 
         if (currentEffects.Contains(PlayerEffectStateEnum.Damaged))
@@ -116,8 +136,8 @@ public class PlayerStates : MonoBehaviour
               
         }
 
-        // puedes agregar más efectos aquí
     }
+
 
     public void ChangeState(PlayerMainStateEnum _state)
     {

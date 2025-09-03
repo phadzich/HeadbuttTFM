@@ -105,26 +105,21 @@ public class PlayerHeadbutt : MonoBehaviour
     public void Headbutt(InputAction.CallbackContext context)
     {
 
-        if ( PlayerManager.Instance.playerStates.isOnState(PlayerMainStateEnum.Dead))
+        if (!PlayerManager.Instance.playerStates.canHeadbutt)
         {
             return; // no puede Headbutt
         }
 
-        if (LevelManager.Instance.currentSublevel.config is MiningSublevelConfig)
+        // por ahora quite bounceDirection == "DOWN" && 
+        if (context.phase == InputActionPhase.Performed)
         {
-            // por ahora quite bounceDirection == "DOWN" && 
-            if (context.phase == InputActionPhase.Performed)
+
+            if (!headbuttOnCooldown &&
+                TryUseHBPoints(1) &&
+                PlayerManager.Instance.playerMovement.blockNSBelow != null)
             {
-                
-                if (!headbuttOnCooldown &&
-                    TryUseHBPoints(1) &&
-                    PlayerManager.Instance.playerMovement.blockNSBelow != null)
-                {
-                    HeadbuttUp();
-                }
+                HeadbuttUp();
             }
-        }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
-            
         }
     }
 
