@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: -1587120826981845012}
   - component: {fileID: -4628646904535597047}
   - component: {fileID: 1581194200581867795}
+  - component: {fileID: 5022574342000922867}
   m_Layer: 8
   m_Name: EnemyThornsBlock
   m_TagString: Untagged
@@ -547,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -572,6 +574,18 @@ MonoBehaviour:
   offTime: 2
   randomStartDelay: 1
   randomStartDelayRange: 1.5
+--- !u!114 &5022574342000922867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9018983921226633793
 GameObject:
   m_ObjectHideFlags: 0

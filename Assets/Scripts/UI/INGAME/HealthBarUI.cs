@@ -30,6 +30,7 @@ public class HealthBarUI : MonoBehaviour
 
     public void PopDamage(int _damage, ElementType _element)
     {
+        Debug.Log(_element);
         damageText.text = _damage.ToString();
         damagePanel.GetComponent<Image>().color = GetElementColor(_element);
         Tween.Scale(damagePanel.transform,startValue:Vector3.zero,endValue:Vector3.one, ease:Ease.OutBounce, duration:.8f).OnComplete(HideDamage); ;

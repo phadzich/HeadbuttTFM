@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: -1587120826981845012}
   - component: {fileID: -4628646904535597047}
   - component: {fileID: 1581194200581867795}
+  - component: {fileID: -3810458622585680279}
   m_Layer: 8
   m_Name: EnemyLog
   m_TagString: Untagged
@@ -366,6 +367,18 @@ MonoBehaviour:
   offTime: 1.5
   randomStartDelay: 1
   randomStartDelayRange: 1.5
+--- !u!114 &-3810458622585680279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -403,3 +403,13 @@ MonoBehaviour:
     blockString: AMBERBLOCK_X
     icon: {fileID: 2800000, guid: 15984450b9a7de642b72a5e539be4dc1, type: 3}
     prefab: {fileID: 4006885365906108092, guid: 0699c777c61ae994a871c9a8b9e68a73, type: 3}
+  - category: 7
+    color: {r: 0.1254902, g: 0.3372549, b: 0.4392157, a: 1}
+    blockString: NELUMBO_X
+    icon: {fileID: 2800000, guid: f33beec95c41b6d4eaf98679992eb978, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 2c8d6d22005c734438a252c8e09220cf, type: 3}
+  - category: 8
+    color: {r: 0.16862746, g: 0.4392157, b: 0.12941177, a: 1}
+    blockString: SAPO_X
+    icon: {fileID: 2800000, guid: f33beec95c41b6d4eaf98679992eb978, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 44aa44e37760e9c41b2f9ad858dd6ded, type: 3}

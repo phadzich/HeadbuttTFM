@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 4810703166137470484}
   - component: {fileID: 2806460764949968266}
   - component: {fileID: 5702211417993894438}
+  - component: {fileID: -8231692116227561356}
   m_Layer: 8
   m_Name: VenusEnemy
   m_TagString: Untagged
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -240,6 +242,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunTime: 2
   AllowedSources: 0000000001000000
+--- !u!114 &-8231692116227561356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

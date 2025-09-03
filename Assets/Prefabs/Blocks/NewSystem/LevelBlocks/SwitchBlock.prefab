@@ -806,6 +806,7 @@ GameObject:
   - component: {fileID: 6162748558179783232}
   - component: {fileID: 585751157905993583}
   - component: {fileID: 3777207733560323793}
+  - component: {fileID: -8355366735165892228}
   m_Layer: 8
   m_Name: SwitchBlock
   m_TagString: Untagged
@@ -917,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 0
@@ -969,3 +971,15 @@ MonoBehaviour:
   timerUI: {fileID: 807725214876147803}
   timerFill: {fileID: 2565256142217350575}
   timerText: {fileID: 1681577004379953505}
+--- !u!114 &-8355366735165892228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
