@@ -14163,7 +14163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyMesh: {fileID: 1072653608}
   maxHBpoints: 10
-  currentHBpoints: 10
+  currentHBpoints: 0
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
   headbuttPower: 12
@@ -24849,11 +24849,11 @@ PrefabInstance:
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
+      objectReference: {fileID: 11400000, guid: ffe813796b3895d419de81bd55e4421d, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: ffe813796b3895d419de81bd55e4421d, type: 2}
+      objectReference: {fileID: 11400000, guid: 60936598ef9b713469fcb82b348fa49e, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[5]'
       value: 

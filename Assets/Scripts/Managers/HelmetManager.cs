@@ -59,7 +59,7 @@ public class HelmetManager : MonoBehaviour
     {
         QuickTest(0);
         QuickTest(1);
-        QuickTest(4);
+        QuickTest(2);
     }
 
     private void QuickTest(int _id)
