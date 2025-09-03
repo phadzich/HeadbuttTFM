@@ -34,6 +34,10 @@ MonoBehaviour:
   - rid: 3860795526871515214
   - rid: 3860795526871515258
   - rid: 3860795526871515259
+  - rid: 3860795533379764224
+  - rid: 3860795533379764225
+  - rid: 3860795533379764226
+  - rid: 3860795533379764227
   switchesDurations:
   - 4
   - 7
@@ -122,3 +126,26 @@ MonoBehaviour:
         customID: 3
         resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
         resourcesNeeded: 6
+    - rid: 3860795533379764224
+      type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 5
+    - rid: 3860795533379764225
+      type: {class: HelmetBPLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 1
+        helmetBlueprint: {fileID: 11400000, guid: 5caf23eee91b65843b736a0a70db4712, type: 2}
+    - rid: 3860795533379764226
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 3
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+    - rid: 3860795533379764227
+      type: {class: ItemLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 1
+        item: {fileID: 11400000, guid: 8f515ab4ea4dfb943810fd42f5be76cb, type: 2}
