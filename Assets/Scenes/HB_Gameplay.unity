@@ -24592,16 +24592,80 @@ PrefabInstance:
       objectReference: {fileID: 2119067691}
     - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: allHelmetData.Array.size
-      value: 5
+      value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c0367ed8dffb4424f90be79dbbfb5322, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dd281fa57da8b534894b2c5eccd42612, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0db0ee255d364e243addd65b93f1bc98, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b3612914ce1c50c4c84e09543b7f9252, type: 2}
     - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: 'allHelmetData.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
+      objectReference: {fileID: 11400000, guid: db432aec72dd97c43a43e1f0c041461e, type: 2}
     - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: 'allHelmetData.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
+      objectReference: {fileID: 11400000, guid: ba6903ef13f40d548ae03d36f176dd2c, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f1b97e22ef2480149a18448f867effe0, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fd7caafd5b131384e9ab4e56af55bc40, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 219cca8772e885448bbe31c98495b142, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 425602adad533b142a24ce6f90512d63, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 50eb5291ce9c92644aadb95622a10e7b, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5caf23eee91b65843b736a0a70db4712, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 34b2164db3cb3284aa0f695f297d8552, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[13]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[14]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ecf1a5385f89f8b4590305e4b9378860, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[15]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2aa09c66aa8ccf541b115e8622ef33ab, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[16]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 32f85f57cd7e8664097e41983a903f32, type: 2}
+    - target: {fileID: 2727927372892371862, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
+      propertyPath: 'allHelmetData.Array.data[17]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9090c75ac7d033f4295749c6befe33da, type: 2}
     - target: {fileID: 5457872764868005915, guid: a2e4e7c208cf21f40a4d739934eb8e5e, type: 3}
       propertyPath: m_Name
       value: HelmetManager
