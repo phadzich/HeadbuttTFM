@@ -198,6 +198,7 @@ public class LevelManager : MonoBehaviour
             HelmetManager.Instance.ResetHelmetsStats();
             PlayerManager.Instance.MaxUpLives();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
+            currentDropBlock = null;
         }
 
         //CARGAMOS EL SIGUIENTE
@@ -216,6 +217,10 @@ public class LevelManager : MonoBehaviour
         if (currentDropBlock != null)
         {
             PlayerManager.Instance.playerMovement.MoveToDrop(currentDropBlock.transform.position);
+        }
+        else
+        {
+            Debug.Log("NULL ES CHECKPOINT?");
         }
 
             GameManager.Instance.RestartSublevelStats();

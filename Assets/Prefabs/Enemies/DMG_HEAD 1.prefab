@@ -4948,7 +4948,7 @@ Transform:
   m_GameObject: {fileID: 3194031746685227574}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: -0.00000015646219}
+  m_LocalPosition: {x: 1.441, y: 0, z: -0.00000015646219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10277,7 +10277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4186fad9cf54579862b7217bf88d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headDmg: {fileID: 0}
 --- !u!1 &6663836412425209496
 GameObject:
   m_ObjectHideFlags: 0
@@ -10336,7 +10335,7 @@ Transform:
   m_GameObject: {fileID: 6887241143798073348}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.576, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15339,7 +15338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98921e2927552648945d870c3beeb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 4
+  elementType: 0
   attackCollider: {fileID: 2326535436580803081}
   rotationParticles:
   - {fileID: 1241805286537262801}
@@ -15349,7 +15348,6 @@ MonoBehaviour:
   rotationAngle: 360
   rotationDuration: 6
   waitDuration: 1.5
-  dmgBlock: {fileID: 0}
   damageCooldown: 2
 --- !u!114 &1003532578358748977
 MonoBehaviour:
@@ -15513,6 +15511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 0
@@ -15520,3 +15519,4 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
+  elementType: 0
