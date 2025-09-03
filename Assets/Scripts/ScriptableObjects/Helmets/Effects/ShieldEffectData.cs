@@ -1,12 +1,12 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GameData/Effects/WaterShieldEffectData")]
-public class WaterShieldEffectData : HelmetEffectData
+public class ShieldEffectData : HelmetEffectData
 {
     public float duration;
 
     public override HelmetEffect CreateEffect()
     {
-        return new WaterShield(this);
+        return new ElementalShield(this);
     }
 }

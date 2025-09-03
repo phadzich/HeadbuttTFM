@@ -20,7 +20,6 @@ public class SublevelMapNewGenerator : MonoBehaviour
     Vector3 nextPosition;
     public Dictionary<Vector2Int, BlockNS> currentBlocks = new();
 
-    private bool testingMigrate = false;
     private MapContext context;
 
     public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, NPCSublevelConfig _npcConfig, Sublevel _sublevel)

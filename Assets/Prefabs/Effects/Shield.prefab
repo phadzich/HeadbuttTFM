@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5571662374112930862}
   - component: {fileID: 7226236301994005317}
   - component: {fileID: 4233985650502295726}
-  - component: {fileID: 1972125776569513316}
   - component: {fileID: 5162520973693592115}
   m_Layer: 0
   m_Name: Shield
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1972125776569513316
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4629038668093464048}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5162520973693592115
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: 19_Firebreathe
+  m_Name: 18_Firebreathe
   m_EditorClassIdentifier: 
-  id: 19
+  id: 18
   helmetName: Firebreathe
   description: 
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}

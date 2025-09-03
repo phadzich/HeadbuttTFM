@@ -1,12 +1,12 @@
 using UnityEngine;
 
 [System.Serializable]
-public class WaterShield : HelmetEffect
+public class ElementalShield : HelmetEffect
 {
-    private readonly WaterShieldEffectData data;
+    private readonly ShieldEffectData data;
     private float duration;
 
-    public WaterShield(WaterShieldEffectData _data)
+    public ElementalShield(ShieldEffectData _data)
     {
         data = _data;
         duration = _data.duration;
@@ -19,7 +19,7 @@ public class WaterShield : HelmetEffect
 
     public override void OnHeadbutt()
     {
-        if(PlayerManager.Instance.playerMovement.blockNSBelow.blockName == "WATER")
+        if(PlayerManager.Instance.playerMovement.blockNSBelow.Element == HelmetManager.Instance.currentHelmet.Element)
         {
             PlayerManager.Instance.playerEffects.ShieldOn(duration);
         }

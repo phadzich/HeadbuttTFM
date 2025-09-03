@@ -13,7 +13,6 @@ public class SpikesDmg : MonoBehaviour
 
     [Header("VARIABLES DA�O")]
     public float damageCooldown = 2f;
-    private float lastDamageTime = -Mathf.Infinity;
 
     private DamageEffect dmgEffect => GetComponentInParent<DamageEffect>();
 
