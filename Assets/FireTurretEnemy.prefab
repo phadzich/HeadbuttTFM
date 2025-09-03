@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5602336342754670405}
   - component: {fileID: 3191975713178306611}
   - component: {fileID: 7339226652743349536}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 289864635524325002}
   - component: {fileID: 7975122431391247135}
   - component: {fileID: 4843573117337648627}
+  - component: {fileID: 8315893348249356325}
   m_Layer: 9
   m_Name: Turret
   m_TagString: Untagged
@@ -190,7 +191,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarUI: {fileID: 909338826229197644}
-  maxHealth: 5
+  maxHealth: 4
   currentHealth: 0
   damageMultiplier: 1
   AllowedSources: 02000000
@@ -326,6 +327,19 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 611feaaf153758542b63b294276ffebd, type: 3}
   deathSound: {fileID: 8300000, guid: acdc8f6a5c4db1048a630563972710f4, type: 3}
+--- !u!114 &8315893348249356325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518385022924172439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf3d0106c8a20f49a6d4685a13fa24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &3165668333662976928
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +351,7 @@ GameObject:
   - component: {fileID: 185255762688667581}
   - component: {fileID: 2964096381722151243}
   - component: {fileID: 8924206204662769027}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
+  isWalkable: 1
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}
@@ -527,7 +541,7 @@ GameObject:
   - component: {fileID: 4978570955183861941}
   - component: {fileID: 4860862746946256031}
   - component: {fileID: 7727897248388894288}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: FloorBlock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +627,7 @@ GameObject:
   - component: {fileID: 2069286691541004850}
   - component: {fileID: 2911754344510472711}
   - component: {fileID: 1261725523211682701}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +715,7 @@ GameObject:
   - component: {fileID: 3175795816504161668}
   - component: {fileID: 1647213736883501040}
   - component: {fileID: 2392903418061117324}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +832,7 @@ GameObject:
   - component: {fileID: 1407079550120449345}
   - component: {fileID: 4560649732332492461}
   - component: {fileID: 905580896275859080}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

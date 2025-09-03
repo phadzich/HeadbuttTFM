@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: Lvl6_Water
+  m_EditorClassIdentifier: 
+  id: 16
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
+  sublevel2DMap: {fileID: 2800000, guid: ef7aedd439eb8974bad8aced24c88dea, type: 3}
+  objectives:
+  - rid: 3561225397364064356
+  - rid: 3561225397364064357
+  gateRequirements: []
+  chestsRequirements:
+  - rid: 3561225397364064355
+  chestsLoot: []
+  switchesDurations:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  references:
+    version: 2
+    RefIds:
+    - rid: 3561225397364064355
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
+        switchesID: 0
+        switchesNeeded: 8
+        activeSwitches: []
+        lowestTime: 0
+    - rid: 3561225397364064356
+      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+        resourcesNeeded: 25
+    - rid: 3561225397364064357
+      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+        resourcesNeeded: 12
