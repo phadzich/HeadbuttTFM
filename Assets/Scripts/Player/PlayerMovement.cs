@@ -202,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
         positionTarget = _newPos;
         ChangePositionTarget(_newPos);
         StartCoroutine(RestoreToNormalSpeed());
-        Debug.Log($"Player falling at {_newPos}");
+        //Debug.Log($"Player falling at {_newPos}");
     }
 
 

@@ -7,7 +7,7 @@ public class DropBehaviour : MonoBehaviour, IBlockBehaviour
     
     public void OnBounced(HelmetInstance _helmetInstance)
     {
-        Debug.Log("DROPPED");
+       // Debug.Log("DROPPED");
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)

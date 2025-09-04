@@ -91,7 +91,7 @@ public class MatchManager : MonoBehaviour
         if (bouncedResource != currentChainResource)
         {
             FailCurrentChain();
-            Debug.Log("Starting new chain");
+            //Debug.Log("Starting new chain");
             StartNewChain();
         }
     }
