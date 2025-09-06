@@ -15,39 +15,31 @@ MonoBehaviour:
   id: 14
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 0
   sublevel2DMap: {fileID: 2800000, guid: fb82d952b52415946968f33fe3f99d54, type: 3}
   objectives:
-  - rid: 3561225397364064348
+  - rid: 5739005506480767059
   gateRequirements:
-  - rid: 3561225397364064349
-  - rid: 3561225397364064350
-  - rid: 3561225397364064351
+  - rid: 5739005506480767058
   chestsRequirements: []
   chestsLoot: []
-  switchesDurations: []
+  switchesDurations:
+  - 5
+  - 5
   references:
     version: 2
     RefIds:
-    - rid: 3561225397364064348
-      type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
-      data:
-        icon: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
-        keysNeeded: 1
-    - rid: 3561225397364064349
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+    - rid: 5739005506480767058
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
-        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-        resourcesNeeded: 6
-    - rid: 3561225397364064350
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+        icon: {fileID: 0}
+        switchesID: 0
+        switchesNeeded: 2
+        activeSwitches: []
+        lowestTime: 0
+    - rid: 5739005506480767059
+      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:
-        customID: 0
-        resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-        resourcesNeeded: 10
-    - rid: 3561225397364064351
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-        resourcesNeeded: 6
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+        resourcesNeeded: 12

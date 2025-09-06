@@ -24503,6 +24503,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[12].name
+      value: LEVELWATERMUSIC
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[13].name
+      value: LEVELAMBIENT
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[14].name
+      value: LEVELWATERAMBIENT
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[15].name
+      value: LEVELGRASSMUSIC
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[16].name
+      value: LEVELGRASSAMBIENT
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[12].category
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: soundList.Array.data[12].sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: 'soundList.Array.data[12].sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f91455a7006e3a4287c97b92c611f0e, type: 3}
+    - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: 'soundList.Array.data[12].sounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b35faa2015d6244a8ef8114b938381d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

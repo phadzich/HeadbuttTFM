@@ -156,8 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: {fileID: 1298261001074707767}
   projectilePrefab: {fileID: 2121837420294675754, guid: aca737815d08fd540aa6dd5b6fa218ca, type: 3}
-  shootingInterval: 2
-  speedMultiplier: 1
+  shootingInterval: 5
+  speedMultiplier: 3
   intervalMultiplier: 1
   projectileCount: 1
   projectileSpeed: 3
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
