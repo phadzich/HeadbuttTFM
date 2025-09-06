@@ -23,7 +23,7 @@ public class FrontEndFrame : MonoBehaviour
 
     public void OpenFrame(string _title, string _descrip, Sprite _icon)
     {
-
+        this.gameObject.SetActive(true);
         //DATA
         frameIcon.sprite = _icon;
         frameTitleTXT.text = _title;
@@ -66,7 +66,13 @@ public class FrontEndFrame : MonoBehaviour
             startValue: hotkeysStartPos,
             endValue: hotkeysStartPos - 150,
             duration: .5f,
-            ease: Ease.InOutExpo);
+            ease: Ease.InOutExpo).OnComplete(DeactivateOnClose);
+    }
+
+    private void DeactivateOnClose()
+    {
+        Debug.Log("CHAU");
+        //this.gameObject.SetActive(false);
     }
 
 }

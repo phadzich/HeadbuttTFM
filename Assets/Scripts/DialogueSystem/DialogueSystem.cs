@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,19 +19,27 @@ public class DialogueSystem : MonoBehaviour
         index = 0;
         ShowDialogueUI();
         ShowNextLine();
+        SwitchInputToPlayer();
         SwitchInputToUI();
-
-
     }
 
     private void SwitchInputToUI()
     {
+        StartCoroutine(SwitchDelayed());
+    }
+
+    private IEnumerator SwitchDelayed()
+    {
+        yield return null; // espera 1 frame
         InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
 
     private void SwitchInputToPlayer()
     {
+
         InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+
     }
     private void ShowDialogueUI()
     {
