@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f287970a84a322c49b454ebc18bfcac1, type: 3}
   m_Name: CrossAttack_Water
   m_EditorClassIdentifier: 
-  effectName: Cross Attack
+  effectType: Cross Attack
+  effectName: Splash Guns
   description: 
   effectIcon: {fileID: 21300000, guid: bde7b8172e9bb1243b3b94f5698e5a2f, type: 3}
   hbPointsUsed: 2

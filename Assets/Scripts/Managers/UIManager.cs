@@ -194,7 +194,7 @@ public class UIManager : MonoBehaviour
         }
 
         craftingPanel.UpdateHelmetList();
-        craftingPanel.UpdateInfoCard(_instance);
+        craftingPanel.infoPanel.UpdateInfoCard(_instance);
     }
 
     private void OnHelmetSwap(int _index)

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4327f5e4a813f443acf38e21cc306bc, type: 3}
   m_Name: ElementalShield_Water
   m_EditorClassIdentifier: 
-  effectName: ElementalShield
+  effectType: Elemental Shield
+  effectName: Hydrophobic
   description: "Obt\xE9n un escudo de un solo uso al hacer Headbutt sobre un bloque
     del mismo elemento que tu casco."
   effectIcon: {fileID: 21300000, guid: 8711c121612662a47998457fa1df6ca3, type: 3}

@@ -33,7 +33,7 @@ public class HelmetHUD : MonoBehaviour
     {
         helmetInstance = _helmetInstance;
         helmetIMG.sprite = helmetInstance.baseHelmet.icon;
-        miningPowerIMG.sprite = miningPowerSprites[(int)_helmetInstance.baseHelmet.miningPower];
+        //miningPowerIMG.sprite = miningPowerSprites[(int)_helmetInstance.baseHelmet.miningPower];
         UpdateDurability(_helmetInstance.currentDurability, _helmetInstance.durability);
         UnWearHelmet();
     }
@@ -41,7 +41,7 @@ public class HelmetHUD : MonoBehaviour
     public void UpdateDurability(int _current, int _max)
     {
         float _fillAmount = ((float)_current / (float)_max);
-        durabilityTXT.text = $"{_current}/{_max}";
+        durabilityTXT.text = $"{_current}";
         durabilityFillIMG.fillAmount = _fillAmount;
     }
 
@@ -81,7 +81,7 @@ public class HelmetHUD : MonoBehaviour
     public void WearHelmet()
     {
         selectionBG.color = selectedColor;
-        selectedArrowIMG.gameObject.SetActive(true);
+        //selectedArrowIMG.gameObject.SetActive(true);
     }
 
     public void Broken()
@@ -89,7 +89,7 @@ public class HelmetHUD : MonoBehaviour
 
         selectionBG.color = brokenColor;
         faderIMG.gameObject.SetActive(true);
-        selectedArrowIMG.gameObject.SetActive(false);
+        //selectedArrowIMG.gameObject.SetActive(false);
     }
 
     public void UnBroken()
@@ -101,7 +101,7 @@ public class HelmetHUD : MonoBehaviour
     public void UnWearHelmet()
     {
         selectionBG.color = unselectedColor;
-        selectedArrowIMG.gameObject.SetActive(false);
+        //selectedArrowIMG.gameObject.SetActive(false);
     }
 
 }

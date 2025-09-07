@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class HelmetEffectData : ScriptableObject
 {
+    public string effectType;
     public string effectName;
     [TextArea]
     public string description;

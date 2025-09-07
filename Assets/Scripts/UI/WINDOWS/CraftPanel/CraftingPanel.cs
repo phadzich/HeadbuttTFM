@@ -8,17 +8,11 @@ using System;
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
-    public GameObject infoPanel;
+    public HelmetInfoPanelUI infoPanel;
     public GameObject helmetButtonPrefab;
     public GameObject helmetListContainer;
-    public TextMeshProUGUI helmetNameTXT;
-    public Image helmetIcon;
 
     public SwapHelmetsPanelUI swapHelmetsUI;
-
-
-    public Button craftBTN;
-    public Button equipBTN;
 
     private List<HelmetInstance> availableHelmets => HelmetManager.Instance.allHelmets;
 
@@ -26,19 +20,19 @@ public class CraftingPanel : MonoBehaviour
     {
 
         LoadMainPage();
-        CraftingManager.Instance.HelmetSelected += UpdateInfoCard;
+        CraftingManager.Instance.HelmetSelected += infoPanel.UpdateInfoCard;
         //CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;
-        infoPanel.SetActive(false);
+        infoPanel.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        CraftingManager.Instance.HelmetSelected -= UpdateInfoCard;
+        CraftingManager.Instance.HelmetSelected -= infoPanel.UpdateInfoCard;
         //CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted -= UpdateHelmetList;
         CraftingManager.Instance.SelectHelmet(null);
-        infoPanel.SetActive(false);
+        infoPanel.gameObject.SetActive(false);
     }
 
     private void LoadMainPage()
@@ -66,28 +60,4 @@ public class CraftingPanel : MonoBehaviour
     {
         swapHelmetsUI.gameObject.SetActive(_show);
     }
-    public void UpdateInfoCard(HelmetInstance _helmetInstance)
-    {
-        infoPanel.SetActive(true);
-        helmetNameTXT.text = _helmetInstance.baseHelmet.name;
-        helmetIcon.sprite = _helmetInstance.baseHelmet.icon;
-
-        if (_helmetInstance.isDiscovered) {
-            craftBTN.interactable = true;
-            if (_helmetInstance.isCrafted)
-            {
-                equipBTN.interactable = true;
-            }
-            else
-            {
-                equipBTN.interactable = false;
-            }
-        }
-        else
-        {
-            craftBTN.interactable = false;
-            equipBTN.interactable = false;
-        }
-    }
-
 }

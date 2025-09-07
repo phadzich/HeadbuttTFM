@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f4489d5db685649b55826ede323b7a, type: 3}
   m_Name: BasicAttack_Water
   m_EditorClassIdentifier: 
-  effectName: Fire Headbutt
+  effectType: Basic Attack
+  effectName: Water Headbutt
   description: 
   effectIcon: {fileID: 21300000, guid: ec4e3cf00ccf9d74e80d07a8a592aee1, type: 3}
   hbPointsUsed: 1

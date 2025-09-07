@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f287970a84a322c49b454ebc18bfcac1, type: 3}
   m_Name: CrossAttack_Fire
   m_EditorClassIdentifier: 
-  effectName: Cross Attack
+  effectType: Cross Attack
+  effectName: Flame Crucifix
   description: 
   effectIcon: {fileID: 21300000, guid: a3f6fe19c86f235418269e8981d1e776, type: 3}
   hbPointsUsed: 2
