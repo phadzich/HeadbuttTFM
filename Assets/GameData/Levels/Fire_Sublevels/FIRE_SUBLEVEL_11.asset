@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 11000
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
-  limitPerSpawn: 6
+  limitPerSpawn: 4
   sublevel2DMap: {fileID: 2800000, guid: 42785369b608954439dd7a017d886844, type: 3}
   objectives:
   - rid: 7431280957495181391

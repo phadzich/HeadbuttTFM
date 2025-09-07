@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FIRE_SUBLEVEL_04
   m_EditorClassIdentifier: 
   id: 4000
-  helmetBPData: {fileID: 11400000, guid: 219cca8772e885448bbe31c98495b142, type: 2}
+  helmetBPData: {fileID: 11400000, guid: 425602adad533b142a24ce6f90512d63, type: 2}
   dialogueSequence: {fileID: 0}
   limitPerSpawn: 2
   sublevel2DMap: {fileID: 2800000, guid: 2731a5130900b07449fc3a4e0f590ab6, type: 3}
