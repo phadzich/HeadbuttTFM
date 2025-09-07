@@ -21,6 +21,7 @@ public class UIPanel : MonoBehaviour
         ChangeInputToPlayer();
         ClearLastSlotVisual();
         UIManager.Instance.DeactivateCurrentCam();
+        UIManager.Instance.frontEndFrame.CloseFrame();
     }
 
     private void SetSelectedTarget()

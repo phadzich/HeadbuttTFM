@@ -78,7 +78,7 @@ public class ResourceBlock : MonoBehaviour
         resourceDropPrefab.ConfigDrop(resourceData.resMesh);
     }
 
-    private int HelmetPowerMultiplier(MiningPower helmetPower)
+    private int HelmetPowerMultiplier(HelmetPower helmetPower)
     {
         int multiplier = (int)helmetPower+1;
         return multiplier;

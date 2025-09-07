@@ -3,17 +3,8 @@ using UnityEngine;
 public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuPanel;
-    [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
 
     private bool isPaused = false;
-
-    void Update()
-    {
-        if (Input.GetKeyDown(pauseKey))
-        {
-            TogglePause();
-        }
-    }
 
     public void TogglePause()
     {

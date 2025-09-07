@@ -68,7 +68,7 @@ public class PlayerHeadbutt : MonoBehaviour
         if (_amount > currentHBpoints)
         {
             _result = false;
-            Debug.Log("NOT ENOUGH HB POINTS");
+            //Debug.Log("NOT ENOUGH HB POINTS");
         }
         else
         {

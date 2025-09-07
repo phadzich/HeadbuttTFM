@@ -44,7 +44,7 @@ public class HelmetInstance: IElemental
 
         currentHBHarvest = 0.3f;
 
-        Debug.Log(_helmetSO.helmetName);
+        //Debug.Log(_helmetSO.helmetName);
 
         ActivateEffects(_helmetSO.effects);
 
@@ -52,7 +52,7 @@ public class HelmetInstance: IElemental
 
     public void ActivateEffects(List<HelmetEffectData> _effects)
     {
-        Debug.Log(_effects);
+        //Debug.Log(_effects);
 
         foreach (var _effect in _effects)
         {

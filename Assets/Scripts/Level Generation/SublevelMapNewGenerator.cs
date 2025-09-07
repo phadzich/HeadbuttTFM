@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
@@ -20,10 +21,9 @@ public class SublevelMapNewGenerator : MonoBehaviour
     Vector3 nextPosition;
     public Dictionary<Vector2Int, BlockNS> currentBlocks = new();
 
-    private bool testingMigrate = false;
     private MapContext context;
 
-    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, NPCSublevelConfig _npcConfig, Sublevel _sublevel)
+    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _miningConfig, NPCSublevelConfig _npcConfig, Sublevel _sublevel)
     {
         context = new MapContext
         {
@@ -31,7 +31,7 @@ public class SublevelMapNewGenerator : MonoBehaviour
             x = 0,
             y = 0,
             sublevel = _sublevel,
-            miningConfig = _config,
+            miningConfig = _miningConfig,
             npcConfig = _npcConfig
         };
 
@@ -41,11 +41,41 @@ public class SublevelMapNewGenerator : MonoBehaviour
         mapTexture = _inputMap;
         sublevelContainer = _parentTransform;
         InstanceAllBlocks(mapWidth, mapHeight);
+        if (_miningConfig != null)
+        {
+            RestartSublevelStats();
+        }
 
 
     }
 
-    void InstanceAllBlocks(int _width, int _height)
+
+
+    private void RestartSublevelStats()
+    {
+        
+        ResetActiveObjectives(context.sublevel.activeObjectives);
+        ResetActiveRequirements(context.sublevel.activeChestRequirements);
+        ResetActiveRequirements(context.sublevel.activeGateRequirements);
+    }
+
+    private void ResetActiveRequirements(List<IRequirement> _list)
+    {
+        foreach (IRequirement _req in _list)
+        {
+            _req.current = 0;
+        }
+    }
+
+    private void ResetActiveObjectives(List<ISublevelObjective> _list)
+    {
+        foreach (ISublevelObjective _obj in _list)
+        {
+            _obj.current = 0;
+        }
+    }
+
+        void InstanceAllBlocks(int _width, int _height)
     {
         currentBlocks.Clear();
         int _spacing = 1;

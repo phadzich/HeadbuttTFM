@@ -77,6 +77,8 @@ Material:
     - Vector1_EEB61C8: -0.04
     - Vector1_F2179F34: 0.309
     - Vector1_F4FD793F: 0
+    - _BUILTIN_QueueControl: -1
+    - _BUILTIN_QueueOffset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

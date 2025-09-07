@@ -97,6 +97,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerAnimations.RotateBody(0);
         playerStates.ChangeState(PlayerMainStateEnum.Walk);
+        MaxUpLives();
     }
 
     public void EnterNewLevel()

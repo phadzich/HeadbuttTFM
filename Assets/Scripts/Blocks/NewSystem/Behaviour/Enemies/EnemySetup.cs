@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BlockNS))]
 public class EnemySetup : MonoBehaviour, IBlockSetup
 {
     public EnemyDatabase enemyDatabase;
@@ -12,7 +11,7 @@ public class EnemySetup : MonoBehaviour, IBlockSetup
         var _enemyData = enemyDatabase.GetEnemyData(enemyID);
         if (_enemyData != null)
         {
-            GetComponent<EnemyBehaviour>().SetupBlock(_enemyData, spawnPoint);
+            //GetComponent<EnemyBehaviour>().SetupBlock(_enemyData, spawnPoint);
         }
     }
 }

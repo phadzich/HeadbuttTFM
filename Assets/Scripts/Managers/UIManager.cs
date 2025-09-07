@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     [Header("FRONTEND")]
     public GameObject startPanel;
+    public FrontEndFrame frontEndFrame;
 
     [Header("HUD")]
     public CurrentHelmetsHUD currentHelmetsHUD;
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
     public DialogueSystem dialogueSystem;
 
     [Header("LIBRARIES")]
-    public LootIconsLibrary lootIcons;
+    public IconsLibrary iconsLibrary;
 
 
     private void Awake()
@@ -211,24 +212,29 @@ public class UIManager : MonoBehaviour
 
     public void OpenNPCUI(NPCType _type)
     {
+
         switch (_type)
         {
             case NPCType.Crafter:
                 NPCCraftPanel.SetActive(true);
                 currentOpenUI = NPCCraftPanel.gameObject;
+                frontEndFrame.OpenFrame("FORGER", "Craft, upgrade and equip helmets.", UIManager.Instance.iconsLibrary.coinSprite);
                 break;
             case NPCType.Trader:
                 NPCTraderPanel.SetActive(true);
                 currentOpenUI = NPCTraderPanel.gameObject;
+                frontEndFrame.OpenFrame("RACKS", "A closet of just helmets.", UIManager.Instance.iconsLibrary.coinSprite);
                 break;
             case NPCType.Elevator:
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
+                frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.coinSprite);
                 break;
             case NPCType.Inventory:
                 NPCInventoryPanel.gameObject.SetActive(true);
                 currentOpenUI = NPCInventoryPanel.gameObject;
                 InventoryManager.Instance.itemsInventory.OpenUI();
+                frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.coinSprite);
                 break;
         }
     }
@@ -237,11 +243,14 @@ public class UIManager : MonoBehaviour
     {
         currentOpenUI.SetActive(false);
         currentOpenUI = null;
+        frontEndFrame.CloseFrame();
     }
     public void OpenShopUI(int _id)
     {
-        shopPanel.OpenShop(ShopManager.Instance.ShopById(_id));
+        Shop _currentShop = ShopManager.Instance.ShopById(_id);
+        shopPanel.OpenShop(_currentShop);
         currentOpenUI = shopPanel.gameObject;
+        frontEndFrame.OpenFrame("SHADY SHOP", _currentShop.shopName, UIManager.Instance.iconsLibrary.coinSprite);
     }
 
 

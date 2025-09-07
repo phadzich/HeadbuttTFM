@@ -66,7 +66,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
-    private int HelmetPowerMultiplier(MiningPower helmetPower)
+    private int HelmetPowerMultiplier(HelmetPower helmetPower)
     {
         int multiplier = (int)helmetPower + 1;
         return multiplier;
@@ -98,7 +98,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         SoundManager.PlaySound(SoundType.HEADBUTTRESOURCE, 0.7f);
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-            helmetPowerMultiplier = 3;
+            helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
             MatchManager.Instance.TryToAddToChain();
 

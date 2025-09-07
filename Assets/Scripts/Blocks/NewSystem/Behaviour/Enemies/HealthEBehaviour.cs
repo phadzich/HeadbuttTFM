@@ -57,6 +57,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
     public void StartBehaviour()
     {
         RestoreHealth();
+        lastElement = ElementType.Neutral;
     }
 
     private void UpdateBarUI()

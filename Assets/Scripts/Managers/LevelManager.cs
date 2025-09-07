@@ -68,7 +68,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("LevelManager START");
-
         ResourceManager.Instance.InitOwnedResources();
         //CARGAMOS EL PRIMER NIVEL
         LoadLevel(levelsList[0]);
@@ -127,9 +126,9 @@ public class LevelManager : MonoBehaviour
 
     public void ExitSublevel()
     {
-        //Debug.Log($"Exiting {currentSublevel}");
+
         StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
-            
+
         currentLevelDepth++;
         //PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
         MatchManager.Instance.RestartMatches();
@@ -141,6 +140,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Exiting {currentLevel}");
         StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
         MatchManager.Instance.RestartMatches();
+
         currentDropBlock = null;
     }
 
@@ -185,7 +185,6 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
         PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
-        //PlayerManager.Instance.
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             PlayerManager.Instance.EnterMiningLevel();
@@ -196,29 +195,47 @@ public class LevelManager : MonoBehaviour
             //ENTRAR A ESTADO CHECKPOINT
             PlayerManager.Instance.EnterNPCLevel();
             HelmetManager.Instance.ResetHelmetsStats();
-            PlayerManager.Instance.MaxUpLives();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
+            currentDropBlock = null;
         }
 
-        //CARGAMOS EL SIGUIENTE
+        TryGenerateNextSublevel();
+        ActivateDialogIfAvailable(_sublevelConfig);
+        MovePlayerToDropBlock();
+
+
+    }
+    
+
+    private void MovePlayerToDropBlock()
+    {
+        if (currentDropBlock != null)
+        {
+            PlayerManager.Instance.playerMovement.MoveToDrop(currentDropBlock.transform.position);
+        }
+        else
+        {
+            //Debug.Log("CHECK");
+        }
+    }
+
+    private void ActivateDialogIfAvailable(SublevelConfig _sublevelConfig)
+    {
+        if (_sublevelConfig.dialogueSequence != null)
+        {
+            UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
+        }
+    }
+
+
+    private void TryGenerateNextSublevel()
+    {
         if (currentLevelDepth < maxLevelDepth)
         {
             GenerateSublevel(currentLevel.config.subLevels[currentLevelDepth + 1], currentLevelDepth + 1);
 
             GenerateNavMesh();
         }
-
-        if (_sublevelConfig.dialogueSequence != null)
-        {
-            UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
-        }
-
-        if (currentDropBlock != null)
-        {
-            PlayerManager.Instance.playerMovement.MoveToDrop(currentDropBlock.transform.position);
-        }
-
-            GameManager.Instance.RestartSublevelStats();
     }
 
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)

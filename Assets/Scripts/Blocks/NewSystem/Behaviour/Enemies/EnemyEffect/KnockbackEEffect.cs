@@ -35,35 +35,14 @@ public class KnockbackEEffect : MonoBehaviour, IEnemyEffect
         {
             if (dir.isWalkable)
             {
-
                 Vector2 delta = dir.sublevelPosition - PlayerManager.Instance.playerMovement.blockNSBelow.sublevelPosition;
-                Vector2 currentPos = PlayerManager.Instance.playerMovement.blockNSBelow.sublevelPosition;
-                newDirection = GetCardinalDirection(delta);
-                //Debug.Log(dir);
+                newDirection = new Vector3(Mathf.RoundToInt(delta.x), 0, Mathf.RoundToInt(delta.y));
                 break;
             }
         }
 
         //Debug.Log(newDirection);
         PlayerManager.Instance.playerMovement.Knockback(newDirection);
-    }
-
-    Vector3 GetCardinalDirection(Vector2 delta)
-    {
-        // Elige el eje con mayor valor absoluto
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-        {
-            return new Vector3(Mathf.Sign(delta.x), 0, 0);
-        }
-        else if (Mathf.Abs(delta.y) > 0)
-        {
-            return new Vector3(0, 0, Mathf.Sign(delta.y));
-        }
-        else
-        {
-            // Si delta es cero en ambos ejes (caso raro), no moverse
-            return Vector3.zero;
-        }
     }
 
 }
