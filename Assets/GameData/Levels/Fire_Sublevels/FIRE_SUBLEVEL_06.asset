@@ -64,4 +64,4 @@ MonoBehaviour:
       data:
         chestID: 0
         amount: 1
-        helmetBlueprint: {fileID: 11400000, guid: b00ff95d9789a804eb9b400478d94578, type: 2}
+        helmetBlueprint: {fileID: 11400000, guid: ba6903ef13f40d548ae03d36f176dd2c, type: 2}
