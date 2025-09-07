@@ -78,24 +78,57 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
     private void UpdateUpgradeButton()
     {
-        UpgradeRequirement _requirements = helmetInstance.baseHelmet.levelUpRequirements[helmetInstance.nextLevel];
 
-        if (helmetInstance.currentLevel == 0)
-        {
-            nextAction = "CRAFT!";
-        }
-        else if (helmetInstance.currentLevel == 3)
+        //Debug.Log(helmetInstance.currentLevel);
+
+        //MAXED
+        if(helmetInstance.currentLevel == 3)
         {
             nextAction = "MAXED!";
+            EnableUpgrade(false);
+            EnableEquip(true);
+            upgradeBtn.gameObject.SetActive(false);
+            return;
         }
-        else
+
+        UpgradeRequirement _requirements = helmetInstance.baseHelmet.levelUpRequirements[helmetInstance.currentLevel];
+
+        //discovered
+        if (helmetInstance.isDiscovered)
+        {
+            nextAction = "CRAFT!";
+            EnableEquip(false);
+            if (CraftingManager.Instance.CanCraft(helmetInstance.GetUpgradeRequirement()))
+            {
+                EnableUpgrade(true);
+
+            }
+            else
+            {
+                EnableUpgrade(false);
+            }
+
+        }
+
+        //crafted
+        if (helmetInstance.currentLevel == 1 || helmetInstance.currentLevel == 2)
         {
             nextAction = "LEVEL UP!";
+            EnableEquip(true);
+            if (CraftingManager.Instance.CanCraft(helmetInstance.GetUpgradeRequirement()))
+            {
+                EnableUpgrade(true);
+            }
+            else
+            {
+                EnableUpgrade(false);
+            }
         }
 
 
-            res01Icon.sprite = _requirements.requirements[0].resource.icon;
+        res01Icon.sprite = _requirements.requirements[0].resource.icon;
         res01TXT.text = _requirements.requirements[0].quantity.ToString();
+
         if (_requirements.requirements.Count > 1)
         {
             res02Icon.sprite = _requirements.requirements[1].resource.icon;
@@ -107,23 +140,19 @@ public class HelmetInfoPanelUI : MonoBehaviour
             res02TXT.text = "";
         }
 
-        if (helmetInstance.isDiscovered)
-        {
-            upgradeBtn.interactable = true;
-            if (helmetInstance.isCrafted)
-            {
-                equipBtn.interactable = true;
-            }
-            else
-            {
-                equipBtn.interactable = false;
-            }
-        }
-        else
-        {
-            upgradeBtn.interactable = false;
-            equipBtn.interactable = false;
-        }
+    }
+
+    private void EnableUpgrade(bool _value)
+    {
+        upgradeBtn.interactable = _value;
+        upgradeBtn.gameObject.SetActive(true);
+
+    }
+
+    private void EnableEquip(bool _value)
+    {
+        equipBtn.interactable = _value;
+
     }
 
     public void UpdateHealth()

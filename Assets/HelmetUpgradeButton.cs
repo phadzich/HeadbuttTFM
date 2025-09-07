@@ -7,6 +7,10 @@ public class HelmetUpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointer
     public GameObject tooltip;
     public TextMeshProUGUI text;
 
+    private void OnDisable()
+    {
+        ToggleTooltip(false);
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         text.text = UIManager.Instance.craftingPanel.infoPanel.nextAction;
