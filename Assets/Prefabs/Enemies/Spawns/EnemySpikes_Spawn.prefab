@@ -254,10 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: {fileID: 0}
-  attackSound: {fileID: 8300000, guid: 277fb5e158357f1498187371d7bb4239, type: 3}
-  damageSound: {fileID: 8300000, guid: 605bbefcc2c7a0343a55ba0d184f7623, type: 3}
-  deathSound: {fileID: 0}
+  idleSound: 17
+  attackSound: 9
+  damageSound: 17
+  deathSound: 17
 --- !u!114 &8145535418678179751
 MonoBehaviour:
   m_ObjectHideFlags: 0

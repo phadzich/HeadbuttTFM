@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -481,10 +482,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 605bbefcc2c7a0343a55ba0d184f7623, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

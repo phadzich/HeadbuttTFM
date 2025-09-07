@@ -1,24 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class EnemySFX : MonoBehaviour
 {
     [Header("Clips de Sonido")]
-    public AudioClip idleSound;
-    public AudioClip attackSound;
-    public AudioClip damageSound;
-    public AudioClip deathSound;
+    public AudioClip idleClip;
+    public AudioClip attackClip;
+    public AudioClip damageClip;
+    public AudioClip deathClip;
 
     private Coroutine idleRoutine;
-
-    private AudioSource audioSource;
-
-    void Awake()
-    {
-        // Busca o crea un AudioSource en el mismo GameObject
-        audioSource = GetComponent<AudioSource>();
-    }
 
     private void Start()
     {
@@ -46,42 +37,38 @@ public class EnemySFX : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(3f, 7f));
-            PlayClip(idleSound);
+            SoundManager.PlaySound(SFXType.ENEMY, transform.position, idleClip, 0.2f);
+            //SoundManager.PlaySound3D(idleSound, transform.position,0.2f);
         }
     }
 
     public void PlayAttack()
     {
-        //Debug.Log("ATTACK SOUND");
+        //Debug.Log("DIE ATTACK");
         StopIdle();
-        StartCoroutine(PlayAndResumeIdle(attackSound));
+        StartCoroutine(PlayAndResumeIdle(attackClip));
     }
 
     public void PlayDamage()
     {
         //Debug.Log("DAMAGE SOUND");
         StopIdle();
-        StartCoroutine(PlayAndResumeIdle(damageSound));
+        StartCoroutine(PlayAndResumeIdle(damageClip));
     }
 
     public void PlayDeath()
     {
         //Debug.Log("DIE SOUND");
         StopIdle();
-        PlayClip(deathSound);
+        SoundManager.PlaySound(SFXType.ENEMY, transform.position, deathClip, 0.2f);
     }
 
     IEnumerator PlayAndResumeIdle(AudioClip _clip)
     {
-        PlayClip(_clip);
+        SoundManager.PlaySound(SFXType.ENEMY, transform.position, _clip, 0.2f);
         yield return new WaitForSeconds(_clip.length);
         PlayIdle();
     }
 
-    private void PlayClip(AudioClip _clip)
-    {
-        if (_clip != null)
-            audioSource.PlayOneShot(_clip);
-    }
 
 }

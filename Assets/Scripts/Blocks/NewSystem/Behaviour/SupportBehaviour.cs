@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
 {
-
+    public AudioClip onBounceSound;
     public ParticleSystem feedbackParticles;
 
     public void Activate()
@@ -14,6 +14,9 @@ public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
     {
         MatchManager.Instance.FloorBounced();
         feedbackParticles.Play();
+        Debug.Log("wate sound:");
+        Debug.Log(onBounceSound);
+        SoundManager.PlaySound(SFXType.SUPPORTBLOCK, 1f, onBounceSound);
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)

@@ -15,6 +15,9 @@ MonoBehaviour:
   id: 4
   levelName: Water
   levelDescription: Water lvl
+  levelMusic: {fileID: 0}
+  levelNpcMusic: {fileID: 0}
+  levelAmbient: {fileID: 0}
   subLevels:
   - {fileID: 11400000, guid: c2bdc702f20a6c8478631f8fcb321dbf, type: 2}
   - {fileID: 11400000, guid: 61a4328f08ca2014d923cc375726d175, type: 2}

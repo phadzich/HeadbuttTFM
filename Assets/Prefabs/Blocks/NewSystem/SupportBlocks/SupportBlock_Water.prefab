@@ -5203,6 +5203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -5223,6 +5224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4783cd5ebac74105a7ca4f981b51db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBounceSound: {fileID: 8300000, guid: 0b35faa2015d6244a8ef8114b938381d, type: 3}
   feedbackParticles: {fileID: 7428737150881724064}
 --- !u!114 &9061047276227353058
 MonoBehaviour:

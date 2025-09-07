@@ -66,7 +66,7 @@ public class SpikesDmg : MonoBehaviour
         {
             // 1. Mover las p�as hacia afuera (hacia endPosition)
             yield return StartCoroutine(MoveSpikes(startPosition, endPosition, movementDuration, true));
-            SoundManager.PlaySound3D(SoundType.SPIKEDAMAGE, transform.position, 0.2f);
+            //SoundManager.PlaySound(SFXType.SPIKEDAMAGE, transform.position, 0.2f);
 
             doDamage();
 

@@ -450,10 +450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: {fileID: 8300000, guid: acdc8f6a5c4db1048a630563972710f4, type: 3}
-  attackSound: {fileID: 8300000, guid: 605bbefcc2c7a0343a55ba0d184f7623, type: 3}
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: 611feaaf153758542b63b294276ffebd, type: 3}
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: acdc8f6a5c4db1048a630563972710f4, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1 &5457371427021623550
 GameObject:
   m_ObjectHideFlags: 0
