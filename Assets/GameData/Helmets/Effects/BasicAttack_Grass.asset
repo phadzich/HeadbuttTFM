@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Basic Attack
   effectName: Grass Headbutt
-  description: 
+  description: Spend 2 Headbutt points to deal {{{ELEMENT}}} damage below you.
   effectIcon: {fileID: 21300000, guid: 9e128497c0f7c8648a85c6e7835ddd0c, type: 3}
   hbPointsUsed: 1
   effectParticles: {fileID: 5102639546771583594, guid: 64fdc60b763c17943809b164e68b2c99, type: 3}

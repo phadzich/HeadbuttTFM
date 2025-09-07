@@ -21,7 +21,6 @@ public class CraftingPanel : MonoBehaviour
 
         LoadMainPage();
         CraftingManager.Instance.HelmetSelected += infoPanel.UpdateInfoCard;
-        //CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;
         infoPanel.gameObject.SetActive(false);
     }
@@ -29,7 +28,6 @@ public class CraftingPanel : MonoBehaviour
     private void OnDisable()
     {
         CraftingManager.Instance.HelmetSelected -= infoPanel.UpdateInfoCard;
-        //CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted -= UpdateHelmetList;
         CraftingManager.Instance.SelectHelmet(null);
         infoPanel.gameObject.SetActive(false);
@@ -52,12 +50,25 @@ public class CraftingPanel : MonoBehaviour
 
         foreach (var _helmet in availableHelmets)
         {
-            Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(_helmet);
+            Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetItemButton>().SetUp(_helmet);
         }
     }
 
     public void ToggleSwapPanel(bool _show)
     {
-        swapHelmetsUI.gameObject.SetActive(_show);
+        SwapMode(_show);
+    }
+        
+
+    private void SwapMode(bool _value)
+    {
+        foreach(Transform _button in swapHelmetsUI.helmetListContainer.transform)
+        {
+            _button.GetComponent<Button>().interactable = _value;
+        }
+        foreach (Transform _helmet in helmetListContainer.transform)
+        {
+            _helmet.GetComponent<Button>().interactable = !_value;
+        }
     }
 }

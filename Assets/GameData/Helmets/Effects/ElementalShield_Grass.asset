@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Elemental Shield
   effectName: Pachamama
-  description: "Obt\xE9n un escudo de un solo uso al hacer Headbutt sobre un bloque
-    del mismo elemento que tu casco."
+  description: Spend 2 Headbutt points to Headbutt over a {{{ELEMENT}}} block to
+    gain a shield for {{{values}}} seconds.
   effectIcon: {fileID: 21300000, guid: fb2d7d044d752a047a6224daf6b2fb55, type: 3}
   hbPointsUsed: 1
   duration: 0

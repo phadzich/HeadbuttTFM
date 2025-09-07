@@ -59,10 +59,9 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
         effTypeTXT.text = helmetInstance.baseHelmet.effects[0].effectType;
         effNameTXT.text = helmetInstance.baseHelmet.effects[0].effectName;
-        effDescTXT.text = helmetInstance.baseHelmet.effects[0].description;
         effCostTXT.text = (helmetInstance.baseHelmet.effects[0].hbPointsUsed + 1).ToString();
 
-        UpdateHealth();
+        UpdateLevelData();
         powerTXT.text = ((int)helmetInstance.baseHelmet.miningPower + 1).ToString();
 
         helmetIcon.sprite = helmetInstance.baseHelmet.icon;
@@ -73,6 +72,8 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
         effectIcon.sprite = helmetInstance.baseHelmet.effects[0].effectIcon;
         effectIconPanel.color = elementColors[(int)helmetInstance.baseHelmet.element];
+
+        equippedLabel.SetActive(helmetInstance.isEquipped);
 
     }
 
@@ -140,7 +141,19 @@ public class HelmetInfoPanelUI : MonoBehaviour
             res02TXT.text = "";
         }
 
+        if (helmetInstance.isEquipped)
+        {
+            EnableEquip(false);
+        }
+        else
+        {
+            EnableEquip(true);
+        }
+
     }
+
+
+
 
     private void EnableUpgrade(bool _value)
     {
@@ -155,22 +168,35 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
     }
 
-    public void UpdateHealth()
+    public void UpdateLevelData()
     {
         UpgradeRequirement[] _requirementsArray = helmetInstance.baseHelmet.levelUpRequirements;
-        string valuesText = "";
+        string durabilityText = "";
+        string statsText = "";
+        for (int i = 0; i < _requirementsArray.Length; i++)
+        {
+            if (i > 0) durabilityText += "/";
+
+            if (i + 1 == helmetInstance.currentLevel)
+                durabilityText += $"<b><color=#FFFFFF>{_requirementsArray[i].durability}</color></b>";
+            else
+                durabilityText += $"<color=#888888>{_requirementsArray[i].durability}</color>";
+        }
 
         for (int i = 0; i < _requirementsArray.Length; i++)
         {
-            if (i > 0) valuesText += "/";
+            if (i > 0) statsText += "/";
 
             if (i + 1 == helmetInstance.currentLevel)
-                valuesText += $"<b><color=#FFFFFF>{_requirementsArray[i].durability}</color></b>";
+                statsText += $"<b><color=#FFFFFF>{_requirementsArray[i].powerStat}</color></b>";
             else
-                valuesText += $"<color=#888888>{_requirementsArray[i].durability}</color>";
+                statsText += $"<color=#888888>{_requirementsArray[i].powerStat}</color>";
         }
 
-        hpTXT.text = valuesText;
+        string _desc = helmetInstance.baseHelmet.effects[0].description.Replace("{{{values}}}", statsText);
+        _desc = _desc.Replace("{{{ELEMENT}}}", helmetInstance.Element.ToString());
+        effDescTXT.text = _desc;
+        hpTXT.text = durabilityText;
     }
 
     private void ColorHelmetNameGradient()

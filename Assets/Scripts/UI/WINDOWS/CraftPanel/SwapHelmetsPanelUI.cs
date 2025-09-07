@@ -25,7 +25,8 @@ public class SwapHelmetsPanelUI : MonoBehaviour
 
         foreach (var _helmet in HelmetManager.Instance.helmetsEquipped)
         {
-            Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetSwapButton>().SetUp(_helmet);
+            Instantiate(helmetButtonPrefab, helmetListContainer.transform);
+                //.GetComponent<HelmetSwapButton>().SetUp(_helmet);
         }
     }
 }

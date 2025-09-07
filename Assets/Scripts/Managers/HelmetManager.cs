@@ -60,6 +60,12 @@ public class HelmetManager : MonoBehaviour
         QuickTest(0);
         QuickTest(1);
         QuickTest(2);
+        allHelmets[6].Discover();
+        allHelmets[6].Craft();
+        allHelmets[11].Discover();
+        allHelmets[11].Craft();
+        allHelmets[20].Discover();
+        allHelmets[20].Craft();
     }
 
     private void QuickTest(int _id)
@@ -122,6 +128,7 @@ public class HelmetManager : MonoBehaviour
 
     public void EquipHelmet(HelmetInstance _craftedHelmet)
     {
+        _craftedHelmet.isEquipped = true;
         helmetsEquipped.Add(_craftedHelmet);
         onHelmetEquipped?.Invoke(_craftedHelmet);
         PlayerManager.Instance.AddMaxLives(1);
@@ -132,6 +139,8 @@ public class HelmetManager : MonoBehaviour
     {
         var index = helmetsEquipped.FindIndex((h => h == _helmetOut));
         helmetsEquipped[index] = _helmetIn;
+        _helmetIn.isEquipped = true;
+        _helmetOut.isEquipped=false; 
         onHelmetsSwapped?.Invoke(index);
         WearHelmet(_helmetIn);
     }

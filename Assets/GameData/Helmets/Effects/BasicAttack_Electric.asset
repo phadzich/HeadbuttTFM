@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Basic Attack
   effectName: Electric Headbutt
-  description: 
+  description: Spend 2 Headbutt points to deal {{{ELEMENT}}} damage below you.
   effectIcon: {fileID: 21300000, guid: 7e013300136e58344ae5cb2d4ee73d59, type: 3}
   hbPointsUsed: 1
   effectParticles: {fileID: 5102639546771583594, guid: 115886ec63aa3e545864a615fa50dcd7, type: 3}

@@ -11,6 +11,7 @@ public class HelmetInstance: IElemental
     public HelmetData baseHelmet;
     public bool isCrafted = false;
     public bool isDiscovered = false;
+    public bool isEquipped;
 
     //Helmet Stats
     public int durability;
