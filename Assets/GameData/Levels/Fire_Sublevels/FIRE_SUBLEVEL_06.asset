@@ -15,17 +15,18 @@ MonoBehaviour:
   id: 6000
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
-  limitPerSpawn: 0
+  limitPerSpawn: 4
   sublevel2DMap: {fileID: 2800000, guid: 286e43299abc0c44ca93b569ed62204b, type: 3}
   objectives:
   - rid: 7431280861658742859
   gateRequirements: []
   chestsRequirements:
   - rid: 8004247995192442962
+  - rid: 8004247996536455246
   chestsLoot:
   - rid: 8004247995192442963
-  - rid: 8004247995192442964
   - rid: 8004247995192442965
+  - rid: 8004247996536455247
   switchesDurations: []
   references:
     version: 2
@@ -34,27 +35,33 @@ MonoBehaviour:
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
-        resourcesNeeded: 23
+        resourcesNeeded: 34
     - rid: 8004247995192442962
       type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
         resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-        resourcesNeeded: 24
+        resourcesNeeded: 12
     - rid: 8004247995192442963
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
         amount: 20
-    - rid: 8004247995192442964
-      type: {class: ItemLoot, ns: , asm: Assembly-CSharp}
-      data:
-        chestID: 0
-        amount: 1
-        item: {fileID: 11400000, guid: 8f515ab4ea4dfb943810fd42f5be76cb, type: 2}
     - rid: 8004247995192442965
       type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
         amount: 15
         resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+    - rid: 8004247996536455246
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+        resourcesNeeded: 12
+    - rid: 8004247996536455247
+      type: {class: HelmetBPLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 1
+        helmetBlueprint: {fileID: 11400000, guid: b00ff95d9789a804eb9b400478d94578, type: 2}

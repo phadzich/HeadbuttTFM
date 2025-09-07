@@ -15,51 +15,47 @@ MonoBehaviour:
   id: 7000
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 2
   sublevel2DMap: {fileID: 2800000, guid: 91f506298a4101e4eb17256065c41046, type: 3}
   objectives:
-  - rid: 7431280864863715402
-  - rid: 6219506904162369610
+  - rid: 8004247996536455242
   gateRequirements:
   - rid: 7431280861658742864
   chestsRequirements:
   - rid: 7431280861658742861
   chestsLoot:
   - rid: 7431280861658742860
-  - rid: 6219506904162369612
+  - rid: 8004247996536455244
   switchesDurations: []
   references:
     version: 2
     RefIds:
-    - rid: 6219506904162369610
-      type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
-      data:
-        icon: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
-        keysNeeded: 1
-    - rid: 6219506904162369612
-      type: {class: KeyLoot, ns: , asm: Assembly-CSharp}
-      data:
-        chestID: 0
-        amount: 1
     - rid: 7431280861658742860
       type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 10
+        amount: 20
         resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
     - rid: 7431280861658742861
       type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
-        resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-        resourcesNeeded: 5
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
+        resourcesNeeded: 12
     - rid: 7431280861658742864
       type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
         resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
         resourcesNeeded: 5
-    - rid: 7431280864863715402
-      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+    - rid: 8004247996536455242
+      type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
       data:
-        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
-        resourcesNeeded: 18
+        icon: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
+        keysNeeded: 2
+    - rid: 8004247996536455244
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 30
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
