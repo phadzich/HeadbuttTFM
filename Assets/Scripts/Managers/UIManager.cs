@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public FrontEndFrame frontEndFrame;
 
     [Header("HUD")]
+    public GameObject HUDCanvas;
     public CurrentHelmetsHUD currentHelmetsHUD;
     public ActiveItemHUD activeItemHUD;
     public ResourcesPanel resourcesPanel;
@@ -44,6 +45,8 @@ public class UIManager : MonoBehaviour
 
     [Header("LIBRARIES")]
     public IconsLibrary iconsLibrary;
+    public List<Sprite> elementIcons;
+    public List<Color> elementColors;
 
 
     private void Awake()
@@ -212,7 +215,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenNPCUI(NPCType _type)
     {
-
+        HUDCanvas.SetActive(false);
         switch (_type)
         {
             case NPCType.Crafter:
@@ -241,12 +244,14 @@ public class UIManager : MonoBehaviour
 
     public void CloseCurrentOpenUI()
     {
+        HUDCanvas.SetActive(true);
         currentOpenUI.SetActive(false);
         currentOpenUI = null;
         frontEndFrame.CloseFrame();
     }
     public void OpenShopUI(int _id)
     {
+        HUDCanvas.SetActive(false);
         Shop _currentShop = ShopManager.Instance.ShopById(_id);
         shopPanel.OpenShop(_currentShop);
         currentOpenUI = shopPanel.gameObject;

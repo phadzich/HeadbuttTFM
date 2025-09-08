@@ -36,9 +36,6 @@ public class HelmetInfoPanelUI : MonoBehaviour
     public Button equipBtn;
 
 
-    public List<Sprite> elementIcons;
-    public List<Color> elementColors;
-
     public void UpdateInfoCard(HelmetInstance _helmetInstance)
     {
         this.gameObject.SetActive(true);
@@ -59,19 +56,20 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
         effTypeTXT.text = helmetInstance.baseHelmet.effects[0].effectType;
         effNameTXT.text = helmetInstance.baseHelmet.effects[0].effectName;
+        effNameTXT.color = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
         effCostTXT.text = (helmetInstance.baseHelmet.effects[0].hbPointsUsed + 1).ToString();
 
         UpdateLevelData();
         powerTXT.text = ((int)helmetInstance.baseHelmet.miningPower + 1).ToString();
-
+        helmetIcon.gameObject.SetActive(true);
         helmetIcon.sprite = helmetInstance.baseHelmet.icon;
 
 
-        elementIcon.sprite = elementIcons[(int)helmetInstance.baseHelmet.element];
-        elementPanel.color = elementColors[(int)helmetInstance.baseHelmet.element];
+        elementIcon.sprite = UIManager.Instance.elementIcons[(int)helmetInstance.baseHelmet.element];
+        elementPanel.color = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
 
         effectIcon.sprite = helmetInstance.baseHelmet.effects[0].effectIcon;
-        effectIconPanel.color = elementColors[(int)helmetInstance.baseHelmet.element];
+        effectIconPanel.color = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
 
         equippedLabel.SetActive(helmetInstance.isEquipped);
 
@@ -145,10 +143,6 @@ public class HelmetInfoPanelUI : MonoBehaviour
         {
             EnableEquip(false);
         }
-        else
-        {
-            EnableEquip(true);
-        }
 
     }
 
@@ -205,8 +199,8 @@ public class HelmetInfoPanelUI : MonoBehaviour
         VertexGradient newGradient = new VertexGradient();
         newGradient.topLeft = Color.white;    // Left side color
         newGradient.topRight = Color.white;  // Right side color
-        newGradient.bottomLeft = elementColors[(int)helmetInstance.baseHelmet.element];
-        newGradient.bottomRight = elementColors[(int)helmetInstance.baseHelmet.element];
+        newGradient.bottomLeft = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
+        newGradient.bottomRight = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
 
         nameTXT.colorGradient = newGradient;
         nameTXT.ForceMeshUpdate();

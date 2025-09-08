@@ -11,7 +11,8 @@ public class CraftingPanel : MonoBehaviour
     public HelmetInfoPanelUI infoPanel;
     public GameObject helmetButtonPrefab;
     public GameObject helmetListContainer;
-
+    public GameObject cancelButton;
+    public GameObject swapBorder;
     public SwapHelmetsPanelUI swapHelmetsUI;
 
     private List<HelmetInstance> availableHelmets => HelmetManager.Instance.allHelmets;
@@ -23,6 +24,8 @@ public class CraftingPanel : MonoBehaviour
         CraftingManager.Instance.HelmetSelected += infoPanel.UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;
         infoPanel.gameObject.SetActive(false);
+        infoPanel.helmetIcon.gameObject.SetActive(false);
+        infoPanel.equippedLabel.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -52,17 +55,22 @@ public class CraftingPanel : MonoBehaviour
         {
             Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetItemButton>().SetUp(_helmet);
         }
+
+        swapHelmetsUI.UpdateHelmetList();
     }
 
     public void ToggleSwapPanel(bool _show)
     {
+        Debug.Log($"SWAP MODE {_show}");
         SwapMode(_show);
     }
         
 
     private void SwapMode(bool _value)
     {
-        foreach(Transform _button in swapHelmetsUI.helmetListContainer.transform)
+        cancelButton.SetActive(_value);
+        swapBorder.SetActive(_value);
+        foreach (Transform _button in swapHelmetsUI.helmetListContainer.transform)
         {
             _button.GetComponent<Button>().interactable = _value;
         }

@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 5112739481542716725}
   - component: {fileID: 3064867247874349854}
   - component: {fileID: 6495638490096313909}
-  - component: {fileID: 3124492717162705364}
+  - component: {fileID: 2162922790504539605}
   m_Layer: 5
   m_Name: EquippedHelmetButton
   m_TagString: Untagged
@@ -502,8 +502,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4358185440609747946}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3124492717162705364
+      m_Calls:
+      - m_Target: {fileID: 2162922790504539605}
+        m_TargetAssemblyTypeName: HelmetSwapButton, Assembly-CSharp
+        m_MethodName: OnClickSelectBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2162922790504539605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,9 +524,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8208788430726675304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c0317dd92660840ae7edb1c1d67bea, type: 3}
+  m_Script: {fileID: 11500000, guid: 8474622461bf56c46afac7943f09ee15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  helmetIcon: {fileID: 1875482852705890931}
+  duraTXT: {fileID: 9114045517251295885}
+  powerTXT: {fileID: 7527040902399303280}
+  powerPanel: {fileID: 1485710229546297923}
 --- !u!1 &8580835148300872087
 GameObject:
   m_ObjectHideFlags: 0

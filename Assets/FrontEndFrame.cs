@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class FrontEndFrame : MonoBehaviour
 {
-    public GameObject hotkeysBar;
+    public RectTransform hotkeysBar;
     public TextMeshProUGUI frameTitleTXT;
     public TextMeshProUGUI frameDescriptionTXT;
     public Image frameIcon;
-    public GameObject frameTitle;
+    public RectTransform frameTitle;
     public float hotkeysStartPos;
     public float titleStartPos;
     public Image frameBG;
@@ -35,15 +35,15 @@ public class FrontEndFrame : MonoBehaviour
             duration: .3f,
             ease: Ease.InOutExpo);
 
-        Tween.PositionY(frameTitle.transform,
-            startValue: titleStartPos + 250,
-            endValue: titleStartPos,
+        Tween.UIAnchoredPositionY(frameTitle,
+            startValue: 350,
+            endValue: 0,
             duration: .8f,
             ease: Ease.InOutExpo);
 
-        Tween.PositionY(hotkeysBar.transform,
-            startValue: hotkeysStartPos - 150,
-            endValue: hotkeysStartPos,
+        Tween.UIAnchoredPositionY(hotkeysBar,
+            startValue: -250,
+            endValue: 50,
             duration: .8f,
             ease: Ease.InOutExpo);
     }
@@ -56,15 +56,15 @@ public class FrontEndFrame : MonoBehaviour
             duration: .3f,
             ease: Ease.InOutExpo);
 
-        Tween.PositionY(frameTitle.transform,
-            startValue: titleStartPos,
-            endValue: titleStartPos + 250,
+        Tween.UIAnchoredPositionY(frameTitle,
+            startValue: 0,
+            endValue: 350,
             duration: .5f,
             ease: Ease.InOutExpo);
 
-        Tween.PositionY(hotkeysBar.transform,
-            startValue: hotkeysStartPos,
-            endValue: hotkeysStartPos - 150,
+        Tween.UIAnchoredPositionY(hotkeysBar,
+            startValue: 50,
+            endValue:  -250,
             duration: .5f,
             ease: Ease.InOutExpo).OnComplete(DeactivateOnClose);
     }

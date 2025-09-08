@@ -1282,22 +1282,19 @@ MonoBehaviour:
     baseHelmet: {fileID: 0}
     isCrafted: 0
     isDiscovered: 0
+    isEquipped: 0
     durability: 0
     currentLevel: 0
     currentDurability: 0
     currentHBHarvest: 0
   helmetIMG: {fileID: 1875482852705890931}
   selectionBG: {fileID: 3064867247874349854}
-  selectedArrowIMG: {fileID: 0}
   faderIMG: {fileID: 5148716730555204244}
-  miningPowerIMG: {fileID: 0}
   durabilityTXT: {fileID: 9114045517251295885}
+  powerTXT: {fileID: 7527040902399303280}
+  powerPanel: {fileID: 1485710229546297923}
   durabilityFillIMG: {fileID: 7611768637292440867}
   evolvePanel: {fileID: 6721693922580246282}
-  miningPowerSprites:
-  - {fileID: 21300000, guid: 6a5036360558625498dd731789991b55, type: 3}
-  - {fileID: 21300000, guid: 3fed9c7fc990c6d4993c7edec5e8fc52, type: 3}
-  - {fileID: 21300000, guid: 6ec256bd2a0668d4a94a864e937752a9, type: 3}
   res01IMG: {fileID: 3775025587624148753}
   res01TXT: {fileID: 2699826895353677001}
   res02IMG: {fileID: 7509525276204730100}

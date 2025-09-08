@@ -22,6 +22,7 @@ public class UIPanel : MonoBehaviour
         ClearLastSlotVisual();
         UIManager.Instance.DeactivateCurrentCam();
         UIManager.Instance.frontEndFrame.CloseFrame();
+        UIManager.Instance.HUDCanvas.SetActive(true);
     }
 
     private void SetSelectedTarget()

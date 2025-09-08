@@ -15,6 +15,7 @@ public class HelmetItemButton : MonoBehaviour
     {
         helmet = helmetI;
         helmetIcon.sprite = helmetI.baseHelmet.icon;
+
         if (helmetI.isDiscovered)
         {
             helmetIcon.color = Color.white;
