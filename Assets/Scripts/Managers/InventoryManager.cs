@@ -10,13 +10,11 @@ using UnityEngine.InputSystem;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    public HelmetInventory helmetsInventory;
     public ItemsInventory itemsInventory;
 
     [SerializeField]private InventorySlot highlightedSlot;
     [SerializeField] private InventorySlot selectedSlot;
     [SerializeField] private InventorySlot activeSlot;
-
 
     public void UpdateEquippedSlotData(Item _item, int _count, InventorySlot _slot)
     {
@@ -90,11 +88,10 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        helmetsInventory.Init();
         itemsInventory.Init();
     }
 
 
 }
 
-public enum NavContext { ItemSlots, EquippedItems, HelmetSlots, EquippedHelmets }
+public enum NavContext { ItemSlots, EquippedItems }
