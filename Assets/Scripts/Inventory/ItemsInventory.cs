@@ -58,12 +58,12 @@ public class ItemsInventory : MonoBehaviour
 
     public void TryEquipItem(Item _item)
     {
-        Debug.Log(_item.itemName);
+        
         bool alreadyEquipped = equippedItems.Any(e => e.item == _item);
 
         if (!alreadyEquipped)
         {
-            Debug.Log("ITEM NOT EQUIPPED");
+            
 
             if (equippedItems.Count < maxItemsEquipped)
             {
@@ -86,7 +86,30 @@ public class ItemsInventory : MonoBehaviour
 
     public void SwapHelmet(Item _itemIn, Item _itemOut)
     {
-//
+        int index = equippedItems.FindIndex(e => e.item == _itemOut);
+
+        if (index >= 0)
+        {
+            if (!ownedItems.TryGetValue(_itemIn, out int amountIn))
+            {
+                Debug.LogWarning($"SwapHelmet: {_itemIn.itemName} no está en ownedItems.");
+                return;
+            }
+
+            // reemplazar el item viejo con el nuevo y su cantidad real
+            equippedItems[index] = (_itemIn, amountIn);
+
+            // notificar
+            ItemEquipped?.Invoke(_itemIn, amountIn);
+            ItemsListChanged?.Invoke();
+
+            // si justo era el activo, actualizamos
+            if (currentActiveItem == _itemOut)
+            {
+                currentActiveItem = _itemIn;
+                ItemCycled?.Invoke(currentActiveItem, amountIn);
+            }
+        }
     }
 
     private void EquipNewItem(Item _newItem, int _amount)
@@ -103,7 +126,7 @@ public class ItemsInventory : MonoBehaviour
             {
                 return;
             }
-            Debug.Log("!");
+            
 
             ConsumeItems(currentActiveItem, 1);
         }

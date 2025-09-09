@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("UIManager START");
         SuscribeToHelmetInstances();
+        InputManager.Instance.SwitchInputToPlayer();
     }
 
     private void OnEnable()
@@ -242,19 +243,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void CloseCurrentOpenUI()
+    public void CloseCurrentOpenUI(InputAction.CallbackContext context)
     {
-        if (currentOpenUI != null)
+        Debug.Log("E");
+        if (context.performed) // ya se soltó y volvió a presionar
         {
-            HUDCanvas.SetActive(true);
-            currentOpenUI.SetActive(false);
-            currentOpenUI = null;
-            frontEndFrame.CloseFrame();
+            Debug.Log("Closing UI");
+            if (currentOpenUI != null)
+            {
+                HUDCanvas.SetActive(true);
+                currentOpenUI.SetActive(false);
+                currentOpenUI = null;
+                frontEndFrame.CloseFrame();
+            }
         }
+
 
     }
     public void OpenShopUI(int _id)
     {
+        Debug.Log("OpeningSHOP UI");
         HUDCanvas.SetActive(false);
         Shop _currentShop = ShopManager.Instance.ShopById(_id);
         shopPanel.OpenShop(_currentShop);

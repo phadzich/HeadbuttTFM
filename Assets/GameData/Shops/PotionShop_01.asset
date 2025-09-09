@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PotionShop_01
   m_EditorClassIdentifier: 
   shopName: Basic Shop
-  shopID: 1
+  shopID: 0
   shopItems:
   - item: {fileID: 11400000, guid: 17b29fd6c303e584486af4709b385150, type: 2}
     quantity: 10

@@ -350,9 +350,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HelmetSwapButton, Assembly-CSharp
-        m_MethodName: OnClickSelectBtn
+      - m_Target: {fileID: -6754730463378023355}
+        m_TargetAssemblyTypeName: EquippedItemButton, Assembly-CSharp
+        m_MethodName: OnClickSwapBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

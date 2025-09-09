@@ -6,6 +6,7 @@ public class ExchangeButtonUI : MonoBehaviour
 {
     public Image resourceIcon;
     public TextMeshProUGUI resourceAmountTXT;
+    public TextMeshProUGUI ownedTXT;
     public ResourceData resourceData;
     public int resourceAmount;
 
@@ -18,7 +19,9 @@ public class ExchangeButtonUI : MonoBehaviour
         //Debug.Log(resourceAmount);
 
         resourceIcon.sprite = resourceData.icon;
+        ownedTXT.text = $"OWNED: {ResourceManager.Instance.ownedResources[resourceData]}";
         resourceAmountTXT.text = resourceAmount.ToString();
+
         UpdateButtonStatus();
 
     }

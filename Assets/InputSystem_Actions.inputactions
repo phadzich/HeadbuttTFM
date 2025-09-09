@@ -530,7 +530,7 @@
                     "id": "028deabe-fc54-452c-8109-825e8189bb90",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -887,10 +887,10 @@
                 {
                     "name": "",
                     "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
-                    "path": "*/{Cancel}",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "groups": "Keyboard&Mouse;Gamepad",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -908,22 +908,22 @@
                 },
                 {
                     "name": "",
-                    "id": "e2ae7e68-f410-49dd-abdd-acbe3d51dfb4",
-                    "path": "<Keyboard>/e",
+                    "id": "dd310ffe-b7f1-4a8a-966f-489a7e796572",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Gamepad",
+                    "groups": ";Gamepad;Keyboard&Mouse",
                     "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "dd310ffe-b7f1-4a8a-966f-489a7e796572",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "c9f53149-5d94-4e71-b4a8-6b661ae5048f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": ";Keyboard&Mouse;Gamepad",
                     "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false

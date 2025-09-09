@@ -10,6 +10,7 @@ public class EquippedItemsPanelUI : MonoBehaviour
     public void PanelStart(List<(Item item, int amount)> _equippedItems)
     {
         UpdateInfo(_equippedItems);
+        EnableButtons(false);
     }
 
     public void UpdateInfo(List<(Item item, int amount)> _equippedItems)

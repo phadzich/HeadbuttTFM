@@ -1,8 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 
 public class UIPanel : MonoBehaviour
@@ -16,6 +17,7 @@ public class UIPanel : MonoBehaviour
         ChangeInputToUI();
         SetSelectedTarget();
     }
+
     private void OnDisable()
     {
         ChangeInputToPlayer();
@@ -53,12 +55,12 @@ public class UIPanel : MonoBehaviour
 
     private void ChangeInputToUI()
     {
-        InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
+        InputManager.Instance.SwitchInputToUI();
     }
 
     private void ChangeInputToPlayer()
     {
-        InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+        InputManager.Instance.SwitchInputToPlayer();
     }
 
 

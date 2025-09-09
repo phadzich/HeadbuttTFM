@@ -15,36 +15,38 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(DialogueSequence _sequence)
     {
+        Debug.Log("DIALOG START");
         lines = _sequence.lines;
         index = 0;
         ShowDialogueUI();
         ShowNextLine();
-        SwitchInputToPlayer();
-        SwitchInputToUI();
+        StartCoroutine(ForceUIAfterFrames(10));
     }
 
     private void SwitchInputToUI()
     {
-        StartCoroutine(SwitchDelayed());
+        InputManager.Instance.SwitchInputToUI();
     }
 
-    private IEnumerator SwitchDelayed()
+    private IEnumerator ForceUIAfterFrames(int frames)
     {
-        yield return null; // espera 1 frame
-        InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
-        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+        for (int i = 0; i < frames; i++)
+            yield return null; // espera un frame
+
+        SwitchInputToUI();
+        Debug.Log("Forzado UI después de " + frames + " frames");
     }
 
     private void SwitchInputToPlayer()
     {
 
-        InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+        InputManager.Instance.SwitchInputToPlayer();
 
     }
     private void ShowDialogueUI()
     {
         dialogueUI.Open();
-    }
+}
 
     public void NextLinePressed(InputAction.CallbackContext context)
     {

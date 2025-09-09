@@ -31,32 +31,44 @@ public class InputManager : MonoBehaviour
             Debug.LogError("M'as de un InputManager");
         }
             Instance = this;
-
+        SwitchInputToPlayer();
     }
-
     private void Start()
     {
-        SwitchInputToPlayer();
+        StartCoroutine(ForcePlayerAfterFrames(5));
+    }
+    public void SwitchInputToUI()
+    {
+        foreach (var map in playerInput.actions.actionMaps)
+            map.Disable();
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
         Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
-
-    private void SwitchInputToPlayer()
+    public void SwitchInputToPlayer()
     {
-        StartCoroutine(SwitchDelayed());
-    }
-
-    private IEnumerator SwitchDelayed()
-    {
-        yield return null; // espera 1 frame
+        foreach (var map in playerInput.actions.actionMaps)
+            map.Disable();
         InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
         Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
 
-    public void TryInteractWithNPC()
+    private IEnumerator ForcePlayerAfterFrames(int frames)
     {
-        if (currentInteractableNPC != null)
+        for (int i = 0; i < frames; i++)
+            yield return null; // espera un frame
+
+        SwitchInputToPlayer();
+        Debug.Log("Forzado Player después de " + frames + " frames");
+    }
+
+    public void TryInteractWithNPC(InputAction.CallbackContext context)
+    {
+        if (context.started)
         {
-            currentInteractableNPC.Interact();
+            if (currentInteractableNPC != null)
+            {
+                currentInteractableNPC.Interact();
+            }
         }
     }
 }

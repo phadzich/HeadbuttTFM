@@ -31,7 +31,7 @@ public class InventoryPanelUI : MonoBehaviour
         InventoryManager.Instance.itemsInventory.ItemEquipped += OnItemEquipped;
         InventoryManager.Instance.itemsInventory.ItemOwned += OnItemOwned;
         InventoryManager.Instance.itemsInventory.ItemsListChanged += OnItemsListChanged;
-        //infoPanel.PanelStart();
+        itemInfoPanel.PanelStart();
         ownedPanel.PanelStart(ownedItems);
         equippedPanel.PanelStart(equippedItems);
     }
@@ -41,12 +41,11 @@ public class InventoryPanelUI : MonoBehaviour
         InventoryManager.Instance.itemsInventory.ItemEquipped -= OnItemEquipped;
         InventoryManager.Instance.itemsInventory.ItemOwned -= OnItemOwned;
         InventoryManager.Instance.itemsInventory.ItemsListChanged -= OnItemsListChanged;
-        //infoPanel.gameObject.SetActive(false);
     }
 
     private void OnItemEquipped(Item _item, int _amount)
     {
-        //infoPanel.UpdateInfo();
+        itemInfoPanel.UpdateInfo(currentSelectedItem);
         equippedPanel.UpdateInfo(equippedItems);
     }
     private void OnItemOwned(Item _item, int _amount)
@@ -54,10 +53,11 @@ public class InventoryPanelUI : MonoBehaviour
         ownedPanel.UpdateInfo(ownedItems);
         equippedPanel.UpdateInfo(equippedItems);
     }
-    private void OnItemsListChanged()
+    public void OnItemsListChanged()
     {
         ownedPanel.UpdateInfo(ownedItems);
         equippedPanel.UpdateInfo(equippedItems);
+        itemInfoPanel.UpdateInfo(currentSelectedItem);
     }
 
     public void ItemSelected(Item _item)
@@ -73,7 +73,7 @@ public class InventoryPanelUI : MonoBehaviour
     }
     public void ToggleSwapPanel(bool _show)
     {
-        Debug.Log($"SWAP MODE {_show}");
+        //Debug.Log($"SWAP MODE {_show}");
         SwapMode(_show);
         itemInfoPanel.UpdateData();
     }

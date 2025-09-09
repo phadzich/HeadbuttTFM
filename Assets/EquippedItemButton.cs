@@ -17,4 +17,11 @@ public class EquippedItemButton : MonoBehaviour
         itemIcon.sprite = _item.illustration;
         amountTXT.text = itemCount.ToString();
     }
+
+    public void OnClickSwapBtn()
+    {
+        InventoryManager.Instance.itemsInventory.SwapHelmet(UIManager.Instance.InventoryPanel.currentSelectedItem, itemData);
+        UIManager.Instance.InventoryPanel.OnItemsListChanged();
+        UIManager.Instance.InventoryPanel.ToggleSwapPanel(false);
+    }
 }
