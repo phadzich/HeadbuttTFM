@@ -30,6 +30,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
     public Image effectIconPanel;
     public Image res01Icon;
     public Image res02Icon;
+    public GameObject res02;
 
     public GameObject equippedLabel;
     public Button upgradeBtn;
@@ -72,7 +73,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
         effectIconPanel.color = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
 
         equippedLabel.SetActive(helmetInstance.isEquipped);
-
+        equipBtn.gameObject.SetActive(!helmetInstance.isEquipped);
     }
 
     private void UpdateUpgradeButton()
@@ -126,22 +127,26 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
 
         res01Icon.sprite = _requirements.requirements[0].resource.icon;
-        res01TXT.text = _requirements.requirements[0].quantity.ToString();
+        res01TXT.text = $"{_requirements.requirements[0].quantity}/{ResourceManager.Instance.ownedResources[_requirements.requirements[0].resource]}";
+        res01TXT.color = _requirements.requirements[0].resource.color;
+
+        res02.SetActive(true);
 
         if (_requirements.requirements.Count > 1)
         {
             res02Icon.sprite = _requirements.requirements[1].resource.icon;
-            res02TXT.text = _requirements.requirements[1].quantity.ToString();
+            res02TXT.text = $"{_requirements.requirements[1].quantity}/{ResourceManager.Instance.ownedResources[_requirements.requirements[1].resource]}";
+            res02TXT.color = _requirements.requirements[1].resource.color;
         }
         else
         {
-            res02Icon.sprite = null;
-            res02TXT.text = "";
+            res02.SetActive(false);
         }
 
         if (helmetInstance.isEquipped)
         {
             EnableEquip(false);
+            equipBtn.gameObject.SetActive(false);
         }
 
     }

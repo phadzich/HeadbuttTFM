@@ -57,12 +57,14 @@ public class CraftingPanel : MonoBehaviour
         }
 
         swapHelmetsUI.UpdateHelmetList();
+
     }
 
     public void ToggleSwapPanel(bool _show)
     {
         Debug.Log($"SWAP MODE {_show}");
         SwapMode(_show);
+        infoPanel.UpdateData();
     }
         
 

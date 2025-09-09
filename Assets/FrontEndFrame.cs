@@ -71,8 +71,8 @@ public class FrontEndFrame : MonoBehaviour
 
     private void DeactivateOnClose()
     {
-        Debug.Log("CHAU");
-        //this.gameObject.SetActive(false);
+        //Debug.Log("CHAU");
+        this.gameObject.SetActive(false);
     }
 
 }
