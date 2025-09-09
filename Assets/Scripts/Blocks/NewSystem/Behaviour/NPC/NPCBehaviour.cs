@@ -81,6 +81,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         switch (type)
         {
             case NPCType.Shop:
+                Debug.Log("INTERACT");
                 UIManager.Instance.OpenShopUI(shopID);
                 break;
             default:

@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject NPCCraftPanel;
     public GameObject NPCTraderPanel;
     public ExchangePanelUI NPCUpgradeExchanger;
-    public InventoryPanelUI NPCInventoryPanel;
+    public InventoryPanelUI InventoryPanel;
     public GameObject NPCElevatorPanel;
     public ShopPanel shopPanel;
     public CraftingPanel craftingPanel;
@@ -215,6 +215,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenNPCUI(NPCType _type)
     {
+        Debug.Log("OpeningNPCUI");
         HUDCanvas.SetActive(false);
         switch (_type)
         {
@@ -234,9 +235,8 @@ public class UIManager : MonoBehaviour
                 frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.coinSprite);
                 break;
             case NPCType.Inventory:
-                NPCInventoryPanel.gameObject.SetActive(true);
-                currentOpenUI = NPCInventoryPanel.gameObject;
-                InventoryManager.Instance.itemsInventory.OpenUI();
+                InventoryPanel.gameObject.SetActive(true);
+                currentOpenUI = InventoryPanel.gameObject;
                 frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.coinSprite);
                 break;
         }
@@ -244,10 +244,14 @@ public class UIManager : MonoBehaviour
 
     public void CloseCurrentOpenUI()
     {
-        HUDCanvas.SetActive(true);
-        currentOpenUI.SetActive(false);
-        currentOpenUI = null;
-        frontEndFrame.CloseFrame();
+        if (currentOpenUI != null)
+        {
+            HUDCanvas.SetActive(true);
+            currentOpenUI.SetActive(false);
+            currentOpenUI = null;
+            frontEndFrame.CloseFrame();
+        }
+
     }
     public void OpenShopUI(int _id)
     {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: a2b2657c1c8a116438e92cd3bfae9f9e, type: 3}
   keySprite: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
-  coinSprite: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+  coinSprite: {fileID: 21300000, guid: c4a67e429c5bd7f4cb359f1f4caeaa0f, type: 3}
   npcShop: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
   npcForger: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
   npcElevator: {fileID: 21300000, guid: 7664409f878a05c41af091bcd1260705, type: 3}

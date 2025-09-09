@@ -33,3 +33,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: efd18d75e42951b43b7d57e4ff624d7d, type: 2}
     quantity: 3
     price: 0
+  - item: {fileID: 11400000, guid: b50ce1cfc42aaa9468a34e9a19a92254, type: 2}
+    quantity: 3
+    price: 80
+  - item: {fileID: 11400000, guid: b50ce1cfc42aaa9468a34e9a19a92254, type: 2}
+    quantity: 3
+    price: 80

@@ -21,8 +21,8 @@ public class UIPanel : MonoBehaviour
         ChangeInputToPlayer();
         ClearLastSlotVisual();
         UIManager.Instance.DeactivateCurrentCam();
-        UIManager.Instance.frontEndFrame.CloseFrame();
-        UIManager.Instance.HUDCanvas.SetActive(true);
+        //UIManager.Instance.frontEndFrame.CloseFrame();
+        //UIManager.Instance.HUDCanvas.SetActive(true);
     }
 
     private void SetSelectedTarget()
@@ -42,11 +42,13 @@ public class UIPanel : MonoBehaviour
 
     private void ClearLastSlotVisual()
     {
+        /*
         if (lastSelectedSlot!=null && lastSelectedSlot.TryGetComponent(out InventorySlot _slot))
         {
             _slot.SetHighlighted(false);
             _slot.SetSelected(false);
         }
+        */
     }
 
     private void ChangeInputToUI()

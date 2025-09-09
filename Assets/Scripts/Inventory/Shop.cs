@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Shop
     public int shopID;
     public string shopName;
     public List<ShopItem> shopInventory;
+    public Action shopItemsChanged;
 
     public Shop(ShopData _shopData)
     {
@@ -27,6 +29,7 @@ public class Shop
         if (ResourceManager.Instance.coinTrader.CanSpendCoins(_totalCoins)){
             RemoveFromInventory(shopInventory.IndexOf(_item), _quantity);
             InventoryManager.Instance.itemsInventory.TryAddOwnedItems(_item.item, _quantity);
+            Debug.Log("Item purchased");
         }
         else
         {
@@ -50,5 +53,6 @@ public class Shop
         {
             _itemToRemove.quantity-= _quantity;
         }
+        shopItemsChanged?.Invoke();
     }
 }

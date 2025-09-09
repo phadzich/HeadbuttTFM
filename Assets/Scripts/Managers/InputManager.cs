@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,6 +32,24 @@ public class InputManager : MonoBehaviour
         }
             Instance = this;
 
+    }
+
+    private void Start()
+    {
+        SwitchInputToPlayer();
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+    }
+
+    private void SwitchInputToPlayer()
+    {
+        StartCoroutine(SwitchDelayed());
+    }
+
+    private IEnumerator SwitchDelayed()
+    {
+        yield return null; // espera 1 frame
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
 
     public void TryInteractWithNPC()

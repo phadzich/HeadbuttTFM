@@ -4,7 +4,7 @@ using UnityEngine;
 public class PotionItem : Item
 {
     public PotionTypes potionType;
-    public int value;
+
 
 
     public override void Use()

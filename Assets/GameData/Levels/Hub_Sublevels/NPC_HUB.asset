@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 0
   NPCtype: 0
   sublevel2DMap: {fileID: 2800000, guid: a8970215781dfaf4eb895390ff483018, type: 3}
-  npcShopId: 0
+  npcShopId: 1

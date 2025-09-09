@@ -1,80 +1,91 @@
+using System.Collections.Generic;
 using UnityEditor.Rendering.LookDev;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventoryPanelUI : MonoBehaviour
 {
-    public NavContext activeContext;
-    public NavContext prevContext;
+    public OwnedItemsPanelUI ownedPanel;
+    public EquippedItemsPanelUI equippedPanel;
+    public ItemInfoPanelUI itemInfoPanel;
 
-    public Transform itemSlotsCont;
-    public Transform equippedItemsSlotsCont;
-    public Transform helmetSlotsCont;
-    public Transform equippedHelmetSlotsCont;
-    public void ContextFromSelectedSlot(InventorySlot _slot)
+    public Dictionary<Item, int> ownedItems;
+    public List<(Item item, int amount)> equippedItems;
+
+    public GameObject cancelButton;
+    public GameObject swapBorder;
+
+    public Item currentSelectedItem;
+
+    public void Init()
     {
-        Debug.Log($"CHANGING CONTEXT {_slot}");
-
-        switch (_slot.slotType)
-        {
-            case SlotType.Item: SetNavContext(NavContext.EquippedItems); prevContext = NavContext.ItemSlots; break;
-            case SlotType.EquippedItem: SetNavContext(NavContext.ItemSlots); prevContext = NavContext.EquippedItems; break;
-            case SlotType.Helmet: SetNavContext(NavContext.EquippedHelmets); prevContext = NavContext.HelmetSlots; break;
-            case SlotType.EquippedHelmet: SetNavContext(NavContext.HelmetSlots); prevContext = NavContext.EquippedHelmets; break;
-        }
+        ownedItems = InventoryManager.Instance.itemsInventory.ownedItems;
+        equippedItems = InventoryManager.Instance.itemsInventory.equippedItems;
     }
 
     private void OnEnable()
     {
-        SetNavContext(NavContext.ItemSlots);
+        
+        InventoryManager.Instance.itemsInventory.ItemEquipped += OnItemEquipped;
+        InventoryManager.Instance.itemsInventory.ItemOwned += OnItemOwned;
+        InventoryManager.Instance.itemsInventory.ItemsListChanged += OnItemsListChanged;
+        //infoPanel.PanelStart();
+        ownedPanel.PanelStart(ownedItems);
+        equippedPanel.PanelStart(equippedItems);
+    }
+
+    private void OnDisable()
+    {
+        InventoryManager.Instance.itemsInventory.ItemEquipped -= OnItemEquipped;
+        InventoryManager.Instance.itemsInventory.ItemOwned -= OnItemOwned;
+        InventoryManager.Instance.itemsInventory.ItemsListChanged -= OnItemsListChanged;
+        //infoPanel.gameObject.SetActive(false);
+    }
+
+    private void OnItemEquipped(Item _item, int _amount)
+    {
+        //infoPanel.UpdateInfo();
+        equippedPanel.UpdateInfo(equippedItems);
+    }
+    private void OnItemOwned(Item _item, int _amount)
+    {
+        ownedPanel.UpdateInfo(ownedItems);
+        equippedPanel.UpdateInfo(equippedItems);
+    }
+    private void OnItemsListChanged()
+    {
+        ownedPanel.UpdateInfo(ownedItems);
+        equippedPanel.UpdateInfo(equippedItems);
+    }
+
+    public void ItemSelected(Item _item)
+    {
+        currentSelectedItem = _item;
+        itemInfoPanel.UpdateInfo(currentSelectedItem);
     }
 
 
-    private void SetNavContext(NavContext _newContext)
+    public void EquipButtonClick()
     {
-        activeContext = _newContext;
-        switch (_newContext)
-        {
-            case NavContext.ItemSlots:
-
-                ActivateNavInSlots(itemSlotsCont, true);
-                ActivateNavInSlots(equippedItemsSlotsCont, false);
-                ActivateNavInSlots(helmetSlotsCont, true);
-                ActivateNavInSlots(equippedHelmetSlotsCont, false);
-                break;
-            case NavContext.EquippedItems:
-                ActivateNavInSlots(itemSlotsCont, false);
-                ActivateNavInSlots(equippedItemsSlotsCont, true);
-                ActivateNavInSlots(helmetSlotsCont, false);
-                ActivateNavInSlots(equippedHelmetSlotsCont, false);
-                break;
-            case NavContext.HelmetSlots:
-                ActivateNavInSlots(itemSlotsCont, true);
-                ActivateNavInSlots(equippedItemsSlotsCont, false);
-                ActivateNavInSlots(helmetSlotsCont, true);
-                ActivateNavInSlots(equippedHelmetSlotsCont, false);
-                break;
-            case NavContext.EquippedHelmets:
-                ActivateNavInSlots(itemSlotsCont, false);
-                ActivateNavInSlots(equippedItemsSlotsCont, false);
-                ActivateNavInSlots(helmetSlotsCont, false);
-                ActivateNavInSlots(equippedHelmetSlotsCont, true);
-                break;
-        }
+        InventoryManager.Instance.itemsInventory.TryEquipItem(currentSelectedItem);
+    }
+    public void ToggleSwapPanel(bool _show)
+    {
+        Debug.Log($"SWAP MODE {_show}");
+        SwapMode(_show);
+        itemInfoPanel.UpdateData();
     }
 
-    private void ActivateNavInSlots(Transform _slotContainer, bool _active)
-    {
-        foreach (Transform _child in _slotContainer)
-        {
-            _child.gameObject.GetComponent<InventorySlot>().SetContextActive(_active);
-        }
 
-        if (_active)
-        {
-            EventSystem.current.SetSelectedGameObject(_slotContainer.GetChild(0).gameObject);
-        }
+    private void SwapMode(bool _value)
+    {
+        cancelButton.SetActive(_value);
+        swapBorder.SetActive(_value);
+        equippedPanel.EnableButtons(_value);
+        ownedPanel.EnableButtons(!_value);
+
     }
 
 }

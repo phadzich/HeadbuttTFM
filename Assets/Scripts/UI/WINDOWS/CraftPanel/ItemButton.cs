@@ -7,18 +7,21 @@ public class ItemButton : MonoBehaviour
 {
     public Image itemIcon;
     private Item itemData;
-    public TextMeshProUGUI amount;
+    private int itemCount;
+    public TextMeshProUGUI amountTXT;
 
-    public void SetUp(Item _itemData)
+
+    public void Setup(Item _item, int _count)
     {
-        itemData = _itemData;
-        itemIcon.sprite = itemData.illustration;
-        amount.text = InventoryManager.Instance.itemsInventory.ownedItems[_itemData].ToString();
+        itemData = _item;
+        itemCount = _count;
+        itemIcon.sprite = _item.illustration;
+        amountTXT.text = itemCount.ToString();
     }
-  
+
     public void OnClickSelectBtn()
     {
-        //InventoryManager.Instance.SelectItem(itemData);
+        UIManager.Instance.InventoryPanel.ItemSelected(itemData);
     }
 
 

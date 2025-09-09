@@ -9,24 +9,19 @@ using UnityEngine.InputSystem;
 
 public class ItemsInventory : MonoBehaviour
 {
-    [SerializeField] private GameObject inventorySlotPrefab;
-    [SerializeField] public Transform slotContainer;
-
-    [SerializeField] private GameObject firstSlot;
-
-    private int maxItemsPerSlot = 3;
 
     public Item currentActiveItem;
     public int currentActiveIndex;
-    public List<Item> equippedItemsList;
 
-    public UIPanel inventoryPanel;
+    public int maxItemsEquipped;
 
     [SerializeField]
     public Dictionary<Item, int> ownedItems;
     [SerializeField]
-    public Dictionary<Item, int> equippedItems;
+    public List<(Item item, int amount)> equippedItems;
 
+    public Action ItemsListChanged;
+    public Action<Item, int> ItemOwned;
     public Action<Item, int> ItemEquipped;
     public Action<Item, int> ItemConsumed;
     public Action<Item, int> ItemCycled;
@@ -34,24 +29,16 @@ public class ItemsInventory : MonoBehaviour
     public void Init()
     {
         ownedItems = new Dictionary<Item, int>();
-        equippedItems = new Dictionary<Item, int>();
+        equippedItems = new List<(Item, int)>();
+        UIManager.Instance.InventoryPanel.Init();
     }
 
-    public void OpenUI()
-    {
-        RefreshInventoryUI();
-        inventoryPanel.UpdateLastSelection(firstSlot);
-    }
 
-    public void CloseUI()
-    {
-        inventoryPanel.UpdateLastSelection(firstSlot);
-    }
     public void ChangeActiveItem()
     {
-        if (equippedItemsList.Count > 0)
+        if (equippedItems.Count > 0)
         {
-            currentActiveItem = equippedItemsList[currentActiveIndex];
+            currentActiveItem = equippedItems[currentActiveIndex].item;
         }
     }
     public void TryAddOwnedItems(Item _item, int _amount)
@@ -65,91 +52,46 @@ public class ItemsInventory : MonoBehaviour
         else
         {
             ownedItems.Add(_item, _amount);
- 
-            //ActivateNextItem();
         }
-        RefreshInventoryUI();
-
+        ItemOwned?.Invoke(_item, ownedItems[_item]);
     }
-    public void TryEquipItem(Item _item, int _amount,InventorySlot _slot)
+
+    public void TryEquipItem(Item _item)
     {
         Debug.Log(_item.itemName);
-        
-        if (!equippedItems.ContainsKey(_item))
+        bool alreadyEquipped = equippedItems.Any(e => e.item == _item);
+
+        if (!alreadyEquipped)
         {
             Debug.Log("ITEM NOT EQUIPPED");
-            int _totalAmount = ownedItems[_item];
-            int _finalQtyEquipped = _amount;
-            //SE EXCEDE, REGRESAMOS EL EXCEDENTE y solo depositamos el max
-            if (_totalAmount > maxItemsPerSlot)
+
+            if (equippedItems.Count < maxItemsEquipped)
             {
-                _finalQtyEquipped = maxItemsPerSlot;
-                var _returnAmount = _totalAmount - maxItemsPerSlot;
-                UpdateOwnedItem(_item,_returnAmount);
+                EquipNewItem(_item, ownedItems[_item]);
+                ItemEquipped?.Invoke(_item, ownedItems[_item]);
+                ItemsListChanged?.Invoke();
+                ActivateNextItem();
             }
-            //ES EXACTO o MENOR, ELIMINAMOS EL ITEM DEL EQUIPPED
             else
             {
-                RemoveOwnedItem(_item);
+                UIManager.Instance.InventoryPanel.ToggleSwapPanel(true);
             }
-            EquipNewItem(_item, _finalQtyEquipped);
-            InventoryManager.Instance.UpdateEquippedSlotData(_item, _finalQtyEquipped, _slot);
         }
-    
-        
-        /*
-        if (equippedItems.ContainsKey(_item))
+        else
         {
             Debug.Log("ITEM ALREADY EQUIPPED");
-            //EL TOTAL
-            int _totalAmount = equippedItems[_item] + _amount;
-            //SE EXCEDE, REGRESAMOS EL EXCEDENTE
-            if(_totalAmount> maxItemsPerSlot)
-            {
-                var _returnAmount = _totalAmount - maxItemsPerSlot;
-                equippedItems[_item] = maxItemsPerSlot;
-                ownedItems[_item] = _returnAmount;
-            }
-            //ES EXACTO, ELIMINAMOS EL ITEM DEL EQUIPPED
-            else if(_totalAmount == maxItemsPerSlot)
-            {
-                ownedItems.Remove(_item);
-            }
-            //ES MENOR AL MAX, SOLO CAMBIAMOS EL AMOUNT
-            else
-            {
-                equippedItems[_item] = _totalAmount;
-            }
-            InventoryManager.Instance.UpdateEquippedSlotData(_item, _totalAmount, _slot);
         }
 
-        */
-        ItemEquipped?.Invoke(_item, equippedItems[_item]);
-        RefreshInventoryUI();
-        UpdateKeysList();
-        ActivateNextItem();
     }
 
+    public void SwapHelmet(Item _itemIn, Item _itemOut)
+    {
+//
+    }
 
     private void EquipNewItem(Item _newItem, int _amount)
     {
-        equippedItems.Add(_newItem, maxItemsPerSlot);
-    }
-
-    private void UpdateOwnedItem(Item _ownedItem, int _amount)
-    {
-        ownedItems[_ownedItem] = _amount;
-    }
-
-    private void RemoveOwnedItem(Item _ownedItem)
-    {
-        ownedItems.Remove(_ownedItem);
-    }
-
-    private void UpdateKeysList()
-    {
-        equippedItemsList = equippedItems.Keys.ToList();
-
+        equippedItems.Add((_newItem, _amount));
     }
     public void UseActiveItem(InputAction.CallbackContext context)
     {
@@ -174,17 +116,21 @@ public class ItemsInventory : MonoBehaviour
         if (_finalAmount == 0)
         {
             ownedItems.Remove(_item);
-            UpdateKeysList();
+            equippedItems.RemoveAll(e => e.item == _item);
             ActivateNextItem();
         }
         else
         {
             ownedItems[_item] = _finalAmount;
+            int index = equippedItems.FindIndex(e => e.item == _item);
+            if (index >= 0)
+            {
+                equippedItems[index] = (_item, _finalAmount);
+            }
             ItemConsumed?.Invoke(_item, _finalAmount);
         }
 
         _item.Use();
-        RefreshInventoryUI();
     }
 
     public void NextEquippedItem(InputAction.CallbackContext context)
@@ -206,10 +152,10 @@ public class ItemsInventory : MonoBehaviour
             ItemCycled?.Invoke(null, 0);
             return;
         }
-        currentActiveIndex = (currentActiveIndex + 1) % equippedItemsList.Count;
+        currentActiveIndex = (currentActiveIndex + 1) % equippedItems.Count;
         ChangeActiveItem();
 
-        ItemCycled?.Invoke(currentActiveItem, equippedItems[currentActiveItem]);
+        ItemCycled?.Invoke(currentActiveItem, equippedItems[currentActiveIndex].amount);
     }
 
     public void ActivatePrevItem()
@@ -219,9 +165,9 @@ public class ItemsInventory : MonoBehaviour
             ItemCycled?.Invoke(null, 0);
             return;
         }
-        currentActiveIndex = (currentActiveIndex - 1 + equippedItemsList.Count) % equippedItemsList.Count;
+        currentActiveIndex = (currentActiveIndex - 1 + equippedItems.Count) % equippedItems.Count;
         ChangeActiveItem();
-        ItemCycled?.Invoke(currentActiveItem, equippedItems[currentActiveItem]);
+        ItemCycled?.Invoke(currentActiveItem, equippedItems[currentActiveIndex].amount);
     }
 
     public void PreviousEquippedItem(InputAction.CallbackContext context)
@@ -233,51 +179,5 @@ public class ItemsInventory : MonoBehaviour
             if (equippedItems.Count <= 1) return;
             ActivatePrevItem();
         }
-    }
-
-
-    public void RefreshInventoryUI()
-    {
-
-        foreach (Transform _child in slotContainer)
-        {
-            Destroy(_child.gameObject);
-        }
-
-        foreach (var _kvp in ownedItems)
-        {
-            var item = _kvp.Key;
-            var count = _kvp.Value;
-
-            var _slotGO = Instantiate(inventorySlotPrefab, slotContainer);
-            var _slot = _slotGO.GetComponent<InventorySlot>();
-            _slot.AssignItem(item, count);
-        }
-        StartCoroutine(AssignFirstSlotNextFrame());
-
-    }
-    private IEnumerator AssignFirstSlotNextFrame()
-    {
-        yield return null; // espera un frame para que Unity procese destrucción y layout
-
-        if (slotContainer.childCount > 0)
-        {
-            Transform firstChild = slotContainer.GetChild(0);
-
-            if (firstChild.TryGetComponent(out InventorySlot slot))
-            {
-                firstSlot = firstChild.gameObject;
-                inventoryPanel.UpdateLastSelection(firstSlot);
-            }
-            else
-            {
-                Debug.Log("NOSLOT");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No children found in slotContainer after refresh.");
-        }
-
-    }
+    }   
     }

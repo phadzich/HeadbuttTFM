@@ -86,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7237152698709147836}
   - component: {fileID: 6092776757432746617}
-  - component: {fileID: 48956894334237222}
   - component: {fileID: 774319937914755690}
   - component: {fileID: 5828314750097849209}
   - component: {fileID: 3193127746276597072}
@@ -126,20 +125,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5049575914752835320}
   m_CullTransparentMesh: 1
---- !u!114 &48956894334237222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049575914752835320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e202b1ff00c354f8997f5781224c7992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  helmetIcon: {fileID: 2051931831736790908}
-  secretColor: {r: 0, g: 0, b: 0, a: 0.52156866}
 --- !u!114 &774319937914755690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,8 +199,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 48956894334237222}
-        m_TargetAssemblyTypeName: HelmetCard, Assembly-CSharp
+      - m_Target: {fileID: 3193127746276597072}
+        m_TargetAssemblyTypeName: ItemButton, Assembly-CSharp
         m_MethodName: OnClickSelectBtn
         m_Mode: 1
         m_Arguments:
@@ -239,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 2051931831736790908}
-  amount: {fileID: 0}
+  amountTXT: {fileID: 5052878307798668706}
 --- !u!1 &7401146912038818792
 GameObject:
   m_ObjectHideFlags: 0
