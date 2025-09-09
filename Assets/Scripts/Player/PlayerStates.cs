@@ -14,6 +14,8 @@ public class PlayerStates : MonoBehaviour
     public bool canBounce;
     public bool canHeadbutt;
 
+    public bool onMiningLvl = false;
+
     public bool bounceAfterStunPending = false;
 
     private void Start()
@@ -49,13 +51,17 @@ public class PlayerStates : MonoBehaviour
             case PlayerMainStateEnum.FallingIntoMINE:
                 canMove = false;
                 canHeadbutt = false;
+                canBounce = true;
                 bounceAfterStunPending = true;
+                onMiningLvl = true;
 
                 break;
 
             case PlayerMainStateEnum.FallingIntoNPC:
                 canMove = false;
                 canHeadbutt = false;
+                canBounce = true;
+                onMiningLvl = false;
 
                 break;
 
@@ -123,7 +129,7 @@ public class PlayerStates : MonoBehaviour
             ChangeState(PlayerMainStateEnum.Disabled);
             bounceAfterStunPending = true;
         }
-        else if (bounceAfterStunPending)
+        else if (bounceAfterStunPending & !isOnState(PlayerMainStateEnum.FallingIntoMINE))
         {
             ChangeState(PlayerMainStateEnum.Bouncing);
         }

@@ -8,6 +8,15 @@ public class DropBehaviour : MonoBehaviour, IBlockBehaviour
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         Debug.Log("DROPPED");
+        PlayerStates playerStates = PlayerManager.Instance.playerStates;
+        if (playerStates.onMiningLvl)
+        {
+            playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
+        } else
+        {
+            playerStates.ChangeState(PlayerMainStateEnum.Walk);
+        }
+        
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)

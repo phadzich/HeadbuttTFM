@@ -14079,6 +14079,7 @@ MonoBehaviour:
   canReceiveDamage: 1
   canBounce: 0
   canHeadbutt: 0
+  onMiningLvl: 0
   bounceAfterStunPending: 0
 --- !u!114 &1217362975
 MonoBehaviour:
@@ -24517,7 +24518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.size
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: musicSoundList.Array.size
@@ -24666,10 +24667,10 @@ PrefabInstance:
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[7].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 277fb5e158357f1498187371d7bb4239, type: 3}
+      objectReference: {fileID: 8300000, guid: 611feaaf153758542b63b294276ffebd, type: 3}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[7].name
-      value: SPIKEDAMAGE
+      value: RECIEVEDAMAGE
       objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[7].type
@@ -24678,10 +24679,10 @@ PrefabInstance:
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[8].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 611feaaf153758542b63b294276ffebd, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[8].name
-      value: RECIEVEDAMAGE
+      value: ENEMY
       objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[8].type
@@ -24693,7 +24694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[9].name
-      value: ENEMY
+      value: SUPPORTBLOCK
       objectReference: {fileID: 0}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfxSoundList.Array.data[9].type

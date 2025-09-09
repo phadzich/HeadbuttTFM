@@ -66,10 +66,6 @@ public class SoundManager : MonoBehaviour
 
         var soundData = Array.Find(_list, s => s.type.Equals(_type));
 
-        Debug.Log(_type);
-        Debug.Log(soundData.Clip);
-        Debug.Log(_clip);
-
         if (_clip == null & soundData.Clip == null) return;
 
         currentClip = soundData.Clip;
@@ -119,8 +115,7 @@ public class SoundManager : MonoBehaviour
         aSource.outputAudioMixerGroup = sfxSource.outputAudioMixerGroup;
         aSource.Play();
 
-        Destroy(tempGO, soundData.Clip.length);
-
+        Destroy(tempGO, currentClip.length);
     }
 
     public void SetVolume(string mixerGroupName, float volume)
