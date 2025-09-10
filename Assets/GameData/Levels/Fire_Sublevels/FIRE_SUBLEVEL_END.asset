@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FIRE_SUBLEVEL_END
   m_EditorClassIdentifier: 
   id: 5555
-  helmetBPData: {fileID: 0}
+  helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 0
   NPCtype: 0
   sublevel2DMap: {fileID: 2800000, guid: e69aeba134226a44fadee17734b8587e, type: 3}
   npcShopId: 0
