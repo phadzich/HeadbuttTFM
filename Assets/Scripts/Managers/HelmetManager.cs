@@ -46,24 +46,27 @@ public class HelmetManager : MonoBehaviour
         }
 
         CreateAllInstances();
-        InitializeOwnedHelmets();
     }
 
     private void Start()
     {
         Debug.Log("HelmetManager START");
+        InitializeOwnedHelmets();
     }
 
 
     private void InitializeOwnedHelmets()
     {
-        allHelmets[0].Discover();
-        allHelmets[1].Discover();
-        allHelmets[2].Discover();
+        QuickTest(0);
+        QuickTest(1);
+        QuickTest(2);
+    }
 
-        allHelmets[0].Craft();
-        allHelmets[1].Craft();
-        allHelmets[2].Craft();
+    private void QuickTest(int _id)
+    {
+        allHelmets[_id].Discover();
+        allHelmets[_id].Craft();
+        EquipHelmet(allHelmets[_id]);
     }
 
     // Crear todas las instancias de cascos
@@ -108,10 +111,7 @@ public class HelmetManager : MonoBehaviour
 
         if (helmetsEquipped.Count < maxEquippedHelmets)
         {
-            helmetsEquipped.Add(_craftedHelmet);
-            onHelmetEquipped?.Invoke(_craftedHelmet);
-            PlayerManager.Instance.AddMaxLives(1);
-            WearHelmet(_craftedHelmet);
+            EquipHelmet(_craftedHelmet);
 
         } else
         {
@@ -120,44 +120,32 @@ public class HelmetManager : MonoBehaviour
 
     }
 
+    public void EquipHelmet(HelmetInstance _craftedHelmet)
+    {
+        _craftedHelmet.isEquipped = true;
+        helmetsEquipped.Add(_craftedHelmet);
+        onHelmetEquipped?.Invoke(_craftedHelmet);
+        PlayerManager.Instance.AddMaxLives(1);
+        WearHelmet(_craftedHelmet);
+    }
+
     public void SwapHelmet(HelmetInstance _helmetIn, HelmetInstance _helmetOut)
     {
         var index = helmetsEquipped.FindIndex((h => h == _helmetOut));
         helmetsEquipped[index] = _helmetIn;
+        _helmetIn.isEquipped = true;
+        _helmetOut.isEquipped=false; 
         onHelmetsSwapped?.Invoke(index);
         WearHelmet(_helmetIn);
     }
 
     // Función para USAR un casco 
     public void WearHelmet(HelmetInstance _helmet) {
+        helmetIndex = helmetsEquipped.IndexOf(_helmet);
         currentHelmet = _helmet;
         currentMesh.SetHelmetMesh(_helmet.baseHelmet.mesh);
         onWearHelmetChanged?.Invoke(_helmet);
         _helmet.OnWear();
-    }
-
-
-
-    public void TryUseHelmetSpecial(InputAction.CallbackContext context)
-    {
-        //SI NO HAY HELMET
-        if (currentHelmet == null) return;
-
-        //CUANDO EL INPUT ESTA PERFORMED
-        if (context.phase == InputActionPhase.Performed)
-            {
-            //BUSCA TODOS LOS EFECTOS CON SPECIAL ATTACKS Y LOS ACTIVA
-            foreach (HelmetEffect _effect in currentHelmet.activeEffects)
-            {
-                if (_effect.hasSpecialAttack)
-                {
-                    //BASTA QUE UNO EFFECT TENGA SPECIAL, LLAMAMOS A TODOS
-                    currentHelmet.OnSpecialAttack();
-                    break;
-                }
-            }
-
-        }
     }
 
     //Reseta los stats de los cascos equipados
@@ -167,6 +155,8 @@ public class HelmetManager : MonoBehaviour
         {
             _helmet.ResetStats();
         }
+
+        UIManager.Instance.currentHelmetsHUD.RefreshAllHelmets();
     }
 
     public void UseHelmetPotion(int _potionID)
@@ -259,4 +249,8 @@ public class HelmetManager : MonoBehaviour
         helmetIndex = (helmetIndex - 1 + helmetsEquipped.Count) % helmetsEquipped.Count;
     }
 
+    public List<HelmetInstance> GetHelmetsByElement(ElementType _element)
+    {
+        return allHelmets.Where(h => h.Element == _element).ToList();
+    }
 }

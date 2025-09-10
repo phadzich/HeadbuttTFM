@@ -12,7 +12,6 @@ public class DisplayModeDropdown : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -58,14 +57,14 @@ public class DisplayModeDropdown : MonoBehaviour
         {
             case 0: // Fullscreen
                 Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.ExclusiveFullScreen);
-                Debug.Log("Mode: Fullscreen");
+                //Debug.Log("Mode: Fullscreen");
                 break;
             case 1: // Windowed
                 Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
-                Debug.Log("Mode: Window");
+                //Debug.Log("Mode: Window");
                 break;
             default:
-                Debug.LogWarning("Índice de modo de pantalla no reconocido");
+                //Debug.LogWarning("Índice de modo de pantalla no reconocido");
                 break;
         }
     }

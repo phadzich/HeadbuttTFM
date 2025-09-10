@@ -19,7 +19,6 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public bool isSelected;
 
     [Header("COMPATIBILIDAD")]
-    public List<ResourceFamily> resourceFamilies;
     public int helmetPowerMultiplier;
 
     [Header("APARIENCIA")]
@@ -49,7 +48,6 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public void SetupBlock(MapContext _context, ResourceData _resource)
     {
         resourceData = _resource;
-        resourceFamilies = _resource.resourceFamilies;
 
         InstanceResourceBlockMesh();
         InstanceResourceDropMesh();
@@ -68,7 +66,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         resourceContainer = blockMesh.transform.GetChild(1).gameObject;
     }
 
-    private int HelmetPowerMultiplier(MiningPower helmetPower)
+    private int HelmetPowerMultiplier(HelmetPower helmetPower)
     {
         int multiplier = (int)helmetPower + 1;
         return multiplier;
@@ -86,7 +84,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         {
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
-            SoundManager.PlaySound(SoundType.RESOURCEBOUNCE, 0.7f);
+            SoundManager.PlaySound(SFXType.RESOURCEBOUNCE, 0.7f);
             MatchManager.Instance.TryToAddToChain();
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
@@ -97,10 +95,10 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
-        SoundManager.PlaySound(SoundType.HEADBUTTRESOURCE, 0.7f);
+        SoundManager.PlaySound(SFXType.HEADBUTT, 0.7f);
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
-            helmetPowerMultiplier = 3;
+            helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
             MatchManager.Instance.TryToAddToChain();
 
@@ -137,7 +135,8 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         MinedAnimation();
         ReleaseResourceDrop();
         ReleaseHBDrop();
-        SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
+        //SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
+        SoundManager.PlaySound(SFXType.MINEDCOMPLETE, 0.7f);
 
         uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
     }
@@ -176,8 +175,8 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material = groundMaterial;
         AnimateMined();
         //TRANSFORM, LUEGO DEBE SER ANIMADO
-        blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .2f, blockMeshParent.localScale.z);
-        blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .5f, blockMeshParent.position.z);
+        blockMeshParent.localScale = new Vector3(blockMeshParent.localScale.x, .9f, blockMeshParent.localScale.z);
+        blockMeshParent.position = new Vector3(blockMeshParent.position.x, blockMeshParent.position.y - .1f, blockMeshParent.position.z);
     }
 
     public void ToggleHitIndicator(bool _active)

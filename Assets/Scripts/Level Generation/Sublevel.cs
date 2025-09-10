@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Sublevel : MonoBehaviour { 
@@ -9,23 +10,15 @@ public class Sublevel : MonoBehaviour {
     public int depth;
     public bool isActive;
     public SublevelConfig config;
-
+    public List<ISublevelObjective> activeObjectives;
+    public List<IRequirement> activeGateRequirements;
+    public List<IRequirement> activeChestRequirements;
+    public List<float> activeSwitchesDurations = new();
+    public List<LootBase> activeChestRewards;
+    public bool allObjectivesCompleted => (activeObjectives?.Count > 0) && activeObjectives.All(o => o.isCompleted);
+    public event Action onSublevelObjectivesUpdated;
 
     public bool isCompleted;
-
-    public int blocksToComplete;
-    public int currentBlocksMined;
-
-    public int keysToComplete;
-    public int currentKeysCollected;
-
-    public float timeToBeat;
-    public float currentTime;
-
-    public int maxResourceBlocks;
-    public bool isTotallyMined => currentBlocksMined == maxResourceBlocks;
-
-    public List<GateBehaviour> gateBlocks = new List<GateBehaviour>();
 
     public HelmetData helmetToDiscover;
 
@@ -36,30 +29,94 @@ public class Sublevel : MonoBehaviour {
         this.isActive = _isActive;
         this.config = _config;
         this.helmetToDiscover = _config.helmetBPData;
+
+         if(_config is MiningSublevelConfig _miningConfig)
+        {
+            SetupObjectives(_miningConfig);
+            SetupGates(_miningConfig);
+            SetupChests(_miningConfig);
+            SetupSwitches(_miningConfig);
+        }
+
+
     }
 
-    public void SetMiningObjectives(int _objective)
+    private void SetupObjectives(MiningSublevelConfig _miningConfig)
     {
-        blocksToComplete = _objective;
-        currentBlocksMined = 0;
+        // Si no hay objectives, lista vacía
+        activeObjectives = _miningConfig.objectives != null
+            ? new List<ISublevelObjective>(_miningConfig.objectives)
+            : new List<ISublevelObjective>();
+
+        foreach (var obj in activeObjectives)
+        {
+            obj?.Initialize(); // defensivo, en caso haya un null dentro
+        }
     }
 
-    public void SetKeysObjectives(int _objective)
+    private void SetupSwitches(MiningSublevelConfig _miningConfig)
     {
-        keysToComplete = _objective;
-        currentKeysCollected = 0;
+        foreach (float _duration in _miningConfig.switchesDurations)
+        {
+            activeSwitchesDurations.Add(_duration);
+        }
     }
 
-    public void SetTimerObjectives(float _objective)
+    private void SetupGates(MiningSublevelConfig _miningConfig)
     {
-        timeToBeat = _objective;
-        currentTime = 0;
+        // Si no hay gates, lista vacía
+        activeGateRequirements = _miningConfig.gateRequirements != null
+            ? new List<IRequirement>(_miningConfig.gateRequirements)
+            : new List<IRequirement>();
+
+        for (int i = 0; i < activeGateRequirements.Count; i++)
+        {
+            activeGateRequirements[i]?.Initialize(); // defensivo contra nulls internos
+        }
     }
 
-    public void CollectKey(int _amount)
+    private void SetupChests(MiningSublevelConfig _miningConfig)
     {
-        currentKeysCollected += _amount;
-        LevelManager.Instance.onKeysCollected?.Invoke();
+        // Si no hay chests, lista vacía
+        activeChestRequirements = _miningConfig.chestsRequirements != null
+            ? new List<IRequirement>(_miningConfig.chestsRequirements)
+            : new List<IRequirement>();
+
+        for (int i = 0; i < activeChestRequirements.Count; i++)
+        {
+            activeChestRequirements[i]?.Initialize(); // defensivo contra nulls internos
+        }
+
+        activeChestRewards = _miningConfig.chestsLoot != null
+    ? new List<LootBase>(_miningConfig.chestsLoot)
+    : new List<LootBase>();
+    }
+
+
+    public void DispatchObjectiveEvent(object _e)
+    {
+        foreach (var _obj in activeObjectives)
+        {
+            _obj.UpdateProgress(_e);
+        }
+
+        foreach (var _gateReq in activeGateRequirements)
+        {
+            _gateReq.UpdateProgress(_e);
+        }
+
+        foreach (var _chestReq in activeChestRequirements)
+        {
+            _chestReq.UpdateProgress(_e);
+        }
+
+        NotifyObjectivesAndRequirementsUpdated();
+    }
+
+    public void NotifyObjectivesAndRequirementsUpdated()
+    {
+        //Debug.Log($"[Sublevel] Raising objectives update, listeners: {onSublevelObjectivesUpdated?.GetInvocationList().Length ?? 0}");
+        onSublevelObjectivesUpdated?.Invoke();
     }
 
     public void CollectBP()

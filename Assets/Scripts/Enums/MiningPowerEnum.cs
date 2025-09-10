@@ -1,4 +1,4 @@
-public enum MiningPower
+public enum HelmetPower
 {
     Blunt,
     Sharp,

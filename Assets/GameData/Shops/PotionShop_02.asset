@@ -13,20 +13,14 @@ MonoBehaviour:
   m_Name: PotionShop_02
   m_EditorClassIdentifier: 
   shopName: Market Shop
-  shopID: 2
+  shopID: 1
   shopItems:
   - item: {fileID: 11400000, guid: 17b29fd6c303e584486af4709b385150, type: 2}
     quantity: 5
-    price:
-      resource: {fileID: 11400000, guid: 4dd1237493e88c648856e124b97c8456, type: 2}
-      quantity: 0
+    price: 1
   - item: {fileID: 11400000, guid: cb6705fdc49e5e44fbb9f59c90012197, type: 2}
     quantity: 5
-    price:
-      resource: {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
-      quantity: 0
+    price: 2
   - item: {fileID: 11400000, guid: be72a8ad40b1e7840a8507ac1f89dab4, type: 2}
     quantity: 5
-    price:
-      resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 0
+    price: 3

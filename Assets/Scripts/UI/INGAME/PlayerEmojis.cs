@@ -7,6 +7,7 @@ public class PlayerEmojis : MonoBehaviour
     public Sprite failedSprite;
     public Sprite completeSprite;
     public Sprite damageSprite;
+    public Sprite stunnedSprite;
 
     public Image emojiImage;
 
@@ -25,6 +26,10 @@ public class PlayerEmojis : MonoBehaviour
     public void DamagedEmoji()
     {
         PopEmoji(damageSprite);
+    }
+    public void StunnedEmoji()
+    {
+        PopEmoji(stunnedSprite);
     }
     public void PopEmoji(Sprite _sprite)
     {

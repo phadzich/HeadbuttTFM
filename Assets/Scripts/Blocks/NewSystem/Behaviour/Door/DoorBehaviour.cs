@@ -1,17 +1,20 @@
 using PrimeTween;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(DoorSetup))]
-public class DoorBehaviour : MonoBehaviour, IBlockEffect
+public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
 {
 
-    public SublevelGoalType currentGoalType;
-    public int requiredInt;
-    public int currentInt;
-    public DoorRequirementIndicator doorRequirementIndicator;
+    //public SublevelGoalType currentGoalType;
+    //public int requiredInt;
+    //public int currentInt;
+    public DoorObjectivesUI doorObjectivesUI;
     public bool isOpen;
     public GameObject doorTrapMesh;
-    public Sublevel parentSublevel;
+    public MapContext mapContext;
+    //public Sublevel parentSublevel;
 
     public Material openMaterial;
 
@@ -19,72 +22,47 @@ public class DoorBehaviour : MonoBehaviour, IBlockEffect
     public GameObject borde2;
     public GameObject borde3;
     public GameObject borde4;
-
-    private void OnEnable()
-    {
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
-    }
-
+    private Dictionary<ISublevelObjective, Action<int, int>> handlers = new();
     private void OnDisable()
     {
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
+        mapContext.sublevel.onSublevelObjectivesUpdated -= CheckObjectives;
     }
 
     public void SetupBlock(MapContext _context)
     {
-        parentSublevel = _context.sublevel;
-        currentGoalType = _context.miningConfig.goalType;
-        UpdateGoals();
-        doorRequirementIndicator.SetupIndicator(0, requiredInt, currentGoalType);
-    }
-
-    public void UpdateGoals()
-    {
-        switch (currentGoalType)
-        {
-            case SublevelGoalType.MineBlocks:
-                requiredInt = parentSublevel.blocksToComplete;
-                currentInt = parentSublevel.currentBlocksMined;
-                break;
-            case SublevelGoalType.CollectKeys:
-                requiredInt = parentSublevel.keysToComplete;
-                currentInt = parentSublevel.currentKeysCollected;
-                break;
-            case SublevelGoalType.Open:
-                requiredInt = 0;
-                currentInt = 0;
-                break;
-        }
+        mapContext = _context;
+        mapContext.sublevel.onSublevelObjectivesUpdated += CheckObjectives;
+        InitializeObjectives();
+        CheckObjectives();
 
     }
 
-    public void OnSublevelGoalsAdvanced()
+    private void InitializeObjectives()
     {
-        //Debug.Log("MINED HEARD");
-        UpdateGoals();
-        doorRequirementIndicator.UpdateIndicator(currentInt);
-        if (!isOpen)
+        foreach (var obj in mapContext.sublevel.activeObjectives)
         {
-            //Debug.Log("NOT OPEN");
-            if (DoorRequirementsMet())
-            {
-                IndicateOpen();
-                isOpen = true;
-            }
+            if (handlers.ContainsKey(obj)) continue;
+
+            // crear handler y guardarlo
+            Action<int, int> handler = (cur, reqd) => doorObjectivesUI.UpdateObjective(obj, cur, reqd);
+            obj.OnProgressChanged += handler;
+            handlers[obj] = handler;
+
+            // crear UI
+            doorObjectivesUI.AddObjective(obj, obj.current, obj.goal);
         }
     }
 
-    public bool DoorRequirementsMet()
+    public void CheckObjectives()
     {
-        if (currentInt >= requiredInt)
+        //Debug.Log("CHECKOBJECTIVES");
+        bool allCompleted = mapContext.sublevel.allObjectivesCompleted;
+        //doorRequirementIndicator.UpdateIndicator(currentInt);
+        if (allCompleted && !isOpen)
         {
-            //Debug.Log("DOOR MET");
-            return true;
+            isOpen = true;
+            IndicateOpen();
         }
-
-        return false;
     }
 
     private void IndicateOpen()
@@ -127,6 +105,23 @@ public class DoorBehaviour : MonoBehaviour, IBlockEffect
     private void AnimateOpenDoor()
     {
         Tween.LocalRotation(doorTrapMesh.transform, endValue: new Vector3(110, 0, 0), duration: 1f, ease: Ease.InOutBack);
-        doorRequirementIndicator.gameObject.SetActive(false);
+        doorObjectivesUI.gameObject.SetActive(false);
+    }
+
+    public void StartBehaviour()
+    {
+    }
+
+    public void StopBehaviour()
+    {
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var kvp in handlers)
+        {
+            kvp.Key.OnProgressChanged -= kvp.Value;
+        }
+        handlers.Clear();
     }
 }

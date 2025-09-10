@@ -1,5 +1,5 @@
 // Editor para LevelConfig
-using UnityEditor;
+/*using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(LevelConfig))]
@@ -36,3 +36,4 @@ public class LevelConfigEditor : Editor
         }
     }
 }
+*/

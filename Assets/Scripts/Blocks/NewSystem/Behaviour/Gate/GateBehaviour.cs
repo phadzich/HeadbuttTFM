@@ -1,104 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(GateSetup))]
-public class GateBehaviour : MonoBehaviour, IBlockEffect
+public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 {
-    public GateRequirementIndicator requirementsPanelUI;
+    public MapContext mapContext;
     public bool isOpen;
     public bool isActive;
     public GameObject gatesMesh;
     public Sublevel parentSublevel;
+    public ListRequirementsUI gateReqsUI;
+    private List<IRequirement> myReqs = new();
+    private Dictionary<IRequirement, Action<int, int>> handlers = new();
 
-    public int gateID;
-    public ResourceData requiredResource;
-    public int startingAmount;
-    public int requiredAmount;
-    public int currentAmount;
+    private int gateID;
 
     private void OnEnable()
     {
-
-        ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
     }
 
     private void OnDisable()
     {
-        ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        mapContext.sublevel.onSublevelObjectivesUpdated -= CheckRequirements;
     }
 
-    public void SetupBlock(Sublevel _sublevel, int _gateID, GateRequirement _gateReq)
+    public void SetupBlock(MapContext _context, IRequirement _requirement, int _id)
     {
-        Debug.Log(_gateID);
-        parentSublevel = _sublevel;
-        gateID = _gateID;
-        requiredResource = _gateReq.requiredResource;
-        requiredAmount = _gateReq.requiredAmount;
-        currentAmount = 0;
         GetComponent<BlockNS>().isWalkable = false;
-        ColorGates(requiredResource.resMesh.GetComponent<MeshRenderer>().sharedMaterial);
+        mapContext = _context;
+        gateID = _id;
 
+        mapContext.sublevel.onSublevelObjectivesUpdated += CheckRequirements;
+
+        // inicializar requirements una sola vez aquí
+        InitializeRequirements();
+        CheckRequirements();
     }
 
-    private void ColorGates(Material _mat)
+    private void InitializeRequirements()
     {
-        foreach (Transform _childMesh in gatesMesh.transform)
+        if (mapContext?.sublevel == null) return;
+
+        // cargar y cachear los reqs
+        myReqs = mapContext.sublevel.activeGateRequirements
+            .Where(r => r.targetId == gateID)
+            .ToList();
+
+        foreach (var req in myReqs)
         {
-            _childMesh.gameObject.GetComponent<MeshRenderer>().material = _mat;
+            if (handlers.ContainsKey(req)) continue;
+
+            // crear handler
+            Action<int, int> handler = (cur, reqd) => gateReqsUI.UpdateRequirement(req, cur, reqd);
+
+            req.OnProgressChanged += handler;
+            handlers[req] = handler;
+
+            // crear UI
+            gateReqsUI.AddRequirement(req, req.current, req.goal);
         }
     }
-    public void StartGateCount()
+
+    private void OnDestroy()
     {
-        startingAmount = ResourceManager.Instance.ownedResources[requiredResource];
-        isActive = true;
-        requirementsPanelUI.SetupIndicator(requiredAmount, 0, requiredResource.icon);
+        foreach (var kvp in handlers)
+        {
+            kvp.Key.OnProgressChanged -= kvp.Value;
+        }
+        handlers.Clear();
     }
 
-    public void OnOwnedResourcesChanged()
+    public void CheckRequirements()
     {
-        if (isActive && ResourceManager.Instance.ownedResources.ContainsKey(requiredResource))
-        {
-            var _updatedAmount = ResourceManager.Instance.ownedResources[requiredResource];
-            currentAmount = ResourceManager.Instance.ownedResources[requiredResource] - startingAmount;
-        }
+        if (isOpen || myReqs == null || myReqs.Count == 0) return;
 
-        requirementsPanelUI.UpdateIndicator(currentAmount);
-
-        if (!isOpen)
+        bool allCompleted = true;
+        foreach (var req in myReqs)
         {
-            if (GateRequirementsMet())
+            if (!req.isCompleted)
             {
-                IndicateOpen();
-                isOpen = true;
+                allCompleted = false;
+                break; // ni sigas, ya sabes que falta
             }
         }
 
-    }
-
-    public bool GateRequirementsMet()
-    {
-        if (currentAmount >= requiredAmount)
+        if (allCompleted)
         {
-            return true;
+            isOpen = true;
+            IndicateOpen();
         }
-
-        return false;
     }
 
     public void IndicateOpen()
     {
         GetComponent<BlockNS>().isWalkable = true;
         gatesMesh.SetActive(false);
-        requirementsPanelUI.gameObject.SetActive(false);
+        gateReqsUI.gameObject.SetActive(false);
     }
-
-
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
-        if (isOpen)
-        {
-            Activate();
-        }
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
@@ -109,5 +112,22 @@ public class GateBehaviour : MonoBehaviour, IBlockEffect
     public void Activate()
     {
         
+    }
+
+    public void StartBehaviour()
+    {
+        CheckRequirements();
+    }
+
+    private void ResetRequirements()
+    {
+        foreach (var req in mapContext.sublevel.activeGateRequirements)
+        {
+            req.Reset();
+        }
+    }
+
+    public void StopBehaviour()
+    {
     }
 }

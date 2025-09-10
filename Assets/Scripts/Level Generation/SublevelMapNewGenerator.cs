@@ -20,10 +20,9 @@ public class SublevelMapNewGenerator : MonoBehaviour
     Vector3 nextPosition;
     public Dictionary<Vector2Int, BlockNS> currentBlocks = new();
 
-    private bool testingMigrate = false;
     private MapContext context;
 
-    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _config, NPCSublevelConfig _npcConfig, Sublevel _sublevel)
+    public void GenerateSublevel(Transform _parentTransform, Texture2D _inputMap, int _depth, MiningSublevelConfig _miningConfig, NPCSublevelConfig _npcConfig, Sublevel _sublevel)
     {
         context = new MapContext
         {
@@ -31,20 +30,51 @@ public class SublevelMapNewGenerator : MonoBehaviour
             x = 0,
             y = 0,
             sublevel = _sublevel,
-            miningConfig = _config,
+            miningConfig = _miningConfig,
             npcConfig = _npcConfig
         };
 
+        LevelManager.Instance.currentContext = context;
         mapWidth = _inputMap.width;
         mapHeight = _inputMap.height;
         mapTexture = _inputMap;
         sublevelContainer = _parentTransform;
         InstanceAllBlocks(mapWidth, mapHeight);
+        if (_miningConfig != null)
+        {
+            RestartSublevelStats();
+        }
 
 
     }
 
-    void InstanceAllBlocks(int _width, int _height)
+
+
+    private void RestartSublevelStats()
+    {
+        
+        ResetActiveObjectives(context.sublevel.activeObjectives);
+        ResetActiveRequirements(context.sublevel.activeChestRequirements);
+        ResetActiveRequirements(context.sublevel.activeGateRequirements);
+    }
+
+    private void ResetActiveRequirements(List<IRequirement> _list)
+    {
+        foreach (IRequirement _req in _list)
+        {
+            _req.current = 0;
+        }
+    }
+
+    private void ResetActiveObjectives(List<ISublevelObjective> _list)
+    {
+        foreach (ISublevelObjective _obj in _list)
+        {
+            _obj.current = 0;
+        }
+    }
+
+        void InstanceAllBlocks(int _width, int _height)
     {
         currentBlocks.Clear();
         int _spacing = 1;
@@ -114,12 +144,13 @@ public class SublevelMapNewGenerator : MonoBehaviour
     GameObject GetBlockFromString(ColorToString _blockString)
     {
         var _stringParts = _blockString.blockString.Split('_');
+        string _blockName = _stringParts[0];
         string _blockVariant = _stringParts[1];
 
         GameObject _prefab = _blockString.prefab;
 
         GameObject _bloque = Instantiate(_prefab, nextPosition, Quaternion.identity, sublevelContainer);
-        _bloque.GetComponent<BlockNS>().SetupBlock(_blockVariant, context);
+        _bloque.GetComponent<BlockNS>().SetupBlock(_blockName, _blockVariant, context);
 
         return _bloque;
     }

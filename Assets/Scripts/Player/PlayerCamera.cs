@@ -10,7 +10,7 @@ public class PlayerCamera : MonoBehaviour
     public float moveDownDuration;
     public float moveUpDuration;
 
-    public void MoveCamDown(int _count)
+    public void MoveFogDown(int _count)
     {
 
         Tween.PositionY(fogMesh.transform,
@@ -21,7 +21,7 @@ public class PlayerCamera : MonoBehaviour
     ease: Ease.InOutQuad);
     }
 
-    public void MoveCamToDepth(int _depth)
+    public void MoveFogToDepth(int _depth)
     {
 
         Tween.PositionY(fogMesh.transform,

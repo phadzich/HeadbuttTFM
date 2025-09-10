@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Shop
     public int shopID;
     public string shopName;
     public List<ShopItem> shopInventory;
+    public Action shopItemsChanged;
 
     public Shop(ShopData _shopData)
     {
@@ -22,15 +24,16 @@ public class Shop
 
     public void Sell(ShopItem _item, int _quantity)
     {
-        int _totalResources = _item.price.quantity * _quantity;
+        int _totalCoins = _item.price * _quantity;
 
-        if (ResourceManager.Instance.SpendResource(_item.price.resource, _totalResources)){
+        if (ResourceManager.Instance.coinTrader.CanSpendCoins(_totalCoins)){
             RemoveFromInventory(shopInventory.IndexOf(_item), _quantity);
             InventoryManager.Instance.itemsInventory.TryAddOwnedItems(_item.item, _quantity);
+            Debug.Log("Item purchased");
         }
         else
         {
-            Debug.Log("Not enough resources");
+            Debug.Log("Not enough coins");
         }
     }
     private void RemoveFromInventory(int _itemIndex, int _quantity)
@@ -50,5 +53,6 @@ public class Shop
         {
             _itemToRemove.quantity-= _quantity;
         }
+        shopItemsChanged?.Invoke();
     }
 }

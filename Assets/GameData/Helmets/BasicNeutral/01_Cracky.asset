@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
+  m_Name: 01_Cracky
+  m_EditorClassIdentifier: 
+  id: 1
+  helmetName: Cracky
+  description: Huevo de un Avatroz, ave gigante de corral. Esta agrietado.
+  mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
+  icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  rarity: 0
+  miningPower: 0
+  element: 1
+  effects:
+  - {fileID: 11400000, guid: 1b58e6dd41f3b304cab613134a21a786, type: 2}
+  levelUpRequirements:
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 1
+    durability: 1
+    powerStat: 0
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 2
+    durability: 2
+    powerStat: 0
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 3
+    durability: 3
+    powerStat: 0

@@ -1,12 +1,10 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class AudioSettingsManager : MonoBehaviour
 {
-    [Header("Audio Mixer")]
-    [SerializeField] private AudioMixer audioMixer;
-
     [Header("Sliders")]
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
@@ -15,10 +13,10 @@ public class AudioSettingsManager : MonoBehaviour
 
     private void Start()
     {
-        SetupSlider(musicSlider, "Music");
-        SetupSlider(sfxSlider, "SFX");
-        SetupSlider(ambientSlider, "Ambient");
-        SetupSlider(uiSlider, "UI");
+        SetupSlider(musicSlider, MixerGroups.Music);
+        SetupSlider(sfxSlider, MixerGroups.SFX);
+        SetupSlider(ambientSlider, MixerGroups.Ambient);
+        SetupSlider(uiSlider, MixerGroups.UI);
     }
 
     private void SetupSlider(Slider slider, string exposedParam)
@@ -28,26 +26,13 @@ public class AudioSettingsManager : MonoBehaviour
         slider.value = savedValue;
 
         // Apply initial volume
-        SetVolume(exposedParam, savedValue);
+        SoundManager.instance.SetVolume(exposedParam, savedValue);
 
         // Add listener to update volume in realtime
         slider.onValueChanged.AddListener((value) => {
-            SetVolume(exposedParam, value);
+            SoundManager.instance.SetVolume(exposedParam, value);
             PlayerPrefs.SetFloat(exposedParam, value); // optional: save changes
         });
-    }
-
-    private void SetVolume(string exposedParam, float value)
-    {
-        try
-        {
-            float volumeInDb = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
-            audioMixer.SetFloat(exposedParam, volumeInDb);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning($"Error al aplicar volumen para '{exposedParam}': {e.Message}");
-        }
     }
 
 }

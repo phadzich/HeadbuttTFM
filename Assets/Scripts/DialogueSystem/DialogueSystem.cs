@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,28 +15,38 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(DialogueSequence _sequence)
     {
+        Debug.Log("DIALOG START");
         lines = _sequence.lines;
         index = 0;
         ShowDialogueUI();
         ShowNextLine();
-        SwitchInputToUI();
-
-
+        StartCoroutine(ForceUIAfterFrames(10));
     }
 
     private void SwitchInputToUI()
     {
-        InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
+        InputManager.Instance.SwitchInputToUI();
+    }
+
+    private IEnumerator ForceUIAfterFrames(int frames)
+    {
+        for (int i = 0; i < frames; i++)
+            yield return null; // espera un frame
+
+        SwitchInputToUI();
+        Debug.Log("Forzado UI después de " + frames + " frames");
     }
 
     private void SwitchInputToPlayer()
     {
-        InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+
+        InputManager.Instance.SwitchInputToPlayer();
+
     }
     private void ShowDialogueUI()
     {
         dialogueUI.Open();
-    }
+}
 
     public void NextLinePressed(InputAction.CallbackContext context)
     {

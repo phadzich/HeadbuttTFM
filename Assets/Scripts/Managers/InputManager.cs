@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +8,15 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     public PlayerInput playerInput;
 
+
+
     [SerializeField] public IInteractable currentInteractableNPC;
+
+    private void Update()
+    {
+        //Debug.Log(InputManager.Instance.playerInput.currentActionMap.name);
+        //Debug.Log(playerInput.actions.FindAction("Move").enabled);
+    }
 
     private void Awake()
     {
@@ -21,13 +31,44 @@ public class InputManager : MonoBehaviour
             Debug.LogError("M'as de un InputManager");
         }
             Instance = this;
+        SwitchInputToPlayer();
+    }
+    private void Start()
+    {
+        StartCoroutine(ForcePlayerAfterFrames(5));
+    }
+    public void SwitchInputToUI()
+    {
+        foreach (var map in playerInput.actions.actionMaps)
+            map.Disable();
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+    }
+    public void SwitchInputToPlayer()
+    {
+        foreach (var map in playerInput.actions.actionMaps)
+            map.Disable();
+        InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
 
-    public void TryInteractWithNPC()
+    private IEnumerator ForcePlayerAfterFrames(int frames)
     {
-        if (currentInteractableNPC != null)
+        for (int i = 0; i < frames; i++)
+            yield return null; // espera un frame
+
+        SwitchInputToPlayer();
+        Debug.Log("Forzado Player después de " + frames + " frames");
+    }
+
+    public void TryInteractWithNPC(InputAction.CallbackContext context)
+    {
+        if (context.started)
         {
-            currentInteractableNPC.Interact();
+            if (currentInteractableNPC != null)
+            {
+                currentInteractableNPC.Interact();
+            }
         }
     }
 }

@@ -4,14 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public class HelmetInstance
+public class HelmetInstance: IElemental
 {
     //Helmet info
     public string id;
     public HelmetData baseHelmet;
-    public ElementData helmetElement;
     public bool isCrafted = false;
     public bool isDiscovered = false;
+    public bool isEquipped;
 
     //Helmet Stats
     public int durability;
@@ -28,6 +28,8 @@ public class HelmetInstance
 
     public bool IsWornOut => currentDurability <= 0;
 
+    public ElementType Element => baseHelmet.element;
+
     public Action<HelmetInstance> HelmetInstanceChanged;// Evento que avisa que los stats fueron modificados
     public Action OnDamaged;
 
@@ -41,8 +43,9 @@ public class HelmetInstance
         currentLevel = 0;
         durability = 0;
 
-        helmetElement = _helmetSO.element;
         currentHBHarvest = 0.3f;
+
+        //Debug.Log(_helmetSO.helmetName);
 
         ActivateEffects(_helmetSO.effects);
 
@@ -50,8 +53,15 @@ public class HelmetInstance
 
     public void ActivateEffects(List<HelmetEffectData> _effects)
     {
+        //Debug.Log(_effects);
+
         foreach (var _effect in _effects)
         {
+            if (_effect == null)
+            {
+                //Debug.Log("HAY UNA LISTA CREADA PERO EL EFECTO ES NULL"); 
+                continue;
+            }
             AddEffect(_effect.CreateEffect());
         }
     }
@@ -62,13 +72,8 @@ public class HelmetInstance
         HelmetInstanceChanged?.Invoke(this);
     }
 
-    public void TakeDamage(int _amount, bool _isEnemy = false)
+    public void TakeDamage(int _amount)
     {
-        if(PlayerManager.Instance.activeShield != null && PlayerManager.Instance.activeShield.CanBlockDamage() && _isEnemy)
-        {
-            PlayerManager.Instance.DeactivateShield();
-            return;
-        }
         //Debug.Log($"Helmet Took {_amount}");
         if (currentDurability > 0)
             currentDurability-=_amount;
@@ -107,11 +112,6 @@ public class HelmetInstance
         activeEffects.Add(_effect);
     }
 
-    public void UpdateHelmetElement(ElementData _element)
-    {
-        helmetElement = _element;
-    }
-
     public void HealDurability(int _amount)
     {
         if (_amount > durability - currentDurability)
@@ -142,16 +142,6 @@ public class HelmetInstance
             effect.OnBounce();
         }
     }
-
-    // Llamar cuando se presiona la tecla de special attack
-    public void OnSpecialAttack()
-    {
-        foreach (HelmetEffect _effect in activeEffects)
-        {
-                _effect.OnSpecialAttack();
-        }
-    }
-
     public void OnWear()
     {
         foreach (HelmetEffect _effect in activeEffects)

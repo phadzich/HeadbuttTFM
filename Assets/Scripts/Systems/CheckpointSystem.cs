@@ -27,7 +27,7 @@ public class CheckpointSystem : MonoBehaviour
         PlayerManager.Instance.playerMovement.positionTarget = checkpointSaveData.playerMovementPosition;
         //PLAYER POSITION
         PlayerManager.Instance.playerMovement.enanoParent.position = checkpointSaveData.playerBouncePosition;
-        PlayerManager.Instance.playerCamera.MoveCamToDepth(checkpointSaveData.lastDepth);
+        PlayerManager.Instance.playerCamera.MoveFogToDepth(checkpointSaveData.lastDepth);
 
         //RECURSOS
         ResourceManager.Instance.ownedResources = checkpointSaveData.currentResources;

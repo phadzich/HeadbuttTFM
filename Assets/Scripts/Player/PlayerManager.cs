@@ -15,13 +15,14 @@ public class PlayerManager : MonoBehaviour
     public PlayerBounce playerBounce;
     public PlayerEmojis playerEmojis;
     public PlayerHeadbutt playerHeadbutt;
-    //public PlayerHeadbutt playerHeadbutt;
+    public PlayerEffects playerEffects;
+
     public int maxPlayerLives;
     public int currentPlayerLives;
     public DamageTakenIndicator damageTakenIndicator;
     public Action<int, int> PlayerLivesChanged;
     public GameObject shieldPrefab;
-    public Shield activeShield;
+    public GameObject activeShield;
 
     private void Awake()
     {
@@ -66,39 +67,42 @@ public class PlayerManager : MonoBehaviour
         playerEmojis.DamagedEmoji();
         if (currentPlayerLives <= 0)
         {
+            MatchManager.Instance.RestartMatches();
             LevelManager.Instance.checkpointSystem.RestoreToLastCheckpoint();
 
         }
     }
 
-    public void ActivateShield(float duration)
+    public void ActivateShield()
     {
-        if (activeShield != null) return;
-
         GameObject shieldGO = Instantiate(shieldPrefab, transform.GetChild(0));
         shieldGO.transform.localPosition = Vector3.zero;
-
-        activeShield = shieldGO.GetComponent<Shield>();
-        activeShield.Setup(duration);
-        activeShield.Activate();
+        activeShield = shieldGO;
     }
 
     public void DeactivateShield()
     {
-        activeShield.Deactivate();
+        Destroy(activeShield);
     }
 
     
     public void EnterMiningLevel()
     {
         playerAnimations.RotateBody(180);
-        playerBounce.enabled = true;
+        playerStates.ChangeState(PlayerMainStateEnum.FallingIntoMINE);
+        playerHeadbutt.ChangeHBpoints(0);
     }
 
     public void EnterNPCLevel()
     {
         playerAnimations.RotateBody(0);
-        playerBounce.enabled = false;
+        MaxUpLives();
+        playerStates.ChangeState(PlayerMainStateEnum.FallingIntoNPC);
+    }
+
+    public void EnterNewLevel()
+    {
+        playerMovement.RespawnPlayer();
     }
 }
 

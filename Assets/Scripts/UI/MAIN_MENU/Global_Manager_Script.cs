@@ -9,7 +9,6 @@ public class PersistentManagers : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

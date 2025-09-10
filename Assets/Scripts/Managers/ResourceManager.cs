@@ -6,7 +6,7 @@ public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
 
-    public ResourceTrader resourceTrader;
+    public CoinTrader coinTrader;
 
     [SerializeField]
     public Dictionary<ResourceData, int> ownedResources = new();
@@ -34,13 +34,6 @@ public class ResourceManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("ResourceManager START");
-
-        AddResource(allAvailableResources[0], 100);
-        AddResource(allAvailableResources[1], 100);
-        AddResource(allAvailableResources[2], 100);
-        AddResource(allAvailableResources[3], 100);
-        AddResource(allAvailableResources[4], 100);
-        AddResource(allAvailableResources[5], 100);
         onOwnedResourcesChanged?.Invoke();
 
 

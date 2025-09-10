@@ -8,17 +8,12 @@ using System;
 public class CraftingPanel : MonoBehaviour
 {
     [Header("UI")]
-    public GameObject infoPanel;
+    public HelmetInfoPanelUI infoPanel;
     public GameObject helmetButtonPrefab;
     public GameObject helmetListContainer;
-    public TextMeshProUGUI helmetNameTXT;
-    public Image helmetIcon;
-
+    public GameObject cancelButton;
+    public GameObject swapBorder;
     public SwapHelmetsPanelUI swapHelmetsUI;
-
-
-    public Button craftBTN;
-    public Button equipBTN;
 
     private List<HelmetInstance> availableHelmets => HelmetManager.Instance.allHelmets;
 
@@ -26,19 +21,19 @@ public class CraftingPanel : MonoBehaviour
     {
 
         LoadMainPage();
-        CraftingManager.Instance.HelmetSelected += UpdateInfoCard;
-        //CraftingManager.Instance.HelmetEvolved += UpdateInfoCard;
+        CraftingManager.Instance.HelmetSelected += infoPanel.UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;
-        infoPanel.SetActive(false);
+        infoPanel.gameObject.SetActive(false);
+        infoPanel.helmetIcon.gameObject.SetActive(false);
+        infoPanel.equippedLabel.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        CraftingManager.Instance.HelmetSelected -= UpdateInfoCard;
-        //CraftingManager.Instance.HelmetEvolved -= UpdateInfoCard;
+        CraftingManager.Instance.HelmetSelected -= infoPanel.UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted -= UpdateHelmetList;
         CraftingManager.Instance.SelectHelmet(null);
-        infoPanel.SetActive(false);
+        infoPanel.gameObject.SetActive(false);
     }
 
     private void LoadMainPage()
@@ -58,36 +53,32 @@ public class CraftingPanel : MonoBehaviour
 
         foreach (var _helmet in availableHelmets)
         {
-            Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetCard>().SetUp(_helmet);
+            Instantiate(helmetButtonPrefab, helmetListContainer.transform).GetComponent<HelmetItemButton>().SetUp(_helmet);
         }
+
+        swapHelmetsUI.UpdateHelmetList();
+
     }
 
     public void ToggleSwapPanel(bool _show)
     {
-        swapHelmetsUI.gameObject.SetActive(_show);
+        Debug.Log($"SWAP MODE {_show}");
+        SwapMode(_show);
+        infoPanel.UpdateData();
     }
-    public void UpdateInfoCard(HelmetInstance _helmetInstance)
+        
+
+    private void SwapMode(bool _value)
     {
-        infoPanel.SetActive(true);
-        helmetNameTXT.text = _helmetInstance.baseHelmet.name;
-        helmetIcon.sprite = _helmetInstance.baseHelmet.icon;
-
-        if (_helmetInstance.isDiscovered) {
-            craftBTN.interactable = true;
-            if (_helmetInstance.isCrafted)
-            {
-                equipBTN.interactable = true;
-            }
-            else
-            {
-                equipBTN.interactable = false;
-            }
-        }
-        else
+        cancelButton.SetActive(_value);
+        swapBorder.SetActive(_value);
+        foreach (Transform _button in swapHelmetsUI.helmetListContainer.transform)
         {
-            craftBTN.interactable = false;
-            equipBTN.interactable = false;
+            _button.GetComponent<Button>().interactable = _value;
+        }
+        foreach (Transform _helmet in helmetListContainer.transform)
+        {
+            _helmet.GetComponent<Button>().interactable = !_value;
         }
     }
-
 }

@@ -6,6 +6,7 @@ public class ExchangeButtonUI : MonoBehaviour
 {
     public Image resourceIcon;
     public TextMeshProUGUI resourceAmountTXT;
+    public TextMeshProUGUI ownedTXT;
     public ResourceData resourceData;
     public int resourceAmount;
 
@@ -14,17 +15,19 @@ public class ExchangeButtonUI : MonoBehaviour
        
         resourceData = _resourceData;
 
-        resourceAmount = ResourceManager.Instance.resourceTrader.ResourcesNeededForUpgradePoint(resourceData);
+        resourceAmount = ResourceManager.Instance.coinTrader.ResourcesNeededForCoin(resourceData);
         //Debug.Log(resourceAmount);
 
         resourceIcon.sprite = resourceData.icon;
+        ownedTXT.text = $"OWNED: {ResourceManager.Instance.ownedResources[resourceData]}";
         resourceAmountTXT.text = resourceAmount.ToString();
+
         UpdateButtonStatus();
 
     }
     public void TryExchange()
     {
-        ResourceManager.Instance.resourceTrader.BuyUpgradePoint(1, resourceData, resourceAmount);
+        ResourceManager.Instance.coinTrader.BuyCoin(1, resourceData, resourceAmount);
         UpdateButtonStatus();
     }
 

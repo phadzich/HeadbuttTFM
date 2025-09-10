@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: GR_11
+  m_EditorClassIdentifier: 
+  id: 
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
+  limitPerSpawn: 2
+  sublevel2DMap: {fileID: 2800000, guid: 54e8adde1d6cb16498dfdeb480cfa42e, type: 3}
+  objectives:
+  - rid: 3860795526871515210
+  gateRequirements:
+  - rid: 3860795526871515229
+  - rid: 3860795526871515217
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations:
+  - 6
+  - 6
+  references:
+    version: 2
+    RefIds:
+    - rid: 3860795526871515210
+      type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
+        keysNeeded: 3
+    - rid: 3860795526871515217
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        icon: {fileID: 0}
+        switchesID: 1
+        switchesNeeded: 1
+        activeSwitches: []
+        lowestTime: 0
+    - rid: 3860795526871515229
+      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 0}
+        switchesID: 0
+        switchesNeeded: 1
+        activeSwitches: []
+        lowestTime: 0

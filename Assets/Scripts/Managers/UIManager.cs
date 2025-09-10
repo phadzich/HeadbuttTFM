@@ -14,23 +14,25 @@ public class UIManager : MonoBehaviour
 
     [Header("NPCs")]
     public GameObject NPCCraftPanel;
-    public GameObject NPCUpgradePanel;
+    public GameObject NPCTraderPanel;
     public ExchangePanelUI NPCUpgradeExchanger;
+    public InventoryPanelUI InventoryPanel;
     public GameObject NPCElevatorPanel;
-    public GameObject NPCInventoryPanel;
     public ShopPanel shopPanel;
     public CraftingPanel craftingPanel;
 
     [Header("FRONTEND")]
     public GameObject startPanel;
+    public FrontEndFrame frontEndFrame;
 
     [Header("HUD")]
+    public GameObject HUDCanvas;
     public CurrentHelmetsHUD currentHelmetsHUD;
     public ActiveItemHUD activeItemHUD;
     public ResourcesPanel resourcesPanel;
-    public SublevelPanel sublevelPanel;
+    public SublevelObjectivesHUD sublevelObjsHUD;
     public HBPointsHUD hbPointsHUD;
-    public SpecialHeadbuttHUD specialHeadbuttHUD;
+    public CoinsHUD coinsHUD;
 
 
     [Header("PLAYER")]
@@ -40,6 +42,11 @@ public class UIManager : MonoBehaviour
 
     [Header("SYSTEMS")]
     public DialogueSystem dialogueSystem;
+
+    [Header("LIBRARIES")]
+    public IconsLibrary iconsLibrary;
+    public List<Sprite> elementIcons;
+    public List<Color> elementColors;
 
 
     private void Awake()
@@ -53,14 +60,14 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SuscribeToHelmetInstances();
+
     }
 
     private void Start()
     {
         Debug.Log("UIManager START");
-        //dialogueSystem.StartDialogue(LevelManager.Instance.currentSublevel.config.dialogueSequence);
-        //startPanel.SetActive(true);
+        SuscribeToHelmetInstances();
+        InputManager.Instance.SwitchInputToPlayer();
     }
 
     private void OnEnable()
@@ -74,14 +81,13 @@ public class UIManager : MonoBehaviour
 
         //LEVEL EVENTS
         LevelManager.Instance.onSublevelEntered += OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined += OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected += OnSublevelGoalsAdvanced;
 
         //PLAYER EVENTS
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged += OnHBPointsChanged;
         ResourceManager.Instance.onOwnedResourcesChanged += OnOwnedResourcesChanged;
+        ResourceManager.Instance.coinTrader.onCoinsChanged += OnCoinsChanged;
 
-        //PLAYER EVENTS
+        //INVENTORY EVENTS
         InventoryManager.Instance.itemsInventory.ItemCycled += OnEquippedItemCycled;
         InventoryManager.Instance.itemsInventory.ItemEquipped += OnEquippedItemCycled;
         InventoryManager.Instance.itemsInventory.ItemConsumed += OnEquippedItemCycled;
@@ -95,9 +101,8 @@ public class UIManager : MonoBehaviour
         HelmetManager.Instance.onWearHelmetChanged -= OnWearHelmetChanged;
         HelmetManager.Instance.onHelmetsSwapped -= OnHelmetSwap;
         LevelManager.Instance.onSublevelEntered -= OnSublevelEntered;
-        LevelManager.Instance.onSublevelBlocksMined -= OnSublevelGoalsAdvanced;
-        LevelManager.Instance.onKeysCollected -= OnSublevelGoalsAdvanced;
         ResourceManager.Instance.onOwnedResourcesChanged -= OnOwnedResourcesChanged;
+        ResourceManager.Instance.coinTrader.onCoinsChanged -= OnCoinsChanged;
         PlayerManager.Instance.playerHeadbutt.onHBPointsChanged -= OnHBPointsChanged;
         InventoryManager.Instance.itemsInventory.ItemCycled -= OnEquippedItemCycled;
         InventoryManager.Instance.itemsInventory.ItemEquipped -= OnEquippedItemCycled;
@@ -120,6 +125,11 @@ public class UIManager : MonoBehaviour
         {
             _helmInstance.HelmetInstanceChanged -= OnHelmetInstanceDataChanged;
         }
+    }
+
+    private void OnCoinsChanged(int _current)
+    {
+        coinsHUD.UpdateAmount(_current);
     }
 
     private void OnHBPointsChanged(float _current, float _max)
@@ -163,22 +173,16 @@ public class UIManager : MonoBehaviour
         if (_sublevel.config is MiningSublevelConfig)
         {
             MiningSublevelConfig _config = _sublevel.config as MiningSublevelConfig;
-            sublevelPanel.ChangeGoalType(_config.goalType);
-            sublevelPanel.UpdateSublevel();
+            sublevelObjsHUD.OnSublevelEntered(_sublevel);
         }
         else
         {
-            sublevelPanel.ShowCheckpoint();
+            sublevelObjsHUD.ShowCheckpoint();
         }
 
-                
         exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
     }
 
-    private void OnSublevelGoalsAdvanced()
-    {
-        sublevelPanel.UpdateGoals();
-    }
 
     private void OnHelmetEquipped(HelmetInstance _helmInstance)
     {
@@ -187,9 +191,14 @@ public class UIManager : MonoBehaviour
 
     private void OnHelmetInstanceDataChanged(HelmetInstance _instance)
     {
-        //currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
+        //Debug.Log(_instance);
+        if (currentHelmetsHUD.FindHUDbyInstance(_instance) != null)
+        {
+            currentHelmetsHUD.FindHUDbyInstance(_instance).UpdateDurability(_instance.currentDurability, _instance.durability);
+        }
+
         craftingPanel.UpdateHelmetList();
-        craftingPanel.UpdateInfoCard(_instance);
+        craftingPanel.infoPanel.UpdateInfoCard(_instance);
     }
 
     private void OnHelmetSwap(int _index)
@@ -202,41 +211,58 @@ public class UIManager : MonoBehaviour
     private void OnWearHelmetChanged(HelmetInstance _instance)
     {
         currentHelmetsHUD.WearNewHelmet(_instance);
+        hbPointsHUD.UpdateHBIcon(_instance);
     }
 
     public void OpenNPCUI(NPCType _type)
     {
+        Debug.Log("OpeningNPCUI");
+        HUDCanvas.SetActive(false);
         switch (_type)
         {
             case NPCType.Crafter:
                 NPCCraftPanel.SetActive(true);
                 currentOpenUI = NPCCraftPanel.gameObject;
-                break;
-            case NPCType.Upgrader:
-                NPCUpgradePanel.SetActive(true);
-                currentOpenUI = NPCUpgradePanel.gameObject;
+                frontEndFrame.OpenFrame("FORGER", "Craft, upgrade and equip helmets.", UIManager.Instance.iconsLibrary.npcForger);
                 break;
             case NPCType.Elevator:
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
+                frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:
-                NPCInventoryPanel.SetActive(true);
-                currentOpenUI = NPCInventoryPanel.gameObject;
-                InventoryManager.Instance.itemsInventory.OpenUI();
+                InventoryPanel.gameObject.SetActive(true);
+                currentOpenUI = InventoryPanel.gameObject;
+                frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.npcInventory);
                 break;
         }
     }
 
-    public void CloseCurrentOpenUI()
+    public void CloseCurrentOpenUI(InputAction.CallbackContext context)
     {
-        currentOpenUI.SetActive(false);
-        currentOpenUI = null;
+        Debug.Log("E");
+        if (context.performed) // ya se soltó y volvió a presionar
+        {
+            Debug.Log("Closing UI");
+            if (currentOpenUI != null)
+            {
+                HUDCanvas.SetActive(true);
+                currentOpenUI.SetActive(false);
+                currentOpenUI = null;
+                frontEndFrame.CloseFrame();
+            }
+        }
+
+
     }
     public void OpenShopUI(int _id)
     {
-        shopPanel.OpenShop(ShopManager.Instance.ShopById(_id));
+        Debug.Log("OpeningSHOP UI");
+        HUDCanvas.SetActive(false);
+        Shop _currentShop = ShopManager.Instance.ShopById(_id);
+        shopPanel.OpenShop(_currentShop);
         currentOpenUI = shopPanel.gameObject;
+        frontEndFrame.OpenFrame("SHADY SHOP", _currentShop.shopName, UIManager.Instance.iconsLibrary.npcShop);
     }
 
 

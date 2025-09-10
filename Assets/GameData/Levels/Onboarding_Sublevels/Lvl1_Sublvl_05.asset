@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: Lvl1_Sublvl_05
+  m_EditorClassIdentifier: 
+  id: Lvl1Sub05
+  helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+  dialogueSequence: {fileID: 11400000, guid: 88270742c9989f64ab6e0548fc54f944, type: 2}
+  sublevel2DMap: {fileID: 2800000, guid: e509de7e01c0eaf4ca7ec2fe67eab20c, type: 3}
+  objectives:
+  - rid: 6219506894629240913
+  gateRequirements: []
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6219506894629240913
+      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 0}
+        resourcesNeeded: 5

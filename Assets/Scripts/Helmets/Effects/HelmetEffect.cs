@@ -9,8 +9,7 @@ public abstract class HelmetEffect
     public virtual void OnUnwear() { }
     public virtual void OnHeadbutt() { }
     public virtual void OnBounce() { }
-    public virtual void OnSpecialAttack() { }
-    public virtual void OnHitEnemy(GameObject enemy) { }
+    public virtual void OnHitEnemy() { }
     public virtual void OnUpgradeEffect(float stat) { }
     
 }

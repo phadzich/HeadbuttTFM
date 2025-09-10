@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: FIRE_SUBLEVEL_02
+  m_EditorClassIdentifier: 
+  id: 2000
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
+  limitPerSpawn: 0
+  sublevel2DMap: {fileID: 2800000, guid: a2f0e5a7e8bfe5443b856133267ef25b, type: 3}
+  objectives:
+  - rid: 7431280861658742858
+  gateRequirements: []
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7431280861658742858
+      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
+        resourcesNeeded: 23

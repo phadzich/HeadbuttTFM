@@ -4,8 +4,8 @@ public class KeyCollectible : MonoBehaviour, ICollectibleEffect
 {
     public void Activate()
     {
-        Debug.Log("KEY OBTAINED!!!");
-        LevelManager.Instance.currentSublevel.CollectKey(1);
+        var _keyEvent = new CollectKeyEvent();
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_keyEvent);
     }
 
     public void SetupBlock(string _variant, MapContext _context)

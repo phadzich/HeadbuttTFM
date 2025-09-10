@@ -13,167 +13,403 @@ MonoBehaviour:
   m_Name: ColorPalette
   m_EditorClassIdentifier: 
   colors:
-  - color: {r: 1, g: 1, b: 1, a: 1}
+  - category: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
     blockString: CLEAR_X
     icon: {fileID: 0}
     prefab: {fileID: 7994459182924363136, guid: 41503004962084530a8f280ed0abb2c7, type: 3}
-  - color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  - category: 0
+    color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     blockString: FLOOR_X
-    icon: {fileID: 2800000, guid: aefae54605abd4342b55fbbbab5d3164, type: 3}
+    icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
     prefab: {fileID: 8090959518607110755, guid: e09315fde33e540a3b9b92b11ca3f363, type: 3}
-  - color: {r: 0, g: 0, b: 0, a: 1}
+  - category: 0
+    color: {r: 0, g: 0, b: 0, a: 1}
     blockString: WALL_X
-    icon: {fileID: 2800000, guid: 0f3da2edf34ff464bbd153c03e9d76f6, type: 3}
+    icon: {fileID: 2800000, guid: 15984450b9a7de642b72a5e539be4dc1, type: 3}
     prefab: {fileID: 5993808358622398738, guid: 4094032f81da84904827c504610d642f, type: 3}
-  - color: {r: 0, g: 1, b: 0, a: 1}
+  - category: 0
+    color: {r: 0, g: 1, b: 0, a: 1}
     blockString: DOOR_1
-    icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
+    icon: {fileID: 2800000, guid: 00a5a2cf6bac1c048b6ac01821a809f2, type: 3}
     prefab: {fileID: 6088147569584951646, guid: b7f2f5b7ee87c43579447c568a7f09ff, type: 3}
-  - color: {r: 0, g: 1, b: 1, a: 1}
+  - category: 1
+    color: {r: 0, g: 1, b: 1, a: 1}
     blockString: RES_01
-    icon: {fileID: 2800000, guid: 905417b425d1f224e8ae80611fa7137d, type: 3}
+    icon: {fileID: 2800000, guid: 627ffe450a10f9d45a7bf2de0ca9fd31, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 0, g: 0.72156864, b: 1, a: 1}
+  - category: 1
+    color: {r: 0, g: 0.72156864, b: 1, a: 1}
     blockString: RES_02
-    icon: {fileID: 2800000, guid: 14fccca2ca124c547a66f7ce0fac694c, type: 3}
+    icon: {fileID: 2800000, guid: 9dc7eb4263d0162408fbda5366113594, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 0, g: 0.32941177, b: 1, a: 1}
+  - category: 1
+    color: {r: 0, g: 0.32941177, b: 1, a: 1}
     blockString: RES_03
-    icon: {fileID: 2800000, guid: 61250b903f909954ab0763275fc40994, type: 3}
+    icon: {fileID: 2800000, guid: fc7257e490ceeb24bb30aebe65d3fdc6, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 0, g: 0, b: 1, a: 1}
+  - category: 1
+    color: {r: 0, g: 0, b: 1, a: 1}
     blockString: RES_04
-    icon: {fileID: 2800000, guid: a48ae575023f0734d80069151ee883aa, type: 3}
+    icon: {fileID: 2800000, guid: 3116a8241e2e1b54698706cdf8e632e5, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 0.31764707, g: 0, b: 1, a: 1}
+  - category: 1
+    color: {r: 0.31764707, g: 0, b: 1, a: 1}
     blockString: RES_05
-    icon: {fileID: 2800000, guid: 0f4c3091be58eb24d9afc6cd21ac5b5a, type: 3}
+    icon: {fileID: 2800000, guid: 8652451e55acc8c4e881e5bbbbdc0a67, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 0.54509807, g: 0, b: 1, a: 1}
+  - category: 1
+    color: {r: 0.54509807, g: 0, b: 1, a: 1}
     blockString: RES_06
-    icon: {fileID: 2800000, guid: d21e7c121be17864da483da23a70e1dd, type: 3}
+    icon: {fileID: 2800000, guid: afbedd7eb118a6d4585314e4e6edea3d, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 1, g: 0, b: 1, a: 1}
+  - category: 1
+    color: {r: 1, g: 0, b: 1, a: 1}
     blockString: RES_07
-    icon: {fileID: 2800000, guid: e409befd15b7d4040a9310bb69296592, type: 3}
+    icon: {fileID: 2800000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 1, g: 0.3529412, b: 1, a: 1}
+  - category: 1
+    color: {r: 1, g: 0.3529412, b: 1, a: 1}
     blockString: RES_08
-    icon: {fileID: 2800000, guid: 788da675b39bfdd42bd7f7888f59995a, type: 3}
+    icon: {fileID: 2800000, guid: dbf96a6126697624d976dd1534089a9f, type: 3}
     prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 1, g: 0.4745098, b: 0.85490197, a: 1}
-    blockString: RES_09
-    icon: {fileID: 2800000, guid: 734ac855cc8a7b1439eb2054bb3ea886, type: 3}
-    prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 1, g: 0.56078434, b: 0.7529412, a: 1}
-    blockString: RES_10
-    icon: {fileID: 2800000, guid: ec277fdb8de88dd4d89c2077c01b42c9, type: 3}
-    prefab: {fileID: 8090959518607110755, guid: bfa2f473a92f04ce69cda584d11ec6d5, type: 3}
-  - color: {r: 1, g: 0, b: 0, a: 1}
+  - category: 7
+    color: {r: 1, g: 0, b: 0, a: 1}
     blockString: SLIME_X
-    icon: {fileID: 2800000, guid: 542e6432669fc4c4b98a57894742f148, type: 3}
+    icon: {fileID: 2800000, guid: 8834d9df0ed34414095b4a72981cb7cc, type: 3}
     prefab: {fileID: 8090959518607110755, guid: a9069041480a144fa9c362d693e84fe4, type: 3}
-  - color: {r: 1, g: 0.5254902, b: 0, a: 1}
+  - category: 6
+    color: {r: 1, g: 0.5254902, b: 0, a: 1}
     blockString: LAVA_X
-    icon: {fileID: 2800000, guid: 25dfbcce0a016864e8d6243107ee41ea, type: 3}
+    icon: {fileID: 2800000, guid: 03140352b1f3536499b48bdb90f1b974, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 6e3e793ea4cf24b5886262113a15fe8d, type: 3}
-  - color: {r: 0.67058825, g: 0, b: 0, a: 1}
+  - category: 6
+    color: {r: 0.67058825, g: 0, b: 0, a: 1}
     blockString: BALL_X
-    icon: {fileID: 2800000, guid: 5131e2ee54db36d498bcd547c42ab1c5, type: 3}
+    icon: {fileID: 2800000, guid: afc406df1bc91784e88ea17a3fe0fca4, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 56f162711e4ee4c3dbe89df29eed1d4b, type: 3}
-  - color: {r: 0.39215687, g: 0.19607843, b: 0.84313726, a: 1}
+  - category: 9
+    color: {r: 0.39215687, g: 0.19607843, b: 0.84313726, a: 1}
     blockString: SPIKES_X
-    icon: {fileID: 2800000, guid: 570a2a2eef0db0549b2dc3aff2a56532, type: 3}
+    icon: {fileID: 2800000, guid: 4ce197259a9bac645916ea8fbb04de5a, type: 3}
     prefab: {fileID: 8090959518607110755, guid: a24857455f8f642eebb69e479c0b3b98, type: 3}
-  - color: {r: 0.8235294, g: 0.7058824, b: 0.19607843, a: 1}
+  - category: 6
+    color: {r: 0.8235294, g: 0.7058824, b: 0.19607843, a: 1}
     blockString: LAVASPAWN_X
-    icon: {fileID: 2800000, guid: fdba121cdd7d06544b2d62ecedb6fb8d, type: 3}
-    prefab: {fileID: 0}
-  - color: {r: 0.8509804, g: 0.22352941, b: 0.03137255, a: 1}
+    icon: {fileID: 2800000, guid: c3caa2d0cbb5149419ad27d6024acaa8, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 33257095ed7974086bfae95ca6290443, type: 3}
+  - category: 6
+    color: {r: 0.8509804, g: 0.22352941, b: 0.03137255, a: 1}
     blockString: HEAD_X
-    icon: {fileID: 2800000, guid: fdba121cdd7d06544b2d62ecedb6fb8d, type: 3}
-    prefab: {fileID: 0}
-  - color: {r: 0.3764706, g: 0.64705884, b: 0.7294118, a: 1}
+    icon: {fileID: 2800000, guid: 03ad305ee86df2f4198ddddb0ad19dd3, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: ffce371bedea049448580a833db1dba2, type: 3}
+  - category: 7
+    color: {r: 0.3764706, g: 0.64705884, b: 0.7294118, a: 1}
     blockString: WATER_X
-    icon: {fileID: 2800000, guid: 71c789477c4e6f948852e4abd9486d1d, type: 3}
+    icon: {fileID: 2800000, guid: 40cff9574af9448439e8e6eedf736960, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 5d51509abb1b74fb1a872de9fb837a78, type: 3}
-  - color: {r: 0.36862746, g: 0.53333336, b: 0.27058825, a: 1}
+  - category: 2
+    color: {r: 0.36862746, g: 0.53333336, b: 0.27058825, a: 1}
     blockString: DOORNPC_2
-    icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
+    icon: {fileID: 2800000, guid: b777e06d91d939e47aa3f7dffb96b820, type: 3}
     prefab: {fileID: 8090959518607110755, guid: e460430bf8a774ba0bd73efe00d481cd, type: 3}
-  - color: {r: 0.3764706, g: 0.3019608, b: 0.21568628, a: 1}
+  - category: 2
+    color: {r: 0.3764706, g: 0.3019608, b: 0.21568628, a: 1}
     blockString: CRAFT_X
-    icon: {fileID: 2800000, guid: 7c8f253f27425244c86fd4447b811dcf, type: 3}
+    icon: {fileID: 2800000, guid: 5c424323a9e3c06478869efbb50814fb, type: 3}
     prefab: {fileID: 5439092240229453402, guid: daf823f824c3e4605848aaea3cebead9, type: 3}
-  - color: {r: 0.5176471, g: 0.3882353, b: 0.12941177, a: 1}
+  - category: 2
+    color: {r: 0.5176471, g: 0.3882353, b: 0.12941177, a: 1}
     blockString: UPGRADE_X
     icon: {fileID: 2800000, guid: 7c8f253f27425244c86fd4447b811dcf, type: 3}
     prefab: {fileID: 5629980668225553574, guid: 94b8f2779426e413196b7a8447fc9150, type: 3}
-  - color: {r: 0.34117648, g: 0.4392157, b: 0, a: 1}
+  - category: 2
+    color: {r: 0.34117648, g: 0.4392157, b: 0, a: 1}
     blockString: SHOP_X
-    icon: {fileID: 2800000, guid: 55fb331a4447a9b408ea940c25afe95a, type: 3}
+    icon: {fileID: 2800000, guid: 220a793c62b74ba45914620399465f14, type: 3}
     prefab: {fileID: 4248826120001402904, guid: 1d74e43f2b3fd4fcb86542bcd375999a, type: 3}
-  - color: {r: 0.17254902, g: 0.35686275, b: 0.3882353, a: 1}
+  - category: 2
+    color: {r: 0.17254902, g: 0.35686275, b: 0.3882353, a: 1}
     blockString: ELEVATOR_X
-    icon: {fileID: 2800000, guid: 7c8f253f27425244c86fd4447b811dcf, type: 3}
+    icon: {fileID: 2800000, guid: 7f528fd16bb3ba947ad12b10c2a39aca, type: 3}
     prefab: {fileID: 4398827484695936833, guid: 3aa784e2027914b11987739e863e2ff6, type: 3}
-  - color: {r: 0.7882353, g: 0.88235295, b: 0.5019608, a: 1}
+  - category: 5
+    color: {r: 0.7882353, g: 0.88235295, b: 0.5019608, a: 1}
     blockString: GATE_0
-    icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
+    icon: {fileID: 2800000, guid: d1d0f68cbbf2a124fb494be605190f7e, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 78f0387be1ef0424bb27f84333d322cc, type: 3}
-  - color: {r: 0.62352943, g: 0.7411765, b: 0.28235295, a: 1}
+  - category: 5
+    color: {r: 0.62352943, g: 0.7411765, b: 0.28235295, a: 1}
     blockString: GATE_1
-    icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
+    icon: {fileID: 2800000, guid: e0ab0a4aaa547a0419863e0816a48721, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 78f0387be1ef0424bb27f84333d322cc, type: 3}
-  - color: {r: 0.4509804, g: 0.5568628, b: 0.13333334, a: 1}
+  - category: 5
+    color: {r: 0.4509804, g: 0.5568628, b: 0.13333334, a: 1}
     blockString: GATE_2
-    icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
+    icon: {fileID: 2800000, guid: f52ba6173fb707046af76e2b4061aa65, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 78f0387be1ef0424bb27f84333d322cc, type: 3}
-  - color: {r: 0.25882354, g: 0.34117648, b: 0.015686275, a: 1}
+  - category: 5
+    color: {r: 0.25882354, g: 0.34117648, b: 0.015686275, a: 1}
     blockString: GATE_3
-    icon: {fileID: 2800000, guid: 42980c2d81526404aba7e983f08345cd, type: 3}
+    icon: {fileID: 2800000, guid: e8280291aa3ce194fa2aea9ec88386f0, type: 3}
     prefab: {fileID: 8090959518607110755, guid: 78f0387be1ef0424bb27f84333d322cc, type: 3}
-  - color: {r: 1, g: 0.73333335, b: 0, a: 1}
+  - category: 0
+    color: {r: 1, g: 0.73333335, b: 0, a: 1}
     blockString: KEY_X
-    icon: {fileID: 2800000, guid: 023aec234547ee84d939a99dfd79b139, type: 3}
+    icon: {fileID: 2800000, guid: 61e45fc09f4dd36429f10258592ff09b, type: 3}
     prefab: {fileID: 3585026906433987620, guid: f4cf39bac0c9a400380bc9d5253a2ff7, type: 3}
-  - color: {r: 0.7411765, g: 1, b: 0.80784315, a: 1}
+  - category: 3
+    color: {r: 0.7411765, g: 1, b: 0.80784315, a: 1}
     blockString: HBPOTION_0
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: ed68a8287a901524aa4b59c0ef69c5b6, type: 3}
     prefab: {fileID: 5777361560624911246, guid: cfb34929a0a4e4786aa7dee7ec1b485d, type: 3}
-  - color: {r: 0.5529412, g: 1, b: 0.67058825, a: 1}
+  - category: 3
+    color: {r: 0.5529412, g: 1, b: 0.67058825, a: 1}
     blockString: HBPOTION_1
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: ed68a8287a901524aa4b59c0ef69c5b6, type: 3}
     prefab: {fileID: 5777361560624911246, guid: cfb34929a0a4e4786aa7dee7ec1b485d, type: 3}
-  - color: {r: 0.30980393, g: 1, b: 0.49019608, a: 1}
+  - category: 3
+    color: {r: 0.30980393, g: 1, b: 0.49019608, a: 1}
     blockString: HBPOTION_2
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: ed68a8287a901524aa4b59c0ef69c5b6, type: 3}
     prefab: {fileID: 5777361560624911246, guid: cfb34929a0a4e4786aa7dee7ec1b485d, type: 3}
-  - color: {r: 0.15294118, g: 0.8235294, b: 0.32941177, a: 1}
+  - category: 3
+    color: {r: 0.15294118, g: 0.8235294, b: 0.32941177, a: 1}
     blockString: HBPOTION_3
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: ed68a8287a901524aa4b59c0ef69c5b6, type: 3}
     prefab: {fileID: 5777361560624911246, guid: cfb34929a0a4e4786aa7dee7ec1b485d, type: 3}
-  - color: {r: 1, g: 0.6117647, b: 0.5647059, a: 1}
+  - category: 3
+    color: {r: 1, g: 0.6117647, b: 0.5647059, a: 1}
     blockString: HELMETPOTION_0
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: 02085b719bc93154db914ce79bdf0ad9, type: 3}
     prefab: {fileID: 4675552849340016843, guid: eefac41f3baaf4e9e865c211e5b3bff7, type: 3}
-  - color: {r: 0.9764706, g: 0.41960785, b: 0.3529412, a: 1}
+  - category: 3
+    color: {r: 0.9764706, g: 0.41960785, b: 0.3529412, a: 1}
     blockString: HELMETPOTION_1
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: 02085b719bc93154db914ce79bdf0ad9, type: 3}
     prefab: {fileID: 4675552849340016843, guid: eefac41f3baaf4e9e865c211e5b3bff7, type: 3}
-  - color: {r: 1, g: 0.28235295, b: 0.19607843, a: 1}
+  - category: 3
+    color: {r: 1, g: 0.28235295, b: 0.19607843, a: 1}
     blockString: HELMETPOTION_2
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
+    icon: {fileID: 2800000, guid: 02085b719bc93154db914ce79bdf0ad9, type: 3}
     prefab: {fileID: 4675552849340016843, guid: eefac41f3baaf4e9e865c211e5b3bff7, type: 3}
-  - color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
+  - category: 3
+    color: {r: 0.8235294, g: 0.24313726, b: 0.1764706, a: 1}
     blockString: HELMETPOTION_3
-    icon: {fileID: 2800000, guid: 60da9635d11d4d74c84fd850e89b0471, type: 3}
-    prefab: {fileID: 3585026906433987620, guid: f4cf39bac0c9a400380bc9d5253a2ff7, type: 3}
-  - color: {r: 0.20392157, g: 1, b: 0.47058824, a: 1}
+    icon: {fileID: 2800000, guid: 02085b719bc93154db914ce79bdf0ad9, type: 3}
+    prefab: {fileID: 4675552849340016843, guid: eefac41f3baaf4e9e865c211e5b3bff7, type: 3}
+  - category: 3
+    color: {r: 0.20392157, g: 1, b: 0.47058824, a: 1}
     blockString: BP_X
-    icon: {fileID: 2800000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
+    icon: {fileID: 2800000, guid: 1ef6e18ae373ffa4e94e34312efe752a, type: 3}
     prefab: {fileID: 3305437815269156742, guid: 2dd3169d55fd840c8a52c67656046a2c, type: 3}
-  - color: {r: 0.29803923, g: 0.13333334, b: 0.15294118, a: 1}
+  - category: 2
+    color: {r: 0.29803923, g: 0.13333334, b: 0.15294118, a: 1}
     blockString: NPC_INVENTORY
-    icon: {fileID: 2800000, guid: 6ec256bd2a0668d4a94a864e937752a9, type: 3}
+    icon: {fileID: 2800000, guid: e2d5b331a0e27904480e3d8e456f866d, type: 3}
     prefab: {fileID: 2063591786701279944, guid: c8551836dacea6c469fd2c4bc066d8df, type: 3}
+  - category: 8
+    color: {r: 0.16470589, g: 0.40392157, b: 0.08235294, a: 1}
+    blockString: CACTUS_RAD
+    icon: {fileID: 2800000, guid: ae24b8b050bd3ed45a153d4214d44c47, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 742a0c0962b9d4a46a83c26faa8cb029, type: 3}
+  - category: 7
+    color: {r: 0.39215687, g: 0.6862745, b: 0.7372549, a: 1}
+    blockString: GEISER_X
+    icon: {fileID: 2800000, guid: 3f35ce8c83ab7a54891b791c0623d272, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 62dd36067cd0ec540b3734423470449b, type: 3}
+  - category: 6
+    color: {r: 0.90588236, g: 0.77254903, b: 0.16470589, a: 1}
+    blockString: FLAMETHROWER_X
+    icon: {fileID: 2800000, guid: f33beec95c41b6d4eaf98679992eb978, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 56ef6fd8b3fe88a45a6d85c912abce02, type: 3}
+  - category: 8
+    color: {r: 0.45882353, g: 0.39607844, b: 0.10980392, a: 1}
+    blockString: CHISPI_X
+    icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 931e9b872a369b8449094067e43ee324, type: 3}
+  - category: 7
+    color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    blockString: CAPATAZ_RAD
+    icon: {fileID: 2800000, guid: 03ad305ee86df2f4198ddddb0ad19dd3, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 8d05a73f2a3aa9d46bb7feacda2d4ae8, type: 3}
+  - category: 4
+    color: {r: 0.77254903, g: 0.20392157, b: 0.99607843, a: 1}
+    blockString: CHEST_0
+    icon: {fileID: 2800000, guid: db7fd9f5126cd664ea9ab1126fb12997, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: f7e40b3b345d4d44b88b4471bcbc49f5, type: 3}
+  - category: 4
+    color: {r: 0.6627451, g: 0.15686275, b: 0.8627451, a: 1}
+    blockString: CHEST_1
+    icon: {fileID: 2800000, guid: 72c369e310e934349968cbb6cf1d8596, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: f7e40b3b345d4d44b88b4471bcbc49f5, type: 3}
+  - category: 4
+    color: {r: 0.50980395, g: 0.12941177, b: 0.6627451, a: 1}
+    blockString: CHEST_2
+    icon: {fileID: 2800000, guid: 19bf011736769974d8ebe123033a1a8b, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: f7e40b3b345d4d44b88b4471bcbc49f5, type: 3}
+  - category: 4
+    color: {r: 0.50980395, g: 0.12941177, b: 0.6627451, a: 1}
+    blockString: CHEST_3
+    icon: {fileID: 2800000, guid: 19bf011736769974d8ebe123033a1a8b, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: f7e40b3b345d4d44b88b4471bcbc49f5, type: 3}
+  - category: 11
+    color: {r: 0.30980393, g: 0.5529412, b: 0.45490196, a: 1}
+    blockString: SWITCH_0
+    icon: {fileID: 2800000, guid: e95a8aa03b51ec04c8a67491161c1dbd, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: a8773c70f7c159f4a8c477f11fa3d4ee, type: 3}
+  - category: 11
+    color: {r: 0.2627451, g: 0.4627451, b: 0.38431373, a: 1}
+    blockString: SWITCH_1
+    icon: {fileID: 2800000, guid: f7183d8a970da8a4b912b72067f784bb, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: a8773c70f7c159f4a8c477f11fa3d4ee, type: 3}
+  - category: 11
+    color: {r: 0.22352941, g: 0.39215687, b: 0.3254902, a: 1}
+    blockString: SWITCH_2
+    icon: {fileID: 2800000, guid: 4dc7460c49f4f974b83c85f1fbda95a7, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: a8773c70f7c159f4a8c477f11fa3d4ee, type: 3}
+  - category: 0
+    color: {r: 0.2901961, g: 0, b: 0.21176471, a: 1}
+    blockString: LVLDOOR_0
+    icon: {fileID: 2800000, guid: b7bc454e771c95e469291e0f69e72aaf, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 0e8b1d5eb6f946b4d9e300aa053d2ce9, type: 3}
+  - category: 0
+    color: {r: 0.38039216, g: 0.0627451, b: 0.29411766, a: 1}
+    blockString: LVLDOOR_1
+    icon: {fileID: 2800000, guid: b7bc454e771c95e469291e0f69e72aaf, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 0e8b1d5eb6f946b4d9e300aa053d2ce9, type: 3}
+  - category: 0
+    color: {r: 0.3882353, g: 0.15686275, b: 0.3254902, a: 1}
+    blockString: LVLDOOR_2
+    icon: {fileID: 2800000, guid: b7bc454e771c95e469291e0f69e72aaf, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 0e8b1d5eb6f946b4d9e300aa053d2ce9, type: 3}
+  - category: 0
+    color: {r: 0.38039216, g: 0.19215687, b: 0.32941177, a: 1}
+    blockString: LVLDOOR_3
+    icon: {fileID: 2800000, guid: b7bc454e771c95e469291e0f69e72aaf, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 0e8b1d5eb6f946b4d9e300aa053d2ce9, type: 3}
+  - category: 0
+    color: {r: 0.28627452, g: 0.14901961, b: 0.24705882, a: 1}
+    blockString: LVLDOOR_4
+    icon: {fileID: 2800000, guid: b7bc454e771c95e469291e0f69e72aaf, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 0e8b1d5eb6f946b4d9e300aa053d2ce9, type: 3}
+  - category: 0
+    color: {r: 0.6784314, g: 0.85882354, b: 0.39607844, a: 1}
+    blockString: DROPBLOCK_1
+    icon: {fileID: 2800000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 086f18628c15acf4da00c5f919a4ddf9, type: 3}
+  - category: 7
+    color: {r: 0.16862746, g: 0.4627451, b: 0.8509804, a: 1}
+    blockString: BOILING_X
+    icon: {fileID: 2800000, guid: 03140352b1f3536499b48bdb90f1b974, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: b8eab3300c7f2a343a0554b97ada3558, type: 3}
+  - category: 7
+    color: {r: 0.25882354, g: 0.42745098, b: 0.7607843, a: 1}
+    blockString: BOILINGBALL_X
+    icon: {fileID: 2800000, guid: afc406df1bc91784e88ea17a3fe0fca4, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 9c6600dde9c862b4ab750aa5ca1a7c99, type: 3}
+  - category: 8
+    color: {r: 0.16862746, g: 0.4392157, b: 0.27450982, a: 1}
+    blockString: POISON_X
+    icon: {fileID: 2800000, guid: 40cff9574af9448439e8e6eedf736960, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 1ff0095f3e4661b42a854296fc94b969, type: 3}
+  - category: 8
+    color: {r: 0.22745098, g: 0.5058824, b: 0.3372549, a: 1}
+    blockString: SHROOM_X
+    icon: {fileID: 2800000, guid: 8834d9df0ed34414095b4a72981cb7cc, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 6c694fb6e909a2140a30c6504d545c2c, type: 3}
+  - category: 8
+    color: {r: 0.30980393, g: 0.6666667, b: 0.39607844, a: 1}
+    blockString: THORNS_X
+    icon: {fileID: 2800000, guid: 4ce197259a9bac645916ea8fbb04de5a, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 9cf46f1943af8ac4a839ad5812ce8148, type: 3}
+  - category: 8
+    color: {r: 0.2784314, g: 0.75686276, b: 0.39607844, a: 1}
+    blockString: POISONBALL_X
+    icon: {fileID: 2800000, guid: afc406df1bc91784e88ea17a3fe0fca4, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: c8a6a518e93bfc64b95390db779d1030, type: 3}
+  - category: 6
+    color: {r: 0.8352941, g: 0.83137256, b: 0.1764706, a: 1}
+    blockString: FIREFLOOR_X
+    icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: c885a8bff9d85c440a90c0cde2ec9834, type: 3}
+  - category: 8
+    color: {r: 0.42352942, g: 0.7176471, b: 0.27058825, a: 1}
+    blockString: GRASSFLOOR_X
+    icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 840b7a03a50fc8547bf418db39c61226, type: 3}
+  - category: 10
+    color: {r: 0.4, g: 0.8666667, b: 0.80784315, a: 1}
+    blockString: ELECTRICFLOOR_X
+    icon: {fileID: 2800000, guid: 81cd84a67382eeb4d86fdcc8f07021e7, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 5b40f6c9518d41e4c8e06764d6d2f29a, type: 3}
+  - category: 8
+    color: {r: 0.20784314, g: 0.41568628, b: 0.17254902, a: 1}
+    blockString: WOODLOG_X
+    icon: {fileID: 2800000, guid: 8a705023825c867469eff6888085b051, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 8ab76f8a7f2b01240b5637f174104a71, type: 3}
+  - category: 8
+    color: {r: 0.30980393, g: 0.44705883, b: 0.2901961, a: 1}
+    blockString: VENUS_X
+    icon: {fileID: 2800000, guid: 03ad305ee86df2f4198ddddb0ad19dd3, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 93203bf92037ea14aa302c3bcf5a3b09, type: 3}
+  - category: 7
+    color: {r: 0.42745098, g: 0.7529412, b: 0.73333335, a: 1}
+    blockString: ICEBLOCK_X
+    icon: {fileID: 2800000, guid: 15984450b9a7de642b72a5e539be4dc1, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 351710299b4aaa24ea5fcaeaed1c1b1e, type: 3}
+  - category: 7
+    color: {r: 0.3372549, g: 0.5764706, b: 0.5647059, a: 1}
+    blockString: SNOWMAN_DIRF
+    icon: {fileID: 2800000, guid: 16aa80be932f17147ba0e03a8636e734, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 198f6b67523350d4ab72f6c19cc3ed81, type: 3}
+  - category: 7
+    color: {r: 0.3254902, g: 0.52156866, b: 0.50980395, a: 1}
+    blockString: SNOWMAN_DIRB
+    icon: {fileID: 2800000, guid: ad5457b7fb2ad8c4f82f2cc200e02f44, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 198f6b67523350d4ab72f6c19cc3ed81, type: 3}
+  - category: 7
+    color: {r: 0.2901961, g: 0.4745098, b: 0.4627451, a: 1}
+    blockString: SNOWMAN_DIRR
+    icon: {fileID: 2800000, guid: b1c6a577dbba0304fb41071fd2817a7a, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 198f6b67523350d4ab72f6c19cc3ed81, type: 3}
+  - category: 7
+    color: {r: 0.25490198, g: 0.43529412, b: 0.42352942, a: 1}
+    blockString: SNOWMAN_DIRL
+    icon: {fileID: 2800000, guid: ae9d3636aaa5a114c9203dc5c9968ea0, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 198f6b67523350d4ab72f6c19cc3ed81, type: 3}
+  - category: 6
+    color: {r: 0.52156866, g: 0.25490198, b: 0.24313726, a: 1}
+    blockString: FIRETURRET_DIRL
+    icon: {fileID: 2800000, guid: ae9d3636aaa5a114c9203dc5c9968ea0, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 017531523c601874194e02af7ef51435, type: 3}
+  - category: 6
+    color: {r: 0.47843137, g: 0.21176471, b: 0.20392157, a: 1}
+    blockString: FIRETURRET_DIRF
+    icon: {fileID: 2800000, guid: 16aa80be932f17147ba0e03a8636e734, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 017531523c601874194e02af7ef51435, type: 3}
+  - category: 6
+    color: {r: 0.59607846, g: 0.27450982, b: 0.26666668, a: 1}
+    blockString: FIRETURRET_DIRR
+    icon: {fileID: 2800000, guid: b1c6a577dbba0304fb41071fd2817a7a, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 017531523c601874194e02af7ef51435, type: 3}
+  - category: 6
+    color: {r: 0.5764706, g: 0.32156864, b: 0.3137255, a: 1}
+    blockString: FIRETURRET_DIRB
+    icon: {fileID: 2800000, guid: ad5457b7fb2ad8c4f82f2cc200e02f44, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 017531523c601874194e02af7ef51435, type: 3}
+  - category: 6
+    color: {r: 0.7294118, g: 0.3529412, b: 0.27450982, a: 1}
+    blockString: AMBERBLOCK_X
+    icon: {fileID: 2800000, guid: 15984450b9a7de642b72a5e539be4dc1, type: 3}
+    prefab: {fileID: 4006885365906108092, guid: 0699c777c61ae994a871c9a8b9e68a73, type: 3}
+  - category: 7
+    color: {r: 0.1254902, g: 0.3372549, b: 0.4392157, a: 1}
+    blockString: NELUMBO_X
+    icon: {fileID: 2800000, guid: f33beec95c41b6d4eaf98679992eb978, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 2c8d6d22005c734438a252c8e09220cf, type: 3}
+  - category: 8
+    color: {r: 0.16862746, g: 0.4392157, b: 0.12941177, a: 1}
+    blockString: SAPO_X
+    icon: {fileID: 2800000, guid: f33beec95c41b6d4eaf98679992eb978, type: 3}
+    prefab: {fileID: 8090959518607110755, guid: 44aa44e37760e9c41b2f9ad858dd6ded, type: 3}

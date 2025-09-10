@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f287970a84a322c49b454ebc18bfcac1, type: 3}
+  m_Name: CrossAttack_Neutral
+  m_EditorClassIdentifier: 
+  effectType: Cross Attack
+  effectName: Cross Quake
+  description: Spend 3 Headbutt points to deal {{{ELEMENT}}} damage in a cross that
+    extends {{{values}}} tiles around you.
+  effectIcon: {fileID: 21300000, guid: ec7979bd180bdff4394ee6e5bb813399, type: 3}
+  hbPointsUsed: 1
+  crossRange: 0
+  effectParticles: {fileID: 5102639546771583594, guid: 0c8571d03bdc13540aa883c8486b440c, type: 3}
+  effectArea: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512

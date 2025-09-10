@@ -5,7 +5,12 @@ using UnityEngine;
 public abstract class Item : ScriptableObject
 {
     public string itemName;
+    [TextArea] public string itemLore;
+    [TextArea] public string itemDescription;
+
+    public Sprite effectIcon;
     public Sprite illustration;
+    public int value;
     public virtual void Buy()
     {
     }

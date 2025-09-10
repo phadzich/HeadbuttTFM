@@ -13,12 +13,39 @@ MonoBehaviour:
   m_Name: _GYM_TEST
   m_EditorClassIdentifier: 
   id: GymTestSublvl01
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
   sublevel2DMap: {fileID: 2800000, guid: e5748984527469c4e857d1b23d645b43, type: 3}
   goalType: 0
-  blocksToMine: 10
-  keysToCollect: 0
-  timeLimitSeconds: 0
+  objectives: []
   gateRequirements:
-  - gateID: 0
-    requiredResource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-    requiredAmount: 3
+  - rid: -2
+  - rid: 6219506760158019667
+  - rid: 6219506760158019668
+  - rid: 6219506760158019669
+  - rid: 6219506760158019670
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6219506760158019667
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+        resourcesNeeded: 4
+    - rid: 6219506760158019668
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
+        resourcesNeeded: 4
+    - rid: 6219506760158019669
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+        resourcesNeeded: 4
+    - rid: 6219506760158019670
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: b6f4abb9e158bdc42bdefd407571890f, type: 2}
+        resourcesNeeded: 4

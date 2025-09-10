@@ -81,6 +81,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         switch (type)
         {
             case NPCType.Shop:
+                Debug.Log("INTERACT");
                 UIManager.Instance.OpenShopUI(shopID);
                 break;
             default:
@@ -99,4 +100,4 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     }
 }
 
-public enum NPCType { Door, Crafter, Upgrader, Elevator, Shop, Inventory }
+public enum NPCType { Door, Crafter, Trader, Elevator, Shop, Inventory }

@@ -2,44 +2,35 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "MiningSublevelConfig", menuName = "GameData/Mining Sublevel")]
+[System.Serializable]
 public class MiningSublevelConfig : SublevelConfig
 {
     public Texture2D sublevel2DMap;
-    public SublevelGoalType goalType;
 
-    [Header("Mining Goal")]
-    public int blocksToMine;
+    [Header("Objectives")]
+    [SerializeReference]
+    public List<ISublevelObjective> objectives = new List<ISublevelObjective>();
 
-    [Header("Key Goal")]
-    public int keysToCollect;
-
-    [Header("Timer Goal")]
-    public float timeLimitSeconds;
 
     [Header("Gates")]
-    public List<GateRequirement> gateRequirements;
+    [SerializeReference]
+    public List<IRequirement> gateRequirements;
 
+    [Header("Chests")]
+    [SerializeReference]
+    public List<IRequirement> chestsRequirements;
 
-    public bool IsValidConfig()
-    {
-        switch (goalType)
-        {
-            case SublevelGoalType.MineBlocks:
-                return blocksToMine > 0;
-            case SublevelGoalType.CollectKeys:
-                return keysToCollect > 0;
-            case SublevelGoalType.BeatTimer:
-                return timeLimitSeconds > 0;
-            case SublevelGoalType.Open:
-                return true;
-            default:
-                return false;
-        }
-    }
+    [SerializeReference]
+    public List<LootBase> chestsLoot;
+
+    [Header("Switches")]
+    [SerializeReference]
+    public List<float> switchesDurations;
+
 }
-
 public enum SublevelGoalType
 {
     MineBlocks,

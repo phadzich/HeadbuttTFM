@@ -107,4 +107,13 @@ public class CurrentHelmetsHUD : MonoBehaviour
         return null;
     }
 
+    public void RefreshAllHelmets()
+    {
+        foreach(HelmetHUD _hud in equippedHelmetHUDs)
+        {
+            _hud.UpdateDurability(_hud.helmetInstance.currentDurability, _hud.helmetInstance.durability);
+            _hud.UnBroken();
+        }
+    }
+
 }

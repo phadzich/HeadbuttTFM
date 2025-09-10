@@ -64,7 +64,7 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     private void DurabilityDamage()
     {
-        HelmetManager.Instance.currentHelmet.TakeDamage(damage, true);
+        PlayerManager.Instance.playerEffects.TakeDamage(damage);
     }
 
     private void ResourcesDamage()
@@ -84,7 +84,7 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     public void PlayDamageSound()
     {
-        SoundManager.PlaySound(SoundType.RECIEVEDAMAGE, 0.5f);
+        SoundManager.PlaySound(SFXType.RECIEVEDAMAGE, 0.5f);
     }
 
     

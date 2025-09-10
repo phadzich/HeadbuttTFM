@@ -14,7 +14,8 @@ public class PlayerHeadbutt : MonoBehaviour
     [SerializeField] public float maxHBpoints;
     [SerializeField] public float currentHBpoints;
     public bool hasMaxHBPoints => currentHBpoints==maxHBpoints;
-[Header("HEADBUTT CONFIG")]
+
+    [Header("HEADBUTT CONFIG")]
     [SerializeField]
     float headbuttCooldown;
     [SerializeField]
@@ -67,7 +68,7 @@ public class PlayerHeadbutt : MonoBehaviour
         if (_amount > currentHBpoints)
         {
             _result = false;
-            Debug.Log("NOT ENOUGH HB POINTS");
+            //Debug.Log("NOT ENOUGH HB POINTS");
         }
         else
         {
@@ -87,6 +88,11 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         currentHBpoints += _amount;
         onHBPointsChanged?.Invoke(currentHBpoints,maxHBpoints);
+
+
+        var _intHBs = (int)Math.Floor(currentHBpoints);
+        var _hbPointsEvent = new HbPointsEvent { currentPoints = _intHBs };
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_hbPointsEvent);
     }
 
 
@@ -96,30 +102,34 @@ public class PlayerHeadbutt : MonoBehaviour
     }
 
 
-
     public void Headbutt(InputAction.CallbackContext context)
     {
-        if(LevelManager.Instance.currentSublevel.config is MiningSublevelConfig)
+
+        if (!PlayerManager.Instance.playerStates.canHeadbutt)
         {
-            // por ahora quite bounceDirection == "DOWN" && 
-            if (context.phase == InputActionPhase.Performed)
+            return; // no puede Headbutt
+        }
+
+        // por ahora quite bounceDirection == "DOWN" && 
+        if (context.phase == InputActionPhase.Performed)
+        {
+
+            if (!headbuttOnCooldown &&
+                TryUseHBPoints(1) &&
+                PlayerManager.Instance.playerMovement.blockNSBelow != null)
             {
-                if (!headbuttOnCooldown &&
-                    TryUseHBPoints(1) &&
-                    PlayerManager.Instance.playerMovement.blockNSBelow != null)
-                {
-                    HeadbuttUp();
-                }
+                HeadbuttUp();
             }
-        }else if(LevelManager.Instance.currentSublevel.config is NPCSublevelConfig){
-            Debug.Log("NO HAY HBS EN NPC");
         }
     }
 
     public void HeadbuttUp()
     {
-        //Debug.Log("HEADBUTT!");
-        rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,2f,0);
+
+        PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);
+        rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,.5f,0);
+
+
         rb.linearVelocity = new Vector3(0, headbuttPower, 0);
 
         PlayerManager.Instance.playerMovement.blockNSBelow.OnHeadbutt(HelmetManager.Instance.currentHelmet);
@@ -127,6 +137,10 @@ public class PlayerHeadbutt : MonoBehaviour
         RestartHeadbuttCooldown();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
         HelmetManager.Instance.currentHelmet.OnHeadbutt();
+
+        // Interrumpir efectos
+        var states = PlayerManager.Instance.playerStates;
+        //if (states.isStunned) states.InterruptEffect();
     }
 
     private void UpdateHeadbuttCooldown()

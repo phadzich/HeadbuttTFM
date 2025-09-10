@@ -6,7 +6,7 @@ public class ExchangePanelUI : MonoBehaviour
     public ExchangeButtonUI exchangeButtonPrefab;
 
 
-    private void Start()
+    private void OnEnable()
     {
         PopulateButtons();
     }

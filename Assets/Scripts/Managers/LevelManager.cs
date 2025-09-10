@@ -12,6 +12,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.Rendering.DebugUI.Table;
 using static UnityEngine.Rendering.STP;
 using Random = UnityEngine.Random;
+using System.Linq;
+
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
@@ -20,6 +22,9 @@ public class LevelManager : MonoBehaviour
     public SublevelMapNewGenerator sublevelMapNewGenerator;
 
     [Header("CURRENT LEVEL")]
+    public MapContext currentContext;
+    private List<ISublevelObjective> activeObjectives;
+
     public Level currentLevel;
     public Sublevel currentSublevel;
     public List<Sublevel> sublevelsList;
@@ -30,6 +35,8 @@ public class LevelManager : MonoBehaviour
     public int sublevelWidth;
     public int sublevelHeight;
     public GameObject currentExitDoor;
+    public GameObject currentDropBlock;
+    public bool onMiningMusic = false;
 
     [Header("LEVEL CONTAINERS")]
     public Transform levelsContainer;
@@ -41,10 +48,8 @@ public class LevelManager : MonoBehaviour
 
     public bool NPCLevel = false;
 
-    public Action onSublevelBlocksMined;
+
     public Action<Sublevel> onSublevelEntered;
-    public Action onKeysCollected;
-    public int currentSublevelBlocksMined;
 
     public NavMeshSurface navMeshSurface; // Arrastra el GameObject con NavMeshSurface aqu�
 
@@ -64,7 +69,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("LevelManager START");
-
         ResourceManager.Instance.InitOwnedResources();
         //CARGAMOS EL PRIMER NIVEL
         LoadLevel(levelsList[0]);
@@ -78,6 +82,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"* Loading Level {_levelConfig.name}*");
         currentLevel = currentLoadedLevelContainer.AddComponent<Level>();
         currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
+        SoundManager.PlaySound(AmbientType.LEVELAMBIENT, currentLevel.config.levelAmbient);
 
         //DETERMINAMOS DATA DEL DEPTH
         maxLevelDepth = _levelConfig.subLevels.Count - 1;
@@ -85,9 +90,7 @@ public class LevelManager : MonoBehaviour
         PreloadSublevelsList();
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
-
-        //Se genera el NavMesh   
-
+        PlayerManager.Instance.EnterNewLevel();
         //INDICAMOS QUE HEMOS ENTRADO EN EL
         EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
 
@@ -99,12 +102,10 @@ public class LevelManager : MonoBehaviour
         {
             sublevelsList.Add(null);
         }
-
     }
 
     public void GenerateSublevel(SublevelConfig _sublevelConfig, int _depth)
     {
-
         GameObject _sublevelContainer = CreateEmptyGameobject(_sublevelConfig.name, currentLoadedLevelContainer.transform);
         _sublevelContainer.transform.localPosition = new Vector3(0, distanceBetweenSublevels * -_depth, 0);
 
@@ -115,23 +116,6 @@ public class LevelManager : MonoBehaviour
 
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-
-            switch (_miningSublevel.goalType)
-            {
-                case SublevelGoalType.MineBlocks:
-                    _sublevel.SetMiningObjectives(_miningSublevel.blocksToMine);
-                    break;
-                case SublevelGoalType.CollectKeys:
-                    _sublevel.SetKeysObjectives(_miningSublevel.keysToCollect);
-                    break;
-                case SublevelGoalType.BeatTimer:
-                    _sublevel.SetTimerObjectives(_miningSublevel.timeLimitSeconds);
-                    break;
-                case SublevelGoalType.Open:
-                    _sublevel.isCompleted = true;
-                    break;
-            }
-
             sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _miningSublevel.sublevel2DMap, _depth, _miningSublevel, null, _sublevel);
         }
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
@@ -141,24 +125,37 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    void PrintStringDictionaryContents(Dictionary<ResourceData, int> _dictionary) 
-    {
-        foreach (KeyValuePair<ResourceData, int> _kvp in _dictionary)
-        {
-            Debug.Log($"{_kvp.Key} {_kvp.Value}");
-        }
-    }
-
     public void ExitSublevel()
     {
-        //Debug.Log($"Exiting {currentSublevel}");
-        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 2f));
-            
+
+        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
+
         currentLevelDepth++;
-        PlayerManager.Instance.playerCamera.MoveCamDown(currentLevelDepth);
+        //PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
         MatchManager.Instance.RestartMatches();
         EnterSublevel(currentLevel.config.subLevels[currentLevelDepth]);
 
+    }
+    public void ExitLevel()
+    {
+        Debug.Log($"Exiting {currentLevel}");
+        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
+        MatchManager.Instance.RestartMatches();
+
+        currentDropBlock = null;
+    }
+
+    public void ChangeLevel(int _levelIndex)
+    {
+        ExitLevel();
+        UnloadLevel();
+        LoadLevel(levelsList[_levelIndex]);
+
+    }
+
+    private void UnloadLevel()
+    {
+        Destroy(currentLoadedLevelContainer.gameObject);
     }
 
     public void DestroySublevelContent(Sublevel _sublevel)
@@ -188,56 +185,67 @@ public class LevelManager : MonoBehaviour
         currentSublevel = sublevelsList[currentLevelDepth];
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
+        PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
-            PlayerManager.Instance.EnterMiningLevel();
-            //Debug.Log($"Entering {currentSublevel.id}");
-
-            if (_miningSublevel.gateRequirements.Count > 0)
+            if (!onMiningMusic)
             {
-                foreach (GateBehaviour _gate in currentSublevel.gateBlocks)
-                {
-                    _gate.StartGateCount();
-                }
+                SoundManager.PlaySound(MusicType.LEVELMUSIC, currentLevel.config.levelMusic);
+                onMiningMusic = true;
             }
 
-
+            PlayerManager.Instance.EnterMiningLevel();
         }
+
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
+            SoundManager.PlaySound(MusicType.LEVELMUSIC, currentLevel.config.levelNpcMusic);
+            onMiningMusic = false;
+
             //ENTRAR A ESTADO CHECKPOINT
             PlayerManager.Instance.EnterNPCLevel();
             HelmetManager.Instance.ResetHelmetsStats();
-            PlayerManager.Instance.MaxUpLives();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
-
         }
 
-        //CARGAMOS EL SIGUIENTE
+        TryGenerateNextSublevel();
+        ActivateDialogIfAvailable(_sublevelConfig);
+        MovePlayerToDropBlock();
+
+
+    }
+    
+
+    private void MovePlayerToDropBlock()
+    {
+        if (currentDropBlock != null)
+        {
+            PlayerManager.Instance.playerMovement.MoveToDrop(currentDropBlock.transform.position);
+        }
+        else
+        {
+            //Debug.Log("CHECK");
+        }
+    }
+
+    private void ActivateDialogIfAvailable(SublevelConfig _sublevelConfig)
+    {
+        if (_sublevelConfig.dialogueSequence != null)
+        {
+            UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
+        }
+    }
+
+
+    private void TryGenerateNextSublevel()
+    {
         if (currentLevelDepth < maxLevelDepth)
         {
             GenerateSublevel(currentLevel.config.subLevels[currentLevelDepth + 1], currentLevelDepth + 1);
 
             GenerateNavMesh();
         }
-
-        if (_sublevelConfig.dialogueSequence != null)
-        {
-            UIManager.Instance.dialogueSystem.StartDialogue(_sublevelConfig.dialogueSequence);
-        }
-
-        // RESETEAR O LO QUE SEA LOS HELMETS
-        //HelmetManager.Instance.NewSublevel();
-        //Debug.Log("Reseting Helmet Stats");
-        GameManager.Instance.RestartSublevelStats();
     }
-
-    public void IncreaseMinedBlocks(int _newMinedBlocks)
-    {
-        currentSublevel.currentBlocksMined += _newMinedBlocks;
-        onSublevelBlocksMined?.Invoke();
-    }
-
 
     private GameObject CreateEmptyGameobject(string _name, Transform _parent)
     {
@@ -251,8 +259,7 @@ public class LevelManager : MonoBehaviour
         if (navMeshSurface != null)
         {
             navMeshSurface.RemoveData();
-            navMeshSurface.BuildNavMesh(); // Esto hornear� el NavMesh en tiempo de ejecuci�n
-            //Debug.Log("NavMesh baked dynamically.");
+            navMeshSurface.BuildNavMesh();
         }
         else
         {

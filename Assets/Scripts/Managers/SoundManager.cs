@@ -1,38 +1,28 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
-public enum SoundCategory
+public static class MixerGroups
 {
-    Music,
-    SFX,
-    Ambient,
-    UI
-}
-
-public enum SoundType
-{
-    MINEDCOMPLETE,
-    RESOURCEBOUNCE,
-    FLOORBOUNCE,
-    HEADBUTTFLOOR,
-    HEADBUTTRESOURCE,
-    COMBOFAIL,
-    FIREDAMAGE,
-    PUSHDAMAGE,
-    ENEMYDAMAGE,
-    SPIKEDAMAGE,
-    RECIEVEDAMAGE,
-
-    LEVELMUSIC,
-    LEVELAMBIENT,
+    public const string Ambient = "Ambient";
+    public const string Master = "Master";
+    public const string Music = "Music";
+    public const string SFX = "SFX";
+    public const string UI = "UI";
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private SoundList[] soundList;
+    [SerializeField] private SoundEntry<MusicType>[] musicSoundList;
+    [SerializeField] private SoundEntry<SFXType>[] sfxSoundList;
+    [SerializeField] private SoundEntry<AmbientType>[] ambientSoundList;
+    [SerializeField] private SoundEntry<UIType>[] UISoundList;
     [SerializeField] private AudioMixer audioMixer;
 
     [Header("Audio Sources")]
@@ -41,49 +31,91 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource ambientSource;
     [SerializeField] private AudioSource uiSource;
 
-    private static SoundManager instance;
+    public static SoundManager instance;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public static void PlaySound(SoundType sound, float volume = 1f)
-    {
-        var soundData = instance.soundList[(int)sound];
-        AudioClip randomClip = soundData.Sounds[UnityEngine.Random.Range(0, soundData.Sounds.Length)];
+    public static void PlaySound(MusicType _sound, AudioClip _clip, float _volume = 1f)
+        => instance.PlaySoundInternal(instance.musicSoundList, _sound, _volume, instance.musicSource, _clip, true);
 
-        switch (soundData.Category)
+    public static void PlaySound(SFXType _sound, float _volume = 1f, AudioClip _clip = null)
+        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _clip);
+
+    public static void PlaySound(SFXType _sound, Vector3 _position, AudioClip _clip, float _volume = 1f)
+        => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _position, _clip);
+
+    public static void PlaySound(AmbientType _sound, AudioClip _clip, float _volume = 1f)
+        => instance.PlaySoundInternal(instance.ambientSoundList, _sound, _volume, instance.ambientSource, _clip, true);
+
+    public static void PlaySound(UIType _sound, float _volume = 1f)
+        => instance.PlaySoundInternal(instance.UISoundList, _sound, _volume, instance.uiSource);
+
+    private void PlaySoundInternal<TEnum>(
+        SoundEntry<TEnum>[] _list,
+        TEnum _type,
+        float _volume,
+        AudioSource _source,
+        AudioClip _clip = null,
+        bool _loop = false
+    ) where TEnum : Enum
+    {
+        AudioClip currentClip;
+
+        var soundData = Array.Find(_list, s => s.type.Equals(_type));
+
+        if (_clip == null & soundData.Clip == null) return;
+
+        currentClip = soundData.Clip;
+
+        if (_clip != null)
         {
-            case SoundCategory.Music:
-                instance.musicSource.clip = randomClip;
-                instance.musicSource.volume = volume;
-                instance.musicSource.loop = true;
-                instance.musicSource.Play();
-                break;
-            case SoundCategory.SFX:
-                instance.sfxSource.PlayOneShot(randomClip, volume);
-                break;
-            case SoundCategory.Ambient:
-                instance.ambientSource.clip = randomClip;
-                instance.ambientSource.volume = volume;
-                instance.ambientSource.loop = true;
-                instance.ambientSource.Play();
-                break;
-            case SoundCategory.UI:
-                instance.uiSource.PlayOneShot(randomClip, volume);
-                break;
+            currentClip = _clip;
         }
+
+        _source.clip = currentClip;
+        _source.loop = _loop;
+
+        if (_loop) _source.Play();
+        else _source.PlayOneShot(currentClip, _volume);
     }
 
-    // 3D sound playback (e.g., explosions, spikes, etc.)
-    public static void PlaySound3D(SoundType sound, Vector3 position, float volume = 1f)
+    private void Play3DSoundInternal<TEnum>(
+        SoundEntry<TEnum>[] _list,
+        TEnum _type,
+        float _volume,
+        AudioSource _source,
+        Vector3 _pos,
+        AudioClip _clip = null,
+        bool _loop = false
+    ) where TEnum : Enum
     {
-        var soundData = instance.soundList[(int)sound];
-        if (soundData.Category != SoundCategory.SFX || soundData.Sounds.Length == 0) return;
+        AudioClip currentClip;
 
-        AudioClip clip = soundData.Sounds[UnityEngine.Random.Range(0, soundData.Sounds.Length)];
-        AudioSource.PlayClipAtPoint(clip, position, volume);
+        var soundData = Array.Find(_list, s => s.type.Equals(_type));
+
+        if (_clip == null & soundData.Clip == null) return;
+
+        currentClip = soundData.Clip;
+
+        if (_clip != null)
+        {
+            currentClip = _clip;
+        }
+
+        GameObject tempGO = new GameObject("TempAudio");
+        tempGO.transform.position = _pos;
+
+        AudioSource aSource = tempGO.AddComponent<AudioSource>();
+        aSource.clip = currentClip;
+        aSource.volume = _volume;
+        aSource.spatialBlend = 1.0f; // 3D
+        aSource.outputAudioMixerGroup = sfxSource.outputAudioMixerGroup;
+        aSource.Play();
+
+        Destroy(tempGO, currentClip.length);
     }
 
     public void SetVolume(string mixerGroupName, float volume)
@@ -93,27 +125,60 @@ public class SoundManager : MonoBehaviour
         audioMixer.SetFloat(mixerGroupName, dB);
     }
 
+
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        string[] names = Enum.GetNames(typeof(SoundType));
-        Array.Resize(ref soundList, names.Length);
-        for (int i = 0; i < names.Length; i++)
+        string[] music = Enum.GetNames(typeof(MusicType));
+        MusicType[] musicValues = (MusicType[])Enum.GetValues(typeof(MusicType));
+
+        Array.Resize(ref musicSoundList, music.Length);
+        for (int i = 0; i < music.Length; i++)
         {
-            soundList[i].name = names[i];
+            musicSoundList[i].name = music[i];
+            musicSoundList[i].type = musicValues[i];
+            musicSoundList[i].Category = SoundCategory.Music;
+        }
+
+        string[] sfx = Enum.GetNames(typeof(SFXType));
+        SFXType[] sfxValues = (SFXType[])Enum.GetValues(typeof(SFXType));
+        Array.Resize(ref sfxSoundList, sfx.Length);
+        for (int i = 0; i < sfx.Length; i++)
+        {
+            sfxSoundList[i].name = sfx[i];
+            sfxSoundList[i].type = sfxValues[i];
+            sfxSoundList[i].Category = SoundCategory.SFX;
+        }
+
+        string[] ambient = Enum.GetNames(typeof(AmbientType));
+        AmbientType[] ambientValues = (AmbientType[])Enum.GetValues(typeof(AmbientType));
+        Array.Resize(ref ambientSoundList, ambient.Length);
+        for (int i = 0; i < ambient.Length; i++)
+        {
+            ambientSoundList[i].name = ambient[i];
+            ambientSoundList[i].type = ambientValues[i];
+            ambientSoundList[i].Category = SoundCategory.Ambient;
+        }
+
+        string[] ui = Enum.GetNames(typeof(UIType));
+        UIType[] uiValues = (UIType[])Enum.GetValues(typeof(UIType));
+        Array.Resize(ref UISoundList, ui.Length);
+        for (int i = 0; i < ui.Length; i++)
+        {
+            UISoundList[i].name = ui[i];
+            UISoundList[i].type = uiValues[i];
+            UISoundList[i].Category = SoundCategory.UI;
         }
     }
 #endif
 }
 
 [Serializable]
-
-public struct SoundList
+public struct SoundEntry<TEnum> where TEnum : Enum
 {
-    public AudioClip[] Sounds { get => sounds; }
-    public SoundCategory Category => category;
     [HideInInspector] public string name;
-    [SerializeField] private AudioClip[] sounds;
-    [SerializeField] private SoundCategory category;
-
+    public TEnum type;              // Ej: SFXType.MINEDCOMPLETE
+    public AudioClip Clip => clip;       // uno o varios clips para ese sonido
+    public SoundCategory Category;
+    [SerializeField] private AudioClip clip;
 }

@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - DoorExit
+  - Wall
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fog
   - Water
   - UI
   - Walls

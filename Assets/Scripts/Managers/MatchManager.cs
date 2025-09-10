@@ -35,7 +35,7 @@ public class MatchManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("MatchManager START");
-        RestartMatches();
+        //RestartMatches();
     }
 
     public void RestartMatches()
@@ -66,7 +66,7 @@ public class MatchManager : MonoBehaviour
         {
             FailCurrentChain();
         }
-        SoundManager.PlaySound(SoundType.FLOORBOUNCE, 1f);
+        SoundManager.PlaySound(SFXType.FLOORBOUNCE);
     }
 
     public void EnemyBounced()
@@ -91,7 +91,7 @@ public class MatchManager : MonoBehaviour
         if (bouncedResource != currentChainResource)
         {
             FailCurrentChain();
-            Debug.Log("Starting new chain");
+            //Debug.Log("Starting new chain");
             StartNewChain();
         }
     }
@@ -119,7 +119,7 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
-        SoundManager.PlaySound(SoundType.COMBOFAIL, 0.7f);
+        SoundManager.PlaySound(SFXType.COMBOFAIL, 0.7f);
     }
 
     public void FlashFailedBlocks()
@@ -192,6 +192,9 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
 
     }
+
+
+
     public void ClearAllHitBlocks()
     {
         foreach (ResourceEffect _block in currentChainBlocks)
@@ -206,7 +209,6 @@ public class MatchManager : MonoBehaviour
     private void RewardPlayer()
     {
         //Debug.Log("Rewarding Player!");
-        RewardSublevelBlocks();
         RewardResources();
         RewardHBPoints();
     }
@@ -218,6 +220,7 @@ public class MatchManager : MonoBehaviour
         {
             currentStreak++;
         }
+        DispatchStreakEvent();
 
         UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
     }
@@ -228,21 +231,25 @@ public class MatchManager : MonoBehaviour
 
         currentStreak =1;
         UIManager.Instance.hbPointsHUD.UpdateStreak(currentStreak);
+
     }
 
-    private void RewardSublevelBlocks()
+    private void DispatchStreakEvent()
     {
-        int _totalBlocks = currentChainBlocks.Count;
-        //Debug.Log("REW Blocks " + _totalBlocks);
-        LevelManager.Instance.IncreaseMinedBlocks(_totalBlocks);
+        var _streakEvent = new MatchStreakEvent { currentStreak = currentStreak };
+        LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_streakEvent);
     }
-
     private void RewardResources()
     {
         int _totalRes = 0;
+
         foreach (ResourceEffect _block in currentChainBlocks)
         {
+
             _totalRes += _block.helmetPowerMultiplier;
+
+            var _resourceEvent = new CollectResourceEvent { resData = _block.resourceData, amount = _block.helmetPowerMultiplier };
+            LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_resourceEvent);
         }
 
         //Debug.Log("REW Resources " + _totalRes);

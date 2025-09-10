@@ -17,8 +17,8 @@ public class HelmetData : ScriptableObject
     public Rarity rarity;
 
     [Header("Compatibility")]
-    public MiningPower miningPower;
-    public ElementData element;
+    public HelmetPower miningPower;
+    public ElementType element;
 
     [Header("Effects")]
     public List<HelmetEffectData> effects;

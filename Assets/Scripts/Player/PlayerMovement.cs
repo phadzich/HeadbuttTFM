@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("MOVEMENT")]
     [SerializeField]
     public Vector3 positionTarget;
+    public Vector3 restartPosition;
     public float speed = 10f;
+    public float normalSpeed = 10f;
+    public float dropSpeed = 2f;
     [SerializeField]
     private bool isMoving;
     public bool movementLocked;
@@ -26,10 +30,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("KNOCKBACK")]
     public float knockbackDistance = 1f;
+    public bool isKnockedBack;
 
     private void Start()
     {
         positionTarget = transform.position;
+        restartPosition = positionTarget;
     }
     private void Update()
     {
@@ -74,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(InputAction.CallbackContext context)
     {
-
+        if (!PlayerManager.Instance.playerStates.canMove) return;
+        if (isKnockedBack) return;
 
         if (context.phase == InputActionPhase.Performed)
         {
@@ -82,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
             moveInput.x = Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y) ? Mathf.Sign(moveInput.x) : 0;
             moveInput.y = Mathf.Abs(moveInput.y) > Mathf.Abs(moveInput.x) ? Mathf.Sign(moveInput.y) : 0;
 
-            if (!isMoving && !movementLocked)
+            if (!isMoving && movementLocked)
             {
 
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
@@ -140,51 +147,63 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 origin = enanoParent.transform.position;
         Vector3 direction = Vector3.down;
-        //Debug.DrawRay(origin, direction * blockLockdownRange, Color.yellow);
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN")
-        {
+        bool blockBelow = Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN";
 
-            GameManager.Instance.playerMovement.movementLocked = true;
-        }
-        else
-        {
-            GameManager.Instance.playerMovement.movementLocked = false;
-        }
+        movementLocked = !blockBelow;
     }
 
     public void Knockback(Vector3 direction)
     {
-        if (KnockbackChance())
-        {
-            Vector3 alignedPosition = new Vector3(
-    Mathf.Round(transform.position.x),
-    0,
-    Mathf.Round(transform.position.z)
-);
-            Vector3 newPosition = alignedPosition + direction;
-            //Debug.Log($"Knockback position: {newPosition}");
-            ChangePositionTarget(newPosition);
-        }
+        isKnockedBack = true;
 
+        Vector3 alignedPosition = new Vector3(
+            blockNSBelow.transform.position.x,
+            0,
+            blockNSBelow.transform.position.z
+        );
+
+        Vector3 newPosition = alignedPosition + direction;
+
+
+        ChangePositionTarget(newPosition);
+
+        StartCoroutine(ReleaseKnockbackLock());
     }
-
-    public bool KnockbackChance()
+    private IEnumerator ReleaseKnockbackLock()
     {
-        bool _shouldKnock = true;
-        int _chance = 100;
-        int _random = Random.Range(0, 100);
-        //Debug.Log(_chance);
-        //Debug.Log(_random);
-        if (_random <= _chance)
-        {
-            _shouldKnock = true;
-        }
-        else
-        {
-            _shouldKnock = false;
-        }
-        //Debug.Log(_shouldKnock);
-        return _shouldKnock;
+        yield return new WaitForSeconds(0.15f);
+        isKnockedBack = false;
     }
+
+    public void RespawnPlayer()
+    {
+        positionTarget = new Vector3(0,20,0);
+        enanoParent.position = positionTarget;
+        ChangePositionTarget(positionTarget);
+    }
+
+    public void MoveToDrop(Vector3 _dropPosition)
+    {
+        StartCoroutine(DelayMoveToDrop(_dropPosition));
+    }
+
+    public IEnumerator RestoreToNormalSpeed()
+    {
+        yield return new WaitForSeconds(1.5f);
+        speed = normalSpeed;
+    }
+
+    public IEnumerator DelayMoveToDrop(Vector3 _dropPosition)
+    {
+        yield return new WaitForSeconds(1f);
+        speed = dropSpeed;
+        var _newPos = new Vector3(_dropPosition.x, _dropPosition.y + 15f, _dropPosition.z);
+        positionTarget = _newPos;
+        ChangePositionTarget(_newPos);
+        StartCoroutine(RestoreToNormalSpeed());
+        //Debug.Log($"Player falling at {_newPos}");
+    }
+
+
 }

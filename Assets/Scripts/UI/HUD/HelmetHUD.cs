@@ -8,13 +8,12 @@ public class HelmetHUD : MonoBehaviour
     public HelmetInstance helmetInstance;
     public Image helmetIMG;
     public Image selectionBG;
-    public Image selectedArrowIMG;
     public Image faderIMG;
-    public Image miningPowerIMG;
     public TextMeshProUGUI durabilityTXT;
+    public TextMeshProUGUI powerTXT;
+    public Image powerPanel;
     public Image durabilityFillIMG;
     public GameObject evolvePanel;
-    public List<Sprite> miningPowerSprites;
 
     public Image res01IMG;
     public TextMeshProUGUI res01TXT;
@@ -33,7 +32,8 @@ public class HelmetHUD : MonoBehaviour
     {
         helmetInstance = _helmetInstance;
         helmetIMG.sprite = helmetInstance.baseHelmet.icon;
-        miningPowerIMG.sprite = miningPowerSprites[(int)_helmetInstance.baseHelmet.miningPower];
+        powerTXT.text = ((int)_helmetInstance.baseHelmet.miningPower+1).ToString();
+        powerPanel.color = UIManager.Instance.elementColors[(int)_helmetInstance.Element];
         UpdateDurability(_helmetInstance.currentDurability, _helmetInstance.durability);
         UnWearHelmet();
     }
@@ -41,7 +41,7 @@ public class HelmetHUD : MonoBehaviour
     public void UpdateDurability(int _current, int _max)
     {
         float _fillAmount = ((float)_current / (float)_max);
-        durabilityTXT.text = $"{_current}/{_max}";
+        durabilityTXT.text = $"{_current}";
         durabilityFillIMG.fillAmount = _fillAmount;
     }
 
@@ -81,7 +81,7 @@ public class HelmetHUD : MonoBehaviour
     public void WearHelmet()
     {
         selectionBG.color = selectedColor;
-        selectedArrowIMG.gameObject.SetActive(true);
+        //selectedArrowIMG.gameObject.SetActive(true);
     }
 
     public void Broken()
@@ -89,13 +89,19 @@ public class HelmetHUD : MonoBehaviour
 
         selectionBG.color = brokenColor;
         faderIMG.gameObject.SetActive(true);
-        selectedArrowIMG.gameObject.SetActive(false);
+        //selectedArrowIMG.gameObject.SetActive(false);
+    }
+
+    public void UnBroken()
+    {
+        UnWearHelmet();
+        faderIMG.gameObject.SetActive(false);
     }
 
     public void UnWearHelmet()
     {
         selectionBG.color = unselectedColor;
-        selectedArrowIMG.gameObject.SetActive(false);
+        //selectedArrowIMG.gameObject.SetActive(false);
     }
 
 }
