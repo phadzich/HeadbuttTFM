@@ -223,22 +223,17 @@ public class UIManager : MonoBehaviour
             case NPCType.Crafter:
                 NPCCraftPanel.SetActive(true);
                 currentOpenUI = NPCCraftPanel.gameObject;
-                frontEndFrame.OpenFrame("FORGER", "Craft, upgrade and equip helmets.", UIManager.Instance.iconsLibrary.coinSprite);
-                break;
-            case NPCType.Trader:
-                NPCTraderPanel.SetActive(true);
-                currentOpenUI = NPCTraderPanel.gameObject;
-                frontEndFrame.OpenFrame("RACKS", "A closet of just helmets.", UIManager.Instance.iconsLibrary.coinSprite);
+                frontEndFrame.OpenFrame("FORGER", "Craft, upgrade and equip helmets.", UIManager.Instance.iconsLibrary.npcForger);
                 break;
             case NPCType.Elevator:
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
-                frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.coinSprite);
+                frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:
                 InventoryPanel.gameObject.SetActive(true);
                 currentOpenUI = InventoryPanel.gameObject;
-                frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.coinSprite);
+                frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.npcInventory);
                 break;
         }
     }
@@ -267,7 +262,7 @@ public class UIManager : MonoBehaviour
         Shop _currentShop = ShopManager.Instance.ShopById(_id);
         shopPanel.OpenShop(_currentShop);
         currentOpenUI = shopPanel.gameObject;
-        frontEndFrame.OpenFrame("SHADY SHOP", _currentShop.shopName, UIManager.Instance.iconsLibrary.coinSprite);
+        frontEndFrame.OpenFrame("SHADY SHOP", _currentShop.shopName, UIManager.Instance.iconsLibrary.npcShop);
     }
 
 
