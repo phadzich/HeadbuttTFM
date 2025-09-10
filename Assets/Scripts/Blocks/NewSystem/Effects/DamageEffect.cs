@@ -58,7 +58,6 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
         }
 
         ScreenShake();
-        PlayDamageSound();
         damageParticles.Play();
     }
 
@@ -81,13 +80,6 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
     {
         impulseSource.GenerateImpulse();
     }
-
-    public void PlayDamageSound()
-    {
-        SoundManager.PlaySound(SFXType.RECIEVEDAMAGE, 0.5f);
-    }
-
-    
 
     public enum damageType
     {
