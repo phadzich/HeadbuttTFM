@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        positionTarget = new Vector3(0,10,0);
+        positionTarget = new Vector3(0,20,0);
         enanoParent.position = positionTarget;
         ChangePositionTarget(positionTarget);
     }

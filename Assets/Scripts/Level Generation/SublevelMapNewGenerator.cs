@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;

@@ -147,6 +147,7 @@ public class PlayerStates : MonoBehaviour
 
     public void ChangeState(PlayerMainStateEnum _state)
     {
+        Debug.Log("CHANGE TO:" + _state.ToString());
         currentMainState = _state;
     }
 

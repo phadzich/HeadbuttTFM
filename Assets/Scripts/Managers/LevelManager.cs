@@ -206,7 +206,6 @@ public class LevelManager : MonoBehaviour
             PlayerManager.Instance.EnterNPCLevel();
             HelmetManager.Instance.ResetHelmetsStats();
             checkpointSystem.EnterNPCSublevel(_npcSublevel, sublevelsList[currentLevelDepth]);
-            currentDropBlock = null;
         }
 
         TryGenerateNextSublevel();
