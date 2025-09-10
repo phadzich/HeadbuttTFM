@@ -60,14 +60,6 @@ public class HelmetManager : MonoBehaviour
         QuickTest(0);
         QuickTest(1);
         QuickTest(2);
-        allHelmets[6].Discover();
-        allHelmets[6].Craft();
-        allHelmets[10].Discover();
-        allHelmets[10].Craft();
-        allHelmets[17].Discover();
-        allHelmets[17].Craft();
-        allHelmets[19].Discover();
-        allHelmets[19].Craft();
     }
 
     private void QuickTest(int _id)
