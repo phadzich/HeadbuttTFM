@@ -5329,10 +5329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: {fileID: 0}
-  attackSound: {fileID: 8300000, guid: 277fb5e158357f1498187371d7bb4239, type: 3}
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: 605bbefcc2c7a0343a55ba0d184f7623, type: 3}
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 277fb5e158357f1498187371d7bb4239, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &-873209974801291540
 MonoBehaviour:
   m_ObjectHideFlags: 0

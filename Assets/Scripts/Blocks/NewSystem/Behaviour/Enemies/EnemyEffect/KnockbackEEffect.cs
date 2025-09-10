@@ -19,7 +19,7 @@ public class KnockbackEEffect : MonoBehaviour, IEnemyEffect
 
     private void PlayBounceSound()
     {
-        SoundManager.PlaySound(SoundType.PUSHDAMAGE, 0.7f);
+        SoundManager.PlaySound(SFXType.PUSHDAMAGE, 0.7f);
     }
 
     public void PushPlayerRandomly()

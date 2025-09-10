@@ -10120,10 +10120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  idleSound: 17
+  attackSound: 17
+  damageSound: 17
+  deathSound: 17
 --- !u!1 &6998399199376396709
 GameObject:
   m_ObjectHideFlags: 0

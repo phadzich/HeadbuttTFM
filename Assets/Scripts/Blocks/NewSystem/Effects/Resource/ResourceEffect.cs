@@ -84,7 +84,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         {
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
-            SoundManager.PlaySound(SoundType.RESOURCEBOUNCE, 0.7f);
+            SoundManager.PlaySound(SFXType.RESOURCEBOUNCE, 0.7f);
             MatchManager.Instance.TryToAddToChain();
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
@@ -95,7 +95,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
-        SoundManager.PlaySound(SoundType.HEADBUTTRESOURCE, 0.7f);
+        SoundManager.PlaySound(SFXType.HEADBUTT, 0.7f);
         if (!isMined) //SI NO HA SIDO MINADO AUN
         {
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
@@ -135,7 +135,8 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         MinedAnimation();
         ReleaseResourceDrop();
         ReleaseHBDrop();
-        SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
+        //SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
+        SoundManager.PlaySound(SFXType.MINEDCOMPLETE, 0.7f);
 
         uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
     }

@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
     public int sublevelHeight;
     public GameObject currentExitDoor;
     public GameObject currentDropBlock;
+    public bool onMiningMusic = false;
 
     [Header("LEVEL CONTAINERS")]
     public Transform levelsContainer;
@@ -81,6 +82,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"* Loading Level {_levelConfig.name}*");
         currentLevel = currentLoadedLevelContainer.AddComponent<Level>();
         currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
+        SoundManager.PlaySound(AmbientType.LEVELAMBIENT, currentLevel.config.levelAmbient);
 
         //DETERMINAMOS DATA DEL DEPTH
         maxLevelDepth = _levelConfig.subLevels.Count - 1;
@@ -104,7 +106,6 @@ public class LevelManager : MonoBehaviour
 
     public void GenerateSublevel(SublevelConfig _sublevelConfig, int _depth)
     {
-
         GameObject _sublevelContainer = CreateEmptyGameobject(_sublevelConfig.name, currentLoadedLevelContainer.transform);
         _sublevelContainer.transform.localPosition = new Vector3(0, distanceBetweenSublevels * -_depth, 0);
 
@@ -187,11 +188,20 @@ public class LevelManager : MonoBehaviour
         PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
+            if (!onMiningMusic)
+            {
+                SoundManager.PlaySound(MusicType.LEVELMUSIC, currentLevel.config.levelMusic);
+                onMiningMusic = true;
+            }
+
             PlayerManager.Instance.EnterMiningLevel();
         }
 
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
+            SoundManager.PlaySound(MusicType.LEVELMUSIC, currentLevel.config.levelNpcMusic);
+            onMiningMusic = false;
+
             //ENTRAR A ESTADO CHECKPOINT
             PlayerManager.Instance.EnterNPCLevel();
             HelmetManager.Instance.ResetHelmetsStats();

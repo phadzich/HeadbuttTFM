@@ -8,6 +8,10 @@ public class LevelConfig : ScriptableObject
     public int id;
     public string levelName;
     public string levelDescription;
-    [SerializeField]
-    public List<SublevelConfig> subLevels;
+
+    public AudioClip levelMusic;
+    public AudioClip levelNpcMusic;
+    public AudioClip levelAmbient;
+
+    [SerializeField] public List<SublevelConfig> subLevels;
 }

@@ -242,7 +242,6 @@ MonoBehaviour:
   damage: 1
   damageCooldown: 0.5
   lastDamageTime: 0
-  sfx: {fileID: 0}
   AllowedSources: 03000000
 --- !u!114 &6496891236144867814
 MonoBehaviour:
@@ -310,10 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  idleSound: 17
+  attackSound: 17
+  damageSound: 17
+  deathSound: 17
 --- !u!1 &5457371427021623550
 GameObject:
   m_ObjectHideFlags: 0

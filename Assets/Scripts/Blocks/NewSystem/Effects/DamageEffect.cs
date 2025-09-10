@@ -84,7 +84,7 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     public void PlayDamageSound()
     {
-        SoundManager.PlaySound(SoundType.RECIEVEDAMAGE, 0.5f);
+        SoundManager.PlaySound(SFXType.RECIEVEDAMAGE, 0.5f);
     }
 
     

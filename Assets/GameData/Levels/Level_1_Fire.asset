@@ -15,6 +15,9 @@ MonoBehaviour:
   id: 0
   levelName: Fire
   levelDescription: 
+  levelMusic: {fileID: 0}
+  levelNpcMusic: {fileID: 0}
+  levelAmbient: {fileID: 0}
   subLevels:
   - {fileID: 11400000, guid: 71b3cc375b18a0f43bbc75807fbe8aec, type: 2}
   - {fileID: 11400000, guid: f279c9cfacbbcbd47b77e0b693be93b2, type: 2}

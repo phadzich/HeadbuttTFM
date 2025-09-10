@@ -2,7 +2,8 @@ public enum PlayerMainStateEnum
 {
     Idle,
     Disabled,
-    Falling,
+    FallingIntoNPC,
+    FallingIntoMINE,
     Bouncing,
     Headbutt,
     Walk,

@@ -257,4 +257,8 @@ public class HelmetManager : MonoBehaviour
         helmetIndex = (helmetIndex - 1 + helmetsEquipped.Count) % helmetsEquipped.Count;
     }
 
+    public List<HelmetInstance> GetHelmetsByElement(ElementType _element)
+    {
+        return allHelmets.Where(h => h.Element == _element).ToList();
+    }
 }
