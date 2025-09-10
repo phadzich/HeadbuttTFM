@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 0
   sublevel2DMap: {fileID: 2800000, guid: 520528913bb87424cad69cb1b6db682b, type: 3}
   objectives:
   - rid: 8875823639266852943
@@ -26,11 +27,24 @@ MonoBehaviour:
   - rid: 8875823639266852949
   chestsLoot:
   - rid: 8875823639266852946
+  - rid: 3860795533379764228
+  - rid: 3860795533379764229
   switchesDurations:
   - 7
   references:
     version: 2
     RefIds:
+    - rid: 3860795533379764228
+      type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 7
+    - rid: 3860795533379764229
+      type: {class: ItemLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 1
+        item: {fileID: 11400000, guid: 8f515ab4ea4dfb943810fd42f5be76cb, type: 2}
     - rid: 8875823639266852943
       type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
       data:
@@ -43,12 +57,14 @@ MonoBehaviour:
         icon: {fileID: 0}
         switchesID: 0
         switchesNeeded: 1
+        activeSwitches: []
+        lowestTime: 0
     - rid: 8875823639266852946
       type: {class: HelmetBPLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
         amount: 1
-        helmetBlueprint: {fileID: 11400000, guid: 0db0ee255d364e243addd65b93f1bc98, type: 2}
+        helmetBlueprint: {fileID: 11400000, guid: 2aa09c66aa8ccf541b115e8622ef33ab, type: 2}
     - rid: 8875823639266852947
       type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
