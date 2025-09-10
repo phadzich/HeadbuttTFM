@@ -156,8 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: {fileID: 1298261001074707767}
   projectilePrefab: {fileID: 2121837420294675754, guid: aca737815d08fd540aa6dd5b6fa218ca, type: 3}
-  shootingInterval: 2
-  speedMultiplier: 1
+  shootingInterval: 5
+  speedMultiplier: 3
   intervalMultiplier: 1
   projectileCount: 1
   projectileSpeed: 3
