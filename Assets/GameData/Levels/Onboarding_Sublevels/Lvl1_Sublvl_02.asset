@@ -15,7 +15,8 @@ MonoBehaviour:
   id: Lvl1Sub02
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 11400000, guid: 39bc672df0ec0854480c6ef7dfbbaf3a, type: 2}
-  sublevel2DMap: {fileID: 2800000, guid: 5ee5424090874354b8f172a1168212d1, type: 3}
+  limitPerSpawn: 0
+  sublevel2DMap: {fileID: 2800000, guid: f01c984d811184e4ca59f98772dddd59, type: 3}
   objectives:
   - rid: 6219506894629240909
   - rid: 6219506894629240910
