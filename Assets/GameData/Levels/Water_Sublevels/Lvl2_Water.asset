@@ -15,11 +15,11 @@ MonoBehaviour:
   id: 12
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
+  limitPerSpawn: 0
   sublevel2DMap: {fileID: 2800000, guid: d7855c528cbd45c49a235c2abff7cbb8, type: 3}
   objectives:
   - rid: 3561225397364064343
   gateRequirements:
-  - rid: 3561225397364064340
   - rid: 3561225397364064341
   - rid: 3561225397364064342
   chestsRequirements: []
@@ -28,12 +28,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 3561225397364064340
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-        resourcesNeeded: 12
     - rid: 3561225397364064341
       type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -45,7 +39,7 @@ MonoBehaviour:
       data:
         customID: 0
         resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-        resourcesNeeded: 25
+        resourcesNeeded: 10
     - rid: 3561225397364064343
       type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
       data:
