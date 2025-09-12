@@ -21,10 +21,13 @@ MonoBehaviour:
   - rid: 3561225397364064359
   gateRequirements:
   - rid: 3561225397364064358
+  - rid: 8004248109950697546
   chestsRequirements:
   - rid: 5739005431815340123
   chestsLoot:
   - rid: 5739005522897272834
+  - rid: 8004248109950697547
+  - rid: 8004248109950697548
   switchesDurations: []
   references:
     version: 2
@@ -51,4 +54,21 @@ MonoBehaviour:
       data:
         chestID: 0
         amount: 1
-        helmetBlueprint: {fileID: 11400000, guid: ee10f1de9e8284d06a2df9080535e36b, type: 2}
+        helmetBlueprint: {fileID: 11400000, guid: 34b2164db3cb3284aa0f695f297d8552, type: 2}
+    - rid: 8004248109950697546
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+        resourcesNeeded: 6
+    - rid: 8004248109950697547
+      type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 15
+    - rid: 8004248109950697548
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 20
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}

@@ -32,8 +32,6 @@ MonoBehaviour:
   - 10
   - 10
   - 10
-  - 10
-  - 10
   references:
     version: 2
     RefIds:
@@ -43,7 +41,7 @@ MonoBehaviour:
         customID: 0
         icon: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
         switchesID: 0
-        switchesNeeded: 8
+        switchesNeeded: 6
         activeSwitches: []
         lowestTime: 0
     - rid: 3561225397364064356
