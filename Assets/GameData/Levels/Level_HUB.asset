@@ -15,5 +15,8 @@ MonoBehaviour:
   id: 0
   levelName: Surface
   levelDescription: 
+  levelMusic: {fileID: 0}
+  levelNpcMusic: {fileID: 8300000, guid: 998d58d1ca0f16243b0def7a9e3ead1d, type: 3}
+  levelAmbient: {fileID: 0}
   subLevels:
   - {fileID: 11400000, guid: 717d664c1850be349836752d2a7e68bb, type: 2}
