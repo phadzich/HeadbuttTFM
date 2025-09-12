@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "MiningSublevelConfig", menuName = "GameData/Mining Sublevel")]

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.Pseudo;
 
 [System.Serializable]
 public class CrossAttackEffect : HelmetEffect

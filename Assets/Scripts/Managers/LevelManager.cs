@@ -7,10 +7,7 @@ using System.Drawing;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.Rendering.DebugUI.Table;
-using static UnityEngine.Rendering.STP;
 using Random = UnityEngine.Random;
 using System.Linq;
 
