@@ -32,7 +32,7 @@ MonoBehaviour:
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         icon: {fileID: 0}
-        resourcesNeeded: 5
+        resourcesNeeded: 16
     - rid: 8004248091443069005
       type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
       data:

@@ -26,12 +26,12 @@ MonoBehaviour:
     price: 3
   - item: {fileID: 11400000, guid: 8f515ab4ea4dfb943810fd42f5be76cb, type: 2}
     quantity: 10
-    price: 1
+    price: 2
   - item: {fileID: 11400000, guid: f83378b5714404349bafff3753b07b4c, type: 2}
     quantity: 10
-    price: 2
+    price: 4
   - item: {fileID: 11400000, guid: efd18d75e42951b43b7d57e4ff624d7d, type: 2}
-    quantity: 3
+    quantity: 6
     price: 0
   - item: {fileID: 11400000, guid: b50ce1cfc42aaa9468a34e9a19a92254, type: 2}
     quantity: 3
