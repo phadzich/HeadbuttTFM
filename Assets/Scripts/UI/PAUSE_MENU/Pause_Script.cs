@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
@@ -6,6 +7,14 @@ public class PauseController : MonoBehaviour
 
     private bool isPaused = false;
 
+    public void PauseKey(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("PAUSE KEY");
+            TogglePause();
+        }
+    }
     public void TogglePause()
     {
         isPaused = !isPaused;

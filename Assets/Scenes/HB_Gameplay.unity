@@ -16946,7 +16946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 526409411528573302, guid: 4c67a395eb8cd1c468e52c4884ddc0e1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 146.86
       objectReference: {fileID: 0}
     - target: {fileID: 526409411528573302, guid: 4c67a395eb8cd1c468e52c4884ddc0e1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -27618,7 +27618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 526409411528573302, guid: 4c67a395eb8cd1c468e52c4884ddc0e1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 146.86
       objectReference: {fileID: 0}
     - target: {fileID: 526409411528573302, guid: 4c67a395eb8cd1c468e52c4884ddc0e1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -36281,6 +36281,7 @@ GameObject:
   - component: {fileID: 4007648283214596710}
   - component: {fileID: 7493526969842788231}
   - component: {fileID: 2442698859026084632}
+  - component: {fileID: 7493526969842788232}
   m_Layer: 5
   m_Name: Pause_Menu_Panel
   m_TagString: Untagged
@@ -37875,7 +37876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4a67e429c5bd7f4cb359f1f4caeaa0f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -38196,18 +38197,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 197675188827870942}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1001 &5161877140344675792
 PrefabInstance:
@@ -38854,8 +38843,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1764228816}
         m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
-        m_MethodName: TogglePause
-        m_Mode: 1
+        m_MethodName: PauseKey
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -39216,6 +39205,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197675188827870942}
   m_CullTransparentMesh: 1
+--- !u!114 &7493526969842788232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197675188827870942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf601e5a7ac75d4bac65ea89b570c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstSlot: {fileID: 0}
+  lastSelectedSlot: {fileID: 0}
 --- !u!224 &7502834375932566415
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39573,7 +39576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 526409411528573302, guid: 4c67a395eb8cd1c468e52c4884ddc0e1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 146.86
       objectReference: {fileID: 0}
     - target: {fileID: 526409411528573302, guid: 4c67a395eb8cd1c468e52c4884ddc0e1, type: 3}
       propertyPath: m_SizeDelta.y

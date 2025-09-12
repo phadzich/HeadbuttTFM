@@ -71,6 +71,7 @@ public class FrontEndFrame : MonoBehaviour
             endValue:  -250,
             duration: .5f,
             ease: Ease.InOutExpo).OnComplete(DeactivateOnClose);
+        UIManager.Instance.HUDCanvas.SetActive(true);
     }
 
     private void DeactivateOnClose()
