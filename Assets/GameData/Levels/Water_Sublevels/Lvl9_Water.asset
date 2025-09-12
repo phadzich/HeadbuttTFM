@@ -22,7 +22,8 @@ MonoBehaviour:
   - rid: 3561225397364064370
   - rid: 3561225397364064371
   - rid: 3561225397364064372
-  gateRequirements: []
+  gateRequirements:
+  - rid: 8004248109950697556
   chestsRequirements:
   - rid: 5739005522897272914
   chestsLoot:
@@ -63,3 +64,9 @@ MonoBehaviour:
         chestID: 0
         amount: 1
         helmetBlueprint: {fileID: 11400000, guid: ecf1a5385f89f8b4590305e4b9378860, type: 2}
+    - rid: 8004248109950697556
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
+        enemiesNeeded: 3
