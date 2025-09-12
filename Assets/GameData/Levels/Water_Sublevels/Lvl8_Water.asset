@@ -88,7 +88,7 @@ MonoBehaviour:
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 20
+        amount: 5
     - rid: 5739005522897272942
       type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
       data:

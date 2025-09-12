@@ -28,6 +28,7 @@ MonoBehaviour:
   - rid: 5739005522897272914
   chestsLoot:
   - rid: 5739005522897272919
+  - rid: 8004248123960459264
   switchesDurations: []
   references:
     version: 2
@@ -70,3 +71,9 @@ MonoBehaviour:
         customID: 0
         icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
         enemiesNeeded: 3
+    - rid: 8004248123960459264
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 20
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}

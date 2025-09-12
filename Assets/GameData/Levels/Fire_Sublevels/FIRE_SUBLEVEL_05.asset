@@ -36,4 +36,4 @@ MonoBehaviour:
       type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-        resourcesNeeded: 6
+        resourcesNeeded: 12

@@ -27,6 +27,7 @@ MonoBehaviour:
   - rid: 8004247995192442963
   - rid: 8004247995192442965
   - rid: 8004247996536455247
+  - rid: 8004248123960459339
   switchesDurations: []
   references:
     version: 2
@@ -46,7 +47,7 @@ MonoBehaviour:
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 20
+        amount: 15
     - rid: 8004247995192442965
       type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
       data:
@@ -65,3 +66,9 @@ MonoBehaviour:
         chestID: 0
         amount: 1
         helmetBlueprint: {fileID: 11400000, guid: 425602adad533b142a24ce6f90512d63, type: 2}
+    - rid: 8004248123960459339
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 20
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
