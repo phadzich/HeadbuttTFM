@@ -17,10 +17,10 @@ MonoBehaviour:
   shopItems:
   - item: {fileID: 11400000, guid: 17b29fd6c303e584486af4709b385150, type: 2}
     quantity: 5
-    price: 1
+    price: 2
   - item: {fileID: 11400000, guid: cb6705fdc49e5e44fbb9f59c90012197, type: 2}
     quantity: 5
-    price: 2
+    price: 4
   - item: {fileID: 11400000, guid: be72a8ad40b1e7840a8507ac1f89dab4, type: 2}
     quantity: 5
-    price: 3
+    price: 6
