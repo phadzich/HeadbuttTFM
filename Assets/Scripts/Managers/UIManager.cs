@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     public HBPointsHUD hbPointsHUD;
     public CoinsHUD coinsHUD;
 
+    [Header("POPUPS")]
+    public PopupUI popupUI;
 
     [Header("PLAYER")]
     public RemainingBlocksIndicator remainingBlockIndicator;

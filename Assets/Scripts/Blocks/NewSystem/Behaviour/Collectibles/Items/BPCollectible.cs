@@ -25,5 +25,6 @@ public class BPCollectible : MonoBehaviour, ICollectibleEffect
     {
         Debug.Log("BP OBTAINED!!!");
         LevelManager.Instance.currentSublevel.CollectBP();
+        UIManager.Instance.popupUI.ShowPopup(helmetData.helmetName, "DISCOVERED", helmetData.icon);
     }
 }
