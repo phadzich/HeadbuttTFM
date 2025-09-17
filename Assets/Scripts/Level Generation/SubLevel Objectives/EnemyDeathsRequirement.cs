@@ -3,8 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyDeathsRequirement : RequirementBase
 {
-    [SerializeField] private Sprite icon;
-    public override Sprite GetIcon() => icon;
+    public override Sprite GetIcon() => UIManager.Instance.iconsLibrary.enemyReq;
 
     public int enemiesNeeded;
 

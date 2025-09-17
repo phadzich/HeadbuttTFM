@@ -2,8 +2,7 @@ using UnityEngine;
 [System.Serializable]
 public class CollectKeysObjective : SublevelObjectiveBase
 {
-    [SerializeField] private Sprite icon;
-    public override Sprite GetIcon() => icon;
+    public override Sprite GetIcon() => UIManager.Instance.iconsLibrary.keyReq;
 
     public int keysNeeded;
     private int keysCollected;

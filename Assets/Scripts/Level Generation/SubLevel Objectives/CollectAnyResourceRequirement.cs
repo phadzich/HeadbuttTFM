@@ -1,10 +1,9 @@
 using UnityEngine;
 public class CollectAnyResourceRequirement : RequirementBase
 {
-    
 
-    [SerializeField] private Sprite icon;
-    public override Sprite GetIcon() => icon;
+
+    public override Sprite GetIcon() => UIManager.Instance.iconsLibrary.blockReq;
     public int resourcesNeeded;
     private int resourcesCollected;
 
