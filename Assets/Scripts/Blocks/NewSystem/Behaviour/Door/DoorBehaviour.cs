@@ -14,6 +14,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     public bool isOpen;
     public GameObject doorTrapMesh;
     public MapContext mapContext;
+    public DoorTrigger doorTrigger;
     //public Sublevel parentSublevel;
 
     public Material openMaterial;
@@ -32,6 +33,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     {
         mapContext = _context;
         mapContext.sublevel.onSublevelObjectivesUpdated += CheckObjectives;
+        doorTrigger.gameObject.SetActive(false);
         InitializeObjectives();
         CheckObjectives();
 
@@ -61,7 +63,9 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
         if (allCompleted && !isOpen)
         {
             isOpen = true;
+            doorTrigger.gameObject.SetActive(true);
             IndicateOpen();
+
         }
     }
 
