@@ -12,52 +12,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
   m_Name: FIRE_SUBLEVEL_09
   m_EditorClassIdentifier: 
-  id: 9000
+  id: 8000
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
-  limitPerSpawn: 3
+  limitPerSpawn: 2
   sublevel2DMap: {fileID: 2800000, guid: e3bf52095e4eed645af650d437493605, type: 3}
   objectives:
-  - rid: 7431280952935448579
-  - rid: 8004247996536455253
-  gateRequirements: []
+  - rid: 7431280865758412876
+  gateRequirements:
+  - rid: 7431280861658742866
+  - rid: 8004247996536455248
+  - rid: 7431280861658742867
   chestsRequirements:
-  - rid: 8004247996536455264
+  - rid: 8004247996536455268
   chestsLoot:
-  - rid: 8004247996536455261
-  - rid: 8004247996536455266
-  switchesDurations:
-  - 60
+  - rid: 8004247996536455250
+  - rid: 8004247996536455251
+  - rid: 8004248123960459341
+  switchesDurations: []
   references:
     version: 2
     RefIds:
-    - rid: 7431280952935448579
-      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
+    - rid: 7431280861658742866
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
-        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-        resourcesNeeded: 6
-    - rid: 8004247996536455253
+        customID: 0
+        resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+        resourcesNeeded: 10
+    - rid: 7431280861658742867
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
+        enemiesNeeded: 4
+    - rid: 7431280865758412876
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
-        resourcesNeeded: 15
-    - rid: 8004247996536455261
+        resourcesNeeded: 40
+    - rid: 8004247996536455248
+      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
+        resourcesNeeded: 12
+    - rid: 8004247996536455250
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 20
-    - rid: 8004247996536455264
-      type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        icon: {fileID: 21300000, guid: 14d77de1971617f4da8c9a4f5093acef, type: 3}
-        switchesID: 0
-        switchesNeeded: 1
-        activeSwitches: []
-        lowestTime: 10
-    - rid: 8004247996536455266
+        amount: 8
+    - rid: 8004247996536455251
       type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 15
+        amount: 25
         resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+    - rid: 8004247996536455268
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
+        resourcesNeeded: 10
+    - rid: 8004248123960459341
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 20
+        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}

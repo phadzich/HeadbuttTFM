@@ -39,6 +39,7 @@ public class PlayerEffects : MonoBehaviour
         if (playerStates.canReceiveDamage)
         {
             HelmetManager.Instance.currentHelmet.TakeDamage(_amount);
+            SoundManager.PlaySound(SFXType.RECIEVEDAMAGE, 0.5f);
 
             if (!isCooldownActive) StartCoroutine(StartCooldown());
         }

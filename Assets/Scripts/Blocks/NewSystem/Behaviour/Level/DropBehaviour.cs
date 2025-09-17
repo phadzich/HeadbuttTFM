@@ -7,15 +7,15 @@ public class DropBehaviour : MonoBehaviour, IBlockBehaviour
     
     public void OnBounced(HelmetInstance _helmetInstance)
     {
-        Debug.Log("DROPPED");
+        //Debug.Log("DROPPED");
         PlayerStates playerStates = PlayerManager.Instance.playerStates;
         if (playerStates.onMiningLvl)
         {
-            Debug.Log("ON MINING LEVEL STATE");
+            //Debug.Log("ON MINING LEVEL STATE");
             playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
         } else
         {
-            Debug.Log("ON NPC LEVEL STATE");
+            //Debug.Log("ON NPC LEVEL STATE");
             playerStates.ChangeState(PlayerMainStateEnum.Walk);
         }
         

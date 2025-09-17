@@ -22,12 +22,13 @@ MonoBehaviour:
   - rid: 3561225397364064370
   - rid: 3561225397364064371
   - rid: 3561225397364064372
-  - rid: 3561225397364064373
-  gateRequirements: []
+  gateRequirements:
+  - rid: 8004248109950697556
   chestsRequirements:
   - rid: 5739005522897272914
   chestsLoot:
   - rid: 5739005522897272919
+  - rid: 8004248123960459264
   switchesDurations: []
   references:
     version: 2
@@ -36,7 +37,7 @@ MonoBehaviour:
       type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-        resourcesNeeded: 3
+        resourcesNeeded: 6
     - rid: 3561225397364064370
       type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:
@@ -51,11 +52,6 @@ MonoBehaviour:
       type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-        resourcesNeeded: 12
-    - rid: 3561225397364064373
-      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
-      data:
-        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
         resourcesNeeded: 18
     - rid: 5739005522897272914
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
@@ -69,3 +65,15 @@ MonoBehaviour:
         chestID: 0
         amount: 1
         helmetBlueprint: {fileID: 11400000, guid: ecf1a5385f89f8b4590305e4b9378860, type: 2}
+    - rid: 8004248109950697556
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
+        enemiesNeeded: 3
+    - rid: 8004248123960459264
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 20
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}

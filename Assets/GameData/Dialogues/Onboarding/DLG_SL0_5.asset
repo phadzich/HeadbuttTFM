@@ -21,9 +21,28 @@ MonoBehaviour:
       y podr\xE1s fabricar cascos SORPRENDENTES."
     npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
     playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
-    buttonText: Solo con el Blueprint?
-  - text: "Nicaragua! Necesitar\xE1s esos valiosos recursos que andas acumulando
-      como ardilla para poder fabricarlos."
+    buttonText: Pero esta encerrado...
+  - text: "Sin duda, esa compuerta no te permitir\xE1 alcanzar el blueprint pero,
+      \xBFves ese bloque peculiar en la esquina inferior izquierda? Es un switch,
+      realiza un Headbutt sobre el para activarlo y as\xED abrir la compuerta."
+    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
+    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    buttonText: "\xBFHay otros bloques como el switch?"
+  - text: "\xA1Claro que s\xED! Hay muchos tipos de bloques que te permitir\xE1n
+      desbloquear y acceder a distintas \xE1reas, como llaves, entre otros; minando,
+      los descubrir\xE1s. Una vez, uno de esos me mordi\xF3."
+    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
+    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    buttonText: Oooo.. Hay mucho por descubrir
+  - text: "As\xED es. Tambi\xE9n puedes desbloquear cofres con los switches; no nos
+      alcanz\xF3 el presupuesto para ense\xF1arte uno ahora; fijate siempre en los
+      requisitos de apertura de switches y puertas arriba de ellos. \xA1Ten los globos
+      oculares atentos!\n"
+    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
+    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    buttonText: A estar atentos!
+  - text: "\xA1A minar! Necesitar\xE1s esos valiosos recursos que andas acumulando
+      como ardilla para poder fabricarlos helmets, nada es gratis en esta vida."
     npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
     playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
     buttonText: OK, OK

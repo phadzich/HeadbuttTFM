@@ -30,6 +30,7 @@ MonoBehaviour:
   - rid: 5739005522897272942
   chestsLoot:
   - rid: 5739005522897272835
+  - rid: 8004248109950697549
   switchesDurations:
   - 10
   - 10
@@ -87,10 +88,16 @@ MonoBehaviour:
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 20
+        amount: 5
     - rid: 5739005522897272942
       type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
         icon: {fileID: 0}
         resourcesNeeded: 30
+    - rid: 8004248109950697549
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 30
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}

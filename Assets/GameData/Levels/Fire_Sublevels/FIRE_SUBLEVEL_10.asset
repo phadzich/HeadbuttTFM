@@ -12,29 +12,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
   m_Name: FIRE_SUBLEVEL_10
   m_EditorClassIdentifier: 
-  id: 10000
-  helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+  id: 12000
+  helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
-  limitPerSpawn: 4
+  limitPerSpawn: 3
   sublevel2DMap: {fileID: 2800000, guid: 8e1fa88313f17ee44a9ce1160acbf4c3, type: 3}
   objectives:
-  - rid: 7431280952935448583
+  - rid: 7431280861658742858
   gateRequirements:
-  - rid: 7431280952935448581
-  chestsRequirements: []
-  chestsLoot: []
+  - rid: 7431280952935448590
+  chestsRequirements:
+  - rid: 8004248109950697555
+  chestsLoot:
+  - rid: 8004248109950697554
+  - rid: 8004248123960459342
+  - rid: 8004248123960459343
   switchesDurations: []
   references:
     version: 2
     RefIds:
-    - rid: 7431280952935448581
+    - rid: 7431280861658742858
+      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
+        resourcesNeeded: 40
+    - rid: 7431280952935448590
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
         icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
-        enemiesNeeded: 8
-    - rid: 7431280952935448583
-      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+        enemiesNeeded: 6
+    - rid: 8004248109950697554
+      type: {class: HelmetBPLoot, ns: , asm: Assembly-CSharp}
       data:
-        icon: {fileID: 21300000, guid: 8c0ff3bcb15728847ba3c7c7545686be, type: 3}
-        resourcesNeeded: 50
+        chestID: 0
+        amount: 1
+        helmetBlueprint: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+    - rid: 8004248109950697555
+      type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 0
+        icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
+        enemiesNeeded: 2
+    - rid: 8004248123960459342
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 45
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
+    - rid: 8004248123960459343
+      type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 12

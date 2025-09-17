@@ -41,7 +41,12 @@ public class HelmetHUD : MonoBehaviour
     public void UpdateDurability(int _current, int _max)
     {
         float _fillAmount = ((float)_current / (float)_max);
-        durabilityTXT.text = $"{_current}";
+        int _finalAmount = _current;
+        if (_finalAmount < 0)
+        {
+            _finalAmount = 0;
+        }
+        durabilityTXT.text = $"{_finalAmount}";
         durabilityFillIMG.fillAmount = _fillAmount;
     }
 

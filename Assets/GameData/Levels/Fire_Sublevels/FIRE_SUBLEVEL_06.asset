@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 6000
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
-  limitPerSpawn: 4
+  limitPerSpawn: 2
   sublevel2DMap: {fileID: 2800000, guid: 286e43299abc0c44ca93b569ed62204b, type: 3}
   objectives:
   - rid: 7431280861658742859
@@ -27,6 +27,7 @@ MonoBehaviour:
   - rid: 8004247995192442963
   - rid: 8004247995192442965
   - rid: 8004247996536455247
+  - rid: 8004248123960459339
   switchesDurations: []
   references:
     version: 2
@@ -46,7 +47,7 @@ MonoBehaviour:
       type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 0
-        amount: 20
+        amount: 15
     - rid: 8004247995192442965
       type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
       data:
@@ -64,4 +65,10 @@ MonoBehaviour:
       data:
         chestID: 0
         amount: 1
-        helmetBlueprint: {fileID: 11400000, guid: ba6903ef13f40d548ae03d36f176dd2c, type: 2}
+        helmetBlueprint: {fileID: 11400000, guid: 425602adad533b142a24ce6f90512d63, type: 2}
+    - rid: 8004248123960459339
+      type: {class: ResourceLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 20
+        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}

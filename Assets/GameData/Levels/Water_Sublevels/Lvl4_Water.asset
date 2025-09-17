@@ -19,6 +19,7 @@ MonoBehaviour:
   sublevel2DMap: {fileID: 2800000, guid: fb82d952b52415946968f33fe3f99d54, type: 3}
   objectives:
   - rid: 5739005506480767059
+  - rid: 3823824631078322274
   gateRequirements:
   - rid: 5739005506480767058
   chestsRequirements: []
@@ -29,6 +30,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 3823824631078322274
+      type: {class: CollectKeysObjective, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
+        keysNeeded: 1
     - rid: 5739005506480767058
       type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -41,5 +47,5 @@ MonoBehaviour:
     - rid: 5739005506480767059
       type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:
-        resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-        resourcesNeeded: 12
+        resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+        resourcesNeeded: 6

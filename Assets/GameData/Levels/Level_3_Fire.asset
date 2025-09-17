@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60746830329ae014d946ba33d508659d, type: 3}
+  m_Name: Level_3_Fire
+  m_EditorClassIdentifier: 
+  id: 0
+  levelName: Fire
+  levelDescription: 
+  levelMusic: {fileID: 8300000, guid: f28ea46ac66709741aeabc200e784c3a, type: 3}
+  levelNpcMusic: {fileID: 8300000, guid: 998d58d1ca0f16243b0def7a9e3ead1d, type: 3}
+  levelAmbient: {fileID: 8300000, guid: dda1ce123e430454c861d4a5d02d2d31, type: 3}
+  subLevels:
+  - {fileID: 11400000, guid: 71b3cc375b18a0f43bbc75807fbe8aec, type: 2}
+  - {fileID: 11400000, guid: f279c9cfacbbcbd47b77e0b693be93b2, type: 2}
+  - {fileID: 11400000, guid: ec4af987b7574dc4cb2e8c24ce27c8ad, type: 2}
+  - {fileID: 11400000, guid: 87a807d7c590062408afef5c2a13f365, type: 2}
+  - {fileID: 11400000, guid: ade32f1034f1a3f429ac72f01b184f53, type: 2}
+  - {fileID: 11400000, guid: bbccdc8c6d6149f4182277762a86585d, type: 2}
+  - {fileID: 11400000, guid: 46e6b3c71e9ac3c4a8ef4bd0472be28b, type: 2}
+  - {fileID: 11400000, guid: 04fca466698821c4b9d985c7569b5951, type: 2}
+  - {fileID: 11400000, guid: 5665247afd4a57d479646031456fef90, type: 2}
+  - {fileID: 11400000, guid: fd8a83045a2d73146bb692d5c4ccf1d3, type: 2}
+  - {fileID: 11400000, guid: 2565789cad2c919439ad74a46664febd, type: 2}
+  - {fileID: 11400000, guid: ee4ac2a676ebcde4987c96fcaea05664, type: 2}
+  - {fileID: 11400000, guid: 9a90ca7c722cbf941a334c7bfbba5384, type: 2}
+  - {fileID: 11400000, guid: 1b983c8af08ed3246b0a9d08d49e4254, type: 2}
+  - {fileID: 11400000, guid: 2917755560a81b242b08a17700be5705, type: 2}

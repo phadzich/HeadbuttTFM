@@ -25,9 +25,8 @@ MonoBehaviour:
   - rid: 3561225397364064355
   chestsLoot:
   - rid: 5739005522897272833
+  - rid: 8004248123960459345
   switchesDurations:
-  - 10
-  - 10
   - 10
   - 10
   - 10
@@ -43,7 +42,7 @@ MonoBehaviour:
         customID: 0
         icon: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
         switchesID: 0
-        switchesNeeded: 8
+        switchesNeeded: 6
         activeSwitches: []
         lowestTime: 0
     - rid: 3561225397364064356
@@ -62,3 +61,8 @@ MonoBehaviour:
         chestID: 0
         amount: 1
         helmetBlueprint: {fileID: 11400000, guid: 50eb5291ce9c92644aadb95622a10e7b, type: 2}
+    - rid: 8004248123960459345
+      type: {class: CoinLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 0
+        amount: 10

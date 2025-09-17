@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.Cinemachine;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+
 using UnityEngine;
 
 [RequireComponent(typeof(ResourceSetup))]

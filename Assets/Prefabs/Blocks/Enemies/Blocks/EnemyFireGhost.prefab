@@ -107,7 +107,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1298261001074707767}
   randomStartDelay: 0
   randomStartDelayRange: 0
-  spawnInterval: 10
+  spawnInterval: 15
   currEnemiesSpawned: []
   enemyLimit: 3
 --- !u!114 &8161395416749261924
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e772f95755744d1fa4e2cb4fa49916a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 2
   currentHealth: 0
   AllowedSources: 
 --- !u!65 &4810703166137470484

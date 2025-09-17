@@ -145,7 +145,10 @@ public class UIManager : MonoBehaviour
 
     public void DeactivateCurrentCam()
     {
-        currentCam.Priority = 0;
+        if (currentCam != null)
+        {
+            currentCam.Priority = 0;
+        }
     }
     private void OnOwnedResourcesChanged()
     {

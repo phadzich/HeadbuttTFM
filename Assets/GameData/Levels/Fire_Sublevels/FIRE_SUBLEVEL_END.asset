@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
   m_Name: FIRE_SUBLEVEL_END
   m_EditorClassIdentifier: 
-  id: 5555
-  helmetBPData: {fileID: 11400000, guid: b0466c843ecc047f494ae69c73d06c64, type: 2}
+  id: 6666666
+  helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 0}
   limitPerSpawn: 0
   NPCtype: 0
