@@ -8,7 +8,8 @@ public class HelmetItemButton : MonoBehaviour
     public Image helmetIcon;
     private HelmetInstance helmet;
     public Color secretColor;
-
+    public GameObject newIndicator;
+    public GameObject eqpIndicator;
 
     // Se crea el prefab con la información del blueprint
     public void SetUp(HelmetInstance helmetI)
@@ -19,11 +20,23 @@ public class HelmetItemButton : MonoBehaviour
         if (helmetI.isDiscovered)
         {
             helmetIcon.color = Color.white;
+            if (!helmetI.isCrafted)
+            {
+                newIndicator.SetActive(true);
+            }
         }
         else
         {
+            newIndicator.SetActive(false);
             this.gameObject.GetComponent<Button>().interactable = false;
             helmetIcon.color = secretColor;
+        }
+        if (helmetI.isEquipped)
+        {
+            Debug.Log("EQPD");
+            eqpIndicator.SetActive(true);
+        } else {
+            eqpIndicator.SetActive(false);
         }
 
     }

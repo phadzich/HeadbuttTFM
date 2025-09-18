@@ -72,7 +72,12 @@ public class HelmetManager : MonoBehaviour
 
     public void WearFirstHelmet()
     {
-        WearHelmet(helmetsEquipped[0]);
+        if (helmetsEquipped.Count > 0)
+        {
+            WearHelmet(helmetsEquipped[0]);
+        }
+
+
     }
 
     // Crear todas las instancias de cascos
