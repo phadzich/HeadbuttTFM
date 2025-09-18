@@ -125,7 +125,8 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void HeadbuttUp()
     {
-
+        Debug.Log("HBUP");
+        Invoke(nameof(ReturnToBounceState), 0.5f);
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);
         rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,.5f,0);
 
@@ -161,6 +162,11 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         timeSinceLastHeadbutt = 0;
 
+    }
+
+    private void ReturnToBounceState()
+    {
+        PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
     }
 
     private void ScreenShake()

@@ -15,11 +15,13 @@ MonoBehaviour:
   id: 0
   levelName: ONBOARDING
   levelDescription: 
+  maxDepth: 2
+  levelIcon: {fileID: 0}
+  levelColor: {r: 0, g: 0, b: 0, a: 0}
   levelMusic: {fileID: 0}
   levelNpcMusic: {fileID: 0}
   levelAmbient: {fileID: 0}
   subLevels:
-  - {fileID: 11400000, guid: e22dde5474f41db4b831646bd08b7096, type: 2}
   - {fileID: 11400000, guid: 8825020f97bd7df4692cbe94b6b87921, type: 2}
   - {fileID: 11400000, guid: 2454157efffa4944982e3dd1e3ef77e1, type: 2}
   - {fileID: 11400000, guid: 2167d96f9cba3684985988bd7575df4a, type: 2}

@@ -1,5 +1,6 @@
 using PrimeTween;
 using Unity.Cinemachine;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -49,7 +50,7 @@ public class PlayerBounce : MonoBehaviour
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, _groundDistance, blockLayerMask))
         {
-            if (!justBounced && hit.collider.gameObject.GetComponent<BlockNS>())
+            if (!justBounced && hit.collider.gameObject.GetComponent<BlockNS>()&& PlayerManager.Instance.playerStates.currentMainState!= PlayerMainStateEnum.Headbutt)
             {
                 BounceUp();
                 bounceLocked = true; //evita múltiples en un frame

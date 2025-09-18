@@ -22242,7 +22242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyMesh: {fileID: 1072653608}
   maxHBpoints: 10
-  currentHBpoints: 0
+  currentHBpoints: 10
   headbuttCooldown: 0.5
   headbuttOnCooldown: 0
   headbuttPower: 12
@@ -37582,7 +37582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4808196559069872086, guid: d319e6edc0eee144f8421c86dcc95f02, type: 3}
       propertyPath: currentCoins
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7920565604714507856, guid: d319e6edc0eee144f8421c86dcc95f02, type: 3}
       propertyPath: m_Name
