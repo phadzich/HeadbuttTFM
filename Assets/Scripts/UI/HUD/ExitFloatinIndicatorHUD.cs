@@ -7,6 +7,10 @@ public class ExitFloatinIndicatorHUD : MonoBehaviour
     public Transform player;            // El jugador
     public Transform exitDoor;          // La puerta de salida
     public RectTransform arrowUI;       // La flecha en el canvas
+    public GameObject arrowObject;
+    public Color completedColor;
+    public Color incompleteColor;
+    public Color incompleteBorderColor;
 
     [Header("Offset")]
     public float screenMargin = 100f;   // Margen para que la flecha no llegue al borde
@@ -66,6 +70,17 @@ public class ExitFloatinIndicatorHUD : MonoBehaviour
             // Rotar flecha para que apunte en la dirección correcta
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             arrowUI.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
+        if (LevelManager.Instance.currentSublevel.allObjectivesCompleted)
+        {
+            arrowObject.gameObject.GetComponent<Image>().color = completedColor;
+            this.GetComponent<Image>().color = completedColor;
+        }
+        else
+        {
+            arrowObject.gameObject.GetComponent<Image>().color = incompleteColor;
+            this.GetComponent<Image>().color = incompleteBorderColor;
         }
 }
 }
