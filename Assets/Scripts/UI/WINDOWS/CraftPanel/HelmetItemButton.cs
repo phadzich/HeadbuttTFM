@@ -32,6 +32,7 @@ public class HelmetItemButton : MonoBehaviour
     public void OnClickSelectBtn()
     {
         CraftingManager.Instance.SelectHelmet(helmet);
+        UIManager.Instance.craftingPanel.selectPrompt.SetActive(false);
     }
 
 

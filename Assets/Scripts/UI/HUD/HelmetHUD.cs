@@ -12,6 +12,8 @@ public class HelmetHUD : MonoBehaviour
     public TextMeshProUGUI durabilityTXT;
     public TextMeshProUGUI powerTXT;
     public Image powerPanel;
+    public Image powerIconPanel;
+    public Image powerIconIMG;
     public Image durabilityFillIMG;
     public GameObject evolvePanel;
 
@@ -34,6 +36,8 @@ public class HelmetHUD : MonoBehaviour
         helmetIMG.sprite = helmetInstance.baseHelmet.icon;
         powerTXT.text = ((int)_helmetInstance.baseHelmet.miningPower+1).ToString();
         powerPanel.color = UIManager.Instance.elementColors[(int)_helmetInstance.Element];
+        powerIconPanel.color = UIManager.Instance.elementColors[(int)_helmetInstance.Element];
+        powerIconIMG.sprite = UIManager.Instance.elementIcons[(int)_helmetInstance.Element];
         UpdateDurability(_helmetInstance.currentDurability, _helmetInstance.durability);
         UnWearHelmet();
     }

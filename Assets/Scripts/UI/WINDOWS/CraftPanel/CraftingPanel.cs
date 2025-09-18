@@ -13,13 +13,14 @@ public class CraftingPanel : MonoBehaviour
     public GameObject helmetListContainer;
     public GameObject cancelButton;
     public GameObject swapBorder;
+    public GameObject selectPrompt;
     public SwapHelmetsPanelUI swapHelmetsUI;
 
     private List<HelmetInstance> availableHelmets => HelmetManager.Instance.allHelmets;
 
     private void OnEnable()
     {
-
+        selectPrompt.SetActive(true);
         LoadMainPage();
         CraftingManager.Instance.HelmetSelected += infoPanel.UpdateInfoCard;
         CraftingManager.Instance.HelmetCrafted += UpdateHelmetList;

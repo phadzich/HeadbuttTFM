@@ -65,7 +65,7 @@ public class PlayerBounce : MonoBehaviour
     public void BounceUp()
     {
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
-        Debug.Log("BOUNCE");
+        //Debug.Log("BOUNCE");
 
         jumpForce = 5;
         rb.linearVelocity = Vector3.zero;
