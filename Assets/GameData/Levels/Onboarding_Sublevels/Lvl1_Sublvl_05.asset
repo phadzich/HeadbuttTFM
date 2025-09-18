@@ -31,13 +31,11 @@ MonoBehaviour:
     - rid: 6219506894629240913
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
-        icon: {fileID: 0}
-        resourcesNeeded: 16
+        resourcesNeeded: 21
     - rid: 8004248091443069005
       type: {class: ActiveSwitchesRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
-        icon: {fileID: 21300000, guid: 14d77de1971617f4da8c9a4f5093acef, type: 3}
         switchesID: 0
         switchesNeeded: 1
         activeSwitches: []
