@@ -24,7 +24,7 @@ public class CheckpointSystem : MonoBehaviour
     public void RestoreToLastCheckpoint()
     {
         //PLAYER POSITION
-        PlayerManager.Instance.playerMovement.positionTarget = checkpointSaveData.playerMovementPosition;
+        PlayerManager.Instance.playerMovement.ChangePositionTarget(checkpointSaveData.playerMovementPosition);
         //PLAYER POSITION
         PlayerManager.Instance.playerMovement.enanoParent.position = checkpointSaveData.playerBouncePosition;
         PlayerManager.Instance.playerCamera.MoveFogToDepth(checkpointSaveData.lastDepth);

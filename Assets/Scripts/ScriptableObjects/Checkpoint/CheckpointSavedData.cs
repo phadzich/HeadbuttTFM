@@ -29,8 +29,10 @@ public class CheckpointSavedData : ScriptableObject
 
     private void UpdatePlayerSpawnPosition()
     {
-        playerMovementPosition = PlayerManager.Instance.playerMovement.positionTarget;
-        playerBouncePosition = PlayerManager.Instance.playerMovement.enanoParent.position;
+        Vector3 dropBlockPos = LevelManager.Instance.currentDropBlock.gameObject.transform.position;
+
+        playerMovementPosition = dropBlockPos;
+        playerBouncePosition = new Vector3(dropBlockPos.x, dropBlockPos.y + 20, dropBlockPos.z);
     }
     private void UpdateSavedSublevel()
     {
