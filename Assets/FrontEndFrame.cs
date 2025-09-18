@@ -10,14 +10,12 @@ public class FrontEndFrame : MonoBehaviour
     public TextMeshProUGUI frameDescriptionTXT;
     public Image frameIcon;
     public RectTransform frameTitle;
-    public float hotkeysStartPos;
-    public float titleStartPos;
+
     public Image frameBG;
 
     private void Start()
     {
-        hotkeysStartPos = hotkeysBar.transform.position.y;
-        titleStartPos = frameTitle.transform.position.y;
+
         CloseFrame();
     }
 

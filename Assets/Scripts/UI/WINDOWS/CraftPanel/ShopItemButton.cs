@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class ShopItemButton : MonoBehaviour
 {
     public Image itemIcon;
-    private ShopItem itemData;
+    public ShopItem itemData;
     private int itemCount;
     public TextMeshProUGUI amountTXT;
     public TextMeshProUGUI priceTXT;

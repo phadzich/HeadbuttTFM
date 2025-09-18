@@ -7,9 +7,11 @@ public class ShopPanel : MonoBehaviour
     public ShopItemsPanelUI shopItems;
     public ShopItemUI shopItemPrefab;
     public CoinsPanelUI coinsPanel;
+    public ItemQuickInfoUI quickInfoPanel;
 
     private void OnEnable()
     {
+        quickInfoPanel.HidePanel();
         ResourceManager.Instance.coinTrader.onCoinsChanged += OnCoinsChanged;
         ShopManager.Instance.currentOpenShop.shopItemsChanged += OnItemsChanged;
 }

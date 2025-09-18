@@ -14,6 +14,7 @@ public class InventoryPanelUI : MonoBehaviour
 
     public GameObject cancelButton;
     public GameObject swapBorder;
+    public GameObject prompt;
 
     public Item currentSelectedItem;
 
@@ -25,7 +26,7 @@ public class InventoryPanelUI : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        prompt.SetActive(true);
         InventoryManager.Instance.itemsInventory.ItemEquipped += OnItemEquipped;
         InventoryManager.Instance.itemsInventory.ItemOwned += OnItemOwned;
         InventoryManager.Instance.itemsInventory.ItemsListChanged += OnItemsListChanged;

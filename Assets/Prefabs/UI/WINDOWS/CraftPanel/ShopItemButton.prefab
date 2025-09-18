@@ -240,8 +240,8 @@ GameObject:
   - component: {fileID: 7237152698709147836}
   - component: {fileID: 6092776757432746617}
   - component: {fileID: 774319937914755690}
-  - component: {fileID: 5828314750097849209}
   - component: {fileID: 2723120713849781075}
+  - component: {fileID: 3225490705234918921}
   m_Layer: 5
   m_Name: ShopItemButton
   m_TagString: Untagged
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 5
---- !u!114 &5828314750097849209
+--- !u!114 &2723120713849781075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +318,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5049575914752835320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: e3014b2814e25af45b4a635d2e9280e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 2051931831736790908}
+  itemData:
+    item: {fileID: 0}
+    quantity: 0
+    price: 0
+  amountTXT: {fileID: 5052878307798668706}
+  priceTXT: {fileID: 6032721795394441203}
+--- !u!114 &3225490705234918921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049575914752835320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134bb403097e96b40abc0abee37737b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -365,21 +384,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2723120713849781075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049575914752835320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3014b2814e25af45b4a635d2e9280e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2051931831736790908}
-  amountTXT: {fileID: 5052878307798668706}
-  priceTXT: {fileID: 6032721795394441203}
 --- !u!1 &7401146912038818792
 GameObject:
   m_ObjectHideFlags: 0

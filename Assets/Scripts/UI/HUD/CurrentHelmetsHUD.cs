@@ -113,6 +113,7 @@ public class CurrentHelmetsHUD : MonoBehaviour
             _hud.UpdateDurability(_hud.helmetInstance.currentDurability, _hud.helmetInstance.durability);
             _hud.UnBroken();
         }
+        equippedHelmetHUDs[0].WearHelmet();
     }
 
 }

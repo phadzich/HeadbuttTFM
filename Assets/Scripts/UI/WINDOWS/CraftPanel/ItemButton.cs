@@ -21,6 +21,7 @@ public class ItemButton : MonoBehaviour
 
     public void OnClickSelectBtn()
     {
+        UIManager.Instance.InventoryPanel.prompt.SetActive(false);
         UIManager.Instance.InventoryPanel.ItemSelected(itemData);
     }
 
