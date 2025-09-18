@@ -60,6 +60,7 @@ public class HelmetManager : MonoBehaviour
         QuickTest(0);
         QuickTest(1);
         QuickTest(2);
+        WearFirstHelmet();
     }
 
     private void QuickTest(int _id)
@@ -67,6 +68,11 @@ public class HelmetManager : MonoBehaviour
         allHelmets[_id].Discover();
         allHelmets[_id].Craft();
         EquipHelmet(allHelmets[_id]);
+    }
+
+    public void WearFirstHelmet()
+    {
+        WearHelmet(helmetsEquipped[0]);
     }
 
     // Crear todas las instancias de cascos

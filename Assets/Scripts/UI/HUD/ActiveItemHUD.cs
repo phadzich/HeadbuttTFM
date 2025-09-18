@@ -7,7 +7,11 @@ public class ActiveItemHUD : MonoBehaviour
     public Image itemIconIMG;
     public TextMeshProUGUI itemQuantityTXT;
 
-public void ChangeActiveItem(Item _itemData, int _quantity)
+    private void Start()
+    {
+        DisableUI();
+    }
+    public void ChangeActiveItem(Item _itemData, int _quantity)
     {
         this.gameObject.SetActive(true);
         itemIconIMG.sprite = _itemData.illustration;
