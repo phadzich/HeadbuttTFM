@@ -4,16 +4,24 @@ using UnityEngine;
 [System.Serializable]
 public class ActiveSwitchesRequirement : RequirementBase
 {
-    [SerializeField] private Sprite icon;
-    public override Sprite GetIcon() => icon;
+    Sprite[] icons;
+
+
 
     public int switchesID;
+    public override Sprite GetIcon() => icons[switchesID];
     public int switchesNeeded;
     public List<SwitchBehaviour> activeSwitches;
     public float lowestTime;
 
     public override void Initialize()
     {
+        icons = new Sprite[]
+{
+        UIManager.Instance.iconsLibrary.switch01Req,
+        UIManager.Instance.iconsLibrary.switch02Req,
+        UIManager.Instance.iconsLibrary.switch03Req
+            };
         activeSwitches.Clear();
         current = 0;
         goal = switchesNeeded;

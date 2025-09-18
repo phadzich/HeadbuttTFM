@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e31252a3c8b7543418c3366b85c65454, type: 3}
-  m_Name: LootIcons
+  m_Name: GeneralIcons
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: a2b2657c1c8a116438e92cd3bfae9f9e, type: 3}
-  keySprite: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
+  lootKeySprite: {fileID: 0}
   coinSprite: {fileID: 21300000, guid: c4a67e429c5bd7f4cb359f1f4caeaa0f, type: 3}
   npcShop: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
   npcForger: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
   npcElevator: {fileID: 21300000, guid: 7664409f878a05c41af091bcd1260705, type: 3}
   npcInventory: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
   npcRacks: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
+  blockReq: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
+  enemyReq: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
+  keyReq: {fileID: 21300000, guid: 7921fed159414b0478f99553f36b1867, type: 3}
+  switch01Req: {fileID: 21300000, guid: 865050fc8bdc9ea478c7fc78c7758b91, type: 3}
+  switch02Req: {fileID: 21300000, guid: 2120d84f094e71f49bd71dd2e7af6965, type: 3}
+  switch03Req: {fileID: 21300000, guid: 9b0ed06b3ee10cf49acaf48fcdf29907, type: 3}

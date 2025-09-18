@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class KeyLoot : LootBase
 {
-    public override Sprite GetIcon() => UIManager.Instance.iconsLibrary.keySprite;
+    public override Sprite GetIcon() => UIManager.Instance.iconsLibrary.lootKeySprite;
     public override void Claim()
     {
         Debug.Log("CLAIMED KEY");

@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -518,6 +519,7 @@ MonoBehaviour:
   doorObjectivesUI: {fileID: 4168801483479769926}
   isOpen: 0
   doorTrapMesh: {fileID: 5649766658453333689}
+  doorTrigger: {fileID: 9196000654935643706}
   openMaterial: {fileID: 2100000, guid: 42cd4b3e3c05dc0439346935370fd540, type: 2}
   borde1: {fileID: 5888506152927431402}
   borde2: {fileID: 1738161332878892176}
@@ -773,6 +775,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2702511975965899895, guid: bedb0387ac50e4ee69e3ed65b86a6214, type: 3}
   m_PrefabInstance: {fileID: 8245428421562192536}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9196000654935643706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1005257819377435810, guid: bedb0387ac50e4ee69e3ed65b86a6214, type: 3}
+  m_PrefabInstance: {fileID: 8245428421562192536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c927e9b14f5dd48038320022a7f37045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8866537453402813353
 PrefabInstance:
   m_ObjectHideFlags: 0

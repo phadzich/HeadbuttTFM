@@ -172,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator ReleaseKnockbackLock()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.20f);
         isKnockedBack = false;
     }
 

@@ -180,6 +180,7 @@ public class LevelManager : MonoBehaviour
     public void EnterSublevel(SublevelConfig _sublevelConfig)
     {
         currentSublevel = sublevelsList[currentLevelDepth];
+
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
         PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
@@ -208,10 +209,40 @@ public class LevelManager : MonoBehaviour
         TryGenerateNextSublevel();
         ActivateDialogIfAvailable(_sublevelConfig);
         MovePlayerToDropBlock();
-
-
+        CheckMaxDepth();
     }
     
+    private void CheckMaxDepth()
+    {
+        int _levelMax = currentLevel.config.maxDepth;
+        if(currentLevelDepth > _levelMax)
+        {
+            currentLevel.config.maxDepth = currentLevelDepth;
+        }
+    }
+
+    public float LevelProgress(LevelConfig _level)
+    {
+        int _total = LevelTotalDepth(_level);
+        int _actual = LevelMaxDepth(_level);
+
+        float _progress = (float)_actual / (float)_total;
+
+
+        return _progress;
+    }
+
+    public int LevelTotalDepth(LevelConfig _level)
+    {
+        return levelsList[levelsList.IndexOf(_level)].subLevels.Count-1;
+
+    }
+
+    public int LevelMaxDepth(LevelConfig _level)
+    {
+        return levelsList[levelsList.IndexOf(_level)].maxDepth;
+
+    }
 
     private void MovePlayerToDropBlock()
     {

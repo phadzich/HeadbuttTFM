@@ -3,8 +3,7 @@ using UnityEngine;
 public class CollectAnyResourceObjective : SublevelObjectiveBase
 {
 
-    [SerializeField] private Sprite icon;
-    public override Sprite GetIcon() => icon;
+    public override Sprite GetIcon() => UIManager.Instance.iconsLibrary.blockReq;
     public int resourcesNeeded;
     private int resourcesCollected;
 

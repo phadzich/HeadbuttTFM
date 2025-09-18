@@ -170,6 +170,22 @@ MonoBehaviour:
     m_Localized: Intensity
     m_Metadata:
       m_Items: []
+  - m_Id: 6459367053926400
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6459401019400192
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6459453087490048
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6459486620950528
+    m_Localized: Graphics quality
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

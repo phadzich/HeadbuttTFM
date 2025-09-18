@@ -6,7 +6,7 @@ public class IconsLibrary : ScriptableObject
     public Sprite defaultSprite;
 
     [Header("LOOT")]
-    public Sprite keySprite;
+    public Sprite lootKeySprite;
 
     [Header("HUD")]
     public Sprite coinSprite;
@@ -17,4 +17,12 @@ public class IconsLibrary : ScriptableObject
     public Sprite npcElevator;
     public Sprite npcInventory;
     public Sprite npcRacks;
+
+    [Header("REQUIREMENTS")]
+    public Sprite blockReq;
+    public Sprite enemyReq;
+    public Sprite keyReq;
+    public Sprite switch01Req;
+    public Sprite switch02Req;
+    public Sprite switch03Req;
 }
