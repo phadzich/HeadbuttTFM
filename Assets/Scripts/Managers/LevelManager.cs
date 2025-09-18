@@ -294,4 +294,10 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("NavMeshSurface not assigned! Cannot bake NavMesh.");
         }
     }
+
+    public void ReturnToCheckpoint()
+    {
+        PlayerManager.Instance.playerStates.CleanDeathCoroutine();
+        LevelManager.Instance.checkpointSystem.RestoreToLastCheckpoint();
+    }
 }

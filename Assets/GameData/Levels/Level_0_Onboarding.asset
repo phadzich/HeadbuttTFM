@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: Level_0_Onboarding
   m_EditorClassIdentifier: 
   id: 0
-  levelName: ONBOARDIN
+  levelName: ONBOARDING
   levelDescription: 
+  levelMusic: {fileID: 0}
+  levelNpcMusic: {fileID: 0}
+  levelAmbient: {fileID: 0}
   subLevels:
+  - {fileID: 11400000, guid: e22dde5474f41db4b831646bd08b7096, type: 2}
   - {fileID: 11400000, guid: 8825020f97bd7df4692cbe94b6b87921, type: 2}
   - {fileID: 11400000, guid: 2454157efffa4944982e3dd1e3ef77e1, type: 2}
   - {fileID: 11400000, guid: 2167d96f9cba3684985988bd7575df4a, type: 2}
   - {fileID: 11400000, guid: 48c4df10035304b4db96e4e7a129ca5b, type: 2}
   - {fileID: 11400000, guid: 1e2b13c756e1ede47aa2d3fd7d274472, type: 2}
+  - {fileID: 11400000, guid: b9ed559a299a96143b27a41661cb48d6, type: 2}
+  - {fileID: 11400000, guid: 28638b23f2b6b0c4faed3cbed02f33e2, type: 2}
   - {fileID: 11400000, guid: fc609c1bbaefde545bb88b1dc4ea0e9c, type: 2}

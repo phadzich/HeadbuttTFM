@@ -18,6 +18,8 @@ public class PlayerStates : MonoBehaviour
 
     public bool bounceAfterStunPending = false;
 
+    private Coroutine deathCoroutine = null;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,6 +40,7 @@ public class PlayerStates : MonoBehaviour
                 canMove = true;
                 canBounce = false;
                 canHeadbutt = false;
+                canReceiveDamage = false;
 
                 break;
 
@@ -45,6 +48,7 @@ public class PlayerStates : MonoBehaviour
                 canMove = false;
                 canBounce = false;
                 canHeadbutt = true;
+                canReceiveDamage = true;
 
                 break;
 
@@ -54,6 +58,7 @@ public class PlayerStates : MonoBehaviour
                 canBounce = true;
                 bounceAfterStunPending = true;
                 onMiningLvl = true;
+                canReceiveDamage = false;
 
                 break;
 
@@ -62,6 +67,7 @@ public class PlayerStates : MonoBehaviour
                 canHeadbutt = false;
                 canBounce = true;
                 onMiningLvl = false;
+                canReceiveDamage = false;
 
                 break;
 
@@ -69,6 +75,7 @@ public class PlayerStates : MonoBehaviour
                 canBounce = true;
                 canMove = true;
                 canHeadbutt = true;
+                canReceiveDamage = true;
 
                 if (bounceAfterStunPending)
                 {
@@ -83,6 +90,7 @@ public class PlayerStates : MonoBehaviour
                 canMove = true;
                 canBounce = true;
                 canHeadbutt = true;
+                canReceiveDamage = true;
 
                 if (hasEffect(PlayerEffectStateEnum.Stunned))
                 {
@@ -97,6 +105,7 @@ public class PlayerStates : MonoBehaviour
                 canBounce = false;
                 canMove = true;
                 canHeadbutt = false;
+                canReceiveDamage = false;
 
                 // caminar sin saltar
                 //animator.Play("Walk");
@@ -106,9 +115,14 @@ public class PlayerStates : MonoBehaviour
                 canBounce = false;
                 canMove = false;
                 canHeadbutt = false;
+                canReceiveDamage = false;
 
-                // jugador muerto
-                //animator.Play("Dead");
+                //ANIMACION
+
+                if (deathCoroutine == null)
+                {
+                    deathCoroutine = StartCoroutine(StartGameOverSequence(2f));
+                }
                 break;
         }
     }
@@ -142,6 +156,24 @@ public class PlayerStates : MonoBehaviour
               
         }
 
+    }
+
+    private IEnumerator StartGameOverSequence(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+
+        MatchManager.Instance.RestartMatches();
+
+        //AQUI AGREGAR CODIGO PARA MOSTRAR SCREEN DE GAME OVER 
+
+        LevelManager.Instance.ReturnToCheckpoint(); // ESTA FUNCION SE LLAMARIA DESDE EL BOTÓN DE LA SCREEN DE GAME OVER
+
+
+    }
+
+    public void CleanDeathCoroutine()
+    {
+        deathCoroutine = null;
     }
 
 
