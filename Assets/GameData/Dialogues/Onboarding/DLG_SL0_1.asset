@@ -13,23 +13,16 @@ MonoBehaviour:
   m_Name: DLG_SL0_1
   m_EditorClassIdentifier: 
   lines:
-  - text: "Vaya, vaya, otro enano que cree que nos puede liberar de la maldici\xF3n
-      del AntiNezur..."
-    npcImage: {fileID: 21300000, guid: 961ab32f72098d545ac80c2210265afb, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: SISOI
-  - text: "Seguro eres de esos que creen que lo m\xE1s eficiente para minar es usar
-      herramientas..."
+  - text: "You probably brought a pickaxe, didn\u2019t you? Adorable."
     npcImage: {fileID: 21300000, guid: 5d3d704c0ee7bf64aa4e49fbdc87bdeb, type: 3}
     playerImage: {fileID: 21300000, guid: 6410781205d096e449337626d8b17ee3, type: 3}
-    buttonText: "Pues... s\xED no?"
-  - text: "Iluso. Lo mejor es usar la cabeza, LITERAL. Mu\xE9vete y autom\xE1ticamente
-      rebotar\xE1s sobre minerales iguales y los minar\xE1s. Pan comido."
+    buttonText: Why not?
+  - text: "Newsflash: the best tool is to use your head. LITERALLY. Move around,
+      bounce on matching minerals, BOOM, mined. Child\u2019s play."
     npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
     playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
-    buttonText: Literal?
-  - text: "Lo mejor de todo es que no hay ning\xFAn da\xF1o colateral. Te lo digo
-      yo, un buceador profesional."
+    buttonText: LITERALLY?
+  - text: Best part? Totally safe. Says me, a professional scuba diver. Trust me.
     npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
     playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: Cabeza a la obra!
+    buttonText: Heads on!

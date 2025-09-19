@@ -1,6 +1,7 @@
-using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
 
 public class Resolution_Script : MonoBehaviour
 {
@@ -8,15 +9,7 @@ public class Resolution_Script : MonoBehaviour
 
     public TMP_Dropdown resolutionDropdown;
 
-    private List<Vector2Int> availableResolutions = new List<Vector2Int>()
-    {
-        new Vector2Int(1920, 1080),
-        new Vector2Int(2560, 1440),
-        new Vector2Int(1600, 1200),
-        new Vector2Int(1280, 720),
-        new Vector2Int(800, 600),
-        new Vector2Int(640, 480)
-    };
+    private Resolution[] availableResolutions;
 
     void Awake()
     {
@@ -38,31 +31,50 @@ public class Resolution_Script : MonoBehaviour
             return;
         }
 
+        availableResolutions = Screen.resolutions
+    .OrderByDescending(r => r.width)
+    .ThenByDescending(r => r.height)
+    .ThenByDescending(r => r.refreshRateRatio.value)
+    .ToArray();
+
         resolutionDropdown.ClearOptions();
+
         List<string> options = new List<string>();
-        foreach (var res in availableResolutions)
+        int currentResolutionIndex = 0;
+
+        for (int i = 0; i < availableResolutions.Length; i++)
         {
-            options.Add($"{res.x} x {res.y}");
+            Resolution res = availableResolutions[i];
+            string option = $"{res.width} x {res.height} @ {res.refreshRateRatio}Hz";
+            options.Add(option);
+
+            if (res.width == Screen.currentResolution.width &&
+                res.height == Screen.currentResolution.height &&
+                    Mathf.Approximately((float)res.refreshRateRatio.value, (float)Screen.currentResolution.refreshRateRatio.value));
+            {
+                currentResolutionIndex = i;
+            }
         }
+
         resolutionDropdown.AddOptions(options);
 
-        int savedIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
+        // Cargo el índice guardado si existe, si no uso la actual
+        int savedIndex = PlayerPrefs.GetInt("ResolutionIndex", currentResolutionIndex);
         resolutionDropdown.value = savedIndex;
         resolutionDropdown.RefreshShownValue();
 
         resolutionDropdown.onValueChanged.AddListener(ChangeResolution);
 
-        ChangeResolution(savedIndex); // Aplico resolución guardada
+        ChangeResolution(savedIndex);
     }
 
     void ChangeResolution(int index)
     {
-        if (index < 0 || index >= availableResolutions.Count)
+        if (index < 0 || index >= availableResolutions.Length)
             return;
 
-        Vector2Int selectedResolution = availableResolutions[index];
-        Screen.SetResolution(selectedResolution.x, selectedResolution.y, FullScreenMode.Windowed);
+        Resolution res = availableResolutions[index];
+        Screen.SetResolution(res.width, res.height, Screen.fullScreenMode, res.refreshRateRatio);
         PlayerPrefs.SetInt("ResolutionIndex", index);
-        //Debug.Log($"Resolución cambiada a: {selectedResolution.x}x{selectedResolution.y}");
     }
 }

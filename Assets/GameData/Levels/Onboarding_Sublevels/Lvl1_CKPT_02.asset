@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   helmetBPData: {fileID: 0}
-  dialogueSequence: {fileID: 0}
+  dialogueSequence: {fileID: 11400000, guid: 94a041b7e58d7f242839068ca95b5e2d, type: 2}
   limitPerSpawn: 0
   NPCtype: 0
   sublevel2DMap: {fileID: 2800000, guid: 37550a58b61fd1f41bf336482725d461, type: 3}

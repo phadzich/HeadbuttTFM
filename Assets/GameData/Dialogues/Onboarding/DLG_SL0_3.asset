@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: DLG_SL0_3
   m_EditorClassIdentifier: 
   lines:
-  - text: "Genial\xEDsimo, sigues vivo. Nunca dud\xE9."
+  - text: "Amazing, you\u2019re still alive. Never doubted you for a second."
     npcImage: {fileID: 21300000, guid: 961ab32f72098d545ac80c2210265afb, type: 3}
     playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: "Aj\xE1..."
-  - text: "PERO ATENTO PEQUE\xD1O BACALAO! En las profundidades existen m\xE1s peligros
-      que solo golpearte la cabeza."
+    buttonText: Sure...
+  - text: BUT LISTEN UP, LITTLE COD! Down here, there are worse things than banging
+      your head.
     npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
     playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
-    buttonText: Bacalao?
-  - text: "Hay bloques de lava y enemigos que buscar\xE1n evitar que cumplas los
-      objetivos de cada piso."
+    buttonText: Cod?
+  - text: "Lava blocks and epic enemies will do everything to stop you from clearing
+      each floor\u2019s goals.\n"
     npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
     playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: Interesante
-  - text: "La vida es dura como la verdura. Pero m\xE1s dura es tu cabeza! Recolecta
-      10 recursos o m\xE1s y nos vemos abajo!"
+    buttonText: "Interesting\u2026"
+  - text: "Life\u2019s tough. Always has been. But your skull\u2019s tougher! Collect
+      10 resources or more and meet me below."
     npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
     playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: Con fe.
+    buttonText: Fingers crossed.

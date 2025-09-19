@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lvl1Sub05
   helmetBPData: {fileID: 11400000, guid: db432aec72dd97c43a43e1f0c041461e, type: 2}
-  dialogueSequence: {fileID: 11400000, guid: 88270742c9989f64ab6e0548fc54f944, type: 2}
+  dialogueSequence: {fileID: 11400000, guid: bf127c9da5cdf92448ad94c03618d009, type: 2}
   limitPerSpawn: 0
   sublevel2DMap: {fileID: 2800000, guid: 14d1df46722a3a44a866309e7f8a986f, type: 3}
   objectives:
@@ -30,11 +30,9 @@ MonoBehaviour:
     - rid: 6219506894629240913
       type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
       data:
-        icon: {fileID: 0}
         resourcesNeeded: 16
     - rid: 8004248247580229632
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
-        icon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
         enemiesNeeded: 1

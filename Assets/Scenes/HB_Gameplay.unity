@@ -10731,6 +10731,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1418515885224864435, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1855439782051107933, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10745,7 +10749,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
       propertyPath: m_text
+      value: 1920 x 1080 @ 61.99 Hz
+      objectReference: {fileID: 0}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontAsset
       value: 
+      objectReference: {fileID: 11400000, guid: fa5316bd01e23b946bf6f499d66be7a9, type: 2}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2046106347118793109, guid: fa5316bd01e23b946bf6f499d66be7a9, type: 2}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3077428962907868680, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3166890811703408348, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11630,6 +11662,30 @@ PrefabInstance:
     - target: {fileID: 8048865871496172815, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 170.9502
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064944470573022949, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064944470573022949, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: fa5316bd01e23b946bf6f499d66be7a9, type: 2}
+    - target: {fileID: 8064944470573022949, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064944470573022949, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064944470573022949, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064944470573022949, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8127038114231406460, guid: 89a5158af339bae4786b4cc637e2b1d6, type: 3}
       propertyPath: m_AnchorMax.y
@@ -20399,7 +20455,7 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_PointAction: {fileID: -4897651622562782716, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
@@ -41192,6 +41248,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ae20c0ab-fd8c-4c49-9045-24199814c77c
     m_ActionName: UI/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1764228816}
+        m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
+        m_MethodName: PauseKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6bcff8f1-4bd4-4865-ad48-6a7478f903f7
+    m_ActionName: 'UI/Unpause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
