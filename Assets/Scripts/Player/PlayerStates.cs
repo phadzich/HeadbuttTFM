@@ -13,6 +13,7 @@ public class PlayerStates : MonoBehaviour
     public bool canReceiveDamage;
     public bool canBounce;
     public bool canHeadbutt;
+    public bool interruptHeadbutt;
 
     public bool onMiningLvl = false;
 
@@ -41,6 +42,7 @@ public class PlayerStates : MonoBehaviour
                 canBounce = false;
                 canHeadbutt = false;
                 canReceiveDamage = false;
+                interruptHeadbutt = false;
 
                 break;
 
@@ -49,6 +51,8 @@ public class PlayerStates : MonoBehaviour
                 canBounce = false;
                 canHeadbutt = true;
                 canReceiveDamage = true;
+                interruptHeadbutt = true;
+                bounceAfterStunPending = true;
 
                 break;
 
@@ -59,6 +63,7 @@ public class PlayerStates : MonoBehaviour
                 bounceAfterStunPending = true;
                 onMiningLvl = true;
                 canReceiveDamage = false;
+                interruptHeadbutt = false;
 
                 break;
 
@@ -68,6 +73,7 @@ public class PlayerStates : MonoBehaviour
                 canBounce = true;
                 onMiningLvl = false;
                 canReceiveDamage = false;
+                interruptHeadbutt = false;
 
                 break;
 
@@ -76,6 +82,7 @@ public class PlayerStates : MonoBehaviour
                 canMove = true;
                 canHeadbutt = true;
                 canReceiveDamage = true;
+                interruptHeadbutt = false;
 
                 if (bounceAfterStunPending)
                 {
@@ -91,6 +98,7 @@ public class PlayerStates : MonoBehaviour
                 canBounce = true;
                 canHeadbutt = true;
                 canReceiveDamage = true;
+                interruptHeadbutt = false;
 
                 if (hasEffect(PlayerEffectStateEnum.Stunned))
                 {
@@ -106,6 +114,7 @@ public class PlayerStates : MonoBehaviour
                 canMove = true;
                 canHeadbutt = false;
                 canReceiveDamage = false;
+                interruptHeadbutt = false;
 
                 // caminar sin saltar
                 //animator.Play("Walk");
@@ -116,6 +125,7 @@ public class PlayerStates : MonoBehaviour
                 canMove = false;
                 canHeadbutt = false;
                 canReceiveDamage = false;
+                interruptHeadbutt = true;
 
                 //ANIMACION
 
@@ -141,7 +151,6 @@ public class PlayerStates : MonoBehaviour
         if (hasEffect(PlayerEffectStateEnum.Stunned))
         {
             ChangeState(PlayerMainStateEnum.Disabled);
-            bounceAfterStunPending = true;
         }
         else if (bounceAfterStunPending & !isOnState(PlayerMainStateEnum.FallingIntoMINE))
         {
@@ -179,12 +188,26 @@ public class PlayerStates : MonoBehaviour
 
     public void ChangeState(PlayerMainStateEnum _state)
     {
-        //Debug.Log("CHANGE TO:" + _state.ToString());
-        currentMainState = _state;
+        if (currentMainState != _state)
+        {
+            //Debug.Log("CHANGE TO:" + _state.ToString());
+            currentMainState = _state;
+        }
+
+        if (currentMainState == PlayerMainStateEnum.Dead)
+        {
+            // Avisar al Headbutt que se interrumpa
+            var headbutt = PlayerManager.Instance.playerHeadbutt;
+            if (headbutt != null)
+            {
+                headbutt.InterruptHeadbutt();
+            }
+        }
     }
 
     public void AddEffect(PlayerEffectStateEnum _effect)
     {
+        Debug.Log("ADD EFFECT:" + _effect.ToString());
         currentEffects.Add(_effect);
     }
 

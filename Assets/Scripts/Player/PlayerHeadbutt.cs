@@ -126,6 +126,7 @@ public class PlayerHeadbutt : MonoBehaviour
     public void HeadbuttUp()
     {
         Debug.Log("HBUP");
+        StartCoroutine(PlayerManager.Instance.playerEffects.StartCooldown(1f));
         Invoke(nameof(ReturnToBounceState), 0.5f);
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);
         rb.transform.position = PlayerManager.Instance.playerMovement.blockNSBelow.transform.position+new Vector3(0,.5f,0);
@@ -139,9 +140,6 @@ public class PlayerHeadbutt : MonoBehaviour
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
         HelmetManager.Instance.currentHelmet.OnHeadbutt();
 
-        // Interrumpir efectos
-        var states = PlayerManager.Instance.playerStates;
-        //if (states.isStunned) states.InterruptEffect();
     }
 
     private void UpdateHeadbuttCooldown()
@@ -166,6 +164,8 @@ public class PlayerHeadbutt : MonoBehaviour
 
     private void ReturnToBounceState()
     {
+        if (PlayerManager.Instance.playerStates.interruptHeadbutt) return;
+
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Bouncing);
     }
 
@@ -178,6 +178,9 @@ public class PlayerHeadbutt : MonoBehaviour
         }
     }
 
-
+    public void InterruptHeadbutt()
+    {
+        rb.linearVelocity = Vector3.zero; // cancela el empuje
+    }
 
 }

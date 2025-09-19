@@ -41,7 +41,7 @@ public class PlayerEffects : MonoBehaviour
             HelmetManager.Instance.currentHelmet.TakeDamage(_amount);
             SoundManager.PlaySound(SFXType.RECIEVEDAMAGE, 0.5f);
 
-            if (!isCooldownActive) StartCoroutine(StartCooldown());
+            if (!isCooldownActive) StartCoroutine(StartCooldown(cooldownTime));
         }
         else
         {
@@ -76,7 +76,7 @@ public class PlayerEffects : MonoBehaviour
 
         playerStates.RemoveEffect(PlayerEffectStateEnum.Shield);
 
-        if (!isCooldownActive) StartCoroutine(StartCooldown());
+        if (!isCooldownActive) StartCoroutine(StartCooldown(cooldownTime));
     }
 
     // General functions
@@ -88,15 +88,15 @@ public class PlayerEffects : MonoBehaviour
 
         playerStates.RemoveEffect(_effect);
 
-        if (!isCooldownActive) StartCoroutine(StartCooldown());
+        if (!isCooldownActive) StartCoroutine(StartCooldown(cooldownTime));
     }
 
-    private IEnumerator StartCooldown()
+    public IEnumerator StartCooldown(float _time)
     {
         PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Cooldown;
 
         playerStates.AddEffect(_effect); // bloquea daño durante cooldown
-        yield return new WaitForSeconds(cooldownTime);
+        yield return new WaitForSeconds(_time);
         playerStates.RemoveEffect(_effect);  // desbloquea daño
     }
 
