@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: -4628646904535597047}
   - component: {fileID: 1581194200581867795}
   - component: {fileID: -8384557066079602059}
+  - component: {fileID: 6649896061860295478}
   m_Layer: 8
   m_Name: EnemyGeiser
   m_TagString: Untagged
@@ -292,6 +293,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6649896061860295478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: e7012f73aaca4cc489bff8816bac76cb, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1001 &2956713403525015477
 PrefabInstance:
   m_ObjectHideFlags: 0

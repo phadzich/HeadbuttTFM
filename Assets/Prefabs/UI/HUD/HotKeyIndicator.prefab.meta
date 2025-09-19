@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/UI/HUD/HotKeyIndicator.prefab.meta
 guid: 3cc59b370ada7424299b50026c2b02a4
 PrefabImporter:
+========
+guid: 4bffa04368a359b4b991a28126c76b0e
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> Audio:Assets/Audio/SFX/Enemies.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
