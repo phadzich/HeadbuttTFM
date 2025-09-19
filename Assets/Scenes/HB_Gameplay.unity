@@ -22831,6 +22831,7 @@ MonoBehaviour:
   canReceiveDamage: 1
   canBounce: 0
   canHeadbutt: 0
+  interruptHeadbutt: 0
   onMiningLvl: 0
   bounceAfterStunPending: 0
 --- !u!114 &1217362975

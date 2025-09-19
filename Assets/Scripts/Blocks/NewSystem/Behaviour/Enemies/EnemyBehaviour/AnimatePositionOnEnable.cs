@@ -24,7 +24,7 @@ public class AnimatePositionOnEnable : MonoBehaviour
 
     private void AnimateUp()
     {
-        Vector3 _startLocal = originalPosition + start;
+        Vector3 _startLocal = start;
         Vector3 _endPos = _startLocal + (direction*distance);
         Tween.LocalPosition(this.transform, duration: duration, startValue: _startLocal, endValue: _endPos, ease: ease);
     }
