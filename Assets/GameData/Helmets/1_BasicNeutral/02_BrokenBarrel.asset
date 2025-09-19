@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: 16_FairyPowder
+  m_Name: 02_BrokenBarrel
   m_EditorClassIdentifier: 
-  id: 16
-  helmetName: Fairy Powder
-  description: 
-  mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
-  icon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
+  id: 2
+  helmetName: Broken Barrel
+  description: Barril roto de Hidromiel.
+  mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
+  icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
-  rarity: 1
-  miningPower: 1
-  element: 4
+  rarity: 0
+  miningPower: 0
+  element: 1
   effects:
-  - {fileID: 11400000, guid: b92adbb5e7c22cb47822505252a21a73, type: 2}
+  - {fileID: 11400000, guid: 1b58e6dd41f3b304cab613134a21a786, type: 2}
   levelUpRequirements:
   - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 10
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
       quantity: 14
-    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 20
     durability: 2
-    powerStat: 10
+    powerStat: 0
   - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 15
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 4
-    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 6
+      quantity: 21
     durability: 3
-    powerStat: 15
+    powerStat: 0
   - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 21
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 5
-    - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 8
+      quantity: 27
     durability: 4
-    powerStat: 20
+    powerStat: 1
