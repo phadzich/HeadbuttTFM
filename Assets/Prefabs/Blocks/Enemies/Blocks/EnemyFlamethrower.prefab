@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1581194200581867795}
   - component: {fileID: 3767248320434360883}
   - component: {fileID: -6725823553689796262}
+  - component: {fileID: -7659558148228008675}
   m_Layer: 8
   m_Name: EnemyFlamethrower
   m_TagString: Untagged
@@ -311,6 +312,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7659558148228008675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 148686e983a2ef748a3c651063c20c3c, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1001 &2741226258193590623
 PrefabInstance:
   m_ObjectHideFlags: 0
