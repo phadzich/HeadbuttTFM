@@ -17,6 +17,6 @@ MonoBehaviour:
     finamente seleccionados."
   itemDescription: Repair your current active helmet by {{power}} health points.
   effectIcon: {fileID: 21300000, guid: 6643c4fa41fc2244a8c570f271efcad6, type: 3}
-  illustration: {fileID: 21300000, guid: 175d80ef716324e439e211d27e5609b9, type: 3}
+  illustration: {fileID: 21300000, guid: 2c9e77a9490c61a4894d8022dac57662, type: 3}
   value: 1
   potionType: 1

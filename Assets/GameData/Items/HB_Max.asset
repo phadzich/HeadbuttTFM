@@ -16,6 +16,6 @@ MonoBehaviour:
   itemLore: Aqui va algun texto mistico.
   itemDescription: Instantly refill your Headbutt points by {{power}}.
   effectIcon: {fileID: 21300000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
-  illustration: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
-  value: 20
+  illustration: {fileID: 21300000, guid: a1e4b6e413d604b41bf75e5549e06b27, type: 3}
+  value: 10
   potionType: 2

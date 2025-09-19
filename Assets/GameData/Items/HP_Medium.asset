@@ -16,6 +16,6 @@ MonoBehaviour:
   itemLore: Aqui va algun texto mistico.
   itemDescription: Repair your current active helmet by {{power}} health points.
   effectIcon: {fileID: 21300000, guid: 6643c4fa41fc2244a8c570f271efcad6, type: 3}
-  illustration: {fileID: 21300000, guid: 175d80ef716324e439e211d27e5609b9, type: 3}
+  illustration: {fileID: 21300000, guid: 663b7ca0a350ffd468d382335cd8f4c9, type: 3}
   value: 2
   potionType: 1
