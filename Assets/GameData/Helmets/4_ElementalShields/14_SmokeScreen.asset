@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: 18_Firebreathe
+  m_Name: 14_SmokeScreen
   m_EditorClassIdentifier: 
-  id: 18
-  helmetName: Firebreathe
+  id: 14
+  helmetName: Smoke Screen
   description: 
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
-  icon: {fileID: 21300000, guid: eed8e052ac618b546bd6c9d2ea1596d8, type: 3}
-  color: {r: 0.8396226, g: 0.2815474, b: 0.1544589, a: 0}
+  icon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
+  color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 1
-  miningPower: 2
+  miningPower: 1
   element: 2
   effects:
-  - {fileID: 11400000, guid: 94db2d76da05f46d9a7126fc612c567b, type: 2}
+  - {fileID: 11400000, guid: b7e44020f9991994aa35a92316543a6c, type: 2}
   levelUpRequirements:
   - requirements:
-    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 20
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 22
     - resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 30
+      quantity: 34
     durability: 2
     powerStat: 1
   - requirements:
-    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 5
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 34
     - resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 10
+      quantity: 50
     durability: 3
-    powerStat: 2
+    powerStat: 1
   - requirements:
-    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 10
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 45
     - resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 20
+      quantity: 67
     durability: 4
-    powerStat: 3
+    powerStat: 2

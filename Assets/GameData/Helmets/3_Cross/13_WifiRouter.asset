@@ -10,34 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: 08_Sparky
+  m_Name: 13_WifiRouter
   m_EditorClassIdentifier: 
-  id: 8
-  helmetName: Sparky
+  id: 13
+  helmetName: Wifi Router
   description: 
   mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
   icon: {fileID: 21300000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  rarity: 0
+  color: {r: 0.19339621, g: 0.18451354, b: 0.18244925, a: 0}
+  rarity: 1
   miningPower: 1
   element: 5
   effects:
-  - {fileID: 11400000, guid: 136ce2d0ca2a7004e8093bed2a4ea4bc, type: 2}
+  - {fileID: 11400000, guid: 2d256271c1954c84fb712ec86cbd057d, type: 2}
   levelUpRequirements:
   - requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 22
     - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 15
-    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 13
-    durability: 1
-    powerStat: 0
-  - requirements:
-    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 8
+      quantity: 26
     durability: 2
-    powerStat: 0
+    powerStat: 1
   - requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 33
     - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 15
+      quantity: 39
     durability: 3
-    powerStat: 0
+    powerStat: 2
+  - requirements:
+    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
+      quantity: 44
+    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+      quantity: 52
+    durability: 4
+    powerStat: 3

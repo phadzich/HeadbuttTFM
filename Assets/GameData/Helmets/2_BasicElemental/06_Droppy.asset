@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: 15_BubbleWrap
+  m_Name: 06_Droppy
   m_EditorClassIdentifier: 
-  id: 15
-  helmetName: Bubble Wrap
+  id: 6
+  helmetName: Droppy
   description: 
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
   icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
-  rarity: 1
+  rarity: 0
   miningPower: 1
   element: 3
   effects:
-  - {fileID: 11400000, guid: 4850531a44d9d274a987f7809eea8d99, type: 2}
+  - {fileID: 11400000, guid: 1e89f6cac18b9b348a6f9a06c6a87aaa, type: 2}
   levelUpRequirements:
   - requirements:
-    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 14
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 27
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 13
+    durability: 1
+    powerStat: 0
+  - requirements:
+    - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
+      quantity: 40
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
       quantity: 20
     durability: 2
-    powerStat: 10
+    powerStat: 0
   - requirements:
-    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 4
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 6
+      quantity: 53
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 27
     durability: 3
-    powerStat: 15
-  - requirements:
-    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 5
-    - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 8
-    durability: 4
-    powerStat: 20
+    powerStat: 1

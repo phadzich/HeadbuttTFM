@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54c9a7353fc44ca3bc1585b433209e6, type: 3}
-  m_Name: 19_Hydrant
+  m_Name: 15_BubbleWrap
   m_EditorClassIdentifier: 
-  id: 19
-  helmetName: Hydrant
+  id: 15
+  helmetName: Bubble Wrap
   description: 
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
   icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
-  color: {r: 0.8396226, g: 0.2815474, b: 0.1544589, a: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 1
-  miningPower: 2
+  miningPower: 1
   element: 3
   effects:
-  - {fileID: 11400000, guid: 678786d3de80844478003f6eaf97b8d7, type: 2}
+  - {fileID: 11400000, guid: 4850531a44d9d274a987f7809eea8d99, type: 2}
   levelUpRequirements:
   - requirements:
-    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 20
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 22
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 30
+      quantity: 34
     durability: 2
     powerStat: 1
   - requirements:
-    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 5
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 34
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 10
+      quantity: 50
     durability: 3
-    powerStat: 2
+    powerStat: 1
   - requirements:
-    - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 10
+    - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
+      quantity: 45
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 20
+      quantity: 67
     durability: 4
-    powerStat: 3
+    powerStat: 2
