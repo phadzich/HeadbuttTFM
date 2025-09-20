@@ -163,7 +163,10 @@ public class ResourceBlock : MonoBehaviour
 
     private void ScreenShake()
     {
-        impulseSource.GenerateImpulse();
+        if (SettingsManager.instance.shake == 1)
+        {
+            impulseSource.GenerateImpulse();
+        }
     }
 
     private void GetMinedState()

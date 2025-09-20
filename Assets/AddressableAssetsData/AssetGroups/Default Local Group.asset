@@ -35,11 +35,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: af76f1c5357b4964ea02d28eb43b291e
-    m_Address: Assets/Scripts/UI/MAIN_MENU/Global_Managers.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee51d53ccfeb7824f95d6aa3a294b594
     m_Address: Assets/Prefabs/UI/LUTS/deuteranope_correct_lut.png
     m_ReadOnly: 0

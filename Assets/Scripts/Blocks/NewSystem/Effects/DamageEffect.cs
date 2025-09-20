@@ -78,7 +78,10 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
 
     private void ScreenShake()
     {
-        impulseSource.GenerateImpulse();
+        if (SettingsManager.instance.shake == 1)
+        {
+            impulseSource.GenerateImpulse();
+        }
     }
 
     public enum damageType
