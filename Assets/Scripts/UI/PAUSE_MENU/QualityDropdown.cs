@@ -3,6 +3,7 @@ using TMPro;
 
 public class QualityDropdown : MonoBehaviour
 {
+    /*
     [SerializeField] private TMP_Dropdown qualityDropdown;
 
     private const string QualityPrefKey = "QualitySetting";
@@ -29,4 +30,5 @@ public class QualityDropdown : MonoBehaviour
         PlayerPrefs.SetInt(QualityPrefKey, index);
         PlayerPrefs.Save();
     }
+    */
 }

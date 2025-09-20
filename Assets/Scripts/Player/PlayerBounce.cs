@@ -1,10 +1,8 @@
 using PrimeTween;
 using Unity.Cinemachine;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR;
-using static UnityEngine.UI.Image;
+
 
 public class PlayerBounce : MonoBehaviour
 {

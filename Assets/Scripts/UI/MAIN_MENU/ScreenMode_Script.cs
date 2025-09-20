@@ -3,6 +3,7 @@ using TMPro;
 
 public class DisplayModeDropdown : MonoBehaviour
 {
+    /*
     public static DisplayModeDropdown Instance;
 
     public TMP_Dropdown modeDropdown;
@@ -74,4 +75,5 @@ public class DisplayModeDropdown : MonoBehaviour
         if (modeDropdown != null)
             modeDropdown.onValueChanged.RemoveListener(OnDropdownValueChanged);
     }
+    */
 }

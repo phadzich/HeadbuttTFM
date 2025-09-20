@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Resolution_Script : MonoBehaviour
 {
+    /*
     public static Resolution_Script Instance;
 
     public TMP_Dropdown resolutionDropdown;
@@ -77,4 +78,5 @@ public class Resolution_Script : MonoBehaviour
         Screen.SetResolution(res.width, res.height, Screen.fullScreenMode, res.refreshRateRatio);
         PlayerPrefs.SetInt("ResolutionIndex", index);
     }
+    */
 }
