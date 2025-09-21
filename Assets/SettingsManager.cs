@@ -1,10 +1,18 @@
+using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsManager : MonoBehaviour
 {
 
     public static SettingsManager instance;
     public LanguageHandler languageHandler;
+    public SettingsUI settingsUI;
+
+    [SerializeField] private Volume settingsVolume;
+    private ColorAdjustments colorAdjustments;
 
     // Defaults
     //AUDIO
@@ -16,9 +24,10 @@ public class SettingsManager : MonoBehaviour
 
     //VIDEO
     private int resolutionIndex = 0;
-    private int quality = 0;
+    private int qualityIndex = 0;
     private int fullscreen = 1;
     private float brightness = 0;
+    private float contrast = 0;
 
     //ACCESIBILITY
     private int colorblindMode = 0;
@@ -29,11 +38,29 @@ public class SettingsManager : MonoBehaviour
     private int vibration = 1;
     public int shake = 1;
 
+    public Resolution[] GetFilteredResolutions()
+    {
+        // Si tu Unity no soporta refreshRateRatio, sustituye por r.refreshRate (pero dijiste usar lo moderno)
+        return Screen.resolutions
+            .GroupBy(r => new { r.width, r.height })
+            .Select(g => g.OrderByDescending(r => r.refreshRateRatio.value).First())
+            .ToArray();
+    }
 
     private void Awake()
     {
         instance = this;
         Debug.Log("SettingsManager Awake@");
+
+        if (settingsVolume != null && settingsVolume.profile != null)
+        {
+            // Busca el override de ColorAdjustments en tu SettingsVolume
+            if (!settingsVolume.profile.TryGet(out colorAdjustments))
+            {
+                Debug.LogWarning("El Volume no tiene Color Adjustments agregado.");
+            }
+        }
+
         LoadSettings();
         ApplyAll();
     }
@@ -75,34 +102,99 @@ public class SettingsManager : MonoBehaviour
     public void SetResolution(int index)
     {
         resolutionIndex = index;
-        Resolution[] resolutions = Screen.resolutions;
-        if (index >= 0 && index < resolutions.Length)
+
+        Resolution r;
+
+        if (index == 0)
         {
-            Resolution r = resolutions[index];
-            Screen.SetResolution(r.width, r.height, fullscreen == 1);
+            // Recommended / nativa
+            r = Screen.currentResolution;
         }
+        else
+        {
+            // usamos la lista filtrada para que coincida exactamente con el dropdown
+            var filtered = GetFilteredResolutions();
+            int safeIndex = Mathf.Clamp(index - 1, 0, filtered.Length - 1);
+            r = filtered[safeIndex];
+        }
+
+        // Aplica según el estado actual de fullscreen
+        ApplyResolution(r.width, r.height);
+
+        // Guardar el índice del dropdown (0 = recommended)
         PlayerPrefs.SetInt("resolutionIndex", index);
+        PlayerPrefs.Save();
     }
 
     public void SetQuality(int q)
     {
-        quality = q;
-        QualitySettings.SetQualityLevel(q);
-        PlayerPrefs.SetInt("quality", q);
+        qualityIndex = q;
+        QualitySettings.SetQualityLevel(q, true);
+        PlayerPrefs.SetInt("qualityIndex", q);
     }
 
     public void SetFullscreen(bool state)
     {
         fullscreen = state ? 1 : 0;
-        Screen.fullScreen = state;
         PlayerPrefs.SetInt("fullscreen", fullscreen);
+        PlayerPrefs.Save();
+
+        // Reaplica la resolución actual (según resolutionIndex)
+        if (resolutionIndex == 0)
+        {
+            Resolution native = Screen.currentResolution;
+            ApplyResolution(native.width, native.height);
+        }
+        else
+        {
+            var filtered = GetFilteredResolutions();
+            int safeIndex = Mathf.Clamp(resolutionIndex - 1, 0, filtered.Length - 1);
+            Resolution r = filtered[safeIndex];
+            ApplyResolution(r.width, r.height);
+        }
+    }
+
+    private void ApplyResolution(int width, int height)
+    {
+        if (fullscreen == 1)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.SetResolution(width, height, true);
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Screen.SetResolution(width, height, false);
+        }
+
+        Debug.Log($"ApplyResolution -> {width}x{height} | fullscreen={fullscreen}");
     }
 
     public void SetBrightness(float v)
     {
-        brightness = v;
-        // Aquí aplicarías un material post-process, shader global, etc.
-        PlayerPrefs.SetFloat("brightness", v);
+        if (colorAdjustments != null)
+        {
+            float brightnessValue = Mathf.Lerp(-3f, 2f, (v + 1f) / 2f);
+            colorAdjustments.postExposure.value = brightnessValue;
+            PlayerPrefs.SetFloat("brightness", v);
+        }
+    }
+
+    public void SetContrast(float v)
+    {
+        if (colorAdjustments != null)
+        {
+            float contrastValue = Mathf.Lerp(-50f, 50f, (v + 1f) / 2f);
+            colorAdjustments.contrast.value = contrastValue;
+            PlayerPrefs.SetFloat("contrast", v);
+        }
+    }
+
+    public void ResetBrightnessContrast()
+    {
+        SetContrast(0);
+        SetBrightness(0);
+        settingsUI.PopulateSliders();
     }
 
     public void SetColorblindMode(int mode)
@@ -147,9 +239,10 @@ public class SettingsManager : MonoBehaviour
         UiVolume = PlayerPrefs.GetFloat("uiVolume", 1f);
 
         resolutionIndex = PlayerPrefs.GetInt("resolutionIndex", 0);
-        quality = PlayerPrefs.GetInt("quality", 0);
+        qualityIndex = PlayerPrefs.GetInt("qualityIndex", 0);
         fullscreen = PlayerPrefs.GetInt("fullscreen", 1);
         brightness = PlayerPrefs.GetFloat("brightness", 0);
+        contrast = PlayerPrefs.GetFloat("contrast", 0);
 
         colorblindMode = PlayerPrefs.GetInt("colorblindMode", 0);
         colorblindIntensity = PlayerPrefs.GetFloat("colorblindIntensity", 0);
@@ -168,9 +261,10 @@ public class SettingsManager : MonoBehaviour
         SetUIVolume(UiVolume);
 
         SetResolution(resolutionIndex);
-        SetQuality(quality);
+        SetQuality(qualityIndex);
         SetFullscreen(fullscreen == 1);
         SetBrightness(brightness);
+        SetContrast(contrast);
 
         SetColorblindMode(colorblindMode);
         SetColorblindIntensity(colorblindIntensity);
