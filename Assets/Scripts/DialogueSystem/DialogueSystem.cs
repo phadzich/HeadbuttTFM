@@ -9,7 +9,7 @@ public class DialogueSystem : MonoBehaviour
 {
     private List<DialogueLine> lines;
     private int index = 0;
-
+    public bool isRunning;
     public DialoguePanelUI dialogueUI;
 
 
@@ -46,6 +46,7 @@ public class DialogueSystem : MonoBehaviour
     private void ShowDialogueUI()
     {
         dialogueUI.Open();
+        isRunning = true;
 }
 
     public void NextLinePressed(InputAction.CallbackContext context)
@@ -75,6 +76,7 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogueUI.Close();
         SwitchInputToPlayer();
+        isRunning = false;
     }
 
 }
