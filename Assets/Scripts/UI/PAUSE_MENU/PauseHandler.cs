@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PauseController : MonoBehaviour
+public class PauseHandler : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuPanel;
 
@@ -11,7 +11,7 @@ public class PauseController : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("PAUSE KEY");
+
             TogglePause();
         }
     }

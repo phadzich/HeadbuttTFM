@@ -5,11 +5,31 @@ using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour
 {
+    [Header("TABS")]
+    public Transform panels;
+    public GameObject gameplayPanel;
+    public GameObject videoPanel;
+    public GameObject audioPanel;
+    public GameObject accessPanel;
+    public GameObject controlsPanel;
+
+
     [Header("VIDEO")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Slider brightnessSlider;
     [SerializeField] private Slider contrastSlider;
+
+    [Header("COLORBLIND")]
+    [SerializeField] private TMP_Dropdown colorblindDropdown;
+    [SerializeField] private Slider colorblindSlider;
+
+    [Header("AUDIO")]
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider ambientSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider uiSlider;
 
     private const float minBrightness = -3f;
     private const float maxBrightness = 2f;
@@ -22,6 +42,18 @@ public class SettingsUI : MonoBehaviour
     {
         PopulateResolutions();
         PopulateQualities();
+        PopulateColorBlindModes();
+        PopulateSliders();
+    }
+
+    public void OpenTab(GameObject _panel)
+    {
+        foreach(Transform _child in panels)
+        {
+            _child.gameObject.SetActive(false);
+        }
+        _panel.SetActive(true);
+
     }
 
     private void PopulateQualities()
@@ -70,11 +102,23 @@ public class SettingsUI : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(SettingsManager.instance.SetResolution);
     }
 
+    private void PopulateColorBlindModes()
+    {
+
+        // Obtener valor guardado o default en High (el último)
+        int savedIndex = PlayerPrefs.GetInt("colorblindMode", 0);
+
+        colorblindDropdown.value = savedIndex;
+        colorblindDropdown.RefreshShownValue();
+
+    }
+
     public void PopulateSliders()
     {
         // Brillo
         float savedBrightness = PlayerPrefs.GetFloat("brightness", 0f);
-        // Mapear de rango Unity a -1..1
+
+        // Mapear de rango
         brightnessSlider.value = Mathf.InverseLerp(minBrightness, maxBrightness, savedBrightness) * 2f - 1f;
         brightnessSlider.onValueChanged.AddListener((v) =>
         {
@@ -90,6 +134,17 @@ public class SettingsUI : MonoBehaviour
             float mapped = Mathf.Lerp(minContrast, maxContrast, (v + 1f) / 2f);
             SettingsManager.instance.SetContrast(mapped);
         });
+
+        //ColorblindIntensity
+        float savedIntensity = PlayerPrefs.GetFloat("colorblindIntensity", 1f);
+        colorblindSlider.value = savedIntensity;
+
+        //MIXERS
+        masterSlider.value = PlayerPrefs.GetFloat("masterVolume", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 1f);
+        ambientSlider.value = PlayerPrefs.GetFloat("ambientVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1f);
+        uiSlider.value = PlayerPrefs.GetFloat("uiVolume", 1f);
     }
 
 }

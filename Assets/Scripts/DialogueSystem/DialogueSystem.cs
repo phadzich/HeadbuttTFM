@@ -15,7 +15,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(DialogueSequence _sequence)
     {
-        Debug.Log("DIALOG START");
+        //Debug.Log("DIALOG START");
         lines = _sequence.lines;
         index = 0;
         ShowDialogueUI();

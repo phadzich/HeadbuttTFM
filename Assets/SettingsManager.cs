@@ -9,6 +9,7 @@ public class SettingsManager : MonoBehaviour
 
     public static SettingsManager instance;
     public LanguageHandler languageHandler;
+    public ColorBlindHandler colorBlindHandler;
     public SettingsUI settingsUI;
 
     [SerializeField] private Volume settingsVolume;
@@ -31,7 +32,7 @@ public class SettingsManager : MonoBehaviour
 
     //ACCESIBILITY
     private int colorblindMode = 0;
-    private float colorblindIntensity = 0;
+    private float colorblindIntensity = 1;
 
     //GAMEPLAY
     private int language = 0; // 0 = inglés, 1 = español
@@ -167,7 +168,7 @@ public class SettingsManager : MonoBehaviour
             Screen.SetResolution(width, height, false);
         }
 
-        Debug.Log($"ApplyResolution -> {width}x{height} | fullscreen={fullscreen}");
+        
     }
 
     public void SetBrightness(float v)
@@ -201,12 +202,13 @@ public class SettingsManager : MonoBehaviour
     {
         colorblindMode = mode;
         PlayerPrefs.SetInt("colorblindMode", mode);
-        // Aquí activarías tu shader de accesibilidad
+        colorBlindHandler.ApplyLUT(mode);
     }
 
     public void SetColorblindIntensity(float v)
     {
         colorblindIntensity = v;
+        colorBlindHandler.SetContribution(v);
         PlayerPrefs.SetFloat("colorblindIntensity", v);
     }
 
@@ -245,7 +247,7 @@ public class SettingsManager : MonoBehaviour
         contrast = PlayerPrefs.GetFloat("contrast", 0);
 
         colorblindMode = PlayerPrefs.GetInt("colorblindMode", 0);
-        colorblindIntensity = PlayerPrefs.GetFloat("colorblindIntensity", 0);
+        colorblindIntensity = PlayerPrefs.GetFloat("colorblindIntensity", 1);
 
         language = PlayerPrefs.GetInt("language", 0);
         vibration = PlayerPrefs.GetInt("vibration", 1);

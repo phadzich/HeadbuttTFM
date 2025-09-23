@@ -12,11 +12,7 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] public IInteractable currentInteractableNPC;
 
-    private void Update()
-    {
-        //Debug.Log(InputManager.Instance.playerInput.currentActionMap.name);
-        //Debug.Log(playerInput.actions.FindAction("Move").enabled);
-    }
+
 
     private void Awake()
     {
@@ -42,14 +38,14 @@ public class InputManager : MonoBehaviour
         foreach (var map in playerInput.actions.actionMaps)
             map.Disable();
         InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
-        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+        //Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
     public void SwitchInputToPlayer()
     {
         foreach (var map in playerInput.actions.actionMaps)
             map.Disable();
         InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
-        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+        //Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
 
     private IEnumerator ForcePlayerAfterFrames(int frames)
@@ -58,7 +54,7 @@ public class InputManager : MonoBehaviour
             yield return null; // espera un frame
 
         SwitchInputToPlayer();
-        Debug.Log("Forzado Player después de " + frames + " frames");
+        //Debug.Log("Forzado Player después de " + frames + " frames");
     }
 
     public void TryInteractWithNPC(InputAction.CallbackContext context)
