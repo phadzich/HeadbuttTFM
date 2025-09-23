@@ -127,7 +127,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
 
         res01Icon.sprite = _requirements.requirements[0].resource.icon;
-        res01TXT.text = $"{_requirements.requirements[0].quantity}/{ResourceManager.Instance.ownedResources[_requirements.requirements[0].resource]}";
+        res01TXT.text = $"{ResourceManager.Instance.ownedResources[_requirements.requirements[0].resource]}/{_requirements.requirements[0].quantity}";
         //res01TXT.color = _requirements.requirements[0].resource.color;
 
         res02.SetActive(true);
@@ -135,7 +135,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
         if (_requirements.requirements.Count > 1)
         {
             res02Icon.sprite = _requirements.requirements[1].resource.icon;
-            res02TXT.text = $"{_requirements.requirements[1].quantity}/{ResourceManager.Instance.ownedResources[_requirements.requirements[1].resource]}";
+            res02TXT.text = $"{ResourceManager.Instance.ownedResources[_requirements.requirements[1].resource]}/{_requirements.requirements[1].quantity}";
             //res02TXT.color = _requirements.requirements[1].resource.color;
         }
         else

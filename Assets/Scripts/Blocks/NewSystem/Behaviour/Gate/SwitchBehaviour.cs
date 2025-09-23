@@ -18,11 +18,13 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
     public MeshFilter meshFilter; 
     public MeshRenderer meshRenderer;
     public List<Material> materialList;
+    public List<Sprite> iconsList;
     public List<Mesh> shapeMeshes;
     [SerializeField]private int switchID;
     public GameObject timerUI;
     public Image timerFill;
     public TextMeshProUGUI timerText;
+    public Sprite switchIcon;
 
     private void Update()
     {
@@ -54,10 +56,13 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
     private void DeactivateSwitch()
     {
 
+        CombatLogHUD.Instance.AddLog(switchIcon, $"<b>SWITCH</b> expired!");
+
         ToggleShapeMesh(false);
         isActive = false;
         DispatchStateEvent(isActive);
         timerUI.SetActive(false);
+
     }
 
     private void DispatchStateEvent(bool _condition)
@@ -89,6 +94,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
     {
         meshFilter.mesh = shapeMeshes[switchID];
         meshRenderer.material = materialList[switchID];
+        switchIcon = iconsList[switchID];
     }
 
     private void GetDurationFromSublevel()

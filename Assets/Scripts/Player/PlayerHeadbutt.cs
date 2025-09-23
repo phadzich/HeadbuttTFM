@@ -45,7 +45,9 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void UseHBPotion(int _potionID)
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcRacks, $"Gained <b>{potionValues[_potionID]}</b> Headbutt Energy!");
         AddHBPoints(potionValues[_potionID]);
+
     }
 
     public void AddHBPoints(float _amount)
@@ -125,7 +127,7 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void HeadbuttUp()
     {
-        Debug.Log("HBUP");
+        //Debug.Log("HBUP");
         StartCoroutine(PlayerManager.Instance.playerEffects.StartCooldown(1f));
         Invoke(nameof(ReturnToBounceState), 0.5f);
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);

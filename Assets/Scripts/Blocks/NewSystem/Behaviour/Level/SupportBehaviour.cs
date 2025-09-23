@@ -14,8 +14,8 @@ public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
     {
         MatchManager.Instance.FloorBounced();
         feedbackParticles.Play();
-        Debug.Log("wate sound:");
-        Debug.Log(onBounceSound);
+        //Debug.Log("wate sound:");
+        //Debug.Log(onBounceSound);
         SoundManager.PlaySound(SFXType.SUPPORTBLOCK, 1f, onBounceSound);
     }
 

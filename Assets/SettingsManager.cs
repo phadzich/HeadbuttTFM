@@ -33,6 +33,7 @@ public class SettingsManager : MonoBehaviour
     //ACCESIBILITY
     private int colorblindMode = 0;
     private float colorblindIntensity = 1;
+    private int combatlog = 1;
 
     //GAMEPLAY
     private int language = 0; // 0 = inglés, 1 = español
@@ -219,6 +220,14 @@ public class SettingsManager : MonoBehaviour
         languageHandler.ChangeLocale(lang);
     }
 
+    public void SetCombatLog(bool v)
+    {
+        combatlog = v ? 1 : 0;
+
+        PlayerPrefs.SetInt("combatLog", combatlog);
+        CombatLogHUD.Instance.logHUD.SetActive(v);
+    }
+
     public void SetVibration(bool state)
     {
         vibration = state ? 1 : 0;
@@ -248,6 +257,7 @@ public class SettingsManager : MonoBehaviour
 
         colorblindMode = PlayerPrefs.GetInt("colorblindMode", 0);
         colorblindIntensity = PlayerPrefs.GetFloat("colorblindIntensity", 1);
+        combatlog = PlayerPrefs.GetInt("combatlog", 1);
 
         language = PlayerPrefs.GetInt("language", 0);
         vibration = PlayerPrefs.GetInt("vibration", 1);

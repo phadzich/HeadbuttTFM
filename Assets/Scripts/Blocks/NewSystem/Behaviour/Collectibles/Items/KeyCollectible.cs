@@ -4,8 +4,11 @@ public class KeyCollectible : MonoBehaviour, ICollectibleEffect
 {
     public void Activate()
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.keyReq, "<b>Key</b> collected");
+
         var _keyEvent = new CollectKeyEvent();
         LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_keyEvent);
+
     }
 
     public void SetupBlock(string _variant, MapContext _context)

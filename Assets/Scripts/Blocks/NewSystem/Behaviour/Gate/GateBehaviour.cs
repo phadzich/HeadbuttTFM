@@ -95,6 +95,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void IndicateOpen()
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcElevator, "A <b>GATE</b> has opened somewhere!");
         GetComponent<BlockNS>().isWalkable = true;
         gatesMesh.SetActive(false);
         gateReqsUI.gameObject.SetActive(false);

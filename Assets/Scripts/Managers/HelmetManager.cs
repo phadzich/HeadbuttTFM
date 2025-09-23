@@ -168,11 +168,13 @@ public class HelmetManager : MonoBehaviour
         }
 
         UIManager.Instance.currentHelmetsHUD.RefreshAllHelmets();
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"All helmets <b>RESTORED</b>!");
     }
 
     public void UseHelmetPotion(int _potionID)
     {
         currentHelmet.HealDurability(potionValues[_potionID]);
+        CombatLogHUD.Instance.AddLog(currentHelmet.baseHelmet.icon, $"{currentHelmet.baseHelmet.helmetName} healed by <b>{potionValues[_potionID]}</b>!");
     }
 
     /* Funciones para cambiar entre cascos */

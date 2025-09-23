@@ -74,11 +74,11 @@ public class HelmetInstance: IElemental
 
     public void TakeDamage(int _amount)
     {
-        //Debug.Log($"Helmet Took {_amount}");
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"Received <b>{_amount} DAMAGE</b>!");
+
         if (currentDurability > 0)
             currentDurability-=_amount;
-        //Debug.Log($"Current Durability {currentDurability}");
-        //HelmetManager.Instance.onHelmetInstanceDataChanged?.Invoke(this);
+
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
             if (IsWornOut)
             {
@@ -88,6 +88,7 @@ public class HelmetInstance: IElemental
                     HelmetManager.Instance.WearNextAvailableHelmet();
                 }
             }
+
 
         OnDamaged?.Invoke();
         HelmetInstanceChanged?.Invoke(this);

@@ -22,6 +22,7 @@ public class CoinTrader : MonoBehaviour
     {
         currentCoins += _amount;
         //upgradePointsTXT.text = currentCoins.ToString();
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.coinSprite, $"Found <b>{_amount} COINS</b>!");
         onCoinsChanged?.Invoke(currentCoins);
     }
 

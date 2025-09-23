@@ -62,6 +62,8 @@ public class PlayerManager : MonoBehaviour
 
     public void RemovePlayerLives(int _amount)
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"{HelmetManager.Instance.currentHelmet.baseHelmet.helmetName} <b>BROKEN</b>!");
+
         currentPlayerLives -= _amount;
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
         playerEmojis.DamagedEmoji();
@@ -69,6 +71,7 @@ public class PlayerManager : MonoBehaviour
         {
             playerStates.ChangeState(PlayerMainStateEnum.Dead);
         }
+        
     }
 
     public void ActivateShield()

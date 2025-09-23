@@ -52,7 +52,6 @@ public class ActiveSwitchesRequirement : RequirementBase
 
     private void RefreshActiveSwitches()
     {
-        Debug.Log(activeSwitches.Count);
         foreach (SwitchBehaviour _switch in activeSwitches)
         {
             _switch.elapsedTime = 0;

@@ -207,7 +207,7 @@ public class PlayerStates : MonoBehaviour
 
     public void AddEffect(PlayerEffectStateEnum _effect)
     {
-        Debug.Log("ADD EFFECT:" + _effect.ToString());
+        //Debug.Log("ADD EFFECT:" + _effect.ToString());
         currentEffects.Add(_effect);
     }
 

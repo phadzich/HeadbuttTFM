@@ -13,8 +13,11 @@ public class SettingsUI : MonoBehaviour
     public GameObject accessPanel;
     public GameObject controlsPanel;
 
+    [Header("GAMEPLAY")]
+    [SerializeField] private Toggle shakeToggle;
 
     [Header("VIDEO")]
+    [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Slider brightnessSlider;
@@ -23,6 +26,7 @@ public class SettingsUI : MonoBehaviour
     [Header("COLORBLIND")]
     [SerializeField] private TMP_Dropdown colorblindDropdown;
     [SerializeField] private Slider colorblindSlider;
+    [SerializeField] private Toggle combatlogToggle;
 
     [Header("AUDIO")]
     [SerializeField] private Slider masterSlider;
@@ -30,6 +34,9 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private Slider ambientSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider uiSlider;
+
+    [Header("CONTROLS")]
+    [SerializeField] private Toggle vibrationToggle;
 
     private const float minBrightness = -3f;
     private const float maxBrightness = 2f;
@@ -44,6 +51,7 @@ public class SettingsUI : MonoBehaviour
         PopulateQualities();
         PopulateColorBlindModes();
         PopulateSliders();
+        PopulateToggles();
     }
 
     public void OpenTab(GameObject _panel)
@@ -55,7 +63,14 @@ public class SettingsUI : MonoBehaviour
         _panel.SetActive(true);
 
     }
+    private void PopulateToggles()
+    {
+        fullscreenToggle.isOn = PlayerPrefs.GetInt("fullscreen", 1) == 1;
+        vibrationToggle.isOn = PlayerPrefs.GetInt("vibration", 1) == 1;
+        combatlogToggle.isOn = PlayerPrefs.GetInt("combatlog", 1) == 1;
+        shakeToggle.isOn = PlayerPrefs.GetInt("shake", 1) == 1;
 
+    }
     private void PopulateQualities()
     {
         // Llenar opciones

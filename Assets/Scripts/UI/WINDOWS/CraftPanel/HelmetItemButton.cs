@@ -33,7 +33,6 @@ public class HelmetItemButton : MonoBehaviour
         }
         if (helmetI.isEquipped)
         {
-            Debug.Log("EQPD");
             eqpIndicator.SetActive(true);
         } else {
             eqpIndicator.SetActive(false);

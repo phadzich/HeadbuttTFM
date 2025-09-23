@@ -21,12 +21,15 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void RecieveDamage(int _amount,ElementType _element)
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.enemyReq, $"Enemy attacked with <b>{_amount} {_element}</b>!");
         if (sfx != null) sfx.PlayDamage();
         //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
         UpdateBarUI();
         healthBarUI.PopDamage(_amount, _element);
+
+
     }
 
     void Heal(int _amount)
@@ -37,11 +40,13 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     void Die()
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.enemyReq, $"Enemy <b>KILLED</b>!");
         OnDeath?.Invoke(this);
         if (sfx != null) sfx.PlayDeath();
         DispatchDeathEvent();
         Destroy(this.gameObject);
         ResourceManager.Instance.coinTrader.AddCoins(maxHealth);
+
     }
     private void DispatchDeathEvent()
     {
