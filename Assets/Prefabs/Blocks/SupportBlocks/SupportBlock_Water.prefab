@@ -5227,6 +5227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBounceSound: {fileID: 8300000, guid: efac9783d13ec424087c749d4eb8a97b, type: 3}
   feedbackParticles: {fileID: 7428737150881724064}
+  idleSound: {fileID: 0}
+  canBeBounce: 1
 --- !u!114 &9061047276227353058
 MonoBehaviour:
   m_ObjectHideFlags: 0

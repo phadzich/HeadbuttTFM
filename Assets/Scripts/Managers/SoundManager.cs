@@ -38,11 +38,11 @@ public class SoundManager : MonoBehaviour
     public static void PlaySound(MusicType _sound, AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.musicSoundList, _sound, _volume, instance.musicSource, _clip, true);
 
-    public static void PlaySound(SFXType _sound, float _volume = 1f, AudioClip _clip = null)
-        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _clip);
+    public static void PlaySound(SFXType _sound, float _volume = 1f, AudioClip _clip = null, bool _loop = false)
+        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _clip, _loop);
 
-    public static void PlaySound(SFXType _sound, Vector3 _position, AudioClip _clip, float _volume = 1f)
-        => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _position, _clip);
+    public static void PlaySound(SFXType _sound, Vector3 _position, AudioClip _clip, float _volume = 1f, bool _loop = false)
+        => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _position, _clip, _loop);
 
     public static void PlaySound(AmbientType _sound, AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.ambientSoundList, _sound, _volume, instance.ambientSource, _clip, true);

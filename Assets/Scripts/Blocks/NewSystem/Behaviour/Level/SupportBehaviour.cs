@@ -5,24 +5,33 @@ public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
     public AudioClip onBounceSound;
     public ParticleSystem feedbackParticles;
 
+    public AudioClip idleSound;
+    public bool canBeBounce;
+
     public void Activate()
     {
-         
+         if (idleSound != null)
+        {
+            SoundManager.PlaySound(SFXType.SUPPORTBLOCK, 1f, idleSound, true);
+        }
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)
     {
+        if (!canBeBounce) return;
+
         MatchManager.Instance.FloorBounced();
         feedbackParticles.Play();
-        //Debug.Log("wate sound:");
-        //Debug.Log(onBounceSound);
         SoundManager.PlaySound(SFXType.SUPPORTBLOCK, 1f, onBounceSound);
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        if (!canBeBounce) return;
+
         MatchManager.Instance.FloorBounced();
         feedbackParticles.Play();
+        SoundManager.PlaySound(SFXType.SUPPORTBLOCK, 1f, onBounceSound);
     }
 
     public void StartBehaviour()

@@ -43,7 +43,6 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
             MatchManager.Instance.EnemyBounced();
         }
 
-        //Debug.Log($"DAMAGED {typeOfDamage}:{damage}");
         switch (typeOfDamage)
         {
             case damageType.Durability:

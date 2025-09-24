@@ -52,10 +52,7 @@ public class OnOffBehaviour : MonoBehaviour, IBlockBehaviour
     {
         if(prefabToSwitch!=null) prefabToSwitch.SetActive(true);
 
-        if (sfx != null)
-        {
-            sfx.PlayAttack();
-        }
+        if (sfx != null) sfx.PlayAttack();
 
         StartCoroutine(DelayOff());
     }
