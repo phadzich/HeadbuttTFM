@@ -14663,7 +14663,6 @@ GameObject:
   - component: {fileID: -8736473872049771343}
   - component: {fileID: 6133741794092899820}
   - component: {fileID: 1351411384633125323}
-  - component: {fileID: 7671590144533620282}
   m_Layer: 8
   m_Name: BoilingBlock
   m_TagString: Untagged
@@ -14873,6 +14872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -14923,21 +14923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa91bd58fd4b41dfb0c2997c4e2c169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7671590144533620282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e772f95755744d1fa4e2cb4fa49916a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
-  AllowedSources: 00000000
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

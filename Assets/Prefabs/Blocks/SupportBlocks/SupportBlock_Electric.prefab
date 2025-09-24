@@ -5312,7 +5312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4783cd5ebac74105a7ca4f981b51db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBounceSound: {fileID: 0}
   feedbackParticles: {fileID: 7428737150881724064}
+  idleSound: {fileID: 0}
+  canBeBounce: 1
 --- !u!114 &9061047276227353058
 MonoBehaviour:
   m_ObjectHideFlags: 0

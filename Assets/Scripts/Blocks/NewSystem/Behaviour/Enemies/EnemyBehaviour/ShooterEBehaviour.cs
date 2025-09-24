@@ -21,6 +21,8 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
 
+    private EnemySFX sfx => GetComponent<EnemySFX>();
+
 
     public void SetUpShooter(ShootingMode _mode, ShootingDirection _direction)
     {
@@ -46,19 +48,28 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
     public void Shoot()
     {
+        if (sfx != null)
+        {
+            Debug.Log("PLAY SOUND SHOOTT");
+            sfx.PlayAttack();
+        }
+
         if (shootingMode == ShootingMode.Radial)
         {
+            // Se divide 360 (una vuelta) entre la cantidad de proyectiles
             float angleStep = 360f / projectileCount;
             float angle = 0f;
 
             for (int i = 0; i < projectileCount; i++)
             {
+                //Se calcula la direccion tomando en cuenta el angulo en el que debe spawnear
                 float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
                 float dirZ = Mathf.Sin(angle * Mathf.Deg2Rad);
                 Vector3 dir = new Vector3(dirX, 0, dirZ);
 
                 SpawnProjectile(dir);
 
+                // Se calcula el angulo de la siguiente bala
                 angle += angleStep;
             }
         }
