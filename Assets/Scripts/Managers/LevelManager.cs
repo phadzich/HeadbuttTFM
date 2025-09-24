@@ -299,5 +299,13 @@ public class LevelManager : MonoBehaviour
     {
         PlayerManager.Instance.playerStates.CleanDeathCoroutine();
         LevelManager.Instance.checkpointSystem.RestoreToLastCheckpoint();
+        UIManager.Instance.HideGameOver();
+    }
+
+    public void ReturnToHUB()
+    {
+        PlayerManager.Instance.playerStates.CleanDeathCoroutine();
+        LevelManager.Instance.checkpointSystem.RestoreToHUB();
+        UIManager.Instance.HideGameOver();
     }
 }

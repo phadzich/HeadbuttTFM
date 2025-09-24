@@ -33,17 +33,6 @@ public class CheckpointSystem : MonoBehaviour
         ResourceManager.Instance.ownedResources = checkpointSaveData.currentResources;
         ResourceManager.Instance.onOwnedResourcesChanged();
 
-        //HELMETS
-        
-        
-        /** HelmetManager.Instance.helmetsEquipped.Clear();
-        foreach(HelmetInstance _savedHelmetInstance in checkpointSaveData.helmetInstances)
-        {
-            HelmetManager.Instance.EquipHelmet(_savedHelmetInstance);
-        }
-        HelmetManager.Instance.WearHelmet(HelmetManager.Instance.helmetsEquipped[0]);
-        */
-
         //REACTIVAMOS CHECKPOINT SUBLEVEL
         LevelManager.Instance.GenerateSublevel(LevelManager.Instance.sublevelsList[checkpointSaveData.lastDepth].config, checkpointSaveData.lastDepth);
 
@@ -54,5 +43,14 @@ public class CheckpointSystem : MonoBehaviour
         LevelManager.Instance.currentLevelDepth = checkpointSaveData.lastDepth;
 
         LevelManager.Instance.EnterSublevel(LevelManager.Instance.sublevelsList[checkpointSaveData.lastDepth].config);
+    }
+
+    public void RestoreToHUB()
+    {
+        //RECURSOS
+        ResourceManager.Instance.ownedResources = checkpointSaveData.currentResources;
+        ResourceManager.Instance.onOwnedResourcesChanged();
+
+        LevelManager.Instance.ChangeLevel(1);
     }
 }

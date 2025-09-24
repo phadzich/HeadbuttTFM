@@ -20,10 +20,10 @@ public class CheckpointSavedData : ScriptableObject
 
     public void SaveNewData(Sublevel _sublevelInfo)
     {
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcShop, "GAME SAVED!");
         UpdatePlayerSpawnPosition();
         UpdateSavedSublevel();
         UpdateSavedResources();
-
         UpdateSaveTimestamp();
     }
 

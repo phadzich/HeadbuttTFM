@@ -50,6 +50,8 @@ public class UIManager : MonoBehaviour
     public List<Sprite> elementIcons;
     public List<Color> elementColors;
 
+    [Header("GAMEOVER")]
+    public GameObject gameOverPanel;
 
     private void Awake()
     {
@@ -286,5 +288,18 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+    }
+
+    public void ShowGameOver()
+    {
+        Debug.Log("GO");
+        gameOverPanel.SetActive(true);
+        currentOpenUI = gameOverPanel;
+    }
+
+    public void HideGameOver()
+    {
+        gameOverPanel.SetActive(false);
+        currentOpenUI = null;
     }
 }
