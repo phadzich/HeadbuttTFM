@@ -8,20 +8,22 @@ public class LevelPainter : EditorWindow
 {
     public ColorPalette palette;
 
-    private int gridSize = 51;
-    private int pixelSize = 25;
-    private int[,] gridData;
-    private int selectedColorIndex = 0;
-    private Vector2 scrollPos;
-    private string lastFileName = "level";
-    private bool isMiddleMouseHeld = false;
+    private int gridSize = 51;              // Tamaño de la grilla
+    private int pixelSize = 25;             // Tamaño de los pixeles
+    private int[,] gridData;                // Guarda los datos de la grilla
+    private int selectedColorIndex = 0;     // Colores del level painter
+    private Vector2 scrollPos;              // Para hacer el scroll en el level painter
+    private string lastFileName = "level";  // Nombre por default en caso de que no se haya abierto otro archivo
+    private bool isMiddleMouseHeld = false; // Para hacer scroll y zoom con la rueda del mouse
 
     [MenuItem("Tools/Level Painter")]
+    /* Muestra el level painter */
     public static void ShowWindow()
     {
         GetWindow<LevelPainter>("Level Painter");
     }
 
+    /* Carga la paleta de colores */
     private void OnEnable()
     {
         if (palette == null)
@@ -37,6 +39,7 @@ public class LevelPainter : EditorWindow
         gridData = new int[gridSize, gridSize];
     }
 
+    /* Pinta toda la grilla de blanco */
     private void ClearGrid()
     {
         for (int x = 0; x < gridSize; x++)
@@ -45,6 +48,7 @@ public class LevelPainter : EditorWindow
         Repaint();
     }
 
+    /* Pinta del color que se ha seleccionado una cruz que pasa por el centro de la grilla */
     private void PaintCenterCross()
     {
         int center = gridSize / 2;
@@ -56,6 +60,7 @@ public class LevelPainter : EditorWindow
         Repaint();
     }
 
+    /* Pinta del color seleccionado la celda que está al centro de la grilla */
     private void PaintCenterCell()
     {
         int center = gridSize / 2;
@@ -63,8 +68,10 @@ public class LevelPainter : EditorWindow
         Repaint();
     }
 
+    /* Esta función es lo que se hace en la GUI */
     private void OnGUI()
     {
+        /* Muestra la paleta en el level painter */
         GUILayout.Label("Palette", EditorStyles.boldLabel);
 
         if (palette == null)
@@ -80,7 +87,7 @@ public class LevelPainter : EditorWindow
 
         DrawPalette(); 
 
-        // --- ZOOM ---
+        /* Para hacer el Zoom en el level painter */
         HandleZoom();
 
         GUILayout.Space(10);
@@ -92,7 +99,7 @@ public class LevelPainter : EditorWindow
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos, true, true);
         Rect rect = GUILayoutUtility.GetRect(canvasWidth, canvasHeight);
 
-        // --- Dibuja celdas ---
+        /* Dibuja las celdas del level painter */
         for (int y = 0; y < gridSize; y++)
         {
             for (int x = 0; x < gridSize; x++)
@@ -124,7 +131,7 @@ public class LevelPainter : EditorWindow
             }
         }
 
-        // --- Dibuja grilla ---
+        /* Dibuja la grilla en el level painter */
         Handles.BeginGUI();
         Handles.color = new Color(0, 0, 0, 0.3f);
         for (int x = 0; x <= gridSize; x++)
@@ -139,7 +146,7 @@ public class LevelPainter : EditorWindow
         }
         Handles.EndGUI();
 
-        // --- Coordenadas ---
+        /* Calcula las coordenadas de las celdas */
         GUIStyle coordStyle = new GUIStyle(EditorStyles.label);
         coordStyle.fontSize = 10;
         coordStyle.normal.textColor = Color.black;
@@ -157,7 +164,7 @@ public class LevelPainter : EditorWindow
             GUI.Label(new Rect(xRight, yPos, 30, 20), y.ToString(), coordStyle);
         }
 
-        // Mouse hover coords
+        /* Muestra las coordenadas en que se encuentra el mouse sobre la grilla */
         Vector2 localMouse = Event.current.mousePosition;
         int hoveredX = (int)((localMouse.x - rect.x) / pixelSize);
         int hoveredY = (int)((localMouse.y - rect.y) / pixelSize);
@@ -168,6 +175,7 @@ public class LevelPainter : EditorWindow
 
         EditorGUILayout.EndScrollView();
 
+        /* Crea botones en el level painter con cada función */
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Export PNG")) ExportToPNG();
@@ -178,6 +186,7 @@ public class LevelPainter : EditorWindow
         GUILayout.EndHorizontal();
     }
 
+    /* Dibuja la paleta */
     private void DrawPalette()
     {
         float buttonSize = 30f;
@@ -193,7 +202,7 @@ public class LevelPainter : EditorWindow
 
         foreach (var group in grouped)
         {
-            // Para el label de la categoría
+            /* Para el label de la categoría */
             GUILayout.BeginVertical(GUILayout.Width(buttonSize));
             GUILayout.Label(group.Key.ToString(), EditorStyles.miniLabel, GUILayout.Width(buttonSize));
             GUILayout.EndVertical();
@@ -224,7 +233,7 @@ public class LevelPainter : EditorWindow
         GUI.backgroundColor = Color.white;
     }
 
-
+    /* Maneja los eventos del zoom de la grilla */
     private void HandleZoom()
     {
         if (Event.current.type == EventType.MouseDown && Event.current.button == 2)
@@ -237,6 +246,7 @@ public class LevelPainter : EditorWindow
             float zoomSpeed = 1f;
             if (Event.current.control || isMiddleMouseHeld)
             {
+                //Cambia el tamaño de los pixel dependiendo del zoom que se le de
                 pixelSize = Mathf.Clamp(pixelSize - (int)(Event.current.delta.y * zoomSpeed), 5, 100);
                 Event.current.Use();
                 Repaint();
@@ -244,6 +254,7 @@ public class LevelPainter : EditorWindow
         }
     }
 
+    /* Exporta el archivo del level painter como un .png */
     private void ExportToPNG()
     {
         Texture2D texture = new Texture2D(gridSize, gridSize);
@@ -252,6 +263,7 @@ public class LevelPainter : EditorWindow
                 texture.SetPixel(x, y, palette.colors[gridData[x, gridSize - 1 - y]].color);
         texture.Apply();
 
+        // Si el archivo fue previamente importado, aparece el nombre anterior por default, igual se puede cambiar
         string path = EditorUtility.SaveFilePanel("Save Level Texture", "", lastFileName + ".png", "png");
         if (!string.IsNullOrEmpty(path))
         {
@@ -262,6 +274,8 @@ public class LevelPainter : EditorWindow
             string relativePath = "Assets" + path.Substring(Application.dataPath.Length);
 
             TextureImporter importer = AssetImporter.GetAtPath(relativePath) as TextureImporter;
+            // Guarda unas configuraciones por default cuando se exporta el .png
+            // Estas son necesarias para que se lea la data de los niveles en unity
             if (importer != null)
             {
                 importer.textureType = TextureImporterType.Sprite;
@@ -272,6 +286,7 @@ public class LevelPainter : EditorWindow
         }
     }
 
+    /* Importa y lee los archivos .png para poneelo en el level painter y poderlo editar en caso de ser necesario */
     private void ImportFromPNG()
     {
         string path = EditorUtility.OpenFilePanel("Load PNG", "", "png");
@@ -295,6 +310,7 @@ public class LevelPainter : EditorWindow
         Repaint();
     }
 
+    /* Asocia los colores del archivo importado con el color de la paleta */
     private int FindClosestColorIndex(Color color)
     {
         for (int i = 0; i < palette.colors.Length; i++)
@@ -306,6 +322,7 @@ public class LevelPainter : EditorWindow
         return 0;
     }
 
+    /* Tolerancia para la detección de colores */
     private bool ColorsAreEqual(Color a, Color b, float tolerance = 0.01f)
     {
         return Mathf.Abs(a.r - b.r) < tolerance &&
