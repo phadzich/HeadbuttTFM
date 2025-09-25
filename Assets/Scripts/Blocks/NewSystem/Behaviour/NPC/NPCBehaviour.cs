@@ -1,13 +1,17 @@
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BlockNS))]
 public class NPCBehaviour : MonoBehaviour, IInteractable
 {
     public BoxCollider zoneCollider;
     public TextMeshProUGUI interactLBL;
+    public GameObject interactPanel;
     public string interactString;
+    public Sprite icon;
+    public Image npcIMG;
     public CinemachineCamera NPCCam;
 
     private int shopID;
@@ -35,6 +39,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         if (interactLBL != null)
         {
             interactLBL.text = interactString;
+            npcIMG.sprite = icon;
         }
 
     }
@@ -96,7 +101,9 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
 
     public void ShowInteraction(bool _visibility)
     {
+        interactPanel.SetActive(_visibility);
         interactLBL.gameObject.SetActive(_visibility);
+        UIManager.Instance.ShowNPCKey(_visibility);
     }
 }
 

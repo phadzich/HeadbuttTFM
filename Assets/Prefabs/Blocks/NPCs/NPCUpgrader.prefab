@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3773242141571962174, guid: e2bf53cf0ee3740598eb095abc34746b, type: 3}
       propertyPath: interactString
-      value: '[E] TO UPGRADE'
+      value: UPGRADE
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

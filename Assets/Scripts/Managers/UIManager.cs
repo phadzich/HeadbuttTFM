@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     public SublevelObjectivesHUD sublevelObjsHUD;
     public HBPointsHUD hbPointsHUD;
     public CoinsHUD coinsHUD;
+    public GameObject NPCKeyHUD;
 
     [Header("POPUPS")]
     public PopupUI popupUI;
@@ -272,6 +273,10 @@ public class UIManager : MonoBehaviour
         frontEndFrame.OpenFrame("SHADY SHOP", _currentShop.shopName, UIManager.Instance.iconsLibrary.npcShop);
     }
 
+    public void ShowNPCKey(bool _show)
+    {
+        NPCKeyHUD.SetActive(_show);
+    }
 
     public void ToggleExtraInfo(InputAction.CallbackContext context)
     {
