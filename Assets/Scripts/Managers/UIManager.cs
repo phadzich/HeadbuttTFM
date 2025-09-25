@@ -244,6 +244,7 @@ public class UIManager : MonoBehaviour
                 frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.npcInventory);
                 break;
         }
+        PlayerManager.Instance.ShowPlayerMesh(false);
     }
 
     public void CloseCurrentOpenUI(InputAction.CallbackContext context)
@@ -260,11 +261,13 @@ public class UIManager : MonoBehaviour
                 frontEndFrame.CloseFrame();
             }
         }
+        PlayerManager.Instance.ShowPlayerMesh(true);
 
 
     }
     public void OpenShopUI(int _id)
     {
+        PlayerManager.Instance.ShowPlayerMesh(false);
         Debug.Log("OpeningSHOP UI");
         HUDCanvas.SetActive(false);
         Shop _currentShop = ShopManager.Instance.ShopById(_id);
@@ -275,6 +278,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowNPCKey(bool _show)
     {
+
         NPCKeyHUD.SetActive(_show);
     }
 

@@ -144,6 +144,8 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeLevel(int _levelIndex)
     {
+        PlayerManager.Instance.ShowPlayerMesh(true);
+        UIManager.Instance.ShowNPCKey(false);
         ExitLevel();
         UnloadLevel();
         LoadLevel(levelsList[_levelIndex]);

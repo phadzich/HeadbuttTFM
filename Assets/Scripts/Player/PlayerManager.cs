@@ -94,6 +94,10 @@ public class PlayerManager : MonoBehaviour
         playerHeadbutt.ChangeHBpoints(0);
     }
 
+    public void ShowPlayerMesh(bool _value)
+    {
+        playerStates.gameObject.SetActive(_value);
+    }
     public void EnterNPCLevel()
     {
         playerAnimations.RotateBody(0);
