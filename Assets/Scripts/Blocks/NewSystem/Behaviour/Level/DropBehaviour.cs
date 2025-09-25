@@ -4,10 +4,15 @@ using UnityEngine;
 public class DropBehaviour : MonoBehaviour, IBlockBehaviour
 {
     public Transform blockMeshParent;
+    public bool alreadyBounced;
     
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         //Debug.Log("DROPPED");
+        if (alreadyBounced) return;
+
+        alreadyBounced = true;
+
         PlayerStates playerStates = PlayerManager.Instance.playerStates;
         if (playerStates.onMiningLvl)
         {

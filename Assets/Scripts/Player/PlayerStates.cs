@@ -131,7 +131,6 @@ public class PlayerStates : MonoBehaviour
 
                 if (deathCoroutine == null)
                 {
-                    Debug.Log("deathCor");
                     deathCoroutine = StartCoroutine(StartGameOverSequence(2f));
                 }
                 break;
@@ -175,9 +174,6 @@ public class PlayerStates : MonoBehaviour
         MatchManager.Instance.RestartMatches();
 
         //AQUI AGREGAR CODIGO PARA MOSTRAR SCREEN DE GAME OVER 
-        
-        //LevelManager.Instance.ReturnToCheckpoint(); // ESTA FUNCION SE LLAMARIA DESDE EL BOTÓN DE LA SCREEN DE GAME OVER
-        
 
         UIManager.Instance.ShowGameOver();
 
