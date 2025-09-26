@@ -32,6 +32,7 @@ public class StartMenuUI : MonoBehaviour
         SettingsManager.instance.pauseHandler.ResumeGame();
         //InputManager.Instance.SwitchInputToPlayer();
         LevelManager.Instance.StartGame();
+        UIManager.Instance.currentOpenUI = null;
     }
 
     public void OpenSettings()
