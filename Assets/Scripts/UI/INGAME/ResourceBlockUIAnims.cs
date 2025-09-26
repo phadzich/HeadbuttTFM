@@ -19,7 +19,7 @@ public class ResourceBlockUIAnims : MonoBehaviour
     {
         rewardPanelUI.SetActive(true);
         resourceRewardTXT.text = "+" + _amount.ToString();
-        Tween.Scale(rewardPanelUI.transform, endValue:0,duration:.8f,ease:Ease.InBounce);
+        Tween.Scale(rewardPanelUI.transform, endValue:0,duration:1f,ease:Ease.InBounce);
 
     }
 

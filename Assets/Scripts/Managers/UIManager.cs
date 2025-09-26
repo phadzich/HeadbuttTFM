@@ -245,6 +245,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
         PlayerManager.Instance.ShowPlayerMesh(false);
+        NPCKeyHUD.SetActive(false);
     }
 
     public void CloseCurrentOpenUI(InputAction.CallbackContext context)
@@ -262,12 +263,13 @@ public class UIManager : MonoBehaviour
             }
         }
         PlayerManager.Instance.ShowPlayerMesh(true);
-
+        NPCKeyHUD.SetActive(true);
 
     }
     public void OpenShopUI(int _id)
     {
         PlayerManager.Instance.ShowPlayerMesh(false);
+        NPCKeyHUD.SetActive(false);
         Debug.Log("OpeningSHOP UI");
         HUDCanvas.SetActive(false);
         Shop _currentShop = ShopManager.Instance.ShopById(_id);
