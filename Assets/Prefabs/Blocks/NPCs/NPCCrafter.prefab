@@ -5307,6 +5307,10 @@ PrefabInstance:
       value: NPCCrafter
       objectReference: {fileID: 0}
     - target: {fileID: 3773242141571962174, guid: e2bf53cf0ee3740598eb095abc34746b, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: b8c70f6b930457e46896896251d63e28, type: 3}
+    - target: {fileID: 3773242141571962174, guid: e2bf53cf0ee3740598eb095abc34746b, type: 3}
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}

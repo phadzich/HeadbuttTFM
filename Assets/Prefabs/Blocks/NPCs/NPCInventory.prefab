@@ -5139,7 +5139,7 @@ PrefabInstance:
     - target: {fileID: 3773242141571962174, guid: e2bf53cf0ee3740598eb095abc34746b, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 4570c5762a0eacf4cbac535ee06e6746, type: 3}
+      objectReference: {fileID: 21300000, guid: 7413b796ddb221545a84c8651461af59, type: 3}
     - target: {fileID: 3773242141571962174, guid: e2bf53cf0ee3740598eb095abc34746b, type: 3}
       propertyPath: type
       value: 5

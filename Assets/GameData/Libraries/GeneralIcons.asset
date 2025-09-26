@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: a2b2657c1c8a116438e92cd3bfae9f9e, type: 3}
   lootKeySprite: {fileID: 0}
-  coinSprite: {fileID: 21300000, guid: c4a67e429c5bd7f4cb359f1f4caeaa0f, type: 3}
-  npcShop: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-  npcForger: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
+  coinSprite: {fileID: 21300000, guid: 699377cdf466def4cbd3d57e13bbc672, type: 3}
+  npcShop: {fileID: 21300000, guid: 699377cdf466def4cbd3d57e13bbc672, type: 3}
+  npcForger: {fileID: 21300000, guid: b8c70f6b930457e46896896251d63e28, type: 3}
   npcElevator: {fileID: 21300000, guid: 7664409f878a05c41af091bcd1260705, type: 3}
-  npcInventory: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+  npcInventory: {fileID: 21300000, guid: 7413b796ddb221545a84c8651461af59, type: 3}
   npcRacks: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
   blockReq: {fileID: 21300000, guid: 3840a581881035b45863aed514015a0e, type: 3}
   enemyReq: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
