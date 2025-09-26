@@ -74,7 +74,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartGame()
     {
-        LoadLevel(levelsList[0]);
+        ChangeLevel(0);
     }
     private void LoadLevel(LevelConfig _levelConfig)
     {
