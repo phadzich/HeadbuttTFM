@@ -16,7 +16,7 @@ MonoBehaviour:
   levelName: Flooded Mysteries
   levelDescription: Water lvl
   maxDepth: 0
-  levelIcon: {fileID: 21300000, guid: bde7b8172e9bb1243b3b94f5698e5a2f, type: 3}
+  levelIcon: {fileID: 21300000, guid: a759cccbb9b9a734ba6b873949c576fb, type: 3}
   levelColor: {r: 0, g: 0.56078434, b: 0.8352942, a: 1}
   levelMusic: {fileID: 8300000, guid: 8f91455a7006e3a4287c97b92c611f0e, type: 3}
   levelNpcMusic: {fileID: 8300000, guid: 998d58d1ca0f16243b0def7a9e3ead1d, type: 3}
