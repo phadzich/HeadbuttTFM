@@ -16,26 +16,26 @@ MonoBehaviour:
   shopID: 0
   shopItems:
   - item: {fileID: 11400000, guid: 17b29fd6c303e584486af4709b385150, type: 2}
-    quantity: 10
+    quantity: 3
     price: 1
   - item: {fileID: 11400000, guid: cb6705fdc49e5e44fbb9f59c90012197, type: 2}
-    quantity: 10
-    price: 2
+    quantity: 3
+    price: 5
   - item: {fileID: 11400000, guid: be72a8ad40b1e7840a8507ac1f89dab4, type: 2}
-    quantity: 10
-    price: 3
+    quantity: 3
+    price: 10
+  - item: {fileID: 11400000, guid: 0ab349dce2ce1f446b65f5adfe85dafe, type: 2}
+    quantity: 3
+    price: 20
   - item: {fileID: 11400000, guid: 8f515ab4ea4dfb943810fd42f5be76cb, type: 2}
-    quantity: 10
-    price: 2
+    quantity: 3
+    price: 1
   - item: {fileID: 11400000, guid: f83378b5714404349bafff3753b07b4c, type: 2}
-    quantity: 10
-    price: 4
+    quantity: 3
+    price: 5
   - item: {fileID: 11400000, guid: efd18d75e42951b43b7d57e4ff624d7d, type: 2}
-    quantity: 6
-    price: 0
+    quantity: 3
+    price: 10
   - item: {fileID: 11400000, guid: b50ce1cfc42aaa9468a34e9a19a92254, type: 2}
     quantity: 3
-    price: 80
-  - item: {fileID: 11400000, guid: b50ce1cfc42aaa9468a34e9a19a92254, type: 2}
-    quantity: 3
-    price: 80
+    price: 20
