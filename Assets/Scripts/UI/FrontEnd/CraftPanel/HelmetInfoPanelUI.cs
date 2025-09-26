@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
     public Image elementPanel;
     public Image effectIcon;
     public Image effectIconPanel;
+    public Image strongIcon;
     public Image res01Icon;
     public Image res02Icon;
     public GameObject res02;
@@ -35,6 +37,9 @@ public class HelmetInfoPanelUI : MonoBehaviour
     public GameObject equippedLabel;
     public Button upgradeBtn;
     public Button equipBtn;
+
+    public List<Sprite> elementIcons;
+    public List<Color> elementColors;
 
 
     public void UpdateInfoCard(HelmetInstance _helmetInstance)
@@ -65,6 +70,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
         helmetIcon.gameObject.SetActive(true);
         helmetIcon.sprite = helmetInstance.baseHelmet.icon;
 
+        UpdateStrongVsData(helmetInstance.Element);
 
         elementIcon.sprite = UIManager.Instance.elementIcons[(int)helmetInstance.baseHelmet.element];
         elementPanel.color = UIManager.Instance.elementColors[(int)helmetInstance.baseHelmet.element];
@@ -74,6 +80,45 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
         equippedLabel.SetActive(helmetInstance.isEquipped);
         equipBtn.gameObject.SetActive(!helmetInstance.isEquipped);
+    }
+
+    private void UpdateStrongVsData(ElementType _element)
+    {
+        int _weakId = 0;
+        switch (_element)
+        {
+            case ElementType.Neutral:
+                {
+                    _weakId = 0;
+                    break;
+                }
+            case ElementType.Fire:
+                {
+                    _weakId = 4;
+                    break;
+                }
+            case ElementType.Water:
+                {
+                    _weakId = 2;
+                    break;
+                }
+            case ElementType.Grass:
+                {
+                    _weakId = 5;
+                    break;
+                }
+            case ElementType.Electric:
+                {
+                    _weakId = 3;
+                    break;
+                }
+        }
+
+        strongIcon.color = elementColors[_weakId];
+        strongIcon.sprite = elementIcons[_weakId];
+
+        strongTXT.color = elementColors[_weakId];
+        strongTXT.text = Enum.GetNames(typeof(ElementType))[_weakId];
     }
 
     private void UpdateUpgradeButton()
@@ -128,7 +173,6 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
         res01Icon.sprite = _requirements.requirements[0].resource.icon;
         res01TXT.text = $"{ResourceManager.Instance.ownedResources[_requirements.requirements[0].resource]}/{_requirements.requirements[0].quantity}";
-        //res01TXT.color = _requirements.requirements[0].resource.color;
 
         res02.SetActive(true);
 
@@ -136,7 +180,6 @@ public class HelmetInfoPanelUI : MonoBehaviour
         {
             res02Icon.sprite = _requirements.requirements[1].resource.icon;
             res02TXT.text = $"{ResourceManager.Instance.ownedResources[_requirements.requirements[1].resource]}/{_requirements.requirements[1].quantity}";
-            //res02TXT.color = _requirements.requirements[1].resource.color;
         }
         else
         {

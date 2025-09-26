@@ -61,6 +61,7 @@ public class HelmetManager : MonoBehaviour
         QuickTest(1);
         QuickTest(2);
         WearFirstHelmet();
+
     }
 
     private void QuickTest(int _id)
