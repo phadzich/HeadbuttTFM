@@ -27,6 +27,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource ambientSource;
     [SerializeField] private AudioSource uiSource;
+    [SerializeField] private AudioMixerGroup sfx3D;
+    [SerializeField] private AudioMixerGroup sfx2D;
 
     public static SoundManager instance;
 
