@@ -6,7 +6,7 @@ public class StartMenuUI : MonoBehaviour
 
 
 
-    public string feedbackURL = "https://docs.google.com/forms/d/e/1FAIpQLSc1K6Mk7Lu5aLRvEJxpBBAuJGeOzEsi3qPTpSMoP6H5tCkrRw/viewform?usp=header"; // Set your desired URL here
+    public string feedbackURL = "https://docs.google.com/forms/d/e/1FAIpQLSdsJLWgR-lpDkXwi1nI8cCZrx_JCQej7lv6SVlOTgM-TK53tw/viewform"; // Set your desired URL here
 
     public void OpenFeedback()
     {
