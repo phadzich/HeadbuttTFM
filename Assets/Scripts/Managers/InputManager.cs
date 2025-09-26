@@ -31,21 +31,21 @@ public class InputManager : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(ForcePlayerAfterFrames(5));
+        StartCoroutine(ForceUIAfterFrames(5));
     }
     public void SwitchInputToUI()
     {
         foreach (var map in playerInput.actions.actionMaps)
             map.Disable();
         InputManager.Instance.playerInput.SwitchCurrentActionMap("UI");
-        //Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
     public void SwitchInputToPlayer()
     {
         foreach (var map in playerInput.actions.actionMaps)
             map.Disable();
         InputManager.Instance.playerInput.SwitchCurrentActionMap("Player");
-        //Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
+        Debug.Log($"ActionMap after delay: {InputManager.Instance.playerInput.currentActionMap.name}");
     }
 
     private IEnumerator ForcePlayerAfterFrames(int frames)
@@ -54,6 +54,15 @@ public class InputManager : MonoBehaviour
             yield return null; // espera un frame
 
         SwitchInputToPlayer();
+        //Debug.Log("Forzado Player después de " + frames + " frames");
+    }
+
+    private IEnumerator ForceUIAfterFrames(int frames)
+    {
+        for (int i = 0; i < frames; i++)
+            yield return null; // espera un frame
+
+        SwitchInputToUI();
         //Debug.Log("Forzado Player después de " + frames + " frames");
     }
 

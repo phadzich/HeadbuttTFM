@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     [Header("FRONTEND")]
     public GameObject startPanel;
     public FrontEndFrame frontEndFrame;
+    public StartMenuUI mainMenuPanel;
 
     [Header("HUD")]
     public GameObject HUDCanvas;
@@ -72,7 +73,8 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("UIManager START");
         SuscribeToHelmetInstances();
-        InputManager.Instance.SwitchInputToPlayer();
+        //InputManager.Instance.SwitchInputToPlayer();
+        mainMenuPanel.OpenMainMenu();
     }
 
     private void OnEnable()
@@ -182,13 +184,16 @@ public class UIManager : MonoBehaviour
         {
             MiningSublevelConfig _config = _sublevel.config as MiningSublevelConfig;
             sublevelObjsHUD.OnSublevelEntered(_sublevel);
+            exitFloatinIndicatorHUD.gameObject.SetActive(true);
+            exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
         }
         else
         {
             sublevelObjsHUD.ShowCheckpoint();
+            exitFloatinIndicatorHUD.gameObject.SetActive(false);
         }
 
-        exitFloatinIndicatorHUD.exitDoor = LevelManager.Instance.currentExitDoor.transform;
+
     }
 
 
@@ -282,6 +287,11 @@ public class UIManager : MonoBehaviour
     {
 
         NPCKeyHUD.SetActive(_show);
+    }
+
+    public void OpenSettings()
+    {
+        GameManager.Instance.PauseGame(true);
     }
 
     public void ToggleExtraInfo(InputAction.CallbackContext context)

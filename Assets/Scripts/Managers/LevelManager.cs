@@ -68,9 +68,14 @@ public class LevelManager : MonoBehaviour
         Debug.Log("LevelManager START");
         ResourceManager.Instance.InitOwnedResources();
         //CARGAMOS EL PRIMER NIVEL
-        LoadLevel(levelsList[0]);
+
+
     }
 
+    public void StartGame()
+    {
+        LoadLevel(levelsList[0]);
+    }
     private void LoadLevel(LevelConfig _levelConfig)
     {
 

@@ -11,6 +11,7 @@ public class SettingsManager : MonoBehaviour
     public LanguageHandler languageHandler;
     public ColorBlindHandler colorBlindHandler;
     public SettingsUI settingsUI;
+    public PauseHandler pauseHandler;
 
     [SerializeField] private Volume settingsVolume;
     private ColorAdjustments colorAdjustments;
