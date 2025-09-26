@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSound: 17
-  attackSound: 17
-  damageSound: 17
-  deathSound: 17
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: b2ddc87ddff0203469e3f73bdaffffe7, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}

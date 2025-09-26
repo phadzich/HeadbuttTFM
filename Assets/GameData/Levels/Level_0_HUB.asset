@@ -19,7 +19,7 @@ MonoBehaviour:
   levelIcon: {fileID: 21300000, guid: 02d3b661ab25fe74b9301e0c5245a8ac, type: 3}
   levelColor: {r: 1, g: 1, b: 1, a: 1}
   levelMusic: {fileID: 0}
-  levelNpcMusic: {fileID: 8300000, guid: 998d58d1ca0f16243b0def7a9e3ead1d, type: 3}
+  levelNpcMusic: {fileID: 8300000, guid: 65fc37fd58b7150428dd41cc6d36a092, type: 3}
   levelAmbient: {fileID: 0}
   subLevels:
   - {fileID: 11400000, guid: 717d664c1850be349836752d2a7e68bb, type: 2}

@@ -10120,7 +10120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleClip: {fileID: 0}
+  idleClip: {fileID: 8300000, guid: cdb8c7b34d148cb4b85fcaf8f45ace9f, type: 3}
   attackClip: {fileID: 0}
   damageClip: {fileID: 0}
   deathClip: {fileID: 0}

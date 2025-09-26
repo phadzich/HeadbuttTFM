@@ -27,8 +27,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource ambientSource;
     [SerializeField] private AudioSource uiSource;
-    [SerializeField] private AudioMixerGroup sfx3D;
-    [SerializeField] private AudioMixerGroup sfx2D;
+    [SerializeField] private AudioSource sfx3D;
+    [SerializeField] private AudioSource sfx2D;
 
     public static SoundManager instance;
 
@@ -41,10 +41,10 @@ public class SoundManager : MonoBehaviour
         => instance.PlaySoundInternal(instance.musicSoundList, _sound, _volume, instance.musicSource, _clip, true);
 
     public static void PlaySound(SFXType _sound, float _volume = 1f, AudioClip _clip = null, bool _loop = false)
-        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _clip, _loop);
+        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx2D, _clip, _loop);
 
     public static void PlaySound(SFXType _sound, Vector3 _position, AudioClip _clip, float _volume = 1f, bool _loop = false)
-        => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxSource, _position, _clip, _loop);
+        => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx3D, _position, _clip, _loop);
 
     public static void PlaySound(AmbientType _sound, AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.ambientSoundList, _sound, _volume, instance.ambientSource, _clip, true);
@@ -110,9 +110,13 @@ public class SoundManager : MonoBehaviour
         AudioSource aSource = tempGO.AddComponent<AudioSource>();
         aSource.clip = currentClip;
         aSource.volume = _volume;
-        aSource.spatialBlend = 1.0f; // 3D
-        aSource.outputAudioMixerGroup = sfxSource.outputAudioMixerGroup;
-        aSource.Play();
+        aSource.spatialBlend = sfx3D.spatialBlend; // 3D
+        aSource.outputAudioMixerGroup = sfx3D.outputAudioMixerGroup;
+
+        aSource.loop = _loop;
+
+        if (_loop) aSource.Play();
+        else aSource.PlayOneShot(currentClip, _volume);
 
         Destroy(tempGO, currentClip.length);
     }

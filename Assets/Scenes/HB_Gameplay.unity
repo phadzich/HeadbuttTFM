@@ -30723,6 +30723,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511138747}
   m_CullTransparentMesh: 1
+--- !u!82 &1521824192 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4856122355602781333, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+  m_PrefabInstance: {fileID: 2380268017051195028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1521824193 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3649851720328256055, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+  m_PrefabInstance: {fileID: 2380268017051195028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1523128344
 GameObject:
   m_ObjectHideFlags: 0
@@ -43448,6 +43458,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1903120177}
     m_Modifications:
     - target: {fileID: 618987760208078211, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 618987760208078211, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0.58
       objectReference: {fileID: 0}
@@ -43498,11 +43512,11 @@ PrefabInstance:
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfx2D
       value: 
-      objectReference: {fileID: 4136884408287970896, guid: 19b807d469bcbdf4daded75782324c63, type: 2}
+      objectReference: {fileID: 1521824192}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: sfx3D
       value: 
-      objectReference: {fileID: -6047546017792945092, guid: 19b807d469bcbdf4daded75782324c63, type: 2}
+      objectReference: {fileID: 1521824193}
     - target: {fileID: 8666145950050512609, guid: 9395bd7ad37625240b69b08c824dfdeb, type: 3}
       propertyPath: soundList.Array.size
       value: 18
@@ -44454,7 +44468,7 @@ PrefabInstance:
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: b57eec10b32796b439b1c12f736cd51b, type: 2}
+      objectReference: {fileID: 11400000, guid: 987a574890e769f4b951e7b3444a8982, type: 2}
     - target: {fileID: 3556634976685428954, guid: f92f648dcf8e4fd4ca53c618c8dcf201, type: 3}
       propertyPath: 'levelsList.Array.data[6]'
       value: 
