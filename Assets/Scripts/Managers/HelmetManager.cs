@@ -100,6 +100,7 @@ public class HelmetManager : MonoBehaviour
     public void Discover(HelmetData _data)
     {
         GetInstanceFromData(_data).Discover();
+        CombatLogHUD.Instance.AddLog(_data.icon, $"<b>{_data.helmetName}</b> helmet blueprint DISCOVERED!");
     }
 
     public HelmetInstance GetInstanceFromData(HelmetData _data)

@@ -26,3 +26,4 @@ MonoBehaviour:
   switch01Req: {fileID: 21300000, guid: 865050fc8bdc9ea478c7fc78c7758b91, type: 3}
   switch02Req: {fileID: 21300000, guid: 2120d84f094e71f49bd71dd2e7af6965, type: 3}
   switch03Req: {fileID: 21300000, guid: 9b0ed06b3ee10cf49acaf48fcdf29907, type: 3}
+  chestLog: {fileID: 21300000, guid: bb4c296e3ac46f04d9409d3b886b5227, type: 3}
