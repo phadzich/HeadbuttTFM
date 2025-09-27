@@ -3,14 +3,17 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour, IBlockBehaviour
 {
+    public AudioClip onBounce;
 
     public void OnBounced(HelmetInstance _helmetInstance)
     {
+        PlayOnBounce();
         MatchManager.Instance.FloorBounced();
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        PlayOnBounce();
         MatchManager.Instance.FloorBounced();
     }
 
@@ -22,4 +25,8 @@ public class EnemyBehaviour : MonoBehaviour, IBlockBehaviour
     {
     }
 
+    private void PlayOnBounce()
+    {
+        if (onBounce != null) SoundManager.PlaySound(SFXType.ENEMY, 1f, onBounce);
+    }
 }

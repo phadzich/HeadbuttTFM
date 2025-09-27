@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class DestroyOnCollisionEEfect : MonoBehaviour, IEnemyEffect
 {
+    private EnemySFX sfx => GetComponent<EnemySFX>();
 
     public void OnHit()
     {}
 
     private void SelfDestruct()
     {
+        if (sfx != null) sfx.PlayDeath();
         Destroy(this.gameObject);
     }
 

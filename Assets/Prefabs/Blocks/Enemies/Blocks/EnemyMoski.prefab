@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 8161395416749261924}
   - component: {fileID: 4810703166137470484}
   - component: {fileID: 3871944931018625848}
-  - component: {fileID: 4780286344558147236}
   m_Layer: 8
   m_Name: EnemyMoski
   m_TagString: Untagged
@@ -159,22 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4780286344558147236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006885365906108092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleClip: {fileID: 8300000, guid: cdb8c7b34d148cb4b85fcaf8f45ace9f, type: 3}
-  attackClip: {fileID: 0}
-  damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  onBounce: {fileID: 8300000, guid: c5c9b40674081634ebe6478d51a5f0ae, type: 3}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

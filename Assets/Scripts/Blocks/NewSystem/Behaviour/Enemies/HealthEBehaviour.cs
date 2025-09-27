@@ -48,11 +48,13 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
         ResourceManager.Instance.coinTrader.AddCoins(maxHealth);
 
     }
+
     private void DispatchDeathEvent()
     {
         var _enemyDeathEvent = new EnemyDeathsEvent {};
         LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_enemyDeathEvent);
     }
+
     public void RestoreHealth()
     {
         currentHealth = maxHealth;

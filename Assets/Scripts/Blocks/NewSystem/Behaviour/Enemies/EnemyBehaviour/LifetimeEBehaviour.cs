@@ -7,6 +7,8 @@ public class LifetimeEBehaviour : MonoBehaviour, IEnemyBehaviour
     private float elapsedTime;
     private bool isAlive;
 
+    private EnemySFX sfx => GetComponent<EnemySFX>();
+
     private void StartTimer()
     {
         isAlive = true;
@@ -31,6 +33,7 @@ public class LifetimeEBehaviour : MonoBehaviour, IEnemyBehaviour
 
     private void SelfDestruct()
     {
+        if (sfx != null) sfx.PlayDeath();
         Destroy(this.gameObject);
     }
 

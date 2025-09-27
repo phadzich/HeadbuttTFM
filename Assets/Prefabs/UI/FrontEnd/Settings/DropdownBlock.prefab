@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8636647007976757197}
   - component: {fileID: 5769713870650871939}
   - component: {fileID: 1765279438161620982}
+  - component: {fileID: 3759833177534162659}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -140,6 +141,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &3759833177534162659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401981014398259247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a963a0f6db38a476a8b128d646fbd62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624997218415509708
 GameObject:
   m_ObjectHideFlags: 0

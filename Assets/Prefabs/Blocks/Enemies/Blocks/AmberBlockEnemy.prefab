@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2806460764949968266}
   - component: {fileID: 5702211417993894438}
   - component: {fileID: -3036854175326071402}
+  - component: {fileID: 2110801278300186003}
   m_Layer: 8
   m_Name: AmberBlockEnemy
   m_TagString: Untagged
@@ -252,6 +253,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBounce: {fileID: 0}
+--- !u!114 &2110801278300186003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

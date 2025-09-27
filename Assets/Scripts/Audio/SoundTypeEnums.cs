@@ -22,7 +22,9 @@ public enum SFXType {
     PUSHDAMAGE,
     RECIEVEDAMAGE,
     ENEMY,
-    SUPPORTBLOCK
+    SUPPORTBLOCK,
+    OPENCHEST,
+    DISCOVERHB
 }
 
 public enum AmbientType {
@@ -31,5 +33,7 @@ public enum AmbientType {
 
 public enum UIType {
     BUTTONCLICK,
-    MENUOPEN,
-    MENUHOVER }
+    SELECT,
+    SELECT2,
+    DIALOGUES,
+    CRAFT }
