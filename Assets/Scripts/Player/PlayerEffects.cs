@@ -17,7 +17,7 @@ public class PlayerEffects : MonoBehaviour
 
     public void GetStunned(float _stunnedDuration)
     {
-        if (playerStates.canReceiveDamage && !playerStates.hasEffect(PlayerEffectStateEnum.Stunned)) // SI PUEDE RECIBIR DAÑO
+        if (!playerStates.hasEffect(PlayerEffectStateEnum.Stunned) && playerStates.canReceiveDamage) // SI PUEDE RECIBIR DAÑO
         {
             PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Stunned;
             PlayerManager.Instance.playerEmojis.StunnedEmoji();
