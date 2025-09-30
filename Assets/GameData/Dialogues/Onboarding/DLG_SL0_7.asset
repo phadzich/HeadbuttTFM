@@ -14,17 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - text: "It\u2019s the final countdown\u2026 turuturuuuu."
-    npcImage: {fileID: 21300000, guid: 961ab32f72098d545ac80c2210265afb, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "\u2026Tururututu\u2026"
-  - text: "Alright Joma use your resources, moves, and headbutts to take down at
-      least one Cactusapo. Spikes won\u2019t break your helmets, but they WILL stun
-      you. You can either wait or headbutt to get out of it!"
-    npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
-    playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
-    buttonText: "I\u2019m ready!"
-  - text: "If you\u2019re desperate, there might be a Headbutt Potion lying around.
-      But hey\u2014I\u2019ve got just a tiny bit of faith in you."
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 6410781205d096e449337626d8b17ee3, type: 3}
-    buttonText: "\u2026Tiny?"
+    highlightID: 0
+  - text: Meet your first enemy, the Cactusapo! He is a GRASS TYPE enemy with 10
+      health.
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    buttonText: 10 health!?
+    highlightID: 0
+  - text: Yup! You can either use a regular Headbutt to deal 1 damage or wear your
+      FIRE helmet and deal DOUBLE DAMAGE, since FIRE is strong vs GRASS.
+    npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
+    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    buttonText: Choices!
+    highlightID: 2
+  - text: Not only that, some enemies speed up or slow down depending on what Elemental
+      Helmet you hit them with, so don't go all crazy!
+    npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
+    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    buttonText: Understood!
+    highlightID: 2

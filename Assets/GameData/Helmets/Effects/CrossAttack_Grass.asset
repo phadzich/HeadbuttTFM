@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Spend 3 Headbutt points to deal {{{ELEMENT}}} damage in a cross that
     extends {{{values}}} tiles around you.
   effectIcon: {fileID: 21300000, guid: a0df8477938f09c4eb562877b99de345, type: 3}
-  hbPointsUsed: 2
+  hbPointsUsed: 1
   crossRange: 0
   effectParticles: {fileID: 5102639546771583594, guid: 659fb7288c35b2549a519b3919aeb712, type: 3}
   effectArea: {fileID: 0}

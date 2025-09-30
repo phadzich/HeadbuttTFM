@@ -15,25 +15,24 @@ MonoBehaviour:
   lines:
   - text: "Remember those beautiful red resources you just mined? Not just decoration!
       They\u2019re for crafting that blueprint."
-    npcImage: {fileID: 21300000, guid: 961ab32f72098d545ac80c2210265afb, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: How though?
+    highlightID: 0
   - text: See that anvil? Step up and make your first helmet.
-    npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
-    playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Awesome!
-  - text: "Each one\u2019s got its own stats: health, damage, even elemental powers!
-      But you can only equip three at a time\u2026 you\u2019re a dwarf, not a forklift."
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 6410781205d096e449337626d8b17ee3, type: 3}
-    buttonText: Crap.
+    highlightID: 0
+  - text: "Each one\u2019s got its own stats: health, damage, even elemental powers
+      and shields!"
+    npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
+    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    buttonText: Amazing!
+    highlightID: 0
   - text: "On your way you\u2019ll find more minerals, more helmets. Collect smart,
       your survival depends on it."
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Not afraid!
-  - text: "I\u2019ll meet you below at the FINAL TRIAL OF DEATH. And don\u2019t faint,
-      the fresh new rescue squad\u2019s still having breakfast.\n"
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: "\u2026it\u2019s 3PM."
+    highlightID: 0

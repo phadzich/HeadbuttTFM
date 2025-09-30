@@ -11,7 +11,7 @@ public class DialogueSystem : MonoBehaviour
     private int index = 0;
     public bool isRunning;
     public DialoguePanelUI dialogueUI;
-
+    public List<GameObject> obHighlights;
 
     public void StartDialogue(DialogueSequence _sequence)
     {
@@ -61,12 +61,31 @@ public class DialogueSystem : MonoBehaviour
     {
             if (index < lines.Count)
             {
-                dialogueUI.UpdateDialogContent(lines[index]);
+            TryShowHighlight(lines[index].highlightID);
+            dialogueUI.UpdateDialogContent(lines[index]);
                 index++;
             }
             else
             {
                 EndDialogue();
+        }
+    }
+
+    private void TryShowHighlight(int _index)
+    {
+        foreach (GameObject _highlight in UIManager.Instance.dialogueSystem.obHighlights)
+        {
+            if(_highlight!=null) _highlight.SetActive(false);
+        }
+
+        if (_index == 0)
+        {
+            return;
+        }
+        else
+        {
+            var _highOBJ = UIManager.Instance.dialogueSystem.obHighlights[_index];
+            _highOBJ.SetActive(true);
         }
     }
 

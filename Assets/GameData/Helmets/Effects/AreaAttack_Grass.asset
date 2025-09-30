@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Spend 4 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
     tiles around you.
   effectIcon: {fileID: 21300000, guid: 6e9651a662cea234f880998d14df3f42, type: 3}
-  hbPointsUsed: 3
+  hbPointsUsed: 2
   damageArea: {x: 1.5, y: 1, z: 1.5}
   effectParticles: {fileID: 5102639546771583594, guid: 659fb7288c35b2549a519b3919aeb712, type: 3}
   effectArea: {fileID: 0}

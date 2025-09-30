@@ -13,23 +13,33 @@ MonoBehaviour:
   m_Name: DLG_SL0_2
   m_EditorClassIdentifier: 
   lines:
-  - text: "See? Walked out without a scratch\u2014thanks to your helmets. Don\u2019t
-      get cocky though\u2026 you\u2019re not immortal."
-    npcImage: {fileID: 21300000, guid: 961ab32f72098d545ac80c2210265afb, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: Nobody is...
-  - text: Start mining one resource and bounce into something else? Your active helmet
-      takes the hit.
-    npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
-    playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
-    buttonText: "Yikes\u2026"
-  - text: Break a helmet completely and the next one auto-equips. You can also cycle
+  - text: See? Walked out without a scratch thanks to your helmets.
+    npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    buttonText: Helmets?
+    highlightID: 0
+  - text: You already have 3 helmets equipped, shown on your left. You can also cycle
       between them with keys 1 and 2.
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: And if I smash all of them?
-  - text: "Then you\u2019ll pass out, and we\u2019ll have to send a squad to pick
-      you up.\nBut don't, we don\u2019t actually have a squad yet!"
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
-    buttonText: WTF
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    buttonText: And those numbers?
+    highlightID: 2
+  - text: The top number shows it's health. Get hit or break a combo and it will
+      decrease. Reach 0 and it will break and be unusable!
+    npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
+    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    buttonText: And the small one?
+    highlightID: 2
+  - text: The small number on the right shows it's POWER. It determines how much
+      damage you make to enemies and how many resources you collect from each block
+      you mine.
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    buttonText: Got it!
+    highlightID: 2
+  - text: There are around 20+ helmets with different abilities, health and power
+      combinations.
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    buttonText: Gotta catch'em all!
+    highlightID: 0
