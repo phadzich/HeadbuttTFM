@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource uiSource;
     [SerializeField] private AudioSource sfx3D;
     [SerializeField] private AudioSource sfx2D;
+    [SerializeField] private AudioSource sfxLoop;
 
     public static SoundManager instance;
 
@@ -40,8 +41,11 @@ public class SoundManager : MonoBehaviour
     public static void PlaySound(MusicType _sound, AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.musicSoundList, _sound, _volume, instance.musicSource, _clip, true);
 
-    public static void PlaySound(SFXType _sound, float _volume = 1f, AudioClip _clip = null, bool _loop = false)
-        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx2D, _clip, _loop);
+    public static void PlaySound(SFXType _sound, float _volume = 1f, AudioClip _clip = null)
+        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx2D, _clip);
+
+    public static void PlaySound(SFXType _sound, bool _loop, float _volume = 1f, AudioClip _clip = null)
+        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxLoop, _clip, _loop);
 
     public static void PlaySound(SFXType _sound, Vector3 _position, AudioClip _clip, float _volume = 1f, bool _loop = false)
         => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx3D, _position, _clip, _loop);
@@ -61,9 +65,16 @@ public class SoundManager : MonoBehaviour
         bool _loop = false
     ) where TEnum : Enum
     {
+
         AudioClip currentClip;
 
         var soundData = Array.Find(_list, s => s.type.Equals(_type));
+
+        if(_type.Equals(SFXType.TIMERON))
+        {
+            Debug.Log(_type.ToString());
+            Debug.Log(soundData.Clip);
+        }
 
         if (_clip == null & soundData.Clip == null) return;
 
@@ -121,6 +132,25 @@ public class SoundManager : MonoBehaviour
         Destroy(tempGO, currentClip.length);
     }
 
+    public void StopAudioSource<TEnum>(TEnum _type) where TEnum : Enum
+    {
+        switch (_type)
+        {
+            case MusicType:
+                musicSource.Stop();
+                break;
+            case AmbientType:
+                ambientSource.Stop();
+                break;
+            case SFXType:
+                sfxLoop.Stop();
+                break;
+            case UIType:
+                uiSource.Stop();
+                break;
+        }
+    }
+
     public void SetVolume(string mixerGroupName, float volume)
     {
         // volume should be from 0.0001 to 1.0; 0 mutes it entirely
@@ -176,12 +206,13 @@ public class SoundManager : MonoBehaviour
 #endif
 }
 
+// Nos permite recibir cualquier tipo de enum para asi generalizar los parametros de las funciones
 [Serializable]
 public struct SoundEntry<TEnum> where TEnum : Enum
 {
     [HideInInspector] public string name;
     public TEnum type;              // Ej: SFXType.MINEDCOMPLETE
-    public AudioClip Clip => clip;       // uno o varios clips para ese sonido
-    public SoundCategory Category;
+    public AudioClip Clip => clip;       // clip para ese sonido
+    public SoundCategory Category; // Categoria
     [SerializeField] private AudioClip clip;
 }

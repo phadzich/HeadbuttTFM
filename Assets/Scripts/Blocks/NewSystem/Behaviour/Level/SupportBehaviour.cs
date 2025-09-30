@@ -12,7 +12,7 @@ public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
     {
          if (idleSound != null)
         {
-            SoundManager.PlaySound(SFXType.SUPPORTBLOCK, 1f, idleSound, true);
+            SoundManager.PlaySound(SFXType.SUPPORTBLOCK, true, _clip: idleSound);
         }
     }
 

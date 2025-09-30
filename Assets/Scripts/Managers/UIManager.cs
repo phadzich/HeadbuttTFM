@@ -234,16 +234,19 @@ public class UIManager : MonoBehaviour
         switch (_type)
         {
             case NPCType.Crafter:
+                SoundManager.PlaySound(UIType.OPENCRAFT);
                 NPCCraftPanel.SetActive(true);
                 currentOpenUI = NPCCraftPanel.gameObject;
                 frontEndFrame.OpenFrame("FORGER", "Craft, upgrade and equip helmets.", UIManager.Instance.iconsLibrary.npcForger);
                 break;
             case NPCType.Elevator:
+                SoundManager.PlaySound(UIType.OPENELEVATOR);
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
                 frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:
+                SoundManager.PlaySound(UIType.OPENCHEST);
                 InventoryPanel.gameObject.SetActive(true);
                 currentOpenUI = InventoryPanel.gameObject;
                 frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.npcInventory);
@@ -256,7 +259,7 @@ public class UIManager : MonoBehaviour
     public void CloseCurrentOpenUI(InputAction.CallbackContext context)
     {
         Debug.Log("E");
-        if (context.performed) // ya se soltó y volvió a presionar
+        if (context.performed) // ya se soltï¿½ y volviï¿½ a presionar
         {
             Debug.Log("Closing UI");
             if (currentOpenUI != null)
@@ -273,6 +276,7 @@ public class UIManager : MonoBehaviour
     }
     public void OpenShopUI(int _id)
     {
+        SoundManager.PlaySound(UIType.OPENSHOP);
         PlayerManager.Instance.ShowPlayerMesh(false);
         NPCKeyHUD.SetActive(false);
         Debug.Log("OpeningSHOP UI");

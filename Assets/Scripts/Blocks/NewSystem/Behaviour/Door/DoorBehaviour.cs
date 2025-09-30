@@ -62,6 +62,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
         //doorRequirementIndicator.UpdateIndicator(currentInt);
         if (allCompleted && !isOpen)
         {
+            SoundManager.PlaySound(SFXType.UNLOCKDOOR);
             isOpen = true;
             doorTrigger.gameObject.SetActive(true);
             IndicateOpen();

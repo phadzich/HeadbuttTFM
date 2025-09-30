@@ -24,7 +24,15 @@ public enum SFXType {
     ENEMY,
     SUPPORTBLOCK,
     OPENCHEST,
-    DISCOVERHB
+    DISCOVERBP,
+    HBPOTION,
+    HPPOTION,
+    UNLOCKGATE,
+    UNLOCKDOOR,
+    SWITCHPRESS,
+    TIMERON,
+    TIMER10S,
+    COLLECTKEY,
 }
 
 public enum AmbientType {
@@ -35,5 +43,10 @@ public enum UIType {
     BUTTONCLICK,
     SELECT,
     SELECT2,
-    DIALOGUES,
+    DIALOGUE,
+    OPENCRAFT,
+    OPENSHOP,
+    OPENCHEST,
+    OPENELEVATOR,
+    USEELEVATOR,
     CRAFT }

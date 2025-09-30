@@ -34,7 +34,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
         mapContext.sublevel.onSublevelObjectivesUpdated += CheckRequirements;
 
-        // inicializar requirements una sola vez aquí
+        // inicializar requirements una sola vez aquï¿½
         InitializeRequirements();
         CheckRequirements();
     }
@@ -95,6 +95,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void IndicateOpen()
     {
+        SoundManager.PlaySound(SFXType.UNLOCKGATE);
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcElevator, "A <b>GATE</b> has opened somewhere!");
         GetComponent<BlockNS>().isWalkable = true;
         gatesMesh.SetActive(false);

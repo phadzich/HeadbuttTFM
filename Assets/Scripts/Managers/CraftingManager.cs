@@ -39,6 +39,7 @@ public class CraftingManager : MonoBehaviour
         // Pagamos el precio de la creacion del casco
         if (CanCraft(selectedHelmet.GetUpgradeRequirement()))
         {
+            SoundManager.PlaySound(UIType.CRAFT);
             // Obtenemos los upgrade requirements del casco para su siguiente evolucion
             UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement();
             PayResources(req.requirements);

@@ -26,11 +26,19 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
     public TextMeshProUGUI timerText;
     public Sprite switchIcon;
 
+    private bool soundActivated = false;
+
     private void Update()
     {
         if (isActive)
         {
             elapsedTime += Time.deltaTime;
+
+            if (!soundActivated && elapsedTime >= duration/2)
+            {
+                SoundManager.PlaySound(SFXType.TIMER10S, true);
+                soundActivated = true;
+            }
 
             timerText.text = ((int)(duration-elapsedTime)).ToString();
             timerFill.fillAmount = 1-(elapsedTime/duration);
@@ -45,7 +53,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void ActivateSwitch()
     {
-
+        SoundManager.PlaySound(SFXType.TIMERON, true);
         ToggleShapeMesh(true);
         isActive = true;
         elapsedTime = 0;
@@ -55,7 +63,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void DeactivateSwitch()
     {
-
+        SoundManager.instance.StopAudioSource(SFXType.SWITCHPRESS);
         CombatLogHUD.Instance.AddLog(switchIcon, $"<b>SWITCH</b> expired!");
 
         ToggleShapeMesh(false);
@@ -115,6 +123,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        SoundManager.PlaySound(SFXType.SWITCHPRESS);
         if (!isActive) ActivateSwitch();
         MatchManager.Instance.FloorBounced();
     }

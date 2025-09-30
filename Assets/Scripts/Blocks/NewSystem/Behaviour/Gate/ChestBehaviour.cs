@@ -140,7 +140,8 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void ClaimRewards()
     {
-        foreach(ILoot _loot in myLoot)
+        SoundManager.PlaySound(SFXType.OPENCHEST);
+        foreach (ILoot _loot in myLoot)
         {
             _loot.Claim();
         }
