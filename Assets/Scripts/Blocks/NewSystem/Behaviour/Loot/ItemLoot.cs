@@ -7,7 +7,6 @@ public class ItemLoot : LootBase
     public override Sprite GetIcon() => item.illustration;
     public override void Claim()
     {
-        Debug.Log($"CLAIMED {item.itemName}");
         InventoryManager.Instance.itemsInventory.TryAddOwnedItems(item, amount);
     }
 }

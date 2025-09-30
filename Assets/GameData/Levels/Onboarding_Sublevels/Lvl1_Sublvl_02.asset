@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Lvl1Sub02
   helmetBPData: {fileID: 0}
-  dialogueSequence: {fileID: 11400000, guid: 39bc672df0ec0854480c6ef7dfbbaf3a, type: 2}
+  dialogueSequence: {fileID: 11400000, guid: aea91ba59926e5c4788f159e0c9fad1f, type: 2}
   limitPerSpawn: 0
   sublevel2DMap: {fileID: 2800000, guid: f01c984d811184e4ca59f98772dddd59, type: 3}
   objectives:
-  - rid: 6219506894629240909
   - rid: 6219506894629240910
   gateRequirements:
   - rid: 6219506894629240907
@@ -41,11 +40,6 @@ MonoBehaviour:
         customID: 1
         resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
         resourcesNeeded: 4
-    - rid: 6219506894629240909
-      type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
-      data:
-        resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-        resourcesNeeded: 3
     - rid: 6219506894629240910
       type: {class: CollectSpecificResourceObjective, ns: , asm: Assembly-CSharp}
       data:

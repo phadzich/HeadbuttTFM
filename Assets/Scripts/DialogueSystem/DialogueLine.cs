@@ -8,4 +8,5 @@ public class DialogueLine
     public Sprite npcImage;
     public Sprite playerImage;
     public string buttonText;
+    public int highlightID;
 }

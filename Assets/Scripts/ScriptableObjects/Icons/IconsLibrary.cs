@@ -25,4 +25,7 @@ public class IconsLibrary : ScriptableObject
     public Sprite switch01Req;
     public Sprite switch02Req;
     public Sprite switch03Req;
+
+    [Header("LOG")]
+    public Sprite chestLog;
 }

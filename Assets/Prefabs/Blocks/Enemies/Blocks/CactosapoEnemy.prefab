@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarUI: {fileID: 909338826229197644}
-  maxHealth: 5
+  maxHealth: 8
   currentHealth: 0
   damageMultiplier: 1
   AllowedSources: 02000000
@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBounce: {fileID: 0}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

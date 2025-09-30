@@ -1,7 +1,9 @@
+using PrimeTween;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(ChestSetup))]
 public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
@@ -13,6 +15,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
     public GameObject bodyMesh;
     public LootPopupUI lootPopup;
     public ListRequirementsUI chestReqsUI;
+    public GameObject particles;
     private List<IRequirement> myReqs = new();
     private List<LootBase> myLoot = new();
     private Dictionary<IRequirement, Action<int, int>> handlers = new();
@@ -113,8 +116,15 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
     public void IndicateOpen()
     {
         GetComponent<BlockNS>().isWalkable = true;
-        doorMesh.SetActive(false);
+        AnimateOpenDoor();
+        particles.SetActive(true);
         chestReqsUI.gameObject.SetActive(false);
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.chestLog, $"A <b>CHEST</b> has opened somewhere!");
+    }
+
+    private void AnimateOpenDoor()
+    {
+        Tween.LocalRotation(doorMesh.transform, endValue: Quaternion.Euler(-100f, 0f, 0f), duration:1f, ease:Ease.InOutBounce);
     }
     public void OnBounced(HelmetInstance _helmetInstance)
     {
@@ -147,7 +157,8 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
         }
         isClaimed = true;
         bodyMesh.SetActive(false);
-
+        doorMesh.SetActive(false);
+        particles.SetActive(false);
         lootPopup.ShowLoot(myLoot);
     }
 

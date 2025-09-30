@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 5
   levelName: Foggy Forest
   levelDescription: CheckPoint00
-  maxDepth: 0
+  maxDepth: 5
   levelIcon: {fileID: 21300000, guid: e2085437a29ea4d4ea7ab0919e06af14, type: 3}
   levelColor: {r: 0.2627451, g: 0.86274517, b: 0.29803923, a: 1}
   levelMusic: {fileID: 8300000, guid: 774a39c6ae1599f4f8a3ebb48ea4bfaa, type: 3}

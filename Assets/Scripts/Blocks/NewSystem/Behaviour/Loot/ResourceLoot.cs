@@ -6,7 +6,7 @@ public class ResourceLoot : LootBase
     public override Sprite GetIcon() => resource.icon;
     public override void Claim()
     {
-        Debug.Log($"{amount} {resource}");
+        CombatLogHUD.Instance.AddLog(resource.icon, $"<b>{amount}</b> <b>{resource.shortName}</b> found in CHEST!");
         ResourceManager.Instance.AddResource(resource,amount);
     }
 }

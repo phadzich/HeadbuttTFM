@@ -43,7 +43,7 @@ public class ItemsInventory : MonoBehaviour
     }
     public void TryAddOwnedItems(Item _item, int _amount)
     {
-
+        CombatLogHUD.Instance.AddLog(_item.illustration,$"<b>{_item.itemName}</b> added to Inventory!");
         if (ownedItems.ContainsKey(_item))
         {
             int _totalAmount = ownedItems[_item] + _amount;

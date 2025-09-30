@@ -14,21 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - text: "Amazing, you\u2019re still alive. Never doubted you for a second."
-    npcImage: {fileID: 21300000, guid: 961ab32f72098d545ac80c2210265afb, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Sure...
+    highlightID: 0
   - text: BUT LISTEN UP, LITTLE COD! Down here, there are worse things than banging
       your head.
-    npcImage: {fileID: 21300000, guid: 8e0a829bf69619d4dac90c44456ccbe2, type: 3}
-    playerImage: {fileID: 21300000, guid: 0e3dec9ca41f8164aa55a7526d50399d, type: 3}
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Cod?
+    highlightID: 0
   - text: "Lava blocks and epic enemies will do everything to stop you from clearing
       each floor\u2019s goals.\n"
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
+    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: "Interesting\u2026"
+    highlightID: 3
   - text: "Life\u2019s tough. Always has been. But your skull\u2019s tougher! Collect
       10 resources or more and meet me below."
-    npcImage: {fileID: 21300000, guid: 7a898dac4a84acb49b07de547b95c832, type: 3}
-    playerImage: {fileID: 21300000, guid: 1af1959642112e64dbe07263264c63e6, type: 3}
+    npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
+    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Fingers crossed.
+    highlightID: 3

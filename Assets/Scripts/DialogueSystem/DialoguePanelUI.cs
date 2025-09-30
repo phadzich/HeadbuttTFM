@@ -30,13 +30,13 @@ public class DialoguePanelUI : MonoBehaviour
         playerImage.sprite = _line.playerImage;
         dialogueButtonTXT.text = _line.buttonText;
         AnimateNPC();
-        AnimatePlayer();
+        //AnimatePlayer();
         AnimateText();
     }
 
     private void AnimateNPC()
     {
-        Tween.ScaleY(npcImage.transform, startValue: .6f, endValue: 1f, duration: .3f, ease:Ease.OutBack, startDelay: .2f);
+        Tween.ScaleY(npcImage.transform, startValue: .6f, endValue: 1f, duration: .4f, ease:Ease.OutElastic);
     }
     private void AnimatePlayer()
     {

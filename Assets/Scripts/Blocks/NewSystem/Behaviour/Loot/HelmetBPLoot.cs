@@ -8,6 +8,5 @@ public class HelmetBPLoot : LootBase
     public override void Claim()
     {
         HelmetManager.Instance.Discover(helmetBlueprint);
-        Debug.Log($"CLAIMED {helmetBlueprint.helmetName}");
     }
 }

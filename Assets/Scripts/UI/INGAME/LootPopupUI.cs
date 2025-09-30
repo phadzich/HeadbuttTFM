@@ -1,8 +1,10 @@
+using Mono.Cecil;
+using PrimeTween;
+using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
-using PrimeTween;
 
 public class LootPopupUI : MonoBehaviour
 {
@@ -31,7 +33,7 @@ public class LootPopupUI : MonoBehaviour
     private void PopIn()
     {
         Tween.Scale(this.transform, duration: .5f, endValue: Vector3.one, startValue: Vector3.zero, ease: Ease.OutBack);
-        PopOut(2);
+        PopOut(3);
     }
 
     private void PopOut(float _delay)
