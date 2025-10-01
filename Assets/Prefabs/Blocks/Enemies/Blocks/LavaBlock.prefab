@@ -4999,6 +4999,7 @@ GameObject:
   - component: {fileID: 1351411384633125323}
   - component: {fileID: 7671590144533620282}
   - component: {fileID: 2270768479623819556}
+  - component: {fileID: 5481422272729178913}
   m_Layer: 8
   m_Name: LavaBlock
   m_TagString: Untagged
@@ -5284,6 +5285,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBounce: {fileID: 0}
+--- !u!114 &5481422272729178913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 8300000, guid: 929be9c0ee2e11a4290d4b2bf44f7dc9, type: 3}
+  attackClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14903,6 +14903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -14997,7 +14998,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c22b4f7251abdee4b926e4d7b3ec7f4e, type: 2}
+      objectReference: {fileID: 2100000, guid: bf73f9872cb7a2c4a8d05d8576c2077c, type: 2}
     - target: {fileID: 919132149155446097, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: m_Name
       value: FloorBlock (1)

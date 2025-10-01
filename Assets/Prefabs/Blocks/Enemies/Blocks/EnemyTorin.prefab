@@ -5848,7 +5848,7 @@ MonoBehaviour:
   idleClip: {fileID: 0}
   attackClip: {fileID: 8300000, guid: 02ef8687d20d28744a8078611690ce2b, type: 3}
   damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 1a7d0bc4ca6fac145b16d68d043f8e00, type: 3}
 --- !u!114 &2530141681092373936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5861,6 +5861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBounce: {fileID: 0}
 --- !u!1 &8898338296760956366
 GameObject:
   m_ObjectHideFlags: 0

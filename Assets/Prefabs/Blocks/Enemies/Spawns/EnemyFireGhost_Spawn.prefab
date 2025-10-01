@@ -10121,9 +10121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleClip: {fileID: 8300000, guid: a9d83bf3c5161a74c887c2ce7bfa3b04, type: 3}
-  attackClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: acdc8f6a5c4db1048a630563972710f4, type: 3}
   damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 4f66a061c05318d49a468a5bbf57548f, type: 3}
 --- !u!1 &6998399199376396709
 GameObject:
   m_ObjectHideFlags: 0

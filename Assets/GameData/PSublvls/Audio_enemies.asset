@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466efde88753cb14fbb00f31c707422d, type: 3}
+  m_Name: Audio_enemies
+  m_EditorClassIdentifier: 
+  id: Audio4
+  helmetBPData: {fileID: 0}
+  dialogueSequence: {fileID: 0}
+  limitPerSpawn: 3
+  sublevel2DMap: {fileID: 2800000, guid: f76af3ce854b8c54db9b24297a4344d3, type: 3}
+  objectives:
+  - rid: 2153193452066308111
+  gateRequirements: []
+  chestsRequirements: []
+  chestsLoot: []
+  switchesDurations: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2153193452066308111
+      type: {class: CollectAnyResourceObjective, ns: , asm: Assembly-CSharp}
+      data:
+        resourcesNeeded: 5

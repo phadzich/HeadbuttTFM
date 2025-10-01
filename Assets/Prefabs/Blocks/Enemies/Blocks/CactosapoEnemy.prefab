@@ -324,7 +324,7 @@ MonoBehaviour:
   idleClip: {fileID: 0}
   attackClip: {fileID: 8300000, guid: fbc8ba23a5edff0488ebb557e5c32f04, type: 3}
   damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 4f66a061c05318d49a468a5bbf57548f, type: 3}
 --- !u!114 &8564660997341852800
 MonoBehaviour:
   m_ObjectHideFlags: 0

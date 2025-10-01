@@ -9831,6 +9831,7 @@ GameObject:
   - component: {fileID: 6133741794092899820}
   - component: {fileID: 1351411384633125323}
   - component: {fileID: 7671590144533620282}
+  - component: {fileID: -2313677665413449513}
   m_Layer: 8
   m_Name: PoisonBlock
   m_TagString: Untagged
@@ -10039,6 +10040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94dae55c06d4857be66dace60f4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
   isWalkable: 1
@@ -10104,6 +10106,22 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   AllowedSources: 00000000
+--- !u!114 &-2313677665413449513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 8300000, guid: 216c6530c30598a42b5106e04bf744b4, type: 3}
+  attackClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1001 &4369515631803877429
 PrefabInstance:
   m_ObjectHideFlags: 0

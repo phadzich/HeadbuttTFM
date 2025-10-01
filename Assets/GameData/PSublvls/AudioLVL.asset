@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60746830329ae014d946ba33d508659d, type: 3}
+  m_Name: AudioLVL
+  m_EditorClassIdentifier: 
+  id: 0
+  levelName: AudioLvlName
+  levelDescription: 
+  maxDepth: 0
+  levelIcon: {fileID: 0}
+  levelColor: {r: 0, g: 0, b: 0, a: 0}
+  levelMusic: {fileID: 8300000, guid: 8f91455a7006e3a4287c97b92c611f0e, type: 3}
+  levelNpcMusic: {fileID: 8300000, guid: 65fc37fd58b7150428dd41cc6d36a092, type: 3}
+  levelAmbient: {fileID: 0}
+  subLevels:
+  - {fileID: 11400000, guid: 77f766c3a6f9c834aa622854d5086947, type: 2}
+  - {fileID: 11400000, guid: af7658256cbc29c458f1911d42c91e9f, type: 2}
+  - {fileID: 11400000, guid: cfd57147ee020c244a63aa602dacb885, type: 2}
+  - {fileID: 11400000, guid: 50a76218c7289724eaf3d57a5d95967e, type: 2}

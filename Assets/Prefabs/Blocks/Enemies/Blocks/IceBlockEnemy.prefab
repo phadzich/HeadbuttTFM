@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleClip: {fileID: 0}
-  attackClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: c60f5dd87dfe84844898d1dc56ce9112, type: 3}
   damageClip: {fileID: 0}
   deathClip: {fileID: 0}
 --- !u!1 &4246945198350386805
