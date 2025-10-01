@@ -13,25 +13,26 @@ MonoBehaviour:
   m_Name: DLG_SL0_1_1
   m_EditorClassIdentifier: 
   lines:
-  - text: As you can see on your right, you now have 3 bronze fragments!
+  - text: As you can see on your <color=#76fd45><b>right</b></color>, you now have
+      <b><color=#df7956>3 <sprite=0>  BRONZE</color></b> fragments!
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: So shiny!
     highlightID: 1
-  - text: But this world is filled with more than 7 different resources, and they
-      each have a use.
+  - text: But this world is filled with more than <b>7 different</b> resources, and
+      they each have a use.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Like?
     highlightID: 1
-  - text: Some open doors, chests, other help you complete the floor's objectives,
-      craft stuff.. you can even trade them for COINS.
+  - text: Some open <sprite=2> <b>CHESTS</b>, others craft <sprite=9> <b>HELMETS</b>...
+      you can even trade them for <sprite=12> <b>COINS</b>.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Interesting...
     highlightID: 0
-  - text: Complete the floor objective shown on your bottom right and I will spill
-      some more secrets.
+  - text: Complete the floor objective shown on your <color=#76fd45><b>bottom right
+      </b></color>and I will spill some more secrets.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Easy!

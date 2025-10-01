@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: DLG_SL0_0
   m_EditorClassIdentifier: 
   lines:
-  - text: "Well, well\u2026 another tiny hero who thinks he can break the AntiNezur
+  - text: "Well, well\u2026 another tiny hero who thinks he can break the <b><color=#D678FD>ANTINEZUR</color></b>
       curse that blocks our people."
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Here I am.
     highlightID: 0
-  - text: Dozens of LEGENDS have tried clearing these death-trap mines to stop the
-      AntiNezur infestation.
+  - text: Dozens of <b>LEGENDS</b> have tried clearing these death-trap mines to
+      stop the <b><color=#D678FD>ANTINEZUR</color></b> infestation.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: I'll be the last one!
     highlightID: 0
-  - text: Alright, champ. Head down. No stairs, no excuses.
+  - text: 'Alright, champ. Head down. <b>No stairs, no excuses.</b> '
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Game on!

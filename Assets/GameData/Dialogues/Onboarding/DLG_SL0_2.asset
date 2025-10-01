@@ -13,32 +13,33 @@ MonoBehaviour:
   m_Name: DLG_SL0_2
   m_EditorClassIdentifier: 
   lines:
-  - text: See? Walked out without a scratch thanks to your helmets.
+  - text: See? Walked out without a scratch thanks to your <b><sprite=9> HELMETS</b>.
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Helmets?
     highlightID: 0
-  - text: You already have 3 helmets equipped, shown on your left. You can also cycle
-      between them with keys 1 and 2.
+  - text: You already have 3 <b><sprite=9> HELMETS</b> equipped, shown on your <color=#67f834><b>left</b></color>.
+      You can also cycle between them with <b>keys [1] and [2]</b>.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: And those numbers?
     highlightID: 2
-  - text: The top number shows it's health. Get hit or break a combo and it will
-      decrease. Reach 0 and it will break and be unusable!
+  - text: The top number <sprite=18> shows it's <sprite=16> <b>HEALTH</b>. Get hit
+      or break a combo and it will decrease. Reach 0 and it will <sprite=22> <b>break</b>
+      and be <b><color=red>unusable!</color></b>
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: And the small one?
     highlightID: 2
-  - text: The small number on the right shows it's POWER. It determines how much
-      damage you make to enemies and how many resources you collect from each block
-      you mine.
+  - text: The small number on the right <sprite=19> shows it's <sprite=15> <b>POWER</b>.
+      It determines how much <b>damage</b> you make to enemies and how many <b>resources</b>
+      you collect from each block you mine.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Got it!
     highlightID: 2
-  - text: There are around 20+ helmets with different abilities, health and power
-      combinations.
+  - text: There are around <b>20+ <sprite=20> EPIC HELMETS</b> with different abilities,
+      health and power combinations to discover and <b><sprite=11> CRAFT!</b>
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Gotta catch'em all!
