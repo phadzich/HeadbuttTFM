@@ -4,7 +4,7 @@ public class KeyCollectible : MonoBehaviour, ICollectibleEffect
 {
     public void Activate()
     {
-        SoundManager.PlaySound(SFXType.COLLECTKEY);
+        SoundManager.PlaySound(SFXType.COLLECT_KEY);
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.keyReq, "<b>Key</b> collected");
 
         var _keyEvent = new CollectKeyEvent();

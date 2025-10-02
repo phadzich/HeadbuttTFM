@@ -66,7 +66,7 @@ public class MatchManager : MonoBehaviour
         {
             FailCurrentChain();
         }
-        SoundManager.PlaySound(SFXType.FLOORBOUNCE);
+        SoundManager.PlaySound(SFXType.FLOOR_BOUNCE);
     }
 
     public void EnemyBounced()
@@ -119,7 +119,7 @@ public class MatchManager : MonoBehaviour
         UIManager.Instance.remainingBlockIndicator.ToggleIndicator(false);
         //UIManager.Instance.currentMatchPanel.ChangeCurrentCombo();
 
-        SoundManager.PlaySound(SFXType.COMBOFAIL, 0.7f);
+        SoundManager.PlaySound(SFXType.COMBO_FAIL, 0.7f);
     }
 
     public void FlashFailedBlocks()

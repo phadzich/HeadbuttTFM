@@ -115,6 +115,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void IndicateOpen()
     {
+        SoundManager.PlaySound(SFXType.OPEN_CHEST);
         GetComponent<BlockNS>().isWalkable = true;
         AnimateOpenDoor();
         particles.SetActive(true);
@@ -150,7 +151,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void ClaimRewards()
     {
-        SoundManager.PlaySound(SFXType.OPENCHEST);
+        SoundManager.PlaySound(SFXType.COLLECT_CHEST);
         foreach (ILoot _loot in myLoot)
         {
             _loot.Claim();

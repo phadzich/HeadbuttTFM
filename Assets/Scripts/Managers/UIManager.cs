@@ -234,19 +234,19 @@ public class UIManager : MonoBehaviour
         switch (_type)
         {
             case NPCType.Crafter:
-                SoundManager.PlaySound(UIType.OPENCRAFT);
+                SoundManager.PlaySound(UIType.OPEN_CRAFT);
                 NPCCraftPanel.SetActive(true);
                 currentOpenUI = NPCCraftPanel.gameObject;
                 frontEndFrame.OpenFrame("FORGER", "Craft, upgrade and equip helmets.", UIManager.Instance.iconsLibrary.npcForger);
                 break;
             case NPCType.Elevator:
-                SoundManager.PlaySound(UIType.OPENELEVATOR);
+                SoundManager.PlaySound(UIType.OPEN_ELEVATOR);
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
                 frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:
-                SoundManager.PlaySound(UIType.OPENCHEST);
+                SoundManager.PlaySound(UIType.OPEN_CHEST);
                 InventoryPanel.gameObject.SetActive(true);
                 currentOpenUI = InventoryPanel.gameObject;
                 frontEndFrame.OpenFrame("STORAGE", "Add or remove items from your backpack", UIManager.Instance.iconsLibrary.npcInventory);
@@ -276,7 +276,7 @@ public class UIManager : MonoBehaviour
     }
     public void OpenShopUI(int _id)
     {
-        SoundManager.PlaySound(UIType.OPENSHOP);
+        SoundManager.PlaySound(UIType.OPEN_SHOP);
         PlayerManager.Instance.ShowPlayerMesh(false);
         NPCKeyHUD.SetActive(false);
         Debug.Log("OpeningSHOP UI");

@@ -23,7 +23,7 @@ public class BPCollectible : MonoBehaviour, ICollectibleEffect
 
     public void Activate()
     {
-        SoundManager.PlaySound(SFXType.DISCOVERBP);
+        SoundManager.PlaySound(SFXType.DISCOVER_BP);
         CombatLogHUD.Instance.AddLog(helmetData.icon, $"<b>{helmetData.helmetName}</b> helmet discovered!");
 
         LevelManager.Instance.currentSublevel.CollectBP();

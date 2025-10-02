@@ -24,12 +24,52 @@ public class PotionCollectible : MonoBehaviour, ICollectibleEffect
         switch (type)
         {
             case PotionTypes.Durability:
-                SoundManager.PlaySound(SFXType.HPPOTION);
+                PlayHPPotionSound();
                 HelmetManager.Instance.UseHelmetPotion(potionSize);
                 break;
             case PotionTypes.HBPoints:
-                SoundManager.PlaySound(SFXType.HBPOTION);
+                PlayHBPotionSound();
                 PlayerManager.Instance.playerHeadbutt.UseHBPotion(potionSize);
+                break;
+        }
+
+    }
+
+    public void PlayHBPotionSound()
+    {
+        switch (potionSize)
+        {
+            case 0:
+                SoundManager.PlaySound(SFXType.HB_SMALL_POTION);
+                break;
+            case 1:
+                SoundManager.PlaySound(SFXType.HB_MEDIUM_POTION);
+                break;
+            case 2:
+                SoundManager.PlaySound(SFXType.HB_LARGE_POTION);
+                break;
+            case 3:
+                SoundManager.PlaySound(SFXType.HB_EXTLARGE_POTION);
+                break;
+        }
+             
+    }
+
+    public void PlayHPPotionSound()
+    {
+        switch (potionSize)
+        {
+            case 0:
+                SoundManager.PlaySound(SFXType.HP_SMALL_POTION);
+                break;
+            case 1:
+                SoundManager.PlaySound(SFXType.HP_MEDIUM_POTION);
+                break;
+            case 2:
+                SoundManager.PlaySound(SFXType.HP_LARGE_POTION);
+                break;
+            case 3:
+                SoundManager.PlaySound(SFXType.HP_EXTLARGE_POTION);
                 break;
         }
 

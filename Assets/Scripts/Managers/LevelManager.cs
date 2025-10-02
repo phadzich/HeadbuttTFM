@@ -84,7 +84,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"* Loading Level {_levelConfig.name}*");
         currentLevel = currentLoadedLevelContainer.AddComponent<Level>();
         currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
-        SoundManager.PlaySound(AmbientType.LEVELAMBIENT, currentLevel.config.levelAmbient);
+        SoundManager.PlaySound(AmbientType.LEVEL_AMBIENT, currentLevel.config.levelAmbient);
 
         //DETERMINAMOS DATA DEL DEPTH
         maxLevelDepth = _levelConfig.subLevels.Count - 1;
@@ -195,7 +195,7 @@ public class LevelManager : MonoBehaviour
         {
             if (!onMiningMusic)
             {
-                SoundManager.PlaySound(MusicType.LEVELMUSIC, currentLevel.config.levelMusic);
+                SoundManager.PlaySound(MusicType.LEVEL_MUSIC, currentLevel.config.levelMusic);
                 onMiningMusic = true;
             }
 
@@ -204,7 +204,7 @@ public class LevelManager : MonoBehaviour
 
         else if (_sublevelConfig is NPCSublevelConfig _npcSublevel)
         {
-            SoundManager.PlaySound(MusicType.LEVELMUSIC, currentLevel.config.levelNpcMusic);
+            SoundManager.PlaySound(MusicType.LEVEL_MUSIC, currentLevel.config.levelNpcMusic);
             onMiningMusic = false;
 
             //ENTRAR A ESTADO CHECKPOINT

@@ -84,7 +84,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         {
             helmetPowerMultiplier = HelmetPowerMultiplier(_helmetInstance.baseHelmet.miningPower);
             BouncedOnResource();
-            SoundManager.PlaySound(SFXType.RESOURCEBOUNCE, 0.7f);
+            SoundManager.PlaySound(SFXType.RESOURCE_BOUNCE, 0.7f);
             MatchManager.Instance.TryToAddToChain();
         }
         else //YA HA SIDO MINADO, ACTUA COMO PISO
@@ -136,7 +136,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         ReleaseResourceDrop();
         ReleaseHBDrop();
         //SoundManager.PlaySound(SoundType.MINEDCOMPLETE, 0.7f);
-        SoundManager.PlaySound(SFXType.MINEDCOMPLETE, 0.7f);
+        SoundManager.PlaySound(SFXType.MINED_COMPLETE, 0.7f);
 
         uiAnims.AnimateResourceRewards(helmetPowerMultiplier);
     }

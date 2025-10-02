@@ -56,6 +56,9 @@ public class SoundManager : MonoBehaviour
     public static void PlaySound(UIType _sound, float _volume = 1f)
         => instance.PlaySoundInternal(instance.UISoundList, _sound, _volume, instance.uiSource);
 
+    public static void PlayDialog(AudioClip _clip, float _volume = 1f)
+        => instance.PlaySoundInternal(instance.UISoundList, UIType.DIALOG, _volume, instance.uiSource, _clip);
+
     private void PlaySoundInternal<TEnum>(
         SoundEntry<TEnum>[] _list,
         TEnum _type,
@@ -69,12 +72,6 @@ public class SoundManager : MonoBehaviour
         AudioClip currentClip;
 
         var soundData = Array.Find(_list, s => s.type.Equals(_type));
-
-        if(_type.Equals(SFXType.TIMERON))
-        {
-            Debug.Log(_type.ToString());
-            Debug.Log(soundData.Clip);
-        }
 
         if (_clip == null & soundData.Clip == null) return;
 

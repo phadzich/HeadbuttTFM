@@ -95,7 +95,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void IndicateOpen()
     {
-        SoundManager.PlaySound(SFXType.UNLOCKGATE);
+        SoundManager.PlaySound(SFXType.UNLOCK_GATE);
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcElevator, "A <b>GATE</b> has opened somewhere!");
         GetComponent<BlockNS>().isWalkable = true;
         gatesMesh.SetActive(false);

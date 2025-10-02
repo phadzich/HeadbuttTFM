@@ -14,8 +14,8 @@ public class UIToggleSFX : MonoBehaviour
     private void OnValueChanged(bool isOn)
     {
         if (isOn)
-            SoundManager.PlaySound(UIType.BUTTONCLICK);
+            SoundManager.PlaySound(UIType.BUTTON_CLICK);
         else
-            SoundManager.PlaySound(UIType.BUTTONCLICK);
+            SoundManager.PlaySound(UIType.BUTTON_CLICK);
     }
 }

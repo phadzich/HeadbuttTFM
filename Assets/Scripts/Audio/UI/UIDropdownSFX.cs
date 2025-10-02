@@ -13,6 +13,6 @@ public class UIDropdownSFX : MonoBehaviour
 
     private void OnValueChanged(int index)
     {
-        SoundManager.PlaySound(UIType.BUTTONCLICK);
+        SoundManager.PlaySound(UIType.BUTTON_CLICK);
     }
 }

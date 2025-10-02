@@ -24,7 +24,7 @@ public class KnockbackEffect : MonoBehaviour, IBlockEffect
 
     private void PlayBounceSound()
     {
-        SoundManager.PlaySound(SFXType.PUSHDAMAGE, 0.7f);
+        SoundManager.PlaySound(SFXType.PUSH_DAMAGE, 0.7f);
     }
 
     public void PushPlayerRandomly()

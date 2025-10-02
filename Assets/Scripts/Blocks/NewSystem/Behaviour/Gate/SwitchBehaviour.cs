@@ -36,7 +36,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
             if (!soundActivated && elapsedTime >= duration/2)
             {
-                SoundManager.PlaySound(SFXType.TIMER10S, true);
+                SoundManager.PlaySound(SFXType.TIMER_10S, true);
                 soundActivated = true;
             }
 
@@ -53,7 +53,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void ActivateSwitch()
     {
-        SoundManager.PlaySound(SFXType.TIMERON, true);
+        SoundManager.PlaySound(SFXType.TIMER_ON, true);
         ToggleShapeMesh(true);
         isActive = true;
         elapsedTime = 0;
@@ -63,7 +63,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void DeactivateSwitch()
     {
-        SoundManager.instance.StopAudioSource(SFXType.SWITCHPRESS);
+        SoundManager.instance.StopAudioSource(SFXType.SWITCH_PRESS);
         CombatLogHUD.Instance.AddLog(switchIcon, $"<b>SWITCH</b> expired!");
 
         ToggleShapeMesh(false);
@@ -123,7 +123,7 @@ public class SwitchBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
-        SoundManager.PlaySound(SFXType.SWITCHPRESS);
+        SoundManager.PlaySound(SFXType.SWITCH_PRESS);
         if (!isActive) ActivateSwitch();
         MatchManager.Instance.FloorBounced();
     }
