@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        positionTarget = new Vector3(0,20,0);
+        positionTarget = new Vector3(0,50,0);
         enanoParent.position = positionTarget;
         ChangePositionTarget(positionTarget);
     }
@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         speed = dropSpeed;
-        var _newPos = new Vector3(_dropPosition.x, _dropPosition.y + 15f, _dropPosition.z);
+        var _newPos = new Vector3(_dropPosition.x, _dropPosition.y + 50f, _dropPosition.z);
         positionTarget = _newPos;
         ChangePositionTarget(_newPos);
         StartCoroutine(RestoreToNormalSpeed());
