@@ -60,7 +60,6 @@ public class PlayerStates : MonoBehaviour
                 canMove = false;
                 canHeadbutt = false;
                 canBounce = true;
-                bounceAfterStunPending = true;
                 onMiningLvl = true;
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
@@ -83,12 +82,6 @@ public class PlayerStates : MonoBehaviour
                 canHeadbutt = true;
                 canReceiveDamage = true;
                 interruptHeadbutt = false;
-
-                if (bounceAfterStunPending)
-                {
-                    PlayerManager.Instance.playerBounce.BounceUp();
-                    bounceAfterStunPending = false;
-                }
 
                 //animator.Play("Bouncing");
                 break;
@@ -152,8 +145,12 @@ public class PlayerStates : MonoBehaviour
         {
             ChangeState(PlayerMainStateEnum.Disabled);
         }
-        else if (bounceAfterStunPending & !isOnState(PlayerMainStateEnum.FallingIntoMINE))
+
+
+        if (bounceAfterStunPending && !hasEffect(PlayerEffectStateEnum.Stunned))
         {
+            bounceAfterStunPending = false;
+            PlayerManager.Instance.playerBounce.BounceUp();
             ChangeState(PlayerMainStateEnum.Bouncing);
         }
 
