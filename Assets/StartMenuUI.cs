@@ -3,6 +3,7 @@ using UnityEngine;
 public class StartMenuUI : MonoBehaviour
 {
     public GameObject settingsPanel;
+    public GameObject startScene;
 
 
 
@@ -24,6 +25,7 @@ public class StartMenuUI : MonoBehaviour
         this.gameObject.SetActive(true);
         InputManager.Instance.SwitchInputToUI();
         UIManager.Instance.currentOpenUI = this.gameObject;
+        startScene.SetActive(true);
     }
 
     public void CloseMainMenu()
@@ -33,6 +35,7 @@ public class StartMenuUI : MonoBehaviour
         //InputManager.Instance.SwitchInputToPlayer();
         LevelManager.Instance.StartGame();
         UIManager.Instance.currentOpenUI = null;
+        startScene.SetActive(false);
     }
 
     public void OpenSettings()
