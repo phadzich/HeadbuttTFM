@@ -26,11 +26,11 @@ MonoBehaviour:
   chestsRequirements:
   - rid: 6309007189752152149
   - rid: 6309007189752152150
-  - rid: 6309007189752152151
-  - rid: 6309007189752152154
+  - rid: 6309007215966027776
   chestsLoot:
   - rid: 6309007189752152148
   - rid: 6309007189752152153
+  - rid: 6309007215966027777
   switchesDurations:
   - 7
   references:
@@ -70,26 +70,25 @@ MonoBehaviour:
         customID: 0
         resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
         resourcesNeeded: 6
-    - rid: 6309007189752152151
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 0
-        resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-        resourcesNeeded: 6
     - rid: 6309007189752152153
       type: {class: ItemLoot, ns: , asm: Assembly-CSharp}
       data:
         chestID: 1
         amount: 1
         item: {fileID: 11400000, guid: cb6705fdc49e5e44fbb9f59c90012197, type: 2}
-    - rid: 6309007189752152154
-      type: {class: CollectSpecificResourceRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        customID: 1
-        resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-        resourcesNeeded: 12
     - rid: 6309007189752152155
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 2
-        enemiesNeeded: 2
+        enemiesNeeded: 1
+    - rid: 6309007215966027776
+      type: {class: CollectAnyResourceRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        customID: 1
+        resourcesNeeded: 86
+    - rid: 6309007215966027777
+      type: {class: ItemLoot, ns: , asm: Assembly-CSharp}
+      data:
+        chestID: 1
+        amount: 1
+        item: {fileID: 11400000, guid: f83378b5714404349bafff3753b07b4c, type: 2}

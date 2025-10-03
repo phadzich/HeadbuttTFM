@@ -13,20 +13,23 @@ MonoBehaviour:
   m_Name: DLG_SL0_4
   m_EditorClassIdentifier: 
   lines:
-  - text: AMEIZING. Notice those green dots on your top-left corner? As you mine,
-      they get filled up. Each full dot will grant you a HEADBUTT!
+  - text: <b>AMEIZING.</b> Notice those <sprite=17> <b>green dots</b> on your <color=#76fd45><b>top-left</b></color>
+      corner? As you mine, they get filled up. Each full dot will grant you a <color=#65FF9C><b><sprite=14>HEADBUTT!</b></color>
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "\u2026more head smashing?"
     highlightID: 4
-  - text: Not your average smash. Press SPACE for a HEADBUTT. It lets you jump higher
-      and cross longer gaps.
+  - text: '<size=150%>Not your average smash.
+
+      </size> Press <b>SPACE</b> for
+      a <color=#65FF9C><b><sprite=14>HEADBUTT!</b></color>. It lets you jump higher
+      and cross longer gaps.'
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: SPACE, got it!
     highlightID: 4
-  - text: 'PRO TIP: Score another match right after the last and get x2, x3, x4,
-      x5 extra energy!'
+  - text: '<b>PRO TIP: </b>Score another match right after the last and get <b><color=#65FF9C>x2,
+      x3, x4, x5</color></b> extra energy!'
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Sugar Rush!
