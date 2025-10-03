@@ -6,7 +6,6 @@ public class PotionItem : Item
     public PotionTypes potionType;
 
 
-
     public override void Use()
     {
         switch (potionType)

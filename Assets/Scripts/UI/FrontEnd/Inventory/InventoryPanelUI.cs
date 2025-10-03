@@ -68,8 +68,24 @@ public class InventoryPanelUI : MonoBehaviour
 
     public void EquipButtonClick()
     {
+        PlayEquipSound();
+
         InventoryManager.Instance.itemsInventory.TryEquipItem(currentSelectedItem);
     }
+
+    private void PlayEquipSound()
+    {
+        switch (currentSelectedItem.type)
+        {
+            case PotionTypes.Durability:
+                SoundManager.PlaySound(UIType.EQUIP_HP);
+                break;
+            case PotionTypes.HBPoints:
+                SoundManager.PlaySound(UIType.EQUIP_HB);
+                break;
+        }
+    }
+
     public void ToggleSwapPanel(bool _show)
     {
         //Debug.Log($"SWAP MODE {_show}");

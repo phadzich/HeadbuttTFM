@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using static UnityEditor.PlayerSettings;
 
 public static class MixerGroups
 {
@@ -29,7 +30,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource uiSource;
     [SerializeField] private AudioSource sfx3D;
     [SerializeField] private AudioSource sfx2D;
-    [SerializeField] private AudioSource sfxLoop;
+    [SerializeField] private AudioSource sfxLoop2D;
+    [SerializeField] private AudioSource sfxLoop3D;
+    [SerializeField] private AudioSource sfxEnemy;
 
     public static SoundManager instance;
 
@@ -45,7 +48,7 @@ public class SoundManager : MonoBehaviour
         => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx2D, _clip);
 
     public static void PlaySound(SFXType _sound, bool _loop, float _volume = 1f, AudioClip _clip = null)
-        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxLoop, _clip, _loop);
+        => instance.PlaySoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfxLoop2D, _clip, _loop);
 
     public static void PlaySound(SFXType _sound, Vector3 _position, AudioClip _clip, float _volume = 1f, bool _loop = false)
         => instance.Play3DSoundInternal(instance.sfxSoundList, _sound, _volume, instance.sfx3D, _position, _clip, _loop);
@@ -55,6 +58,12 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(UIType _sound, float _volume = 1f)
         => instance.PlaySoundInternal(instance.UISoundList, _sound, _volume, instance.uiSource);
+
+    public static void PlayEnemySound(Vector3 _position, AudioClip _clip, float _volume = 1f, bool _loop = false)
+        => instance.Play3DSoundInternal(instance.sfxSoundList, SFXType.ENEMY, _volume, instance.sfxEnemy, _position, _clip, _loop);
+
+    public static AudioSource PlayEnemyIdle(Vector3 _position, AudioClip _clip, float _volume = 1f, bool _loop = false, GameObject _transform = null)
+        => instance.Play3DSoundInternal(instance.sfxSoundList, SFXType.ENEMY, _volume, instance.sfxLoop3D, _position, _clip, _loop, _transform);
 
     public static void PlayDialog(AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.UISoundList, UIType.DIALOG, _volume, instance.uiSource, _clip);
@@ -89,21 +98,22 @@ public class SoundManager : MonoBehaviour
         else _source.PlayOneShot(currentClip, _volume);
     }
 
-    private void Play3DSoundInternal<TEnum>(
+    private AudioSource Play3DSoundInternal<TEnum>(
         SoundEntry<TEnum>[] _list,
         TEnum _type,
         float _volume,
         AudioSource _source,
         Vector3 _pos,
         AudioClip _clip = null,
-        bool _loop = false
+        bool _loop = false,
+        GameObject _followTarget = null
     ) where TEnum : Enum
     {
         AudioClip currentClip;
 
         var soundData = Array.Find(_list, s => s.type.Equals(_type));
 
-        if (_clip == null & soundData.Clip == null) return;
+        if (_clip == null & soundData.Clip == null) return null;
 
         currentClip = soundData.Clip;
 
@@ -113,20 +123,34 @@ public class SoundManager : MonoBehaviour
         }
 
         GameObject tempGO = new GameObject("TempAudio");
-        tempGO.transform.position = _pos;
-
         AudioSource aSource = tempGO.AddComponent<AudioSource>();
+
+        if (_followTarget != null)
+        {
+            //tempGO.transform.SetParent(_followTarget, false);
+            aSource = _followTarget.AddComponent<AudioSource>();
+        }
+        else
+        {
+            tempGO.transform.localPosition = Vector3.zero;
+            tempGO.transform.position = _pos;
+        }
+
         aSource.clip = currentClip;
         aSource.volume = _volume;
-        aSource.spatialBlend = sfx3D.spatialBlend; // 3D
-        aSource.outputAudioMixerGroup = sfx3D.outputAudioMixerGroup;
+        aSource.spatialBlend = _source.spatialBlend; 
+        aSource.outputAudioMixerGroup = _source.outputAudioMixerGroup;
 
         aSource.loop = _loop;
 
         if (_loop) aSource.Play();
-        else aSource.PlayOneShot(currentClip, _volume);
+        else
+        {
+            aSource.PlayOneShot(currentClip, _volume);
+            Destroy(tempGO, currentClip.length); 
+        }
 
-        Destroy(tempGO, currentClip.length);
+        return aSource;
     }
 
     public void StopAudioSource<TEnum>(TEnum _type) where TEnum : Enum
@@ -140,7 +164,7 @@ public class SoundManager : MonoBehaviour
                 ambientSource.Stop();
                 break;
             case SFXType:
-                sfxLoop.Stop();
+                sfxLoop2D.Stop();
                 break;
             case UIType:
                 uiSource.Stop();

@@ -211,6 +211,7 @@ public class HelmetManager : MonoBehaviour
 
     public void WearNextAvailableHelmet()
     {
+        SoundManager.PlaySound(UIType.CHANGE_HELMET);
         int _ogIndex = helmetIndex;
 
         do
@@ -233,6 +234,7 @@ public class HelmetManager : MonoBehaviour
 
     public void WearPrevAvailableHelmet()
     {
+        SoundManager.PlaySound(UIType.CHANGE_HELMET);
         int _ogIndex = helmetIndex;
 
         do

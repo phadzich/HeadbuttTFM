@@ -5,8 +5,6 @@ public class StunEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
 {
     public float stunTime;
 
-    private EnemySFX sfx => GetComponent<EnemySFX>();
-
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
 
     public bool IsAllowedForSource(InteractionSource source)
@@ -22,7 +20,6 @@ public class StunEEffect : MonoBehaviour, IEnemyEffect, IElementReactive
 
     public void OnTrigger()
     {
-        if (sfx != null) sfx.PlayAttack();
         PlayerManager.Instance.playerEffects.GetStunned(stunTime);
     }
 

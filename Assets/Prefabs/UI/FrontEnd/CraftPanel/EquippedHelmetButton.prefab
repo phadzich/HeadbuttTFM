@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 3064867247874349854}
   - component: {fileID: 6495638490096313909}
   - component: {fileID: 2162922790504539605}
+  - component: {fileID: 4568303351310382370}
   m_Layer: 5
   m_Name: EquippedHelmetButton
   m_TagString: Untagged
@@ -531,6 +532,19 @@ MonoBehaviour:
   duraTXT: {fileID: 9114045517251295885}
   powerTXT: {fileID: 7527040902399303280}
   powerPanel: {fileID: 1485710229546297923}
+--- !u!114 &4568303351310382370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208788430726675304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47330fce1b3d4c689324c5bd8f390bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
 --- !u!1 &8580835148300872087
 GameObject:
   m_ObjectHideFlags: 0

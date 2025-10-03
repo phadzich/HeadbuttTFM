@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 1932361344935614615}
   - component: {fileID: 5247394205576654435}
   - component: {fileID: 8414049473069662124}
-  - component: {fileID: 7456271409606283456}
   m_Layer: 9
   m_Name: EnemyFireball_Spawn
   m_TagString: Untagged
@@ -297,22 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newDirection: {x: 0, y: 0, z: 0}
---- !u!114 &7456271409606283456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4552600488085506810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleClip: {fileID: 0}
-  attackClip: {fileID: 8300000, guid: 1e73356bfaf521641bdebb4ee78ae851, type: 3}
-  damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
 --- !u!1 &5457371427021623550
 GameObject:
   m_ObjectHideFlags: 0

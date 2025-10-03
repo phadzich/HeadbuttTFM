@@ -20,7 +20,7 @@ public class EquippedItemButton : MonoBehaviour
 
     public void OnClickSwapBtn()
     {
-        InventoryManager.Instance.itemsInventory.SwapHelmet(UIManager.Instance.InventoryPanel.currentSelectedItem, itemData);
+        InventoryManager.Instance.itemsInventory.SwapItem(UIManager.Instance.InventoryPanel.currentSelectedItem, itemData);
         UIManager.Instance.InventoryPanel.OnItemsListChanged();
         UIManager.Instance.InventoryPanel.ToggleSwapPanel(false);
     }

@@ -11,6 +11,10 @@ public class CraftingManager : MonoBehaviour
     public Action<HelmetInstance> HelmetSelected; // Se lanza cuando un casco ha sido seleccionado
     public Action HelmetCrafted; // Se lanza cuando un casco ha sido upgradeado
 
+    private UIType sound;
+
+    public void UpdateSound(UIType _sound) => sound = _sound;
+
     private void Awake()
     {
         if (Instance == null)
@@ -34,12 +38,11 @@ public class CraftingManager : MonoBehaviour
 
     public void Craft()
     {
-
         if (selectedHelmet == null) return;
         // Pagamos el precio de la creacion del casco
         if (CanCraft(selectedHelmet.GetUpgradeRequirement()))
         {
-            SoundManager.PlaySound(UIType.CRAFT);
+            SoundManager.PlaySound(sound);
             // Obtenemos los upgrade requirements del casco para su siguiente evolucion
             UpgradeRequirement req = selectedHelmet.GetUpgradeRequirement();
             PayResources(req.requirements);

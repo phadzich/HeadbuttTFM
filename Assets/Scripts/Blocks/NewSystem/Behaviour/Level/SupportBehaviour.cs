@@ -11,15 +11,15 @@ public class SupportBehaviour : MonoBehaviour, IBlockBehaviour
     {
 
         MatchManager.Instance.FloorBounced();
-        feedbackParticles.Play();
-        SoundManager.PlaySound(SFXType.SUPPORT_BLOCK, 1f, onBounceSound);
+        if (feedbackParticles != null) feedbackParticles.Play();
+        if(onBounceSound != null) SoundManager.PlaySound(SFXType.SUPPORT_BLOCK, 1f, onBounceSound);
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
-        feedbackParticles.Play();
-        SoundManager.PlaySound(SFXType.SUPPORT_BLOCK, 1f, onHeadbuttSound);
+        if (feedbackParticles != null) feedbackParticles.Play();
+        if (onHeadbuttSound != null) SoundManager.PlaySound(SFXType.SUPPORT_BLOCK, 1f, onHeadbuttSound);
     }
 
     public void StartBehaviour()

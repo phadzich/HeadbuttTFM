@@ -123,11 +123,11 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
     private void UpdateUpgradeButton()
     {
-
+        CraftingManager _instance = CraftingManager.Instance;
         //Debug.Log(helmetInstance.currentLevel);
 
         //MAXED
-        if(helmetInstance.currentLevel == 3)
+        if (helmetInstance.currentLevel == 3)
         {
             nextAction = "MAXED!";
             EnableUpgrade(false);
@@ -141,9 +141,10 @@ public class HelmetInfoPanelUI : MonoBehaviour
         //discovered
         if (helmetInstance.isDiscovered)
         {
+            _instance.UpdateSound(UIType.CRAFT);
             nextAction = "CRAFT!";
             EnableEquip(false);
-            if (CraftingManager.Instance.CanCraft(helmetInstance.GetUpgradeRequirement()))
+            if (_instance.CanCraft(helmetInstance.GetUpgradeRequirement()))
             {
                 EnableUpgrade(true);
 
@@ -158,9 +159,10 @@ public class HelmetInfoPanelUI : MonoBehaviour
         //crafted
         if (helmetInstance.currentLevel == 1 || helmetInstance.currentLevel == 2)
         {
+            _instance.UpdateSound(UIType.UPGRADE);
             nextAction = "LEVEL UP!";
             EnableEquip(true);
-            if (CraftingManager.Instance.CanCraft(helmetInstance.GetUpgradeRequirement()))
+            if (_instance.CanCraft(helmetInstance.GetUpgradeRequirement()))
             {
                 EnableUpgrade(true);
             }

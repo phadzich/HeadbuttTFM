@@ -11,6 +11,9 @@ public abstract class Item : ScriptableObject
     public Sprite effectIcon;
     public Sprite illustration;
     public int value;
+
+    public PotionTypes type;
+
     public virtual void Buy()
     {
     }

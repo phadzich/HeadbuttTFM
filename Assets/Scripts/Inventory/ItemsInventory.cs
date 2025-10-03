@@ -84,7 +84,7 @@ public class ItemsInventory : MonoBehaviour
 
     }
 
-    public void SwapHelmet(Item _itemIn, Item _itemOut)
+    public void SwapItem(Item _itemIn, Item _itemOut)
     {
         int index = equippedItems.FindIndex(e => e.item == _itemOut);
 
@@ -92,7 +92,7 @@ public class ItemsInventory : MonoBehaviour
         {
             if (!ownedItems.TryGetValue(_itemIn, out int amountIn))
             {
-                Debug.LogWarning($"SwapHelmet: {_itemIn.itemName} no está en ownedItems.");
+                Debug.LogWarning($"SwapHelmet: {_itemIn.itemName} no estï¿½ en ownedItems.");
                 return;
             }
 

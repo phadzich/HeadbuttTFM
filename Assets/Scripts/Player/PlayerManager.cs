@@ -98,6 +98,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerStates.gameObject.SetActive(_value);
     }
+
     public void EnterNPCLevel()
     {
         playerAnimations.RotateBody(0);

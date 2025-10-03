@@ -4996,7 +4996,6 @@ GameObject:
   - component: {fileID: -108890368050877570}
   - component: {fileID: 715497001413960085}
   - component: {fileID: 9061047276227353058}
-  - component: {fileID: -466181495284249987}
   m_Layer: 8
   m_Name: SupportBlock_Water
   m_TagString: Untagged
@@ -5226,9 +5225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onBounceSound: {fileID: 8300000, guid: efac9783d13ec424087c749d4eb8a97b, type: 3}
+  onHeadbuttSound: {fileID: 8300000, guid: 9500a64b0ade8494dbda5613e2418bc2, type: 3}
   feedbackParticles: {fileID: 7428737150881724064}
-  idleSound: {fileID: 0}
-  canBeBounce: 1
 --- !u!114 &9061047276227353058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5239,18 +5237,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a343314e6aed4907a49444d82ce0884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-466181495284249987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090959518607110755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5874918283419271066

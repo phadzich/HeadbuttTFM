@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4727972427447099318}
   - component: {fileID: 343654270433747811}
   - component: {fileID: 4580169846613142778}
+  - component: {fileID: 2610829709681350753}
   m_Layer: 9
   m_Name: TorinHead
   m_TagString: Untagged
@@ -235,6 +236,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnDuration: 2
   holdDuration: 2
+--- !u!114 &2610829709681350753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503106422611921762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 1a7d0bc4ca6fac145b16d68d043f8e00, type: 3}
 --- !u!1 &3486571716503860580
 GameObject:
   m_ObjectHideFlags: 0
@@ -5848,7 +5865,7 @@ MonoBehaviour:
   idleClip: {fileID: 0}
   attackClip: {fileID: 8300000, guid: 02ef8687d20d28744a8078611690ce2b, type: 3}
   damageClip: {fileID: 0}
-  deathClip: {fileID: 8300000, guid: 1a7d0bc4ca6fac145b16d68d043f8e00, type: 3}
+  deathClip: {fileID: 0}
 --- !u!114 &2530141681092373936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5861,7 +5878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBounce: {fileID: 0}
+  onBounce: {fileID: 8300000, guid: 836581d71b703b74499dc18960133e63, type: 3}
+  onHeadbutt: {fileID: 0}
+  feedbackParticles: {fileID: 0}
 --- !u!1 &8898338296760956366
 GameObject:
   m_ObjectHideFlags: 0

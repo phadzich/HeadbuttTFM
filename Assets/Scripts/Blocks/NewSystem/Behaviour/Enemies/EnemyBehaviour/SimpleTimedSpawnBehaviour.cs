@@ -12,6 +12,8 @@ public class SimpleTimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
 
     public float spawnInterval;
 
+    private EnemySFX sfx => GetComponent<EnemySFX>();
+
     public void StartBehaviour()
     {
         if (randomStartDelay)
@@ -43,6 +45,7 @@ public class SimpleTimedSpawnBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void Spawn()
     {
+        if(sfx != null) sfx.PlayAttack();
         GameObject _enemy = Instantiate(prefabToSpawn, spawnPoint);
         StartCoroutine(StartTimer());
     }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5392649305406290093}
   - component: {fileID: 2932336095951011063}
   - component: {fileID: 5320953857245270746}
-  - component: {fileID: 6333479158378275223}
+  - component: {fileID: 392041978213123735}
   m_Layer: 0
   m_Name: CactusProjectile
   m_TagString: Projectile
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 2
---- !u!114 &6333479158378275223
+--- !u!114 &392041978213123735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

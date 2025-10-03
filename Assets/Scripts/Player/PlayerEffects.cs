@@ -19,6 +19,7 @@ public class PlayerEffects : MonoBehaviour
     {
         if (!playerStates.hasEffect(PlayerEffectStateEnum.Stunned) && playerStates.canReceiveDamage) // SI PUEDE RECIBIR DAÑO
         {
+            SoundManager.PlaySound(SFXType.GET_STUNN);
             PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Stunned;
             PlayerManager.Instance.playerEmojis.StunnedEmoji();
             playerStates.AddEffect(_effect);

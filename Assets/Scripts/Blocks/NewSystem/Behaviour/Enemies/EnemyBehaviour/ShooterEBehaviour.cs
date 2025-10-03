@@ -50,7 +50,6 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
     {
         if (sfx != null)
         {
-            Debug.Log("PLAY SOUND SHOOTT");
             sfx.PlayAttack();
         }
 

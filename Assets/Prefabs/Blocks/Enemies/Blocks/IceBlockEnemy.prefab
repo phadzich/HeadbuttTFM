@@ -340,7 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBounce: {fileID: 0}
+  onBounce: {fileID: 8300000, guid: c60f5dd87dfe84844898d1dc56ce9112, type: 3}
+  onHeadbutt: {fileID: 8300000, guid: c60f5dd87dfe84844898d1dc56ce9112, type: 3}
+  feedbackParticles: {fileID: 0}
 --- !u!114 &8833256422519649412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +358,7 @@ MonoBehaviour:
   idleClip: {fileID: 0}
   attackClip: {fileID: 8300000, guid: c60f5dd87dfe84844898d1dc56ce9112, type: 3}
   damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 1a7d0bc4ca6fac145b16d68d043f8e00, type: 3}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

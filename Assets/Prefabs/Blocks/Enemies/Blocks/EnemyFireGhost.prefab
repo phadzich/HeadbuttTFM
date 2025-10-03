@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8161395416749261924}
   - component: {fileID: 4810703166137470484}
   - component: {fileID: -8093993525836376589}
+  - component: {fileID: 7205625184791946656}
   m_Layer: 8
   m_Name: EnemyFireGhost
   m_TagString: Untagged
@@ -159,6 +160,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onBounce: {fileID: 8300000, guid: 541d702f48d7b8e40816f714ef14a461, type: 3}
+  onHeadbutt: {fileID: 8300000, guid: e236a949f02872d4da90514e683fe451, type: 3}
+--- !u!114 &7205625184791946656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 4f66a061c05318d49a468a5bbf57548f, type: 3}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0

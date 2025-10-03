@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6610249393429423994}
   - component: {fileID: 2932336095951011063}
   - component: {fileID: 5320953857245270746}
-  - component: {fileID: 6333479158378275223}
+  - component: {fileID: 3579144271416564127}
   m_Layer: 0
   m_Name: IceProjectile
   m_TagString: Projectile
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 2
---- !u!114 &6333479158378275223
+--- !u!114 &3579144271416564127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

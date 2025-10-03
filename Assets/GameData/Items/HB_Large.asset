@@ -18,4 +18,5 @@ MonoBehaviour:
   effectIcon: {fileID: 21300000, guid: c586a9709a9fc8d40a829a24e843d73c, type: 3}
   illustration: {fileID: 21300000, guid: 0227fcbd38909b04b836f623e2dd5502, type: 3}
   value: 5
+  type: 2
   potionType: 2

@@ -64,6 +64,7 @@ public enum UIType {
     SWAP,
     EQUIP_HB,
     EQUIP_HP,
-    DIALOG
+    DIALOG,
+    SELECT_HELMET
 
 }
