@@ -19,6 +19,7 @@ public class LogDialog : MonoBehaviour
     
     public void FadeOut()
     {
+        Tween.StopAll(canvasGroup);
         Tween.Alpha(canvasGroup, endValue: 0f, duration: .5f, startDelay: 2.5f).OnComplete(DestroyLog);
     }
 

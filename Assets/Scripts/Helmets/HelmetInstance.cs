@@ -74,7 +74,7 @@ public class HelmetInstance: IElemental
 
     public void TakeDamage(int _amount)
     {
-        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"Received <b>{_amount} DAMAGE</b>!");
+        //CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"Received <b>{_amount} DAMAGE</b>!");
 
         if (currentDurability > 0)
             currentDurability-=_amount;

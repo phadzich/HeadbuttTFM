@@ -9,6 +9,7 @@ public class DialoguePanelUI : MonoBehaviour
     public TextMeshProUGUI dialogueButtonTXT;
     public Image playerImage;
     public Image npcImage;
+    public GameObject dialogFade;
 
     public void Open()
     {
@@ -16,11 +17,13 @@ public class DialoguePanelUI : MonoBehaviour
         AnimatePlayer();
         AnimateText();
         this.gameObject.SetActive(true);
+        dialogFade.SetActive(true);
     }
     
     public void Close()
     {
         this.gameObject.SetActive(false);
+        dialogFade.SetActive(false);
     }
 
     public void UpdateDialogContent(DialogueLine _line)

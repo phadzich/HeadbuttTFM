@@ -21,6 +21,8 @@ MonoBehaviour:
   levelMusic: {fileID: 8300000, guid: 65fc37fd58b7150428dd41cc6d36a092, type: 3}
   levelNpcMusic: {fileID: 8300000, guid: 65fc37fd58b7150428dd41cc6d36a092, type: 3}
   levelAmbient: {fileID: 0}
+  fogHigh: {r: 0.18431373, g: 0.15686275, b: 0.14509805, a: 1}
+  fogLow: {r: 0.078431375, g: 0.07058824, b: 0.07058824, a: 1}
   subLevels:
   - {fileID: 11400000, guid: 8da36281bcbaefd48b59442097ffbd74, type: 2}
   - {fileID: 11400000, guid: 8825020f97bd7df4692cbe94b6b87921, type: 2}
