@@ -241,7 +241,7 @@ public class UIManager : MonoBehaviour
             case NPCType.Elevator:
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
-                frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.npcElevator);
+                frontEndFrame.OpenFrame("BLASTER", "Launch yourself to other checkpoints.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:
                 InventoryPanel.gameObject.SetActive(true);

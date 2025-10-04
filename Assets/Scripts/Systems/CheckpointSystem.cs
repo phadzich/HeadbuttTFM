@@ -21,6 +21,20 @@ public class CheckpointSystem : MonoBehaviour
         checkpointSaveData.SaveNewData(_sublevelInfo);
     }
 
+    public void RestoreToSpecificCheckpoint(int _depth)
+    {
+        PlayerManager.Instance.playerCamera.MoveFogToDepth(_depth);
+
+        //ELIMINAMOS TODO LO DE ABAJO
+        LevelManager.Instance.DestroySublevelsUntilCheckpoint(_depth);
+
+        //AL FINAL, HACEMOS QUE ENTRE AL SUBLEVEL D NUEVO
+        LevelManager.Instance.currentLevelDepth = _depth;
+
+        LevelManager.Instance.EnterSublevel(LevelManager.Instance.sublevelsList[_depth].config);
+        //PlayerManager.Instance.playerCamera.MoveFogToDepth(_depth);
+    }
+
     public void RestoreToLastCheckpoint()
     {
         //PLAYER POSITION

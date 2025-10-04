@@ -98,6 +98,28 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    private void LoadLevelAndCheckpoint(LevelConfig _levelConfig,int _checkpointDepth)
+    {
+
+        //CREAMOS UN GAME OBJECT PARA QUE CONTENGA TODOS LOS SUBNIVELES
+        currentLoadedLevelContainer = CreateEmptyGameobject(_levelConfig.levelName, levelsContainer);
+        Debug.Log($"* Loading Level {_levelConfig.name}*");
+        currentLevel = currentLoadedLevelContainer.AddComponent<Level>();
+        currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
+        SoundManager.PlaySound(AmbientType.LEVELAMBIENT, currentLevel.config.levelAmbient);
+
+        //DETERMINAMOS DATA DEL DEPTH
+        maxLevelDepth = _levelConfig.subLevels.Count - 1;
+        currentLevelDepth = _checkpointDepth;
+        PreloadSublevelsList();
+        //GENERAMOS EL PRIMER SUBNIVEL
+        GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
+        PlayerManager.Instance.EnterNewLevel();
+        //INDICAMOS QUE HEMOS ENTRADO EN EL
+        EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
+
+    }
+
     public void PreloadSublevelsList()
     {
         foreach(SublevelConfig _sublevelConfig in currentLevel.config.subLevels)
@@ -157,6 +179,18 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void ChangeLevelAndCheckpoint(int _levelIndex, int _checkIndex)
+    {
+        PlayerManager.Instance.ShowPlayerMesh(true);
+        UIManager.Instance.ShowNPCKey(false);
+        ExitLevel();
+        UnloadLevel();
+        LoadLevelAndCheckpoint(levelsList[_levelIndex], _checkIndex);
+
+    }
+
+
+
     private void UnloadLevel()
     {
         Destroy(currentLoadedLevelContainer.gameObject);
@@ -190,7 +224,10 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
-        PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
+        int _realWorldDepth = currentLevel.config.subLevels.IndexOf(currentSublevel.config);
+        Debug.Log(currentLevelDepth);
+        Debug.Log(_realWorldDepth);
+        PlayerManager.Instance.playerCamera.MoveFogToDepth(_realWorldDepth);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             if (!onMiningMusic)
