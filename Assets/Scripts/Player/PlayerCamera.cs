@@ -25,7 +25,7 @@ public class PlayerCamera : MonoBehaviour
     public IEnumerator MoveFogNextFrame(int _depth)
     {
         yield return new WaitForSeconds(.1f);
-        Debug.Log("MOVINGFOG");
+
         Tween.PositionY(fogMesh.transform,
   startValue: fogMesh.transform.position.y,
   endValue: (_depth * -LevelManager.Instance.distanceBetweenSublevels),
@@ -35,8 +35,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void MoveFogToDepth(int _depth)
     {
-        Debug.Log("MOVINGFOGTODEPTH");
-        Debug.Log(_depth * -LevelManager.Instance.distanceBetweenSublevels);
+
         StartCoroutine(MoveFogNextFrame(_depth));
         //Debug.Log((_depth * LevelManager.Instance.distanceBetweenSublevels) + playerCamHeight);
     }

@@ -225,8 +225,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
         int _realWorldDepth = currentLevel.config.subLevels.IndexOf(currentSublevel.config);
-        Debug.Log(currentLevelDepth);
-        Debug.Log(_realWorldDepth);
+
         PlayerManager.Instance.playerCamera.MoveFogToDepth(_realWorldDepth);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {

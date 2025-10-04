@@ -77,10 +77,10 @@ public class SettingsManager : MonoBehaviour
     public void SetMasterVolume(float v)
     {
         masterVolume = v;
-        Debug.Log(PlayerPrefs.GetFloat("masterVolume"));
+
         SoundManager.instance.SetVolume("Master", v);
         PlayerPrefs.SetFloat("masterVolume", v);
-        Debug.Log(PlayerPrefs.GetFloat("masterVolume"));
+
     }
     public void SetMusicVolume(float v)
     {
