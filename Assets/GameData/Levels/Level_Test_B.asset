@@ -15,6 +15,16 @@ MonoBehaviour:
   id: 0
   levelName: Level A
   levelDescription: Nivel de testeo
+  maxDepth: 0
+  levelIcon: {fileID: 0}
+  levelColor: {r: 0, g: 0, b: 0, a: 0}
+  levelMusic: {fileID: 0}
+  levelNpcMusic: {fileID: 0}
+  levelAmbient: {fileID: 0}
+  fogHigh: {r: 0, g: 0, b: 0, a: 0}
+  fogLow: {r: 0, g: 0, b: 0, a: 0}
+  wallBase: {r: 0.1509434, g: 0.13475406, b: 0.12958348, a: 1}
+  wallEmission: {r: 0.24056602, g: 0.209204, b: 0.19631094, a: 1}
   subLevels:
   - {fileID: 11400000, guid: ef3f243ded23fd74fb09ecde77643c88, type: 2}
   - {fileID: 11400000, guid: f370d496955e44288a5a684a946cfb47, type: 2}

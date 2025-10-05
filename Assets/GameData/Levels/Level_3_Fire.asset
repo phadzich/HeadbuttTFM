@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   levelName: Road To Hell
   levelDescription: 
-  maxDepth: 0
+  maxDepth: 1
   levelIcon: {fileID: 21300000, guid: 96ed396dc6a97de44aa43b45da68cb95, type: 3}
   levelColor: {r: 0.9686275, g: 0.20784315, b: 0.3254902, a: 1}
   levelMusic: {fileID: 8300000, guid: f28ea46ac66709741aeabc200e784c3a, type: 3}
@@ -23,6 +23,8 @@ MonoBehaviour:
   levelAmbient: {fileID: 8300000, guid: dda1ce123e430454c861d4a5d02d2d31, type: 3}
   fogHigh: {r: 0.2509804, g: 0.05490196, b: 0.08627451, a: 1}
   fogLow: {r: 0.12156863, g: 0.03137255, b: 0.047058824, a: 1}
+  wallBase: {r: 0.09019608, g: 0.02745098, b: 0.039215688, a: 1}
+  wallEmission: {r: 0.03529412, g: 0.003921569, b: 0.007843138, a: 1}
   subLevels:
   - {fileID: 11400000, guid: 71b3cc375b18a0f43bbc75807fbe8aec, type: 2}
   - {fileID: 11400000, guid: f279c9cfacbbcbd47b77e0b693be93b2, type: 2}

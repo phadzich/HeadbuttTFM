@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
 
     public bool NPCLevel = false;
     [SerializeField] private Material fogMaterial;
+    [SerializeField] private Material wallMaterial;
 
     public Action<Sublevel> onSublevelEntered;
 
@@ -86,6 +87,15 @@ private void ChangeFogColor()
         UnityEngine.Color _low = currentLevel.config.fogLow;
         fogMaterial.SetColor("_Color_High", _high);
         fogMaterial.SetColor("_Color_Low", _low);
+        ChangeWallColor();
+    }
+
+    private void ChangeWallColor()
+    {
+        UnityEngine.Color _base = currentLevel.config.fogHigh;
+        UnityEngine.Color _emision = currentLevel.config.fogLow;
+        wallMaterial.SetColor("_BaseColor", currentLevel.config.wallBase);
+        wallMaterial.SetColor("_EmissionColor", currentLevel.config.wallEmission);
     }
 
     private void UpdateFogSpeed()

@@ -21,5 +21,8 @@ public class LevelConfig : ScriptableObject
     public Color fogHigh;
     public Color fogLow;
 
+    public Color wallBase;
+    public Color wallEmission;
+
     [SerializeField] public List<SublevelConfig> subLevels;
 }

@@ -23,6 +23,8 @@ MonoBehaviour:
   levelAmbient: {fileID: 0}
   fogHigh: {r: 0.13203098, g: 0.3254717, b: 0.14221208, a: 1}
   fogLow: {r: 0.04983981, g: 0.13207549, b: 0.0532663, a: 1}
+  wallBase: {r: 0.03529412, g: 0.105882354, b: 0.043137256, a: 1}
+  wallEmission: {r: 0.007843138, g: 0.03137255, b: 0.007843138, a: 1}
   subLevels:
   - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
   - {fileID: 11400000, guid: d80363ffc8889494999752fcbec75d1d, type: 2}
