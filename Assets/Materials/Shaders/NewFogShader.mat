@@ -53,7 +53,7 @@ Material:
     - _Noise_Scale: 30
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0.03909091
+    - _Speed: 0.005
     - _SrcBlend: 5
     - _Surface: 1
     - _Transparency: 2.38
