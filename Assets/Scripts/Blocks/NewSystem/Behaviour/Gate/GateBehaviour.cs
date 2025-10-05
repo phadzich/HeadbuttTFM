@@ -1,3 +1,4 @@
+using PrimeTween;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     public ListRequirementsUI gateReqsUI;
     private List<IRequirement> myReqs = new();
     private Dictionary<IRequirement, Action<int, int>> handlers = new();
+
+    public GameObject leds;
+    public GameObject lightObject;
+    public Material openMat;
+    public ParticleSystem openParticles;
 
     private int gateID;
 
@@ -97,9 +103,18 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     {
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcElevator, "A <b>GATE</b> has opened somewhere!");
         GetComponent<BlockNS>().isWalkable = true;
-        gatesMesh.SetActive(false);
+        AnimateSpearsDown();
         gateReqsUI.gameObject.SetActive(false);
+        openParticles.Play();
+        leds.GetComponent<MeshRenderer>().material = openMat;
+        
+}
+
+    private void AnimateSpearsDown()
+    {
+        Tween.PositionY(gatesMesh.transform, endValue: -1f, duration: 1.5f, ease: Ease.OutBack).OnComplete(() =>lightObject.SetActive(false));
     }
+
     public void OnBounced(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
