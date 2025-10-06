@@ -11,6 +11,7 @@ public class PlayerAnimations : MonoBehaviour
     public float headbuttSquashDuration = 1f;
     public float bounceSquashRatio = .3f;
     public float bounceSquashDuration = .3f;
+    
 
     public void RotateBody(float _degrees)
     {
@@ -26,7 +27,7 @@ public class PlayerAnimations : MonoBehaviour
         var endRotation = new Vector3(0, 0, 0);
         Tween.Scale(bodyMesh.transform, startValue: startScale, endValue: endScale, duration: headbuttSquashDuration, ease: Ease.OutBack);
         //Tween.Rotation(bodyMesh.transform, startValue: startRotation, endValue: endRotation, duration: 2f, ease: Ease.InOutExpo).OnComplete(() => RotateBody(180));
-        Tween.EulerAngles(bodyMesh.transform, startValue: startRotation, endValue: new Vector3(+180, 0,0), duration: 2);
+        //Tween.EulerAngles(bodyMesh.transform, startValue: startRotation, endValue: new Vector3(+180, 0,0), duration: 2);
     }
 
     public void BounceSS()
