@@ -21,6 +21,10 @@ public class PlayerStates : MonoBehaviour
 
     private Coroutine deathCoroutine = null;
 
+    //AL:Variable Animator
+
+    public Animator playerAnim;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,11 +42,22 @@ public class PlayerStates : MonoBehaviour
         switch (currentMainState)
         {
             case PlayerMainStateEnum.Idle:
+                
                 canMove = true;
                 canBounce = false;
                 canHeadbutt = false;
                 canReceiveDamage = false;
-                interruptHeadbutt = false;
+                interruptHeadbutt = false; 
+
+                //AL
+                playerAnim.SetBool("isFalling", false); 
+                playerAnim.SetBool("isBouncing", false); 
+                playerAnim.SetBool("isHeadbuttUsed", false);
+                playerAnim.SetBool("isFalling", false);
+                playerAnim.SetBool("isHurt", false); 
+
+                //AL
+                playerAnim.SetBool("isWalking", true);      
 
                 break;
 
@@ -54,6 +69,16 @@ public class PlayerStates : MonoBehaviour
                 interruptHeadbutt = true;
                 bounceAfterStunPending = true;
 
+                //AL
+                playerAnim.SetBool("isWalking", false); 
+                playerAnim.SetBool("isBouncing", false); 
+                playerAnim.SetBool("isHeadbuttUsed", false);
+                playerAnim.SetBool("isFalling", false);
+                playerAnim.SetBool("isHurt", false); 
+
+                //AL
+                playerAnim.SetBool("isStunned",true);  
+
                 break;
 
             case PlayerMainStateEnum.FallingIntoMINE:
@@ -63,6 +88,16 @@ public class PlayerStates : MonoBehaviour
                 onMiningLvl = true;
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
+
+                //AL
+                playerAnim.SetBool("isWalking", false); 
+                playerAnim.SetBool("isBouncing", false); 
+                playerAnim.SetBool("isHeadbuttUsed", false);
+                playerAnim.SetBool("isStunned", false);
+                playerAnim.SetBool("isHurt", false); 
+
+                //AL
+                playerAnim.SetBool("isFalling", true);                
 
                 break;
 
@@ -74,6 +109,16 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
 
+                //AL
+                playerAnim.SetBool("isWalking", false); 
+                playerAnim.SetBool("isBouncing", false);
+                playerAnim.SetBool("isHeadbuttUsed", false);
+                playerAnim.SetBool("isStunned", false);
+                playerAnim.SetBool("isHurt", false); 
+
+                //AL
+                playerAnim.SetBool("isFalling", true);
+
                 break;
 
             case PlayerMainStateEnum.Bouncing:
@@ -82,6 +127,14 @@ public class PlayerStates : MonoBehaviour
                 canHeadbutt = true;
                 canReceiveDamage = true;
                 interruptHeadbutt = false;
+                //AL
+                playerAnim.SetBool("isWalking", false); 
+                playerAnim.SetBool("isFalling", false);
+                playerAnim.SetBool("isHeadbuttUsed", false);
+                playerAnim.SetBool("isStunned", false);
+                playerAnim.SetBool("isHurt", false); 
+                //AL
+                playerAnim.SetBool("isBouncing", true);
 
                 //animator.Play("Bouncing");
                 break;
@@ -99,7 +152,16 @@ public class PlayerStates : MonoBehaviour
                     RemoveEffect(PlayerEffectStateEnum.Stunned);
                 }
 
-                //animator.Play("Headbutt");
+                //AL
+                playerAnim.SetBool("isWalking", false); 
+                playerAnim.SetBool("isBouncing", false);
+                playerAnim.SetBool("isFalling", false);
+                playerAnim.SetBool("isStunned", false);
+                playerAnim.SetBool("isHurt", false); 
+
+                //AL
+                playerAnim.SetBool("isHeadbuttUsed",true);       
+
                 break;
 
             case PlayerMainStateEnum.Walk:
@@ -109,8 +171,16 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
 
-                // caminar sin saltar
-                //animator.Play("Walk");
+                //AL
+                playerAnim.SetBool("isFalling", false); 
+                playerAnim.SetBool("isBouncing", false); 
+                playerAnim.SetBool("isHeadbuttUsed", false);
+                playerAnim.SetBool("isFalling", false);
+                playerAnim.SetBool("isHurt", false); 
+
+                //AL
+                playerAnim.SetBool("isWalking", true);    
+                
                 break;
 
             case PlayerMainStateEnum.Dead:
@@ -120,7 +190,8 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = true;
 
-                //ANIMACION
+                //AL
+                playerAnim.SetBool("isDead", true);
 
                 if (deathCoroutine == null)
                 {
