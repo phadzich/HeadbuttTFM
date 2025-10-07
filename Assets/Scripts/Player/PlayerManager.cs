@@ -69,6 +69,9 @@ public class PlayerManager : MonoBehaviour
         currentPlayerLives -= _amount;
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
         playerEmojis.DamagedEmoji();
+        playerAnimations.PlayDamageReaction();
+
+
         if (currentPlayerLives <= 0)
         {
             playerStates.ChangeState(PlayerMainStateEnum.Dead);
@@ -113,5 +116,3 @@ public class PlayerManager : MonoBehaviour
         playerMovement.RespawnPlayer();
     }
 }
-
-

@@ -21,10 +21,6 @@ public class PlayerStates : MonoBehaviour
 
     private Coroutine deathCoroutine = null;
 
-    //AL:Variable Animator
-
-    public Animator playerAnim;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,16 +45,7 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = false; 
 
-                //AL
-                playerAnim.SetBool("isFalling", false); 
-                playerAnim.SetBool("isBouncing", false); 
-                playerAnim.SetBool("isHeadbuttUsed", false);
-                playerAnim.SetBool("isFalling", false);
-                playerAnim.SetBool("isHurt", false); 
-
-                //AL
-                playerAnim.SetBool("isWalking", true);      
-
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.Idle);
                 break;
 
             case PlayerMainStateEnum.Disabled:
@@ -69,16 +56,7 @@ public class PlayerStates : MonoBehaviour
                 interruptHeadbutt = true;
                 bounceAfterStunPending = true;
 
-                //AL
-                playerAnim.SetBool("isWalking", false); 
-                playerAnim.SetBool("isBouncing", false); 
-                playerAnim.SetBool("isHeadbuttUsed", false);
-                playerAnim.SetBool("isFalling", false);
-                playerAnim.SetBool("isHurt", false); 
-
-                //AL
-                playerAnim.SetBool("isStunned",true);  
-
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.Disabled);
                 break;
 
             case PlayerMainStateEnum.FallingIntoMINE:
@@ -89,16 +67,7 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
 
-                //AL
-                playerAnim.SetBool("isWalking", false); 
-                playerAnim.SetBool("isBouncing", false); 
-                playerAnim.SetBool("isHeadbuttUsed", false);
-                playerAnim.SetBool("isStunned", false);
-                playerAnim.SetBool("isHurt", false); 
-
-                //AL
-                playerAnim.SetBool("isFalling", true);                
-
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.FallingIntoMINE);
                 break;
 
             case PlayerMainStateEnum.FallingIntoNPC:
@@ -109,16 +78,7 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
 
-                //AL
-                playerAnim.SetBool("isWalking", false); 
-                playerAnim.SetBool("isBouncing", false);
-                playerAnim.SetBool("isHeadbuttUsed", false);
-                playerAnim.SetBool("isStunned", false);
-                playerAnim.SetBool("isHurt", false); 
-
-                //AL
-                playerAnim.SetBool("isFalling", true);
-
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.FallingIntoNPC);
                 break;
 
             case PlayerMainStateEnum.Bouncing:
@@ -127,16 +87,8 @@ public class PlayerStates : MonoBehaviour
                 canHeadbutt = true;
                 canReceiveDamage = true;
                 interruptHeadbutt = false;
-                //AL
-                playerAnim.SetBool("isWalking", false); 
-                playerAnim.SetBool("isFalling", false);
-                playerAnim.SetBool("isHeadbuttUsed", false);
-                playerAnim.SetBool("isStunned", false);
-                playerAnim.SetBool("isHurt", false); 
-                //AL
-                playerAnim.SetBool("isBouncing", true);
 
-                //animator.Play("Bouncing");
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.Bouncing);
                 break;
 
             case PlayerMainStateEnum.Headbutt:
@@ -152,16 +104,7 @@ public class PlayerStates : MonoBehaviour
                     RemoveEffect(PlayerEffectStateEnum.Stunned);
                 }
 
-                //AL
-                playerAnim.SetBool("isWalking", false); 
-                playerAnim.SetBool("isBouncing", false);
-                playerAnim.SetBool("isFalling", false);
-                playerAnim.SetBool("isStunned", false);
-                playerAnim.SetBool("isHurt", false); 
-
-                //AL
-                playerAnim.SetBool("isHeadbuttUsed",true);       
-
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.Headbutt);
                 break;
 
             case PlayerMainStateEnum.Walk:
@@ -171,16 +114,7 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = false;
 
-                //AL
-                playerAnim.SetBool("isFalling", false); 
-                playerAnim.SetBool("isBouncing", false); 
-                playerAnim.SetBool("isHeadbuttUsed", false);
-                playerAnim.SetBool("isFalling", false);
-                playerAnim.SetBool("isHurt", false); 
-
-                //AL
-                playerAnim.SetBool("isWalking", true);    
-                
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.Walk);
                 break;
 
             case PlayerMainStateEnum.Dead:
@@ -190,9 +124,7 @@ public class PlayerStates : MonoBehaviour
                 canReceiveDamage = false;
                 interruptHeadbutt = true;
 
-                //AL
-                playerAnim.SetBool("isDead", true);
-
+                PlayerManager.Instance.playerAnimations.PlayStateAnimation(PlayerMainStateEnum.Dead);
                 if (deathCoroutine == null)
                 {
                     deathCoroutine = StartCoroutine(StartGameOverSequence(2f));
@@ -292,7 +224,4 @@ public class PlayerStates : MonoBehaviour
     {
         return currentMainState == _state;
     }
-
-
-
 }
