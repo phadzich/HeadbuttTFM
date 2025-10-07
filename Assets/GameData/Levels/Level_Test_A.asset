@@ -13,28 +13,35 @@ MonoBehaviour:
   m_Name: Level_Test_A
   m_EditorClassIdentifier: 
   id: 1
-  levelName: Level1
+  levelName: Bipolar Fields
   levelDescription: Primer nivel del juego
+  maxDepth: 0
+  levelIcon: {fileID: 21300000, guid: 99da47591c746e34d9097ab605125e70, type: 3}
+  levelColor: {r: 0.96470594, g: 0.8470589, b: 0.16862746, a: 1}
+  levelMusic: {fileID: 0}
+  levelNpcMusic: {fileID: 0}
+  levelAmbient: {fileID: 0}
+  fogHigh: {r: 0, g: 0, b: 0, a: 0}
+  fogLow: {r: 0, g: 0, b: 0, a: 0}
+  wallBase: {r: 0.1509434, g: 0.13475406, b: 0.12958348, a: 1}
+  wallEmission: {r: 0.24056602, g: 0.209204, b: 0.19631094, a: 1}
   subLevels:
-  - {fileID: 11400000, guid: 5ad0d969ad676f94192e275b5610602e, type: 2}
+  - {fileID: 11400000, guid: ef3f243ded23fd74fb09ecde77643c88, type: 2}
   - {fileID: 11400000, guid: 8825020f97bd7df4692cbe94b6b87921, type: 2}
   - {fileID: 11400000, guid: 2454157efffa4944982e3dd1e3ef77e1, type: 2}
   - {fileID: 11400000, guid: 2167d96f9cba3684985988bd7575df4a, type: 2}
+  - {fileID: 11400000, guid: a09dcc1efbe44c94fa0b7adf0e173880, type: 2}
   - {fileID: 11400000, guid: 48c4df10035304b4db96e4e7a129ca5b, type: 2}
   - {fileID: 11400000, guid: 1e2b13c756e1ede47aa2d3fd7d274472, type: 2}
-  - {fileID: 11400000, guid: a09dcc1efbe44c94fa0b7adf0e173880, type: 2}
   - {fileID: 11400000, guid: d1e2d1b0632c8074e8e64bc775a5572a, type: 2}
+  - {fileID: 11400000, guid: b94dfb521d56d9543a2af7ca7c687d80, type: 2}
   - {fileID: 11400000, guid: d10537c0dac93804597066be0334082f, type: 2}
   - {fileID: 11400000, guid: 4681b94fdc8265f4b89d24612f9e2ddd, type: 2}
   - {fileID: 11400000, guid: 3572ab5b5a2cef34db1bbad27dee6a8c, type: 2}
+  - {fileID: 11400000, guid: d981c866662619c4297cdb06fa42ccd4, type: 2}
   - {fileID: 11400000, guid: 492731b3b5350d649bdbb3076307d7d4, type: 2}
-  - {fileID: 11400000, guid: b94dfb521d56d9543a2af7ca7c687d80, type: 2}
   - {fileID: 11400000, guid: 2de818ac6afe9a04baa82add3534ba9c, type: 2}
   - {fileID: 11400000, guid: 5dfc3883fa595ef46860e35d42ec932f, type: 2}
+  - {fileID: 11400000, guid: 5ad0d969ad676f94192e275b5610602e, type: 2}
   - {fileID: 11400000, guid: e69befc1cbc4342478974072486651c2, type: 2}
   - {fileID: 11400000, guid: 98cb3791dec78f449a981e0a1ea62329, type: 2}
-  - {fileID: 11400000, guid: b9cfb9e2d979ea14bab416071f36ef34, type: 2}
-  - {fileID: 11400000, guid: d981c866662619c4297cdb06fa42ccd4, type: 2}
-  - {fileID: 11400000, guid: a3189ab46ad829d40b1d5be5686a4cb1, type: 2}
-  - {fileID: 11400000, guid: e264561c74f0f7b44aba713f68895960, type: 2}
-  - {fileID: 11400000, guid: 5ad0d969ad676f94192e275b5610602e, type: 2}

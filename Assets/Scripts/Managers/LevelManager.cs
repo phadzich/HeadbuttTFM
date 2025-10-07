@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
     public List<LevelConfig> levelsList;
     public SublevelMapNewGenerator sublevelMapNewGenerator;
 
+    public LoadingManager loadingManager;
+
     [Header("CURRENT LEVEL")]
     public MapContext currentContext;
     private List<ISublevelObjective> activeObjectives;
@@ -44,7 +46,8 @@ public class LevelManager : MonoBehaviour
     public float distanceBetweenSublevels;
 
     public bool NPCLevel = false;
-
+    [SerializeField] private Material fogMaterial;
+    [SerializeField] private Material wallMaterial;
 
     public Action<Sublevel> onSublevelEntered;
 
@@ -76,6 +79,32 @@ public class LevelManager : MonoBehaviour
     {
         ChangeLevel(0);
     }
+
+private void ChangeFogColor()
+    {
+        Debug.Log("FOGDHADE");
+        UnityEngine.Color _high = currentLevel.config.fogHigh;
+        UnityEngine.Color _low = currentLevel.config.fogLow;
+        fogMaterial.SetColor("_Color_High", _high);
+        fogMaterial.SetColor("_Color_Low", _low);
+        ChangeWallColor();
+    }
+
+    private void ChangeWallColor()
+    {
+        UnityEngine.Color _base = currentLevel.config.fogHigh;
+        UnityEngine.Color _emision = currentLevel.config.fogLow;
+        wallMaterial.SetColor("_BaseColor", currentLevel.config.wallBase);
+        wallMaterial.SetColor("_EmissionColor", currentLevel.config.wallEmission);
+    }
+
+    private void UpdateFogSpeed()
+    {
+        float t = (float)currentLevelDepth / Mathf.Max(1, (float)LevelTotalDepth(currentLevel.config)); // Normaliza entre 0 y 1
+        float fogSpeed = Mathf.Lerp(0.005f, 0.08f, t); // 🔹 Va de 0.01 → 0.1
+
+        fogMaterial.SetFloat("_Speed", fogSpeed);
+    }
     private void LoadLevel(LevelConfig _levelConfig)
     {
 
@@ -85,10 +114,32 @@ public class LevelManager : MonoBehaviour
         currentLevel = currentLoadedLevelContainer.AddComponent<Level>();
         currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
         SoundManager.PlaySound(AmbientType.LEVEL_AMBIENT, currentLevel.config.levelAmbient);
-
+        ChangeFogColor();
         //DETERMINAMOS DATA DEL DEPTH
         maxLevelDepth = _levelConfig.subLevels.Count - 1;
         currentLevelDepth = 0;
+        PreloadSublevelsList();
+        //GENERAMOS EL PRIMER SUBNIVEL
+        GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
+        PlayerManager.Instance.EnterNewLevel();
+        //INDICAMOS QUE HEMOS ENTRADO EN EL
+        EnterSublevel(_levelConfig.subLevels[currentLevelDepth]);
+
+    }
+
+    private void LoadLevelAndCheckpoint(LevelConfig _levelConfig,int _checkpointDepth)
+    {
+
+        //CREAMOS UN GAME OBJECT PARA QUE CONTENGA TODOS LOS SUBNIVELES
+        currentLoadedLevelContainer = CreateEmptyGameobject(_levelConfig.levelName, levelsContainer);
+        Debug.Log($"* Loading Level {_levelConfig.name}*");
+        currentLevel = currentLoadedLevelContainer.AddComponent<Level>();
+        currentLevel.SetupLevel(_levelConfig.name, _levelConfig);
+        SoundManager.PlaySound(AmbientType.LEVEL_AMBIENT, currentLevel.config.levelAmbient);
+        ChangeFogColor();
+        //DETERMINAMOS DATA DEL DEPTH
+        maxLevelDepth = _levelConfig.subLevels.Count - 1;
+        currentLevelDepth = _checkpointDepth;
         PreloadSublevelsList();
         //GENERAMOS EL PRIMER SUBNIVEL
         GenerateSublevel(_levelConfig.subLevels[currentLevelDepth], currentLevelDepth);
@@ -149,13 +200,29 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeLevel(int _levelIndex)
     {
-        PlayerManager.Instance.ShowPlayerMesh(true);
+        loadingManager.LoadLevelCoroutine(() =>
+        {
+            PlayerManager.Instance.ShowPlayerMesh(true);
+            UIManager.Instance.ShowNPCKey(false);
+            ExitLevel();
+            UnloadLevel();
+            LoadLevel(levelsList[_levelIndex]);
+        });
+    }
+
+    public void ChangeLevelAndCheckpoint(int _levelIndex, int _checkIndex)
+    {
+        loadingManager.LoadLevelCoroutine(() =>
+        {
+            PlayerManager.Instance.ShowPlayerMesh(true);
         UIManager.Instance.ShowNPCKey(false);
         ExitLevel();
         UnloadLevel();
-        LoadLevel(levelsList[_levelIndex]);
-
+        LoadLevelAndCheckpoint(levelsList[_levelIndex], _checkIndex);
+        });
     }
+
+
 
     private void UnloadLevel()
     {
@@ -187,10 +254,12 @@ public class LevelManager : MonoBehaviour
     public void EnterSublevel(SublevelConfig _sublevelConfig)
     {
         currentSublevel = sublevelsList[currentLevelDepth];
-
+        UpdateFogSpeed();
         Debug.Log($"Entering {currentSublevel}");
         onSublevelEntered?.Invoke(currentSublevel);
-        PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
+        int _realWorldDepth = currentLevel.config.subLevels.IndexOf(currentSublevel.config);
+
+        PlayerManager.Instance.playerCamera.MoveFogToDepth(_realWorldDepth);
         if (_sublevelConfig is MiningSublevelConfig _miningSublevel)
         {
             if (!onMiningMusic)

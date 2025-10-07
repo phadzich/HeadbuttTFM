@@ -1,4 +1,5 @@
 using PrimeTween;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void MoveFogDown(int _count)
     {
-
+        Debug.Log("MOVINGFOGDOWN");
         Tween.PositionY(fogMesh.transform,
     startValue: fogMesh.transform.position.y,
     endValue: (_count * -LevelManager.Instance.distanceBetweenSublevels),
@@ -21,14 +22,24 @@ public class PlayerCamera : MonoBehaviour
     ease: Ease.InOutQuad);
     }
 
+    public IEnumerator MoveFogNextFrame(int _depth)
+    {
+        yield return new WaitForSeconds(.1f);
+
+        Tween.PositionY(fogMesh.transform,
+  startValue: fogMesh.transform.position.y,
+  endValue: (_depth * -LevelManager.Instance.distanceBetweenSublevels),
+  duration: moveUpDuration,
+  ease: Ease.InOutQuad);
+    }
+
     public void MoveFogToDepth(int _depth)
     {
 
-        Tween.PositionY(fogMesh.transform,
-    startValue: fogMesh.transform.position.y,
-    endValue: (_depth * -LevelManager.Instance.distanceBetweenSublevels),
-    duration: moveUpDuration,
-    ease: Ease.InOutQuad);
+        StartCoroutine(MoveFogNextFrame(_depth));
         //Debug.Log((_depth * LevelManager.Instance.distanceBetweenSublevels) + playerCamHeight);
     }
+
+    
+
 }

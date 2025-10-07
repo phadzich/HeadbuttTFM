@@ -17,6 +17,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public bool isDoor;
     public bool isMined;
     public bool isSelected;
+    public bool isOut;
 
     [Header("COMPATIBILIDAD")]
     public int helmetPowerMultiplier;
@@ -39,11 +40,22 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public ResourceDropFollow resourceDropPrefab;
     public HeadbuttDropFollow hbDropPrefab;
     public ResourceBlockUIAnims uiAnims;
+    public Vector3 rotationSpeed = new Vector3(0f, 120f, 0f);
 
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
+
+
+
+    void Update()
+    {
+        if (!isOut) return;
+        resourceContainer.transform.Rotate(rotationSpeed * Time.deltaTime, Space.Self);
+    }
+
+
 
     public void SetupBlock(MapContext _context, ResourceData _resource)
     {
@@ -196,14 +208,17 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     void AnimateBounced()
     {
         Tween.Scale(blockMesh.transform, startValue: new Vector3(1.2f, .8f, 1.2f), endValue: new Vector3(1, 1, 1), duration: .5f, ease: Ease.OutBack);
+        isOut = true;
     }
 
     public void AnimateFailed()
     {
         StartCoroutine(uiAnims.FlashBlock(blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material, Color.red)); // o Color.red
+        isOut = false;
     }
     public void AnimateMined()
     {
         StartCoroutine(uiAnims.FlashBlock(blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material, Color.white)); // o Color.red
+        isOut = false;
     }
 }

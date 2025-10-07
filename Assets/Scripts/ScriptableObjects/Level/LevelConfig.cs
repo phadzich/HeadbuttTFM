@@ -18,5 +18,11 @@ public class LevelConfig : ScriptableObject
     public AudioClip levelNpcMusic;
     public AudioClip levelAmbient;
 
+    public Color fogHigh;
+    public Color fogLow;
+
+    public Color wallBase;
+    public Color wallEmission;
+
     [SerializeField] public List<SublevelConfig> subLevels;
 }

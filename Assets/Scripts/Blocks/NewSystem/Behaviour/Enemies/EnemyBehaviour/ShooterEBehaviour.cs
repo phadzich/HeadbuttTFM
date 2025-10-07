@@ -1,3 +1,4 @@
+using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
     public Transform axis;
     public GameObject projectilePrefab;
+    public Transform bodyMesh;
 
     public float shootingInterval;
 
@@ -15,6 +17,11 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
 
     public int projectileCount;
     public float projectileSpeed;
+
+    [Header("Animación")]
+    [SerializeField] float scaleAmount = .2f;
+    [SerializeField] float duration = 1.2f;       
+    [SerializeField] Ease ease = Ease.InOutSine;
 
     [SerializeField] private ShootingMode shootingMode;
     [SerializeField] private ShootingDirection direction;
@@ -97,8 +104,22 @@ public class ShooterEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactiv
                 SpawnProjectile(dir);
             }
         }
+        ShootAnimation();
 
         StartCoroutine(StartTimer());
+    }
+
+    private void ShootAnimation()
+    {
+
+        Vector3 baseScale = bodyMesh.localScale;
+        Vector3 targetScale = new Vector3(
+    baseScale.x + scaleAmount,
+    baseScale.y - scaleAmount,
+    baseScale.z + scaleAmount
+);
+        Tween.Scale(bodyMesh, startValue: targetScale, endValue: Vector3.one, duration: duration, ease: ease);
+
     }
 
     private void SpawnProjectile(Vector3 dir)

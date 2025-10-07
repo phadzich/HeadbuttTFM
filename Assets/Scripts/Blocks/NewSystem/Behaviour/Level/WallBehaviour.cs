@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BlockNS))]
@@ -14,6 +15,8 @@ public class WallBehaviour : MonoBehaviour, IBlockBehaviour
     void Start()
     {
         GetComponent<BlockNS>().isWalkable = false;
+        Quaternion randomYRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+        transform.rotation = randomYRotation;
     }
 
     public void StartBehaviour()

@@ -77,10 +77,10 @@ public class SettingsManager : MonoBehaviour
     public void SetMasterVolume(float v)
     {
         masterVolume = v;
-        Debug.Log(PlayerPrefs.GetFloat("masterVolume"));
+
         SoundManager.instance.SetVolume("Master", v);
         PlayerPrefs.SetFloat("masterVolume", v);
-        Debug.Log(PlayerPrefs.GetFloat("masterVolume"));
+
     }
     public void SetMusicVolume(float v)
     {
@@ -258,7 +258,7 @@ public class SettingsManager : MonoBehaviour
         UiVolume = PlayerPrefs.GetFloat("uiVolume", 1f);
 
         resolutionIndex = PlayerPrefs.GetInt("resolutionIndex", 0);
-        qualityIndex = PlayerPrefs.GetInt("qualityIndex", 0);
+        qualityIndex = PlayerPrefs.GetInt("qualityIndex", 2);
         fullscreen = PlayerPrefs.GetInt("fullscreen", 1);
         brightness = PlayerPrefs.GetFloat("brightness", 0);
         contrast = PlayerPrefs.GetFloat("contrast", 0);

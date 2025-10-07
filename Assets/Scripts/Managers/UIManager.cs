@@ -243,7 +243,7 @@ public class UIManager : MonoBehaviour
                 SoundManager.PlaySound(UIType.OPEN_ELEVATOR);
                 NPCElevatorPanel.SetActive(true);
                 currentOpenUI = NPCElevatorPanel.gameObject;
-                frontEndFrame.OpenFrame("ELEVATOR", "Return to the hub.", UIManager.Instance.iconsLibrary.npcElevator);
+                frontEndFrame.OpenFrame("BLASTER", "Launch yourself to other checkpoints.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:
                 SoundManager.PlaySound(UIType.OPEN_CHEST);
