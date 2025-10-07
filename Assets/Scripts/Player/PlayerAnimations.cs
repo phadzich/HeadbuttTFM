@@ -13,10 +13,12 @@ public class PlayerAnimations : MonoBehaviour
     public float bounceSquashRatio = .3f;
     public float bounceSquashDuration = .3f;
 
-    public Animator animator;
+    public Animator animatorPlayer, faceAnimator;
     void Start()
     {
-        animator.SetLayerWeight(animator.GetLayerIndex("OverlayDamage"), 1f);
+        animatorPlayer.SetLayerWeight(animatorPlayer.GetLayerIndex("OverlayDamage"), 1f);
+
+        faceAnimator.SetLayerWeight(faceAnimator.GetLayerIndex("OverlayDamage"), 1f);
     }
     public void RotateBody(float _degrees)
     {
@@ -50,35 +52,52 @@ public class PlayerAnimations : MonoBehaviour
         switch (state)
         {
             case PlayerMainStateEnum.Idle:
-                animator.SetBool("isWalking", true);
+                animatorPlayer.SetBool("isWalking", true);
+
+                faceAnimator.SetBool("isWalking", true);
                 break;
             case PlayerMainStateEnum.Walk:
-                animator.SetBool("isWalking", true);
+                animatorPlayer.SetBool("isWalking", true);
+
+                faceAnimator.SetBool("isWalking", true);
                 break;
 
             case PlayerMainStateEnum.Disabled:
-                animator.SetBool("isStunned", true);
+                animatorPlayer.SetBool("isStunned", true);
+
+                faceAnimator.SetBool("isStunned", true);
                 break;
 
             case PlayerMainStateEnum.FallingIntoMINE:
-                animator.SetBool("isFalling", true);
+                animatorPlayer.SetBool("isFalling", true);
+
+                faceAnimator.SetBool("isFalling", true);
                 break;
 
             case PlayerMainStateEnum.FallingIntoNPC:
-                animator.SetBool("isFalling", true);
+                animatorPlayer.SetBool("isFalling", true);
+
+                faceAnimator.SetBool("isFalling", true);
                 break;
 
             case PlayerMainStateEnum.Bouncing:
-                animator.SetBool("isBouncing", true);
+                animatorPlayer.SetBool("isBouncing", true);
+
+                faceAnimator.SetBool("isBouncing", true);
                 break;
 
             case PlayerMainStateEnum.Headbutt:
-                animator.ResetTrigger("isHeadbuttUsed");
-                animator.SetTrigger("isHeadbuttUsed");
+                /*animatorPlayer.ResetTrigger("isHeadbuttUsed");
+                faceAnimator.ResetTrigger("isHeadbuttUsed");
+
+                animatorPlayer.SetTrigger("isHeadbuttUsed");                
+                faceAnimator.SetTrigger("isHeadbuttUsed");*/
                 break;
 
             case PlayerMainStateEnum.Dead:
-                animator.SetBool("isDead", true);
+                animatorPlayer.SetBool("isDead", true);
+
+                faceAnimator.SetBool("isDead", true);
                 break;
         }
     }
@@ -86,11 +105,13 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (isLeftStep)
         {
-            animator.Play("StepLeft", 0, 0f); // Fuerza la animación desde el inicio
+            animatorPlayer.Play("StepLeft", 0, 0f); // Fuerza la animación desde el inicio
+
         }
         else
         {
-            animator.Play("StepRight", 0, 0f);
+            animatorPlayer.Play("StepRight", 0, 0f);
+
         }
 
         // Alterna para la próxima llamada
@@ -98,20 +119,31 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void PlayHeadbuttAnimation()
     {
-        animator.Play("HeadbuttAnimation", -1, 0f); // Cambia "HeadbuttAnimation" por el nombre real de tu animación de headbutt
-        animator.SetTrigger("isHeadbuttUsed");
+        animatorPlayer.Play("HeadbuttAnimation", -1, 0f);
+        //animatorPlayer.SetTrigger("isHeadbuttUsed");
+
+        faceAnimator.Play("HeadbuttFaceAnimation", -1, 0f);
+        //faceAnimator.SetTrigger("isHeadbuttUsed");
     }
     public void PlayDamageReaction()
     {
         print("Joma got hurt!");
-        animator.SetTrigger("isHurt");
-    }    
+        animatorPlayer.SetTrigger("isHurt");
+
+        faceAnimator.SetTrigger("isFaceHurt");
+    }
     private void ResetAllAnimationBools()
     {
-        animator.SetBool("isWalking", false);
-        animator.SetBool("isBouncing", false);
-        animator.SetBool("isStunned", false);
-        animator.SetBool("isFalling", false);
-        animator.SetBool("isDead", false);
+        animatorPlayer.SetBool("isWalking", false);
+        animatorPlayer.SetBool("isBouncing", false);
+        animatorPlayer.SetBool("isStunned", false);
+        animatorPlayer.SetBool("isFalling", false);
+        animatorPlayer.SetBool("isDead", false);
+
+        faceAnimator.SetBool("isWalking", false);
+        faceAnimator.SetBool("isBouncing", false);
+        faceAnimator.SetBool("isStunned", false);
+        faceAnimator.SetBool("isFalling", false);
+        faceAnimator.SetBool("isDead", false);        
     }
 }
