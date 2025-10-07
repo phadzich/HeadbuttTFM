@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerEmojis playerEmojis;
     public PlayerHeadbutt playerHeadbutt;
     public PlayerEffects playerEffects;
+    public GroundAnimations groundAnimations;
 
     public int maxPlayerLives;
     public int currentPlayerLives;
