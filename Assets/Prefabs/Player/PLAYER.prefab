@@ -292,6 +292,7 @@ MonoBehaviour:
   damageTakenIndicator: {fileID: 148245051655074775}
   shieldPrefab: {fileID: 4629038668093464048, guid: 3681f4cad213444c087b4fb1a9cc3128, type: 3}
   activeShield: {fileID: 0}
+  bodyMesh: {fileID: 0}
 --- !u!114 &5322509496473572572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,7 +1359,7 @@ MonoBehaviour:
   failedSprite: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
   completeSprite: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
   damageSprite: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-  stunnedSprite: {fileID: 21300000, guid: 9ec8593ee04090643ad2ef4cfc504738, type: 3}
+  stunnedSprite: {fileID: 21300000, guid: 3829dfb55ec44504ebbe7f1af3a4b7d2, type: 3}
   emojiImage: {fileID: 8429106019622846002}
 --- !u!1 &5761004116697712909
 GameObject:
