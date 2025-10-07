@@ -24,6 +24,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject shieldPrefab;
     public GameObject activeShield;
 
+    public GameObject bodyMesh;
+
     private void Awake()
     {
         if (Instance == null)
@@ -96,7 +98,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ShowPlayerMesh(bool _value)
     {
-        playerStates.gameObject.SetActive(_value);
+        bodyMesh.SetActive(_value);
     }
 
     public void EnterNPCLevel()
