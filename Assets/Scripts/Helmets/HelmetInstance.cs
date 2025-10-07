@@ -80,14 +80,16 @@ public class HelmetInstance: IElemental
             currentDurability-=_amount;
 
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
+        PlayerManager.Instance.playerAnimations.PlayDamageReaction();
+
             if (IsWornOut)
-            {
+        {
             PlayerManager.Instance.RemovePlayerLives(1);
-                if (HelmetManager.Instance.HasHelmetsLeft)
-                {
-                    HelmetManager.Instance.WearNextAvailableHelmet();
-                }
+            if (HelmetManager.Instance.HasHelmetsLeft)
+            {
+                HelmetManager.Instance.WearNextAvailableHelmet();
             }
+        }
 
 
         OnDamaged?.Invoke();

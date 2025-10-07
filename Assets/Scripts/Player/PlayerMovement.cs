@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float targetYRotation;
+    public float rotationSpeed = 10f; // Puedes ajustar esto a gusto
+
     [Header("INPUT")]
     [SerializeField]
     private Vector2 moveInput;
@@ -24,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("DISTANCE TO BLOCK BELOW")]
     [SerializeField] private LayerMask blockLayerMask;
     public Transform enanoParent;
+    public Transform playerBody;
+
     [SerializeField]
     float blockLockdownRange;
     public BlockNS blockNSBelow;
@@ -51,6 +56,15 @@ public class PlayerMovement : MonoBehaviour
 
             isMoving = false; // Stop moving when close
         }
+
+        Vector3 currentEuler = playerBody.localEulerAngles;
+
+        // Suavemente interpolamos el ángulo Y hacia el objetivo
+        float newY = Mathf.LerpAngle(currentEuler.y, targetYRotation, Time.deltaTime * rotationSpeed);
+
+        // Mantenemos los ejes X y Z intactos (evita rotaciones indeseadas)
+        playerBody.localRotation = Quaternion.Euler(0f, newY, 0f);
+
     }
 
     private void CheckForBlockBelow()
@@ -78,6 +92,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void RotatePlayer(Vector2 direction)
+    {
+        if (direction == Vector2.zero) return;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle = -angle + 90f;
+        targetYRotation = angle;
+    }
+
+
     public void MovePlayer(InputAction.CallbackContext context)
     {
         if (!PlayerManager.Instance.playerStates.canMove) return;
@@ -88,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
             moveInput = context.ReadValue<Vector2>();
             moveInput.x = Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y) ? Mathf.Sign(moveInput.x) : 0;
             moveInput.y = Mathf.Abs(moveInput.y) > Mathf.Abs(moveInput.x) ? Mathf.Sign(moveInput.y) : 0;
+
+            if (moveInput != Vector2.zero)
+            {
+                RotatePlayer(moveInput);
+            }
 
             if (!isMoving && movementLocked)
             {
@@ -101,6 +130,12 @@ public class PlayerMovement : MonoBehaviour
                         {
                             ChangePositionTarget(nextPos);
                             isMoving = true;
+
+                            // Alternar paso izquierdo / derecho solo si estamos caminando
+                            if (PlayerManager.Instance.playerStates.currentMainState == PlayerMainStateEnum.Walk)
+                            {
+                                PlayerManager.Instance.playerAnimations.PlayStepAnimation();
+                            }
                         }
                     }
                 }
