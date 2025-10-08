@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private SoundEntry<SFXType>[] sfxSoundList;
     [SerializeField] private SoundEntry<AmbientType>[] ambientSoundList;
     [SerializeField] private SoundEntry<UIType>[] UISoundList;
+    [SerializeField] private SoundEntry<JomaType>[] jomaSoundList;
     [SerializeField] private AudioMixer audioMixer;
 
     [Header("Audio Sources")]
@@ -33,6 +34,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource sfxLoop2D;
     [SerializeField] private AudioSource sfxLoop3D;
     [SerializeField] private AudioSource sfxEnemy;
+    [SerializeField] private AudioSource sfxJoma;
 
     public static SoundManager instance;
 
@@ -67,6 +69,9 @@ public class SoundManager : MonoBehaviour
 
     public static void PlayDialog(AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.UISoundList, UIType.DIALOG, _volume, instance.uiSource, _clip);
+
+    public static void PlayeJomaSound(JomaType _sound, float _volume = 1f)
+        => instance.PlaySoundInternal(instance.jomaSoundList, _sound, _volume, instance.sfxJoma);
 
     private void PlaySoundInternal<TEnum>(
         SoundEntry<TEnum>[] _list,
@@ -138,7 +143,7 @@ public class SoundManager : MonoBehaviour
 
         aSource.clip = currentClip;
         aSource.volume = _volume;
-        aSource.spatialBlend = _source.spatialBlend; 
+        aSource.spatialBlend = _source.spatialBlend;
         aSource.outputAudioMixerGroup = _source.outputAudioMixerGroup;
 
         aSource.loop = _loop;
@@ -147,7 +152,7 @@ public class SoundManager : MonoBehaviour
         else
         {
             aSource.PlayOneShot(currentClip, _volume);
-            Destroy(tempGO, currentClip.length); 
+            Destroy(tempGO, currentClip.length);
         }
 
         return aSource;
@@ -168,6 +173,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case UIType:
                 uiSource.Stop();
+                break;
+            case JomaType:
+                sfxJoma.Stop();
                 break;
         }
     }
@@ -222,6 +230,16 @@ public class SoundManager : MonoBehaviour
             UISoundList[i].name = ui[i];
             UISoundList[i].type = uiValues[i];
             UISoundList[i].Category = SoundCategory.UI;
+        }
+
+        string[] joma = Enum.GetNames(typeof(JomaType));
+        JomaType[] jomaValues = (JomaType[])Enum.GetValues(typeof(JomaType));
+        Array.Resize(ref jomaSoundList, joma.Length);
+        for (int i = 0; i < joma.Length; i++)
+        {
+            jomaSoundList[i].name = joma[i];
+            jomaSoundList[i].type = jomaValues[i];
+            jomaSoundList[i].Category = SoundCategory.SFX;
         }
     }
 #endif

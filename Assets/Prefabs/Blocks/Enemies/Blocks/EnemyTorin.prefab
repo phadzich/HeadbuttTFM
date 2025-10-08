@@ -5879,7 +5879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onBounce: {fileID: 8300000, guid: 836581d71b703b74499dc18960133e63, type: 3}
-  onHeadbutt: {fileID: 0}
+  onHeadbutt: {fileID: 8300000, guid: 5a06dd1785ddc1540a04f3a22cc56066, type: 3}
   feedbackParticles: {fileID: 0}
 --- !u!1 &8898338296760956366
 GameObject:

@@ -529,7 +529,6 @@ GameObject:
   - component: {fileID: 6221066707619319009}
   - component: {fileID: 8945290547136287406}
   - component: {fileID: -4054644310167052430}
-  - component: {fileID: 8559906085962937242}
   m_Layer: 9
   m_Name: EnemyThorns_Spawn
   m_TagString: Untagged
@@ -628,19 +627,3 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.62, z: 0}
---- !u!114 &8559906085962937242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6809918949370976745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleClip: {fileID: 0}
-  attackClip: {fileID: 8300000, guid: b2ddc87ddff0203469e3f73bdaffffe7, type: 3}
-  damageClip: {fileID: 0}
-  deathClip: {fileID: 0}

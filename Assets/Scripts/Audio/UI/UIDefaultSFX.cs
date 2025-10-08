@@ -35,7 +35,7 @@ public class UIDefaultSFX : MonoBehaviour, IPointerEnterHandler
 
     private void PlayClick(UIType _type)
     {
-        SoundManager.PlaySound(_type);
+        SoundManager.PlaySound(_type, 0.7f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

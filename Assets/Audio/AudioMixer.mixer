@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-8401518321652636438
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: b62cb49e8e06e4ae4b63f800960ff19e
+  m_EffectName: Attenuation
+  m_MixLevel: 2ee572e98978943d3915eb80765c5336
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-7887363940309203879
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -160,6 +174,25 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!243 &-2926527418573708995
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Joma SFX
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: de0f09d59edcc48a2adf9954b85c32cf
+  m_Children: []
+  m_Volume: a5bfc8e0da1e342aa9a274af696a9044
+  m_Pitch: 418f0a7e74a4448ae88a29f59cca8797
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8401518321652636438}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-1891541394986972837
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -208,6 +241,7 @@ AudioMixerGroupController:
   - {fileID: -4786038505157618543}
   - {fileID: 2992059230122298067}
   - {fileID: -7887363940309203879}
+  - {fileID: -2926527418573708995}
   m_Volume: 855580c68b90e4f488d54dc569d9755d
   m_Pitch: b0dc7cf9d840ec94f82f2d7407392aa8
   m_Send: 00000000000000000000000000000000
@@ -247,10 +281,6 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: c2ff17d7d649d944d902faa73203ee53
-    name: MyExposedParam
-  - guid: 1df14b54b5020e647b8302e6bdcf6f0a
-    name: MyExposedParam 1
   - guid: 7f8dd47a4bed87e42b5ade86031dc70b
     name: Ambient
   - guid: 94ffcc7a5bfaa58488cfeca6fc7a8d43
@@ -265,14 +295,15 @@ AudioMixerController:
   - guids:
     - d5aa5b27bbd24574e965c117db9a37ac
     - 0ce2071376da89446a98d9434600368b
-    - b3908308206990244992b637595c5c35
     - 0d3ded4408cddd34a9f0449c029d37a4
-    - c5b9ca89712a305479f1e0ba87725b9b
-    - 7380513ee74eb35469b93b8bf586ba88
+    - b3908308206990244992b637595c5c35
     - 767438eee270cfa48ae9916413db8448
+    - 7380513ee74eb35469b93b8bf586ba88
     - dfae9cb7b76db4b69a09be5ed0fcc00c
     - 2525036ea54334caeb47edb686d77ced
     - 12bbbbebede9c4e4eacaaac6eaaf4a62
+    - de0f09d59edcc48a2adf9954b85c32cf
+    - c5b9ca89712a305479f1e0ba87725b9b
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}

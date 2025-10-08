@@ -12,6 +12,7 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
 
     void RecieveDamage(int _amount)
     {
+        SoundManager.PlayeJomaSound(JomaType.ATTACK);
         Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();

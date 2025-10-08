@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -45,6 +46,7 @@ public class PlayerHeadbutt : MonoBehaviour
 
     public void UseHBPotion(int _potionID)
     {
+        SoundManager.PlaySound(UIType.EQUIP_HB);
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcRacks, $"Gained <b>{potionValues[_potionID]}</b> Headbutt Energy!");
         AddHBPoints(potionValues[_potionID]);
 
@@ -128,6 +130,7 @@ public class PlayerHeadbutt : MonoBehaviour
     public void HeadbuttUp()
     {
         //Debug.Log("HBUP");
+        SoundManager.PlayeJomaSound(JomaType.HEADBUTT);
         StartCoroutine(PlayerManager.Instance.playerEffects.StartCooldown(1f));
         Invoke(nameof(ReturnToBounceState), 0.5f);
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);
@@ -143,6 +146,13 @@ public class PlayerHeadbutt : MonoBehaviour
         RestartHeadbuttCooldown();
         PlayerManager.Instance.playerAnimations.HeadbuttSS();
         HelmetManager.Instance.currentHelmet.OnHeadbutt();
+
+    }
+
+    private IEnumerator PlayHBSound()
+    {
+        yield return new WaitForSeconds(1f);
+        SoundManager.PlayeJomaSound(JomaType.HEADBUTT);
 
     }
 

@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: -4628646904535597047}
   - component: {fileID: 1581194200581867795}
   - component: {fileID: 5022574342000922867}
+  - component: {fileID: 1192786404467762083}
   m_Layer: 8
   m_Name: EnemyThornsBlock
   m_TagString: Untagged
@@ -636,7 +637,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBounce: {fileID: 0}
+  onBounce: {fileID: 8300000, guid: c5c9b40674081634ebe6478d51a5f0ae, type: 3}
+  onHeadbutt: {fileID: 8300000, guid: 0b4e076b2fac33e4fa1a83b4f322308f, type: 3}
+  feedbackParticles: {fileID: 0}
+--- !u!114 &1192786404467762083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090959518607110755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a16a3046e964d809cb336627c1148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: b2ddc87ddff0203469e3f73bdaffffe7, type: 3}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1 &9018983921226633793
 GameObject:
   m_ObjectHideFlags: 0

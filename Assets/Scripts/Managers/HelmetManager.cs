@@ -175,6 +175,7 @@ public class HelmetManager : MonoBehaviour
 
     public void UseHelmetPotion(int _potionID)
     {
+        SoundManager.PlaySound(UIType.EQUIP_HP);
         currentHelmet.HealDurability(potionValues[_potionID]);
         CombatLogHUD.Instance.AddLog(currentHelmet.baseHelmet.icon, $"{currentHelmet.baseHelmet.helmetName} healed by <b>{potionValues[_potionID]}</b>!");
     }

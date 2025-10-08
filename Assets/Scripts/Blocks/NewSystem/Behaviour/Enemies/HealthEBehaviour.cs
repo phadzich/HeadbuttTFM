@@ -22,6 +22,7 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
     void RecieveDamage(int _amount,ElementType _element)
     {
         //CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.enemyReq, $"Enemy attacked with <b>{_amount} {_element}</b>!");
+        SoundManager.PlayeJomaSound(JomaType.ATTACK);
         if (sfx != null) sfx.PlayDamage();
         //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;

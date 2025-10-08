@@ -5345,8 +5345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9fc7e4bd834c2da965e0adafc1069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBounce: {fileID: 8300000, guid: af2e1992b6577624fa7e6d3a7eb665e8, type: 3}
+  onBounce: {fileID: 8300000, guid: 836581d71b703b74499dc18960133e63, type: 3}
   onHeadbutt: {fileID: 8300000, guid: 5a06dd1785ddc1540a04f3a22cc56066, type: 3}
+  feedbackParticles: {fileID: 0}
 --- !u!1001 &961466919125800201
 PrefabInstance:
   m_ObjectHideFlags: 0

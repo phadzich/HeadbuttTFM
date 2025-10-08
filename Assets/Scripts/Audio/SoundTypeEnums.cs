@@ -20,7 +20,6 @@ public enum SFXType {
     COMBO_FAIL,
     FIRE_DAMAGE,
     PUSH_DAMAGE,
-    RECIEVE_DAMAGE,
     ENEMY,
     SUPPORT_BLOCK,
     OPEN_CHEST,
@@ -32,7 +31,6 @@ public enum SFXType {
     TIMER_ON,
     TIMER_10S,
     COLLECT_KEY,
-    PROJECTILE_IMPACT,
     GET_STUNN,
     HB_EXTLARGE_POTION,
     HB_LARGE_POTION,
@@ -66,5 +64,13 @@ public enum UIType {
     EQUIP_HP,
     DIALOG,
     SELECT_HELMET
+
+}
+
+public enum JomaType
+{
+    RECIEVE_DAMAGE,
+    ATTACK,
+    HEADBUTT
 
 }

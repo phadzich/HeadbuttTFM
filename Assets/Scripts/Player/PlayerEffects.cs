@@ -40,7 +40,7 @@ public class PlayerEffects : MonoBehaviour
         if (playerStates.canReceiveDamage)
         {
             HelmetManager.Instance.currentHelmet.TakeDamage(_amount);
-            SoundManager.PlaySound(SFXType.RECIEVE_DAMAGE, 0.5f);
+            SoundManager.PlayeJomaSound(JomaType.RECIEVE_DAMAGE);
 
             if (!isCooldownActive) StartCoroutine(StartCooldown(cooldownTime));
         }
