@@ -81,5 +81,11 @@ public class CraftingPanel : MonoBehaviour
         {
             _helmet.GetComponent<Button>().interactable = !_value;
         }
+
+        if (_value == false)
+        {
+            UpdateHelmetList();
+
+        }
     }
 }

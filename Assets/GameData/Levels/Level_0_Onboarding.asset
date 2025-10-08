@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   levelName: ONBOARDING
   levelDescription: 
-  maxDepth: 9
+  maxDepth: 6
   levelIcon: {fileID: 0}
   levelColor: {r: 0, g: 0, b: 0, a: 0}
   levelMusic: {fileID: 8300000, guid: 65fc37fd58b7150428dd41cc6d36a092, type: 3}
