@@ -3,7 +3,6 @@ using UnityEngine.Localization.Settings;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Localization;
 
 public class LanguageHandler : MonoBehaviour
 {
