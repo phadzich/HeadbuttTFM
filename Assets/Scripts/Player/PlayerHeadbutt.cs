@@ -49,7 +49,7 @@ public class PlayerHeadbutt : MonoBehaviour
         SoundManager.PlaySound(UIType.EQUIP_HB);
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcRacks, $"Gained <b>{potionValues[_potionID]}</b> Headbutt Energy!");
         AddHBPoints(potionValues[_potionID]);
-
+        PlayerManager.Instance.groundAnimations.Play("Item_Consumed");
     }
 
     public void AddHBPoints(float _amount)

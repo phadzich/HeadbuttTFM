@@ -81,8 +81,9 @@ public class HelmetInstance: IElemental
 
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
         PlayerManager.Instance.playerAnimations.PlayDamageReaction();
+        PlayerManager.Instance.groundAnimations.Play("Helmet_Damaged");
 
-            if (IsWornOut)
+        if (IsWornOut)
         {
             PlayerManager.Instance.RemovePlayerLives(1);
             if (HelmetManager.Instance.HasHelmetsLeft)
@@ -124,7 +125,9 @@ public class HelmetInstance: IElemental
         else
         {
             currentDurability += _amount;
+
         }
+        PlayerManager.Instance.groundAnimations.Play("Helmet_Healed");
         HelmetInstanceChanged?.Invoke(this);
     }
 
@@ -135,6 +138,7 @@ public class HelmetInstance: IElemental
         {
             effect.OnHeadbutt();
         }
+        PlayerManager.Instance.groundAnimations.Play("Headbutt_Wave");
     }
 
     // Llamar en cada salto

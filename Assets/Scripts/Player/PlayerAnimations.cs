@@ -28,7 +28,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void HeadbuttSS()
     {
-        var startScale = new Vector3(1 + headbuttSquashRatio, headbuttSquashRatio, 1 + headbuttSquashRatio);
+        var startScale = new Vector3(1 + headbuttSquashRatio, 1-headbuttSquashRatio, 1 + headbuttSquashRatio);
         var endScale = new Vector3(1, 1, 1);
         var startRotation = new Vector3(-180, 0, 0);
         var endRotation = new Vector3(0, 0, 0);
@@ -39,9 +39,9 @@ public class PlayerAnimations : MonoBehaviour
 
     public void BounceSS()
     {
-        var startScale = new Vector3(1 + bounceSquashRatio, bounceSquashRatio, 1 + bounceSquashRatio);
+        var startScale = new Vector3(1 + (bounceSquashRatio/2), 1-bounceSquashRatio, 1 + (bounceSquashRatio/2));
         var endScale = new Vector3(1, 1, 1);
-        Tween.Scale(bodyMesh.transform, startValue: startScale, endValue: endScale, duration: bounceSquashDuration, ease: Ease.OutSine);
+        Tween.Scale(bodyMesh.transform, startValue: startScale, endValue: endScale, duration: bounceSquashDuration, ease: Ease.OutElastic);
     }
 
     public void PlayStateAnimation(PlayerMainStateEnum state)

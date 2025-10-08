@@ -7,6 +7,8 @@ public class SublevelObjectiveHUDIndicator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI progressTXT;
     [SerializeField] private Image objIcon;
     [SerializeField] private Image reqProgressFill;
+    public Animator VFXanimator;
+    public bool alreadyCompleted;
 
     [SerializeField] Color incompleteColor;
     [SerializeField] Color completeColor;
@@ -25,6 +27,12 @@ public class SublevelObjectiveHUDIndicator : MonoBehaviour
         {
             reqProgressFill.color = completeColor;
             progressTXT.color = completeColor;
+            if (!alreadyCompleted)
+            {
+                Debug.Log("COMPLETED");
+                VFXanimator.Play("Objective_Complete");
+                alreadyCompleted = true;
+            }
         }
     }
 }

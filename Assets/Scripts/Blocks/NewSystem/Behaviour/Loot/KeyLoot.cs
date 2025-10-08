@@ -10,5 +10,6 @@ public class KeyLoot : LootBase
 
         LevelManager.Instance.currentSublevel.DispatchObjectiveEvent(_keyEvent);
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.lootKeySprite, $"<b>KEY</b> found in CHEST!");
+        PlayerManager.Instance.groundAnimations.Play("Objective_Complete");
     }
 }
