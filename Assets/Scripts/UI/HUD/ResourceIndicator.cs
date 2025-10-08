@@ -7,6 +7,7 @@ public class ResourceIndicator : MonoBehaviour
 {
     private ResourceData resourceData;
     private int amount;
+    public Animator VFXanimator;
 
     public GameObject resourceIndicator;
     public Image resourceIcon;
@@ -27,6 +28,7 @@ public class ResourceIndicator : MonoBehaviour
         else
         {
             this.gameObject.SetActive(true);
+            VFXanimator.Play("Resource_Gained");
         }
     }
 
@@ -40,6 +42,7 @@ public class ResourceIndicator : MonoBehaviour
         else if(_amount > amount) 
         {
             AnimateAdd();
+
         }
         amount = _amount;
         amountText.text = _amount.ToString();
@@ -51,6 +54,7 @@ public class ResourceIndicator : MonoBehaviour
         Vector3 _panelScale = new Vector3(1.2f, 1.2f, 1.2f);
         Tween.Scale(resourceIndicator.transform, startValue: _panelScale, endValue: Vector3.one, duration: .8f, ease: Ease.InOutSine);
         Tween.Scale(resourceIcon.transform, startValue: _coinScale, endValue: Vector3.one, duration: 1.2f, ease: Ease.OutBack);
+        VFXanimator.Play("Resource_Gained");
     }
     private void AnimateSpend()
     {

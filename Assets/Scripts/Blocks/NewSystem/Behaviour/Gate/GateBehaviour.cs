@@ -113,7 +113,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void AnimateSpearsDown()
     {
-        Tween.PositionY(gatesMesh.transform, endValue: -1f, duration: 1.5f, ease: Ease.OutBack).OnComplete(() =>lightObject.SetActive(false));
+        Tween.LocalPositionY(gatesMesh.transform, endValue: -1f, duration: 1f, ease: Ease.InOutBack).OnComplete(() =>lightObject.SetActive(false));
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)

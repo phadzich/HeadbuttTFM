@@ -67,16 +67,13 @@ public class DialogueSystem : MonoBehaviour
             }
             else
             {
-                EndDialogue();
+            EndDialogue();
         }
     }
 
     private void TryShowHighlight(int _index)
     {
-        foreach (GameObject _highlight in UIManager.Instance.dialogueSystem.obHighlights)
-        {
-            if(_highlight!=null) _highlight.SetActive(false);
-        }
+        HideAllHighlights();
 
         if (_index == 0)
         {
@@ -89,12 +86,21 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
+    private void HideAllHighlights()
+    {
+        foreach (GameObject _highlight in UIManager.Instance.dialogueSystem.obHighlights)
+        {
+            if (_highlight != null) _highlight.SetActive(false);
+        }
+    }
+
 
 
     void EndDialogue()
     {
         dialogueUI.Close();
         SwitchInputToPlayer();
+        HideAllHighlights();
         isRunning = false;
     }
 

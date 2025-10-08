@@ -4804,7 +4804,7 @@ GameObject:
   - component: {fileID: 283421914}
   - component: {fileID: 283421913}
   m_Layer: 5
-  m_Name: Image
+  m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8567,7 +8567,7 @@ RectTransform:
   m_GameObject: {fileID: 420200574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.1}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 385108683}
@@ -54131,7 +54131,7 @@ PrefabInstance:
       objectReference: {fileID: 1214535538}
     - target: {fileID: 3484009865456960569, guid: 6df1e6c6500ab0d4db8bb10f25ca9588, type: 3}
       propertyPath: bounceSquashRatio
-      value: 0.9
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3484009865456960569, guid: 6df1e6c6500ab0d4db8bb10f25ca9588, type: 3}
       propertyPath: bounceSquashDuration
