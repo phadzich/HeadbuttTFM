@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -116,8 +117,10 @@ public class HelmetInstance: IElemental
         activeEffects.Add(_effect);
     }
 
-    public void HealDurability(int _amount)
+    public void HealDurability(int _amount, bool _fromPotion = false, float _delay = 0f)
     {
+        if (_fromPotion) HelmetManager.Instance.PlayDrinkPotionSound(_delay);
+
         if (_amount > durability - currentDurability)
         {
             currentDurability = durability;
@@ -129,6 +132,13 @@ public class HelmetInstance: IElemental
         }
         PlayerManager.Instance.groundAnimations.Play("Helmet_Healed");
         HelmetInstanceChanged?.Invoke(this);
+    }
+
+    private IEnumerator PlayPotionSound(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SoundManager.PlaySound(SFXType.DRINK_HPPOTION);
+
     }
 
     // Llamar cuando se hace un HB

@@ -176,9 +176,13 @@ public class HelmetManager : MonoBehaviour
 
     public void UseHelmetPotion(int _potionID, float _delay = 0f)
     {
-        StartCoroutine(PlayPotionSound(_delay));
-        currentHelmet.HealDurability(potionValues[_potionID]);
+        currentHelmet.HealDurability(potionValues[_potionID], true, _delay);
         CombatLogHUD.Instance.AddLog(currentHelmet.baseHelmet.icon, $"{currentHelmet.baseHelmet.helmetName} healed by <b>{potionValues[_potionID]}</b>!");
+    }
+
+    public void PlayDrinkPotionSound(float _delay)
+    {
+        StartCoroutine(PlayPotionSound(_delay));
     }
 
     private IEnumerator PlayPotionSound(float _delay)
