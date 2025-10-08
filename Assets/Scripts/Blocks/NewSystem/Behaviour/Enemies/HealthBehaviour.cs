@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +13,17 @@ public class HealthBehaviour : MonoBehaviour, IBlockBehaviour, IElementReactive
 
     void RecieveDamage(int _amount)
     {
-        SoundManager.PlayeJomaSound(JomaType.ATTACK);
+        StartCoroutine(PlayJomaSound(0.2f));
         Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
         if (isDead) Die();
+    }
+
+    private IEnumerator PlayJomaSound(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SoundManager.PlayJomaSound(JomaType.ATTACK);
+
     }
 
     void Heal(int _amount)

@@ -130,6 +130,9 @@ public class PlayerStates : MonoBehaviour
                     deathCoroutine = StartCoroutine(StartGameOverSequence(2f));
                 }
                 break;
+
+            case PlayerMainStateEnum.Wait:
+                break;
         }
     }
 
@@ -139,7 +142,7 @@ public class PlayerStates : MonoBehaviour
         {
             canReceiveDamage = false;
         }
-        else
+        else if (!isOnState(PlayerMainStateEnum.Dead) || !isOnState(PlayerMainStateEnum.Wait))
         {
             canReceiveDamage = true;
         }
@@ -176,6 +179,8 @@ public class PlayerStates : MonoBehaviour
         //AQUI AGREGAR CODIGO PARA MOSTRAR SCREEN DE GAME OVER 
 
         UIManager.Instance.ShowGameOver();
+
+        ChangeState(PlayerMainStateEnum.Wait);
 
     }
 

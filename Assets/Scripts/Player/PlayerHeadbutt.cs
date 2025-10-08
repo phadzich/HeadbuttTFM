@@ -44,12 +44,19 @@ public class PlayerHeadbutt : MonoBehaviour
         KeepCentered();
     }
 
-    public void UseHBPotion(int _potionID)
+    public void UseHBPotion(int _potionID, float _delay = 0f)
     {
-        SoundManager.PlaySound(UIType.EQUIP_HB);
+        StartCoroutine(PlayPotionSound(_delay));
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcRacks, $"Gained <b>{potionValues[_potionID]}</b> Headbutt Energy!");
         AddHBPoints(potionValues[_potionID]);
         PlayerManager.Instance.groundAnimations.Play("Item_Consumed");
+    }
+
+    private IEnumerator PlayPotionSound(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SoundManager.PlaySound(SFXType.DRINK_HBPOTION);
+
     }
 
     public void AddHBPoints(float _amount)
@@ -130,7 +137,7 @@ public class PlayerHeadbutt : MonoBehaviour
     public void HeadbuttUp()
     {
         //Debug.Log("HBUP");
-        SoundManager.PlayeJomaSound(JomaType.HEADBUTT);
+        StartCoroutine(PlayHBSound());
         StartCoroutine(PlayerManager.Instance.playerEffects.StartCooldown(1f));
         Invoke(nameof(ReturnToBounceState), 0.5f);
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);
@@ -151,8 +158,8 @@ public class PlayerHeadbutt : MonoBehaviour
 
     private IEnumerator PlayHBSound()
     {
-        yield return new WaitForSeconds(1f);
-        SoundManager.PlayeJomaSound(JomaType.HEADBUTT);
+        yield return new WaitForSeconds(0.2f);
+        SoundManager.PlayJomaSound(JomaType.HEADBUTT);
 
     }
 

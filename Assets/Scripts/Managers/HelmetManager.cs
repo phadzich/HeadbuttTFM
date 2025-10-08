@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -173,11 +174,18 @@ public class HelmetManager : MonoBehaviour
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"All helmets <b>RESTORED</b>!");
     }
 
-    public void UseHelmetPotion(int _potionID)
+    public void UseHelmetPotion(int _potionID, float _delay = 0f)
     {
-        SoundManager.PlaySound(UIType.EQUIP_HP);
+        StartCoroutine(PlayPotionSound(_delay));
         currentHelmet.HealDurability(potionValues[_potionID]);
         CombatLogHUD.Instance.AddLog(currentHelmet.baseHelmet.icon, $"{currentHelmet.baseHelmet.helmetName} healed by <b>{potionValues[_potionID]}</b>!");
+    }
+
+    private IEnumerator PlayPotionSound(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SoundManager.PlaySound(SFXType.DRINK_HPPOTION);
+
     }
 
     /* Funciones para cambiar entre cascos */

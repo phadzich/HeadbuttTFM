@@ -57,7 +57,7 @@ public class DamageEffect : MonoBehaviour, IBlockEffect
         }
 
         ScreenShake();
-        damageParticles.Play();
+        if(damageParticles != null) damageParticles.Play();
     }
 
     private void DurabilityDamage()

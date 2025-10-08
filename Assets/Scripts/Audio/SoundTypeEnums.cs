@@ -40,6 +40,8 @@ public enum SFXType {
     HP_LARGE_POTION,
     HP_MEDIUM_POTION,
     HP_SMALL_POTION,
+    DRINK_HBPOTION,
+    DRINK_HPPOTION
 }
 
 public enum AmbientType {

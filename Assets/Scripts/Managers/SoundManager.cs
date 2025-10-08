@@ -70,7 +70,7 @@ public class SoundManager : MonoBehaviour
     public static void PlayDialog(AudioClip _clip, float _volume = 1f)
         => instance.PlaySoundInternal(instance.UISoundList, UIType.DIALOG, _volume, instance.uiSource, _clip);
 
-    public static void PlayeJomaSound(JomaType _sound, float _volume = 1f)
+    public static void PlayJomaSound(JomaType _sound, float _volume = 1f)
         => instance.PlaySoundInternal(instance.jomaSoundList, _sound, _volume, instance.sfxJoma);
 
     private void PlaySoundInternal<TEnum>(

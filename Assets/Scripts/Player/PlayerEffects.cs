@@ -40,7 +40,7 @@ public class PlayerEffects : MonoBehaviour
         if (playerStates.canReceiveDamage)
         {
             HelmetManager.Instance.currentHelmet.TakeDamage(_amount);
-            SoundManager.PlayeJomaSound(JomaType.RECIEVE_DAMAGE);
+            StartCoroutine(PlayDmgSound());
 
             if (!isCooldownActive) StartCoroutine(StartCooldown(cooldownTime));
         }
@@ -51,6 +51,13 @@ public class PlayerEffects : MonoBehaviour
                 StartCoroutine(ShieldOff(0f));
             }
         }
+    }
+
+    private IEnumerator PlayDmgSound()
+    {
+        yield return new WaitForSeconds(0.2f);
+        SoundManager.PlayJomaSound(JomaType.RECIEVE_DAMAGE);
+
     }
 
     // Shield effect

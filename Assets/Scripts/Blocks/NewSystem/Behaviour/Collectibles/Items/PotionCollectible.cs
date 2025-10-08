@@ -25,11 +25,11 @@ public class PotionCollectible : MonoBehaviour, ICollectibleEffect
         {
             case PotionTypes.Durability:
                 PlayHPPotionSound();
-                HelmetManager.Instance.UseHelmetPotion(potionSize);
+                HelmetManager.Instance.UseHelmetPotion(potionSize, 0.3f);
                 break;
             case PotionTypes.HBPoints:
                 PlayHBPotionSound();
-                PlayerManager.Instance.playerHeadbutt.UseHBPotion(potionSize);
+                PlayerManager.Instance.playerHeadbutt.UseHBPotion(potionSize, 0.3f);
                 break;
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,10 +20,10 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
 
     [SerializeField] public List<InteractionSource> AllowedSources = new List<InteractionSource>();
 
-    void RecieveDamage(int _amount,ElementType _element)
+    void RecieveDamage(int _amount, ElementType _element)
     {
         //CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.enemyReq, $"Enemy attacked with <b>{_amount} {_element}</b>!");
-        SoundManager.PlayeJomaSound(JomaType.ATTACK);
+        StartCoroutine(PlayJomaSound(0.2f));
         if (sfx != null) sfx.PlayDamage();
         //Debug.Log($"DAMAGE: {_amount}");
         currentHealth -= _amount;
@@ -30,6 +31,13 @@ public class HealthEBehaviour : MonoBehaviour, IEnemyBehaviour, IElementReactive
         UpdateBarUI();
         healthBarUI.PopDamage(_amount, _element);
 
+
+    }
+
+    private IEnumerator PlayJomaSound(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SoundManager.PlayJomaSound(JomaType.ATTACK);
 
     }
 

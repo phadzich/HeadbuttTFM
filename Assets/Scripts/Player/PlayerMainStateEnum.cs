@@ -7,5 +7,6 @@ public enum PlayerMainStateEnum
     Bouncing,
     Headbutt,
     Walk,
-    Dead
+    Dead,
+    Wait
 }
