@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef82acc1033634c88afdcd09bd672044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 5
+  elementType: 4
 --- !u!114 &6610249393429423994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6770119343d2f44d7ba4cfdbb6439c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stunTime: 3
+  stunTime: 1
   AllowedSources: 03000000
 --- !u!114 &2932336095951011063
 MonoBehaviour:

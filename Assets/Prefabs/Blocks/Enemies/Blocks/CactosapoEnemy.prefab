@@ -386,7 +386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2518385022924172439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cf3d0106c8a20f49a6d4685a13fa24f, type: 3}
   m_Name: 
@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 4810703166137470484}
   - component: {fileID: 4010414751123302199}
   - component: {fileID: 4749324461172547871}
+  - component: {fileID: 6779468765981067046}
   m_Layer: 8
   m_Name: CactosapoEnemy
   m_TagString: Untagged
@@ -513,6 +514,19 @@ MonoBehaviour:
   onBounce: {fileID: 8300000, guid: c5c9b40674081634ebe6478d51a5f0ae, type: 3}
   onHeadbutt: {fileID: 8300000, guid: 0b4e076b2fac33e4fa1a83b4f322308f, type: 3}
   feedbackParticles: {fileID: 0}
+--- !u!114 &6779468765981067046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006885365906108092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be05b92abda03447e8259187cc33f16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0
