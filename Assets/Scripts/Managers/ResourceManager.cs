@@ -61,7 +61,6 @@ public class ResourceManager : MonoBehaviour
             ownedResources[_resource] = _amount;
         }
         onOwnedResourcesChanged?.Invoke();
-        PlayerManager.Instance.groundAnimations.Play("Resource_Gained");
         //Debug.Log($"Added {_amount} {_resource.shortName} to inventory");
     }
 

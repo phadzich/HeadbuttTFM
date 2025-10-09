@@ -82,6 +82,7 @@ public class HelmetInstance: IElemental
         PlayerManager.Instance.damageTakenIndicator.AnimateDamage(_amount);
         PlayerManager.Instance.playerAnimations.PlayDamageReaction();
         PlayerManager.Instance.groundAnimations.Play("Helmet_Damaged");
+        UIManager.Instance.currentHelmetsHUD.FindHUDbyInstance(this).VFXDamage();
 
         if (IsWornOut)
         {
@@ -128,6 +129,7 @@ public class HelmetInstance: IElemental
 
         }
         PlayerManager.Instance.groundAnimations.Play("Helmet_Healed");
+        UIManager.Instance.currentHelmetsHUD.FindHUDbyInstance(this).VFXHealed();
         HelmetInstanceChanged?.Invoke(this);
     }
 

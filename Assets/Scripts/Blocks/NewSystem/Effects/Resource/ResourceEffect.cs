@@ -41,6 +41,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     public HeadbuttDropFollow hbDropPrefab;
     public ResourceBlockUIAnims uiAnims;
     public Vector3 rotationSpeed = new Vector3(0f, 120f, 0f);
+    public Animator VFX;
 
     private void Start()
     {
@@ -207,18 +208,18 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
 
     void AnimateBounced()
     {
-        Tween.Scale(blockMesh.transform, startValue: new Vector3(1.2f, .8f, 1.2f), endValue: new Vector3(1, 1, 1), duration: .5f, ease: Ease.OutBack);
+        Tween.Scale(blockMesh.transform, startValue: new Vector3(1.2f, .8f, 1.2f), endValue: new Vector3(1, 1, 1), duration: .8f, ease: Ease.InOutBack);
         isOut = true;
     }
 
     public void AnimateFailed()
     {
-        StartCoroutine(uiAnims.FlashBlock(blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material, Color.red)); // o Color.red
+        VFX.Play("Helmet_Damaged");
         isOut = false;
     }
     public void AnimateMined()
     {
-        StartCoroutine(uiAnims.FlashBlock(blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material, Color.white)); // o Color.red
+        VFX.Play("Item_Consumed");
         isOut = false;
     }
 }

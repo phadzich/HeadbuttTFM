@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private float targetYRotation;
-    public float rotationSpeed = 10f; // Puedes ajustar esto a gusto
+    public float rotationSpeed = 10f;
 
     [Header("INPUT")]
     [SerializeField]
@@ -37,34 +37,38 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackDistance = 1f;
     public bool isKnockedBack;
 
+    // NUEVO: guardamos el bloque desde el cual empezamos a movernos
+    private BlockNS originBlock;
+
     private void Start()
     {
         positionTarget = transform.position;
         restartPosition = positionTarget;
     }
+
     private void Update()
     {
-
         CheckForBlockBelow();
         CheckMovementLock();
 
         transform.position = Vector3.Lerp(transform.position, positionTarget, Time.deltaTime * speed);
-        //Debug.Log(transform.position);
 
-        if (Vector3.Distance(transform.position, positionTarget) < 0.5f)
+        // Cuando llegamos al target, detenemos el movimiento
+        if (Vector3.Distance(transform.position, positionTarget) < 0.45f)
         {
-
-            isMoving = false; // Stop moving when close
+            isMoving = false;
         }
 
+        //Si el bloque actual cambió, significa que ya pisamos el nuevo bloque.
+        if (originBlock != null && blockNSBelow != null && blockNSBelow != originBlock)
+        {
+            originBlock = null; // desbloqueamos para permitir nuevo input
+        }
+
+        // Rotación suave
         Vector3 currentEuler = playerBody.localEulerAngles;
-
-        // Suavemente interpolamos el ángulo Y hacia el objetivo
         float newY = Mathf.LerpAngle(currentEuler.y, targetYRotation, Time.deltaTime * rotationSpeed);
-
-        // Mantenemos los ejes X y Z intactos (evita rotaciones indeseadas)
         playerBody.localRotation = Quaternion.Euler(0f, newY, 0f);
-
     }
 
     private void CheckForBlockBelow()
@@ -75,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 20f, blockLayerMask))
         {
-
             blockNSBelow = hit.collider.GetComponent<BlockNS>();
         }
     }
@@ -88,8 +91,6 @@ public class PlayerMovement : MonoBehaviour
             Mathf.Round(newPos.z)
         );
         positionTarget = new Vector3(alignedPosition.x, 0, alignedPosition.z);
-        //Debug.Log("NewTarget: " + positionTarget);
-
     }
 
     void RotatePlayer(Vector2 direction)
@@ -100,7 +101,6 @@ public class PlayerMovement : MonoBehaviour
         angle = -angle + 90f;
         targetYRotation = angle;
     }
-
 
     public void MovePlayer(InputAction.CallbackContext context)
     {
@@ -118,63 +118,43 @@ public class PlayerMovement : MonoBehaviour
                 RotatePlayer(moveInput);
             }
 
+            //Bloqueamos input si todavía no pisó el siguiente bloque
+            if (originBlock != null)
+                return;
+
             if (!isMoving && movementLocked)
             {
-
                 var nextPos = positionTarget + new Vector3(moveInput.x, 0, moveInput.y);
 
                 if (blockNSBelow != null)
                 {
+                    if (CanMoveInDirection())
                     {
-                        if (CanMoveInDirection())
-                        {
-                            ChangePositionTarget(nextPos);
-                            isMoving = true;
+                        // Guardamos bloque de origen antes de movernos
+                        originBlock = blockNSBelow;
 
-                            // Alternar paso izquierdo / derecho solo si estamos caminando
-                            if (PlayerManager.Instance.playerStates.currentMainState == PlayerMainStateEnum.Walk)
-                            {
-                                PlayerManager.Instance.playerAnimations.PlayStepAnimation();
-                            }
+                        ChangePositionTarget(nextPos);
+                        isMoving = true;
+
+                        if (PlayerManager.Instance.playerStates.currentMainState == PlayerMainStateEnum.Walk)
+                        {
+                            PlayerManager.Instance.playerAnimations.PlayStepAnimation();
                         }
                     }
                 }
-
-
             }
         }
     }
 
     private bool CanMoveInDirection()
     {
-        if (moveInput.x < 0)
-        {
-            if (blockNSBelow.left.isWalkable)
-            {
-                return true;
-            }
-        }
-        else if (moveInput.x > 0)
-        {
-            if (blockNSBelow.right.isWalkable)
-            {
-                return true;
-            }
-        }
-        else if (moveInput.y < 0)
-        {
-            if (blockNSBelow.down.isWalkable)
-            {
-                return true;
-            }
-        }
-        else if (moveInput.y > 0)
-        {
-            if (blockNSBelow.up.isWalkable)
-            {
-                return true;
-            }
-        }
+        if (blockNSBelow == null) return false;
+
+        if (moveInput.x < 0 && blockNSBelow.left.isWalkable) return true;
+        if (moveInput.x > 0 && blockNSBelow.right.isWalkable) return true;
+        if (moveInput.y < 0 && blockNSBelow.down.isWalkable) return true;
+        if (moveInput.y > 0 && blockNSBelow.up.isWalkable) return true;
+
         return false;
     }
 
@@ -184,7 +164,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = Vector3.down;
 
         bool blockBelow = Physics.Raycast(origin, direction, out RaycastHit hit, blockLockdownRange) && bounceDirection == "DOWN";
-
         movementLocked = !blockBelow;
     }
 
@@ -200,11 +179,10 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 newPosition = alignedPosition + direction;
 
-
         ChangePositionTarget(newPosition);
-
         StartCoroutine(ReleaseKnockbackLock());
     }
+
     private IEnumerator ReleaseKnockbackLock()
     {
         yield return new WaitForSeconds(0.20f);
@@ -213,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        positionTarget = new Vector3(0,50,0);
+        positionTarget = new Vector3(0, 50, 0);
         enanoParent.position = positionTarget;
         ChangePositionTarget(positionTarget);
     }
@@ -237,8 +215,5 @@ public class PlayerMovement : MonoBehaviour
         positionTarget = _newPos;
         ChangePositionTarget(_newPos);
         StartCoroutine(RestoreToNormalSpeed());
-        //Debug.Log($"Player falling at {_newPos}");
     }
-
-
 }

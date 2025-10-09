@@ -29,7 +29,7 @@ public class SublevelObjectiveHUDIndicator : MonoBehaviour
             progressTXT.color = completeColor;
             if (!alreadyCompleted)
             {
-                Debug.Log("COMPLETED");
+                //Debug.Log("COMPLETED");
                 VFXanimator.Play("Objective_Complete");
                 alreadyCompleted = true;
             }

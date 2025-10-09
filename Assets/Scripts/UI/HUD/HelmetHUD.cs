@@ -30,6 +30,8 @@ public class HelmetHUD : MonoBehaviour
     public Color unselectedColor;
     public Color notUpgreadableColor;
     public Color upgreadableColor;
+
+    public Animator VFX;
     public void LoadHelmet(HelmetInstance _helmetInstance)
     {
         helmetInstance = _helmetInstance;
@@ -90,26 +92,40 @@ public class HelmetHUD : MonoBehaviour
     public void WearHelmet()
     {
         selectionBG.color = selectedColor;
+        transform.localScale=new Vector3(1.2f, 1.2f, 1.2f);
         //selectedArrowIMG.gameObject.SetActive(true);
     }
 
     public void Broken()
     {
-
+        VFXDamage();
         selectionBG.color = brokenColor;
         faderIMG.gameObject.SetActive(true);
         //selectedArrowIMG.gameObject.SetActive(false);
+    }
+
+    public void VFXDamage()
+    {
+        VFX.Play("Helmet_Damaged");
+    }
+
+
+    public void VFXHealed()
+    {
+        VFX.Play("Helmet_Healed");
     }
 
     public void UnBroken()
     {
         UnWearHelmet();
         faderIMG.gameObject.SetActive(false);
+        VFXHealed();
     }
 
     public void UnWearHelmet()
     {
         selectionBG.color = unselectedColor;
+        transform.localScale = Vector3.one;
         //selectedArrowIMG.gameObject.SetActive(false);
     }
 

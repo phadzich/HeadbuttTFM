@@ -176,6 +176,7 @@ private void ChangeFogColor()
             sublevelMapNewGenerator.GenerateSublevel(_sublevelContainer.transform, _npcSublevel.sublevel2DMap, _depth, null, _npcSublevel, _sublevel);
         }
 
+
     }
 
     public void ExitSublevel()
@@ -346,7 +347,6 @@ private void ChangeFogColor()
         if (currentLevelDepth < maxLevelDepth)
         {
             GenerateSublevel(currentLevel.config.subLevels[currentLevelDepth + 1], currentLevelDepth + 1);
-
             GenerateNavMesh();
         }
     }

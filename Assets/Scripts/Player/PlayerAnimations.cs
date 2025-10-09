@@ -127,7 +127,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void PlayDamageReaction()
     {
-        print("Joma got hurt!");
+        //print("Joma got hurt!");
         animatorPlayer.SetTrigger("isHurt");
 
         faceAnimator.SetTrigger("isFaceHurt");
