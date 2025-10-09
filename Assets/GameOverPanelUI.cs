@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class GameOverPanelUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject HUBButton;
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        if (LevelManager.Instance.currentLevel.config == LevelManager.Instance.levelsList[0])
+        {
+            HUBButton.SetActive(false);
+        }
+        else
+        {
+            HUBButton.SetActive(true);
+        }
     }
 }

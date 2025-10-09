@@ -92,7 +92,7 @@ public class HelmetHUD : MonoBehaviour
     public void WearHelmet()
     {
         selectionBG.color = selectedColor;
-        transform.localScale=new Vector3(1.2f, 1.2f, 1.2f);
+        transform.localScale=new Vector3(1.1f, 1.1f, 1.1f);
         //selectedArrowIMG.gameObject.SetActive(true);
     }
 
@@ -101,6 +101,7 @@ public class HelmetHUD : MonoBehaviour
         VFXDamage();
         selectionBG.color = brokenColor;
         faderIMG.gameObject.SetActive(true);
+        transform.localScale = new Vector3(.9f, .9f, .9f);
         //selectedArrowIMG.gameObject.SetActive(false);
     }
 
@@ -120,6 +121,7 @@ public class HelmetHUD : MonoBehaviour
         UnWearHelmet();
         faderIMG.gameObject.SetActive(false);
         VFXHealed();
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void UnWearHelmet()
