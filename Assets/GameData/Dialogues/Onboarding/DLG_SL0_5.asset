@@ -17,16 +17,16 @@ MonoBehaviour:
       were we?"
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-    buttonText: There's something shiny in the corner
+    buttonText: The tutorial...
     highlightID: 0
-  - text: "Ah yes, that\u2019s a Blueprint. Find them on your journey and you\u2019ll
-      craft AMAZING helmets."
+  - text: "Right! That shiny helmet there is a Blueprint. Find them on your journey
+      and you\u2019ll craft AMAZING helmets."
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "But it\u2019s blocked\u2026"
     highlightID: 0
-  - text: "Of course. That gate won\u2019t let you grab it. But see that odd block
-      bottom left? That\u2019s a switch. Headbutt it and the gate opens."
+  - text: "Of course, that gate won\u2019t let you grab it. Find an orange button
+      block, that\u2019s a switch. Headbutt it and the gate opens!"
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Let's go!

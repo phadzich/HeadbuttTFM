@@ -531,6 +531,7 @@ MonoBehaviour:
   duraTXT: {fileID: 9114045517251295885}
   powerTXT: {fileID: 7527040902399303280}
   powerPanel: {fileID: 1485710229546297923}
+  powerIcon: {fileID: 8563845359672223158}
 --- !u!114 &4568303351310382370
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -127,7 +127,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
     }
     public void OnBounced(HelmetInstance _helmetInstance)
     {
-        TryClaim();
+       TryClaim();
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
@@ -137,7 +137,7 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
 
     private void TryClaim()
     {
-        if (!isClaimed) //AUN NO SE RECLAMA, reclamar
+        if (!isClaimed && isOpen) //AUN NO SE RECLAMA, reclamar
         {
             ClaimRewards();
         }

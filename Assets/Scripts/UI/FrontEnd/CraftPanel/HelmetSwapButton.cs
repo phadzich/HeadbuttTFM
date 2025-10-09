@@ -10,6 +10,7 @@ public class HelmetSwapButton : MonoBehaviour
     public TextMeshProUGUI duraTXT;
     public TextMeshProUGUI powerTXT;
     public Image powerPanel;
+    public Image powerIcon;
 
     // Se crea el prefab con la información del blueprint
     public void SetUp(HelmetInstance helmetI)
@@ -19,6 +20,7 @@ public class HelmetSwapButton : MonoBehaviour
         duraTXT.text = helmetI.durability.ToString();
         powerTXT.text = ((int)helmetI.baseHelmet.miningPower+1).ToString();
         powerPanel.color = UIManager.Instance.elementColors[(int)helmetI.Element];
+        powerIcon.sprite = UIManager.Instance.elementIcons[(int)helmetI.Element];
         GetComponent<Button>().interactable = false;
     }
 
