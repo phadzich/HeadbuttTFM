@@ -57,6 +57,7 @@ public class ExchangeButtonUI : MonoBehaviour
             {
                 EnableButton(false);
             }
+            ownedTXT.text = $"OWNED: {ResourceManager.Instance.ownedResources[resourceData]}";
 
         }
         else
