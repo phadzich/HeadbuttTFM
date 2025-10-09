@@ -9,6 +9,7 @@ public class CoinsHUD : MonoBehaviour
     public TextMeshProUGUI amountText;
     public GameObject coinsPanel;
     private int lastAmount;
+    public Animator VFX;
 
     public void UpdateAmount(int _amount)
     {
@@ -30,6 +31,7 @@ public class CoinsHUD : MonoBehaviour
         Vector3 _panelScale = new Vector3(1.2f, 1.2f, 1.2f);
         Tween.Scale(coinsPanel.transform, startValue: _panelScale, endValue: Vector3.one, duration: .8f, ease: Ease.InOutSine);
         Tween.Scale(resourceIcon.transform, startValue: _coinScale, endValue: Vector3.one, duration: 1.2f, ease: Ease.OutBack);
+        VFX.Play("Resource_Gained");
     }
     private void AnimateSpend()
     {

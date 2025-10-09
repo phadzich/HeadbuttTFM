@@ -126,8 +126,8 @@ public class ItemsInventory : MonoBehaviour
             {
                 return;
             }
-            
 
+            UIManager.Instance.activeItemHUD.VFXConsume();
             ConsumeItems(currentActiveItem, 1);
         }
     }

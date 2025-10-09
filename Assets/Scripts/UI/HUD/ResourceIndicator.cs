@@ -11,6 +11,7 @@ public class ResourceIndicator : MonoBehaviour
 
     public GameObject resourceIndicator;
     public Image resourceIcon;
+    public Image VFXimage;
     public TextMeshProUGUI amountText;
 
     public void SetupIndicator(ResourceData _resourceData, int _amount)
@@ -20,6 +21,7 @@ public class ResourceIndicator : MonoBehaviour
         this.amount = _amount;
         amountText.color = resourceData.color;
         resourceIcon.sprite = resourceData.icon;
+        VFXimage.color = resourceData.color;
         UpdateUI(_amount);
         if (_amount == 0)
         {
@@ -29,6 +31,7 @@ public class ResourceIndicator : MonoBehaviour
         {
             this.gameObject.SetActive(true);
             VFXanimator.Play("Resource_Gained");
+
         }
     }
 

@@ -230,6 +230,7 @@ MonoBehaviour:
   VFXanimator: {fileID: 3081083722972129707}
   resourceIndicator: {fileID: 959469811146737447}
   resourceIcon: {fileID: 3544515955712224257}
+  VFXimage: {fileID: 6061927286969061366}
   amountText: {fileID: 1667762853707451823}
 --- !u!114 &7819767119670831290
 MonoBehaviour:

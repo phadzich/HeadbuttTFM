@@ -6,6 +6,7 @@ public class ActiveItemHUD : MonoBehaviour
 {
     public Image itemIconIMG;
     public TextMeshProUGUI itemQuantityTXT;
+    public Animator VFX;
 
     private void Start()
     {
@@ -16,6 +17,11 @@ public class ActiveItemHUD : MonoBehaviour
         this.gameObject.SetActive(true);
         itemIconIMG.sprite = _itemData.illustration;
         itemQuantityTXT.text = _quantity.ToString();
+    }
+
+    public void VFXConsume()
+    {
+        VFX.Play("Item_Consumed");
     }
 
     public void DisableUI()
