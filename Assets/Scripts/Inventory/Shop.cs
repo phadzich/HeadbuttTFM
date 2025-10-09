@@ -29,11 +29,11 @@ public class Shop
         if (ResourceManager.Instance.coinTrader.CanSpendCoins(_totalCoins)){
             RemoveFromInventory(shopInventory.IndexOf(_item), _quantity);
             InventoryManager.Instance.itemsInventory.TryAddOwnedItems(_item.item, _quantity);
-            Debug.Log("Item purchased");
+            //Debug.Log("Item purchased");
         }
         else
         {
-            Debug.Log("Not enough coins");
+            //Debug.Log("Not enough coins");
         }
     }
     private void RemoveFromInventory(int _itemIndex, int _quantity)

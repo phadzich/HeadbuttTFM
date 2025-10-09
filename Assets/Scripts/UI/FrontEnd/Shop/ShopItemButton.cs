@@ -18,12 +18,28 @@ public class ShopItemButton : MonoBehaviour
         itemIcon.sprite = itemData.item.illustration;
         amountTXT.text = itemCount.ToString();
         priceTXT.text = itemData.price.ToString();
+        UpdateButtonStatus();
     }
 
     public void OnClickSelectBtn()
     {
         ShopManager.Instance.currentOpenShop.Sell(itemData, 1);
+        UpdateButtonStatus();
     }
 
-
+    private void UpdateButtonStatus()
+    {
+        if (ResourceManager.Instance.coinTrader.HasEnoughCoins(itemData.price))
+        {
+            EnableButton(true);
+        }
+        else
+        {
+            EnableButton(false);
+        }
+    }
+    private void EnableButton(bool _value)
+    {
+            this.GetComponent<Button>().interactable = _value;
+    }
 }

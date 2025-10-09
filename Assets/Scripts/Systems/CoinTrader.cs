@@ -26,6 +26,16 @@ public class CoinTrader : MonoBehaviour
         onCoinsChanged?.Invoke(currentCoins);
     }
 
+
+    public bool HasEnoughCoins(int _amount)
+    {
+        bool _result = false;
+        if (_amount <= currentCoins)
+        {
+            _result = true;
+        }
+        return _result;
+    }
     public bool CanSpendCoins(int _amount)
     {
         bool _result = false;

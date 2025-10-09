@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour
 
 private void ChangeFogColor()
     {
-        Debug.Log("FOGDHADE");
+        //Debug.Log("FOGDHADE");
         UnityEngine.Color _high = currentLevel.config.fogHigh;
         UnityEngine.Color _low = currentLevel.config.fogLow;
         fogMaterial.SetColor("_Color_High", _high);

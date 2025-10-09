@@ -1,5 +1,6 @@
-using System.Collections;
 using NUnit.Framework.Internal;
+using PrimeTween;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerEffects : MonoBehaviour
     [SerializeField] private float cooldownTime;
 
     private PlayerStates playerStates;
+
 
     private void Start()
     {
@@ -102,13 +104,62 @@ public class PlayerEffects : MonoBehaviour
     public IEnumerator StartCooldown(float _time)
     {
         PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Cooldown;
-
+        StartBlink(cooldownTime);
         playerStates.AddEffect(_effect); // bloquea daño durante cooldown
         yield return new WaitForSeconds(_time);
         playerStates.RemoveEffect(_effect);  // desbloquea daño
     }
 
+    [SerializeField] private SkinnedMeshRenderer[] renderers;
+    [SerializeField] private float blinkInterval = 0.12f; // cada cuánto alterna
+    private Coroutine blinkRoutine;
+
+    public void StartBlink(float duration)
+    {
+        StopBlink();
+        blinkRoutine = StartCoroutine(BlinkRoutine(duration));
+    }
+
+    public void StopBlink()
+    {
+        if (blinkRoutine != null)
+        {
+            StopCoroutine(blinkRoutine);
+            blinkRoutine = null;
+        }
+
+        SetVisible(true); // asegurar que quede visible al terminar
+    }
+
+    private IEnumerator BlinkRoutine(float duration)
+    {
+        float elapsed = 0f;
+        bool visible = true;
+
+        while (elapsed < duration)
+        {
+            visible = !visible;
+            SetVisible(visible);
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
+
+        SetVisible(true);
+        blinkRoutine = null;
+    }
+
+    private void SetVisible(bool visible)
+    {
+        foreach (var r in renderers)
+            r.enabled = visible;
+    }
+
+    private void OnDisable()
+    {
+        StopBlink();
+    }
 }
+
 
 
 public enum PlayerEffectStateEnum
