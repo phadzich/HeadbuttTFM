@@ -21,6 +21,7 @@ public class PlayerEffects : MonoBehaviour
     {
         if (!playerStates.hasEffect(PlayerEffectStateEnum.Stunned) && playerStates.canReceiveDamage) // SI PUEDE RECIBIR DAÑO
         {
+            StartBlink(cooldownTime);
             SoundManager.PlaySound(SFXType.GET_STUNN);
             PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Stunned;
             PlayerManager.Instance.playerEmojis.StunnedEmoji();
@@ -43,7 +44,7 @@ public class PlayerEffects : MonoBehaviour
         {
             HelmetManager.Instance.currentHelmet.TakeDamage(_amount);
             StartCoroutine(PlayDmgSound());
-
+            StartBlink(cooldownTime);
             if (!isCooldownActive) StartCoroutine(StartCooldown(cooldownTime));
         }
         else
@@ -104,7 +105,7 @@ public class PlayerEffects : MonoBehaviour
     public IEnumerator StartCooldown(float _time)
     {
         PlayerEffectStateEnum _effect = PlayerEffectStateEnum.Cooldown;
-        StartBlink(cooldownTime);
+
         playerStates.AddEffect(_effect); // bloquea daño durante cooldown
         yield return new WaitForSeconds(_time);
         playerStates.RemoveEffect(_effect);  // desbloquea daño
