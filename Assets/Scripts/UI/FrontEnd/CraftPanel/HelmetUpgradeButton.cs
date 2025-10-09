@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HelmetUpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HelmetUpgradeButton : MonoBehaviour
 {
     public GameObject tooltip;
     public TextMeshProUGUI text;
@@ -11,6 +11,7 @@ public class HelmetUpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         ToggleTooltip(false);
     }
+    /*
     public void OnPointerEnter(PointerEventData eventData)
     {
         text.text = UIManager.Instance.craftingPanel.infoPanel.nextAction;
@@ -21,8 +22,9 @@ public class HelmetUpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         ToggleTooltip(false);
     }
+    */
 
-    private void ToggleTooltip(bool _enabled)
+    public void ToggleTooltip(bool _enabled)
     {
         tooltip.SetActive(_enabled);
     }

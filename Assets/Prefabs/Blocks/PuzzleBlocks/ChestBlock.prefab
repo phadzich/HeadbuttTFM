@@ -5691,9 +5691,9 @@ Transform:
   m_GameObject: {fileID: 6663836412425209496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.812, z: 0}
+  m_LocalScale: {x: 0.78, y: 0.78, z: 0.78}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5060183085094937740}
   - {fileID: 4967899638000654977}
@@ -6024,7 +6024,7 @@ MonoBehaviour:
   blockName: 
   sublevelId: 0
   sublevelPosition: {x: 0, y: 0}
-  isWalkable: 0
+  isWalkable: 1
   up: {fileID: 0}
   down: {fileID: 0}
   left: {fileID: 0}

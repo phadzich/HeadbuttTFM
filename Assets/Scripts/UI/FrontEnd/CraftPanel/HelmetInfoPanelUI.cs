@@ -203,7 +203,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
     {
         upgradeBtn.interactable = _value;
         upgradeBtn.gameObject.SetActive(true);
-
+        upgradeBtn.GetComponent<HelmetUpgradeButton>().ToggleTooltip(_value);
     }
 
     private void EnableEquip(bool _value)

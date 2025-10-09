@@ -33,7 +33,6 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void SetupBlock(MapContext _context, IRequirement _requirement, int _id)
     {
-        GetComponent<BlockNS>().isWalkable = false;
         mapContext = _context;
         chestID = _id;
         isClaimed = false;
@@ -116,7 +115,6 @@ public class ChestBehaviour : MonoBehaviour, IBlockBehaviour
     public void IndicateOpen()
     {
         SoundManager.PlaySound(SFXType.OPEN_CHEST);
-        GetComponent<BlockNS>().isWalkable = true;
         AnimateOpenDoor();
         particles.SetActive(true);
         chestReqsUI.gameObject.SetActive(false);
