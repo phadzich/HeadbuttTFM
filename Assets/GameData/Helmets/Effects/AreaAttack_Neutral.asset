@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Elemental Area Damage
   effectName: Stone Stomp
-  description: Spend 4 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
+  description: Spend 3 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
     tiles around you.
   effectIcon: {fileID: 21300000, guid: a6775266af763c6418a643cccd5e9546, type: 3}
   hbPointsUsed: 2

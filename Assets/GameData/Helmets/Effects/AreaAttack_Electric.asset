@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Elemental Area Damage
   effectName: Shockwave
-  description: Spend 4 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
+  description: Spend 3 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
     tiles around you.
   effectIcon: {fileID: 21300000, guid: fff6a71478f30e149be28fb6c8b8d24d, type: 3}
   hbPointsUsed: 2

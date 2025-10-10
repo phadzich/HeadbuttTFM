@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Elemental Area Damage
   effectName: Nature Overgrowth
-  description: Spend 4 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
+  description: Spend 3 Headbutt points to deal {{{ELEMENT}}} damage {{{values}}}
     tiles around you.
   effectIcon: {fileID: 21300000, guid: 6e9651a662cea234f880998d14df3f42, type: 3}
   hbPointsUsed: 2

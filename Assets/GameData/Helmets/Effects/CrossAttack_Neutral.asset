@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Cross Attack
   effectName: Cross Quake
-  description: Spend 3 Headbutt points to deal {{{ELEMENT}}} damage in a cross that
+  description: Spend 2 Headbutt points to deal {{{ELEMENT}}} damage in a cross that
     extends {{{values}}} tiles around you.
   effectIcon: {fileID: 21300000, guid: ec7979bd180bdff4394ee6e5bb813399, type: 3}
   hbPointsUsed: 1

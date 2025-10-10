@@ -26,23 +26,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 136ce2d0ca2a7004e8093bed2a4ea4bc, type: 2}
   levelUpRequirements:
   - requirements:
-    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 27
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
       quantity: 13
+    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+      quantity: 27
+    durability: 1
+    powerStat: 0
+  - requirements:
+    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
+      quantity: 20
+    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+      quantity: 40
     durability: 2
     powerStat: 0
   - requirements:
-    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 40
-    - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 20
-    durability: 3
-    powerStat: 0
-  - requirements:
-    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 53
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
       quantity: 27
-    durability: 4
-    powerStat: 1
+    - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
+      quantity: 53
+    durability: 3
+    powerStat: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: Basic Attack
   effectName: Fire Headbutt
-  description: Spend 2 Headbutt points to deal {{{ELEMENT}}} damage below you.
+  description: Spend 1 Headbutt point to deal {{{ELEMENT}}} damage below you.
   effectIcon: {fileID: 21300000, guid: 6fe309886a629b540b70b1e29dc7d48d, type: 3}
   hbPointsUsed: 0
   effectParticles: {fileID: 5102639546771583594, guid: 64fdc60b763c17943809b164e68b2c99, type: 3}

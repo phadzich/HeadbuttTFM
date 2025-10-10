@@ -31,18 +31,18 @@ MonoBehaviour:
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
       quantity: 34
     durability: 2
-    powerStat: 1
+    powerStat: 2
   - requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
       quantity: 34
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
       quantity: 50
     durability: 3
-    powerStat: 1
+    powerStat: 3
   - requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
       quantity: 45
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
       quantity: 67
     durability: 4
-    powerStat: 2
+    powerStat: 4
