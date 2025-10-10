@@ -53,7 +53,7 @@ Material:
     - _Noise_Scale: 30
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0.0425
+    - _Speed: 0.005
     - _SrcBlend: 5
     - _Surface: 1
     - _Transparency: 2.38
@@ -61,8 +61,8 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 2
     m_Colors:
-    - _Color_High: {r: 0.13203098, g: 0.3254717, b: 0.14221208, a: 1}
-    - _Color_Low: {r: 0.04983981, g: 0.13207549, b: 0.0532663, a: 1}
+    - _Color_High: {r: 0.16862746, g: 0.09019608, b: 0.29411766, a: 1}
+    - _Color_Low: {r: 0.078431375, g: 0.023529412, b: 0.16078432, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8843720637682987450
