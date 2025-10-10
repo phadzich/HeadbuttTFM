@@ -27,22 +27,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 14
+      quantity: 9
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 18
+      quantity: 11
     durability: 3
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 21
+      quantity: 13
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 27
+      quantity: 17
     durability: 4
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 28
+      quantity: 18
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 36
+      quantity: 22
     durability: 5
     powerStat: 0

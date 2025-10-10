@@ -35,4 +35,4 @@ MonoBehaviour:
       type: {class: EnemyDeathsRequirement, ns: , asm: Assembly-CSharp}
       data:
         customID: 0
-        enemiesNeeded: 2
+        enemiesNeeded: 1

@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBounce: {fileID: 8300000, guid: c5c9b40674081634ebe6478d51a5f0ae, type: 3}
   onHeadbutt: {fileID: 8300000, guid: 0b4e076b2fac33e4fa1a83b4f322308f, type: 3}
+  feedbackParticles: {fileID: 0}
 --- !u!1 &4246945198350386805
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4246945198350386805}
-  m_Mesh: {fileID: 5547208218056430551, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
+  m_Mesh: {fileID: 2578237655834376770, guid: 923a793c68b20d44eb5e287bc338b72c, type: 3}
 --- !u!23 &7727897248388894288
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -382,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBounce: {fileID: 8300000, guid: c5c9b40674081634ebe6478d51a5f0ae, type: 3}
   onHeadbutt: {fileID: 8300000, guid: 0b4e076b2fac33e4fa1a83b4f322308f, type: 3}
+  feedbackParticles: {fileID: 0}
 --- !u!114 &3787466443539973188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +451,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a2083de4842154e4a963d8c41c479dc9, type: 2}
+    - target: {fileID: -5754084199372789682, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2578237655834376770, guid: 923a793c68b20d44eb5e287bc338b72c, type: 3}
     - target: {fileID: 919132149155446097, guid: d730bcb3473d3fe459839fec527be6db, type: 3}
       propertyPath: m_Name
       value: FloorBlock (1)

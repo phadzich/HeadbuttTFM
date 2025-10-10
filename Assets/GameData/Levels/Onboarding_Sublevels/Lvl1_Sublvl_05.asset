@@ -24,7 +24,7 @@ MonoBehaviour:
   chestsRequirements: []
   chestsLoot: []
   switchesDurations:
-  - 5
+  - 0.1
   references:
     version: 2
     RefIds:

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 5
   levelName: Foggy Forest
   levelDescription: CheckPoint00
-  maxDepth: 1
+  maxDepth: 7
   levelIcon: {fileID: 21300000, guid: e2085437a29ea4d4ea7ab0919e06af14, type: 3}
   levelColor: {r: 0.2627451, g: 0.86274517, b: 0.29803923, a: 1}
   levelMusic: {fileID: 8300000, guid: 774a39c6ae1599f4f8a3ebb48ea4bfaa, type: 3}
@@ -28,8 +28,12 @@ MonoBehaviour:
   subLevels:
   - {fileID: 11400000, guid: 5e34f1c7d8e949a479c40c779b543f6e, type: 2}
   - {fileID: 11400000, guid: d80363ffc8889494999752fcbec75d1d, type: 2}
+  - {fileID: 11400000, guid: a7fb72e8dd90fd641beb59ec838244d3, type: 2}
   - {fileID: 11400000, guid: b9bc78fbbf1a84b46a66e41f904c14bc, type: 2}
+  - {fileID: 11400000, guid: ab7d1993a2b71bc428db6fac7dc7de1e, type: 2}
+  - {fileID: 11400000, guid: 24a2298297c8cf540b8e0471b31a69eb, type: 2}
   - {fileID: 11400000, guid: bf9098493a01fb143ab11a3b4234ac71, type: 2}
+  - {fileID: 11400000, guid: f037836bdc9ea36468b349f682f91814, type: 2}
   - {fileID: 11400000, guid: a2ecdf853b6f9424aba3c6741a00f7f5, type: 2}
   - {fileID: 11400000, guid: 15193faa6779d484d897c66625afd660, type: 2}
   - {fileID: 11400000, guid: 62e8d4d6c508e9347ba216a50632e652, type: 2}
