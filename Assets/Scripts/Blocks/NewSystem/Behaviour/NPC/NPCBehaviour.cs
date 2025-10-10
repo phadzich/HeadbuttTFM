@@ -13,11 +13,21 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
     public Sprite icon;
     public Image npcIMG;
     public CinemachineCamera NPCCam;
+    public bool inZone;
 
     private int shopID;
 
     public NPCType type;
 
+    private void OnEnable()
+    {
+        UIManager.Instance.onNPCUIChanged += HandleUIChange;
+    }
+
+    private void OnDisable()
+    {
+        UIManager.Instance.onNPCUIChanged -= HandleUIChange;
+    }
     public void SetupBlock(MapContext _context)
     {
         //Debug.Log(this);
@@ -49,6 +59,16 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         GetComponent<BlockNS>().isWalkable = _walk;
     }
 
+    private void HandleUIChange(bool _value)
+    {
+        if (inZone)
+        {
+            interactPanel.SetActive(!_value);
+        }
+
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -72,6 +92,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         //Debug.Log("ENTERED ZONE");
         InputManager.Instance.currentInteractableNPC = this;
         ShowInteraction(true);
+        inZone = true;
     }
 
     public void ExitZone(GameObject _other)
@@ -79,6 +100,7 @@ public class NPCBehaviour : MonoBehaviour, IInteractable
         //Debug.Log("EXITED ZONE");
         InputManager.Instance.currentInteractableNPC = null;
         ShowInteraction(false);
+        inZone = false;
     }
 
     public void Interact()

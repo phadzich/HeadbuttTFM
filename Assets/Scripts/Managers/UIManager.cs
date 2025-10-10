@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using Unity.Cinemachine;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -54,6 +55,8 @@ public class UIManager : MonoBehaviour
 
     [Header("GAMEOVER")]
     public GameObject gameOverPanel;
+
+    public Action<bool> onNPCUIChanged;
 
     private void Awake()
     {
@@ -231,6 +234,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("OpeningNPCUI");
         HUDCanvas.SetActive(false);
+        onNPCUIChanged?.Invoke(true);
         switch (_type)
         {
             case NPCType.Crafter:
@@ -258,10 +262,11 @@ public class UIManager : MonoBehaviour
 
     public void CloseCurrentOpenUI(InputAction.CallbackContext context)
     {
-        Debug.Log("E");
+        //Debug.Log("E");
+        onNPCUIChanged?.Invoke(false);
         if (context.performed) // ya se solt� y volvi� a presionar
         {
-            Debug.Log("Closing UI");
+            //Debug.Log("Closing UI");
             if (currentOpenUI != null)
             {
                 HUDCanvas.SetActive(true);
@@ -279,12 +284,13 @@ public class UIManager : MonoBehaviour
         SoundManager.PlaySound(UIType.OPEN_SHOP);
         PlayerManager.Instance.ShowPlayerMesh(false);
         NPCKeyHUD.SetActive(false);
-        Debug.Log("OpeningSHOP UI");
+        //Debug.Log("OpeningSHOP UI");
         HUDCanvas.SetActive(false);
         Shop _currentShop = ShopManager.Instance.ShopById(_id);
         shopPanel.OpenShop(_currentShop);
         currentOpenUI = shopPanel.gameObject;
         frontEndFrame.OpenFrame("SHADY SHOP", _currentShop.shopName, UIManager.Instance.iconsLibrary.npcShop);
+        onNPCUIChanged?.Invoke(true);
     }
 
     public void ShowNPCKey(bool _show)
