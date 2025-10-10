@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 19
   helmetName: Hydrant
-  description: 
+  description: "Made from an ancient artifact found in the mines. Shoots water at
+    high pressure\u2026 Joma\u2019s curiosity flooded the workshop."
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
   icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
   color: {r: 0.8396226, g: 0.2815474, b: 0.1544589, a: 0}

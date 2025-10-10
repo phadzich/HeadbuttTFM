@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   helmetName: Chest Lock
-  description: "Tapa de un cofre que se dec\xEDa conten\xEDa un gran tesoro; vestirlo
-    hace so\xF1ar a los enanos con aventuras, peligros y enormes riquezas."
+  description: "Once part of a legendary treasure chest. Wearing it brings grand
+    dreams \u2014 except for Joma, who only sees food and mead."
   mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
   icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
