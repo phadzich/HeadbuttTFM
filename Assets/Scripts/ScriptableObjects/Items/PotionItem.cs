@@ -13,10 +13,10 @@ public class PotionItem : Item
             case PotionTypes.Default: 
                 break;
             case PotionTypes.Durability:
-                HelmetManager.Instance.currentHelmet.HealDurability(value); 
+                HelmetManager.Instance.currentHelmet.HealDurability(value, true); 
                 break;
             case PotionTypes.HBPoints:
-                PlayerManager.Instance.playerHeadbutt.AddHBPoints(value);
+                PlayerManager.Instance.playerHeadbutt.AddHBPoints(value, true);
                 break;
         }
     }

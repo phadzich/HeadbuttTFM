@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10
   helmetName: BabyDragon
-  description: 
+  description: A tiny dragon hatchling left behind in the mines and raised by the
+    dwarves. Joma discovered that squeezing it makes it spit fire.
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
   icon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
   color: {r: 0.19339621, g: 0.18451354, b: 0.18244925, a: 0}

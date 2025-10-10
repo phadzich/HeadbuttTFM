@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 15
   helmetName: Bubble Wrap
-  description: 
+  description: "Made from real bubble wrap, both toy and tech. Each jump makes the
+    bubbles pop. Joma loves to wear it, she swears it\u2019s not just for fun"
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
   icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
