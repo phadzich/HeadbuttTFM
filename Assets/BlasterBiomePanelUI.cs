@@ -76,7 +76,7 @@ public class BlasterBiomePanelUI : MonoBehaviour
         Debug.Log("LOADING CHECKPIINT DIRECT");
         int _levelIndex = LevelManager.Instance.levelsList.IndexOf(_level);
         LevelManager.Instance.ChangeLevelAndCheckpoint(_levelIndex, _depth);
-        UIManager.Instance.NPCElevatorPanel.SetActive(false);
+        UIManager.Instance.NPCBlasterPanel.SetActive(false);
         UIManager.Instance.frontEndFrame.CloseFrame();
     }
 

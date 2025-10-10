@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
 
     public void RemovePlayerLives(int _amount)
     {
-        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.npcForger, $"{HelmetManager.Instance.currentHelmet.baseHelmet.helmetName} <b>BROKEN</b>!");
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.helmetBroken, $"{HelmetManager.Instance.currentHelmet.baseHelmet.helmetName} <b>BROKEN</b>!");
 
         currentPlayerLives -= _amount;
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);

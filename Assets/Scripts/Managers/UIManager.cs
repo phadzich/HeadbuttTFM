@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject NPCTraderPanel;
     public ExchangePanelUI NPCUpgradeExchanger;
     public InventoryPanelUI InventoryPanel;
-    public GameObject NPCElevatorPanel;
+    public GameObject NPCBlasterPanel;
     public ShopPanel shopPanel;
     public CraftingPanel craftingPanel;
 
@@ -241,8 +241,8 @@ public class UIManager : MonoBehaviour
                 break;
             case NPCType.Elevator:
                 SoundManager.PlaySound(UIType.OPEN_ELEVATOR);
-                NPCElevatorPanel.SetActive(true);
-                currentOpenUI = NPCElevatorPanel.gameObject;
+                NPCBlasterPanel.SetActive(true);
+                currentOpenUI = NPCBlasterPanel.gameObject;
                 frontEndFrame.OpenFrame("BLASTER", "Launch yourself to other checkpoints.", UIManager.Instance.iconsLibrary.npcElevator);
                 break;
             case NPCType.Inventory:

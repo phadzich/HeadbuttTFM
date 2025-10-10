@@ -76,7 +76,7 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
         borde2.GetComponent<MeshRenderer>().material = openMaterial;
         borde3.GetComponent<MeshRenderer>().material = openMaterial;
         borde4.GetComponent<MeshRenderer>().material = openMaterial;
-        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.enemyReq,"The floor door has opened.");
+        CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.objectivesComplete,"The floor door has opened.");
     }
 
     public void OnBounced(HelmetInstance _helmetInstance)

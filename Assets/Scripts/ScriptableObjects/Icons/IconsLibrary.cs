@@ -7,16 +7,21 @@ public class IconsLibrary : ScriptableObject
 
     [Header("LOOT")]
     public Sprite lootKeySprite;
+    public Sprite HBPotion;
+    public Sprite DURPotion;
 
     [Header("HUD")]
     public Sprite coinSprite;
+    public Sprite savedGame;
+    public Sprite objectivesComplete;
+    public Sprite helmetBroken;
 
     [Header("NPCs")]
     public Sprite npcShop;
     public Sprite npcForger;
     public Sprite npcElevator;
     public Sprite npcInventory;
-    public Sprite npcRacks;
+
 
     [Header("REQUIREMENTS")]
     public Sprite blockReq;
@@ -28,4 +33,5 @@ public class IconsLibrary : ScriptableObject
 
     [Header("LOG")]
     public Sprite chestLog;
+    public Sprite gateLog;
 }
