@@ -84,6 +84,7 @@ public class HelmetInstance: IElemental
         PlayerManager.Instance.playerAnimations.PlayDamageReaction();
         PlayerManager.Instance.groundAnimations.Play("Helmet_Damaged");
         UIManager.Instance.currentHelmetsHUD.FindHUDbyInstance(this).VFXDamage();
+        GamepadRumble.VibrateHit();
 
         if (IsWornOut)
         {
@@ -91,6 +92,7 @@ public class HelmetInstance: IElemental
             if (HelmetManager.Instance.HasHelmetsLeft)
             {
                 HelmetManager.Instance.WearNextAvailableHelmet();
+                GamepadRumble.VibrateDead();
             }
         }
 

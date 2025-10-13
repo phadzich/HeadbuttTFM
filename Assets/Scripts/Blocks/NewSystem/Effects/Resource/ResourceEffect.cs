@@ -158,6 +158,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
     private void MinedAnimation()
     {
         minedParticles.Play();
+        GamepadRumble.VibrateMine();
     }
 
     private void InstanceResourceDropMesh()

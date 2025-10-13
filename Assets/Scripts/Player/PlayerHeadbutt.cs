@@ -141,6 +141,7 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         //Debug.Log("HBUP");
         StartCoroutine(PlayHBSound());
+        GamepadRumble.VibrateHeadbutt();
         StartCoroutine(PlayerManager.Instance.playerEffects.StartCooldown(1f));
         Invoke(nameof(ReturnToBounceState), 0.5f);
         PlayerManager.Instance.playerStates.ChangeState(PlayerMainStateEnum.Headbutt);
