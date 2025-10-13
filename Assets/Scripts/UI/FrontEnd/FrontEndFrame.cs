@@ -27,7 +27,9 @@ public class FrontEndFrame : MonoBehaviour
         frameTitleTXT.text = _title;
         frameDescriptionTXT.text = _descrip;
 
-        Tween.StopAll();
+        Tween.StopAll(frameBG);
+        Tween.StopAll(frameTitle);
+        Tween.StopAll(hotkeysBar);
 
 
         //ANIMAR
@@ -51,7 +53,9 @@ public class FrontEndFrame : MonoBehaviour
 
     public void CloseFrame()
     {
-        Tween.StopAll();
+        Tween.StopAll(frameBG);
+        Tween.StopAll(frameTitle);
+        Tween.StopAll(hotkeysBar);
         //ANIMAR
         Tween.Alpha(frameBG, startValue: 1,
             endValue: 0,
