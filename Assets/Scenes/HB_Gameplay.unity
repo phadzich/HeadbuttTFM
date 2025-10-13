@@ -19819,7 +19819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueTXT: {fileID: 402597650}
   dialogueButtonTXT: {fileID: 294092223}
-  playerImage: {fileID: 125111713}
+  characterImage: {fileID: 0}
   npcImage: {fileID: 1597678993}
   dialogFade: {fileID: 1159618473}
 --- !u!114 &975058484
