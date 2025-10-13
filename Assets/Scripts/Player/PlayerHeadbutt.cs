@@ -48,6 +48,7 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         CombatLogHUD.Instance.AddLog(UIManager.Instance.iconsLibrary.HBPotion, $"Gained <b>{potionValues[_potionID]}</b> Headbutt Energy!");
         AddHBPoints(potionValues[_potionID], true, _delay);
+
         PlayerManager.Instance.groundAnimations.Play("Item_Consumed");
     }
 
@@ -55,7 +56,8 @@ public class PlayerHeadbutt : MonoBehaviour
     {
         yield return new WaitForSeconds(_delay);
         SoundManager.PlaySound(SFXType.DRINK_HBPOTION);
-
+        PlayerManager.Instance.playerAnimations.hbParticles.Play();
+        PlayerManager.Instance.groundAnimations.Play("Helmet_Healed");
     }
 
     public void AddHBPoints(float _amount, bool _fromPotion = false, float _delay = 0f)

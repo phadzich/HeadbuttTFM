@@ -119,20 +119,26 @@ public class ItemsInventory : MonoBehaviour
     public void UseActiveItem(InputAction.CallbackContext context)
     {
 
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && LevelManager.Instance.currentSublevel.config is MiningSublevelConfig)
         {
 
             if (ownedItems.Count <= 0)
             {
                 return;
             }
+            else
+            {
 
-            UIManager.Instance.activeItemHUD.VFXConsume();
-            ConsumeItems(currentActiveItem, 1);
+                ConsumeItems(currentActiveItem, 1);
+            }
+
+
         }
     }
     public void ConsumeItems(Item _item, int _amount)
     {
+        if (equippedItems.Count <= 0) return;
+        UIManager.Instance.activeItemHUD.VFXConsume();
         int _prevAmount = ownedItems[_item];
         int _finalAmount = _prevAmount - _amount;
 

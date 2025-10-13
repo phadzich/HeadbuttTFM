@@ -13,6 +13,9 @@ public class PlayerAnimations : MonoBehaviour
     public float bounceSquashRatio = .3f;
     public float bounceSquashDuration = .3f;
 
+    public ParticleSystem hbParticles;
+    public ParticleSystem hpParticles;
+
     public Animator animatorPlayer, faceAnimator;
     void Start()
     {

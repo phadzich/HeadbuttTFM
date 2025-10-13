@@ -131,7 +131,8 @@ public class HelmetInstance: IElemental
             currentDurability += _amount;
 
         }
-        PlayerManager.Instance.groundAnimations.Play("Helmet_Healed");
+
+        PlayerManager.Instance.playerAnimations.hpParticles.Play();
         UIManager.Instance.currentHelmetsHUD.FindHUDbyInstance(this).VFXHealed();
         HelmetInstanceChanged?.Invoke(this);
     }

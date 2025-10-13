@@ -11,21 +11,11 @@ public class HelmetUpgradeButton : MonoBehaviour
     {
         ToggleTooltip(false);
     }
-    /*
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        text.text = UIManager.Instance.craftingPanel.infoPanel.nextAction;
-        ToggleTooltip(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        ToggleTooltip(false);
-    }
-    */
+    
 
     public void ToggleTooltip(bool _enabled)
     {
+        text.text = UIManager.Instance.craftingPanel.infoPanel.nextAction;
         tooltip.SetActive(_enabled);
     }
 }

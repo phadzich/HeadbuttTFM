@@ -8,6 +8,7 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockBehaviour
 
     private ICollectibleEffect[] collectables;
     private bool isCollected = false;
+    public ParticleSystem collectedParticles;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class CollectibleBehaviour : MonoBehaviour, IBlockBehaviour
         }
 
         if (collectableObject != null)
+            collectedParticles.Play();
             collectableObject.SetActive(false);
         isCollected = true;
     }
