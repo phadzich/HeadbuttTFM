@@ -38,7 +38,7 @@ public class SettingsManager : MonoBehaviour
 
     //GAMEPLAY
     private int language = 0; // 0 = inglés, 1 = español
-    private int vibration = 1;
+    public int vibration = 1;
     public int shake = 1;
 
     public Resolution[] GetFilteredResolutions()

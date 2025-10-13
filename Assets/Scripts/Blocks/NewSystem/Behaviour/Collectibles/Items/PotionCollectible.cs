@@ -13,7 +13,7 @@ public class PotionCollectible : MonoBehaviour, ICollectibleEffect
     {
         parentSublevel = _context.sublevel;
         potionSize = int.Parse(_potionSize);
-        meshSize = ((float)potionSize / 10f) + .6f;
+        meshSize = ((float)potionSize / 10f) + .5f;
         potionMesh.transform.localScale = new Vector3(meshSize, meshSize, meshSize);
     }
 

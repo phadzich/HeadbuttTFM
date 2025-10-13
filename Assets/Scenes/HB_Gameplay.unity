@@ -28181,6 +28181,7 @@ MonoBehaviour:
   settingsUI: {fileID: 7870437737590440707}
   pauseHandler: {fileID: 1764228816}
   settingsVolume: {fileID: 654086238}
+  vibration: 1
   shake: 1
 --- !u!1 &1083316519
 GameObject:
@@ -48504,6 +48505,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: VibrationToggle
       objectReference: {fileID: 0}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1082116693}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVibration
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921710748429149715, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7191210487691041110, guid: 248e3bd4627685440b3eeec412f8ba6a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -60588,6 +60617,7 @@ GameObject:
   - component: {fileID: 5822546836938247752}
   - component: {fileID: 5968455490456037073}
   - component: {fileID: 2996706624672652694}
+  - component: {fileID: 5968455490456037074}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -65568,6 +65598,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5968455490456037074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234475771866337488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10fc3c178653c1644b7f08ff93c1163b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6091127814731917524
 MonoBehaviour:
   m_ObjectHideFlags: 0
