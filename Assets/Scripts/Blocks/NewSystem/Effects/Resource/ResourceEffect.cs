@@ -5,6 +5,7 @@ using TMPro;
 using Unity.Cinemachine;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(ResourceSetup))]
 public class ResourceEffect : MonoBehaviour, IBlockEffect
@@ -66,7 +67,7 @@ public class ResourceEffect : MonoBehaviour, IBlockEffect
         InstanceResourceDropMesh();
         ToggleHitIndicator(false);
         minedParticles.GetComponent<ParticleSystemRenderer>().material = blockMesh.transform.GetChild(0).GetComponent<MeshRenderer>().material;
-        uiAnims.resourceIcon.sprite = _resource.icon;
+        uiAnims.rewardPanelUI.GetComponent<Image>().color = resourceData.color;
         SetRandomRotation();
         gameObject.name = $"{_resource.shortName}_c{_context.x}r_{_context.y}";
 

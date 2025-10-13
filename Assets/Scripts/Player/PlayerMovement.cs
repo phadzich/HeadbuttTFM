@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator DelayMoveToDrop(Vector3 _dropPosition)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         speed = dropSpeed;
         var _newPos = new Vector3(_dropPosition.x, _dropPosition.y + 50f, _dropPosition.z);
         positionTarget = _newPos;

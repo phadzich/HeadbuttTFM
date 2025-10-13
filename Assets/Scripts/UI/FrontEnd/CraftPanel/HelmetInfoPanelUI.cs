@@ -34,6 +34,8 @@ public class HelmetInfoPanelUI : MonoBehaviour
     public Image res02Icon;
     public GameObject res02;
 
+    public Animator upgradeVFX;
+
     public GameObject equippedLabel;
     public Button upgradeBtn;
     public Button equipBtn;
@@ -69,7 +71,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
         powerTXT.text = ((int)helmetInstance.baseHelmet.miningPower + 1).ToString();
         helmetIcon.gameObject.SetActive(true);
         helmetIcon.sprite = helmetInstance.baseHelmet.icon;
-
+        helmetIcon.color = new Color(.5f, .5f, .5f, .9f);
         UpdateStrongVsData(helmetInstance.Element);
 
         elementIcon.sprite = UIManager.Instance.elementIcons[(int)helmetInstance.baseHelmet.element];
@@ -159,6 +161,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
         //crafted
         if (helmetInstance.currentLevel == 1 || helmetInstance.currentLevel == 2)
         {
+            helmetIcon.color = Color.white;
             _instance.UpdateSound(UIType.UPGRADE);
             nextAction = "LEVEL UP!";
             EnableEquip(true);
@@ -196,7 +199,15 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
     }
 
+    public void PlayCraftedVFX()
+    {
+        upgradeVFX.Play("Headbutt_Wave");
+    }
 
+    public void PlayLevelUpVFX()
+    {
+        upgradeVFX.Play("Helmet_Healed");
+    }
 
 
     private void EnableUpgrade(bool _value)

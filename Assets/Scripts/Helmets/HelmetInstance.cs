@@ -181,7 +181,15 @@ public class HelmetInstance: IElemental
 
     public void Craft()
     {
-        isCrafted = true;
+        if (!isCrafted)
+        {
+            UIManager.Instance.craftingPanel.infoPanel.PlayCraftedVFX();
+        }
+        else
+        {
+            UIManager.Instance.craftingPanel.infoPanel.PlayLevelUpVFX();
+        }
+            isCrafted = true;
         LevelUpHelmet(GetUpgradeRequirement());
         HelmetInstanceChanged?.Invoke(this);
     }

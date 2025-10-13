@@ -182,7 +182,7 @@ private void ChangeFogColor()
     public void ExitSublevel()
     {
 
-        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 3f));
+        StartCoroutine(DestroySublevelContentDelayed(currentSublevel, 2f));
 
         currentLevelDepth++;
         //PlayerManager.Instance.playerCamera.MoveFogDown(currentLevelDepth);
