@@ -17,18 +17,26 @@ MonoBehaviour:
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Sure...
     highlightID: 0
+    npcSFX: {fileID: 8300000, guid: 0acb53c3023e61e4fa590489c202df11, type: 3}
+    jomaSFX: {fileID: 8300000, guid: 662abafc7dfe3c147a2ab33b58a38afb, type: 3}
   - text: <size=120%><b>BUT LISTEN UP, LITTLE COD!</b> </size>Down here, there are
       worse things than banging your head.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Cod?
     highlightID: 0
+    npcSFX: {fileID: 8300000, guid: d82c7893165324c46b9a9d627f9dba00, type: 3}
+    jomaSFX: {fileID: 8300000, guid: ff76c54bea289466fad5abfb68468520, type: 3}
   - text: "Special <sprite=21> <b>blocks</b> and epic <sprite=1> <b>enemies</b> will
       do everything to stop you from clearing each floor\u2019s goals.\n"
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     buttonText: "Interesting\u2026"
     highlightID: 3
+    npcSFX: {fileID: 8300000, guid: eab291c8a1f9984448aa94257e3de508, type: 3}
+    jomaSFX: {fileID: 8300000, guid: eca1355730476b6498f5c55edf9ba20c, type: 3}
   - text: "Life\u2019s tough. Always has been. <b>But your skull\u2019s tougher!
       </b> Collect <b>10 resources</b> or more and meet me below."
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Fingers crossed.
     highlightID: 3
+    npcSFX: {fileID: 8300000, guid: 38d73f45af347ee45bf759933e3d4966, type: 3}
+    jomaSFX: {fileID: 8300000, guid: f0a00122d1bc44608aabe6f939b2ecf8, type: 3}

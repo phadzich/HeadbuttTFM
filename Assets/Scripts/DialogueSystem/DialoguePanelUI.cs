@@ -35,6 +35,7 @@ public class DialoguePanelUI : MonoBehaviour
         AnimateText();
     }
 
+
     private void AnimateNPC()
     {
         Tween.ScaleY(npcImage.transform, startValue: .6f, endValue: 1f, duration: .4f, ease:Ease.OutElastic);

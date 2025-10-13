@@ -8,4 +8,6 @@ public class DialogueLine
     public Sprite npcImage;
     public string buttonText;
     public int highlightID;
+    public AudioClip npcSFX;
+    public AudioClip jomaSFX;
 }

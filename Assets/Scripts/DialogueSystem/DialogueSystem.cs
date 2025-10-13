@@ -53,21 +53,38 @@ public class DialogueSystem : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+
             ShowNextLine();
+
         }
     }
 
+    private IEnumerator SendDialogueSFX(AudioClip _clip, float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SoundManager.PlayDialog(_clip);
+    }
     public void ShowNextLine()
     {
             if (index < lines.Count)
             {
+                if (index != 0)
+                {
+                    StartCoroutine(SendDialogueSFX(lines[index - 1].jomaSFX, 0));
+                }
+
+            StartCoroutine(SendDialogueSFX(lines[index].npcSFX, lines[index].jomaSFX.length));
             TryShowHighlight(lines[index].highlightID);
             dialogueUI.UpdateDialogContent(lines[index]);
                 index++;
-            }
+
+
+        }
             else
             {
+            StartCoroutine(SendDialogueSFX(lines[index-1].jomaSFX, 0));
             EndDialogue();
+
         }
     }
 

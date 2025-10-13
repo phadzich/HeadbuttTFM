@@ -17,25 +17,35 @@ MonoBehaviour:
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "I\u2019m Joma \xAC_\xAC"
     highlightID: 0
+    npcSFX: {fileID: 8300000, guid: 0acb53c3023e61e4fa590489c202df11, type: 3}
+    jomaSFX: {fileID: 8300000, guid: 662abafc7dfe3c147a2ab33b58a38afb, type: 3}
   - text: OMG, you survived? Never doubted you, <b>bestie</b>, told you from the
       start!
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: "Yeah, sure\u2026 "
     highlightID: 0
-  - text: Since you killed two 8HP enemies, you also gained <sprite=12><color=#f2b63a><b>
-      16 coins</b></color> as shown on the <color=#67f834><b>top-right</b></color>
+    npcSFX: {fileID: 8300000, guid: 77acd59186fdd4442802d00aaf954008, type: 3}
+    jomaSFX: {fileID: 8300000, guid: a310acfbd5b447b46949283447c83bc5, type: 3}
+  - text: Since you killed an 8HP enemy, you also gained <sprite=12><color=#f2b63a><b>
+      8 coins</b></color> for each, as shown on the <color=#67f834><b>top-right</b></color>
       corner.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     buttonText: What are coins for?
     highlightID: 5
+    npcSFX: {fileID: 8300000, guid: d82c7893165324c46b9a9d627f9dba00, type: 3}
+    jomaSFX: {fileID: 8300000, guid: c1038f3463d614c3dad2d3e91a2d5560, type: 3}
   - text: See that cute shop there? Spend <sprite=12><color=#f2b63a><b> coins</b></color>
       on handy <b>items</b>, then equip up to 3 of them in your <sprite=13><color=#ff3f9f><b>
       Storage</b></color>.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     buttonText: Looks shady.
     highlightID: 0
+    npcSFX: {fileID: 8300000, guid: 77acd59186fdd4442802d00aaf954008, type: 3}
+    jomaSFX: {fileID: 8300000, guid: a310acfbd5b447b46949283447c83bc5, type: 3}
   - text: Press <b>[Q]</b> to use an equipped item and <b>[3]</b> and <b>[4]</b>
       to cycle through them, just like helmets!
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
     buttonText: I will!
     highlightID: 0
+    npcSFX: {fileID: 8300000, guid: eab291c8a1f9984448aa94257e3de508, type: 3}
+    jomaSFX: {fileID: 8300000, guid: f0a00122d1bc44608aabe6f939b2ecf8, type: 3}
