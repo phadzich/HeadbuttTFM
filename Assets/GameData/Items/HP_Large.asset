@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HP_Large
   m_EditorClassIdentifier: 
   itemName: Welding Machine
-  itemLore: Aqui va algun texto mistico.
+  itemLore: Fire caution! Weld back any broken pieces with ease.
   itemDescription: Repair your current active helmet by {{power}} health points.
   effectIcon: {fileID: 21300000, guid: 6643c4fa41fc2244a8c570f271efcad6, type: 3}
   illustration: {fileID: 21300000, guid: b9ba11db393a6b943bf45d2e1780737b, type: 3}

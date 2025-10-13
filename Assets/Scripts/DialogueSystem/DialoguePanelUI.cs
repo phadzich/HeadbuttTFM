@@ -7,14 +7,13 @@ public class DialoguePanelUI : MonoBehaviour
 {
     public TextMeshProUGUI dialogueTXT;
     public TextMeshProUGUI dialogueButtonTXT;
-    public Image playerImage;
+    public Image characterImage;
     public Image npcImage;
     public GameObject dialogFade;
 
     public void Open()
     {
         AnimateNPC();
-        AnimatePlayer();
         AnimateText();
         this.gameObject.SetActive(true);
         dialogFade.SetActive(true);
@@ -30,7 +29,6 @@ public class DialoguePanelUI : MonoBehaviour
     {
         dialogueTXT.text = _line.text;
         npcImage.sprite = _line.npcImage;
-        playerImage.sprite = _line.playerImage;
         dialogueButtonTXT.text = _line.buttonText;
         AnimateNPC();
         //AnimatePlayer();
@@ -40,10 +38,6 @@ public class DialoguePanelUI : MonoBehaviour
     private void AnimateNPC()
     {
         Tween.ScaleY(npcImage.transform, startValue: .6f, endValue: 1f, duration: .4f, ease:Ease.OutElastic);
-    }
-    private void AnimatePlayer()
-    {
-        Tween.ScaleY(playerImage.transform, startValue: .6f, endValue: 1f, duration: .3f, ease: Ease.OutBack);
     }
     private void AnimateText()
     {

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: HP_Medium
   m_EditorClassIdentifier: 
   itemName: Aluminum Foil
-  itemLore: Aqui va algun texto mistico.
+  itemLore: Stolen from a kitchen, this interesting material lets you cover up medium
+    cracks.
   itemDescription: Repair your current active helmet by {{power}} health points.
   effectIcon: {fileID: 21300000, guid: 6643c4fa41fc2244a8c570f271efcad6, type: 3}
   illustration: {fileID: 21300000, guid: 663b7ca0a350ffd468d382335cd8f4c9, type: 3}
-  value: 2
+  value: 3
   type: 1
   potionType: 1

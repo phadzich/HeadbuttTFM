@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f689b6a676aa314a8ed61fa96b8bf9a, type: 3}
   m_Name: TUT_FINAL
   m_EditorClassIdentifier: 
-  id: 
+  id: Tfinal
   helmetBPData: {fileID: 0}
   dialogueSequence: {fileID: 11400000, guid: fc7b3aae5f8fa58428a09b0363d54b93, type: 2}
   limitPerSpawn: 0

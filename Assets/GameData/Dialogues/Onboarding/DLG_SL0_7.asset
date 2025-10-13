@@ -13,26 +13,23 @@ MonoBehaviour:
   m_Name: DLG_SL0_7
   m_EditorClassIdentifier: 
   lines:
-  - text: "It\u2019s the final countdown\u2026 turuturuuuu."
+  - text: "It\u2019s the final countdown\u2026 <i>turuturuuuu.</>"
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "\u2026Tururututu\u2026"
     highlightID: 0
-  - text: Meet your first enemy, the Cactusapo! He is a GRASS TYPE enemy with 10
-      health.
+  - text: Meet your first <sprite=1><b> enemy</b>, the Cactusapo! He is a <sprite=6><b><color=#43dc4c>
+      GRASS TYPE</color></b> enemy with 8 health.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-    buttonText: 10 health!?
+    buttonText: 8 health!?
     highlightID: 0
   - text: Yup! You can either use a regular Headbutt to deal 1 damage or wear your
-      FIRE helmet and deal DOUBLE DAMAGE, since FIRE is strong vs GRASS.
+      <b><color=#e3304e>FIRE helmet and deal DOUBLE DAMAGE<b></color>, since  <b><color=#e3304e><sprite=5> 
+      FIRE </color></b>is strong against <sprite=6><b><color=#43dc4c>  GRASS</color><b>.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Choices!
     highlightID: 2
-  - text: Not only that, some enemies speed up or slow down depending on what Elemental
-      Helmet you hit them with, so don't go all crazy!
+  - text: Not only that, some enemies <b>speed up or slow down</b> depending on what
+      Elemental Helmet you hit them with, so don't go all crazy!
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Understood!
     highlightID: 2

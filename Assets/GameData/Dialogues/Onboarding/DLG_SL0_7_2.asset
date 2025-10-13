@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: DLG_SL0_7_2
   m_EditorClassIdentifier: 
   lines:
-  - text: Last challenge! Cactusapos were harmless but Snowmen and Fire Spitters
-      do hurt.
+  - text: Last challenge! Cactusapos were harmless but <size=120%><b>Snowmen</b>
+      and <b>Fire Turrets</b> do hurt.</size>
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Damn...
     highlightID: 0
-  - text: Fire Spitters are FIRE enemies and are immune to fire attacks. If you dare
-      attack them with FIRE, they will even start attacking FASTER.
+  - text: Fire Spitters are <b><color=#e3304e><sprite=5>  FIRE </color></b> enemies
+      and are <size=150%><b>immune</b></size> to <b><color=#e3304e>FIRE </color></b>
+      attacks. If you dare attack them with <b><color=#e3304e>FIRE </color></b>,
+      they will even start attacking <b>FASTER</b>.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: FIRE + FIRE = CRAZY
     highlightID: 0
-  - text: Snowmen are WATER enemies and are also immune to FIRE.
+  - text: Snowmen are <b><color=#1d80c9><sprite=10>  WATER </color></b> enemies and
+      are also<size=150%><b> immune</b></size> to <b><color=#e3304e><sprite=5>  FIRE</color></b>.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
-    buttonText: FIRE + FIRE = USELESS
+    buttonText: WATER + FIRE = USELESS
     highlightID: 0
-  - text: Further on your journey you will discover and craft GRASS, WATER and ELECTRIC
-      helmets, but for now you may have to battle them with NEUTRAL.
+  - text: Further on your journey you will discover and craft <b><color=#e3304e><sprite=5> 
+      FIRE </color></b>, <b><color=#1d80c9><sprite=10>  WATER </color></b>, <b><color=#43dc4c><sprite=6> 
+      GRASS </color></b> and <b><color=#f6ed2b><sprite=7>  ELECTRIC </color></b>
+      helmets, but for now you may have to battle them with <b><color=#b5977d><sprite=8> 
+      NEUTRAL</color></b>.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Let's do this!
     highlightID: 0

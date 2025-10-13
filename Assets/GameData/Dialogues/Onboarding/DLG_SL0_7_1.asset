@@ -15,29 +15,27 @@ MonoBehaviour:
   lines:
   - text: "Well, well\u2026 another pint-sized dwarf."
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "I\u2019m Joma \xAC_\xAC"
     highlightID: 0
-  - text: OMG, you survived? Never doubted you, bestie, told you from the start!
+  - text: OMG, you survived? Never doubted you, <b>bestie</b>, told you from the
+      start!
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: "Yeah, sure\u2026 "
     highlightID: 0
-  - text: Since you killed two 8HP enemies, you also gained 16 coins as shown on
-      the top-right corner.
+  - text: Since you killed two 8HP enemies, you also gained <sprite=12><color=#f2b63a><b>
+      16 coins</b></color> as shown on the <color=#67f834><b>top-right</b></color>
+      corner.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: What are coins for?
     highlightID: 5
-  - text: See that cute shop there? Spend coins on handy items, then equip up to
-      3 of them in your inventory.
+  - text: See that cute shop there? Spend <sprite=12><color=#f2b63a><b> coins</b></color>
+      on handy <b>items</b>, then equip up to 3 of them in your <sprite=13><color=#ff3f9f><b>
+      Storage</b></color>.
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Looks shady.
     highlightID: 0
-  - text: Press Q to use an equipped item and 3 and 4 to cycle through them, just
-      like helmets!
+  - text: Press <b>[Q]</b> to use an equipped item and <b>[3]</b> and <b>[4]</b>
+      to cycle through them, just like helmets!
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: I will!
     highlightID: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: HP_Small
   m_EditorClassIdentifier: 
   itemName: Rusty Scrap Parts
-  itemLore: "Una peque\xF1a colecci\xF3n de remaches, grapas, tornillos y otros restos
-    finamente seleccionados."
+  itemLore: A fine selection of staples, broken screws and spare parts to fill small
+    holes.
   itemDescription: Repair your current active helmet by {{power}} health points.
   effectIcon: {fileID: 21300000, guid: 6643c4fa41fc2244a8c570f271efcad6, type: 3}
   illustration: {fileID: 21300000, guid: 2c9e77a9490c61a4894d8022dac57662, type: 3}

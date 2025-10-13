@@ -13,26 +13,24 @@ MonoBehaviour:
   m_Name: DLG_SL0_6
   m_EditorClassIdentifier: 
   lines:
-  - text: "Remember those beautiful red resources you just mined? Not just decoration!
-      They\u2019re for crafting that blueprint."
+  - text: "Remember those beautiful <color=#e64550><b>red</b></color> resources you
+      just mined? Not just decoration! They\u2019re for <sprite=11><b> crafting</b>
+      that blueprint."
     npcImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: How though?
     highlightID: 0
-  - text: See that anvil? Step up and make your first helmet.
+  - text: See that <b>anvil and hammer</b>? Thats a<sprite=11><b> Forger</b>. Step
+      up and make your first helmet.
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Awesome!
     highlightID: 0
-  - text: "Each one\u2019s got its own stats: health, damage, even elemental powers
-      and shields!"
+  - text: 'Each <sprite=9><b> helmet</b> has its own stats: <sprite=16><b> health</b>,
+      <sprite=15><b> damage</b>, even <sprite=5> <b> elemental</b> powers and shields!'
     npcImage: {fileID: 21300000, guid: aef12474eae64534fbef8c36a460a916, type: 3}
-    playerImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
     buttonText: Amazing!
     highlightID: 0
-  - text: "On your way you\u2019ll find more minerals, more helmets. Collect smart,
-      your survival depends on it."
+  - text: "On your way you\u2019ll find more minerals, more helmets. <size=120%><b>Collect
+      smart</b></size>, your survival depends on it."
     npcImage: {fileID: 21300000, guid: a45fb2ba6b66d0248841039a01baca32, type: 3}
-    playerImage: {fileID: 21300000, guid: 8726e1acf043ab7458c657ccfd002abf, type: 3}
     buttonText: Not afraid!
     highlightID: 0
