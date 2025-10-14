@@ -80,6 +80,14 @@ public class LevelManager : MonoBehaviour
         ChangeLevel(0);
     }
 
+    public void NewGame()
+    {
+        Debug.Log("LevelManager NEW GAME");
+        foreach (LevelConfig _levels in levelsList)
+        {
+            _levels.maxDepth = 0;
+        }
+    }
 private void ChangeFogColor()
     {
         //Debug.Log("FOGDHADE");

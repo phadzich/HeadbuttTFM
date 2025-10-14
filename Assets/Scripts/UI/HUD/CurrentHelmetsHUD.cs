@@ -18,6 +18,16 @@ public class CurrentHelmetsHUD : MonoBehaviour
     public GameObject helmetHUDPF;
     public List<HelmetHUD> equippedHelmetHUDs;
 
+    public void NewGame()
+    {
+        foreach(Transform _child in helmetsContainer)
+        {
+            Destroy(_child.gameObject);
+        }
+        equippedHelmetHUDs.Clear();
+    }
+
+
     public void EquipHelmet(HelmetInstance _helmInstance)
     {
         var _newHelmetHUDPF = Instantiate(helmetHUDPF, helmetsContainer);

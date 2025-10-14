@@ -65,6 +65,17 @@ public class HelmetManager : MonoBehaviour
 
     }
 
+    public void NewGame()
+    {
+        Debug.Log("HelmetManager NEWGAME");
+        allHelmets.Clear();
+        helmetsEquipped.Clear();
+        CreateAllInstances();
+        InitializeOwnedHelmets();
+        UIManager.Instance.SuscribeToHelmetInstances();
+
+    }
+
     private void QuickTest(int _id)
     {
         allHelmets[_id].Discover();

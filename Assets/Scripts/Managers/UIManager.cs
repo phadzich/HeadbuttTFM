@@ -167,6 +167,14 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void NewGame()
+    {
+        //SuscribeToHelmetInstances();
+        currentHelmetsHUD.NewGame();
+        activeItemHUD.NewGame();
+
+    }
+
     private void OnEquippedItemCycled(Item _item, int _amount)
     {
 

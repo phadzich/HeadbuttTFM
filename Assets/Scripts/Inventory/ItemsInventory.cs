@@ -33,7 +33,13 @@ public class ItemsInventory : MonoBehaviour
         UIManager.Instance.InventoryPanel.Init();
     }
 
-
+    public void NewGame()
+    {
+        Init();
+        currentActiveIndex = 0;
+        currentActiveItem = null;
+        ItemsListChanged?.Invoke();
+    }
     public void ChangeActiveItem()
     {
         if (equippedItems.Count > 0)

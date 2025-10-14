@@ -35,7 +35,18 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void NewGame()
+    {
+        Debug.Log("STARTING NEW GAME");
+        ResourceManager.Instance.NewGame();
+        LevelManager.Instance.NewGame();
 
+        PlayerManager.Instance.NewGame();
+        ShopManager.Instance.NewGame();
+        InventoryManager.Instance.NewGame();
+        UIManager.Instance.NewGame();
+        HelmetManager.Instance.NewGame();
+    }
     public void PauseGame(bool _isPaused)
     {
         if (_isPaused)

@@ -12,6 +12,11 @@ public class ActiveItemHUD : MonoBehaviour
     {
         DisableUI();
     }
+
+    public void NewGame()
+    {
+        DisableUI();
+    }
     public void ChangeActiveItem(Item _itemData, int _quantity)
     {
         this.gameObject.SetActive(true);

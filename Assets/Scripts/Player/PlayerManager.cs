@@ -50,6 +50,14 @@ public class PlayerManager : MonoBehaviour
         PlayerLivesChanged?.Invoke(currentPlayerLives, maxPlayerLives);
     }
 
+    public void NewGame()
+    {
+        currentPlayerLives = 0;
+        maxPlayerLives = 0;
+        playerHeadbutt.currentHBpoints = 0;
+        playerHeadbutt.onHBPointsChanged?.Invoke(0, playerHeadbutt.maxHBpoints);
+    }
+
     public void AddMaxLives(int _amount)
     {
         maxPlayerLives += _amount;

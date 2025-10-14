@@ -145,7 +145,7 @@ public class PlayerStates : MonoBehaviour
     {
         if (isOnState(PlayerMainStateEnum.Dead) || isOnState(PlayerMainStateEnum.Wait))
         {
-            Debug.Log("ya valii sjd js");
+            
             return;
         }
 

@@ -27,6 +27,13 @@ public class ShopManager : MonoBehaviour
     {
         CreateShopsFromData();
     }
+
+    public void NewGame()
+    {
+        Debug.Log("Shop Manager NEWGAME");
+        shopInstances.Clear();
+        CreateShopsFromData();
+    }
     private void CreateShopsFromData()
     {
         foreach (ShopData _data in shopsData)

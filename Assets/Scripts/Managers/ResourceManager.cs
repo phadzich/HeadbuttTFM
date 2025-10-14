@@ -35,9 +35,16 @@ public class ResourceManager : MonoBehaviour
     {
         Debug.Log("ResourceManager START");
         onOwnedResourcesChanged?.Invoke();
+    }
 
-
-
+    public void NewGame()
+    {
+        Debug.Log("ResourceManager NEW GAME");
+        ownedResources.Clear();
+        coinTrader.currentCoins = 0;
+        coinTrader.onCoinsChanged?.Invoke(0);
+        InitOwnedResources();
+        onOwnedResourcesChanged?.Invoke();
     }
 
     public void InitOwnedResources()

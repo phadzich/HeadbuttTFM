@@ -29,5 +29,10 @@ public class InventoryManager : MonoBehaviour
         itemsInventory.Init();
     }
 
+    public void NewGame()
+    {
+        Debug.Log("InventoryManager NEW GAME");
+        itemsInventory.NewGame();
+    }
 
 }
