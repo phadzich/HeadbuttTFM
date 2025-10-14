@@ -115,7 +115,16 @@ public class PlayerMovement : MonoBehaviour
 
             if (moveInput != Vector2.zero)
             {
-                RotatePlayer(moveInput);
+                if (PlayerManager.Instance.playerStates.isOnState(PlayerMainStateEnum.Bouncing) || PlayerManager.Instance.playerStates.isOnState(PlayerMainStateEnum.Headbutt))
+                {
+                    Vector2 _modified = new Vector2(moveInput.x, moveInput.y * -1);
+                    RotatePlayer(_modified);
+                }
+                else
+                {
+                    RotatePlayer(moveInput);
+                }
+                
             }
 
             //Bloqueamos input si todavía no pisó el siguiente bloque
