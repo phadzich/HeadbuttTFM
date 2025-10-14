@@ -117,6 +117,7 @@ public class PlayerEffects : MonoBehaviour
 
     public void StartBlink(float duration)
     {
+        Debug.Log("FLICKER");
         StopBlink();
         blinkRoutine = StartCoroutine(BlinkRoutine(duration));
     }
