@@ -42,7 +42,8 @@ public enum SFXType {
     HP_SMALL_POTION,
     DRINK_HBPOTION,
     DRINK_HPPOTION,
-    BOUNCE_DOOR
+    BOUNCE_DOOR,
+    OPEN_LEVEL_DOOR
 }
 
 public enum AmbientType {
