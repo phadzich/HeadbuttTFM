@@ -132,17 +132,28 @@ public class PlayerStates : MonoBehaviour
                 break;
 
             case PlayerMainStateEnum.Wait:
+                canBounce = false;
+                canMove = false;
+                canHeadbutt = false;
+                canReceiveDamage = false;
+
                 break;
         }
     }
 
     void HandleEffects()
     {
+        if (isOnState(PlayerMainStateEnum.Dead) || isOnState(PlayerMainStateEnum.Wait))
+        {
+            Debug.Log("ya valii sjd js");
+            return;
+        }
+
         if (hasEffect(PlayerEffectStateEnum.Shield) || hasEffect(PlayerEffectStateEnum.Cooldown))
         {
             canReceiveDamage = false;
         }
-        else if (!isOnState(PlayerMainStateEnum.Dead) || !isOnState(PlayerMainStateEnum.Wait))
+        else
         {
             canReceiveDamage = true;
         }
@@ -174,13 +185,13 @@ public class PlayerStates : MonoBehaviour
     {
         yield return new WaitForSeconds(_time);
 
+        ChangeState(PlayerMainStateEnum.Wait);
+
         MatchManager.Instance.RestartMatches();
 
         //AQUI AGREGAR CODIGO PARA MOSTRAR SCREEN DE GAME OVER 
 
         UIManager.Instance.ShowGameOver();
-
-        ChangeState(PlayerMainStateEnum.Wait);
 
     }
 
