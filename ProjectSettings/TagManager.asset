@@ -7,6 +7,7 @@ TagManager:
   - DoorExit
   - Wall
   - Projectile
+  - MenuCamera
   layers:
   - Default
   - TransparentFX
