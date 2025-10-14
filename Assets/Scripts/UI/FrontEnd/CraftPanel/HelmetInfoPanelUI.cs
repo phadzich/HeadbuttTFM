@@ -82,6 +82,7 @@ public class HelmetInfoPanelUI : MonoBehaviour
 
         equippedLabel.SetActive(helmetInstance.isEquipped);
         equipBtn.gameObject.SetActive(!helmetInstance.isEquipped);
+        if(helmetInstance.isEquipped) helmetIcon.color = new Color(1f, 1f, 1f, 1f);
     }
 
     private void UpdateStrongVsData(ElementType _element)
