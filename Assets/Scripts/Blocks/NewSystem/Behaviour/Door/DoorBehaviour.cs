@@ -93,10 +93,12 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
     {
         if (isOpen)
         {
+            SoundManager.PlaySound(SFXType.BOUNCE_DOOR);
             Activate();
         }
         else
         {
+            SoundManager.PlaySound(SFXType.BOUNCE_DOOR);
             MatchManager.Instance.FloorBounced();
         }
     }
