@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance;
     public GameObject currentOpenUI;
+    public TextMeshProUGUI versionTXT;
 
     [Header("NPCs")]
     public GameObject NPCCraftPanel;
@@ -78,6 +79,7 @@ public class UIManager : MonoBehaviour
         SuscribeToHelmetInstances();
         //InputManager.Instance.SwitchInputToPlayer();
         mainMenuPanel.OpenMainMenu();
+        versionTXT.text = Application.version;
     }
 
     private void OnEnable()
