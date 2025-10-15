@@ -70,10 +70,17 @@ public class InputManager : MonoBehaviour
     {
         if (context.started)
         {
-            if (currentInteractableNPC != null)
+            if (currentInteractableNPC != null && LevelManager.Instance.currentSublevel.config is NPCSublevelConfig)
             {
+                Debug.Log(currentInteractableNPC);
                 currentInteractableNPC.Interact();
             }
         }
+    }
+
+    public void ClearNPC()
+    {
+        currentInteractableNPC = null;
+        Debug.Log(currentInteractableNPC);
     }
 }

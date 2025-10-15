@@ -110672,6 +110672,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2996706624672652694}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ClearNPC
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1554047288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161583,6 +161595,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2364941310469395373, guid: 8abbbb9b09fa0294f9c2dabc040a7250, type: 3}
+      propertyPath: shopsData.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364941310469395373, guid: 8abbbb9b09fa0294f9c2dabc040a7250, type: 3}
+      propertyPath: 'shopsData.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d284fced808c80141907a10125df5571, type: 2}
+    - target: {fileID: 2364941310469395373, guid: 8abbbb9b09fa0294f9c2dabc040a7250, type: 3}
+      propertyPath: 'shopsData.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 55d5348b281330046a1bce31fdca98a7, type: 2}
+    - target: {fileID: 2364941310469395373, guid: 8abbbb9b09fa0294f9c2dabc040a7250, type: 3}
+      propertyPath: 'shopsData.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a8449c750b586c4e97b76bac39bb8e1, type: 2}
+    - target: {fileID: 2364941310469395373, guid: 8abbbb9b09fa0294f9c2dabc040a7250, type: 3}
+      propertyPath: 'shopsData.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c035bf6fbfc2ec74583d760f03cfe96e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

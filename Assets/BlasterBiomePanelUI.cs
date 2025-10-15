@@ -74,10 +74,15 @@ public class BlasterBiomePanelUI : MonoBehaviour
     private void LoadCheckpoint(LevelConfig _level, int _depth)
     {
         Debug.Log("LOADING CHECKPIINT DIRECT");
+
+        InputManager.Instance.currentInteractableNPC = null;
+        Debug.Log(InputManager.Instance.currentInteractableNPC);
+
         int _levelIndex = LevelManager.Instance.levelsList.IndexOf(_level);
         LevelManager.Instance.ChangeLevelAndCheckpoint(_levelIndex, _depth);
         UIManager.Instance.NPCBlasterPanel.SetActive(false);
         UIManager.Instance.frontEndFrame.CloseFrame();
+
     }
 
     private void AddFloor(int _index)
