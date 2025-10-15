@@ -124,6 +124,7 @@ public class GateBehaviour : MonoBehaviour, IBlockBehaviour
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
         MatchManager.Instance.FloorBounced();
+        SoundManager.PlaySound(SFXType.HEADBUTT);
     }
 
     public void Activate()

@@ -81,11 +81,13 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
 
     public void OnBounced(HelmetInstance _helmetInstance)
     {
+        SoundManager.PlaySound(SFXType.BOUNCE_DOOR);
         TryToOpen();
     }
 
     public void OnHeadbutt(HelmetInstance _helmetInstance)
     {
+        SoundManager.PlaySound(SFXType.HEADBUTT_DOOR);
         TryToOpen();
     }
 
@@ -98,7 +100,6 @@ public class DoorBehaviour : MonoBehaviour, IBlockBehaviour
         }
         else
         {
-            SoundManager.PlaySound(SFXType.BOUNCE_DOOR);
             MatchManager.Instance.FloorBounced();
         }
     }

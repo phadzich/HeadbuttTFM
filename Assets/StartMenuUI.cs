@@ -5,6 +5,8 @@ public class StartMenuUI : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject startScene;
 
+    public AudioClip music;
+
 
 
     public string feedbackURL = "https://docs.google.com/forms/d/e/1FAIpQLSdsJLWgR-lpDkXwi1nI8cCZrx_JCQej7lv6SVlOTgM-TK53tw/viewform"; // Set your desired URL here
@@ -26,6 +28,7 @@ public class StartMenuUI : MonoBehaviour
         InputManager.Instance.SwitchInputToUI();
         UIManager.Instance.currentOpenUI = this.gameObject;
         startScene.SetActive(true);
+        SoundManager.PlaySound(MusicType.LEVEL_MUSIC, music);
     }
 
     public void CloseMainMenu()
