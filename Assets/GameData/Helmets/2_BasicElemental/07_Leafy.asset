@@ -16,7 +16,7 @@ MonoBehaviour:
   helmetName: Leafy
   description: 
   mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
-  icon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
+  icon: {fileID: 21300000, guid: cbb61f2770591684cad2274155867584, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 0
   miningPower: 0

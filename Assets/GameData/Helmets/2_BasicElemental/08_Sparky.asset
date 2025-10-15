@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "Forged from pure electricity, this helmet sparks with energy\u2026
     just ask Joma\u2019s hair."
   mesh: {fileID: 1928718743684311021, guid: 03568b7b719ba4efab59981d2a73e671, type: 3}
-  icon: {fileID: 21300000, guid: 02b85af88f0e20e4896e5f52f04f9ec8, type: 3}
+  icon: {fileID: 21300000, guid: 48c17a2dcf7ae4546bda687c92374c06, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 0
   miningPower: 0
@@ -27,22 +27,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 8
+      quantity: 12
     - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 17
+      quantity: 23
     durability: 1
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 13
+      quantity: 18
     - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 25
+      quantity: 35
     durability: 2
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 17
+      quantity: 23
     - resource: {fileID: 11400000, guid: dab3883fb656b83479df2e58d9d5b68a, type: 2}
-      quantity: 33
+      quantity: 47
     durability: 3
     powerStat: 0

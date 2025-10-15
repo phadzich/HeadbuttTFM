@@ -17,7 +17,7 @@ MonoBehaviour:
   description: A tiny dragon hatchling left behind in the mines and raised by the
     dwarves. Joma discovered that squeezing it makes it spit fire.
   mesh: {fileID: 1928718743684311021, guid: 4d991e8978547460a9c0ed7afe188680, type: 3}
-  icon: {fileID: 21300000, guid: 0853f2991c2d5824497833a5412f6382, type: 3}
+  icon: {fileID: 21300000, guid: f515e47727786c44dabc9330c9944193, type: 3}
   color: {r: 0.19339621, g: 0.18451354, b: 0.18244925, a: 0}
   rarity: 1
   miningPower: 1
@@ -27,22 +27,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 14
+      quantity: 19
     - resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 16
+      quantity: 23
     durability: 2
     powerStat: 1
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 20
+      quantity: 29
     - resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 25
+      quantity: 34
     durability: 3
     powerStat: 2
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 27
+      quantity: 38
     - resource: {fileID: 11400000, guid: 93a8e6bb95c51034bbacd4f262ba058d, type: 2}
-      quantity: 33
+      quantity: 46
     durability: 4
     powerStat: 3

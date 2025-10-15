@@ -18,7 +18,7 @@ MonoBehaviour:
     energy flows calmly\u2026 until it drips into Joma\u2019s eyes in the heat of
     battle."
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
-  icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
+  icon: {fileID: 21300000, guid: 900d33941f86d2645ade578dddd29a59, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 0
   miningPower: 0
@@ -28,22 +28,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 8
+      quantity: 12
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 17
+      quantity: 23
     durability: 1
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 13
+      quantity: 18
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 25
+      quantity: 35
     durability: 2
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 17
+      quantity: 23
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 33
+      quantity: 47
     durability: 3
     powerStat: 0

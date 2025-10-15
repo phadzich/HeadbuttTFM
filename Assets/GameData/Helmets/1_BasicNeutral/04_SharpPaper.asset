@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Joma has always loved to craft, so she crafted her own helmet... out
     of paper, of course. Still counts.
   mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
-  icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
+  icon: {fileID: 21300000, guid: 8d3c5a4952e3a0b438d6a9d05d308f1b, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   rarity: 0
   miningPower: 2
@@ -27,7 +27,7 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 10
+      quantity: 14
     durability: 1
     powerStat: 0
   - requirements:

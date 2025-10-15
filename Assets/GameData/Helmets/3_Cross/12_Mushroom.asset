@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Crafted with mushrooms from the Foggy Forest. Bouncy and spore-filled.
     Joma loves it, even if it sometimes makes her sneeze in battle.
   mesh: {fileID: 1928718743684311021, guid: 25e1cc0f0fcf344b3b6aac3908b7b62a, type: 3}
-  icon: {fileID: 21300000, guid: d52c60ae1c283c5448faa20931d168be, type: 3}
+  icon: {fileID: 21300000, guid: 3a129fd102031a843b70671e6f25958c, type: 3}
   color: {r: 0.19339621, g: 0.18451354, b: 0.18244925, a: 0}
   rarity: 1
   miningPower: 1
@@ -27,22 +27,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 14
+      quantity: 19
     - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 16
+      quantity: 23
     durability: 2
     powerStat: 1
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 20
+      quantity: 29
     - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 25
+      quantity: 34
     durability: 3
     powerStat: 2
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 27
+      quantity: 38
     - resource: {fileID: 11400000, guid: e4061ae4f66407c46bcee6ae0fb03c3e, type: 2}
-      quantity: 33
+      quantity: 46
     durability: 4
     powerStat: 3

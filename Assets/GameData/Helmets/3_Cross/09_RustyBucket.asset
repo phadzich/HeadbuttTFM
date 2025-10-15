@@ -17,7 +17,7 @@ MonoBehaviour:
   description: An old mining bucket; dwarves often got bonked with it. Joma says
     the dents add character.
   mesh: {fileID: 1928718743684311021, guid: bdb4985d361f04169a4e6fbfc8fd9ca8, type: 3}
-  icon: {fileID: 21300000, guid: f93e00cd882a17445bab40cd204b4846, type: 3}
+  icon: {fileID: 21300000, guid: 07f182a02ae87ad46ab5a67218a71f47, type: 3}
   color: {r: 0.19339621, g: 0.18451354, b: 0.18244925, a: 0}
   rarity: 1
   miningPower: 2
@@ -27,22 +27,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 9
+      quantity: 12
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 11
+      quantity: 16
     durability: 2
     powerStat: 1
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 13
+      quantity: 18
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 17
+      quantity: 24
     durability: 3
     powerStat: 1
   - requirements:
     - resource: {fileID: 11400000, guid: d4573124eedf3334ea1f761bf5fcb6d1, type: 2}
-      quantity: 17
+      quantity: 24
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
-      quantity: 23
+      quantity: 32
     durability: 4
     powerStat: 2

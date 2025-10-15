@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 11
   helmetName: Nelumbo
-  description: 
+  description: A sneaky ecological creature hides below a lilypad, waiting for the
+    perfect time to strike with cute bubbles.
   mesh: {fileID: 1928718743684311021, guid: 1ab9c3f3137234eb3928cace074bc489, type: 3}
-  icon: {fileID: 21300000, guid: 8ef0b7bebc5183c4bb5b9e60201e44d1, type: 3}
+  icon: {fileID: 21300000, guid: 5d9a4ef5a4f52c94b875f32fb61ed7ed, type: 3}
   color: {r: 0.19339621, g: 0.18451354, b: 0.18244925, a: 0}
   rarity: 1
   miningPower: 1
@@ -26,22 +27,22 @@ MonoBehaviour:
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 22
+      quantity: 19
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 26
+      quantity: 23
     durability: 2
     powerStat: 1
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 33
+      quantity: 29
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 39
+      quantity: 34
     durability: 3
     powerStat: 2
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 44
+      quantity: 38
     - resource: {fileID: 11400000, guid: 34bcc559378858941b4790e0f36a5ea1, type: 2}
-      quantity: 52
+      quantity: 46
     durability: 4
     powerStat: 3
