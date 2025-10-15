@@ -32,11 +32,11 @@ MonoBehaviour:
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 15
-    durability: 2
+      quantity: 0
+    durability: 1
     powerStat: 0
   - requirements:
     - resource: {fileID: 11400000, guid: 731b6ab0c2336b64c8afe7eaea2b8894, type: 2}
-      quantity: 20
-    durability: 3
+      quantity: 0
+    durability: 1
     powerStat: 0
