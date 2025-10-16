@@ -23,6 +23,7 @@ MonoBehaviour:
   element: 4
   effects:
   - {fileID: 11400000, guid: b92adbb5e7c22cb47822505252a21a73, type: 2}
+  - {fileID: 11400000, guid: 0e10539b3d3498140b3d6e1d4e8e9401, type: 2}
   levelUpRequirements:
   - requirements:
     - resource: {fileID: 11400000, guid: c801eb07a7732114cafa6328b46b333a, type: 2}
